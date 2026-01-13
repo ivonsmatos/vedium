@@ -1,0 +1,233 @@
+{%- extends "templates/web.html" -%}
+
+{# =============================================================================
+Vedium - Base Template Override
+PWA Enabled with Bottom Navigation Bar (Mobile Only)
+============================================================================= #}
+
+{%- block meta_block -%}
+{{ super() }}
+
+{# PWA Meta Tags #}
+<meta name="theme-color" content="#166534">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vedium">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Vedium">
+<meta name="msapplication-TileColor" content="#166534">
+<meta name="msapplication-config" content="/assets/vedium_core/browserconfig.xml">
+
+{# PWA Manifest #}
+<link rel="manifest" href="/assets/vedium_core/manifest.json">
+
+{# Apple Touch Icons #}
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/vedium_core/images/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/vedium_core/images/icon-144x144.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/vedium_core/images/icon-120x120.png">
+
+{# Favicon #}
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/vedium_core/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/vedium_core/images/favicon-16x16.png">
+
+{# Splash Screens for iOS #}
+<link rel="apple-touch-startup-image" href="/assets/vedium_core/images/splash-640x1136.png"
+    media="(device-width: 320px) and (device-height: 568px)">
+<link rel="apple-touch-startup-image" href="/assets/vedium_core/images/splash-750x1334.png"
+    media="(device-width: 375px) and (device-height: 667px)">
+<link rel="apple-touch-startup-image" href="/assets/vedium_core/images/splash-1242x2208.png"
+    media="(device-width: 414px) and (device-height: 736px)">
+{%- endblock -%}
+
+{%- block style -%}
+{{ super() }}
+<style>
+    /* Bottom Navigation Padding */
+    @media (max-width: 768px) {
+        body {
+            padding-bottom: 70px !important;
+        }
+
+        /* Hide Frappe sidebar on mobile when in standalone */
+        @media (display-mode: standalone) {
+            .frappe-control[data-fieldtype="Section Break"] {
+                margin-bottom: 80px;
+            }
+        }
+    }
+
+    /* Bottom Navigation Bar Styles */
+    .vedium-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1050;
+        background: rgba(26, 31, 38, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 8px 0;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    @media (max-width: 768px) {
+        .vedium-bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
+
+    .vedium-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        color: #8b98a5;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-radius: 12px;
+        min-width: 64px;
+    }
+
+    .vedium-nav-item:hover,
+    .vedium-nav-item:focus {
+        color: #22c55e;
+        background: rgba(34, 197, 94, 0.1);
+        text-decoration: none;
+    }
+
+    .vedium-nav-item.active {
+        color: #22c55e;
+    }
+
+    .vedium-nav-item.active .vedium-nav-icon {
+        transform: scale(1.1);
+    }
+
+    .vedium-nav-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 4px;
+        transition: transform 0.2s ease;
+    }
+
+    .vedium-nav-label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+    }
+
+    /* PWA Standalone Mode Adjustments */
+    @media (display-mode: standalone) {
+        .vedium-bottom-nav {
+            display: flex !important;
+            justify-content: space-around;
+        }
+
+        /* Hide desktop navigation in PWA */
+        .navbar-expand {
+            display: none !important;
+        }
+    }
+</style>
+{%- endblock -%}
+
+{%- block body -%}
+{{ super() }}
+
+{# Bottom Navigation Bar - Mobile Only #}
+<nav class="vedium-bottom-nav" id="vedium-bottom-nav" role="navigation" aria-label="Navegação principal">
+
+    {# Home #}
+    <a href="/app" class="vedium-nav-item" data-page="home">
+        <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span class="vedium-nav-label">Início</span>
+    </a>
+
+    {# Sales / Vendas #}
+    <a href="/app/selling" class="vedium-nav-item" data-page="selling">
+        <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="vedium-nav-label">Vendas</span>
+    </a>
+
+    {# Quick Action (Center) #}
+    <a href="/app/new-doc" class="vedium-nav-item vedium-nav-action" data-page="quick">
+        <div
+            style="background: linear-gradient(135deg, #166534, #22c55e); border-radius: 50%; padding: 12px; margin: -16px 0;">
+            <svg class="vedium-nav-icon" style="color: white; margin: 0;" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </div>
+        <span class="vedium-nav-label" style="margin-top: 8px;">Novo</span>
+    </a>
+
+    {# Finance / Finanças #}
+    <a href="/app/accounts" class="vedium-nav-item" data-page="accounts">
+        <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        <span class="vedium-nav-label">Finanças</span>
+    </a>
+
+    {# Menu / More #}
+    <a href="/app/modules" class="vedium-nav-item" data-page="modules">
+        <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span class="vedium-nav-label">Menu</span>
+    </a>
+
+</nav>
+
+<script>
+    (function () {
+        'use strict';
+
+        // Highlight active nav item
+        const currentPath = window.location.pathname;
+        const navItems = document.querySelectorAll('.vedium-nav-item');
+
+        navItems.forEach(item => {
+            const page = item.dataset.page;
+            const href = item.getAttribute('href');
+
+            if (currentPath === href ||
+                (page === 'home' && currentPath === '/app') ||
+                currentPath.includes('/' + page)) {
+                item.classList.add('active');
+            }
+        });
+
+        // Haptic feedback on click (if supported)
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(10);
+                }
+            });
+        });
+    })();
+</script>
+{%- endblock -%}

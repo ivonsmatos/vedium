@@ -1,0 +1,38 @@
+{
+    "name": "Vedium - Frappe v15",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "service": "frappe",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
+    "remoteUser": "frappe",
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint",
+                "bradlc.vscode-tailwindcss",
+                "eamodio.gitlens",
+                "gruntfuggly.todo-tree"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/home/frappe/frappe-bench/env/bin/python",
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": true,
+                "editor.tabSize": 4,
+                "files.trimTrailingWhitespace": true,
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+    
+    "forwardPorts": [8000, 9000, 6379, 3306],
+    
+    "postCreateCommand": "chmod +x /workspace/init.sh && echo 'DevContainer ready! Run ./init.sh to initialize.'",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {}
+    }
+}

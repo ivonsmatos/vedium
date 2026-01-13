@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================
+   Vedium Core - Base Styles
+   =========================================== */
+
+@layer base {
+  :root {
+    --vedium-primary: #166534;
+    --vedium-secondary: #ca8a04;
+    --vedium-accent: #6f5850;
+    --vedium-bg-dark: #0f1419;
+    --vedium-surface-dark: #1a1f26;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-neutral-50 text-neutral-900 font-sans antialiased;
+  }
+  
+  body.dark {
+    @apply bg-dark-bg text-dark-text;
+  }
+}
+
+@layer components {
+  /* Primary Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           bg-primary text-white font-semibold rounded-xl
+           transition-all duration-300 ease-out
+           hover:bg-primary-700 hover:shadow-glow
+           active:scale-95 focus:ring-2 focus:ring-primary/50;
+  }
+  
+  /* Secondary Button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-secondary text-white font-semibold rounded-xl
+           transition-all duration-300 ease-out
+           hover:bg-secondary-700 hover:shadow-glow-gold
+           active:scale-95 focus:ring-2 focus:ring-secondary/50;
+  }
+  
+  /* Ghost Button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-transparent text-primary font-semibold rounded-xl
+           border-2 border-primary
+           transition-all duration-300 ease-out
+           hover:bg-primary hover:text-white
+           active:scale-95;
+  }
+  
+  /* Card */
+  .card {
+    @apply bg-white rounded-2xl p-6 shadow-soft
+           transition-all duration-300
+           hover:shadow-lg;
+  }
+  
+  .card-dark {
+    @apply bg-dark-surface border border-dark-border rounded-2xl p-6
+           transition-all duration-300
+           hover:border-primary/50;
+  }
+  
+  /* Input */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-neutral-300
+           bg-white text-neutral-900 placeholder-neutral-400
+           transition-all duration-200
+           focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none;
+  }
+  
+  .input-dark {
+    @apply w-full px-4 py-3 rounded-xl border border-dark-border
+           bg-dark-surface text-dark-text placeholder-dark-muted
+           transition-all duration-200
+           focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none;
+  }
+  
+  /* Bottom Navigation (Mobile PWA) */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 z-50
+           bg-white/95 backdrop-blur-lg border-t border-neutral-200
+           px-2 py-2 safe-area-inset-bottom;
+  }
+  
+  .bottom-nav-dark {
+    @apply fixed bottom-0 left-0 right-0 z-50
+           bg-dark-surface/95 backdrop-blur-lg border-t border-dark-border
+           px-2 py-2 safe-area-inset-bottom;
+  }
+  
+  .bottom-nav-item {
+    @apply flex flex-col items-center justify-center py-2 px-3
+           text-neutral-500 transition-colors duration-200
+           hover:text-primary;
+  }
+  
+  .bottom-nav-item.active {
+    @apply text-primary;
+  }
+  
+  .bottom-nav-item-icon {
+    @apply w-6 h-6 mb-1;
+  }
+  
+  .bottom-nav-item-label {
+    @apply text-2xs font-medium;
+  }
+}
+
+@layer utilities {
+  /* Safe area for PWA */
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  
+  /* Glass effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/10;
+  }
+  
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-vedium;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-gold;
+  }
+}

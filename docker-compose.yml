@@ -1,0 +1,78 @@
+version: "3.8"
+
+services:
+  frappe:
+    image: frappe/bench:v5.22.6
+    container_name: vedium-frappe
+    command: sleep infinity
+    environment:
+      - SHELL=/bin/bash
+    volumes:
+      - .:/workspace:cached
+      - frappe-bench-data:/home/frappe/frappe-bench
+    ports:
+      - "8001:8000"
+      - "9001:9000"
+    depends_on:
+      - mariadb
+      - redis-cache
+      - redis-queue
+      - redis-socketio
+    networks:
+      - vedium-network
+
+  mariadb:
+    image: mariadb:10.6
+    container_name: vedium-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vedium
+      MYSQL_USER: frappe
+      MYSQL_PASSWORD: frappe
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+      - --skip-innodb-read-only-compressed
+    networks:
+      - vedium-network
+
+  redis-cache:
+    image: redis:7-alpine
+    container_name: vedium-redis-cache
+    volumes:
+      - redis-cache-data:/data
+    networks:
+      - vedium-network
+
+  redis-queue:
+    image: redis:7-alpine
+    container_name: vedium-redis-queue
+    volumes:
+      - redis-queue-data:/data
+    networks:
+      - vedium-network
+
+  redis-socketio:
+    image: redis:7-alpine
+    container_name: vedium-redis-socketio
+    volumes:
+      - redis-socketio-data:/data
+    networks:
+      - vedium-network
+
+volumes:
+  frappe-bench-data:
+  mariadb-data:
+  redis-cache-data:
+  redis-queue-data:
+  redis-socketio-data:
+
+
+networks:
+  vedium-network:
+    driver: bridge
