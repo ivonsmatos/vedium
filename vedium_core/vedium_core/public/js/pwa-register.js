@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    const SW_PATH = '/assets/vedium_core/js/sw.js';
+    const SW_PATH = '/sw.js';
     const SW_SCOPE = '/';
 
     // Check if service workers are supported

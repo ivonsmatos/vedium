@@ -13,7 +13,7 @@ app_license = "MIT"
 app_logo_url = "/assets/vedium_core/images/vedium-logo.svg"
 
 # Website Favicon
-website_favicon = "/assets/vedium_core/images/favicon.ico"
+website_favicon = "/assets/vedium_core/images/favicon.svg"
 
 # Home Page
 home_page = "home"
@@ -28,9 +28,7 @@ app_include_css = [
 ]
 
 # JS Includes (loaded on every page)
-app_include_js = [
-    "/assets/vedium_core/js/vedium.bundle.js"
-]
+app_include_js = []
 
 # Website CSS
 web_include_css = [
@@ -39,7 +37,6 @@ web_include_css = [
 
 # Website JS
 web_include_js = [
-    "/assets/vedium_core/js/vedium.bundle.js",
     "/assets/vedium_core/js/pwa-register.js"
 ]
 
@@ -58,7 +55,7 @@ app_theme_color = "#166534"
 # =============================================================================
 
 website_context = {
-    "favicon": "/assets/vedium_core/images/favicon.ico",
+    "favicon": "/assets/vedium_core/images/favicon.svg",
     "splash_image": "/assets/vedium_core/images/splash.png"
 }
 
