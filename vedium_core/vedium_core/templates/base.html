@@ -38,6 +38,11 @@
 
     {%- block head_include %}
     {{ head_include or "" }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/css/vedium.css">
     {% endblock -%}
 
     {%- block style %}
@@ -199,69 +204,7 @@
     ) }}
     {%- endblock -%}
 
-    {# Vedium Bottom Navigation Bar (Mobile Only) #}
-    <nav class="vedium-bottom-nav" id="vedium-bottom-nav" role="navigation" aria-label="Navegação principal">
-        <a href="/app" class="vedium-nav-item" data-page="home">
-            <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-            <span class="vedium-nav-label">Início</span>
-        </a>
-        <a href="/app/selling" class="vedium-nav-item" data-page="selling">
-            <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            <span class="vedium-nav-label">Vendas</span>
-        </a>
-        <a href="/app/new-doc" class="vedium-nav-item vedium-nav-action" data-page="quick">
-            <div
-                style="background: linear-gradient(135deg, #166534, #22c55e); border-radius: 50%; padding: 12px; margin: -16px 0;">
-                <svg class="vedium-nav-icon" style="color: white; margin: 0;" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            </div>
-            <span class="vedium-nav-label" style="margin-top: 8px;">Novo</span>
-        </a>
-        <a href="/app/accounts" class="vedium-nav-item" data-page="accounts">
-            <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-            <span class="vedium-nav-label">Finanças</span>
-        </a>
-        <a href="/app/modules" class="vedium-nav-item" data-page="modules">
-            <svg class="vedium-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-            </svg>
-            <span class="vedium-nav-label">Menu</span>
-        </a>
-    </nav>
-    <script>
-        (function () {
-            'use strict';
-            const currentPath = window.location.pathname;
-            const navItems = document.querySelectorAll('.vedium-nav-item');
-            navItems.forEach(item => {
-                const page = item.dataset.page;
-                const href = item.getAttribute('href');
-                if (currentPath === href || (page === 'home' && currentPath === '/app') || currentPath.includes('/' + page)) {
-                    item.classList.add('active');
-                }
-            });
-        })();
-    </script>
+    <!-- Mobile Nav Removed for Shopify Design -->
 
     {% block base_scripts %}
     <!-- js should be loaded in body! -->
