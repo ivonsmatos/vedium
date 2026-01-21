@@ -11,8 +11,8 @@ services:
       - .:/workspace:cached
       - frappe-bench-data:/home/frappe/frappe-bench
     ports:
-      - "8001:8000"
-      - "9001:9000"
+      - "8005:8000" # Frappe Web (porta alta para evitar conflitos)
+      - "9005:9000" # Frappe SocketIO
     depends_on:
       - mariadb
       - redis-cache
@@ -32,7 +32,7 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306" # MariaDB (porta alta para evitar conflitos)
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -71,7 +71,6 @@ volumes:
   redis-cache-data:
   redis-queue-data:
   redis-socketio-data:
-
 
 networks:
   vedium-network:

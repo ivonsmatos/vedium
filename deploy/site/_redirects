@@ -1,0 +1,19 @@
+# Cloudflare Pages Redirects
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Clean URLs (remove .html)
+/sobre  /sobre.html  200
+/termos  /termos.html  200
+/privacidade  /privacidade.html  200
+
+# Redirect LMS routes to app subdomain
+/lms/*  https://app.vediums.com/lms/:splat  302
+/api/*  https://app.vediums.com/api/:splat  302
+/blog/*  https://app.vediums.com/blog/:splat  302
+/login  https://app.vediums.com/login  302
+/register  https://app.vediums.com/register  302
+/carreiras  https://app.vediums.com/carreiras  302
+/contato  https://app.vediums.com/contato  302
+/faq  https://app.vediums.com/faq  302
+/enterprise  https://app.vediums.com/enterprise  302
+/seja-instrutor  https://app.vediums.com/seja-instrutor  302

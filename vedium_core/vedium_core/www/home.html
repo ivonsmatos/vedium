@@ -1,439 +1,720 @@
 {% extends "templates/base.html" %}
 
-{% block title %}Vedium - Escola de Idiomas{% endblock %}
+{% block title %}Vedium - Cursos de Inglês Executivo, Hebraico Tech e Iorubá | Fluência Cultural{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block head %}
+<!-- SEO Meta Tags -->
+<meta name="description"
+    content="Vedium: a primeira plataforma de inteligência cultural. Cursos de Inglês Médico, Jurídico, Hebraico para Startups e Iorubá Ancestral. Acelere sua carreira global.">
+<meta name="keywords"
+    content="inglês executivo, inglês médico, inglês jurídico, hebraico tech, iorubá, cursos de idiomas, fluência cultural, carreira internacional">
+<meta name="author" content="Vedium Global Education">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vediums.com/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vediums.com/">
+<meta property="og:title" content="Vedium - Cursos de Inglês Executivo, Hebraico Tech e Iorubá">
+<meta property="og:description"
+    content="A primeira plataforma de inteligência cultural. Acelere sua carreira global sem perder sua identidade.">
+<meta property="og:image" content="https://vediums.com/assets/vedium_core/images/og-image.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Vedium">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://vediums.com/">
+<meta name="twitter:title" content="Vedium - Fluência Além das Palavras">
+<meta name="twitter:description"
+    content="Cursos de Inglês Médico, Jurídico, Hebraico Tech e Iorubá para líderes globais.">
+<meta name="twitter:image" content="https://vediums.com/assets/vedium_core/images/twitter-card.jpg">
+
+<!-- Hreflang for SEO -->
+<link rel="alternate" hreflang="pt-BR" href="https://vediums.com/">
+<link rel="alternate" hreflang="en" href="https://vediums.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://vediums.com/">
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Vedium Global Education",
+  "alternateName": "Vedium",
+  "url": "https://vediums.com",
+  "logo": "https://vediums.com/assets/vedium_core/images/vedium-logo.svg",
+  "description": "A primeira plataforma de inteligência cultural para profissionais globais. Cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral.",
+  "sameAs": [
+    "https://www.instagram.com/vedium",
+    "https://www.linkedin.com/company/vedium",
+    "https://www.youtube.com/@vedium"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "São Paulo",
+    "addressCountry": "BR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+55-11-99999-9999",
+    "contactType": "customer service",
+    "availableLanguage": ["Portuguese", "English", "Hebrew"]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Vedium - Cursos de Inglês Executivo, Hebraico Tech e Iorubá",
+  "description": "Plataforma de inteligência cultural para líderes globais",
+  "url": "https://vediums.com",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Course",
+        "position": 1,
+        "name": "Medical English: Triage & Care",
+        "description": "Inglês médico para anamnese, triagem e comunicação internacional",
+        "provider": {"@type": "Organization", "name": "Vedium"},
+        "offers": {"@type": "Offer", "price": "997", "priceCurrency": "BRL"}
+      },
+      {
+        "@type": "Course",
+        "position": 2,
+        "name": "Legal English: M&A Contracts",
+        "description": "Inglês jurídico para fusões, aquisições e contratos internacionais",
+        "provider": {"@type": "Organization", "name": "Vedium"},
+        "offers": {"@type": "Offer", "price": "897", "priceCurrency": "BRL"}
+      },
+      {
+        "@type": "Course",
+        "position": 3,
+        "name": "Hebraico Tech: Startup Nation",
+        "description": "Vocabulário de Venture Capital e networking em Tel Aviv",
+        "provider": {"@type": "Organization", "name": "Vedium"},
+        "offers": {"@type": "Offer", "price": "797", "priceCurrency": "BRL"}
+      }
+    ]
+  }
+}
+</script>
+
+<!-- Preconnect for Performance -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=arimo:400,500,600,700|outfit:400,500,600,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="stylesheet" href="/assets/vedium_core/css/vedium.css">
+{% endblock %}
 
 {% block content %}
-<!-- HEADER -->
-<header class="fixed top-0 left-0 w-full z-50 bg-action py-3">
-    <div class="container mx-auto px-4 flex justify-between items-center max-w-[1400px]">
-        <a href="/">
-            <h1 class="text-2xl font-bold text-white tracking-wide uppercase">Vedium</h1>
-        </a>
-        <nav class="hidden md:flex items-center gap-6">
-            <a href="/" class="text-primary font-medium">Home</a>
-            <a href="/cursos" class="text-white hover:text-primary transition-colors">Cursos ▾</a>
-            <a href="/blog" class="text-white hover:text-primary transition-colors">Blog <span
-                    class="bg-primary text-black text-xs px-1 rounded">New</span></a>
-            <a href="/paginas" class="text-white hover:text-primary transition-colors">Páginas ▾</a>
-            <a href="/contato" class="text-white hover:text-primary transition-colors">Contato</a>
+<!-- Header -->
+<header class="tg-header" id="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand logo" href="/"><img src="/assets/vedium_core/images/vedium-logo-branca.png"
+                    alt="Vedium"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-label="Menu de navegação" aria-expanded="false" aria-controls="navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Schools</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/lms/courses?category=leadership">School of
+                                    Leadership</a></li>
+                            <li><a class="dropdown-item" href="/lms/courses?category=innovation">School of
+                                    Innovation</a></li>
+                            <li><a class="dropdown-item" href="/lms/courses?category=roots">School of Roots</a></li>
+                            <li><a class="dropdown-item" href="/lms/courses?category=gateway">School of Gateway</a></li>
+                            <li><a class="dropdown-item" href="/lms/courses?category=future">School of Future</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/lms/courses">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                </ul>
+                <div class="ms-3">
+                    <a href="/lms" class="btn btn-primary">Começar Agora</a>
+                </div>
+            </div>
         </nav>
-        <div class="flex items-center gap-4">
-            <button class="text-white hover:text-primary"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg></button>
-            <a href="/login"
-                class="bg-primary hover:bg-yellow-400 text-black font-semibold px-5 py-2 rounded-full text-sm">Inscrever-se</a>
-        </div>
     </div>
 </header>
 
-<!-- HERO SECTION -->
-<section class="relative overflow-hidden"
-    style="flex-shrink: 0; height: 100vh; background: url('/assets/vedium_core/images/Slider-1.webp') no-repeat center center; background-size: cover;">
-    <div class="container mx-auto px-4 relative z-10 max-w-[1400px] pt-32 pb-24">
-        <div class="w-full md:w-1/2 space-y-5">
-            <span class="text-white/80 text-base">Ganhe Habilidades</span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">Encontre O Melhor Curso
-                Online E Aprenda</h1>
-            <p class="text-white/80 text-base max-w-md">Aprenda inglês, português, iorubá e hebraico com nossa
-                metodologia imersiva e professores nativos.</p>
-            <div class="flex flex-wrap items-center gap-6 text-white text-sm pt-2">
-                <span class="flex items-center gap-2"><img
-                        src="/assets/vedium_core/images/icones/SVG/LINE/User Analytics.svg" alt="Users"
-                        class="w-5 h-5 invert">
-                    +3 Milhões de Estudantes</span>
-                <span class="flex items-center gap-2"><img
-                        src="/assets/vedium_core/images/icones/SVG/LINE/Online Course.svg" alt="Courses"
-                        class="w-5 h-5 invert"> +20.000 Cursos</span>
-                <span class="flex items-center gap-2"><img
-                        src="/assets/vedium_core/images/icones/SVG/LINE/Mobile Learning.svg" alt="Online"
-                        class="w-5 h-5 invert"> Aprenda Online</span>
-            </div>
-            <div class="relative max-w-lg mt-6">
-                <input type="text" placeholder="Digite palavra-chave ou curso"
-                    class="w-full pl-5 pr-40 py-4 rounded-full bg-white text-gray-700 text-sm focus:outline-none shadow-xl">
-                <button
-                    class="absolute right-1 top-1 bottom-1 bg-action hover:bg-red-600 text-white font-semibold px-6 rounded-full text-sm">Pesquisar
-                    Cursos</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FEATURE CARDS -->
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-[#FFF8F0] rounded-2xl p-8 text-center border border-[#FFE0C0]">
-                <div class="w-16 h-16 mx-auto mb-5"><img
-                        src="/assets/vedium_core/images/icones/SVG/LINE/Tutor Support.svg" alt="Tutor"
-                        class="w-full h-full"></div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">Ensino Individualizado</h3>
-                <p class="text-gray-500 text-sm">Aulas personalizadas para o seu ritmo de aprendizado.</p>
-            </div>
-            <div class="bg-[#FFF0F5] rounded-2xl p-8 text-center border border-[#FFD0E0]">
-                <div class="w-16 h-16 mx-auto mb-5"><img
-                        src="/assets/vedium_core/images/icones/SVG/LINE/LMS Calendar.svg" alt="24/7"
-                        class="w-full h-full"></div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">Tutores Disponíveis 24/7</h3>
-                <p class="text-gray-500 text-sm">Professores nativos disponíveis a qualquer hora.</p>
-            </div>
-            <div class="bg-[#F0F5FF] rounded-2xl p-8 text-center border border-[#D0E0FF]">
-                <div class="w-16 h-16 mx-auto mb-5"><img
-                        src="/assets/vedium_core/images/icones/SVG/LINE/Interactive Lesson.svg" alt="Interactive"
-                        class="w-full h-full"></div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">Quadro Branco Interativo</h3>
-                <p class="text-gray-500 text-sm">Ferramentas interativas para acelerar seu aprendizado.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ABOUT US -->
-<section class="py-20 bg-white overflow-hidden">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="flex flex-col lg:flex-row items-center gap-16">
-            <div class="w-full lg:w-1/2 space-y-6">
-                <span class="text-action font-semibold text-sm uppercase tracking-wider">Sobre Nós</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">Tutores Qualificados e Altamente
-                    Equipados</h2>
-                <p class="text-gray-500 leading-relaxed">Nossos professores são certificados internacionalmente e
-                    especializados em ensino de idiomas. Com metodologia comprovada, garantimos resultados reais para
-                    sua carreira global.</p>
-                <a href="/sobre"
-                    class="inline-block border-2 border-action text-action font-medium px-8 py-3 rounded-full hover:bg-action hover:text-white transition-all">Saiba
-                    Mais</a>
-            </div>
-            <div class="w-full lg:w-1/2 relative">
-                <div
-                    class="absolute -top-8 right-1/4 w-24 h-24 bg-primary rounded-full flex items-center justify-center text-xs font-bold text-gray-800 transform rotate-12">
-                    Excelente Ensino</div>
-                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600" alt="Tutor"
-                    class="w-full max-w-md mx-auto rounded-2xl shadow-xl">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CATEGORIES - Inglês, Português, Iorubá, Hebraico -->
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="text-center mb-12">
-            <span class="text-action font-semibold text-sm uppercase tracking-wider">Nossos Cursos</span>
-            <h2 class="text-3xl font-bold text-gray-900 mt-2">Aprenda o Melhor</h2>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="/cursos/ingles" class="bg-[#FFF8E6] rounded-xl p-6 text-center hover:shadow-lg transition-all">
-                <div class="text-4xl mb-3">🇺🇸</div>
-                <h3 class="font-bold text-gray-900">Inglês</h3><span class="text-action text-xs">17 cursos</span>
-            </a>
-            <a href="/cursos/portugues" class="bg-[#E6FFF0] rounded-xl p-6 text-center hover:shadow-lg transition-all">
-                <div class="text-4xl mb-3">🇧🇷</div>
-                <h3 class="font-bold text-gray-900">Português</h3><span class="text-action text-xs">12 cursos</span>
-            </a>
-            <a href="/cursos/ioruba" class="bg-[#FFE6F0] rounded-xl p-6 text-center hover:shadow-lg transition-all">
-                <div class="text-4xl mb-3">🇳🇬</div>
-                <h3 class="font-bold text-gray-900">Iorubá</h3><span class="text-action text-xs">8 cursos</span>
-            </a>
-            <a href="/cursos/hebraico" class="bg-[#E6F0FF] rounded-xl p-6 text-center hover:shadow-lg transition-all">
-                <div class="text-4xl mb-3">🇮🇱</div>
-                <h3 class="font-bold text-gray-900">Hebraico</h3><span class="text-action text-xs">10 cursos</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- POPULAR COURSES -->
-<section class="py-20 bg-[#FFF8F5]">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="text-center mb-12">
-            <span class="text-action font-semibold text-sm uppercase tracking-wider">Escolha Por Interesse</span>
-            <h2 class="text-3xl font-bold text-gray-900 mt-2">Cursos Online Mais Populares</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                <div class="relative"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"
-                        alt="Inglês" class="w-full h-48 object-cover"><span
-                        class="absolute top-4 left-4 bg-action text-white text-xs px-3 py-1 rounded-full">Destaque</span>
-                </div>
-                <div class="p-5">
-                    <div class="text-primary mb-2">★★★★★</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Inglês para Negócios</h3>
-                    <p class="text-gray-500 text-sm mb-3">Domine o inglês corporativo e destaque-se no mercado global.
-                    </p>
-                    <div class="flex items-center gap-4 text-xs text-gray-400 mb-4"><span>⏱ 30hrs</span><span>📚 12
-                            Módulos</span></div>
-                    <div class="flex items-center justify-between"><span
-                            class="text-xl font-bold text-gray-900">R$497</span><a href="#"
-                            class="text-action font-medium text-sm">Ver Curso →</a></div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                <div class="relative"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400"
-                        alt="Português" class="w-full h-48 object-cover"><span
-                        class="absolute top-4 left-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full">-15%</span>
-                </div>
-                <div class="p-5">
-                    <div class="text-primary mb-2">★★★★★</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Português para Estrangeiros</h3>
-                    <p class="text-gray-500 text-sm mb-3">Aprenda português brasileiro com imersão cultural.</p>
-                    <div class="flex items-center gap-4 text-xs text-gray-400 mb-4"><span>⏱ 25hrs</span><span>📚 10
-                            Módulos</span></div>
-                    <div class="flex items-center justify-between"><span class="text-xl font-bold text-gray-900">R$397
-                            <span class="text-sm text-gray-400 line-through">R$467</span></span><a href="#"
-                            class="text-action font-medium text-sm">Ver Curso →</a></div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                <div class="relative"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400"
-                        alt="Iorubá" class="w-full h-48 object-cover"></div>
-                <div class="p-5">
-                    <div class="text-primary mb-2">★★★★★</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Iorubá para Iniciantes</h3>
-                    <p class="text-gray-500 text-sm mb-3">Conecte-se com suas raízes africanas através do idioma.</p>
-                    <div class="flex items-center gap-4 text-xs text-gray-400 mb-4"><span>⏱ 20hrs</span><span>📚 8
-                            Módulos</span></div>
-                    <div class="flex items-center justify-between"><span
-                            class="text-xl font-bold text-gray-900">R$297</span><a href="#"
-                            class="text-action font-medium text-sm">Ver Curso →</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA BANNER -->
-<section class="py-16">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="bg-[#D4EDDA] rounded-3xl p-12 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-32 h-32 bg-primary rounded-full -translate-x-1/2 -translate-y-1/2">
-            </div>
-            <div class="absolute bottom-0 right-0 w-24 h-24 bg-action rounded-full translate-x-1/2 translate-y-1/2">
-            </div>
-            <span class="text-action font-semibold text-sm uppercase">Inscreva-se nos seus cursos favoritos hoje</span>
-            <h2 class="text-3xl font-bold text-gray-900 mt-3 mb-6">Aplique Para Seus Cursos Hoje →</h2>
-            <a href="/matricula"
-                class="inline-block border-2 border-action text-action font-medium px-8 py-3 rounded-full hover:bg-action hover:text-white transition-all">Inscrever-se
-                Agora</a>
-        </div>
-    </div>
-</section>
-
-<!-- LIVE SESSIONS -->
-<section class="py-20 bg-[#FFF8F5]">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-            <div class="w-full lg:w-1/2 space-y-6">
-                <span class="text-action font-semibold text-sm uppercase">Aprenda ao Vivo</span>
-                <h2 class="text-3xl font-bold text-gray-900">Sessões Online ao Vivo</h2>
-                <p class="text-gray-500">Participe de aulas ao vivo com nossos professores nativos e pratique
-                    conversação em tempo real.</p>
-                <div class="flex gap-8 pt-4">
-                    <div class="text-center">
-                        <div class="text-3xl mb-2">🔇</div><span class="text-sm text-gray-600">Sem Ruídos</span>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="sub-title">Inteligência Cultural para Líderes Globais</span>
+                <h1>Fluência <span>Além</span> das Palavras</h1>
+                <p>A primeira plataforma que une Inglês Executivo, Hebraico Tech e Iorubá Ancestral. Acelere sua
+                    carreira global sem perder sua identidade.</p>
+                <a href="/lms" class="btn-hero">
+                    <span>Começar Agora</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>15K+</h3>
+                        <p>Estudantes</p>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl mb-2">🎥</div><span class="text-sm text-gray-600">Gravação</span>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Cursos</p>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl mb-2">📺</div><span class="text-sm text-gray-600">Alta Qualidade</span>
+                    <div class="stat">
+                        <h3>98%</h3>
+                        <p>Satisfação</p>
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/2 relative">
-                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600" alt="Live Session"
-                    class="w-full rounded-2xl shadow-xl">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div
-                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
-                        <span class="text-2xl">▶</span>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=500&fit=crop"
+                        alt="Students Learning">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brands -->
+<section class="brands-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-between g-4">
+            <div class="col-auto"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                    alt="Amazon" style="height: 25px;"></div>
+            <div class="col-auto"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                    alt="Google" style="height: 30px;"></div>
+            <div class="col-auto"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                    alt="Microsoft" style="height: 25px;"></div>
+            <div class="col-auto"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                    alt="Netflix" style="height: 20px;"></div>
+            <div class="col-auto"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                    alt="Apple" style="height: 30px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="about-images position-relative">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop"
+                        alt="About Vedium" class="main-img img-fluid rounded-4">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=250&h=300&fit=crop"
+                        alt="Leader" class="small-img">
+                    <div class="about-badge">
+                        <h2>5+</h2>
+                        <p>Anos de<br>Experiência</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="section-title">
+                    <span class="sub-title">Conheça a Vedium</span>
+                    <h2>Raízes e Asas: <span>Fluência</span> com Identidade</h2>
+                </div>
+                <p>Acreditamos que o profissional do futuro não é apenas tecnicamente excelente, mas culturalmente
+                    profundo. Enquanto o mercado ensina idiomas como commodity, nós ensinamos como ferramenta de
+                    <strong>Identidade e Poder</strong>.
+                </p>
+                <div class="about-list">
+                    <div class="about-list-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Tutores Especialistas</span>
+                    </div>
+                    <div class="about-list-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificados Válidos</span>
+                    </div>
+                    <div class="about-list-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>Aulas Online 24/7</span>
+                    </div>
+                    <div class="about-list-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Tutor IA com Feedback</span>
+                    </div>
+                </div>
+                <a href="/sobre" class="btn btn-primary mt-3">Saiba Mais</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses Section -->
+<section class="courses-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <div class="section-title" data-aos="fade-right">
+                    <span class="sub-title">Cursos em Destaque</span>
+                    <h2>Nossos <span>Cursos</span> Populares</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Course 1 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="course-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop"
+                            alt="Medical English">
+                        <span class="tag">Leadership</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                    <div class="content">
+                        <h4><a href="/lms/courses">Medical English: Triage & Care</a></h4>
+                        <div class="meta">
+                            <span><i class="fas fa-book"></i> 12 Módulos</span>
+                            <span><i class="fas fa-clock"></i> 30h</span>
+                        </div>
+                        <div class="footer">
+                            <div class="author">
+                                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop"
+                                    alt="Dr. Carlos">
+                                <span>Dr. Carlos M.</span>
+                            </div>
+                            <span class="price">R$ 997</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 2 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="course-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=250&fit=crop"
+                            alt="Legal English">
+                        <span class="tag">Leadership</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="content">
+                        <h4><a href="/lms/courses">Legal English: M&A Contracts</a></h4>
+                        <div class="meta">
+                            <span><i class="fas fa-book"></i> 10 Módulos</span>
+                            <span><i class="fas fa-clock"></i> 25h</span>
+                        </div>
+                        <div class="footer">
+                            <div class="author">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop"
+                                    alt="Dra. Ana">
+                                <span>Dra. Ana S.</span>
+                            </div>
+                            <span class="price">R$ 897</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 3 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="course-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=250&fit=crop"
+                            alt="Hebraico Tech">
+                        <span class="tag">Innovation</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                    <div class="content">
+                        <h4><a href="/lms/courses">Hebraico Tech: Startup Nation</a></h4>
+                        <div class="meta">
+                            <span><i class="fas fa-book"></i> 8 Módulos</span>
+                            <span><i class="fas fa-clock"></i> 20h</span>
+                        </div>
+                        <div class="footer">
+                            <div class="author">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+                                    alt="Ricardo">
+                                <span>Ricardo P.</span>
+                            </div>
+                            <span class="price">R$ 797</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- TEAM -->
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="text-center mb-12">
-            <span class="text-action font-semibold text-sm uppercase tracking-wider">Instrutores Qualificados</span>
-            <h2 class="text-3xl font-bold text-gray-900 mt-2">Nossa Equipe</h2>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200"
-                    alt="Prof" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                <h4 class="font-bold text-gray-900">Maria Silva</h4><span class="text-gray-500 text-sm">Inglês</span>
-            </div>
-            <div class="text-center"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200"
-                    alt="Prof" class="w-32 h-32 mx-auto rounded-full object-cover mb-4 ring-4 ring-primary">
-                <h4 class="font-bold text-gray-900">Carlos Santos</h4><span
-                    class="text-gray-500 text-sm">Português</span>
-            </div>
-            <div class="text-center"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200"
-                    alt="Prof" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                <h4 class="font-bold text-gray-900">Adebayo Ogun</h4><span class="text-gray-500 text-sm">Iorubá</span>
-            </div>
-            <div class="text-center"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200"
-                    alt="Prof" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                <h4 class="font-bold text-gray-900">David Cohen</h4><span class="text-gray-500 text-sm">Hebraico</span>
-            </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="/lms/courses" class="btn btn-primary">Ver Todos os Cursos</a>
         </div>
     </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
-<section class="py-16 bg-[#E8F5E9]">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-            <div class="w-full md:w-1/2 bg-[#E0F2E0] rounded-2xl p-10">
-                <span class="text-action font-semibold text-sm uppercase">Por que Nós</span>
-                <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-4">Nossas Conquistas</h2>
-                <p class="text-gray-600 mb-8">Resultados comprovados em ensino de idiomas com metodologia exclusiva.</p>
-                <div class="flex gap-8">
-                    <div><span class="text-4xl font-bold text-gray-900">55K</span>
-                        <p class="text-gray-500 text-sm">Alunos Felizes</p>
+<!-- Categories / Schools -->
+<section class="categories-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Nossas Schools</span>
+                    <h2>Trilhas <span>Especializadas</span></h2>
+                </div>
+                <p data-aos="fade-up" data-aos-delay="100">Cada school foi projetada para um objetivo específico de
+                    carreira. Escolha sua trilha e acelere para o próximo nível.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <a href="/lms/courses?category=leadership" class="category-card">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="name">Leadership</div>
+                    <div class="courses">Inglês Executivo</div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <a href="/lms/courses?category=innovation" class="category-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <div class="name">Innovation</div>
+                    <div class="courses">Hebraico Tech</div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <a href="/lms/courses?category=roots" class="category-card">
+                    <i class="fas fa-tree"></i>
+                    <div class="name">Roots</div>
+                    <div class="courses">Iorubá & Hebraico Bíblico</div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <a href="/lms/courses?category=gateway" class="category-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <div class="name">Gateway</div>
+                    <div class="courses">Português Corporativo</div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <a href="/lms/courses?category=future" class="category-card">
+                    <i class="fas fa-rocket"></i>
+                    <div class="name">Future</div>
+                    <div class="courses">TOEFL & Teens</div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <a href="/lms/courses" class="category-card">
+                    <i class="fas fa-plus"></i>
+                    <div class="name">Ver Todas</div>
+                    <div class="courses">+50 Cursos</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Depoimentos</span>
+                    <h2>O Que Nossos <span>Alunos</span> Dizem</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="testimonial-card text-center">
+                    <div class="quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"A simulação de triagem com a IA foi mais difícil que a prova de residência. Exatamente o que eu
+                        precisava para o meu fellowship nos EUA. A metodologia é incomparável."</p>
+                    <div class="author justify-content-center">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop"
+                            alt="Dr. Carlos">
+                        <div class="text-start">
+                            <h5>Dr. Carlos Mendonça</h5>
+                            <span>Cardiologista - USP</span>
+                        </div>
                     </div>
-                    <div class="border-l border-gray-300 pl-8"><span class="text-4xl font-bold text-gray-900">17K</span>
-                        <p class="text-gray-500 text-sm">Professores</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Instructors -->
+<section class="instructors-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Nosso Time</span>
+                    <h2>Conheça Nossos <span>Mentores</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                <div class="instructor-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200&h=200&fit=crop"
+                            alt="Dr. Carlos">
                     </div>
-                    <div class="border-l border-gray-300 pl-8"><span class="text-4xl font-bold text-gray-900">2K+</span>
-                        <p class="text-gray-500 text-sm">Unidades Globais</p>
+                    <h5><a href="#">Dr. Carlos M.</a></h5>
+                    <div class="specialty">Medical English</div>
+                    <div class="stats">
+                        <span class="students"><i class="fas fa-user-friends"></i> 1,135 Alunos</span>
+                        <span class="rating"><i class="fas fa-star"></i> 5.0</span>
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500"
-                    alt="Achievement" class="w-full max-w-sm mx-auto rounded-2xl shadow-lg"></div>
-        </div>
-    </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<section class="py-20 bg-[#E8F5E9]">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-            <div class="w-full md:w-1/3 relative">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300" alt="Student"
-                    class="w-48 h-48 mx-auto rounded-full object-cover">
-                <div
-                    class="absolute top-0 left-1/4 w-12 h-12 bg-indigo-300 rounded-full flex items-center justify-center text-white text-2xl">
-                    "</div>
-            </div>
-            <div class="w-full md:w-2/3">
-                <span class="text-action font-semibold text-sm uppercase">Depoimentos</span>
-                <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-4">Avaliação dos Alunos</h2>
-                <p class="text-gray-600 mb-4">"A Vedium transformou minha carreira. Consegui uma promoção internacional
-                    graças à fluência em inglês que desenvolvi aqui."</p>
-                <p class="font-bold text-gray-900">Maria Fernanda - Estudante</p>
-                <div class="text-primary">★★★★★</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- BLOG -->
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="text-center mb-12">
-            <span class="text-action font-semibold text-sm uppercase tracking-wider">Últimas Notícias</span>
-            <h2 class="text-3xl font-bold text-gray-900 mt-2">Nossos Artigos</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg"><img
-                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400" alt="Blog"
-                    class="w-full h-48 object-cover">
-                <div class="p-5"><span class="bg-action text-white text-xs px-3 py-1 rounded">Jan 14, 2026</span>
-                    <h3 class="font-bold text-gray-900 mt-3 mb-2">Aprendizado virtual em grupo</h3>
-                    <p class="text-gray-500 text-sm mb-3">Descubra como nossos grupos de conversação aceleram seu
-                        aprendizado.</p><a href="#" class="text-action font-medium text-sm">Ler Mais →</a>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="instructor-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop"
+                            alt="Dra. Ana">
+                    </div>
+                    <h5><a href="#">Dra. Ana S.</a></h5>
+                    <div class="specialty">Legal English</div>
+                    <div class="stats">
+                        <span class="students"><i class="fas fa-user-friends"></i> 980 Alunos</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                    </div>
                 </div>
             </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg"><img
-                    src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400" alt="Blog"
-                    class="w-full h-48 object-cover">
-                <div class="p-5"><span class="bg-action text-white text-xs px-3 py-1 rounded">Jan 12, 2026</span>
-                    <h3 class="font-bold text-gray-900 mt-3 mb-2">Serviços de consultoria educacional</h3>
-                    <p class="text-gray-500 text-sm mb-3">Como escolher o curso certo para sua carreira internacional.
-                    </p><a href="#" class="text-action font-medium text-sm">Ler Mais →</a>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="instructor-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+                            alt="Prof. David">
+                    </div>
+                    <h5><a href="#">Prof. David K.</a></h5>
+                    <div class="specialty">Hebraico Tech</div>
+                    <div class="stats">
+                        <span class="students"><i class="fas fa-user-friends"></i> 2,235 Alunos</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
                 </div>
             </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg"><img
-                    src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400" alt="Blog"
-                    class="w-full h-48 object-cover">
-                <div class="p-5"><span class="bg-action text-white text-xs px-3 py-1 rounded">Jan 10, 2026</span>
-                    <h3 class="font-bold text-gray-900 mt-3 mb-2">Apps de coaching profissional</h3>
-                    <p class="text-gray-500 text-sm mb-3">Conheça as ferramentas que usamos para acelerar seu progresso.
-                    </p><a href="#" class="text-action font-medium text-sm">Ler Mais →</a>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="instructor-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop"
+                            alt="Babalorixá">
+                    </div>
+                    <h5><a href="#">Babalorixá Adé</a></h5>
+                    <div class="specialty">Iorubá Ancestral</div>
+                    <div class="stats">
+                        <span class="students"><i class="fas fa-user-friends"></i> 1,540 Alunos</span>
+                        <span class="rating"><i class="fas fa-star"></i> 5.0</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-footer text-white pt-16 pb-8">
-    <div class="container mx-auto px-4 max-w-[1400px]">
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
-            <div class="md:col-span-1">
-                <h2 class="text-2xl font-bold mb-4">Vedium</h2>
-                <p class="text-gray-300 text-sm mb-2">📍 Rua Example, 123<br>São Paulo, SP</p>
-                <p class="text-gray-300 text-sm mb-2">📞 +55 (11) 99999-9999</p>
-                <p class="text-gray-300 text-sm">✉️ contato@vedium.com.br</p>
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container text-center" data-aos="zoom-in">
+        <h2>Quer ensinar na Vedium?</h2>
+        <p>Junte-se ao nosso time de especialistas e compartilhe seu conhecimento com milhares de alunos.</p>
+        <a href="/seja-instrutor" class="btn btn-light">Torne-se Instrutor</a>
+    </div>
+</section>
+
+<!-- Blog -->
+<section class="blog-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Blog & Notícias</span>
+                    <h2>Últimas do <span>Blog</span></h2>
+                </div>
             </div>
-            <div>
-                <h3 class="font-bold mb-4">Sobre</h3>
-                <ul class="space-y-2 text-gray-300 text-sm">
-                    <li><a href="#" class="hover:text-primary">Contato</a></li>
-                    <li><a href="#" class="hover:text-primary">Central de Ajuda</a></li>
-                    <li><a href="#" class="hover:text-primary">Reembolso</a></li>
-                    <li><a href="#" class="hover:text-primary">Condições</a></li>
-                    <li><a href="#" class="hover:text-primary">Política de Privacidade</a></li>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="blog-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=250&fit=crop"
+                            alt="Blog">
+                        <span class="tag">Carreira</span>
+                    </div>
+                    <div class="content">
+                        <div class="meta">
+                            <span><i class="fas fa-calendar"></i> 15 Jan 2026</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h4><a href="/blog">Como o Inglês Médico impulsiona sua carreira internacional</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="blog-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400&h=250&fit=crop"
+                            alt="Blog">
+                        <span class="tag">Cultura</span>
+                    </div>
+                    <div class="content">
+                        <div class="meta">
+                            <span><i class="fas fa-calendar"></i> 10 Jan 2026</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h4><a href="/blog">A importância do Iorubá na reconexão ancestral</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="blog-card">
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=250&fit=crop"
+                            alt="Blog">
+                        <span class="tag">Tech</span>
+                    </div>
+                    <div class="content">
+                        <div class="meta">
+                            <span><i class="fas fa-calendar"></i> 05 Jan 2026</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h4><a href="/blog">Startup Nation: Por que aprender hebraico em 2026</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-box" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=400&h=300&fit=crop" alt="Newsletter"
+                class="rounded-4 d-none d-lg-block">
+            <div class="flex-grow-1">
+                <h2>Fique por dentro das novidades</h2>
+                <p>Receba conteúdos exclusivos, dicas de idiomas e novidades sobre nossos cursos.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu melhor e-mail">
+                    <button type="submit">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-logo">
+                    <img src="/assets/vedium_core/images/vedium-logo-branca.png" alt="Vedium">
+                </div>
+                <p>A primeira plataforma de inteligência cultural para profissionais globais. Fluência além das
+                    palavras.</p>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
+                    <li><i class="fas fa-phone"></i> +55 11 99999-9999</li>
+                    <li><i class="fas fa-envelope"></i> contato@vediums.com</li>
+                </ul>
+                <div class="social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <h5>Sobre</h5>
+                <ul>
+                    <li><a href="/sobre">Manifesto</a></li>
+                    <li><a href="/sobre">Quem Somos</a></li>
+                    <li><a href="/carreiras">Trabalhe Conosco</a></li>
+                    <li><a href="/contato">Contato</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                 </ul>
             </div>
-            <div>
-                <h3 class="font-bold mb-4">Categorias</h3>
-                <ul class="space-y-2 text-gray-300 text-sm">
-                    <li><a href="#" class="hover:text-primary">Inglês</a></li>
-                    <li><a href="#" class="hover:text-primary">Português</a></li>
-                    <li><a href="#" class="hover:text-primary">Iorubá</a></li>
-                    <li><a href="#" class="hover:text-primary">Hebraico</a></li>
+            <div class="col-lg-2 col-md-6">
+                <h5>Schools</h5>
+                <ul>
+                    <li><a href="/lms/courses?category=leadership">Leadership</a></li>
+                    <li><a href="/lms/courses?category=innovation">Innovation</a></li>
+                    <li><a href="/lms/courses?category=roots">Roots</a></li>
+                    <li><a href="/lms/courses?category=gateway">Gateway</a></li>
+                    <li><a href="/lms/courses?category=future">Future</a></li>
                 </ul>
             </div>
-            <div>
-                <h3 class="font-bold mb-4">Apoio</h3>
-                <ul class="space-y-2 text-gray-300 text-sm">
-                    <li><a href="#" class="hover:text-primary">Perfil</a></li>
-                    <li><a href="#" class="hover:text-primary">Contato</a></li>
-                    <li><a href="#" class="hover:text-primary">Central de Ajuda</a></li>
-                    <li><a href="#" class="hover:text-primary">Política de Privacidade</a></li>
+            <div class="col-lg-2 col-md-6">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="/termos">Termos de Uso</a></li>
+                    <li><a href="/privacidade">Privacidade (LGPD)</a></li>
+                    <li><a href="/enterprise">Vedium Enterprise</a></li>
                 </ul>
             </div>
-            <div>
-                <h3 class="font-bold mb-4">Entre Em Contato</h3>
-                <p class="text-gray-300 text-sm mb-4">Não enviamos spam.</p>
-                <div class="relative"><input type="email" placeholder="Seu e-mail"
-                        class="w-full bg-white/10 border border-white/20 rounded-full py-2.5 pl-4 pr-12 text-white placeholder-gray-400 text-sm"><button
-                        class="absolute right-1 top-1 bottom-1 bg-action text-white p-2 rounded-full">→</button></div>
-                <div class="flex gap-3 mt-4 text-xl"><a href="#" class="text-gray-400 hover:text-primary">𝕏</a><a
-                        href="#" class="text-gray-400 hover:text-primary">f</a><a href="#"
-                        class="text-gray-400 hover:text-primary">📷</a><a href="#"
-                        class="text-gray-400 hover:text-primary">▶</a></div>
+            <div class="col-lg-3 col-md-6">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda - Sexta<br><strong>9h às 18h</strong></p>
+                <p>Sábado<br><strong>9h às 13h</strong></p>
             </div>
         </div>
-        <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-400 text-sm">© 2026 Vedium. Todos os direitos reservados.</p>
-            <div class="flex gap-2"><img src="https://img.icons8.com/color/32/visa.png" alt="Visa" class="h-6"><img
-                    src="https://img.icons8.com/color/32/mastercard.png" alt="MC" class="h-6"><img
-                    src="https://img.icons8.com/color/32/amex.png" alt="Amex" class="h-6"><img
-                    src="https://img.icons8.com/color/32/paypal.png" alt="PayPal" class="h-6"></div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <p>© 2026 Vedium Global Education. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end">
+                    <p>vediums.com</p>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>document.addEventListener('DOMContentLoaded', function () { new Swiper(".mySwiper", { effect: "fade", loop: true, autoplay: { delay: 5000, disableOnInteraction: false } }); });</script>
+<!-- Back to Top -->
+<a href="#" class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // AOS Init
+    AOS.init({ duration: 800, once: true, offset: 50 });
+
+    // Sticky Header
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+            header.classList.add('sticky');
+        } else {
+            header.classList.remove('sticky');
+        }
+    });
+
+    // Scroll to Top
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTop.classList.add('show');
+        } else {
+            scrollTop.classList.remove('show');
+        }
+    });
+    scrollTop?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
 {% block footer %}{% endblock %}
 {% endblock %}

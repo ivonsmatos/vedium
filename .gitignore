@@ -1,0 +1,82 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Frappe / ERPNext
+*.pyc
+*.swp
+*.swo
+.DS_Store
+*.patch
+node_modules/
+.yarn/
+sites/assets/*
+sites/*/private/*
+sites/*/files/*
+sites/*/backup/*
+sites/*/error-snapshots/*
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+
+# ============================================
+# BUILD & GENERATED FILES - DO NOT COMMIT
+# ============================================
+
+# Node modules and lock files (regenerated on install)
+vedium_core/node_modules/
+vedium_core/yarn.lock
+vedium_core/package-lock.json
+yarn.lock
+package-lock.json
+
+# Tailwind build output (generated)
+vedium_core/vedium_core/public/css/vedium.css.map
+
+# ============================================
+# DEPLOY - Sensitive files
+# ============================================
+deploy/.env
+deploy/backups/
+*.enc
+
+# ============================================
+# OLD DIRECTORIES - Removed from project
+# ============================================
+cloudflare-pages/

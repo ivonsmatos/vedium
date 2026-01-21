@@ -1,0 +1,29 @@
+{
+  "name": "Vedium - Inteligência Cultural",
+  "short_name": "Vedium",
+  "description": "A primeira plataforma de inteligência cultural para líderes globais.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#166534",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/icone-color.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icone-color.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "business"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "vedium-lms"
+}

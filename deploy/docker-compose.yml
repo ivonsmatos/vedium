@@ -1,0 +1,128 @@
+# Vedium LMS - Docker Compose Production
+# https://vediums.com | https://app.vediums.com
+# Author: Vedium Global Education
+# Last Updated: 2026-01-21
+
+version: "3.8"
+
+services:
+  # ===========================================
+  # FRAPPE/ERPNEXT LMS BACKEND
+  # ===========================================
+  frappe:
+    image: frappe/bench:v5.22.6
+    container_name: vedium-frappe
+    command: sleep infinity
+    environment:
+      - SHELL=/bin/bash
+    volumes:
+      - frappe-bench-data:/home/frappe/frappe-bench
+    ports:
+      - "8005:8000" # Web UI
+      - "9005:9000" # SocketIO
+    depends_on:
+      - mariadb
+      - redis-cache
+      - redis-queue
+      - redis-socketio
+    networks:
+      - vedium-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================
+  # MARIADB DATABASE
+  # ===========================================
+  mariadb:
+    image: mariadb:10.6
+    container_name: vedium-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-vedium}
+      MYSQL_USER: ${MYSQL_USER:-frappe}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-frappe}
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+      - --skip-innodb-read-only-compressed
+    networks:
+      - vedium-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================
+  # REDIS CACHE
+  # ===========================================
+  redis-cache:
+    image: redis:7-alpine
+    container_name: vedium-redis-cache
+    volumes:
+      - redis-cache-data:/data
+    networks:
+      - vedium-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================
+  # REDIS QUEUE
+  # ===========================================
+  redis-queue:
+    image: redis:7-alpine
+    container_name: vedium-redis-queue
+    volumes:
+      - redis-queue-data:/data
+    networks:
+      - vedium-network
+    restart: unless-stopped
+
+  # ===========================================
+  # REDIS SOCKETIO
+  # ===========================================
+  redis-socketio:
+    image: redis:7-alpine
+    container_name: vedium-redis-socketio
+    volumes:
+      - redis-socketio-data:/data
+    networks:
+      - vedium-network
+    restart: unless-stopped
+
+# ===========================================
+# VOLUMES (Persistent Data)
+# ===========================================
+volumes:
+  frappe-bench-data:
+    name: vedium_frappe-bench-data
+  mariadb-data:
+    name: vedium_mariadb-data
+  redis-cache-data:
+    name: vedium_redis-cache-data
+  redis-queue-data:
+    name: vedium_redis-queue-data
+  redis-socketio-data:
+    name: vedium_redis-socketio-data
+
+# ===========================================
+# NETWORKS
+# ===========================================
+networks:
+  vedium-network:
+    driver: bridge
+    name: vedium-network
