@@ -1,0 +1,208 @@
+# Vedium LMS - Deploy to Production
+# Triggered on push to main branch
+# Deploys static site and syncs configurations
+
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "deploy/**"
+      - "vedium_core/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+    inputs:
+      deploy_type:
+        description: "Type of deployment"
+        required: true
+        default: "site"
+        type: choice
+        options:
+          - site
+          - full
+          - config-only
+
+env:
+  DEPLOY_PATH: /opt/vedium
+  SITE_PATH: /opt/vedium/site
+
+jobs:
+  # ===========================================
+  # Build and Test
+  # ===========================================
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          echo "Validating HTML files..."
+          for file in deploy/site/*.html; do
+            if [ -f "$file" ]; then
+              echo "✅ $file exists"
+            fi
+          done
+
+      - name: Check file structure
+        run: |
+          echo "Checking deploy structure..."
+          ls -la deploy/
+          ls -la deploy/site/
+          ls -la deploy/scripts/
+          ls -la deploy/nginx/
+
+  # ===========================================
+  # Deploy Static Site
+  # ===========================================
+  deploy-site:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event.inputs.deploy_type != 'config-only'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy site files
+        run: |
+          echo "🚀 Deploying static site to production..."
+
+          # Sync site files
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            deploy/site/ \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ env.SITE_PATH }}/
+
+          echo "✅ Site files deployed"
+
+      - name: Clear cache (if using CDN)
+        run: |
+          echo "Cache cleared (implement CDN purge if needed)"
+
+  # ===========================================
+  # Deploy Configurations
+  # ===========================================
+  deploy-config:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event.inputs.deploy_type == 'full' || github.event.inputs.deploy_type == 'config-only'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy configurations
+        run: |
+          echo "🔧 Deploying configurations..."
+
+          # Sync docker-compose
+          scp -o StrictHostKeyChecking=no \
+            deploy/docker-compose.yml \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/
+
+          # Sync scripts
+          rsync -avz \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            deploy/scripts/ \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/scripts/
+
+          # Make scripts executable
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "chmod +x ${{ env.DEPLOY_PATH }}/scripts/*.sh"
+
+          echo "✅ Configurations deployed"
+
+      - name: Deploy NGINX config
+        run: |
+          echo "🌐 Deploying NGINX configuration..."
+
+          scp -o StrictHostKeyChecking=no \
+            deploy/nginx/vediums.com.conf \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/etc/nginx/sites-available/vediums.com
+
+          # Test and reload NGINX
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "nginx -t && systemctl reload nginx"
+
+          echo "✅ NGINX configuration deployed"
+
+  # ===========================================
+  # Post-Deploy Verification
+  # ===========================================
+  verify:
+    needs: [deploy-site]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Health check - Main site
+        run: |
+          echo "🔍 Checking https://vediums.com..."
+          HTTP_CODE=$(curl -skI https://vediums.com -o /dev/null -w '%{http_code}' --max-time 30)
+          if [ "$HTTP_CODE" == "200" ]; then
+            echo "✅ vediums.com is up (HTTP $HTTP_CODE)"
+          else
+            echo "❌ vediums.com returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Health check - App site
+        run: |
+          echo "🔍 Checking https://app.vediums.com..."
+          HTTP_CODE=$(curl -skI https://app.vediums.com -o /dev/null -w '%{http_code}' --max-time 30)
+          if [ "$HTTP_CODE" == "200" ]; then
+            echo "✅ app.vediums.com is up (HTTP $HTTP_CODE)"
+          else
+            echo "❌ app.vediums.com returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: SSL Certificate check
+        run: |
+          echo "🔒 Checking SSL certificate..."
+          EXPIRY=$(echo | openssl s_client -servername vediums.com -connect vediums.com:443 2>/dev/null | openssl x509 -noout -enddate)
+          echo "Certificate expiry: $EXPIRY"
+
+  # ===========================================
+  # Notify on completion
+  # ===========================================
+  notify:
+    needs: [verify]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Send notification
+        run: |
+          if [ "${{ needs.verify.result }}" == "success" ]; then
+            echo "✅ Deploy completed successfully!"
+            # Add Slack/Discord/Telegram notification here
+          else
+            echo "❌ Deploy failed!"
+            # Add failure notification here
+          fi

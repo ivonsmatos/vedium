@@ -1,0 +1,86 @@
+# Vedium LMS - Backup Workflow
+# Manual trigger to run backup on production server
+
+name: Backup Production
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # Daily at 2:00 AM UTC
+  workflow_dispatch:
+    inputs:
+      backup_type:
+        description: "Type of backup"
+        required: true
+        default: "full"
+        type: choice
+        options:
+          - full
+          - database-only
+          - site-only
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+
+      - name: Run backup script
+        run: |
+          echo "📦 Starting backup on production server..."
+
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "/opt/vedium/scripts/backup.sh"
+
+          echo "✅ Backup completed"
+
+      - name: Verify backup
+        run: |
+          echo "🔍 Verifying backup..."
+
+          LAST_BACKUP=$(ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "ls -td /opt/vedium/backups/*/ | head -1")
+
+          echo "Last backup directory: $LAST_BACKUP"
+
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "ls -lh $LAST_BACKUP"
+
+      - name: Check backup integrity
+        run: |
+          echo "🔐 Checking backup integrity..."
+
+          LAST_BACKUP=$(ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "ls -td /opt/vedium/backups/*/ | head -1")
+
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "cd $LAST_BACKUP && sha256sum -c checksums.sha256"
+
+          echo "✅ Backup integrity verified"
+
+      - name: Report backup size
+        run: |
+          BACKUP_SIZE=$(ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "du -sh /opt/vedium/backups/ | cut -f1")
+
+          echo "📊 Total backup size: $BACKUP_SIZE"
+
+          DISK_FREE=$(ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "df -h /opt/vedium/backups | tail -1 | awk '{print \$4}'")
+
+          echo "💾 Disk space available: $DISK_FREE"

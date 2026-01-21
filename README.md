@@ -1,0 +1,229 @@
+# Vedium LMS
+
+**Vedium** é a primeira plataforma de **Inteligência Cultural** para profissionais globais. Uma solução completa de LMS (Learning Management System) construída sobre o [Frappe Framework](https://frappeframework.com), oferecendo cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral.
+
+🌐 **Site**: [https://vediums.com](https://vediums.com)
+📚 **Plataforma LMS**: [https://app.vediums.com](https://app.vediums.com)
+
+---
+
+## 🚀 Stack Tecnológica
+
+| Componente         | Tecnologia              | Versão     |
+| ------------------ | ----------------------- | ---------- |
+| **Backend**        | Frappe Framework        | v15        |
+| **Frontend**       | Jinja2 + Tailwind CSS   | v3.4       |
+| **Banco de Dados** | MariaDB                 | 10.6       |
+| **Cache**          | Redis                   | 7-alpine   |
+| **Web Server**     | NGINX                   | Latest     |
+| **Infraestrutura** | Docker & Docker Compose | v3.8       |
+| **SSL/TLS**        | Let's Encrypt           | Auto-renew |
+
+---
+
+## 📂 Estrutura do Projeto
+
+```
+vedium/
+├── vedium_core/              # Aplicação Frappe (Custom App)
+│   ├── vedium_core/          # Código fonte Python
+│   │   ├── controllers/      # Controllers da API
+│   │   ├── templates/        # Templates Jinja2
+│   │   ├── public/           # Assets estáticos
+│   │   └── www/              # Páginas web
+│   ├── input.css             # Entrada Tailwind CSS
+│   └── hooks.py              # Configurações Frappe
+│
+├── deploy/                   # 🆕 Configurações de Deploy
+│   ├── docker-compose.yml    # Docker Compose produção
+│   ├── nginx/                # Configurações NGINX
+│   │   └── vediums.com.conf  # Virtual host
+│   ├── scripts/              # Scripts de automação
+│   │   ├── backup.sh         # Backup automático
+│   │   ├── deploy.sh         # Deploy script
+│   │   ├── security-monitor.sh # Monitoramento
+│   │   ├── audit-log.sh      # Configuração de auditoria
+│   │   └── ativar-ssl.sh     # Ativação SSL
+│   ├── site/                 # Site estático institucional
+│   │   ├── index.html        # Home page
+│   │   ├── sobre.html        # Página sobre
+│   │   ├── css/              # Estilos
+│   │   ├── images/           # Imagens e logos
+│   │   ├── manifest.json     # PWA manifest
+│   │   └── sw.js             # Service Worker
+│   ├── SECURITY.md           # Documentação de segurança
+│   └── .env.example          # Variáveis de ambiente
+│
+├── .github/workflows/        # 🆕 GitHub Actions CI/CD
+│   ├── deploy.yml            # Deploy automático
+│   ├── security-check.yml    # Verificação de segurança
+│   └── backup.yml            # Backup automático
+│
+├── docker-compose.yml        # Docker Compose local
+├── init.sh                   # Inicialização ambiente dev
+└── install_apps.sh           # Instalação de apps
+```
+
+---
+
+## 🛠️ Instalação Local
+
+### Pré-requisitos
+
+- Docker e Docker Compose
+- Git
+- Node.js 18+ (para build CSS)
+
+### Setup Rápido
+
+```bash
+# Clone o repositório
+git clone https://github.com/vedium-global/vedium.git
+cd vedium
+
+# Inicie os containers
+docker-compose up -d
+
+# Execute a inicialização
+./init.sh
+
+# Instale os apps
+./install_apps.sh
+```
+
+### Acessos Locais
+
+| Serviço | URL                   |
+| ------- | --------------------- |
+| Frappe  | http://localhost:8005 |
+| MariaDB | localhost:3307        |
+
+---
+
+## 🚀 Deploy para Produção
+
+### Configuração Inicial
+
+1. **Configure os secrets no GitHub:**
+
+   Vá em `Settings > Secrets and variables > Actions` e adicione:
+
+   | Secret            | Descrição                                |
+   | ----------------- | ---------------------------------------- |
+   | `SSH_PRIVATE_KEY` | Chave SSH privada para o servidor        |
+   | `SSH_KNOWN_HOSTS` | Output de `ssh-keyscan seu-servidor.com` |
+   | `DEPLOY_USER`     | Usuário SSH (ex: `root`)                 |
+   | `DEPLOY_HOST`     | IP ou hostname do servidor               |
+
+2. **Copie as configurações para o servidor:**
+
+   ```bash
+   scp -r deploy/ root@seu-servidor:/opt/vedium/
+   ```
+
+3. **No servidor, execute:**
+
+   ```bash
+   cd /opt/vedium
+   cp deploy/.env.example .env
+   # Edite o .env com suas credenciais
+   nano .env
+
+   # Inicie os containers
+   docker-compose -f deploy/docker-compose.yml up -d
+
+   # Configure SSL
+   ./deploy/scripts/ativar-ssl.sh
+   ```
+
+### Deploy Automático
+
+Após configurar os secrets, todo push para `main` que modifique arquivos em `deploy/` dispara o deploy automático.
+
+```bash
+# Deploy manual via GitHub Actions
+gh workflow run deploy.yml -f deploy_type=full
+```
+
+---
+
+## 🔒 Segurança
+
+O Vedium segue as melhores práticas de segurança:
+
+- ✅ **SSL/TLS** com Let's Encrypt (TLSv1.2/1.3 apenas)
+- ✅ **HSTS** habilitado (2 anos, includeSubDomains, preload)
+- ✅ **Rate Limiting** no login (5 req/min)
+- ✅ **Fail2ban** para proteção SSH
+- ✅ **Backups criptografados** (AES-256)
+- ✅ **Conformidade** LGPD/GDPR
+
+📖 Veja [deploy/SECURITY.md](deploy/SECURITY.md) para detalhes completos.
+
+---
+
+## 📊 Monitoramento
+
+### Scripts Disponíveis
+
+```bash
+# Verificar status de segurança
+/opt/vedium/scripts/security-monitor.sh
+
+# Executar backup manual
+/opt/vedium/scripts/backup.sh
+
+# Ver logs
+tail -f /var/log/vedium-security.log
+```
+
+### GitHub Actions
+
+- **Deploy**: Acionado em push para `main`
+- **Security Check**: Diário às 06:00 UTC
+- **Backup**: Diário às 02:00 UTC
+
+---
+
+## 🌐 Domínios
+
+| Domínio         | Função             | Servidor         |
+| --------------- | ------------------ | ---------------- |
+| vediums.com     | Site institucional | NGINX (estático) |
+| www.vediums.com | Redirect           | → vediums.com    |
+| app.vediums.com | Plataforma LMS     | Frappe/ERPNext   |
+
+---
+
+## 📱 PWA
+
+O site institucional é uma Progressive Web App com:
+
+- ✅ Manifest configurado
+- ✅ Service Worker para cache offline
+- ✅ Instalável em dispositivos móveis
+- ✅ Ícones para iOS/Android
+
+---
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Add: nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+---
+
+## 📝 Licença
+
+Copyright © 2026 Vedium Global Education. Todos os direitos reservados.
+
+---
+
+## 📞 Contato
+
+- **Email**: contato@vediums.com
+- **Site**: https://vediums.com
+- **LinkedIn**: [Vedium Global](https://linkedin.com/company/vedium)

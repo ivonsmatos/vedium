@@ -1,0 +1,119 @@
+# Vedium LMS - Security Monitoring
+# Runs daily to check security status
+
+name: Security Check
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # Daily at 6:00 AM UTC
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+
+      - name: Run security monitor
+        run: |
+          echo "🔒 Running security check on production server..."
+
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "/opt/vedium/scripts/security-monitor.sh"
+
+      - name: Check SSL expiration
+        run: |
+          echo "🔐 Checking SSL certificate..."
+          EXPIRY=$(echo | openssl s_client -servername vediums.com -connect vediums.com:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+          EXPIRY_EPOCH=$(date -d "$EXPIRY" +%s)
+          NOW_EPOCH=$(date +%s)
+          DAYS_LEFT=$(( (EXPIRY_EPOCH - NOW_EPOCH) / 86400 ))
+
+          echo "Certificate expires in $DAYS_LEFT days"
+
+          if [ "$DAYS_LEFT" -lt 14 ]; then
+            echo "::warning::SSL certificate expires in $DAYS_LEFT days!"
+          fi
+
+      - name: Check website availability
+        run: |
+          for URL in "https://vediums.com" "https://app.vediums.com"; do
+            HTTP_CODE=$(curl -skI "$URL" -o /dev/null -w '%{http_code}' --max-time 30)
+            if [ "$HTTP_CODE" == "200" ]; then
+              echo "✅ $URL - OK"
+            else
+              echo "::error::$URL returned HTTP $HTTP_CODE"
+            fi
+          done
+
+  backup-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+
+      - name: Check last backup
+        run: |
+          echo "📦 Checking backup status..."
+
+          LAST_BACKUP=$(ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "ls -td /opt/vedium/backups/*/ 2>/dev/null | head -1")
+
+          if [ -z "$LAST_BACKUP" ]; then
+            echo "::warning::No backups found!"
+          else
+            echo "Last backup: $LAST_BACKUP"
+          fi
+
+  container-health:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+
+      - name: Check Docker containers
+        run: |
+          echo "🐳 Checking Docker containers..."
+
+          CONTAINERS=$(ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "docker ps --filter 'name=vedium' --format '{{.Names}}: {{.Status}}'")
+
+          echo "$CONTAINERS"
+
+          RUNNING=$(echo "$CONTAINERS" | wc -l)
+          if [ "$RUNNING" -lt 5 ]; then
+            echo "::warning::Only $RUNNING containers running (expected: 5)"
+          else
+            echo "✅ All containers running"
+          fi

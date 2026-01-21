@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#166534">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Vedium">
+
+    <title>Sobre a Vedium - Inteligência Cultural para Líderes Globais</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Conheça a Vedium: a primeira plataforma de inteligência cultural. Nossa missão é formar líderes globais com fluência que vai além das palavras.">
+    <meta name="keywords" content="sobre vedium, inteligência cultural, educação global, idiomas para profissionais, carreira internacional">
+    <link rel="canonical" href="https://vediums.com/sobre">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sobre a Vedium - Inteligência Cultural">
+    <meta property="og:description" content="A primeira plataforma que une Inglês Executivo, Hebraico Tech e Iorubá. Conheça nossa missão.">
+    <meta property="og:url" content="https://vediums.com/sobre">
+    <meta property="og:type" content="website">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/icone-color.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icone-color.png">
+
+    <!-- Fonts & CSS -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=outfit:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="/css/vedium.css">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e3a5f;
+            --dark: #0f172a;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        body { font-family: 'Outfit', sans-serif; color: var(--text); }
+
+        /* Header */
+        .tg-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 0; transition: all 0.3s; }
+        .tg-header.sticky { background: rgba(255, 255, 255, 0.98); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); padding: 0.5rem 0; }
+        .tg-header .logo img { height: 40px; }
+        .tg-header .nav-link { color: var(--text); font-weight: 500; padding: 0.5rem 1rem !important; }
+        .tg-header .nav-link:hover { color: var(--primary); }
+        .tg-header .btn-primary { background: var(--primary); border: none; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; }
+
+        /* Hero Banner */
+        .page-hero { background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%); padding: 10rem 0 5rem; text-align: center; }
+        .page-hero h1 { color: #fff; font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+        .page-hero .breadcrumb { justify-content: center; }
+        .page-hero .breadcrumb-item, .page-hero .breadcrumb-item a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+        .page-hero .breadcrumb-item.active { color: #fff; }
+
+        /* About Content */
+        .about-content { padding: 6rem 0; }
+        .section-title { margin-bottom: 2rem; }
+        .section-title .sub-title { display: inline-block; background: rgba(37, 99, 235, 0.1); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; }
+        .section-title h2 { font-size: 2.5rem; font-weight: 700; }
+        .section-title h2 span { color: var(--primary); }
+
+        /* Mission Cards */
+        .mission-card { background: #f8fafc; border-radius: 20px; padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s; }
+        .mission-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); }
+        .mission-card i { width: 60px; height: 60px; background: var(--primary); color: #fff; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem; }
+        .mission-card h4 { font-weight: 600; margin-bottom: 0.5rem; }
+        .mission-card p { color: var(--text-light); margin: 0; }
+
+        /* Values */
+        .values-section { padding: 6rem 0; background: var(--dark); }
+        .values-section .section-title .sub-title { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .values-section .section-title h2 { color: #fff; }
+        .value-item { text-align: center; padding: 2rem; }
+        .value-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .value-item h5 { color: #fff; font-weight: 600; margin-bottom: 0.5rem; }
+        .value-item p { color: rgba(255, 255, 255, 0.7); margin: 0; font-size: 0.9rem; }
+
+        /* Team */
+        .team-section { padding: 6rem 0; }
+        .team-card { text-align: center; margin-bottom: 1.5rem; }
+        .team-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 5px solid #f8fafc; }
+        .team-card h5 { font-weight: 600; margin-bottom: 0.3rem; }
+        .team-card span { color: var(--text-light); font-size: 0.875rem; }
+
+        /* CTA */
+        .cta-section { padding: 6rem 0; background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%); text-align: center; }
+        .cta-section h2 { color: #fff; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; }
+        .cta-section .btn-light { background: #fff; color: var(--primary); padding: 1rem 2rem; border-radius: 50px; font-weight: 600; border: none; }
+
+        /* Footer */
+        .footer-section { background: var(--dark); padding: 4rem 0 0; color: #fff; }
+        .footer-section .footer-logo img { height: 40px; margin-bottom: 1rem; }
+        .footer-section p { color: rgba(255, 255, 255, 0.7); }
+        .footer-section h5 { font-weight: 600; margin-bottom: 1.5rem; }
+        .footer-section ul { list-style: none; padding: 0; margin: 0; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
+        .footer-section ul a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+        .footer-section ul a:hover { color: var(--primary); }
+        .footer-section .social a { display: inline-flex; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); color: #fff; border-radius: 50%; align-items: center; justify-content: center; margin-right: 0.5rem; transition: all 0.3s; }
+        .footer-section .social a:hover { background: var(--primary); }
+        .footer-bottom { background: rgba(0, 0, 0, 0.2); margin-top: 3rem; padding: 1.5rem 0; }
+        .footer-bottom p { color: rgba(255, 255, 255, 0.6); margin: 0; font-size: 0.875rem; }
+
+        /* Back to Top */
+        .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary); color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4); transition: all 0.3s; z-index: 1000; }
+        .scroll-top.show { display: flex; }
+        .scroll-top:hover { background: #1d4ed8; transform: translateY(-5px); color: #fff; }
+    </style>
+</head>
+
+<body>
+<!-- Header -->
+<header class="tg-header" id="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand logo" href="/"><img src="/images/vedium-logo-branca.png" alt="Vedium"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://app.vediums.com/lms/courses">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/sobre.html">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://app.vediums.com/blog">Blog</a></li>
+                </ul>
+                <div class="ms-3">
+                    <a href="https://app.vediums.com/lms" class="btn btn-primary">Começar Agora</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="container">
+        <h1>Sobre a Vedium</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Sobre</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="about-content">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=500&fit=crop" alt="Vedium Team" class="img-fluid rounded-4 shadow">
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="section-title">
+                    <span class="sub-title">Nossa História</span>
+                    <h2>Raízes e Asas: <span>Fluência</span> com Identidade</h2>
+                </div>
+                <p class="lead">Somos a primeira plataforma de <strong>inteligência cultural</strong> para profissionais que querem conquistar o mundo sem perder sua essência.</p>
+                <p>Enquanto o mercado ensina idiomas como commodity, nós ensinamos como ferramenta de <strong>Identidade e Poder</strong>. Cada curso é pensado para profissionais que precisam negociar em inglês às 9h, fechar contratos em hebraico às 14h e reconectar com suas raízes às 19h.</p>
+                <p>Nossa metodologia combina <strong>IA adaptativa</strong>, simulações profissionais realistas e tutoria especializada para criar uma experiência de aprendizado única.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Cards -->
+<section style="padding: 4rem 0; background: #f8fafc;">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-6 mx-auto">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Nossa Missão</span>
+                    <h2>O Que Nos <span>Move</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="mission-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h4>Liderança Global</h4>
+                    <p>Preparamos profissionais para liderar em contextos multiculturais, com fluência que vai além da gramática.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="mission-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>Inteligência Cultural</h4>
+                    <p>Ensinamos não apenas idiomas, mas os códigos culturais que fazem a diferença em negociações internacionais.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="mission-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Identidade e Raízes</h4>
+                    <p>Valorizamos as origens de cada aluno, reconectando-os com suas heranças culturais através do idioma.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values -->
+<section class="values-section">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-6 mx-auto">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Nossos Valores</span>
+                    <h2>O Que <span>Acreditamos</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                <div class="value-item">
+                    <i class="fas fa-star"></i>
+                    <h5>Excelência</h5>
+                    <p>Buscamos a qualidade máxima em cada aula, cada material, cada interação.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-item">
+                    <i class="fas fa-users"></i>
+                    <h5>Comunidade</h5>
+                    <p>Construímos uma rede de profissionais globais que se apoiam mutuamente.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h5>Inovação</h5>
+                    <p>Usamos tecnologia de ponta para personalizar a experiência de aprendizado.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-item">
+                    <i class="fas fa-handshake"></i>
+                    <h5>Respeito</h5>
+                    <p>Valorizamos a diversidade e tratamos cada aluno como único.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team -->
+<section class="team-section">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-6 mx-auto">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="sub-title">Nosso Time</span>
+                    <h2>Conheça a <span>Liderança</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop" alt="CEO">
+                    <h5>Ricardo Santos</h5>
+                    <span>CEO & Founder</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop" alt="CTO">
+                    <h5>Ana Mendes</h5>
+                    <span>CTO & Co-Founder</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Head of Education">
+                    <h5>David Cohen</h5>
+                    <span>Head of Education</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container" data-aos="zoom-in">
+        <h2>Pronto para Começar?</h2>
+        <p>Junte-se a milhares de profissionais que já estão transformando suas carreiras.</p>
+        <a href="https://app.vediums.com/lms" class="btn btn-light">Explorar Cursos</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-logo">
+                    <img src="/images/vedium-logo-branca.png" alt="Vedium">
+                </div>
+                <p>A primeira plataforma de inteligência cultural para profissionais globais. Fluência além das palavras.</p>
+                <ul class="contact-info" style="list-style: none; padding: 0;">
+                    <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
+                    <li><i class="fas fa-phone"></i> +55 11 99999-9999</li>
+                    <li><i class="fas fa-envelope"></i> contato@vediums.com</li>
+                </ul>
+                <div class="social">
+                    <a href="https://instagram.com/vedium" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/company/vedium" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@vedium" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/5511999999999" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <h5>Sobre</h5>
+                <ul>
+                    <li><a href="/sobre.html">Manifesto</a></li>
+                    <li><a href="/sobre.html">Quem Somos</a></li>
+                    <li><a href="https://app.vediums.com/carreiras">Trabalhe Conosco</a></li>
+                    <li><a href="https://app.vediums.com/contato">Contato</a></li>
+                    <li><a href="https://app.vediums.com/faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <h5>Schools</h5>
+                <ul>
+                    <li><a href="https://app.vediums.com/lms/courses?category=leadership">Leadership</a></li>
+                    <li><a href="https://app.vediums.com/lms/courses?category=innovation">Innovation</a></li>
+                    <li><a href="https://app.vediums.com/lms/courses?category=roots">Roots</a></li>
+                    <li><a href="https://app.vediums.com/lms/courses?category=gateway">Gateway</a></li>
+                    <li><a href="https://app.vediums.com/lms/courses?category=future">Future</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="/termos.html">Termos de Uso</a></li>
+                    <li><a href="/privacidade.html">Privacidade (LGPD)</a></li>
+                    <li><a href="https://app.vediums.com/enterprise">Vedium Enterprise</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5>Horário de Atendimento</h5>
+                <p>Segunda - Sexta<br><strong>9h às 18h</strong></p>
+                <p>Sábado<br><strong>9h às 13h</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <p>© 2026 Vedium Global Education. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end">
+                    <p>vediums.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<a href="#" class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true, offset: 50 });
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+            header.classList.add('sticky');
+        } else {
+            header.classList.remove('sticky');
+        }
+    });
+
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTop.classList.add('show');
+        } else {
+            scrollTop.classList.remove('show');
+        }
+    });
+    scrollTop?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+</body>
+</html>
