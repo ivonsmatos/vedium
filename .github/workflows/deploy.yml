@@ -28,7 +28,9 @@ jobs:
             # We will attempt to verify where 'vedium' folder is.
             
             TARGET_DIR=""
-            if [ -d "/root/vedium" ]; then
+            if [ -d "/opt/vedium" ]; then
+                TARGET_DIR="/opt/vedium"
+            elif [ -d "/root/vedium" ]; then
                 TARGET_DIR="/root/vedium"
             elif [ -d "$HOME/vedium" ]; then
                 TARGET_DIR="$HOME/vedium"
@@ -52,14 +54,18 @@ jobs:
             CONTAINER="vedium-frappe"
             
             echo "Updating vedium_core inside container..."
-            # Try workspace path (if mounted)
-            docker exec $CONTAINER git -C /workspace/vedium-bench/apps/vedium_core pull origin main || \
-            docker exec $CONTAINER git -C /home/frappe/frappe-bench/apps/vedium_core pull origin main || \
-            echo "Warning: Could not git pull inside container. Verify app path via 'docker exec vedium-frappe find / -name vedium_core'."
+            # Since volume mount might be missing or different, we force copy the updated code
+            docker cp vedium_core $CONTAINER:/home/frappe/frappe-bench/apps/
+            docker exec -u 0 $CONTAINER chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
+            
+            # Ensure package is installed
+            docker exec -w /home/frappe/frappe-bench $CONTAINER pip install -e apps/vedium_core
 
             # Run Bench Commands
             echo "Running bench commands..."
-            docker exec $CONTAINER bench --site vedium.localhost clear-cache
-            # docker exec $CONTAINER bench --site vedium.localhost migrate
+            SITE_NAME="app.vediums.com"
+            docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME install-app vedium_core || echo "App already installed"
+            docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME migrate
+            docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME clear-cache
 
             echo "Deployment finished."
