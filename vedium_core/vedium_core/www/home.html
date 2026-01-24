@@ -118,8 +118,8 @@
 <!-- Header -->
 <header class="tg-header" id="header">
     <div class="container">
-        <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand logo" href="/"><img src="/assets/vedium_core/images/vedium-logo-branca.png"
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand logo" href="/"><img src="/assets/vedium_core/images/vedium-logo-reta-color.png"
                     alt="Vedium"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-label="Menu de navegação" aria-expanded="false" aria-controls="navbarNav">
@@ -128,18 +128,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Schools</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/lms/courses?category=leadership">School of
-                                    Leadership</a></li>
-                            <li><a class="dropdown-item" href="/lms/courses?category=innovation">School of
-                                    Innovation</a></li>
-                            <li><a class="dropdown-item" href="/lms/courses?category=roots">School of Roots</a></li>
-                            <li><a class="dropdown-item" href="/lms/courses?category=gateway">School of Gateway</a></li>
-                            <li><a class="dropdown-item" href="/lms/courses?category=future">School of Future</a></li>
-                        </ul>
-                    </li>
+
                     <li class="nav-item"><a class="nav-link" href="/lms/courses">Cursos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/sobre">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
@@ -694,10 +683,15 @@
     // Sticky Header
     window.addEventListener('scroll', () => {
         const header = document.getElementById('header');
+        const navbar = header.querySelector('.navbar');
         if (window.scrollY > 100) {
             header.classList.add('sticky');
+            navbar.classList.remove('navbar-dark');
+            navbar.classList.add('navbar-light');
         } else {
             header.classList.remove('sticky');
+            navbar.classList.add('navbar-dark');
+            navbar.classList.remove('navbar-light');
         }
     });
 

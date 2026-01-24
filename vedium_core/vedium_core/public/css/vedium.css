@@ -34,9 +34,13 @@ body {
 }
 
 .tg-header .nav-link {
-    color: var(--tg-text-dark);
+    color: #fff;
     font-weight: 500;
     padding: 0.5rem 1rem !important;
+}
+
+.tg-header.sticky .nav-link {
+    color: var(--tg-text-dark);
 }
 
 .tg-header .nav-link:hover {
