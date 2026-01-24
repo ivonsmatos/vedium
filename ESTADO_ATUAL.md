@@ -2,7 +2,12 @@
 
 Este documento registra o status atual do desenvolvimento do Vedium, incluindo funcionalidades identificadas e a estrutura vigente.
 
-**Data de Atualização**: 18/01/2026
+**Data de Atualização**: 24/01/2026 - Triggering Deployment Test
+
+## 🚀 Deployment Test
+
+- **Action**: Testing GitHub Actions Automation.
+- **Goal**: Verify if `git pull` runs successfully on the server.
 
 ## ✅ Funcionalidades Implementadas
 
