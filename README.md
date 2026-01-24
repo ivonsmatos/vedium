@@ -206,16 +206,6 @@ O site institucional é uma Progressive Web App com:
 
 ---
 
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Add: nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
-
----
-
 ## 📝 Licença
 
 Copyright © 2026 Vedium Global Education. Todos os direitos reservados.
