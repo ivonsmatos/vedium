@@ -66,6 +66,12 @@ jobs:
             SITE_NAME="app.vediums.com"
             docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME install-app vedium_core || echo "App already installed"
             docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME migrate
+            
+            # Force copy assets (Bypass bench build due to server memory constraints)
+            echo "Copying assets..."
+            docker exec $CONTAINER cp /home/frappe/frappe-bench/apps/vedium_core/vedium_core/public/css/vedium.css /home/frappe/frappe-bench/sites/assets/vedium_core/css/vedium.css || echo "CSS copy failed"
+            docker exec $CONTAINER cp -r /home/frappe/frappe-bench/apps/vedium_core/vedium_core/public/images/* /home/frappe/frappe-bench/sites/assets/vedium_core/images/ || echo "Images copy failed"
+
             docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME clear-cache
 
             echo "Deployment finished."
