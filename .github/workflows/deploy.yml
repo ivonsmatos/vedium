@@ -1,208 +1,65 @@
-# Vedium LMS - Deploy to Production
-# Triggered on push to main branch
-# Deploys static site and syncs configurations
-
 name: Deploy to Production
 
 on:
   push:
     branches:
       - main
-    paths:
-      - "deploy/**"
-      - "vedium_core/**"
-      - ".github/workflows/deploy.yml"
   workflow_dispatch:
-    inputs:
-      deploy_type:
-        description: "Type of deployment"
-        required: true
-        default: "site"
-        type: choice
-        options:
-          - site
-          - full
-          - config-only
-
-env:
-  DEPLOY_PATH: /opt/vedium
-  SITE_PATH: /opt/vedium/site
 
 jobs:
-  # ===========================================
-  # Build and Test
-  # ===========================================
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Validate HTML
-        run: |
-          echo "Validating HTML files..."
-          for file in deploy/site/*.html; do
-            if [ -f "$file" ]; then
-              echo "✅ $file exists"
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            echo "Starting deployment..."
+            
+            # Navigate to project directory (update this path to your actual server path)
+            # Based on your session, you were in /root or home directory.
+            # We will attempt to verify where 'vedium' folder is.
+            
+            TARGET_DIR=""
+            if [ -d "/root/vedium" ]; then
+                TARGET_DIR="/root/vedium"
+            elif [ -d "$HOME/vedium" ]; then
+                TARGET_DIR="$HOME/vedium"
+            else
+                # Fallback: find it
+                TARGET_DIR=$(find / -type d -name "vedium" -maxdepth 3 2>/dev/null | head -n 1)
             fi
-          done
 
-      - name: Check file structure
-        run: |
-          echo "Checking deploy structure..."
-          ls -la deploy/
-          ls -la deploy/site/
-          ls -la deploy/scripts/
-          ls -la deploy/nginx/
+            if [ -z "$TARGET_DIR" ]; then
+                echo "Error: Could not find 'vedium' directory on server."
+                exit 1
+            fi
 
-  # ===========================================
-  # Deploy Static Site
-  # ===========================================
-  deploy-site:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event.inputs.deploy_type != 'config-only'
+            echo "Deploying in $TARGET_DIR"
+            cd "$TARGET_DIR"
+            
+            # Pull changes on Host
+            git pull origin main
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+            # Update inside container (Critical for Frappe which often has its own git state)
+            CONTAINER="vedium-frappe"
+            
+            echo "Updating vedium_core inside container..."
+            # Try workspace path (if mounted)
+            docker exec $CONTAINER git -C /workspace/vedium-bench/apps/vedium_core pull origin main || \
+            docker exec $CONTAINER git -C /home/frappe/frappe-bench/apps/vedium_core pull origin main || \
+            echo "Warning: Could not git pull inside container. Verify app path via 'docker exec vedium-frappe find / -name vedium_core'."
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            # Run Bench Commands
+            echo "Running bench commands..."
+            docker exec $CONTAINER bench --site vedium.localhost clear-cache
+            # docker exec $CONTAINER bench --site vedium.localhost migrate
 
-      - name: Add known hosts
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-
-      - name: Deploy site files
-        run: |
-          echo "🚀 Deploying static site to production..."
-
-          # Sync site files
-          rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=no" \
-            deploy/site/ \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ env.SITE_PATH }}/
-
-          echo "✅ Site files deployed"
-
-      - name: Clear cache (if using CDN)
-        run: |
-          echo "Cache cleared (implement CDN purge if needed)"
-
-  # ===========================================
-  # Deploy Configurations
-  # ===========================================
-  deploy-config:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event.inputs.deploy_type == 'full' || github.event.inputs.deploy_type == 'config-only'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Add known hosts
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-
-      - name: Deploy configurations
-        run: |
-          echo "🔧 Deploying configurations..."
-
-          # Sync docker-compose
-          scp -o StrictHostKeyChecking=no \
-            deploy/docker-compose.yml \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/
-
-          # Sync scripts
-          rsync -avz \
-            -e "ssh -o StrictHostKeyChecking=no" \
-            deploy/scripts/ \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ env.DEPLOY_PATH }}/scripts/
-
-          # Make scripts executable
-          ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "chmod +x ${{ env.DEPLOY_PATH }}/scripts/*.sh"
-
-          echo "✅ Configurations deployed"
-
-      - name: Deploy NGINX config
-        run: |
-          echo "🌐 Deploying NGINX configuration..."
-
-          scp -o StrictHostKeyChecking=no \
-            deploy/nginx/vediums.com.conf \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/etc/nginx/sites-available/vediums.com
-
-          # Test and reload NGINX
-          ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "nginx -t && systemctl reload nginx"
-
-          echo "✅ NGINX configuration deployed"
-
-  # ===========================================
-  # Post-Deploy Verification
-  # ===========================================
-  verify:
-    needs: [deploy-site]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Health check - Main site
-        run: |
-          echo "🔍 Checking https://vediums.com..."
-          HTTP_CODE=$(curl -skI https://vediums.com -o /dev/null -w '%{http_code}' --max-time 30)
-          if [ "$HTTP_CODE" == "200" ]; then
-            echo "✅ vediums.com is up (HTTP $HTTP_CODE)"
-          else
-            echo "❌ vediums.com returned HTTP $HTTP_CODE"
-            exit 1
-          fi
-
-      - name: Health check - App site
-        run: |
-          echo "🔍 Checking https://app.vediums.com..."
-          HTTP_CODE=$(curl -skI https://app.vediums.com -o /dev/null -w '%{http_code}' --max-time 30)
-          if [ "$HTTP_CODE" == "200" ]; then
-            echo "✅ app.vediums.com is up (HTTP $HTTP_CODE)"
-          else
-            echo "❌ app.vediums.com returned HTTP $HTTP_CODE"
-            exit 1
-          fi
-
-      - name: SSL Certificate check
-        run: |
-          echo "🔒 Checking SSL certificate..."
-          EXPIRY=$(echo | openssl s_client -servername vediums.com -connect vediums.com:443 2>/dev/null | openssl x509 -noout -enddate)
-          echo "Certificate expiry: $EXPIRY"
-
-  # ===========================================
-  # Notify on completion
-  # ===========================================
-  notify:
-    needs: [verify]
-    runs-on: ubuntu-latest
-    if: always()
-
-    steps:
-      - name: Send notification
-        run: |
-          if [ "${{ needs.verify.result }}" == "success" ]; then
-            echo "✅ Deploy completed successfully!"
-            # Add Slack/Discord/Telegram notification here
-          else
-            echo "❌ Deploy failed!"
-            # Add failure notification here
-          fi
+            echo "Deployment finished."
