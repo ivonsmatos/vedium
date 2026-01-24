@@ -58,8 +58,12 @@ jobs:
             docker cp vedium_core $CONTAINER:/home/frappe/frappe-bench/apps/
             docker exec -u 0 $CONTAINER chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
             
-            # Ensure package is installed
+            # Ensure package is installed and build assets
             docker exec -w /home/frappe/frappe-bench $CONTAINER pip install -e apps/vedium_core
+            
+            echo "Building Tailwind CSS..."
+            docker exec -w /home/frappe/frappe-bench/apps/vedium_core $CONTAINER npm install
+            docker exec -w /home/frappe/frappe-bench/apps/vedium_core $CONTAINER npm run build-css
 
             # Run Bench Commands
             echo "Running bench commands..."
