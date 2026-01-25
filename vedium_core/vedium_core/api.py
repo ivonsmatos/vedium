@@ -67,8 +67,8 @@ def get_course_categories():
     categories = frappe.get_all(
         "LMS Category",
         filters={},
-        fields=["name", "category_name", "description"],
-        order_by="category_name"
+        fields=["name", "category"],
+        order_by="category"
     )
     return categories
 
