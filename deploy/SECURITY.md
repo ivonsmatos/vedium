@@ -1,3 +1,11 @@
+## 4. Pentest e Auditoria Contínua
+
+- Pentest regular agendado (recomenda-se OWASP ZAP, Nikto ou ferramentas open-source)
+- Checklist de segredos: nunca expor chaves em HTML/JS, usar apenas variáveis de ambiente
+- Auditoria automática de dependências: GitHub Actions (`security-check.yml`) e scripts de monitoramento
+
+---
+
 # 🔐 Vedium LMS - Documentação de Segurança
 
 ## Visão Geral
