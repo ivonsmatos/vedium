@@ -1,3 +1,7 @@
+## Geração Automática de Schemas OpenAPI
+
+Para endpoints críticos (pagamentos, inscrições), recomenda-se uso de ferramentas como [frappe-openapi](https://github.com/alyf-de/frappe-openapi) para gerar e manter schemas OpenAPI atualizados.
+
 # Documentação da API do Vedium Core
 
 ## Visão Geral

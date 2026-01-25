@@ -1,4 +1,36 @@
 :root {
+    /* White-label/skinning: sobrescreva estas variáveis para customização por franquia */
+    --brand-primary: var(--tg-primary);
+    --brand-action: var(--tg-primary);
+    --brand-footer: var(--tg-secondary);
+    --brand-font: 'Kanit', 'Outfit', 'Arimo', sans-serif;
+}
+
+body {
+    font-family: var(--brand-font);
+}
+
+/* Exemplo de skin customizado (pode ser sobrescrito por franquia) */
+.skin-franquia-x {
+    --brand-primary: #E91E63;
+    --brand-action: #FF9800;
+    --brand-footer: #22223B;
+    --brand-font: 'Montserrat', sans-serif;
+}
+
+/* Use as variáveis de skin nos principais elementos */
+.btn-primary, .btn-hero, .animated-btn {
+    background: var(--brand-primary);
+    color: #fff;
+}
+.btn-primary:hover, .btn-hero:hover, .animated-btn:hover {
+    background: var(--brand-action);
+    color: #222;
+}
+.footer-section {
+    background: var(--brand-footer);
+}
+:root {
     --tg-primary: #2563eb;
     --tg-secondary: #1e3a5f;
     --tg-body-bg: #ffffff;

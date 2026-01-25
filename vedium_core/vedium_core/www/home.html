@@ -150,7 +150,7 @@
                 <h1>Fluência <span>Além</span> das Palavras</h1>
                 <p>A primeira plataforma que une Inglês Executivo, Hebraico Tech e Iorubá Ancestral. Acelere sua
                     carreira global sem perder sua identidade.</p>
-                <a href="/lms" class="btn-hero">
+                <a href="/lms" class="btn-hero animated-btn" tabindex="0" aria-label="Começar Agora">
                     <span>Começar Agora</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
@@ -172,7 +172,47 @@
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=500&fit=crop"
-                        alt="Students Learning">
+                        alt="Students Learning" loading="lazy" decoding="async">
+                <style>
+                /* Microinterações e acessibilidade */
+                .animated-btn {
+                    transition: background 0.3s, color 0.3s, box-shadow 0.2s, transform 0.2s;
+                    outline: none;
+                }
+                .animated-btn:hover, .animated-btn:focus {
+                    background: linear-gradient(90deg, var(--primary), var(--action));
+                    color: #222;
+                    box-shadow: 0 4px 16px 0 rgba(254, 207, 3, 0.15);
+                    transform: translateY(-2px) scale(1.03);
+                }
+                .animated-btn:active {
+                    background: var(--action);
+                    color: #fff;
+                    transform: scale(0.98);
+                }
+                /* Contraste para acessibilidade */
+                .btn-hero {
+                    border-radius: 50px;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    min-width: 180px;
+                    min-height: 48px;
+                    box-shadow: 0 2px 8px 0 rgba(46,46,46,0.08);
+                }
+                </style>
+                <script>
+                // Feedback visual para AJAX e loading state (exemplo genérico)
+                function showLoading(btn) {
+                    btn.disabled = true;
+                    btn.classList.add('loading');
+                    btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...';
+                }
+                function hideLoading(btn, original) {
+                    btn.disabled = false;
+                    btn.classList.remove('loading');
+                    btn.innerHTML = original;
+                }
+                </script>
                 </div>
             </div>
         </div>

@@ -1,4 +1,60 @@
+# 📈 Roadmap de Melhorias (2026)
+
+- Pagamentos: Mercado Pago/Basecommerce, checkout central, cupons, testes automatizados
+- Cursos: Certificado digital, quiz/prova de nível, IA feedback, gamificação, comunidade, acessibilidade
+- UI/UX: Microinterações, onboarding gamificado, performance, white-label
+- Backend: Factory de gateways, observabilidade, painel de suporte
+- Segurança: Pentest, alertas automáticos, gestão de segredos
+- Documentação: API pública, onboarding prof/alunos, OpenAPI Schemas
+
+## 📚 Documentação
+
+- [Documentação da API](vedium_core/docs/api.md) — exemplos reais de endpoints
+- Recomenda-se Swagger/Redoc para documentação interativa
+- Geração automática de OpenAPI Schemas para pagamentos e integrações
+
+### Exemplo de uso de endpoint (REST)
+
+```http
+POST /api/method/vedium_core.vedium_core.api.create_checkout
+{
+   "course_name": "CURSO_ID",
+   "gateway": "mercadopago",
+   "coupon_code": "PROMO10"
+}
+```
+
+## 👩‍🏫 Onboarding Rápido para Professores
+
+- Guia do educador, templates de curso e vídeos de treinamento em `vedium_core/docs/`
+- Suporte e abertura de chamados via painel integrado
+
+## 🛠️ Observabilidade e Suporte
+
+- Painel de suporte: abertura e acompanhamento de chamados
+- Dashboard interno: status de containers, disco, memória, alertas críticos
+- Integração de métricas: Google Analytics 4, Hotjar/Clarity, banner LGPD
+
+## 📖 Documentação e Onboarding
+
+- API pública documentada em `vedium_core/docs/api.md`
+- Recomenda-se uso de Swagger ou Redoc para documentação interativa (exemplo: [Redoc CLI](https://github.com/Redocly/redoc))
+- Onboarding rápido para professores: criar guia, templates de curso e vídeos de treinamento em `docs/`
+
+## 📊 Métricas e LGPD
+
+- Integração recomendada: Google Analytics 4, Hotjar ou Clarity
+- Sempre exibir banner de consentimento LGPD para rastreamento
+- Exemplo de integração: inserir snippet no template base.html
+  ![Security Status](https://github.com/vedium/vedium/actions/workflows/security-check.yml/badge.svg)
+
 # Vedium LMS
+
+## 🔒 Segurança e Auditoria
+
+- Auditoria automática diária: [security-check.yml](.github/workflows/security-check.yml)
+- Monitoramento de containers, SSL, disco, memória e logs
+- Scripts de backup, ativação SSL, auditoria e monitoramento em `deploy/scripts/`
 
 **Vedium** é a primeira plataforma de **Inteligência Cultural** para profissionais globais. Uma solução completa de LMS (Learning Management System) construída sobre o [Frappe Framework](https://frappeframework.com), oferecendo cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral.
 
