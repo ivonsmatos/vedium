@@ -1,0 +1,80 @@
+{
+    "actions": [],
+    "autoname": "hash",
+    "creation": "2024-01-25 21:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "question",
+        "option_a",
+        "option_b",
+        "option_c",
+        "option_d",
+        "correct_answer",
+        "points",
+        "difficulty"
+    ],
+    "fields": [
+        {
+            "fieldname": "question",
+            "fieldtype": "Text Editor",
+            "in_list_view": 1,
+            "label": "Question",
+            "reqd": 1
+        },
+        {
+            "fieldname": "option_a",
+            "fieldtype": "Data",
+            "label": "Option A",
+            "reqd": 1
+        },
+        {
+            "fieldname": "option_b",
+            "fieldtype": "Data",
+            "label": "Option B",
+            "reqd": 1
+        },
+        {
+            "fieldname": "option_c",
+            "fieldtype": "Data",
+            "label": "Option C"
+        },
+        {
+            "fieldname": "option_d",
+            "fieldtype": "Data",
+            "label": "Option D"
+        },
+        {
+            "fieldname": "correct_answer",
+            "fieldtype": "Select",
+            "label": "Correct Answer",
+            "options": "A\nB\nC\nD",
+            "reqd": 1
+        },
+        {
+            "default": "1",
+            "fieldname": "points",
+            "fieldtype": "Int",
+            "label": "Points"
+        },
+        {
+            "fieldname": "difficulty",
+            "fieldtype": "Select",
+            "label": "Difficulty",
+            "options": "Beginner\nIntermediate\nAdvanced"
+        }
+    ],
+    "index_pages": [],
+    "istable": 1,
+    "links": [],
+    "modified": "2024-01-25 21:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Placement Test Question",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

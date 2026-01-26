@@ -2,7 +2,10 @@ version: "3.8"
 
 services:
   frappe:
-    image: frappe/bench:v5.22.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vedium-frappe:v16
     container_name: vedium-frappe
     command: sleep infinity
     environment:
@@ -11,7 +14,7 @@ services:
       - .:/workspace:cached
       - frappe-bench-data:/home/frappe/frappe-bench
     ports:
-      - "8005:8000" # Frappe Web (porta alta para evitar conflitos)
+      - "8005:8001" # Frappe Web (porta alta para evitar conflitos)
       - "9005:9000" # Frappe SocketIO
     depends_on:
       - mariadb
@@ -65,12 +68,36 @@ services:
     networks:
       - vedium-network
 
+  prometheus:
+    image: prom/prometheus
+    container_name: vedium-prometheus
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - vedium-network
+
+  grafana:
+    image: grafana/grafana
+    container_name: vedium-grafana
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - vedium-network
+
 volumes:
   frappe-bench-data:
   mariadb-data:
   redis-cache-data:
   redis-queue-data:
   redis-socketio-data:
+  prometheus-data:
+  grafana-data:
+
 
 networks:
   vedium-network:

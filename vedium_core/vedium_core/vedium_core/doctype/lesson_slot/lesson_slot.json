@@ -1,0 +1,80 @@
+{
+    "actions": [],
+    "autoname": "hash",
+    "creation": "2024-01-25 21:10:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "teacher",
+        "student",
+        "start_time",
+        "end_time",
+        "status",
+        "meeting_link"
+    ],
+    "fields": [
+        {
+            "fieldname": "teacher",
+            "fieldtype": "Link",
+            "label": "Teacher",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "student",
+            "fieldtype": "Link",
+            "label": "Student",
+            "options": "User"
+        },
+        {
+            "fieldname": "start_time",
+            "fieldtype": "Datetime",
+            "label": "Start Time",
+            "reqd": 1
+        },
+        {
+            "fieldname": "end_time",
+            "fieldtype": "Datetime",
+            "label": "End Time",
+            "reqd": 1
+        },
+        {
+            "default": "Available",
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Available\nBooked\nCompleted\nCancelled",
+            "reqd": 1
+        },
+        {
+            "fieldname": "meeting_link",
+            "fieldtype": "Data",
+            "label": "Meeting Link"
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2024-01-25 21:10:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Lesson Slot",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "All",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

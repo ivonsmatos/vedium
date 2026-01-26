@@ -8,6 +8,9 @@ requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
+    "mercadopago",
+    "openai",
+    "prometheus-client"
 ]
 
 [build-system]

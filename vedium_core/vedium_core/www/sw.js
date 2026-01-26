@@ -71,6 +71,11 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // Skip chrome-extension requests
+    if (url.protocol === 'chrome-extension:') {
+        return;
+    }
+
     // Skip API calls and frappe methods (always network first)
     if (url.pathname.startsWith('/api/') ||
         url.pathname.startsWith('/method/') ||
@@ -108,6 +113,10 @@ async function networkFirst(request) {
 
 // Stale While Revalidate strategy
 async function staleWhileRevalidate(request) {
+    // Evita erro ao tentar cachear chrome-extension
+    if (request.url.startsWith('chrome-extension://')) {
+        return fetch(request).catch(() => null);
+    }
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(request);
 

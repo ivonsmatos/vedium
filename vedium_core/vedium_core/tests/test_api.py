@@ -1,3 +1,4 @@
+import unittest
 from vedium_core.api import create_checkout, get_payment_history
 
 
@@ -146,3 +147,27 @@ class TestVediumAPI(FrappeTestCase):
                 break
 
         self.assertTrue(found)
+
+    def test_mercadopago_checkout(self):
+        # Mock SDK
+        with unittest.mock.patch("mercadopago.SDK") as MockSDK:
+            instance = MockSDK.return_value
+            instance.preference.return_value.create.return_value = {
+                "response": {"init_point": "https://mp.com/checkout"}
+            }
+            
+            from vedium_core.api import create_mercadopago_checkout
+            resp = create_mercadopago_checkout(self.course_name)
+            self.assertEqual(resp["checkout_url"], "https://mp.com/checkout")
+
+    def test_ai_service_integration(self):
+        # Mock AIService
+        with unittest.mock.patch("vedium_core.services.ai_service.AIService") as MockAI:
+            ai_instance = MockAI.return_value
+            ai_instance.analyze_audio.return_value = {"feedback": "Good job", "score": 90}
+            
+            from vedium_core.api import submit_speaking_exercise
+            resp = submit_speaking_exercise(self.course_name, "http://audio.url")
+            self.assertEqual(resp["status"], "analyzed")
+            self.assertEqual(resp["result"]["score"], 90)
+

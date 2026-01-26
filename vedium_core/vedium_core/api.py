@@ -1,3 +1,7 @@
+import frappe
+from frappe import _
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
+
 # =====================
 # Observabilidade e Suporte
 # =====================
@@ -57,6 +61,16 @@ def get_monitoring_dashboard():
             {"type": "warning", "msg": "Uso de disco acima de 70%"},
         ],
     }
+
+
+@frappe.whitelist(allow_guest=True)
+def get_metrics():
+    """
+    Exposes Prometheus metrics
+    """
+    frappe.response['result'] = generate_latest()
+    frappe.response['type'] = 'binary'
+    frappe.response['content_type'] = CONTENT_TYPE_LATEST
 
 
 # =====================
@@ -177,8 +191,9 @@ def submit_listening_exercise(course_name, audio_url):
     """
     Recebe áudio do aluno para exercício de escuta ativa
     """
-    # Aqui seria feita a análise de IA/feedback
-    return {"status": "received", "audio_url": audio_url}
+    ai = AIService()
+    result = ai.analyze_audio(audio_url, context="listening")
+    return {"status": "analyzed", "result": result}
 
 
 @frappe.whitelist()
@@ -186,8 +201,9 @@ def submit_speaking_exercise(course_name, audio_url):
     """
     Recebe áudio do aluno para exercício de fala
     """
-    # Aqui seria feita a análise de IA/feedback
-    return {"status": "received", "audio_url": audio_url}
+    ai = AIService()
+    result = ai.analyze_audio(audio_url, context="speaking")
+    return {"status": "analyzed", "result": result}
 
 
 @frappe.whitelist(allow_guest=True)
@@ -383,6 +399,34 @@ def create_checkout(course_name, gateway, coupon_code=None):
 
 import frappe
 from frappe import _
+import frappe
+from frappe import _
+import mercadopago
+import json
+from vedium_core.services.ai_service import AIService
+from vedium_core.services.crypto_service import CryptoService
+
+def create_enrollment_if_paid(course_name, user, gateway, payment_id, amount=None, currency=None):
+    """
+    Helper to create enrollment after successful payment
+    """
+    if frappe.db.exists("LMS Enrollment", {"course": course_name, "member": user}):
+        return
+        
+    enrollment = frappe.get_doc({
+        "doctype": "LMS Enrollment",
+        "course": course_name,
+        "member": user,
+        "status": "Active", # Or whatever status means 'Enrolled'
+        "payment_gateway": gateway,
+        "payment_reference": payment_id,
+        "amount": amount,
+        "currency": currency,
+        "enrollment_date": frappe.utils.now_datetime()
+    })
+    enrollment.insert(ignore_permissions=True)
+    frappe.msgprint(_("Inscrição realizada com sucesso!"))
+
 
 
 @frappe.whitelist(allow_guest=True)
@@ -543,13 +587,66 @@ class StripeGateway(PaymentGateway):
 
 
 class MercadoPagoGateway(PaymentGateway):
+    def get_sdk(self):
+        access_token = frappe.conf.get("MERCADOPAGO_ACCESS_TOKEN") or "TEST-00000000-0000-0000-0000-000000000000" # Placeholder
+        return mercadopago.SDK(access_token)
+
     def create_checkout(self, course, user):
-        # TODO: Integrar com Mercado Pago API
-        return f"/lms/courses/{course.name}/enroll-mercadopago"
+        sdk = self.get_sdk()
+        
+        preference_data = {
+            "items": [
+                {
+                    "title": course.title,
+                    "quantity": 1,
+                    "unit_price": float(course.course_price),
+                    "currency_id": course.currency or "BRL"
+                }
+            ],
+            "payer": {
+                "email": user
+            },
+            "back_urls": {
+                "success": f"{frappe.utils.get_url()}/lms/enrollment/success",
+                "failure": f"{frappe.utils.get_url()}/lms/enrollment/failure",
+                "pending": f"{frappe.utils.get_url()}/lms/enrollment/pending"
+            },
+            "auto_return": "approved",
+            "external_reference": f"{course.name}|{user}"
+        }
+        
+        preference_response = sdk.preference().create(preference_data)
+        response = preference_response.get("response", {})
+        
+        # Prefer sandbox for testing if configured, else init_point
+        return response.get("sandbox_init_point") if frappe.conf.get("DEVELOPER_MODE") else response.get("init_point")
 
     def handle_webhook(self, data):
-        # TODO: Lógica de webhook Mercado Pago
-        pass
+        # Mercado Pago sends topic/type and id
+        topic = data.get("topic") or data.get("type")
+        resource_id = data.get("id") or data.get("data", {}).get("id")
+        
+        if topic == "payment" and resource_id:
+            sdk = self.get_sdk()
+            payment_info = sdk.payment().get(resource_id)
+            if payment_info["status"] == 200:
+                payment = payment_info["response"]
+                status = payment.get("status")
+                external_ref = payment.get("external_reference")
+                
+                if status == "approved" and external_ref:
+                    try:
+                        course_name, user = external_ref.split("|")
+                        create_enrollment_if_paid(
+                            course_name, 
+                            user, 
+                            "mercadopago", 
+                            str(resource_id),
+                            amount=payment.get("transaction_amount"),
+                            currency=payment.get("currency_id")
+                        )
+                    except ValueError:
+                        frappe.log_error("Invalid external_reference in MercadoPago Webhook")
 
 
 class BasecommerceGateway(PaymentGateway):
@@ -560,7 +657,15 @@ class BasecommerceGateway(PaymentGateway):
     def handle_webhook(self, data):
         # TODO: Lógica de webhook Basecommerce
         pass
+class CryptoGateway(PaymentGateway):
+    def create_checkout(self, course, user):
+        service = CryptoService()
+        charge = service.create_charge(course.course_price, course.currency or "USD", user)
+        return charge.get("hosted_url")
 
+    def handle_webhook(self, data):
+        # Handle Coinbase/Crypto webhooks
+        pass
 
 def get_gateway(gateway_name):
     if gateway_name == "stripe":
@@ -569,6 +674,8 @@ def get_gateway(gateway_name):
         return MercadoPagoGateway()
     elif gateway_name == "basecommerce":
         return BasecommerceGateway()
+    elif gateway_name == "crypto":
+        return CryptoGateway()
     else:
         raise Exception("Gateway não suportado")
 
@@ -630,16 +737,18 @@ def handle_payment_webhook(gateway=None):
     return {"status": "ok"}
 
 
-@frappe.whitelist(allow_guest=True)
-def handle_payment_webhook():
-    """
-    Handle Stripe payment webhook
-    Creates enrollment on successful payment
-    """
-    # Webhook handling logic
-    # 1. Verify webhook signature
-    # 2. Extract payment data
-    # 3. Create LMS Enrollment
-    # 4. Create Customer in ERPNext
-    # 5. Send confirmation email
-    pass
+@frappe.whitelist()
+def create_crypto_checkout(course_name):
+    if frappe.session.user == "Guest":
+        frappe.throw(_("Por favor, faça login para comprar este curso"))
+    course = frappe.get_doc("LMS Course", course_name)
+    if not course.paid_course:
+        frappe.throw(_("Este curso é gratuito"))
+    existing = frappe.db.exists(
+        "LMS Enrollment", {"course": course_name, "member": frappe.session.user}
+    )
+    if existing:
+        frappe.throw(_("Você já está inscrito neste curso"))
+    gateway = get_gateway("crypto")
+    checkout_url = gateway.create_checkout(course, frappe.session.user)
+    return {"checkout_url": checkout_url}
