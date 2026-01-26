@@ -1,0 +1,88 @@
+{
+    "actions": [],
+    "autoname": "field:title",
+    "creation": "2024-01-25 21:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "title",
+        "description",
+        "target_course",
+        "min_score",
+        "max_time",
+        "questions"
+    ],
+    "fields": [
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Title",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Text Editor",
+            "label": "Description"
+        },
+        {
+            "fieldname": "target_course",
+            "fieldtype": "Link",
+            "label": "Target Course",
+            "options": "LMS Course",
+            "reqd": 1
+        },
+        {
+            "default": "70",
+            "fieldname": "min_score",
+            "fieldtype": "Percent",
+            "label": "Minimum Passing Score (%)"
+        },
+        {
+            "default": "60",
+            "fieldname": "max_time",
+            "fieldtype": "Int",
+            "label": "Max Time (minutes)"
+        },
+        {
+            "fieldname": "questions",
+            "fieldtype": "Table",
+            "label": "Questions",
+            "options": "Placement Test Question"
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2024-01-25 21:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Placement Test",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "read": 1,
+            "role": "Guest"
+        },
+        {
+            "read": 1,
+            "role": "All"
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

@@ -24,7 +24,8 @@ home_page = "home"
 
 # CSS Includes (loaded on every page)
 app_include_css = [
-    "/assets/vedium_core/css/vedium.css"
+    "/assets/vedium_core/css/vedium.css",
+    "/assets/vedium_core/css/luxo_theme.css"
 ]
 
 # JS Includes (loaded on every page)
@@ -32,7 +33,8 @@ app_include_js = []
 
 # Website CSS
 web_include_css = [
-    "/assets/vedium_core/css/vedium.css"
+    "/assets/vedium_core/css/vedium.css",
+    "/assets/vedium_core/css/luxo_theme.css"
 ]
 
 # Website JS
@@ -107,9 +109,9 @@ scheduler_events = {
 # =============================================================================
 
 doc_events = {
-    # "*": {
-    #     "on_update": "vedium_core.events.on_update"
-    # }
+    "LMS Course Progress": {
+        "on_update": "vedium_core.gamification.Gamification.handle_lesson_completion"
+    }
 }
 
 # =============================================================================

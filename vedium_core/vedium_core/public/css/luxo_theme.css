@@ -1,0 +1,87 @@
+/* Vedium Raízes de Luxo - Global Theme */
+
+:root {
+    --primary-color: #26528C;
+    /* Deep Blue (ex-Verde Floresta) */
+    --accent-color: #BFA288;
+    /* Beige/Tan (ex-Dourado Vitruviano) */
+    --secondary-color: #84A9D9;
+    /* Light Blue */
+    --accent-2: #8C260F;
+    /* Terracotta */
+    --accent-3: #400601;
+    /* Dark Maroon */
+    --bg-dark: #0F1419;
+    --text-on-dark: #F8FAFC;
+    --border-gold: rgba(191, 162, 136, 0.3);
+    /* Based on Beige/Tan */
+}
+
+/* Global Typography */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@100..900&display=swap');
+
+body,
+.frappe-control,
+.form-section,
+.modal-content {
+    font-family: 'Inter', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+.navbar-brand,
+.indicator {
+    font-family: 'Bodoni Moda', serif !important;
+    letter-spacing: -0.02em;
+}
+
+/* Navbar & Brand */
+.navbar {
+    background-color: var(--bg-dark) !important;
+    border-bottom: 1px solid var(--border-gold) !important;
+}
+
+.navbar-brand img {
+    filter: drop-shadow(0 0 5px var(--accent-color));
+}
+
+/* Buttons - Luxury Style */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.btn-primary:hover {
+    background-color: #14532d !important;
+    box-shadow: 0 0 15px rgba(22, 101, 52, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Accents & Borders */
+.page-container,
+.form-page {
+    border-left: 3px solid var(--accent-color) !important;
+}
+
+/* LMS Specific - Portal Styling */
+.course-card,
+.lesson-container {
+    border: 1px solid var(--border-gold) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.course-card:hover {
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Dark Mode Overrides if applicable */
+[data-theme="dark"] {
+    --text-primary: var(--text-on-dark);
+}

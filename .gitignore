@@ -54,6 +54,8 @@ ENV/
 # Logs
 logs/
 *.log
+debug_site.py
+bench.log
 
 # ============================================
 # BUILD & GENERATED FILES - DO NOT COMMIT

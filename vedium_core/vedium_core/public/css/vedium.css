@@ -19,20 +19,30 @@ body {
 }
 
 /* Use as variáveis de skin nos principais elementos */
-.btn-primary, .btn-hero, .animated-btn {
+.btn-primary,
+.btn-hero,
+.animated-btn {
     background: var(--brand-primary);
     color: #fff;
 }
-.btn-primary:hover, .btn-hero:hover, .animated-btn:hover {
+
+.btn-primary:hover,
+.btn-hero:hover,
+.animated-btn:hover {
     background: var(--brand-action);
     color: #222;
 }
+
 .footer-section {
     background: var(--brand-footer);
 }
+
 :root {
-    --tg-primary: #2563eb;
-    --tg-secondary: #1e3a5f;
+    --tg-primary: #26528C;
+    --tg-secondary: #84A9D9;
+    --tg-accent-1: #BFA288;
+    --tg-accent-2: #8C260F;
+    --tg-accent-3: #400601;
     --tg-body-bg: #ffffff;
     --tg-dark-bg: #0f172a;
     --tg-text-dark: #1e293b;
@@ -596,15 +606,37 @@ body {
     z-index: 1;
 }
 
-.instructor-card:nth-child(1) .thumb::before { background: #4ade80; }
-.instructor-card:nth-child(2) .thumb::before { background: #38bdf8; }
-.instructor-card:nth-child(3) .thumb::before { background: #facc15; }
-.instructor-card:nth-child(4) .thumb::before { background: #a78bfa; }
+.instructor-card:nth-child(1) .thumb::before {
+    background: #4ade80;
+}
 
-.col-lg-3:nth-child(1) .instructor-card .thumb::before { background: #4ade80; }
-.col-lg-3:nth-child(2) .instructor-card .thumb::before { background: #38bdf8; }
-.col-lg-3:nth-child(3) .instructor-card .thumb::before { background: #facc15; }
-.col-lg-3:nth-child(4) .instructor-card .thumb::before { background: #a78bfa; }
+.instructor-card:nth-child(2) .thumb::before {
+    background: #38bdf8;
+}
+
+.instructor-card:nth-child(3) .thumb::before {
+    background: #facc15;
+}
+
+.instructor-card:nth-child(4) .thumb::before {
+    background: #a78bfa;
+}
+
+.col-lg-3:nth-child(1) .instructor-card .thumb::before {
+    background: #4ade80;
+}
+
+.col-lg-3:nth-child(2) .instructor-card .thumb::before {
+    background: #38bdf8;
+}
+
+.col-lg-3:nth-child(3) .instructor-card .thumb::before {
+    background: #facc15;
+}
+
+.col-lg-3:nth-child(4) .instructor-card .thumb::before {
+    background: #a78bfa;
+}
 
 .instructor-card h5 {
     font-weight: 600;

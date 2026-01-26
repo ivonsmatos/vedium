@@ -71,6 +71,11 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // Skip non-http schemes (like chrome-extension://)
+    if (!url.protocol.startsWith('http')) {
+        return;
+    }
+
     // Skip API calls and frappe methods (always network first)
     if (url.pathname.startsWith('/api/') ||
         url.pathname.startsWith('/method/') ||

@@ -1,0 +1,100 @@
+{
+    "actions": [],
+    "autoname": "hash",
+    "creation": "2024-01-25 21:05:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "front",
+        "back",
+        "user",
+        "course",
+        "section_break_srs",
+        "next_review",
+        "interval",
+        "ease_factor",
+        "repetition_count"
+    ],
+    "fields": [
+        {
+            "fieldname": "front",
+            "fieldtype": "Text",
+            "in_list_view": 1,
+            "label": "Front (Expression/Word)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "back",
+            "fieldtype": "Text",
+            "label": "Back (Translation/Meaning)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "user",
+            "fieldtype": "Link",
+            "label": "User",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "course",
+            "fieldtype": "Link",
+            "label": "Related Course",
+            "options": "LMS Course"
+        },
+        {
+            "fieldname": "section_break_srs",
+            "fieldtype": "Section Break",
+            "label": "SRS Statistics"
+        },
+        {
+            "default": "Today",
+            "fieldname": "next_review",
+            "fieldtype": "Date",
+            "label": "Next Review Date"
+        },
+        {
+            "default": "0",
+            "fieldname": "interval",
+            "fieldtype": "Int",
+            "label": "Interval (days)"
+        },
+        {
+            "default": "2.5",
+            "fieldname": "ease_factor",
+            "fieldtype": "Float",
+            "label": "Ease Factor"
+        },
+        {
+            "default": "0",
+            "fieldname": "repetition_count",
+            "fieldtype": "Int",
+            "label": "Repetition Count"
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2024-01-25 21:05:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Flashcard",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "All",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}
