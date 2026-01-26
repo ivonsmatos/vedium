@@ -56,24 +56,26 @@ POST /api/method/vedium_core.vedium_core.api.create_checkout
 - Monitoramento de containers, SSL, disco, memória e logs
 - Scripts de backup, ativação SSL, auditoria e monitoramento em `deploy/scripts/`
 
-**Vedium** é a primeira plataforma de **Inteligência Cultural** para profissionais globais. Uma solução completa de LMS (Learning Management System) construída sobre o [Frappe Framework](https://frappeframework.com), oferecendo cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral.
+**Vedium** é a primeira plataforma de **Inteligência Cultural** para profissionais globais. Uma solução completa de LMS (Learning Management System) construída sobre o **Frappe Framework v16 (Stable)**, oferecendo cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral com uma experiência premium.
 
 🌐 **Site**: [https://vediums.com](https://vediums.com)
 📚 **Plataforma LMS**: [https://app.vediums.com](https://app.vediums.com)
 
 ---
 
-## 🚀 Stack Tecnológica
+## 🚀 Stack Tecnológica (Modernizada)
 
-| Componente         | Tecnologia              | Versão     |
-| ------------------ | ----------------------- | ---------- |
-| **Backend**        | Frappe Framework        | v15        |
-| **Frontend**       | Jinja2 + Tailwind CSS   | v3.4       |
-| **Banco de Dados** | MariaDB                 | 10.6       |
-| **Cache**          | Redis                   | 7-alpine   |
-| **Web Server**     | NGINX                   | Latest     |
-| **Infraestrutura** | Docker & Docker Compose | v3.8       |
-| **SSL/TLS**        | Let's Encrypt           | Auto-renew |
+| Componente         | Tecnologia              | Versão       |
+| ------------------ | ----------------------- | ------------ |
+| **Backend**        | Frappe Framework        | **v16**      |
+| **Linguagem**      | Python                  | **3.14**     |
+| **Frontend**       | Jinja2 + Tailwind CSS   | v3.4         |
+| **Runtime JS**     | Node.js                 | **v24**      |
+| **Banco de Dados** | MariaDB                 | 10.6         |
+| **Cache**          | Redis                   | 7-alpine     |
+| **Web Server**     | NGINX                   | Latest       |
+| **Infraestrutura** | Docker & Docker Compose | v3.8         |
+| **Design System**  | Raízes de Luxo          | **v2**       |
 
 ---
 
@@ -151,7 +153,7 @@ docker-compose up -d
 
 | Serviço | URL                   |
 | ------- | --------------------- |
-| Frappe  | http://localhost:8005 |
+| Frappe  | <http://localhost:8005> |
 | MariaDB | localhost:3307        |
 
 ---
@@ -246,7 +248,7 @@ tail -f /var/log/vedium-security.log
 | Domínio         | Função             | Servidor         |
 | --------------- | ------------------ | ---------------- |
 | vediums.com     | Site institucional | NGINX (estático) |
-| www.vediums.com | Redirect           | → vediums.com    |
+| <www.vediums.com> | Redirect           | → vediums.com    |
 | app.vediums.com | Plataforma LMS     | Frappe/ERPNext   |
 
 ---
@@ -270,6 +272,6 @@ Copyright © 2026 Vedium Global Education. Todos os direitos reservados.
 
 ## 📞 Contato
 
-- **Email**: contato@vediums.com
-- **Site**: https://vediums.com
+- **Email**: <contato@vediums.com>
+- **Site**: <https://vediums.com>
 - **LinkedIn**: [Vedium Global](https://linkedin.com/company/vedium)

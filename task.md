@@ -42,8 +42,8 @@
 
 # Task 3: UI/UX e Layout – Raízes de Luxo
 
-- [/] Auditoria prática do Design System em TODOS os apps (LMS, CRM, ERP).
-- [ ] Padronização de botões, fontes (Inter/Bodoni) e cores (Verde Floresta/Dourado).
+- [x] Auditoria prática do Design System em TODOS os apps (LMS, CRM, ERP).
+- [x] Padronização de botões, fontes (Inter/Bodoni) e cores (Raízes de Luxo v2 - #26528C, #BFA288).
 - [x] Microinterações: animações em CTAs, feedback AJAX, loading states.
 - [x] Performance: Lighthouse, lazy loading, SVGs otimizados, Service Worker customizado.
 - [x] Cadastro/onboarding: frases motivacionais, progresso, login Google/Linkedin.
