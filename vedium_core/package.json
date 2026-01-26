@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^4.1.18"
   },
   "scripts": {
     "build-css": "tailwindcss -i input.css -o vedium_core/public/css/vedium.css --minify"
