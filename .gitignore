@@ -57,6 +57,19 @@ logs/
 debug_site.py
 bench.log
 
+# Frontend build e assets temporários
+vedium_core/public/vedium_assets/
+vedium_core/www_backup/
+vedium_core/public/css/*.css
+vedium_core/public/js/*.js
+vedium_core/public/images/
+vedium_core/public/vendors/
+
+# Páginas HTML geradas
+vedium_core/www/*.html
+vedium_core/www/*.js
+vedium_core/www/*.css
+
 # ============================================
 # BUILD & GENERATED FILES - DO NOT COMMIT
 # ============================================

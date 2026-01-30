@@ -10,13 +10,13 @@ app_license = "MIT"
 # =============================================================================
 
 # App Logo
-app_logo_url = "/assets/vedium_core/images/vedium-logo.svg"
+app_logo_url = "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
 
 # Website Favicon
-website_favicon = "/assets/vedium_core/images/favicon.svg"
+website_favicon = "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png"
 
 # Home Page
-home_page = "home"
+home_page = "index"
 
 # =============================================================================
 # Web Includes - PWA & Tailwind
@@ -57,8 +57,8 @@ app_theme_color = "#166534"
 # =============================================================================
 
 website_context = {
-    "favicon": "/assets/vedium_core/images/favicon.svg",
-    "splash_image": "/assets/vedium_core/images/splash.png"
+    "favicon": "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png",
+    "splash_image": "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
 }
 
 # =============================================================================

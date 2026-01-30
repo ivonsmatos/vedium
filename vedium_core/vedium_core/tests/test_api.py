@@ -155,8 +155,9 @@ class TestVediumAPI(FrappeTestCase):
             instance.preference.return_value.create.return_value = {
                 "response": {"init_point": "https://mp.com/checkout"}
             }
-            
+
             from vedium_core.api import create_mercadopago_checkout
+
             resp = create_mercadopago_checkout(self.course_name)
             self.assertEqual(resp["checkout_url"], "https://mp.com/checkout")
 
@@ -164,10 +165,104 @@ class TestVediumAPI(FrappeTestCase):
         # Mock AIService
         with unittest.mock.patch("vedium_core.services.ai_service.AIService") as MockAI:
             ai_instance = MockAI.return_value
-            ai_instance.analyze_audio.return_value = {"feedback": "Good job", "score": 90}
-            
+            ai_instance.analyze_audio.return_value = {
+                "feedback": "Good job",
+                "score": 90,
+            }
+
             from vedium_core.api import submit_speaking_exercise
+
             resp = submit_speaking_exercise(self.course_name, "http://audio.url")
             self.assertEqual(resp["status"], "analyzed")
             self.assertEqual(resp["result"]["score"], 90)
 
+    def test_open_support_ticket_and_get_my_tickets(self):
+        from vedium_core.api import open_support_ticket, get_my_tickets
+
+        frappe.set_user("testuser@vedium.com")
+        resp = open_support_ticket("Teste Suporte", "Descrição do chamado", "Geral")
+        self.assertIn("ticket_id", resp)
+        tickets = get_my_tickets()
+        self.assertTrue(any(t["name"] == resp["ticket_id"] for t in tickets))
+
+    def test_get_monitoring_dashboard(self):
+        from vedium_core.api import get_monitoring_dashboard
+
+        dashboard = get_monitoring_dashboard()
+        self.assertIn("containers", dashboard)
+        self.assertIn("disk_usage", dashboard)
+
+    def test_get_user_badges_guest(self):
+        from vedium_core.api import get_user_badges
+
+        frappe.set_user("Guest")
+        with self.assertRaises(Exception):
+            get_user_badges()
+
+    def test_leaderboard_and_forum_and_community(self):
+        from vedium_core.api import (
+            get_leaderboard,
+            get_forum_topics,
+            get_community_links,
+        )
+
+        course = self.course_name
+        leaderboard = get_leaderboard(course)
+        self.assertIsInstance(leaderboard, list)
+        topics = get_forum_topics(course)
+        self.assertIsInstance(topics, list)
+        links = get_community_links(course)
+        self.assertIsInstance(links, list)
+
+    def test_course_languages_and_accessibility(self):
+        from vedium_core.api import get_course_languages, get_accessibility_features
+
+        course = self.course_name
+        langs = get_course_languages(course)
+        self.assertIsInstance(langs, list)
+        features = get_accessibility_features(course)
+        self.assertIsInstance(features, list)
+
+    def test_course_sessions_and_flashcards(self):
+        from vedium_core.api import get_course_sessions, get_flashcards
+
+        course = self.course_name
+        sessions = get_course_sessions(course)
+        self.assertIsInstance(sessions, list)
+        cards = get_flashcards(course)
+        self.assertIsInstance(cards, list)
+
+    def test_submit_listening_and_speaking_exercise(self):
+        from vedium_core.api import submit_listening_exercise, submit_speaking_exercise
+
+        with unittest.mock.patch("vedium_core.services.ai_service.AIService") as MockAI:
+            ai_instance = MockAI.return_value
+            ai_instance.analyze_audio.return_value = {"feedback": "Ótimo", "score": 95}
+            resp1 = submit_listening_exercise(self.course_name, "http://audio.url")
+            resp2 = submit_speaking_exercise(self.course_name, "http://audio.url")
+            self.assertEqual(resp1["status"], "analyzed")
+            self.assertEqual(resp2["status"], "analyzed")
+
+    def test_submit_quiz_attempt(self):
+        from vedium_core.api import submit_quiz_attempt
+
+        # Simula respostas vazias para garantir retorno seguro
+        resp = submit_quiz_attempt(self.course_name, {})
+        self.assertIn("score", resp)
+
+    def test_issue_and_verify_certificate(self):
+        from vedium_core.api import issue_certificate, verify_certificate
+
+        # Cria inscrição concluída
+        enrollment = frappe.get_doc(
+            {
+                "doctype": "LMS Enrollment",
+                "course": self.course_name,
+                "member": self.user,
+                "status": "Completed",
+            }
+        ).insert()
+        cert = issue_certificate(enrollment.name)
+        self.assertIn("verification_code", cert)
+        ver = verify_certificate(cert["verification_code"])
+        self.assertEqual(ver["enrollment"], enrollment.name)

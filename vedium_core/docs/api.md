@@ -80,6 +80,123 @@ Interage com a persona de Tutor IA (Llama 3 via Groq).
 - **Erros**:
   - `PermissionError`: Se o usuário for Convidado ou o limite for excedido.
 
+### 6. Suporte e Observabilidade
+
+- **Abrir chamado de suporte**
+  - **Endpoint**: `vedium_core.vedium_core.api.open_support_ticket`
+  - **Método**: `POST`
+  - **Acesso**: Usuário autenticado
+  - **Parâmetros**: `subject`, `description`, `category` (opcional)
+  - **Resposta**: `{ ticket_id }`
+
+- **Listar meus chamados**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_my_tickets`
+  - **Método**: `GET`
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Lista de chamados
+
+- **Dashboard de monitoramento**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_monitoring_dashboard`
+  - **Método**: `GET`
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Status de containers, disco, memória, alertas
+
+### 7. Gamificação, Comunidade e Internacionalização
+
+- **Emblemas do usuário**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_user_badges`
+  - **Método**: `GET`
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Lista de emblemas e níveis
+
+- **Leaderboard do curso**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_leaderboard`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Ranking de alunos
+
+- **Tópicos do fórum**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_forum_topics`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Lista de tópicos
+
+- **Links de comunidade**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_community_links`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Lista de links
+
+- **Idiomas do curso**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_course_languages`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Lista de idiomas
+
+- **Acessibilidade do curso**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_accessibility_features`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Lista de recursos
+
+### 8. Sessões, Flashcards e Exercícios
+
+- **Sessões do curso**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_course_sessions`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Lista de sessões
+
+- **Flashcards do curso**
+  - **Endpoint**: `vedium_core.vedium_core.api.get_flashcards`
+  - **Método**: `GET`
+  - **Parâmetros**: `course_name`
+  - **Acesso**: Público
+  - **Resposta**: Lista de flashcards
+
+- **Exercício de escuta ativa**
+  - **Endpoint**: `vedium_core.vedium_core.api.submit_listening_exercise`
+  - **Método**: `POST`
+  - **Parâmetros**: `course_name`, `audio_url`
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Status e resultado da análise
+
+- **Exercício de fala**
+  - **Endpoint**: `vedium_core.vedium_core.api.submit_speaking_exercise`
+  - **Método**: `POST`
+  - **Parâmetros**: `course_name`, `audio_url`
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Status e resultado da análise
+
+### 9. Quiz e Certificados
+
+- **Submeter tentativa de quiz**
+  - **Endpoint**: `vedium_core.vedium_core.api.submit_quiz_attempt`
+  - **Método**: `POST`
+  - **Parâmetros**: `course_name`, `answers` (dict)
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Score, feedbacks
+
+- **Emitir certificado**
+  - **Endpoint**: `vedium_core.vedium_core.api.issue_certificate`
+  - **Método**: `POST`
+  - **Parâmetros**: `enrollment_name`
+  - **Acesso**: Usuário autenticado
+  - **Resposta**: Dados do certificado
+
+- **Verificar certificado**
+  - **Endpoint**: `vedium_core.vedium_core.api.verify_certificate`
+  - **Método**: `GET`
+  - **Parâmetros**: `code`
+  - **Acesso**: Público
+  - **Resposta**: Dados do certificado
+
 ## Notas de Implantação
 
 Esses endpoints dependem do `frappe.whitelist` e devem ser acessados via `/api/method/<caminho_do_endpoint>`.
