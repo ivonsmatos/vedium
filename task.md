@@ -42,6 +42,14 @@
 
 # Task 3: UI/UX e Layout – Raízes de Luxo
 
+- [x] **Substituição de Layout**: Migração completa para o tema "Zilom" com branding "Vedium".
+- [ ] **Conteúdo e Tradução (PT-BR)**:
+  - [x] Hero Section: Headlines e CTAs.
+  - [x] Pilares: Diferenciais e Tecnologia.
+  - [x] Soluções: Corporate, Pro, Students, Kids.
+  - [x] Trilhas: Descrições dos idiomas.
+  - [x] Prova Social: Depoimentos.
+  - [ ] Menus e Rodapé: Tradução geral e ajustes finais.
 - [x] Auditoria prática do Design System em TODOS os apps (LMS, CRM, ERP).
 - [x] Padronização de botões, fontes (Inter/Bodoni) e cores (Raízes de Luxo v2 - #26528C, #BFA288).
 - [x] Microinterações: animações em CTAs, feedback AJAX, loading states.

@@ -1,4 +1,6 @@
-# 📈 Roadmap de Melhorias (2026)
+# 📚 Documentação Unificada Vedium
+
+## 📈 Roadmap de Melhorias (2026)
 
 - Pagamentos: Mercado Pago/Basecommerce, checkout central, cupons, testes automatizados
 - Cursos: Certificado digital, quiz/prova de nível, IA feedback, gamificação, comunidade, acessibilidade
@@ -7,48 +9,146 @@
 - Segurança: Pentest, alertas automáticos, gestão de segredos
 - Documentação: API pública, onboarding prof/alunos, OpenAPI Schemas
 
-## 📚 Documentação
+---
 
-- [Documentação da API](vedium_core/docs/api.md) — exemplos reais de endpoints
-- Recomenda-se Swagger/Redoc para documentação interativa
-- Geração automática de OpenAPI Schemas para pagamentos e integrações
+## 🏗️ Arquitetura do Sistema
 
-### Exemplo de uso de endpoint (REST)
+O Vedium é construído sobre o **Frappe Framework** (Python/JS), com app customizado `vedium_core`, integrando **ERPNext** e LMS. Interface visual com **Tailwind CSS** e Design System "Raízes de Luxo".
 
-```http
-POST /api/method/vedium_core.vedium_core.api.create_checkout
-{
-   "course_name": "CURSO_ID",
-   "gateway": "mercadopago",
-   "coupon_code": "PROMO10"
-}
-```
+**Princípios:**
 
-## 👩‍🏫 Onboarding Rápido para Professores
+- Nunca modificar apps originais (`lms`, `erpnext`).
+- Branch `main` estável, features em `feat/nome`, fixes em `fix/nome`.
+- DoD: código mergeado, CSS responsivo, migrações rodadas, UI aprovada.
+- UI sempre pelo design system.
 
-- Guia do educador, templates de curso e vídeos de treinamento em `vedium_core/docs/`
-- Suporte e abertura de chamados via painel integrado
+**Infraestrutura:**
 
-## 🛠️ Observabilidade e Suporte
+- Docker Compose: Frappe, MariaDB, Redis (cache, queue, socketio), NGINX.
+- Scripts de automação: `init.sh`, `install_apps.sh`.
+- Rede e volumes persistentes.
 
-- Painel de suporte: abertura e acompanhamento de chamados
-- Dashboard interno: status de containers, disco, memória, alertas críticos
-- Integração de métricas: Google Analytics 4, Hotjar/Clarity, banner LGPD
+**Fluxo de Dados:**
+Usuário → NGINX → Frappe → MariaDB/Redis → vedium_core (API, Hooks, Templates, Tailwind).
 
-## 📖 Documentação e Onboarding
+---
 
-- API pública documentada em `vedium_core/docs/api.md`
-- Recomenda-se uso de Swagger ou Redoc para documentação interativa (exemplo: [Redoc CLI](https://github.com/Redocly/redoc))
-- Onboarding rápido para professores: criar guia, templates de curso e vídeos de treinamento em `docs/`
+## 🚦 Estado Atual do Projeto
 
-## 📊 Métricas e LGPD
+**Atualização:** 24/01/2026
 
-- Integração recomendada: Google Analytics 4, Hotjar ou Clarity
-- Sempre exibir banner de consentimento LGPD para rastreamento
-- Exemplo de integração: inserir snippet no template base.html
-  ![Security Status](https://github.com/vedium/vedium/actions/workflows/security-check.yml/badge.svg)
+- Ambiente Docker funcional
+- App `vedium_core` estruturado
+- Tailwind CSS integrado
+- Hooks Frappe para CSS, favicon, PWA
+- Apps: ERPNext v15, LMS v15, Frappe Builder, Payments
+- Documentação inicial criada
+- API customizada em desenvolvimento
 
-# Vedium LMS
+---
+
+## 🤝 Contribuindo
+
+**Branches:**
+
+- Features: `feat/descricao`
+- Fixes: `fix/descricao`
+- Docs: `docs/descricao`
+- Chore: `chore/descricao`
+
+**Pull Requests:**
+
+- Mensagens semânticas
+- Descrição detalhada
+- CI (lint, testes, segurança) deve passar
+- 1+ aprovação de review
+- Sem conflitos com `main`
+
+**Estilo de Código:**
+
+- Python: PEP 8, `flake8` no CI
+- JS/CSS: padrões do projeto (Tailwind)
+
+**Git Workflow:**
+
+1. `cd vedium-bench/apps/vedium_core`
+2. `git init` (se necessário)
+3. `git remote add origin ...`
+4. `git branch -M main`
+5. `git pull origin main --allow-unrelated-histories`
+6. Resolva conflitos, `git add .`, `git commit -m "feat: ..."`
+
+---
+
+## 🖥️ Configuração Local
+
+Veja seção "Instalação Local" abaixo.
+
+---
+
+## 📝 Documentação da API
+
+Veja [vedium_core/docs/api.md](vedium_core/docs/api.md) para endpoints, exemplos e schemas OpenAPI.
+
+---
+
+## 🔒 Segurança
+
+Resumo das práticas:
+
+- SSL/TLS (Let's Encrypt, TLSv1.2/1.3)
+- HSTS, Rate Limiting, Fail2ban
+- Backups criptografados (AES-256)
+- LGPD/GDPR compliance
+- Auditoria automática (GitHub Actions)
+- Scripts de backup, ativação SSL, monitoramento
+
+Veja detalhes completos em [deploy/SECURITY.md](deploy/SECURITY.md).
+
+---
+
+## 🛠️ Deploy
+
+Veja seção "Deploy para Produção" abaixo e detalhes em `deploy/README.md` (pode ser removido após migração total).
+
+---
+
+## 🏠 Configuração de Hosts
+
+**Windows:**
+
+1. Abra o Bloco de Notas como Administrador
+2. Edite `C:\Windows\System32\drivers\etc\hosts`
+3. Adicione: `127.0.0.1    vedium.localhost`
+
+**Linux/macOS:**
+
+1. `sudo nano /etc/hosts`
+2. Adicione: `127.0.0.1    vedium.localhost`
+
+Teste: `ping vedium.localhost`
+
+---
+
+## 📞 Contato
+
+- Email: <contato@vediums.com>
+- Site: <https://vediums.com>
+- LinkedIn: [Vedium Global](https://linkedin.com/company/vedium)
+
+---
+
+## 📄 Licença
+
+Copyright © 2026 Vedium Global Education. Todos os direitos reservados.
+
+---
+
+## 📂 Estrutura do Projeto
+
+...existing code...
+
+## Vedium LMS
 
 ## 🔒 Segurança e Auditoria
 
@@ -65,17 +165,17 @@ POST /api/method/vedium_core.vedium_core.api.create_checkout
 
 ## 🚀 Stack Tecnológica (Modernizada)
 
-| Componente         | Tecnologia              | Versão       |
-| ------------------ | ----------------------- | ------------ |
-| **Backend**        | Frappe Framework        | **v16**      |
-| **Linguagem**      | Python                  | **3.14**     |
-| **Frontend**       | Jinja2 + Tailwind CSS   | v3.4         |
-| **Runtime JS**     | Node.js                 | **v24**      |
-| **Banco de Dados** | MariaDB                 | 10.6         |
-| **Cache**          | Redis                   | 7-alpine     |
-| **Web Server**     | NGINX                   | Latest       |
-| **Infraestrutura** | Docker & Docker Compose | v3.8         |
-| **Design System**  | Raízes de Luxo          | **v2**       |
+| Componente         | Tecnologia              | Versão   |
+| ------------------ | ----------------------- | -------- |
+| **Backend**        | Frappe Framework        | **v16**  |
+| **Linguagem**      | Python                  | **3.14** |
+| **Frontend**       | Jinja2 + Tailwind CSS   | v3.4     |
+| **Runtime JS**     | Node.js                 | **v24**  |
+| **Banco de Dados** | MariaDB                 | 10.6     |
+| **Cache**          | Redis                   | 7-alpine |
+| **Web Server**     | NGINX                   | Latest   |
+| **Infraestrutura** | Docker & Docker Compose | v3.8     |
+| **Design System**  | Raízes de Luxo          | **v2**   |
 
 ---
 
@@ -151,10 +251,10 @@ docker-compose up -d
 
 ### Acessos Locais
 
-| Serviço | URL                   |
-| ------- | --------------------- |
+| Serviço | URL                     |
+| ------- | ----------------------- |
 | Frappe  | <http://localhost:8005> |
-| MariaDB | localhost:3307        |
+| MariaDB | localhost:3307          |
 
 ---
 
@@ -245,11 +345,11 @@ tail -f /var/log/vedium-security.log
 
 ## 🌐 Domínios
 
-| Domínio         | Função             | Servidor         |
-| --------------- | ------------------ | ---------------- |
-| vediums.com     | Site institucional | NGINX (estático) |
+| Domínio           | Função             | Servidor         |
+| ----------------- | ------------------ | ---------------- |
+| vediums.com       | Site institucional | NGINX (estático) |
 | <www.vediums.com> | Redirect           | → vediums.com    |
-| app.vediums.com | Plataforma LMS     | Frappe/ERPNext   |
+| app.vediums.com   | Plataforma LMS     | Frappe/ERPNext   |
 
 ---
 

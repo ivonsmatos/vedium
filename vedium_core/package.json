@@ -1,8 +1,10 @@
 {
   "devDependencies": {
     "tailwindcss": "^3.4.1"
+    ,"@fullhuman/postcss-purgecss": "^4.1.3"
   },
   "scripts": {
     "build-css": "tailwindcss -i input.css -o vedium_core/public/css/vedium.css --minify"
+    ,"purge-css": "purgecss --css vedium_core/public/css/vedium.css --content 'vedium_core/**/*.html' --output vedium_core/public/css/"
   }
 }
