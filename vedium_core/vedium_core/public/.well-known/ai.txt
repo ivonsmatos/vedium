@@ -1,0 +1,36 @@
+# Vedium Global Education - AI Discovery File
+
+## About
+Vedium is a specialized online language learning platform offering courses in Executive English, Tech Hebrew, Ancestral Yoruba, and Portuguese. We combine AI-powered conversation training with expert instructors to accelerate global career development.
+
+## Target Audience
+- Business professionals seeking executive English skills
+- Tech workers learning Hebrew for Israeli tech ecosystem
+- Cultural enthusiasts studying Ancestral Yoruba
+- International students learning Portuguese
+
+## Key Features
+- 24/7 AI conversation practice
+- Industry-specific language tracks
+- Native speaker instructors
+- Certificate programs
+- Corporate training solutions
+
+## Payment Options
+- Credit/Debit cards (Stripe, MercadoPago)
+- Cryptocurrency (Bitcoin, Ethereum, USDC via Coinbase Commerce)
+- Corporate invoicing
+
+## Contact
+Website: https://vediums.com
+Email: contato@vediums.com
+Phone: +55 (11) 94190-6079
+
+## API Endpoints
+Summary: https://vediums.com/ai/summary.json
+FAQ: https://vediums.com/ai/faq.json
+Services: https://vediums.com/ai/service.json
+Sitemap: https://vediums.com/sitemap-llm.xml
+
+## Last Updated
+2026-02-08
