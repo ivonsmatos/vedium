@@ -1,0 +1,113 @@
+import frappe
+
+def get_context(context):
+    """
+    Context for courses listing page
+    Fetches all published courses from LMS
+    """
+    # Get all published courses
+    context.courses = get_published_courses()
+    
+    # Get course categories for filtering
+    context.categories = get_course_categories()
+    
+    # Shopping cart count
+    context.cart_count = get_cart_count()
+    
+    # Page metadata
+    context.title = "Cursos - Vedium Global Education"
+    context.description = "Explore nossos cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral"
+
+def get_cart_count():
+    """Get shopping cart item count for current user"""
+    if frappe.session.user == "Guest":
+        return 0
+    
+    if frappe.db.exists("DocType", "Quotation"):
+        quotation = frappe.get_all("Quotation", 
+            filters={"party_name": frappe.session.user, "docstatus": 0}, 
+            fields=["name"],
+            limit=1)
+        if quotation:
+            return frappe.db.count("Quotation Item", {"parent": quotation[0].name})
+    return 0
+
+def get_published_courses():
+    """Fetch all published courses with enriched data"""
+    try:
+        courses = frappe.get_all("LMS Course",
+            fields=[
+                "name", 
+                "title", 
+                "short_introduction",
+                "image", 
+                "paid_course",
+                "course_price",
+                "currency",
+                "category",
+                "published"
+            ],
+            filters={"published": 1},
+            order_by="creation desc"
+        )
+        
+        # Enrich each course with additional data
+        for course in courses:
+            # Fallback image
+            if not course.image:
+                course.image = "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
+            
+            # Get instructor info
+            instructors = frappe.get_all("Course Instructor",
+                filters={"parent": course.name},
+                fields=["instructor"],
+                limit=1
+            )
+            
+            if instructors:
+                instructor_data = frappe.db.get_value("User", 
+                    instructors[0].instructor, 
+                    ["full_name", "user_image"], 
+                    as_dict=True)
+                course.instructor_name = instructor_data.full_name if instructor_data else "Vedium Instructor"
+                course.instructor_image = instructor_data.user_image if instructor_data else None
+            else:
+                course.instructor_name = "Vedium Instructor"
+                course.instructor_image = None
+            
+            # Get lesson count
+            course.lesson_count = frappe.db.count("Course Lesson", {"course": course.name})
+            
+            # Get enrollment count
+            course.enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
+            
+            # Course URL
+            course.url = f"/lms/courses/{course.name}"
+            
+            # Format price
+            if course.paid_course and course.course_price:
+                course.formatted_price = f"{course.currency or 'BRL'} {course.course_price:.2f}"
+            else:
+                course.formatted_price = "Gratuito"
+            
+            # Category name
+            if course.category:
+                course.category_name = frappe.db.get_value("LMS Category", course.category, "category")
+            
+        return courses
+        
+    except Exception as e:
+        frappe.log_error(f"Error fetching courses: {str(e)}", "Vedium Courses Page")
+        return []
+
+def get_course_categories():
+    """Get all course categories for filtering"""
+    try:
+        categories = frappe.get_all("LMS Category",
+            fields=["name", "category", "description"],
+            order_by="category"
+        )
+        return categories
+    except Exception as e:
+        frappe.log_error(f"Error fetching categories: {str(e)}", "Vedium Courses Page")
+        return []
