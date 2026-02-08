@@ -1,0 +1,189 @@
+import frappe
+
+def get_context(context):
+    """
+    Context for course details page
+    Fetches specific course details and related data
+    """
+    # Get course name from route
+    course_name = frappe.form_dict.course or frappe.local.path.split('/')[-1]
+    
+    if not course_name:
+        frappe.throw("Course not found", frappe.DoesNotExistError)
+    
+    # Get course details
+    context.course = get_course_details(course_name)
+    
+    # Check if user is enrolled
+    context.is_enrolled = check_enrollment(course_name)
+    
+    # Get related courses
+    context.related_courses = get_related_courses(context.course.category, course_name)
+    
+    # Shopping cart count
+    context.cart_count = get_cart_count()
+    
+    # Page metadata
+    context.title = f"{context.course.title} - Vedium"
+    context.description = context.course.short_introduction or context.course.description
+    
+    # GTM Event - view_course
+    context.gtm_event = {
+        'event': 'view_course',
+        'course_name': context.course.title,
+        'course_category': context.course.category_name if hasattr(context.course, 'category_name') else 'Geral',
+        'course_price': float(context.course.course_price or 0),
+        'currency': context.course.currency or 'BRL'
+    }
+
+def get_cart_count():
+    """Get shopping cart item count for current user"""
+    if frappe.session.user == "Guest":
+        return 0
+    
+    if frappe.db.exists("DocType", "Quotation"):
+        quotation = frappe.get_all("Quotation", 
+            filters={"party_name": frappe.session.user, "docstatus": 0}, 
+            fields=["name"],
+            limit=1)
+        if quotation:
+            return frappe.db.count("Quotation Item", {"parent": quotation[0].name})
+    return 0
+
+def get_course_details(course_name):
+    """Fetch complete course details"""
+    try:
+        # Get course document
+        course = frappe.get_doc("LMS Course", course_name)
+        
+        if not course.published:
+            frappe.throw("Course not available", frappe.PermissionError)
+        
+        # Fallback image
+        if not course.image:
+            course.image = "/assets/vedium_core/vedium_assets/images/resources/course-details-img1.jpg"
+        
+        # Get instructors with details
+        course.instructors_list = []
+        instructors = frappe.get_all("Course Instructor",
+            filters={"parent": course.name},
+            fields=["instructor"]
+        )
+        
+        for instructor in instructors:
+            instructor_data = frappe.db.get_value("User",
+                instructor.instructor,
+                ["full_name", "user_image", "bio"],
+                as_dict=True
+            )
+            if instructor_data:
+                course.instructors_list.append(instructor_data)
+        
+        # Get chapters and lessons
+        course.chapters_list = frappe.get_all("Course Chapter",
+            filters={"parent": course.name},
+            fields=["name", "title", "description", "idx"],
+            order_by="idx"
+        )
+        
+        for chapter in course.chapters_list:
+            chapter.lessons = frappe.get_all("Course Lesson",
+                filters={"chapter": chapter.name},
+                fields=["name", "title", "content_type", "duration", "idx"],
+                order_by="idx"
+            )
+        
+        # Get total lesson count and duration
+        course.total_lessons = frappe.db.count("Course Lesson", {"course": course.name})
+        
+        # Get enrollment count
+        course.enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
+        
+        # Format price
+        if course.paid_course and course.course_price:
+            course.formatted_price = f"{course.currency or 'BRL'} {course.course_price:.2f}"
+        else:
+            course.formatted_price = "Gratuito"
+        
+        # Category name
+        if course.category:
+            course.category_name = frappe.db.get_value("LMS Category", course.category, "category")
+        
+        # Get reviews/ratings if available
+        course.reviews = get_course_reviews(course_name)
+        course.average_rating = calculate_average_rating(course.reviews)
+        
+        return course
+        
+    except Exception as e:
+        frappe.log_error(f"Error fetching course details: {str(e)}", "Vedium Course Details")
+        frappe.throw("Course not found", frappe.DoesNotExistError)
+
+def check_enrollment(course_name):
+    """Check if current user is enrolled in the course"""
+    if frappe.session.user == "Guest":
+        return False
+    
+    return frappe.db.exists("LMS Enrollment", {
+        "course": course_name,
+        "member": frappe.session.user
+    })
+
+def get_related_courses(category, exclude_course, limit=3):
+    """Get related courses from same category"""
+    if not category:
+        return []
+    
+    try:
+        courses = frappe.get_all("LMS Course",
+            filters={
+                "category": category,
+                "published": 1,
+                "name": ["!=", exclude_course]
+            },
+            fields=["name", "title", "short_introduction", "image", "course_price", "currency", "paid_course"],
+            limit=limit
+        )
+        
+        for course in courses:
+            if not course.image:
+                course.image = "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
+            course.url = f"/lms/courses/{course.name}"
+            
+            if course.paid_course and course.course_price:
+                course.formatted_price = f"{course.currency or 'BRL'} {course.course_price:.2f}"
+            else:
+                course.formatted_price = "Gratuito"
+        
+        return courses
+    except Exception as e:
+        frappe.log_error(f"Error fetching related courses: {str(e)}", "Vedium Course Details")
+        return []
+
+def get_course_reviews(course_name):
+    """Get course reviews/ratings"""
+    try:
+        if frappe.db.exists("DocType", "LMS Course Review"):
+            reviews = frappe.get_all("LMS Course Review",
+                filters={"course": course_name, "published": 1},
+                fields=["rating", "review", "member", "creation"],
+                order_by="creation desc",
+                limit=10
+            )
+            
+            for review in reviews:
+                review.member_name = frappe.db.get_value("User", review.member, "full_name")
+            
+            return reviews
+    except Exception as e:
+        frappe.log_error(f"Error fetching reviews: {str(e)}", "Vedium Course Details")
+    
+    return []
+
+def calculate_average_rating(reviews):
+    """Calculate average rating from reviews"""
+    if not reviews:
+        return 0
+    
+    total = sum(review.rating for review in reviews if review.rating)
+    return round(total / len(reviews), 1) if reviews else 0

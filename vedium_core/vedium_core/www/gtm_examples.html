@@ -1,0 +1,169 @@
+<!-- 
+    EXEMPLO DE IMPLEMENTAÇÃO DE EVENTOS GTM
+    Adicione este código aos seus templates HTML
+-->
+
+<!-- ============================================ -->
+<!-- 1. EVENTO: view_course -->
+<!-- Adicione ao final de course-details.html -->
+<!-- ============================================ -->
+<script>
+    // Enviar evento view_course quando a página carregar
+    window.addEventListener('load', function () {
+        {% if gtm_event %}
+        // Enviar evento ao dataLayer
+        dataLayer.push({{ gtm_event | tojson }});
+    console.log('✅ Evento GTM enviado:', {{ gtm_event | tojson }});
+    {% endif %}
+});
+</script>
+
+
+<!-- ============================================ -->
+<!-- 2. EVENTO: enroll_course -->
+<!-- Adicione ao botão de inscrição -->
+<!-- ============================================ -->
+<button class="thm-btn" onclick="enrollInCourse()">
+    Inscrever-se Agora
+</button>
+
+<script>
+    function enrollInCourse() {
+        // Enviar evento ao GTM
+        dataLayer.push({
+            'event': 'enroll_course',
+            'course_name': '{{ course.title }}',
+            'course_price': {{ course.course_price or 0 }},
+    'currency': '{{ course.currency or "BRL" }}'
+    });
+
+    console.log('✅ Evento enroll_course enviado');
+
+    // Redirecionar para checkout
+    window.location.href = '/checkout?course={{ course.name }}';
+}
+</script>
+
+
+<!-- ============================================ -->
+<!-- 3. EVENTO: begin_checkout -->
+<!-- Adicione na página de checkout -->
+<!-- ============================================ -->
+<script>
+    window.addEventListener('load', function () {
+        dataLayer.push({
+            'event': 'begin_checkout',
+            'items': [{
+                'item_name': '{{ course.title }}',
+                'item_category': 'Curso',
+                'price': {{ course.course_price or 0 }},
+            'currency': '{{ course.currency or "BRL" }}'
+        }]
+    });
+
+    console.log('✅ Evento begin_checkout enviado');
+});
+</script>
+
+
+<!-- ============================================ -->
+<!-- 4. EVENTO: purchase -->
+<!-- Adicione na página de confirmação de pagamento -->
+<!-- ============================================ -->
+<script>
+    window.addEventListener('load', function () {
+        {% if purchase_confirmed %}
+        dataLayer.push({
+            'event': 'purchase',
+            'transaction_id': '{{ transaction_id }}',
+            'value': {{ total_amount }},
+        'currency': '{{ currency }}',
+        'payment_method': '{{ payment_method }}',
+        'items': [{
+            'item_name': '{{ course_name }}',
+            'item_category': 'Curso',
+            'price': {{ course_price }},
+        'quantity': 1
+        }]
+    });
+
+    console.log('✅ Evento purchase enviado:', {
+        transaction_id: '{{ transaction_id }}',
+        value: {{ total_amount }}
+    });
+    {% endif %}
+});
+</script>
+
+
+<!-- ============================================ -->
+<!-- 5. EVENTO: complete_lesson -->
+<!-- Adicione quando uma lição for concluída -->
+<!-- ============================================ -->
+<script>
+    function markLessonComplete(courseName, lessonName, progressPercentage) {
+        dataLayer.push({
+            'event': 'complete_lesson',
+            'course_name': courseName,
+            'lesson_name': lessonName,
+            'progress_percentage': progressPercentage
+        });
+
+        console.log('✅ Evento complete_lesson enviado');
+    }
+
+    // Exemplo de uso:
+    // markLessonComplete('Inglês Executivo - Básico', 'Introdução ao Business English', 25);
+</script>
+
+
+<!-- ============================================ -->
+<!-- 6. EVENTO PERSONALIZADO VIA API -->
+<!-- Enviar evento do backend Python -->
+<!-- ============================================ -->
+<script>
+    function sendCustomEvent(eventType, eventData) {
+        frappe.call({
+            method: 'vedium_core.analytics_events.send_analytics_event',
+            args: {
+                event_type: eventType,
+                ...eventData
+            },
+            callback: function (r) {
+                if (r.message) {
+                    dataLayer.push(r.message);
+                    console.log('✅ Evento enviado via API:', r.message);
+                }
+            }
+        });
+    }
+
+    // Exemplo de uso:
+    // sendCustomEvent('view_course', { course_name: 'curso-ingles-basico' });
+</script>
+
+
+<!-- ============================================ -->
+<!-- TESTE DE EVENTOS NO CONSOLE -->
+<!-- ============================================ -->
+<script>
+    // Abra o console (F12) e execute:
+
+    // 1. Ver todos os eventos enviados
+    console.log('DataLayer:', dataLayer);
+
+    // 2. Enviar evento de teste
+    dataLayer.push({
+        'event': 'view_course',
+        'course_name': 'Teste',
+        'course_price': 100.00,
+        'currency': 'BRL'
+    });
+
+    // 3. Verificar se GTM está carregado
+    if (typeof google_tag_manager !== 'undefined') {
+        console.log('✅ GTM carregado com sucesso');
+    } else {
+        console.log('❌ GTM não encontrado');
+    }
+</script>
