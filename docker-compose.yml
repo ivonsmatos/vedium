@@ -14,7 +14,7 @@ services:
       - .:/workspace:cached
       - frappe-bench-data:/home/frappe/frappe-bench
     ports:
-      - "8005:8001" # Frappe Web (porta alta para evitar conflitos)
+      - "8005:8002" # Frappe Web (porta alta para evitar conflitos)
       - "9005:9000" # Frappe SocketIO
     depends_on:
       - mariadb
