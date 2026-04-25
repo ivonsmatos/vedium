@@ -4,6 +4,17 @@
 
 Write-Host "🚀 Iniciando ambiente Vedium..." -ForegroundColor Cyan
 
+# .env real fica fora do OneDrive por segurança.
+# Pode ser sobrescrito via env var VEDIUM_ENV_FILE.
+$envFile = if ($env:VEDIUM_ENV_FILE) { $env:VEDIUM_ENV_FILE } else { "$env:USERPROFILE\.vedium-secrets\.env" }
+
+if (-not (Test-Path $envFile)) {
+    Write-Host "❌ .env não encontrado em: $envFile" -ForegroundColor Red
+    Write-Host "   Crie o arquivo a partir de deploy/.env.example ou exporte VEDIUM_ENV_FILE." -ForegroundColor Yellow
+    exit 1
+}
+Write-Host "✓ .env: $envFile" -ForegroundColor Green
+
 # Verificar se Docker está rodando
 try {
     docker info | Out-Null
@@ -16,7 +27,7 @@ catch {
 
 # Subir containers
 Write-Host "📦 Subindo containers..." -ForegroundColor Cyan
-docker-compose up -d
+docker compose --env-file $envFile up -d
 
 # Aguardar containers iniciarem
 Write-Host "⏳ Aguardando containers iniciarem..." -ForegroundColor Yellow
