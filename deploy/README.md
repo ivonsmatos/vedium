@@ -32,13 +32,12 @@ deploy/
 ### 1. Preparação do Servidor
 
 ```bash
-# Conecte ao servidor
-ssh root@***REDACTED-IP***
+# Conecte ao servidor (usuário não-root, autenticação por chave SSH)
+ssh deploy@SEU_SERVIDOR
 
-# Clone ou copie o repositório
-git clone https://github.com/vedium-global/vedium.git /opt/vedium
-# OU
-scp -r . root@***REDACTED-IP***:/opt/vedium/
+# Clone o repositório
+sudo mkdir -p /opt/vedium && sudo chown $USER:$USER /opt/vedium
+git clone https://github.com/ivonsmatos/vedium.git /opt/vedium
 ```
 
 ### 2. Configuração
@@ -90,12 +89,12 @@ cp -r deploy/site/* /opt/vedium/site/
 
 Configure em `Settings > Secrets and variables > Actions`:
 
-| Secret            | Descrição               | Exemplo                 |
-| ----------------- | ----------------------- | ----------------------- |
-| `SSH_PRIVATE_KEY` | Chave SSH privada       | `-----BEGIN OPENSSH...` |
-| `SSH_KNOWN_HOSTS` | Fingerprint do servidor | `ssh-keyscan output`    |
-| `DEPLOY_USER`     | Usuário SSH             | `root`                  |
-| `DEPLOY_HOST`     | IP/hostname do servidor | `***REDACTED-IP***`        |
+| Secret            | Descrição                                   |
+| ----------------- | ------------------------------------------- |
+| `SSH_PRIVATE_KEY` | Chave SSH privada (formato OpenSSH)         |
+| `SSH_KNOWN_HOSTS` | Output de `ssh-keyscan SEU_SERVIDOR`        |
+| `DEPLOY_USER`     | Usuário SSH (não-root, com sudo)            |
+| `DEPLOY_HOST`     | IP ou hostname do servidor                  |
 
 ### Gerar SSH Key
 
@@ -104,13 +103,13 @@ Configure em `Settings > Secrets and variables > Actions`:
 ssh-keygen -t ed25519 -C "github-actions@vediums.com" -f vedium-deploy-key
 
 # Copie a chave pública para o servidor
-ssh-copy-id -i vedium-deploy-key.pub root@***REDACTED-IP***
+ssh-copy-id -i vedium-deploy-key.pub deploy@SEU_SERVIDOR
 
-# Use o conteúdo de vedium-deploy-key (privada) como SSH_PRIVATE_KEY
+# Conteúdo de vedium-deploy-key (privada) → SSH_PRIVATE_KEY (GitHub Secret)
 cat vedium-deploy-key
 
-# Gere SSH_KNOWN_HOSTS
-ssh-keyscan ***REDACTED-IP***
+# SSH_KNOWN_HOSTS
+ssh-keyscan SEU_SERVIDOR
 ```
 
 ### Workflows Disponíveis
@@ -183,14 +182,15 @@ sudo ./scripts/deploy.sh
 | https://www.vediums.com | Redirect → vediums.com              |
 | https://app.vediums.com | Frappe LMS (proxy port 8005)        |
 
-## 📱 Credenciais Padrão
+## 📱 Credenciais
 
-⚠️ **ALTERE IMEDIATAMENTE após deploy!**
+Todas as senhas são geradas no momento do deploy via `.env` (não versionado).
+Gere com `openssl rand -base64 32` e guarde em um gerenciador de senhas.
 
-| Serviço      | Usuário       | Senha         |
-| ------------ | ------------- | ------------- |
-| Frappe Admin | Administrator | `Vedium@2024` |
-| MariaDB      | root          | Ver `.env`    |
+| Serviço      | Usuário        | Senha           |
+| ------------ | -------------- | --------------- |
+| Frappe Admin | Administrator  | Ver `.env`      |
+| MariaDB      | root           | Ver `.env`      |
 
 ## 🆘 Troubleshooting
 

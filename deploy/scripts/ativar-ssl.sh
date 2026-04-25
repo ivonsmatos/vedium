@@ -7,7 +7,7 @@ set -e
 
 # Configuration
 DOMAIN="${DOMAIN:-vediums.com}"
-SERVER_IP="${SERVER_IP:-***REDACTED-IP***}"
+SERVER_IP="${SERVER_IP:?Defina SERVER_IP=ip-do-servidor antes de executar}"
 ADMIN_EMAIL="${ADMIN_EMAIL:-admin@vediums.com}"
 WEBROOT="/var/www/certbot"
 
@@ -34,10 +34,10 @@ done
 
 if [ "$DNS_OK" = false ]; then
     echo ""
-    echo "⚠️  DNS ainda não propagado. Configure no Cloudflare:"
-    echo "   Tipo A | @ | $SERVER_IP | Proxied"
-    echo "   Tipo CNAME | www | $DOMAIN | Proxied"
-    echo "   Tipo A | app | $SERVER_IP | Proxied"
+    echo "⚠️  DNS ainda não propagado. Configure no seu provedor:"
+    echo "   Tipo A     | @   | $SERVER_IP"
+    echo "   Tipo CNAME | www | $DOMAIN"
+    echo "   Tipo A     | app | $SERVER_IP"
     echo ""
     echo "Aguarde a propagação (pode levar até 48h) e execute novamente."
     exit 1

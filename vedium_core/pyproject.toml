@@ -1,16 +1,23 @@
 [project]
 name = "vedium_core"
 authors = [
-    { name = "Vedium Team", email = "info@vediums.com"}
+    { name = "Vedium Team", email = "info@vediums.com" }
 ]
 description = "Vedium Core App"
-requires-python = ">=3.10"
+requires-python = ">=3.11,<3.13"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
-    "mercadopago",
-    "openai",
-    "prometheus-client"
+    "mercadopago>=2.2.0",
+    "openai>=1.0",
+    "prometheus-client>=0.19",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "flake8>=6",
+    "pip-audit>=2",
 ]
 
 [build-system]

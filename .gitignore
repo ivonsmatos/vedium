@@ -92,6 +92,23 @@ deploy/backups/
 *.enc
 
 # ============================================
-# OLD DIRECTORIES - Removed from project
+# Editor / IDE / Claude Code
 # ============================================
-cloudflare-pages/
+.claude/
+.aider*
+
+# ============================================
+# Tools
+# ============================================
+*.tar.gz
+*.zip
+.coverage
+.pytest_cache/
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ============================================
+# Frappe sites/ data (caso bench rode local)
+# ============================================
+sites/

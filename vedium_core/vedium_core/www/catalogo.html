@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/vedium_core/vedium_assets/images/favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/vedium_core/vedium_assets/images/favicons/favicon-16x16.png" />
     <link rel="manifest" href="/assets/vedium_core/vedium_assets/images/favicons/site.webmanifest" />
-    <meta name="description" content="Crsine HTML Template For Car Services" />
+    <meta name="description" content="Catálogo completo de cursos Vedium: inglês executivo, hebraico tech, iorubá ancestral e português para estrangeiros. Níveis A1 a C1, com IA e mentoria." />
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -220,331 +220,69 @@
                 <h2 class="section-title__title">Explore Courses</h2>
             </div>
 
+            <!-- Filtro por idioma -->
             <div class="row">
-                <!--Start case-studies-one Top-->
                 <div class="courses-one--courses__top">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="courses-one--courses__menu-box">
                             <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
-                                <li data-filter=".filter-item" class="active"><span class="filter-text">All</span></li>
-                                <li data-filter=".featured"><span class="filter-text">Featured</span></li>
-                                <li data-filter=".business"><span class="filter-text">Business</span></li>
-                                <li data-filter=".photography"><span class="filter-text">Photography</span></li>
-                                <li data-filter=".development"><span class="filter-text">Development</span></li>
+                                <li data-filter=".filter-item" class="active"><span class="filter-text">Todos</span></li>
+                                <li data-filter=".ingles"><span class="filter-text">Inglês</span></li>
+                                <li data-filter=".ioruba"><span class="filter-text">Iorubá</span></li>
+                                <li data-filter=".portugues"><span class="filter-text">Português</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!--End case-studies-one Top-->
             </div>
 
-
-            <div class="row filter-layout masonary-layout">
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img1.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Kevin Martin</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
+            <!-- Cards dinâmicos dos cursos -->
+            <div class="row filter-layout" style="display:flex;flex-wrap:wrap;">
+                {% if courses %}
+                    {% for course in courses %}
+                    {% set lang_class = "ingles" if "Inglês" in (course.category or "") else ("ioruba" if "Iorubá" in (course.category or "") else ("portugues" if "Português" in (course.category or "") else "outros")) %}
+                    <!--Start Single Courses One-->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 filter-item {{ lang_class }}" style="display:flex;margin-bottom:30px;">
+                        <div class="courses-one__single wow fadeInUp" data-wow-delay="{{ loop.index0 * 100 }}ms" data-wow-duration="1000ms" style="width:100%;display:flex;flex-direction:column;">
+                            <div class="courses-one__single-img" style="flex-shrink:0;height:220px;overflow:hidden;position:relative;">
+                                <img src="{{ course.image }}" alt="{{ course.title }}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
+                                {% if course.level_badge %}
+                                <div class="overlay-text">
+                                    <p>{{ course.level_badge }}</p>
                                 </div>
+                                {% endif %}
                             </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
+                            <div class="courses-one__single-content" style="flex:1;display:flex;flex-direction:column;">
+                                <div class="courses-one__single-content-overlay-img">
+                                    <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img1.png" alt=""/>
+                                </div>
+                                <h6 class="courses-one__single-content-name">{{ course.instructor_name }}</h6>
+                                <h4 class="courses-one__single-content-title">
+                                    <a href="{{ course.url }}">{{ course.title }}</a>
+                                </h4>
+                                {% if course.short_introduction %}
+                                <p style="font-size:13px;color:#777;margin-bottom:8px;flex:1;">{{ course.short_introduction[:80] }}...</p>
+                                {% endif %}
+                                <p class="courses-one__single-content-price">{{ course.formatted_price }}</p>
+                                <ul class="courses-one__single-content-courses-info list-unstyled">
+                                    <li>{{ course.lesson_count }} Aulas</li>
+                                    <li>{{ course.enrollment_count }} Alunos</li>
+                                    {% if course.level_badge %}<li>{{ course.level_badge }}</li>{% endif %}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business featured">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img2.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>free</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img2.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Christine Eve</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
+                    <!--End Single Courses One-->
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center py-5">
+                        <p style="font-size:18px;color:#999;">Nenhum curso disponível no momento.</p>
                     </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item photography filter-item development">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img3.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">David Cooper</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item photography development">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img4.jpg" alt=""/>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img4.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Sarah Albert</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development photography featured">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img5.jpg" alt=""/>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img5.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Sarah Albert</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item business development photography">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img6.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img6.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Kevin Martin</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item featured photography development">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img7.jpg" alt=""/>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img7.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Christine Eve</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item photography featured">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-img8.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>free</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="/assets/vedium_core/vedium_assets/images/resources/courses-v1-overlay-img8.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">David Cooper</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
+                {% endif %}
             </div>
         </div>
     </section>
     <!--Courses One End-->
-
-
-
-
-
-
-
 
     <!--Start Footer One-->
     <footer class="footer-one">

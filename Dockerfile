@@ -1,51 +1,39 @@
-FROM python:3.14-slim-bookworm
+# Vedium Frappe — imagem de DEV (workspace bind-mount).
+# Para PROD, prefira frappe_docker oficial: https://github.com/frappe/frappe_docker
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    mariadb-client \
-    redis-tools \
-    build-essential \
-    libmariadb-dev \
-    libssl-dev \
-    libcrypto++-dev \
-    python3-dev \
-    libffi-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    zlib1g-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    liblcms2-dev \
-    libwebp-dev \
-    tcl8.6-dev \
-    tk8.6-dev \
-    python3-tk \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    libxcb1-dev \
-    xvfb \
-    libfontconfig1 \
-    libxrender1 \
+FROM python:3.11-slim-bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+# Dependências de sistema (apenas as necessárias)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates curl git \
+        build-essential pkg-config \
+        mariadb-client \
+        libmariadb-dev libssl-dev libffi-dev \
+        libxml2-dev libxslt1-dev zlib1g-dev \
+        libjpeg-dev libfreetype6-dev liblcms2-dev libwebp-dev \
+        libharfbuzz-dev libfribidi-dev \
+        wkhtmltopdf \
+        redis-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 24 and Yarn
-# Using nodesource script for Node.js 24
-RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
-    || curl -fsSL https://deb.nodesource.com/setup_current.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g yarn
+# Node.js 20 LTS (compatível com Frappe v15+) e Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && npm install -g yarn \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Bench
-RUN pip install frappe-bench
+# Bench
+RUN pip install --upgrade pip && pip install frappe-bench
 
-# Create frappe user
+# Usuário não-root
 RUN useradd -ms /bin/bash frappe
 USER frappe
 WORKDIR /home/frappe
 
-# Expose ports for dev
 EXPOSE 8000 9000 8001
 
 CMD ["sleep", "infinity"]

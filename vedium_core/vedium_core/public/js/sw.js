@@ -2,38 +2,37 @@
 // Vedium - Service Worker (Offline First Strategy)
 // =============================================================================
 
-const CACHE_NAME = 'vedium-cache-v1';
+// Bump CACHE_NAME a cada deploy para invalidar caches antigos.
+const CACHE_NAME = 'vedium-cache-v3';
 const OFFLINE_URL = '/offline.html';
 
-// Assets to cache immediately on install
+// Assets cacheados na instalação. Cada um vai individualmente para que um
+// 404 não derrube toda a instalação (cache.addAll é all-or-nothing).
 const STATIC_ASSETS = [
     '/',
-    '/app',
     '/offline.html',
     '/assets/vedium_core/css/vedium.css',
-    '/assets/vedium_core/js/vedium.bundle.js',
     '/assets/vedium_core/images/icon-192x192.png',
     '/assets/vedium_core/images/icon-512x512.png',
-    '/assets/frappe/css/frappe-web.css',
-    '/assets/frappe/js/frappe-web.min.js',
 ];
 
-// Install event - cache static assets
 self.addEventListener('install', (event) => {
-    console.log('[SW] Installing Service Worker...');
-
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('[SW] Caching static assets...');
-                return cache.addAll(STATIC_ASSETS);
-            })
-            .then(() => {
-                console.log('[SW] Static assets cached successfully');
+            .then(async (cache) => {
+                const results = await Promise.allSettled(
+                    STATIC_ASSETS.map((url) =>
+                        fetch(url, { cache: 'reload' })
+                            .then((response) => {
+                                if (!response.ok) throw new Error(`${url} → HTTP ${response.status}`);
+                                return cache.put(url, response);
+                            })
+                    )
+                );
+                results
+                    .filter((r) => r.status === 'rejected')
+                    .forEach((r) => console.warn('[SW] cache miss:', r.reason));
                 return self.skipWaiting();
-            })
-            .catch((error) => {
-                console.error('[SW] Failed to cache static assets:', error);
             })
     );
 });
@@ -125,7 +124,11 @@ async function staleWhileRevalidate(request) {
         })
         .catch(() => null);
 
-    return cachedResponse || fetchPromise;
+    if (cachedResponse) {
+        return cachedResponse;
+    }
+    const networkResponse = await fetchPromise;
+    return networkResponse || new Response('', { status: 503, statusText: 'Service Unavailable' });
 }
 
 // Network First with Offline Fallback

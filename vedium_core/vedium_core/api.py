@@ -1,10 +1,54 @@
+# -*- coding: utf-8 -*-
+# Vedium Core — API pública e endpoints internos
+# Imports pesados (prometheus_client, mercadopago, services.*) ficam lazy
+# dentro das funções que os usam, para o módulo carregar mesmo sem essas
+# dependências instaladas.
+
+import hashlib
+from datetime import datetime
+
 import frappe
 from frappe import _
-from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
+
 
 # =====================
-# Observabilidade e Suporte
+# Contato público (sem login)
 # =====================
+@frappe.whitelist(allow_guest=True)
+def send_contact_message(
+    sender_name, sender_email, phone=None, subject=None, message=None
+):
+    """
+    Recebe mensagem do formulário de contato e envia por e-mail
+    """
+    import re
+
+    if not sender_name or not sender_email:
+        frappe.throw(_("Nome e e-mail são obrigatórios"))
+    if not re.match(r"^[^@]+@[^@]+\.[^@]+$", sender_email):
+        frappe.throw(_("E-mail inválido"))
+
+    email_body = f"""
+        <h3>Nova mensagem via site Vedium</h3>
+        <p><strong>Nome:</strong> {frappe.utils.escape_html(sender_name)}</p>
+        <p><strong>E-mail:</strong> {frappe.utils.escape_html(sender_email)}</p>
+        <p><strong>Telefone:</strong> {frappe.utils.escape_html(phone or 'Não informado')}</p>
+        <p><strong>Assunto:</strong> {frappe.utils.escape_html(subject or 'Sem assunto')}</p>
+        <hr>
+        <p><strong>Mensagem:</strong></p>
+        <p>{frappe.utils.escape_html(message or '').replace(chr(10), '<br>')}</p>
+    """
+
+    frappe.sendmail(
+        recipients=["contato@vediums.com"],
+        subject=f"[Site Vedium] {frappe.utils.escape_html(subject or 'Contato')}",
+        message=email_body,
+        reply_to=sender_email,
+        now=True,
+    )
+    return {"success": True}
+
+
 @frappe.whitelist()
 def open_support_ticket(subject, description, category=None):
     """
@@ -63,14 +107,28 @@ def get_monitoring_dashboard():
     }
 
 
-@frappe.whitelist(allow_guest=True)
+@frappe.whitelist()
 def get_metrics():
     """
-    Exposes Prometheus metrics
+    Expõe métricas do Prometheus.
+    Requer autenticação. Em produção, adicionalmente proteger via nginx
+    (auth_basic) ou liberar apenas para IPs internos do scraper.
     """
-    frappe.response['result'] = generate_latest()
-    frappe.response['type'] = 'binary'
-    frappe.response['content_type'] = CONTENT_TYPE_LATEST
+    if not _user_can_view_metrics():
+        frappe.throw(_("Permissão negada"), frappe.PermissionError)
+
+    from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
+
+    frappe.response["result"] = generate_latest()
+    frappe.response["type"] = "binary"
+    frappe.response["content_type"] = CONTENT_TYPE_LATEST
+
+
+def _user_can_view_metrics() -> bool:
+    if frappe.session.user == "Guest":
+        return False
+    roles = set(frappe.get_roles(frappe.session.user))
+    return bool(roles & {"System Manager", "Administrator", "Vedium Ops"})
 
 
 # =====================
@@ -191,6 +249,8 @@ def submit_listening_exercise(course_name, audio_url):
     """
     Recebe áudio do aluno para exercício de escuta ativa
     """
+    from vedium_core.services.ai_service import AIService
+
     ai = AIService()
     result = ai.analyze_audio(audio_url, context="listening")
     return {"status": "analyzed", "result": result}
@@ -201,6 +261,8 @@ def submit_speaking_exercise(course_name, audio_url):
     """
     Recebe áudio do aluno para exercício de fala
     """
+    from vedium_core.services.ai_service import AIService
+
     ai = AIService()
     result = ai.analyze_audio(audio_url, context="speaking")
     return {"status": "analyzed", "result": result}
@@ -248,10 +310,6 @@ def submit_quiz_attempt(course_name, answers):
 # =====================
 # Emissão automática de certificado digital
 # =====================
-import hashlib
-import random
-import string
-from datetime import datetime
 
 
 @frappe.whitelist()
@@ -393,40 +451,35 @@ def create_checkout(course_name, gateway, coupon_code=None):
     }
 
 
-# -*- coding: utf-8 -*-
-# Vedium Core - Courses API
-# API endpoints for the public website
+# =====================
+# Cursos públicos e enrollment
+# =====================
 
-import frappe
-from frappe import _
-import frappe
-from frappe import _
-import mercadopago
-import json
-from vedium_core.services.ai_service import AIService
-from vedium_core.services.crypto_service import CryptoService
 
-def create_enrollment_if_paid(course_name, user, gateway, payment_id, amount=None, currency=None):
+def create_enrollment_if_paid(
+    course_name, user, gateway, payment_id, amount=None, currency=None
+):
     """
     Helper to create enrollment after successful payment
     """
     if frappe.db.exists("LMS Enrollment", {"course": course_name, "member": user}):
         return
-        
-    enrollment = frappe.get_doc({
-        "doctype": "LMS Enrollment",
-        "course": course_name,
-        "member": user,
-        "status": "Active", # Or whatever status means 'Enrolled'
-        "payment_gateway": gateway,
-        "payment_reference": payment_id,
-        "amount": amount,
-        "currency": currency,
-        "enrollment_date": frappe.utils.now_datetime()
-    })
+
+    enrollment = frappe.get_doc(
+        {
+            "doctype": "LMS Enrollment",
+            "course": course_name,
+            "member": user,
+            "status": "Active",  # Or whatever status means 'Enrolled'
+            "payment_gateway": gateway,
+            "payment_reference": payment_id,
+            "amount": amount,
+            "currency": currency,
+            "enrollment_date": frappe.utils.now_datetime(),
+        }
+    )
     enrollment.insert(ignore_permissions=True)
     frappe.msgprint(_("Inscrição realizada com sucesso!"))
-
 
 
 @frappe.whitelist(allow_guest=True)
@@ -588,44 +641,50 @@ class StripeGateway(PaymentGateway):
 
 class MercadoPagoGateway(PaymentGateway):
     def get_sdk(self):
-        access_token = frappe.conf.get("MERCADOPAGO_ACCESS_TOKEN") or "TEST-00000000-0000-0000-0000-000000000000" # Placeholder
+        import mercadopago
+
+        access_token = frappe.conf.get("MERCADOPAGO_ACCESS_TOKEN")
+        if not access_token:
+            frappe.throw(_("MERCADOPAGO_ACCESS_TOKEN não configurado"))
         return mercadopago.SDK(access_token)
 
     def create_checkout(self, course, user):
         sdk = self.get_sdk()
-        
+
         preference_data = {
             "items": [
                 {
                     "title": course.title,
                     "quantity": 1,
                     "unit_price": float(course.course_price),
-                    "currency_id": course.currency or "BRL"
+                    "currency_id": course.currency or "BRL",
                 }
             ],
-            "payer": {
-                "email": user
-            },
+            "payer": {"email": user},
             "back_urls": {
                 "success": f"{frappe.utils.get_url()}/lms/enrollment/success",
                 "failure": f"{frappe.utils.get_url()}/lms/enrollment/failure",
-                "pending": f"{frappe.utils.get_url()}/lms/enrollment/pending"
+                "pending": f"{frappe.utils.get_url()}/lms/enrollment/pending",
             },
             "auto_return": "approved",
-            "external_reference": f"{course.name}|{user}"
+            "external_reference": f"{course.name}|{user}",
         }
-        
+
         preference_response = sdk.preference().create(preference_data)
         response = preference_response.get("response", {})
-        
+
         # Prefer sandbox for testing if configured, else init_point
-        return response.get("sandbox_init_point") if frappe.conf.get("DEVELOPER_MODE") else response.get("init_point")
+        return (
+            response.get("sandbox_init_point")
+            if frappe.conf.get("DEVELOPER_MODE")
+            else response.get("init_point")
+        )
 
     def handle_webhook(self, data):
         # Mercado Pago sends topic/type and id
         topic = data.get("topic") or data.get("type")
         resource_id = data.get("id") or data.get("data", {}).get("id")
-        
+
         if topic == "payment" and resource_id:
             sdk = self.get_sdk()
             payment_info = sdk.payment().get(resource_id)
@@ -633,20 +692,22 @@ class MercadoPagoGateway(PaymentGateway):
                 payment = payment_info["response"]
                 status = payment.get("status")
                 external_ref = payment.get("external_reference")
-                
+
                 if status == "approved" and external_ref:
                     try:
                         course_name, user = external_ref.split("|")
                         create_enrollment_if_paid(
-                            course_name, 
-                            user, 
-                            "mercadopago", 
+                            course_name,
+                            user,
+                            "mercadopago",
                             str(resource_id),
                             amount=payment.get("transaction_amount"),
-                            currency=payment.get("currency_id")
+                            currency=payment.get("currency_id"),
                         )
                     except ValueError:
-                        frappe.log_error("Invalid external_reference in MercadoPago Webhook")
+                        frappe.log_error(
+                            "Invalid external_reference in MercadoPago Webhook"
+                        )
 
 
 class BasecommerceGateway(PaymentGateway):
@@ -657,15 +718,22 @@ class BasecommerceGateway(PaymentGateway):
     def handle_webhook(self, data):
         # TODO: Lógica de webhook Basecommerce
         pass
+
+
 class CryptoGateway(PaymentGateway):
     def create_checkout(self, course, user):
+        from vedium_core.services.crypto_service import CryptoService
+
         service = CryptoService()
-        charge = service.create_charge(course.course_price, course.currency or "USD", user)
+        charge = service.create_charge(
+            course.course_price, course.currency or "USD", user
+        )
         return charge.get("hosted_url")
 
     def handle_webhook(self, data):
         # Handle Coinbase/Crypto webhooks
         pass
+
 
 def get_gateway(gateway_name):
     if gateway_name == "stripe":

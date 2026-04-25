@@ -1,8 +1,8 @@
-# ✅ CHECKLIST DE QA FINAL - VEDIUM.COM
+# ✅ CHECKLIST DE QA FINAL - VEDIUMS.COM
 
 ## 🔍 **TESTES PRÉ-PRODUÇÃO**
 
-### **🌐 Site Principal (vedium.com)**
+### **🌐 Site Principal (vediums.com)**
 
 - [ ] Homepage carrega sem erros
 - [ ] CSS aplicado corretamente (design "Raízes de Luxo")
@@ -38,14 +38,14 @@
 - [ ] Container Frappe rodando
 - [ ] Container MariaDB conectando
 - [ ] Container Redis funcionando
-- [ ] LMS acessível em app.vedium.com
+- [ ] LMS acessível em app.vediums.com
 - [ ] Login LMS funcionando
 
 ### **🌍 DNS & Roteamento**
 
-- [ ] vedium.com resolve para ***REDACTED-IP***
-- [ ] www.vedium.com redireciona
-- [ ] app.vedium.com resolve
+- [ ] vediums.com resolve para o IP do servidor (configurado em DNS)
+- [ ] www.vediums.com redireciona
+- [ ] app.vediums.com resolve
 - [ ] Propagação DNS completa
 
 ### **📊 Monitoramento**
@@ -63,15 +63,15 @@
 
 ```bash
 # Ping servidor
-ping vedium.com
+ping vediums.com
 
 # DNS lookup
-nslookup vedium.com
-nslookup app.vedium.com
+nslookup vediums.com
+nslookup app.vediums.com
 
 # HTTP response
-curl -I http://vedium.com
-curl -I https://vedium.com
+curl -I http://vediums.com
+curl -I https://vediums.com
 ```
 
 ### **No Servidor:**
@@ -97,10 +97,10 @@ netstat -tulnp | grep -E ':(80|443|8005|3306)'
 
 ```bash
 # Verificar certificado
-openssl s_client -connect vedium.com:443 -servername vedium.com
+openssl s_client -connect vediums.com:443 -servername vediums.com
 
 # SSL Labs (manual)
-# https://www.ssllabs.com/ssltest/analyze.html?d=vedium.com
+# https://www.ssllabs.com/ssltest/analyze.html?d=vediums.com
 ```
 
 ---
@@ -122,7 +122,7 @@ openssl s_client -connect vedium.com:443 -servername vedium.com
 
 ### **Site não carrega:**
 
-- Verificar DNS: `nslookup vedium.com`
+- Verificar DNS: `nslookup vediums.com`
 - Checar nginx: `systemctl status nginx`
 - Ver logs: `journalctl -u nginx -f`
 

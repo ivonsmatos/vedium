@@ -1,90 +1,103 @@
 #!/bin/bash
 # =====================================================
-# COMANDOS PARA EXECUTAR NO SERVIDOR (***REDACTED-IP***)
-# Execute como root após conectar via SSH
+# COMANDOS PARA PREPARAR O SERVIDOR DE PRODUÇÃO
+# Domínio: vediums.com
+# Pré-requisitos:
+#   - Servidor Ubuntu/Debian recém-provisionado
+#   - Acesso SSH por chave (não usar senha)
+#   - Usuário com sudo (não usar root direto)
 # =====================================================
 
-set -e
+set -euo pipefail
+
+DOMAIN="vediums.com"
 
 echo "======================================================"
-echo "🚀 VEDIUM SETUP - SERVIDOR DE PRODUÇÃO"
+echo "🚀 VEDIUM SETUP - SERVIDOR DE PRODUÇÃO ($DOMAIN)"
 echo "======================================================"
 
-# ETAPA 1: Atualizar sistema e instalar dependências
+# 1. Atualizar sistema e instalar dependências
 echo "📦 Instalando dependências..."
-apt-get update && apt-get upgrade -y
-apt-get install -y nginx docker.io docker-compose-v2 certbot python3-certbot-nginx ufw fail2ban
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install -y \
+    nginx \
+    docker.io docker-compose-v2 \
+    certbot python3-certbot-nginx \
+    ufw fail2ban \
+    unattended-upgrades
 
-# ETAPA 2: Configurar Docker
+# 2. Configurar Docker
 echo "🐳 Configurando Docker..."
-systemctl start docker
-systemctl enable docker
-usermod -aG docker root
+sudo systemctl enable --now docker
+sudo usermod -aG docker "$USER"
 
-# ETAPA 3: Criar estrutura de diretórios
+# 3. Criar estrutura de diretórios
 echo "📁 Criando diretórios..."
-mkdir -p /opt/vedium/{nginx,site,site/css,backups,logs}
-chown -R root:root /opt/vedium
+sudo mkdir -p /opt/vedium/{nginx,site,site/css,backups,logs}
+sudo chown -R "$USER:$USER" /opt/vedium
 
-# ETAPA 4: Backup nginx atual (se existir)
-echo "💾 Backup configuração atual..."
-if [ -f /etc/nginx/sites-available/vedium.com ]; then
-    cp /etc/nginx/sites-available/vedium.com /opt/vedium/backups/vedium.com.conf.backup-$(date +%Y%m%d-%H%M%S)
-fi
-
-# ETAPA 5: Remover configuração padrão nginx
+# 4. Remover configuração padrão nginx
 echo "🗑️ Removendo configuração padrão..."
-rm -f /etc/nginx/sites-enabled/default
+sudo rm -f /etc/nginx/sites-enabled/default
 
-# ETAPA 6: Configurar firewall básico
+# 5. Hardening SSH
+echo "🔒 Aplicando hardening SSH..."
+sudo sed -i \
+    -e 's/^#\?PermitRootLogin .*/PermitRootLogin no/' \
+    -e 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' \
+    -e 's/^#\?PubkeyAuthentication .*/PubkeyAuthentication yes/' \
+    /etc/ssh/sshd_config
+sudo systemctl restart sshd
+
+# 6. Firewall
 echo "🔥 Configurando firewall..."
-ufw --force enable
-ufw default deny incoming
-ufw default allow outgoing
-ufw allow ssh
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw allow 8005/tcp  # Temporário para LMS
+sudo ufw --force reset
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw --force enable
 
-# ETAPA 7: Configurar fail2ban
-echo "🛡️ Configurando fail2ban..."
-systemctl start fail2ban
-systemctl enable fail2ban
+# 7. Fail2ban
+echo "🛡️ Habilitando fail2ban..."
+sudo systemctl enable --now fail2ban
+
+# 8. Atualizações automáticas
+echo "🔁 Habilitando unattended-upgrades..."
+sudo dpkg-reconfigure -fnoninteractive unattended-upgrades
 
 echo ""
 echo "✅ SERVIDOR PREPARADO!"
 echo "======================================================"
-echo "📋 PRÓXIMAS ETAPAS MANUAIS:"
+echo "📋 PRÓXIMAS ETAPAS:"
 echo ""
-echo "1. TRANSFERIR ARQUIVOS:"
-echo "   • deploy/nginx/vedium.com.conf → /etc/nginx/sites-available/vedium.com"
-echo "   • deploy/docker-compose.yml → /opt/vedium/docker-compose.yml" 
-echo "   • deploy/site/index.html → /opt/vedium/site/index.html"
-echo "   • vedium_core/vedium_core/public/css/vedium.css → /opt/vedium/site/css/vedium.css"
+echo "1. TRANSFERIR ARQUIVOS (use deploy-vedium.sh ou .ps1):"
+echo "   • deploy/nginx/${DOMAIN}.conf  → /etc/nginx/sites-available/${DOMAIN}"
+echo "   • deploy/docker-compose.yml    → /opt/vedium/docker-compose.yml"
+echo "   • deploy/.env.example          → /opt/vedium/.env (e preencher!)"
+echo "   • deploy/site/index.html       → /opt/vedium/site/index.html"
+echo "   • vedium_core/.../vedium.css   → /opt/vedium/site/css/vedium.css"
 echo ""
-echo "2. EXECUTAR APÓS TRANSFERIR ARQUIVOS:"
-echo "   ln -sf /etc/nginx/sites-available/vedium.com /etc/nginx/sites-enabled/vedium.com"
-echo "   nginx -t && systemctl restart nginx"
+echo "2. ATIVAR NGINX:"
+echo "   sudo ln -sf /etc/nginx/sites-available/${DOMAIN} /etc/nginx/sites-enabled/${DOMAIN}"
+echo "   sudo nginx -t && sudo systemctl restart nginx"
+echo ""
+echo "3. SUBIR CONTAINERS:"
 echo "   cd /opt/vedium && docker compose up -d"
 echo ""
-echo "3. CONFIGURAR DNS:"
-echo "   vedium.com → ***REDACTED-IP***"
-echo "   www.vedium.com → ***REDACTED-IP***"  
-echo "   app.vedium.com → ***REDACTED-IP***"
+echo "4. CONFIGURAR DNS:"
+echo "   ${DOMAIN}     → IP_DESTE_SERVIDOR"
+echo "   www.${DOMAIN} → IP_DESTE_SERVIDOR"
+echo "   app.${DOMAIN} → IP_DESTE_SERVIDOR"
 echo ""
-echo "4. CONFIGURAR SSL (APÓS DNS):"
-echo "   certbot --nginx -d vedium.com -d www.vedium.com -d app.vedium.com"
-echo "   systemctl restart nginx"
+echo "5. CONFIGURAR SSL (APÓS DNS PROPAGAR):"
+echo "   sudo certbot --nginx -d ${DOMAIN} -d www.${DOMAIN} -d app.${DOMAIN}"
+echo "   sudo systemctl reload nginx"
+echo "   sudo systemctl enable --now certbot.timer  # auto-renovação"
 echo ""
 echo "📊 VERIFICAÇÕES:"
-echo "   systemctl status nginx"
-echo "   systemctl status docker"
+echo "   systemctl status nginx docker"
 echo "   docker compose ps"
-echo "   curl -I http://vedium.com"
-echo ""
-echo "🌐 TESTES FINAIS:"
-echo "   http://vedium.com"
-echo "   http://app.vedium.com:8005"
-echo "   https://vedium.com (após SSL)"
-echo "   https://app.vedium.com (após SSL)"
+echo "   curl -I https://${DOMAIN}"
 echo "======================================================"

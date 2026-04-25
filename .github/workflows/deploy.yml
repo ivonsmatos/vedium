@@ -6,76 +6,85 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@master
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.0
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          port: 22
-          script: |
-            echo "Starting deployment..."
-            
-            # Navigate to project directory (update this path to your actual server path)
-            # Based on your session, you were in /root or home directory.
-            # We will attempt to verify where 'vedium' folder is.
-            
-            TARGET_DIR=""
-            if [ -d "/opt/vedium" ]; then
-                TARGET_DIR="/opt/vedium"
-            elif [ -d "/root/vedium" ]; then
-                TARGET_DIR="/root/vedium"
-            elif [ -d "$HOME/vedium" ]; then
-                TARGET_DIR="$HOME/vedium"
-            else
-                # Fallback: find it
-                TARGET_DIR=$(find / -type d -name "vedium" -maxdepth 3 2>/dev/null | head -n 1)
-            fi
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            if [ -z "$TARGET_DIR" ]; then
-                echo "Error: Could not find 'vedium' directory on server."
-                exit 1
-            fi
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
-            echo "Deploying in $TARGET_DIR"
-            cd "$TARGET_DIR"
-            
-            # Pull changes on Host
-            git pull origin main
+      - name: Deploy
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          SITE_NAME: ${{ vars.SITE_NAME || 'app.vediums.com' }}
+        run: |
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se <<'REMOTE'
+          set -euo pipefail
 
-            # Update inside container (Critical for Frappe which often has its own git state)
-            CONTAINER="vedium-frappe"
-            
-            echo "Updating vedium_core inside container..."
-            # Since volume mount might be missing or different, we force copy the updated code
-            docker cp vedium_core $CONTAINER:/home/frappe/frappe-bench/apps/
-            docker exec -u 0 $CONTAINER chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
-            
-            # Ensure package is installed and build assets
-            docker exec -w /home/frappe/frappe-bench $CONTAINER pip install -e apps/vedium_core
-            
-            echo "Building Tailwind CSS..."
-            docker exec -w /home/frappe/frappe-bench/apps/vedium_core $CONTAINER npm install
-            docker exec -w /home/frappe/frappe-bench/apps/vedium_core $CONTAINER npm run build-css
+          TARGET_DIR=/opt/vedium
+          if [ ! -d "$TARGET_DIR/.git" ]; then
+              echo "❌ $TARGET_DIR não é um repositório git. Faça o setup inicial primeiro."
+              exit 1
+          fi
 
-            # Run Bench Commands
-            echo "Running bench commands..."
-            SITE_NAME="app.vediums.com"
-            docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME install-app vedium_core || echo "App already installed"
-            docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME migrate
-            
-            # Force copy assets (Bypass bench build due to server memory constraints)
-            echo "Copying assets..."
-            docker exec $CONTAINER cp /home/frappe/frappe-bench/apps/vedium_core/vedium_core/public/css/vedium.css /home/frappe/frappe-bench/sites/assets/vedium_core/css/vedium.css || echo "CSS copy failed"
-            docker exec $CONTAINER cp -r /home/frappe/frappe-bench/apps/vedium_core/vedium_core/public/images/* /home/frappe/frappe-bench/sites/assets/vedium_core/images/ || echo "Images copy failed"
+          cd "$TARGET_DIR"
+          git fetch --depth=1 origin main
+          git reset --hard origin/main
 
-            docker exec -w /home/frappe/frappe-bench $CONTAINER bench --site $SITE_NAME clear-cache
+          CONTAINER=vedium-frappe
 
-            echo "Deployment finished."
+          echo "🐍 Sincronizando vedium_core no container..."
+          docker exec -u root "$CONTAINER" rm -rf /home/frappe/frappe-bench/apps/vedium_core
+          docker cp vedium_core "$CONTAINER":/home/frappe/frappe-bench/apps/
+          docker exec -u root "$CONTAINER" chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
+
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" pip install -e apps/vedium_core
+
+          echo "🎨 Build Tailwind..."
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "$CONTAINER" npm install --no-audit --no-fund
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "$CONTAINER" npm run build-css
+
+          echo "📦 Bench commands..."
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+              bench --site "$SITE_NAME" install-app vedium_core || echo "ℹ️ App já instalado"
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+              bench --site "$SITE_NAME" migrate
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+              bench --site "$SITE_NAME" build --app vedium_core
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+              bench --site "$SITE_NAME" clear-cache
+
+          echo "♻️ Restart workers..."
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+              bench --site "$SITE_NAME" clear-website-cache
+
+          echo "✅ Deploy finalizado."
+          REMOTE
+
+      - name: Smoke test
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://vediums.com' }}
+        run: |
+          for url in "$SITE_URL" "https://app.vediums.com"; do
+              code=$(curl -skI -o /dev/null -w '%{http_code}' --max-time 30 "$url")
+              echo "$url → HTTP $code"
+              [ "$code" = "200" ] || [ "$code" = "302" ] || { echo "::error::$url retornou $code"; exit 1; }
+          done

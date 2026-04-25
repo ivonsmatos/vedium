@@ -1,116 +1,104 @@
-# =====================================================
+# 🚀 Deploy Manual — Vedium (vediums.com)
 
-# INSTRUÇÕES DE DEPLOY MANUAL - VEDIUM.COM
+> **Atenção:** este documento NÃO contém credenciais. Senhas, IPs e tokens
+> ficam apenas em `.env` (não versionado), no GitHub Secrets ou no gerenciador
+> de senhas da equipe.
 
-# =====================================================
+## Variáveis necessárias (definir no servidor antes do deploy)
 
-# Servidor: ***REDACTED-IP***
+| Nome              | Onde usar                       |
+| ----------------- | ------------------------------- |
+| `DEPLOY_HOST`     | IP/hostname do servidor         |
+| `DEPLOY_USER`     | Usuário SSH (não-root)          |
+| `SSH_PRIVATE_KEY` | Chave SSH (no GitHub Secrets)   |
+| `SSH_KNOWN_HOSTS` | `ssh-keyscan vediums.com`       |
+| `MYSQL_ROOT_PASSWORD` | Gerar: `openssl rand -base64 32` |
+| `MYSQL_PASSWORD`  | Gerar: `openssl rand -base64 32` |
+| `FRAPPE_ADMIN_PASSWORD` | Gerar: `openssl rand -base64 32` |
 
-# Usuário: root
-
-# Senha: ***REDACTED-PASSWORD***
-
-# =====================================================
-
-## CONECTAR AO SERVIDOR
-
-Abra um terminal SSH (PuTTY, Terminal ou outro cliente SSH):
-
-```
-ssh root@***REDACTED-IP***
-# Senha: ***REDACTED-PASSWORD***
-```
-
-## ETAPA 1: PREPARAR SERVIDOR
+## Conectar ao servidor
 
 ```bash
-# Atualizar sistema
-apt-get update && apt-get upgrade -y
-
-# Instalar dependências
-apt-get install -y nginx docker.io docker-compose-v2 certbot python3-certbot-nginx
-
-# Iniciar Docker
-systemctl start docker
-systemctl enable docker
-
-# Criar diretórios
-mkdir -p /opt/vedium/{nginx,site,site/css,backups}
+ssh $DEPLOY_USER@$DEPLOY_HOST   # autenticação SOMENTE por chave SSH
 ```
 
-## ETAPA 2: CONFIGURAR NGINX
+## Etapa 1 — Preparar servidor (uma vez)
 
 ```bash
-# Remover configuração padrão
-rm -f /etc/nginx/sites-enabled/default
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install -y nginx docker.io docker-compose-v2 certbot python3-certbot-nginx ufw fail2ban
+sudo systemctl enable --now docker
 
-# Backup da configuração atual (se existir)
-if [ -f /etc/nginx/sites-available/vedium.com ]; then
-    cp /etc/nginx/sites-available/vedium.com /opt/vedium/backups/vedium.com.conf.backup-$(date +%Y%m%d-%H%M%S)
-fi
+# Firewall
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw --force enable
+
+# Diretórios
+sudo mkdir -p /opt/vedium/{nginx,site,site/css,backups}
+sudo chown -R $USER:$USER /opt/vedium
 ```
 
-## Use os arquivos locais:
-
-- deploy/nginx/vedium.com.conf → /etc/nginx/sites-available/vedium.com
-- deploy/docker-compose.yml → /opt/vedium/docker-compose.yml
-- deploy/site/index.html → /opt/vedium/site/index.html
-- vedium_core/vedium_core/public/css/vedium.css → /opt/vedium/site/css/vedium.css
-
-## ETAPA 3: ATIVAR NGINX
+## Etapa 2 — Hardening SSH
 
 ```bash
-# Ativar site
-ln -sf /etc/nginx/sites-available/vedium.com /etc/nginx/sites-enabled/vedium.com
-
-# Testar configuração
-nginx -t
-
-# Reiniciar nginx
-systemctl restart nginx
+# Em /etc/ssh/sshd_config:
+#   PermitRootLogin no
+#   PasswordAuthentication no
+#   PubkeyAuthentication yes
+sudo systemctl restart sshd
 ```
 
-## ETAPA 4: INICIAR DOCKER
+## Etapa 3 — NGINX
+
+Copiar:
+
+- `deploy/nginx/vediums.com.conf` → `/etc/nginx/sites-available/vediums.com`
+- `deploy/docker-compose.yml`     → `/opt/vedium/docker-compose.yml`
+- `deploy/site/index.html`        → `/opt/vedium/site/index.html`
+- `vedium_core/vedium_core/public/css/vedium.css` → `/opt/vedium/site/css/vedium.css`
+
+```bash
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo ln -sf /etc/nginx/sites-available/vediums.com /etc/nginx/sites-enabled/vediums.com
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+## Etapa 4 — Docker
 
 ```bash
 cd /opt/vedium
+cp .env.example .env
+nano .env   # preencher com as senhas geradas
 docker compose up -d
 docker compose ps
 ```
 
-## ETAPA 5: CONFIGURAR SSL (DEPOIS DO DNS)
+## Etapa 5 — SSL (após DNS apontar para o IP)
 
 ```bash
-# Configurar Let's Encrypt
-certbot --nginx -d vedium.com -d www.vedium.com -d app.vedium.com
+sudo certbot --nginx -d vediums.com -d www.vediums.com -d app.vediums.com
+sudo systemctl reload nginx
 
-# Reiniciar nginx
-systemctl restart nginx
+# Auto-renovação
+sudo systemctl enable --now certbot.timer
 ```
 
-## VERIFICAÇÕES
+## Verificações
 
 ```bash
-# Status dos serviços
-systemctl status nginx
-systemctl status docker
-
-# Logs se houver problemas
-journalctl -u nginx -f
+sudo systemctl status nginx docker
+docker compose ps
+sudo journalctl -u nginx -f
 docker compose logs -f
 ```
 
-## PRÓXIMOS PASSOS:
+## Testes finais
 
-1. ✅ Preparar servidor (execute comandos acima)
-2. 🔄 Enviar arquivos (usar SCP ou copiar manualmente)
-3. ⚠️ Configurar DNS: vedium.com → ***REDACTED-IP***
-4. 🔒 Configurar SSL com certbot
-5. 🧪 Testar site final
-
-## TESTES FINAIS:
-
-- http://vedium.com (site principal)
-- http://app.vedium.com:8005 (LMS temporário)
-- https://vedium.com (após SSL)
-- https://app.vedium.com (após SSL)
+- https://vediums.com (site principal)
+- https://app.vediums.com (LMS)
+- https://www.vediums.com (deve redirecionar para vediums.com)
+- `curl -I https://vediums.com` (deve retornar 200 + headers HSTS, X-Frame-Options)
+- https://www.ssllabs.com/ssltest/analyze.html?d=vediums.com (alvo: A+)

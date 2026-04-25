@@ -1,4 +1,9 @@
-version: "3.8"
+# =====================================================
+# Vedium - Docker Compose para DESENVOLVIMENTO LOCAL
+# =====================================================
+# Para produção, usar: deploy/docker-compose.yml
+# Variáveis em .env (gerar senhas com: openssl rand -base64 32)
+# =====================================================
 
 services:
   frappe:
@@ -14,8 +19,8 @@ services:
       - .:/workspace:cached
       - frappe-bench-data:/home/frappe/frappe-bench
     ports:
-      - "8005:8002" # Frappe Web (porta alta para evitar conflitos)
-      - "9005:9000" # Frappe SocketIO
+      - "127.0.0.1:8005:8002" # Frappe Web — bind apenas localhost
+      - "127.0.0.1:9005:9000" # Frappe SocketIO
     depends_on:
       - mariadb
       - redis-cache
@@ -28,14 +33,16 @@ services:
     image: mariadb:10.6
     container_name: vedium-mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: vedium
-      MYSQL_USER: frappe
-      MYSQL_PASSWORD: frappe
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Defina MYSQL_ROOT_PASSWORD no .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-vedium}
+      MYSQL_USER: ${MYSQL_USER:-frappe}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Defina MYSQL_PASSWORD no .env}
     volumes:
       - mariadb-data:/var/lib/mysql
-    ports:
-      - "3307:3306" # MariaDB (porta alta para evitar conflitos)
+    # Sem ports: — acesso só pela rede interna do Docker.
+    # Em dev, descomente abaixo se precisar conectar do host:
+    # ports:
+    #   - "127.0.0.1:3307:3306"
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -68,24 +75,33 @@ services:
     networks:
       - vedium-network
 
+  # ---------------------------------------------------
+  # Observabilidade — apenas em DEV. Em PROD, expor
+  # via nginx + auth básica + TLS, ou usar SaaS.
+  # ---------------------------------------------------
   prometheus:
     image: prom/prometheus
     container_name: vedium-prometheus
+    profiles: ["observability"]
     volumes:
-      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
     ports:
-      - "9090:9090"
+      - "127.0.0.1:9090:9090"
     networks:
       - vedium-network
 
   grafana:
     image: grafana/grafana
     container_name: vedium-grafana
+    profiles: ["observability"]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Defina GRAFANA_ADMIN_PASSWORD no .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
     volumes:
       - grafana-data:/var/lib/grafana
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       - vedium-network
 
@@ -97,7 +113,6 @@ volumes:
   redis-socketio-data:
   prometheus-data:
   grafana-data:
-
 
 networks:
   vedium-network:

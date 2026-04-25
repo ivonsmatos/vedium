@@ -41,7 +41,7 @@ cloudflare-pages/
 | --------------- | -------------------------------- | ------------------ |
 | vediums.com     | Cloudflare Pages                 | Site institucional |
 | www.vediums.com | vediums.com                      | Redirect           |
-| app.vediums.com | Servidor Frappe (***REDACTED-IP***) | LMS Platform       |
+| app.vediums.com | Servidor Frappe (SEU_SERVIDOR) | LMS Platform       |
 
 ## URLs e Redirecionamentos
 
@@ -56,9 +56,9 @@ O arquivo `_redirects` configura:
 
 ```
 Type    Name    Content              Proxy
-A       @       ***REDACTED-IP***       ✅ Proxied
+A       @       SEU_SERVIDOR       ✅ Proxied
 CNAME   www     vediums.com          ✅ Proxied
-A       app     ***REDACTED-IP***       ✅ Proxied
+A       app     SEU_SERVIDOR       ✅ Proxied
 ```
 
 **Nota:** Para Cloudflare Pages, o domínio `vediums.com` precisa ser configurado como Custom Domain no projeto Pages.

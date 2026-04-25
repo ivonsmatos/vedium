@@ -8,7 +8,8 @@ Write-Host "🚀 Iniciando ambiente Vedium..." -ForegroundColor Cyan
 try {
     docker info | Out-Null
     Write-Host "✓ Docker está rodando" -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "❌ Docker não está rodando. Por favor, inicie o Docker Desktop primeiro." -ForegroundColor Red
     exit 1
 }
@@ -30,15 +31,30 @@ Write-Host "`n🔍 Verificando serviços..." -ForegroundColor Cyan
 try {
     docker exec vedium-frappe bench --version | Out-Null
     Write-Host "✓ Frappe está acessível" -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "⚠️  Frappe ainda não está pronto. Aguarde mais alguns segundos." -ForegroundColor Yellow
+}
+
+# Iniciar bench start automaticamente (necessário após restart do container)
+Write-Host "`n🌐 Iniciando servidor web Frappe (bench start)..." -ForegroundColor Cyan
+docker exec -d vedium-frappe bash -c "cd /home/frappe/frappe-bench && bench start > /tmp/bench.log 2>&1"
+Start-Sleep -Seconds 18
+
+# Verificar se bench serve subiu
+$benchLog = docker exec vedium-frappe bash -c "cat /tmp/bench.log 2>/dev/null | tail -10"
+if ($benchLog -match "Running on") {
+    Write-Host "✓ Servidor web rodando (bench serve ativo)" -ForegroundColor Green
+}
+else {
+    Write-Host "⚠️  Verificar log: docker exec vedium-frappe bash -c 'tail -20 /tmp/bench.log'" -ForegroundColor Yellow
 }
 
 # Instruções finais
 Write-Host "`n✅ Ambiente iniciado!" -ForegroundColor Green
-Write-Host "`n📋 Próximos passos:" -ForegroundColor Cyan
-Write-Host "1. Acesse o container: docker exec -it vedium-frappe bash"
-Write-Host "2. Verifique apps instalados: bench --site vediums.com list-apps"
-Write-Host "3. Execute migrações: bench --site vediums.com migrate"
-Write-Host "4. Acesse a interface: http://localhost:8005"
-Write-Host "`n📖 Consulte o guia completo em: guia_instalacao_lms.md" -ForegroundColor Yellow
+Write-Host "`n📋 Acesso:" -ForegroundColor Cyan
+Write-Host "  Site principal:    http://vedium.local:8005"
+Write-Host "  Catálogo cursos:   http://vedium.local:8005/catalogo"
+Write-Host "  LMS (Frappe):      http://vedium.local:8005/lms/courses"
+Write-Host "  Admin:             http://vedium.local:8005/app"
+Write-Host "`n💡 Dica: /courses redireciona para o LMS padrão Frappe. Use /catalogo." -ForegroundColor Yellow

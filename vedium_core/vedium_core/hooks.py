@@ -2,12 +2,23 @@ app_name = "vedium_core"
 app_title = "Vedium Core"
 app_publisher = "Vedium"
 app_description = "Sistema Inteligente de Gestão - Raízes de Luxo"
-app_email = "contato@vedium.com"
+app_email = "contato@vediums.com"
 app_license = "MIT"
 
 # =============================================================================
-# Frappe Overrides
+# Roteamento do site
 # =============================================================================
+website_route_rules = [
+    # /courses é interceptado pelo LMS app — garante que /catalogo seja a rota do site
+    {"from_route": "/trilhas", "to_route": "/catalogo"},
+    {"from_route": "/cursos", "to_route": "/catalogo"},
+    # Atalhos amigáveis para ferramentas integradas
+    {"from_route": "/aluno", "to_route": "/lms/courses"},
+    {"from_route": "/admin", "to_route": "/app"},
+    {"from_route": "/crm", "to_route": "/app/crm-lead"},
+    {"from_route": "/rh", "to_route": "/app/employee"},
+    {"from_route": "/financeiro", "to_route": "/app/accounts"},
+]
 
 # App Logo
 app_logo_url = "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
@@ -25,7 +36,7 @@ home_page = "index"
 # CSS Includes (loaded on every page)
 app_include_css = [
     "/assets/vedium_core/css/vedium.css",
-    "/assets/vedium_core/css/luxo_theme.css"
+    "/assets/vedium_core/css/luxo_theme.css",
 ]
 
 # JS Includes (loaded on every page)
@@ -34,13 +45,11 @@ app_include_js = []
 # Website CSS
 web_include_css = [
     "/assets/vedium_core/css/vedium.css",
-    "/assets/vedium_core/css/luxo_theme.css"
+    "/assets/vedium_core/css/luxo_theme.css",
 ]
 
 # Website JS
-web_include_js = [
-    "/assets/vedium_core/js/pwa-register.js"
-]
+web_include_js = ["/assets/vedium_core/js/pwa-register.js"]
 
 # =============================================================================
 # PWA Configuration
@@ -58,12 +67,13 @@ app_theme_color = "#166534"
 
 website_context = {
     "favicon": "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png",
-    "splash_image": "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
+    "splash_image": "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png",
 }
 
 # =============================================================================
 # Jinja Customizations
 # =============================================================================
+
 
 # Add custom context to all web pages
 def get_web_context(context):
@@ -71,6 +81,7 @@ def get_web_context(context):
     context.theme_color = "#166534"
     context.background_color = "#0f1419"
     return context
+
 
 # =============================================================================
 # Boot Session
@@ -85,12 +96,8 @@ boot_session = "vedium_core.startup.boot.boot_session"
 # Override Standard Templates
 override_doctype_templates = {}
 
-# Jinja Environment Customization 
-jinja = {
-    "methods": [
-        "vedium_core.utils.jinja_methods"
-    ]
-}
+# Jinja Environment Customization
+jinja = {"methods": ["vedium_core.utils.jinja_methods"]}
 
 # =============================================================================
 # Scheduled Tasks
