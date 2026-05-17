@@ -30,50 +30,54 @@ jobs:
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      - name: Deploy
+      - name: Sync code to server
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          rsync -az --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='__pycache__' \
+            --exclude='*.pyc' \
+            --exclude='.env' \
+            ./ "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/"
+
+      - name: Run deploy commands
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           SITE_NAME: ${{ vars.SITE_NAME || 'app.vediums.com' }}
         run: |
-          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se <<'REMOTE'
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
           set -euo pipefail
 
-          TARGET_DIR=/opt/vedium
-          if [ ! -d "$TARGET_DIR/.git" ]; then
-              echo "❌ $TARGET_DIR não é um repositório git. Faça o setup inicial primeiro."
-              exit 1
-          fi
-
-          cd "$TARGET_DIR"
-          git fetch --depth=1 origin main
-          git reset --hard origin/main
-
           CONTAINER=vedium-frappe
+          TARGET_DIR=/opt/vedium
 
           echo "🐍 Sincronizando vedium_core no container..."
-          docker exec -u root "$CONTAINER" rm -rf /home/frappe/frappe-bench/apps/vedium_core
-          docker cp vedium_core "$CONTAINER":/home/frappe/frappe-bench/apps/
-          docker exec -u root "$CONTAINER" chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
+          docker exec -u root "\$CONTAINER" rm -rf /home/frappe/frappe-bench/apps/vedium_core
+          docker cp "\$TARGET_DIR/vedium_core" "\$CONTAINER":/home/frappe/frappe-bench/apps/
+          docker exec -u root "\$CONTAINER" chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
 
-          docker exec -w /home/frappe/frappe-bench "$CONTAINER" pip install -e apps/vedium_core
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" pip install -e apps/vedium_core
 
           echo "🎨 Build Tailwind..."
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "$CONTAINER" npm install --no-audit --no-fund
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "$CONTAINER" npm run build-css
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css
 
           echo "📦 Bench commands..."
-          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" install-app vedium_core || echo "ℹ️ App já instalado"
-          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" migrate
-          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" build --app vedium_core
-          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" clear-cache
 
-          echo "♻️ Restart workers..."
-          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+          echo "♻️ Clear website cache..."
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" clear-website-cache
 
           echo "✅ Deploy finalizado."
@@ -83,6 +87,7 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL || 'https://vediums.com' }}
         run: |
+          sleep 10
           for url in "$SITE_URL" "https://app.vediums.com"; do
               code=$(curl -skI -o /dev/null -w '%{http_code}' --max-time 30 "$url")
               echo "$url → HTTP $code"
