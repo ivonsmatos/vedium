@@ -1,0 +1,208 @@
+#!/bin/bash
+# =============================================================
+# Vedium — Script de Restore via restic
+# Author: Vedium Global Education
+# Última revisão: 2026-05-25 (P0.2 Sprint)
+#
+# USO:
+#   ./restore.sh                          # Restaura último snapshot
+#   ./restore.sh --snapshot <ID>          # Restaura snapshot específico
+#   ./restore.sh --list                   # Lista snapshots disponíveis
+#   ./restore.sh --dry-run                # Simula sem restaurar dados
+#
+# Variáveis de ambiente necessárias:
+#   RESTIC_REPOSITORY  — mesmo que backup.sh
+#   RESTIC_PASSWORD    — mesmo que backup.sh
+#   AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
+#   MYSQL_ROOT_PASSWORD
+# =============================================================
+set -euo pipefail
+
+LOG_FILE="${LOG_FILE:-/var/log/vedium-restore.log}"
+COMPOSE_DIR="${COMPOSE_DIR:-/opt/vedium}"
+RESTORE_TMP="/tmp/vedium-restore"
+SNAPSHOT_ID="latest"
+DRY_RUN=false
+
+# ------------------------------------------------------------------
+# Funções utilitárias
+# ------------------------------------------------------------------
+log()  { echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] [RESTORE] $*" | tee -a "$LOG_FILE"; }
+err()  { echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] [ERROR]   $*" | tee -a "$LOG_FILE" >&2; }
+die()  { err "$*"; exit 1; }
+
+usage() {
+    cat <<EOF
+Uso: $0 [opções]
+
+Opções:
+  --snapshot <ID>   Restaurar snapshot específico (padrão: latest)
+  --list            Listar snapshots disponíveis e sair
+  --dry-run         Simular restore sem alterar dados
+  -h, --help        Exibir esta ajuda
+
+Exemplos:
+  $0                          # Restaura último snapshot
+  $0 --snapshot abc12345      # Restaura snapshot específico
+  $0 --list                   # Lista snapshots
+  $0 --dry-run                # Testa sem alterar dados
+
+Variáveis necessárias:
+  RESTIC_REPOSITORY, RESTIC_PASSWORD,
+  AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
+  MYSQL_ROOT_PASSWORD
+EOF
+}
+
+# ------------------------------------------------------------------
+# Parsear argumentos
+# ------------------------------------------------------------------
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --snapshot)   SNAPSHOT_ID="$2"; shift 2 ;;
+        --list)
+            echo "=== Snapshots restic disponíveis ==="
+            restic snapshots --tag "vedium" --group-by tags
+            exit 0 ;;
+        --dry-run)    DRY_RUN=true; shift ;;
+        -h|--help)    usage; exit 0 ;;
+        *) die "Argumento desconhecido: $1. Use --help para ajuda." ;;
+    esac
+done
+
+# ------------------------------------------------------------------
+# Validar dependências e variáveis
+# ------------------------------------------------------------------
+for cmd in restic docker; do
+    command -v "$cmd" >/dev/null 2>&1 || die "Dependência ausente: $cmd"
+done
+
+for var in RESTIC_REPOSITORY RESTIC_PASSWORD MYSQL_ROOT_PASSWORD; do
+    [[ -n "${!var:-}" ]] || die "Variável de ambiente ausente: $var"
+done
+
+# ------------------------------------------------------------------
+# Confirmação interativa (pular se --dry-run)
+# ------------------------------------------------------------------
+if [[ "${DRY_RUN}" == false ]]; then
+    log "⚠️  ATENÇÃO: Este procedimento irá sobrescrever dados de PRODUÇÃO."
+    log "    Snapshot alvo: ${SNAPSHOT_ID}"
+    log "    Destino: ${COMPOSE_DIR}"
+    read -r -p "    Digite 'CONFIRMAR' para prosseguir: " CONFIRM
+    [[ "${CONFIRM}" == "CONFIRMAR" ]] || die "Restore cancelado pelo usuário."
+fi
+
+log "=== Iniciando restore Vedium (snapshot: ${SNAPSHOT_ID}) ==="
+[[ "${DRY_RUN}" == true ]] && log "[DRY-RUN] Nenhum dado será alterado."
+
+# ------------------------------------------------------------------
+# 1. Baixar snapshot para diretório temporário
+# ------------------------------------------------------------------
+rm -rf "${RESTORE_TMP}"
+mkdir -p "${RESTORE_TMP}"
+
+log "Extraindo snapshot ${SNAPSHOT_ID} para ${RESTORE_TMP}..."
+if [[ "${DRY_RUN}" == true ]]; then
+    restic restore "${SNAPSHOT_ID}" --target "${RESTORE_TMP}" --dry-run --verbose
+    log "[DRY-RUN] Concluído. Nenhum dado alterado."
+    exit 0
+fi
+
+restic restore "${SNAPSHOT_ID}" --target "${RESTORE_TMP}" --verbose \
+    || die "Falha ao extrair snapshot restic"
+
+log "Snapshot extraído com sucesso em ${RESTORE_TMP}"
+
+# ------------------------------------------------------------------
+# 2. Parar containers app/workers (manter banco rodando para restore)
+# ------------------------------------------------------------------
+log "Parando containers Frappe (mantendo banco online)..."
+cd "${COMPOSE_DIR}"
+docker compose stop \
+    vedium-frappe \
+    vedium-socketio \
+    vedium-worker-default \
+    vedium-worker-short \
+    vedium-worker-long \
+    vedium-scheduler \
+    || log "Aviso: alguns containers já estavam parados"
+
+# ------------------------------------------------------------------
+# 3. Restaurar dump MariaDB (se existir no snapshot)
+# ------------------------------------------------------------------
+DUMP_FILE=$(find "${RESTORE_TMP}/tmp" -name "vedium-mariadb-dump.sql.gz" 2>/dev/null | head -1 || true)
+
+if [[ -f "${DUMP_FILE}" ]]; then
+    log "Restaurando banco de dados MariaDB..."
+
+    # Criar backup de segurança do banco atual antes de sobrescrever
+    SAFE_DUMP="/tmp/vedium-pre-restore-$(date +%Y%m%d%H%M%S).sql.gz"
+    log "Criando backup de segurança do banco atual em ${SAFE_DUMP}..."
+    docker exec vedium-mariadb mysqldump \
+        -u root -p"${MYSQL_ROOT_PASSWORD}" \
+        --all-databases --single-transaction 2>/dev/null | gzip > "${SAFE_DUMP}" \
+        || log "Aviso: não foi possível criar backup de segurança do banco atual"
+
+    # Restaurar
+    zcat "${DUMP_FILE}" | docker exec -i vedium-mariadb mysql \
+        -u root -p"${MYSQL_ROOT_PASSWORD}" \
+        || die "Falha ao restaurar MariaDB"
+    log "Banco restaurado com sucesso"
+else
+    log "Aviso: dump MariaDB não encontrado no snapshot — banco não alterado"
+fi
+
+# ------------------------------------------------------------------
+# 4. Restaurar volume frappe-bench-data
+# ------------------------------------------------------------------
+FRAPPE_BENCH_RESTORE=$(find "${RESTORE_TMP}/tmp/vedium-frappe-bench" -maxdepth 0 -type d 2>/dev/null || true)
+
+if [[ -d "${FRAPPE_BENCH_RESTORE}" ]]; then
+    log "Restaurando volume frappe-bench-data..."
+    docker run --rm \
+        -v vedium_frappe-bench-data:/data \
+        -v "${FRAPPE_BENCH_RESTORE}":/source:ro \
+        alpine sh -c "rm -rf /data/* && cp -a /source/. /data/" \
+        || die "Falha ao restaurar volume frappe-bench-data"
+    log "Volume frappe-bench-data restaurado"
+else
+    log "Aviso: diretório frappe-bench não encontrado no snapshot — volume não alterado"
+fi
+
+# ------------------------------------------------------------------
+# 5. Reiniciar containers
+# ------------------------------------------------------------------
+log "Reiniciando todos os containers..."
+cd "${COMPOSE_DIR}"
+docker compose up -d \
+    || die "Falha ao iniciar containers após restore"
+
+# ------------------------------------------------------------------
+# 6. Verificação de saúde pós-restore
+# ------------------------------------------------------------------
+log "Aguardando containers ficarem saudáveis (60s)..."
+sleep 60
+
+HEALTH_STATUS=$(docker inspect --format='{{.State.Health.Status}}' vedium-frappe 2>/dev/null || echo "unknown")
+if [[ "${HEALTH_STATUS}" == "healthy" ]]; then
+    log "Container vedium-frappe: healthy ✅"
+else
+    log "Container vedium-frappe: ${HEALTH_STATUS} ⚠️ — verificar logs com: docker logs vedium-frappe"
+fi
+
+# Teste de ping HTTP
+if curl -sf http://localhost:8005/api/method/ping >/dev/null 2>&1; then
+    log "API respondendo: OK ✅"
+else
+    log "API não respondendo ainda — pode estar inicializando. Tente em 2 minutos."
+fi
+
+# ------------------------------------------------------------------
+# 7. Limpeza
+# ------------------------------------------------------------------
+rm -rf "${RESTORE_TMP}"
+
+log "=== Restore concluído ==="
+log "    Snapshot restaurado: ${SNAPSHOT_ID}"
+log "    Backup de segurança do banco (pré-restore): ${SAFE_DUMP:-N/A}"
+log "    Verifique a aplicação em: https://app.vediums.com"

@@ -1,7 +1,6 @@
 import frappe
 from frappe import _
 from datetime import datetime
-import json
 
 @frappe.whitelist(allow_guest=True)
 def get_ai_summary():
@@ -117,8 +116,8 @@ def get_ai_service():
             },
             {
                 "name": "Course Enrollment",
-                "description": "Enroll in language courses",
-                "endpoint": "https://vediums.com/api/method/vedium_core.api.enroll_in_course",
+                "description": "Enroll in language courses via checkout",
+                "endpoint": "https://vediums.com/api/method/vedium_core.api.create_checkout",
                 "methods": ["POST"],
                 "requiresAuth": True
             },
@@ -131,15 +130,15 @@ def get_ai_service():
             },
             {
                 "name": "Progress Tracking",
-                "description": "Track learning progress and achievements",
-                "endpoint": "https://vediums.com/api/method/vedium_core.api.get_user_progress",
+                "description": "Track learning progress and payment history",
+                "endpoint": "https://vediums.com/api/method/vedium_core.api.get_payment_history",
                 "methods": ["GET"],
                 "requiresAuth": True
             },
             {
                 "name": "Certificate Generation",
                 "description": "Generate course completion certificates",
-                "endpoint": "https://vediums.com/api/method/vedium_core.api.generate_certificate",
+                "endpoint": "https://vediums.com/api/method/vedium_core.api.issue_certificate",
                 "methods": ["POST"],
                 "requiresAuth": True
             }

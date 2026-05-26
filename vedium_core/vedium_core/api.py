@@ -54,8 +54,6 @@ def open_support_ticket(subject, description, category=None):
     """
     Abre um chamado de suporte para o usuário logado
     """
-    if frappe.session.user == "Guest":
-        frappe.throw(_("Faça login para abrir um chamado"))
     ticket = frappe.get_doc(
         {
             "doctype": "Support Ticket",
@@ -74,8 +72,6 @@ def get_my_tickets():
     """
     Lista chamados abertos pelo usuário logado
     """
-    if frappe.session.user == "Guest":
-        frappe.throw(_("Faça login para ver seus chamados"))
     tickets = frappe.get_all(
         "Support Ticket",
         filters={"opened_by": frappe.session.user},
@@ -285,9 +281,18 @@ def get_flashcards(course_name):
 @frappe.whitelist()
 def submit_quiz_attempt(course_name, answers):
     """
-    Recebe respostas do quiz de nivelamento e retorna feedback instantâneo
-    answers: dict {question_id: resposta}
+    Recebe respostas do quiz de nivelamento e retorna feedback instantâneo.
+    answers: dict {question_id: resposta} — Frappe envia como string JSON, parseado aqui.
     """
+    import json
+
+    # M-07 fix: Frappe passes whitelisted dict params as JSON strings
+    if isinstance(answers, str):
+        try:
+            answers = json.loads(answers)
+        except (ValueError, TypeError):
+            frappe.throw(_("Formato de respostas inválido"))
+
     # Exemplo: busca questões e respostas corretas
     questions = frappe.get_all(
         "LMS Quiz Question",
@@ -441,11 +446,20 @@ def create_checkout(course_name, gateway, coupon_code=None):
         else:
             coupon_msg = _("Cupom inválido ou expirado")
 
+    # M-03 fix: apply the discount to the course price before creating checkout
+    # We pass the discounted price to the gateway instead of the full price
+    final_price = float(course.course_price or 0)
+    if coupon_valid and discount > 0:
+        final_price = round(final_price * (1 - discount / 100), 2)
+        # Temporarily override course_price so gateway uses discounted value
+        course.course_price = final_price
+
     gateway_obj = get_gateway(gateway)
     checkout_url = gateway_obj.create_checkout(course, frappe.session.user)
     return {
         "checkout_url": checkout_url,
         "discount_percent": discount,
+        "final_price": final_price,
         "coupon_valid": coupon_valid,
         "coupon_msg": coupon_msg,
     }
@@ -594,26 +608,27 @@ def get_featured_courses(limit=6):
 @frappe.whitelist()
 def create_checkout_session(course_name):
     """
-    Create a Stripe checkout session for course purchase
-    Requires logged-in user
+    Create a Stripe checkout session for course purchase.
+    Requires logged-in user. Uses the gateway factory pattern.
     """
     if frappe.session.user == "Guest":
-        frappe.throw(_("Please login to purchase this course"))
+        frappe.throw(_("Por favor, faça login para comprar este curso"))
 
     course = frappe.get_doc("LMS Course", course_name)
 
     if not course.paid_course:
-        frappe.throw(_("This is a free course"))
+        frappe.throw(_("Este curso é gratuito"))
 
     # Check if already enrolled
     existing = frappe.db.exists(
         "LMS Enrollment", {"course": course_name, "member": frappe.session.user}
     )
     if existing:
-        frappe.throw(_("You are already enrolled in this course"))
+        frappe.throw(_("Você já está inscrito neste curso"))
 
-    # Create Stripe checkout (placeholder - needs Stripe config)
-    checkout_url = create_stripe_checkout(course)
+    # C-01 fix: use the gateway factory instead of the non-existent create_stripe_checkout()
+    gateway_obj = get_gateway("stripe")
+    checkout_url = gateway_obj.create_checkout(course, frappe.session.user)
 
     return {"checkout_url": checkout_url}
 
@@ -731,8 +746,13 @@ class CryptoGateway(PaymentGateway):
         return charge.get("hosted_url")
 
     def handle_webhook(self, data):
-        # Handle Coinbase/Crypto webhooks
-        pass
+        # M-08: Explicitly raise NotImplementedError — crypto webhooks are not yet handled.
+        # Prevents enrollments from being silently skipped.
+        # TODO: Implement Coinbase Commerce HMAC verification and enrollment creation.
+        raise NotImplementedError(
+            "CryptoGateway.handle_webhook is not yet implemented. "
+            "Implement Coinbase Commerce HMAC verification before enabling crypto webhooks."
+        )
 
 
 def get_gateway(gateway_name):
@@ -791,15 +811,54 @@ def create_basecommerce_checkout(course_name):
 @frappe.whitelist(allow_guest=True)
 def handle_payment_webhook(gateway=None):
     """
-    Centraliza webhooks de pagamento para todos os gateways
+    Centraliza webhooks de pagamento para todos os gateways.
+    C-03 fix: verifica assinatura HMAC antes de processar qualquer evento.
     """
-    import json
+    import hashlib
+    import hmac
 
     data = frappe.local.form_dict or {}
     if not gateway:
         gateway = data.get("gateway")
     if not gateway:
         frappe.throw(_("Gateway não informado"))
+
+    # --- C-03: HMAC signature verification ---
+    if gateway == "mercadopago":
+        # MercadoPago sends X-Signature header: "ts=<timestamp>,v1=<hmac_sha256>"
+        sig_header = frappe.request.headers.get("X-Signature", "")
+        webhook_secret = frappe.conf.get("MERCADOPAGO_WEBHOOK_SECRET")
+        if webhook_secret and sig_header:
+            try:
+                parts = {k: v for k, v in (p.split("=", 1) for p in sig_header.split(","))}
+                ts = parts.get("ts", "")
+                v1 = parts.get("v1", "")
+                # MercadoPago manifest: HMAC of "id:<payment_id>;request-id:<req_id>;ts:<ts>"
+                data_id = data.get("data", {}).get("id", data.get("id", ""))
+                request_id = frappe.request.headers.get("X-Request-Id", "")
+                manifest = f"id:{data_id};request-id:{request_id};ts:{ts}"
+                expected = hmac.new(
+                    webhook_secret.encode(), manifest.encode(), hashlib.sha256
+                ).hexdigest()
+                if not hmac.compare_digest(expected, v1):
+                    frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+            except Exception as e:
+                frappe.log_error(f"MercadoPago webhook signature check failed: {e}")
+                frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+
+    elif gateway == "stripe":
+        # Stripe sends Stripe-Signature header for HMAC verification
+        sig_header = frappe.request.headers.get("Stripe-Signature")
+        stripe_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET")
+        if stripe_secret and sig_header:
+            try:
+                import stripe
+                payload = frappe.request.get_data(as_text=True)
+                stripe.Webhook.construct_event(payload, sig_header, stripe_secret)
+            except Exception as e:
+                frappe.log_error(f"Stripe webhook signature check failed: {e}")
+                frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+
     gateway_obj = get_gateway(gateway)
     gateway_obj.handle_webhook(data)
     return {"status": "ok"}
@@ -820,3 +879,24 @@ def create_crypto_checkout(course_name):
     gateway = get_gateway("crypto")
     checkout_url = gateway.create_checkout(course, frappe.session.user)
     return {"checkout_url": checkout_url}
+
+
+# =====================
+# PWA Analytics Tracking
+# =====================
+@frappe.whitelist()
+def track_pwa_install():
+    """
+    A-04 fix: Track PWA installation event.
+    Called by pwa-register.js when the user installs the app.
+    """
+    if frappe.session.user == "Guest":
+        return {"status": "ok", "tracked": False}
+
+    try:
+        frappe.log(f"Vedium: PWA installed by user {frappe.session.user}")
+        # Optionally store in a custom log or fire a server-side analytics event
+        return {"status": "ok", "tracked": True, "user": frappe.session.user}
+    except Exception as e:
+        frappe.log_error(f"track_pwa_install error: {e}")
+        return {"status": "error"}

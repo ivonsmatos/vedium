@@ -106,3 +106,5 @@ def send_analytics_event(event_type, **kwargs):
             kwargs.get('lesson_name'),
             kwargs.get('progress_percentage')
         )
+    else:
+        frappe.throw(_(f"Tipo de evento desconhecido: '{event_type}'. Tipos válidos: view_course, enroll_course, purchase, complete_lesson."))

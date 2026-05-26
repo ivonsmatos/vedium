@@ -1,103 +1,174 @@
 #!/bin/bash
-# Vedium LMS - Script de Backup Automático
+# =============================================================
+# Vedium — Script de Backup com restic
 # Compliance: LGPD/GDPR
 # Author: Vedium Global Education
-# Last Updated: 2026-01-21
+# Última revisão: 2026-05-25 (P0.2 Sprint)
+#
+# Dependências no host:
+#   - restic >= 0.16  (apt install restic)
+#   - docker >= 24
+#
+# Variáveis de ambiente necessárias (via .env ou systemd):
+#   RESTIC_REPOSITORY  — ex: s3:https://s3.us-east-1.wasabisys.com/vedium-backup
+#   RESTIC_PASSWORD    — senha de criptografia (gerada com openssl rand -base64 32)
+#   AWS_ACCESS_KEY_ID  — credencial do bucket Wasabi/R2
+#   AWS_SECRET_ACCESS_KEY
+#   MYSQL_ROOT_PASSWORD
+#   TELEGRAM_BOT_TOKEN (opcional) — alertas de falha
+#   TELEGRAM_CHAT_ID   (opcional)
+# =============================================================
+set -euo pipefail
 
-set -e
-
-# Configuration
-BACKUP_DIR="${BACKUP_DIR:-/opt/vedium/backups}"
-DATE=$(date +%Y-%m-%d_%H-%M-%S)
-RETENTION_DAYS=${RETENTION_DAYS:-30}
 LOG_FILE="${LOG_FILE:-/var/log/vedium-backup.log}"
-ENCRYPTION_KEY="${BACKUP_ENCRYPTION_KEY:-VediumBackup2026Secure}"
+COMPOSE_DIR="${COMPOSE_DIR:-/opt/vedium}"
+SITE_NAME="${FRAPPE_SITE_NAME:-app.vediums.com}"
+DUMP_TMP="/tmp/vedium-mariadb-dump.sql.gz"
 
-# Logging function
-log() {
-    echo "[$(date +"%Y-%m-%d %H:%M:%S")] $1" | tee -a "$LOG_FILE"
-}
-
+# ------------------------------------------------------------------
+# Funções utilitárias
+# ------------------------------------------------------------------
+log()   { echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] [BACKUP] $*" | tee -a "$LOG_FILE"; }
+err()   { echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] [ERROR]  $*" | tee -a "$LOG_FILE" >&2; }
 alert() {
-    echo "[ALERT $(date +"%Y-%m-%d %H:%M:%S")] $1" | tee -a "$LOG_FILE"
-    # Add webhook/email notification here if needed
+    err "$*"
+    if [[ -n "${TELEGRAM_BOT_TOKEN:-}" && -n "${TELEGRAM_CHAT_ID:-}" ]]; then
+        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=🔴 [Vedium Backup] $*" \
+            --max-time 10 || true
+    fi
+}
+notify_ok() {
+    log "$*"
+    if [[ -n "${TELEGRAM_BOT_TOKEN:-}" && -n "${TELEGRAM_CHAT_ID:-}" ]]; then
+        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=✅ [Vedium Backup] $*" \
+            --max-time 10 || true
+    fi
 }
 
-log "=== Iniciando backup Vedium LMS ==="
+# ------------------------------------------------------------------
+# Validar dependências e variáveis
+# ------------------------------------------------------------------
+for cmd in restic docker curl; do
+    command -v "$cmd" >/dev/null 2>&1 || { alert "Dependência ausente: $cmd"; exit 1; }
+done
 
-# Create backup directory
-mkdir -p "$BACKUP_DIR/$DATE"
+for var in RESTIC_REPOSITORY RESTIC_PASSWORD MYSQL_ROOT_PASSWORD; do
+    [[ -n "${!var:-}" ]] || { alert "Variável de ambiente ausente: $var"; exit 1; }
+done
 
-# 1. Backup MariaDB (encrypted)
-log "Backup do banco de dados..."
-docker exec vedium-mariadb mysqldump \
-    -u root \
-    -p"${MYSQL_ROOT_PASSWORD:-root}" \
-    --all-databases \
-    --single-transaction \
-    --routines \
-    --triggers \
-    2>/dev/null | gzip | openssl enc -aes-256-cbc -salt -pbkdf2 -pass pass:"$ENCRYPTION_KEY" \
-    > "$BACKUP_DIR/$DATE/mariadb_backup.sql.gz.enc"
+# Inicializar repositório restic se ainda não existir
+if ! restic snapshots &>/dev/null; then
+    log "Inicializando repositório restic em ${RESTIC_REPOSITORY}..."
+    restic init || { alert "Falha ao inicializar repositório restic"; exit 1; }
+fi
 
-if [ $? -eq 0 ]; then
-    log "✅ Backup do banco de dados concluído"
+log "=== Iniciando backup Vedium (restic) ==="
+BACKUP_FAILED=0
+
+# ------------------------------------------------------------------
+# 1. Dump MariaDB → arquivo temporário (single-transaction: zero downtime)
+# ------------------------------------------------------------------
+log "Fazendo dump do MariaDB..."
+if docker exec vedium-mariadb mysqldump \
+        -u root \
+        -p"${MYSQL_ROOT_PASSWORD}" \
+        --all-databases \
+        --single-transaction \
+        --routines \
+        --triggers \
+        --events \
+        2>/dev/null | gzip > "${DUMP_TMP}"; then
+    log "Dump concluído: ${DUMP_TMP}"
 else
-    alert "❌ Erro no backup do banco de dados"
+    alert "Falha no dump do MariaDB"
+    BACKUP_FAILED=1
 fi
 
-# 2. Backup Docker volumes
-log "Backup dos volumes Docker..."
-docker run --rm \
-    -v vedium_frappe-bench-data:/data:ro \
-    -v "$BACKUP_DIR/$DATE":/backup \
-    alpine tar czf /backup/frappe-bench-data.tar.gz -C /data .
+# ------------------------------------------------------------------
+# 2. Backup via restic (MariaDB dump + volumes Frappe + configs)
+# ------------------------------------------------------------------
+log "Enviando para repositório restic: ${RESTIC_REPOSITORY}..."
 
-if [ $? -eq 0 ]; then
-    log "✅ Backup dos volumes concluído"
+BACKUP_PATHS=("${DUMP_TMP}")
+
+# Exportar volume frappe-bench-data para diretório temporário via docker
+FRAPPE_TMP="/tmp/vedium-frappe-bench"
+mkdir -p "${FRAPPE_TMP}"
+if docker run --rm \
+        -v vedium_frappe-bench-data:/data:ro \
+        -v "${FRAPPE_TMP}":/backup \
+        alpine sh -c "cp -a /data/. /backup/"; then
+    BACKUP_PATHS+=("${FRAPPE_TMP}")
 else
-    alert "❌ Erro no backup dos volumes"
+    alert "Falha ao exportar volume frappe-bench-data"
+    BACKUP_FAILED=1
 fi
 
-# 3. Backup configurations
-log "Backup das configurações..."
-tar czf "$BACKUP_DIR/$DATE/configs.tar.gz" \
-    /opt/vedium/docker-compose.yml \
-    /etc/nginx/sites-available/vediums.com \
-    2>/dev/null || true
+# Configs e nginx (se existirem)
+[[ -d "${COMPOSE_DIR}" ]]               && BACKUP_PATHS+=("${COMPOSE_DIR}")
+[[ -f "/etc/nginx/sites-available/vediums.com" ]] && \
+    BACKUP_PATHS+=("/etc/nginx/sites-available/vediums.com")
 
-# 4. Backup site files
-log "Backup dos arquivos do site..."
-tar czf "$BACKUP_DIR/$DATE/site-files.tar.gz" \
-    /opt/vedium/site \
-    2>/dev/null || true
-
-# 5. Calculate checksums for integrity
-log "Calculando checksums..."
-cd "$BACKUP_DIR/$DATE"
-sha256sum * > checksums.sha256
-
-# 6. Clean old backups (retention policy)
-log "Limpando backups antigos (>${RETENTION_DAYS} dias)..."
-find "$BACKUP_DIR" -maxdepth 1 -type d -mtime +$RETENTION_DAYS -exec rm -rf {} \; 2>/dev/null || true
-
-# 7. Check available space
-SPACE_LEFT=$(df -h "$BACKUP_DIR" | tail -1 | awk '{print $4}')
-SPACE_USED_PCT=$(df "$BACKUP_DIR" | tail -1 | awk '{print $5}' | tr -d '%')
-
-if [ "$SPACE_USED_PCT" -gt 85 ]; then
-    alert "⚠️ Disco com ${SPACE_USED_PCT}% de uso! Espaço disponível: $SPACE_LEFT"
+if restic backup \
+        --tag "vedium,daily" \
+        --tag "site:${SITE_NAME}" \
+        --verbose \
+        "${BACKUP_PATHS[@]}"; then
+    log "Backup restic concluído com sucesso"
+else
+    alert "Falha no backup restic"
+    BACKUP_FAILED=1
 fi
 
-log "Espaço disponível: $SPACE_LEFT"
+# ------------------------------------------------------------------
+# 3. Retenção: manter 30 dias de snapshots diários, 12 mensais
+# ------------------------------------------------------------------
+log "Aplicando política de retenção..."
+restic forget \
+    --keep-daily 30 \
+    --keep-monthly 12 \
+    --tag "vedium" \
+    --prune \
+    --verbose || {
+    alert "Falha na política de retenção restic"
+    BACKUP_FAILED=1
+}
 
-# 8. Summary
-BACKUP_SIZE=$(du -sh "$BACKUP_DIR/$DATE" | awk '{print $1}')
-log "=== Backup concluído com sucesso ==="
-log "Local: $BACKUP_DIR/$DATE"
-log "Tamanho total: $BACKUP_SIZE"
-log "Arquivos:"
-ls -lh "$BACKUP_DIR/$DATE" | tail -n +2 | tee -a "$LOG_FILE"
+# ------------------------------------------------------------------
+# 4. Verificar integridade do snapshot mais recente
+# ------------------------------------------------------------------
+log "Verificando integridade do último snapshot..."
+restic check --read-data-subset=5% || {
+    alert "Verificação de integridade restic falhou — revisar repositório"
+    BACKUP_FAILED=1
+}
 
-# Exit success
-exit 0
+# ------------------------------------------------------------------
+# 5. Limpeza de arquivos temporários
+# ------------------------------------------------------------------
+rm -f "${DUMP_TMP}"
+rm -rf "${FRAPPE_TMP}"
+
+# ------------------------------------------------------------------
+# 6. Alerta de espaço em disco
+# ------------------------------------------------------------------
+DISK_USED_PCT=$(df "${COMPOSE_DIR:-/}" | tail -1 | awk '{print $5}' | tr -d '%')
+if [[ "${DISK_USED_PCT}" -gt 85 ]]; then
+    alert "Disco em ${DISK_USED_PCT}% de uso no host — atenção imediata necessária"
+fi
+
+# ------------------------------------------------------------------
+# Resumo final
+# ------------------------------------------------------------------
+SNAP_COUNT=$(restic snapshots --tag "vedium" --json 2>/dev/null | python3 -c "import sys,json; print(len(json.load(sys.stdin)))" 2>/dev/null || echo "?")
+if [[ "${BACKUP_FAILED}" -eq 0 ]]; then
+    notify_ok "Backup diário concluído. Snapshots: ${SNAP_COUNT}. Disco: ${DISK_USED_PCT}% usado."
+    exit 0
+else
+    alert "Backup concluído COM FALHAS. Verificar log: ${LOG_FILE}"
+    exit 1
+fi

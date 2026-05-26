@@ -1,9 +1,12 @@
 # Task 8: Migração ERPNext v16 (Estável)
 
+> ⚠️ **AUDITORIA P0 (2026-05-25):** A documentação menciona "ERPNext v16" mas a produção
+> roda `frappe/erpnext:v15`. v16 NÃO está em uso. Atualizado abaixo para refletir a realidade.
+
 - [x] Realizar backup completo (Banco + Arquivos).
-- [x] Migrar apps para branch `version-16`.
-- [x] Executar `bench update --upgrade`.
-- [x] Validar integridade e Identidade "Raízes de Luxo".
+- [ ] Migrar apps para branch `version-16`. ← **NÃO FEITO** — produção está em v15 (decisão: manter v15, migrar Q3 2026)
+- [ ] Executar `bench update --upgrade`. ← **NÃO FEITO** (dependente do item acima)
+- [x] Validar integridade e Identidade "Raízes de Luxo". ← parcial
 
 ## 1a) Mercado Pago e Basecommerce
 
@@ -19,7 +22,7 @@
 
 ## 1c) Entrada de cupons/descontos
 
-- [x] Permitir cupons em promoções e códigos especiais.
+- [ ] Permitir cupons em promoções e códigos especiais. ← **DocType `Coupon` não declarado no app** — endpoint existe mas quebra em runtime (P1.3)
 
 ## 1d) Testes automatizados para pagamentos
 
@@ -29,12 +32,12 @@
 
 # Task 2: Plataforma de Cursos de Idiomas – Funcionalidades Avançadas
 
-- [x] Certificados digitais automáticos com código de verificação.
-- [x] Quiz/prova de nível com feedback instantâneo.
+- [ ] Certificados digitais automáticos com código de verificação. ← **DocType `LMS Certificate` não declarado** — quebra em runtime (P1.3)
+- [x] Quiz/prova de nível com feedback instantâneo. ← usa DocTypes do frappe/lms oficial
 - [x] Suporte a aulas ao vivo e gravadas (Zoom, Meet, Vimeo/Youtube).
 - [x] Feedback automatizado (IA): avaliações de áudio/texto, dashboards. (Serviço de IA integrado)
-- [/] Recursos extras: escuta ativa, gravação de áudio, flashcards. (Placeholders implementados)
-- [x] Gamificação: emblemas, níveis, rankings.
+- [/] Recursos extras: escuta ativa, gravação de áudio, flashcards. ← **DocType `LMS Flashcard` não declarado** — placeholder apenas (P1.3)
+- [ ] Gamificação: emblemas, níveis, rankings. ← **DocType `LMS Badge Log` não declarado** — código existe, DocType não (P1.3)
 - [x] Comunidade: fórum, integração Telegram/Discord/Slack.
 - [x] Acessibilidade e internacionalização.
 
@@ -69,8 +72,8 @@
 
 # Task 5: Observabilidade e Suporte
 
-- [x] Painel de suporte para chamados.
-- [x] Monitoramento automático: dashboard, webhooks para falhas/fraudes. (Prometheus/Grafana configurados)
+- [ ] Painel de suporte para chamados. ← **DocType `Support Ticket` não declarado** — placeholder (P1.3)
+- [ ] Monitoramento automático: dashboard, webhooks para falhas/fraudes. ← Stack Prometheus/Grafana configurada mas NÃO rodando (workers faltavam — corrigido P0.1)
 - [x] Métricas: Google Analytics 4, Hotjar/Clarity, LGPD.
 
 ---
@@ -83,7 +86,22 @@
 - [x] Configurar Módulo de RH (HRMS) e Operações de Pessoal.
 - [x] Implementar Teste de Nivelamento (Placement Test) no LMS.
 - [x] Implementar Agendamento de Aulas Individuais (Booking System).
-- [x] Implementar Flashcards (SRS).
-- [x] Expandir IA de Pronúncia para Análise Fonética.
-- [x] Configurar Gamificação (Pontos, Níveis, Rankings).
+- [ ] Implementar Flashcards (SRS). ← **DocType `LMS Flashcard` não declarado** (P1.3)
+- [ ] Expandir IA de Pronúncia para Análise Fonética. ← P3 (requer GPU ou Replicate API)
+- [ ] Configurar Gamificação (Pontos, Níveis, Rankings). ← **DocType `LMS Badge Log` não declarado** (P1.3)
 - [x] Migrar as customizações do `vedium_core` (Mercado Pago, IA) para trabalhar com o oficial.
+
+---
+
+## DocTypes faltantes (bloqueadores P1.3)
+
+> Código referencia estes DocTypes que **não existem** no banco/app ainda.
+> Criar em `vedium_core/doctype/` na Fase P1.
+
+| DocType           | Usado em                    | Prioridade |
+| ----------------- | --------------------------- | ---------- |
+| `LMS Certificate` | `api.py`, `gamification.py` | P1.3       |
+| `LMS Badge Log`   | `gamification.py`           | P1.3       |
+| `LMS Flashcard`   | `api.py`                    | P1.3       |
+| `Support Ticket`  | `api.py`                    | P1.3       |
+| `Coupon`          | `api.py`                    | P1.3       |

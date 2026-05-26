@@ -10,14 +10,14 @@ class Gamification:
 			return
 		
 		frappe.db.set_value("User", user, "vedium_points", 
-			frappe.db.get_value("User", user, "vedium_points") + points)
+			(frappe.db.get_value("User", user, "vedium_points") or 0) + points)
 		
 		# In production, we'd also create a 'Point Transaction' log entry.
-		frappe.msgprint(f"You earned {points} points for {reason}!")
 
 	@staticmethod
-	def handle_lesson_completion(user, course, lesson):
+	def handle_lesson_completion(doc, method):
 		"""
 		Standard reward for completing a lesson.
 		"""
-		Gamification.add_points(user, 10, f"completing lesson {lesson}")
+		# LMS Course Progress uses 'member' for the enrolled user and 'course' for context
+		Gamification.add_points(doc.member, 10, f"completing a lesson in {doc.course}")

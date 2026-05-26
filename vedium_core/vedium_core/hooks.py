@@ -55,8 +55,8 @@ web_include_js = ["/assets/vedium_core/js/pwa-register.js"]
 # PWA Configuration
 # =============================================================================
 
-# Web Manifest
-web_manifest = "/assets/vedium_core/manifest.json"
+# Web Manifest — servido em /manifest.json via nginx (scope root)
+web_manifest = "/manifest.json"
 
 # Theme Color for PWA
 app_theme_color = "#166534"

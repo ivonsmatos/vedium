@@ -11,6 +11,8 @@ dependencies = [
     "mercadopago>=2.2.0",
     "openai>=1.0",
     "prometheus-client>=0.19",
+    "groq>=0.5",
+    "requests>=2.31",
 ]
 
 [project.optional-dependencies]

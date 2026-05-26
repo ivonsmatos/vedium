@@ -115,9 +115,13 @@ def get_course_details(course_name):
         
         return course
         
+    except frappe.DoesNotExistError:
+        frappe.throw(_("Curso não encontrado"), frappe.DoesNotExistError)
+    except frappe.PermissionError:
+        raise
     except Exception as e:
         frappe.log_error(f"Error fetching course details: {str(e)}", "Vedium Course Details")
-        frappe.throw("Course not found", frappe.DoesNotExistError)
+        frappe.throw(_("Erro ao carregar detalhes do curso. Tente novamente."))
 
 def check_enrollment(course_name):
     """Check if current user is enrolled in the course"""
@@ -181,9 +185,10 @@ def get_course_reviews(course_name):
     return []
 
 def calculate_average_rating(reviews):
-    """Calculate average rating from reviews"""
+    """Calculate average rating from reviews. M-14: filter out None ratings before dividing."""
     if not reviews:
         return 0
-    
-    total = sum(review.rating for review in reviews if review.rating)
-    return round(total / len(reviews), 1) if reviews else 0
+    rated = [r for r in reviews if r.rating]
+    if not rated:
+        return 0
+    return round(sum(r.rating for r in rated) / len(rated), 1)

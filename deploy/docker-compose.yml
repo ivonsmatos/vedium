@@ -5,9 +5,44 @@
 #   1. Arquivo .env preenchido (use .env.example como base)
 #   2. Senhas geradas com openssl rand -base64 32
 #   3. Frappe é exposto APENAS via nginx (nada externo aqui)
+#
+# Stack real: Frappe v15 / Python 3.11 / Node 20 / MariaDB 10.6
 # =====================================================
 
+# Bloco de variáveis reutilizáveis (YAML anchors)
+x-frappe-env: &frappe-env
+  FRAPPE_SITE_NAME: ${FRAPPE_SITE_NAME:-app.vediums.com}
+  SITES_PATH: /home/frappe/frappe-bench/sites
+  FRAPPE_STREAM_LOGGING: "1"
+  DB_HOST: vedium-mariadb
+  DB_PORT: "3306"
+  REDIS_CACHE: vedium-redis-cache:6379
+  REDIS_QUEUE: vedium-redis-queue:6379
+  REDIS_SOCKETIO: vedium-redis-socketio:6379
+  FRAPPE_REDIS_QUEUE: redis://vedium-redis-queue:6379
+  FRAPPE_REDIS_CACHE: redis://vedium-redis-cache:6379
+
+x-frappe-volumes: &frappe-volumes
+  - frappe-bench-data:/home/frappe/frappe-bench
+  - vedium-sites:/home/frappe/frappe-bench/sites
+
+x-frappe-networks: &frappe-networks
+  - vedium-network
+
+x-frappe-depends: &frappe-depends
+  vedium-mariadb:
+    condition: service_healthy
+  vedium-redis-cache:
+    condition: service_healthy
+  vedium-redis-queue:
+    condition: service_healthy
+  vedium-redis-socketio:
+    condition: service_healthy
+
 services:
+  # --------------------------------------------------
+  # APP: Gunicorn — serve requests HTTP
+  # --------------------------------------------------
   vedium-frappe:
     image: frappe/erpnext:v15
     container_name: vedium-frappe
@@ -21,29 +56,151 @@ services:
       - "4"
       - -t
       - "120"
-      - frappe.app:application
+      - custom_wsgi:application
       - --preload
     environment:
-      FRAPPE_SITE_NAME: ${FRAPPE_SITE_NAME:-app.vediums.com}
-      DB_HOST: vedium-mariadb
-      DB_PORT: "3306"
-      REDIS_CACHE: vedium-redis-cache:6379
-      REDIS_QUEUE: vedium-redis-queue:6379
-      REDIS_SOCKETIO: vedium-redis-socketio:6379
+      <<: *frappe-env
     # Bind apenas no localhost — nginx faz proxy reverso
     ports:
       - "127.0.0.1:8005:8000"
-      - "127.0.0.1:9005:9000"
-    volumes:
-      - frappe-bench-data:/home/frappe/frappe-bench
-    networks:
-      - vedium-network
-    depends_on:
-      - vedium-mariadb
-      - vedium-redis-cache
-      - vedium-redis-queue
-      - vedium-redis-socketio
+    volumes: *frappe-volumes
+    networks: *frappe-networks
+    depends_on: *frappe-depends
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-H", "Host: app.vediums.com", "http://localhost:8000/api/method/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
+  # --------------------------------------------------
+  # SOCKETIO — realtime (chat, progresso ao vivo)
+  # --------------------------------------------------
+  vedium-socketio:
+    image: frappe/erpnext:v15
+    container_name: vedium-socketio
+    restart: always
+    working_dir: /home/frappe/frappe-bench
+    command:
+      - node
+      - /home/frappe/frappe-bench/apps/frappe/socketio.js
+    environment:
+      FRAPPE_SITE_NAME: ${FRAPPE_SITE_NAME:-app.vediums.com}
+      SITES_PATH: /home/frappe/frappe-bench/sites
+      REDIS_SOCKETIO: vedium-redis-socketio:6379
+    ports:
+      - "127.0.0.1:9000:9000"
+    volumes: *frappe-volumes
+    networks: *frappe-networks
+    depends_on:
+      vedium-frappe:
+        condition: service_healthy
+      vedium-redis-socketio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:9000/socket.io/?EIO=4&transport=polling', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # --------------------------------------------------
+  # WORKERS — processam fila de jobs assíncronos
+  # (emails, certificados, webhooks, relatórios pesados)
+  # --------------------------------------------------
+  vedium-worker-default:
+    image: frappe/erpnext:v15
+    container_name: vedium-worker-default
+    restart: always
+    working_dir: /home/frappe/frappe-bench
+    command:
+      - bench
+      - worker
+      - --queue
+      - default
+    environment:
+      <<: *frappe-env
+    volumes: *frappe-volumes
+    networks: *frappe-networks
+    depends_on: *frappe-depends
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "vedium-redis-queue", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  vedium-worker-short:
+    image: frappe/erpnext:v15
+    container_name: vedium-worker-short
+    restart: always
+    working_dir: /home/frappe/frappe-bench
+    command:
+      - bench
+      - worker
+      - --queue
+      - short
+    environment:
+      <<: *frappe-env
+    volumes: *frappe-volumes
+    networks: *frappe-networks
+    depends_on: *frappe-depends
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "vedium-redis-queue", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  vedium-worker-long:
+    image: frappe/erpnext:v15
+    container_name: vedium-worker-long
+    restart: always
+    working_dir: /home/frappe/frappe-bench
+    command:
+      - bench
+      - worker
+      - --queue
+      - long
+    environment:
+      <<: *frappe-env
+    volumes: *frappe-volumes
+    networks: *frappe-networks
+    depends_on: *frappe-depends
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "vedium-redis-queue", "ping"]
+      interval: 60s
+      timeout: 15s
+      retries: 3
+      start_period: 30s
+
+  # --------------------------------------------------
+  # SCHEDULER — executa tarefas agendadas (cron Frappe)
+  # (backups internos, limpeza de sessões, métricas)
+  # --------------------------------------------------
+  vedium-scheduler:
+    image: frappe/erpnext:v15
+    container_name: vedium-scheduler
+    restart: always
+    working_dir: /home/frappe/frappe-bench
+    command:
+      - bench
+      - schedule
+    environment:
+      <<: *frappe-env
+    volumes: *frappe-volumes
+    networks: *frappe-networks
+    depends_on: *frappe-depends
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "vedium-redis-queue", "ping"]
+      interval: 60s
+      timeout: 15s
+      retries: 3
+      start_period: 30s
+
+  # --------------------------------------------------
+  # BANCO DE DADOS — MariaDB 10.6
+  # --------------------------------------------------
   vedium-mariadb:
     image: mariadb:10.6
     container_name: vedium-mariadb
@@ -63,7 +220,17 @@ services:
       - mariadb-data:/var/lib/mysql
     networks:
       - vedium-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost",
+             "-u", "root", "--password=${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
+  # --------------------------------------------------
+  # REDIS — 3 instâncias lógicas separadas
+  # --------------------------------------------------
   vedium-redis-cache:
     image: redis:7-alpine
     container_name: vedium-redis-cache
@@ -72,6 +239,11 @@ services:
       - redis-cache-data:/data
     networks:
       - vedium-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   vedium-redis-queue:
     image: redis:7-alpine
@@ -81,6 +253,11 @@ services:
       - redis-queue-data:/data
     networks:
       - vedium-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   vedium-redis-socketio:
     image: redis:7-alpine
@@ -90,13 +267,104 @@ services:
       - redis-socketio-data:/data
     networks:
       - vedium-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --------------------------------------------------
+  # OBSERVABILIDADE (profile: observability)
+  # Ativar com: docker compose --profile observability up -d
+  # --------------------------------------------------
+  vedium-prometheus:
+    image: prom/prometheus:latest
+    container_name: vedium-prometheus
+    profiles: ["observability"]
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=30d
+      - --web.enable-lifecycle
+    # Bind localhost — não expor diretamente; use nginx + auth
+    ports:
+      - "127.0.0.1:9090:9090"
+    networks:
+      - vedium-network
+
+  vedium-grafana:
+    image: grafana/grafana:latest
+    container_name: vedium-grafana
+    profiles: ["observability"]
+    restart: always
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Defina GRAFANA_ADMIN_PASSWORD no .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_SERVER_ROOT_URL: https://metrics.vediums.com
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - vedium-network
+    depends_on:
+      - vedium-prometheus
+
+  vedium-loki:
+    image: grafana/loki:latest
+    container_name: vedium-loki
+    profiles: ["observability"]
+    restart: always
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki-data:/loki
+    ports:
+      - "127.0.0.1:3100:3100"
+    networks:
+      - vedium-network
+
+  vedium-promtail:
+    image: grafana/promtail:latest
+    container_name: vedium-promtail
+    profiles: ["observability"]
+    restart: always
+    volumes:
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: -config.file=/etc/promtail/docker-config.yaml
+    networks:
+      - vedium-network
+    depends_on:
+      - vedium-loki
+
+  vedium-uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: vedium-uptime-kuma
+    profiles: ["observability"]
+    restart: always
+    volumes:
+      - uptime-kuma-data:/app/data
+    ports:
+      - "127.0.0.1:3001:3001"
+    networks:
+      - vedium-network
 
 volumes:
   frappe-bench-data:
+  vedium-sites:
   mariadb-data:
   redis-cache-data:
   redis-queue-data:
   redis-socketio-data:
+  prometheus-data:
+  grafana-data:
+  loki-data:
+  uptime-kuma-data:
 
 networks:
   vedium-network:
