@@ -308,7 +308,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:3003:3000"
     networks:
       - vedium-network
     depends_on:
@@ -351,7 +351,7 @@ services:
     volumes:
       - uptime-kuma-data:/app/data
     ports:
-      - "127.0.0.1:3001:3001"
+      - "127.0.0.1:3004:3001"
     networks:
       - vedium-network
 

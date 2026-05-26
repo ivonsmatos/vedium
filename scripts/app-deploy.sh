@@ -39,6 +39,7 @@ log "Rsync vedium_core concluído."
 log "Sincronizando pasta deploy/ para $COMPOSE_DIR..."
 rsync -av --delete \
   --exclude=".git" \
+  --exclude=".env" \
   "$REPO_DIR/deploy/" "$COMPOSE_DIR/"
 log "Rsync deploy/ concluído."
 
