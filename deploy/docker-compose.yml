@@ -124,7 +124,7 @@ services:
     networks: *frappe-networks
     depends_on: *frappe-depends
     healthcheck:
-      test: ["CMD-SHELL", "pgrep -f 'bench worker' > /dev/null"]
+      test: ["CMD-SHELL", "python3 -c \"import os;procs=[open(f'/proc/{p}/cmdline').read() for p in os.listdir('/proc') if p.isdigit() and os.path.exists(f'/proc/{p}/cmdline')];exit(0 if any('bench' in p for p in procs) else 1)\""]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -146,7 +146,7 @@ services:
     networks: *frappe-networks
     depends_on: *frappe-depends
     healthcheck:
-      test: ["CMD-SHELL", "pgrep -f 'bench worker' > /dev/null"]
+      test: ["CMD-SHELL", "python3 -c \"import os;procs=[open(f'/proc/{p}/cmdline').read() for p in os.listdir('/proc') if p.isdigit() and os.path.exists(f'/proc/{p}/cmdline')];exit(0 if any('bench' in p for p in procs) else 1)\""]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -168,7 +168,7 @@ services:
     networks: *frappe-networks
     depends_on: *frappe-depends
     healthcheck:
-      test: ["CMD-SHELL", "pgrep -f 'bench worker' > /dev/null"]
+      test: ["CMD-SHELL", "python3 -c \"import os;procs=[open(f'/proc/{p}/cmdline').read() for p in os.listdir('/proc') if p.isdigit() and os.path.exists(f'/proc/{p}/cmdline')];exit(0 if any('bench' in p for p in procs) else 1)\""]
       interval: 60s
       timeout: 15s
       retries: 3
@@ -192,7 +192,7 @@ services:
     networks: *frappe-networks
     depends_on: *frappe-depends
     healthcheck:
-      test: ["CMD-SHELL", "pgrep -f 'bench schedule' > /dev/null"]
+      test: ["CMD-SHELL", "python3 -c \"import os;procs=[open(f'/proc/{p}/cmdline').read() for p in os.listdir('/proc') if p.isdigit() and os.path.exists(f'/proc/{p}/cmdline')];exit(0 if any('bench' in p for p in procs) else 1)\""]
       interval: 60s
       timeout: 15s
       retries: 3
