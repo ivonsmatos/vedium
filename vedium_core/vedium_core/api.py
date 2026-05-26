@@ -648,7 +648,9 @@ class StripeGateway(PaymentGateway):
     def _get_api_key(self):
         key = frappe.conf.get("STRIPE_SECRET_KEY")
         if not key:
-            frappe.throw(_("STRIPE_SECRET_KEY n\u00e3o configurado no site_config.json"))
+            frappe.throw(
+                _("STRIPE_SECRET_KEY n\u00e3o configurado no site_config.json")
+            )
         return key
 
     def create_checkout(self, course, user):
@@ -663,14 +665,16 @@ class StripeGateway(PaymentGateway):
 
         session = stripe.checkout.Session.create(
             payment_method_types=["card"],
-            line_items=[{
-                "price_data": {
-                    "currency": currency,
-                    "product_data": {"name": course.title},
-                    "unit_amount": unit_amount,
-                },
-                "quantity": 1,
-            }],
+            line_items=[
+                {
+                    "price_data": {
+                        "currency": currency,
+                        "product_data": {"name": course.title},
+                        "unit_amount": unit_amount,
+                    },
+                    "quantity": 1,
+                }
+            ],
             mode="payment",
             customer_email=user_email,
             client_reference_id=f"{course.name}|{user}",
@@ -828,7 +832,7 @@ def get_gateway(gateway_name):
 def stripe_webhook():
     """
     Endpoint exclusivo para webhooks do Stripe.
-    URL: /api/method/vedium_core.vedium_core.api.stripe_webhook
+    URL: /api/method/vedium_core.api.stripe_webhook
     Registrar no Stripe Dashboard → Developers → Webhooks.
     Eventos: checkout.session.completed
     """
@@ -925,7 +929,9 @@ def handle_payment_webhook(gateway=None):
         webhook_secret = frappe.conf.get("MERCADOPAGO_WEBHOOK_SECRET")
         if webhook_secret and sig_header:
             try:
-                parts = {k: v for k, v in (p.split("=", 1) for p in sig_header.split(","))}
+                parts = {
+                    k: v for k, v in (p.split("=", 1) for p in sig_header.split(","))
+                }
                 ts = parts.get("ts", "")
                 v1 = parts.get("v1", "")
                 # MercadoPago manifest: HMAC of "id:<payment_id>;request-id:<req_id>;ts:<ts>"
@@ -936,10 +942,14 @@ def handle_payment_webhook(gateway=None):
                     webhook_secret.encode(), manifest.encode(), hashlib.sha256
                 ).hexdigest()
                 if not hmac.compare_digest(expected, v1):
-                    frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+                    frappe.throw(
+                        _("Webhook signature inválida"), frappe.AuthenticationError
+                    )
             except Exception as e:
                 frappe.log_error(f"MercadoPago webhook signature check failed: {e}")
-                frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+                frappe.throw(
+                    _("Webhook signature inválida"), frappe.AuthenticationError
+                )
 
     elif gateway == "stripe":
         # Stripe sends Stripe-Signature header for HMAC verification
@@ -948,11 +958,14 @@ def handle_payment_webhook(gateway=None):
         if stripe_secret and sig_header:
             try:
                 import stripe
+
                 payload = frappe.request.get_data(as_text=True)
                 stripe.Webhook.construct_event(payload, sig_header, stripe_secret)
             except Exception as e:
                 frappe.log_error(f"Stripe webhook signature check failed: {e}")
-                frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+                frappe.throw(
+                    _("Webhook signature inválida"), frappe.AuthenticationError
+                )
 
     gateway_obj = get_gateway(gateway)
     gateway_obj.handle_webhook(data)
