@@ -71,10 +71,10 @@ log "Nginx recarregado."
 
 # ---- 6. Confirmação ----
 log "=== Stack de observabilidade ativa! ==="
-log "  Grafana:      https://metrics.vediums.com"
+log "  Grafana:      https://metrics.vediums.com  (host: 3003)"
 log "  Prometheus:   http://127.0.0.1:9090  (interno)"
 log "  Loki:         http://127.0.0.1:3100  (interno)"
-log "  Uptime Kuma:  http://127.0.0.1:3001  (interno)"
+log "  Uptime Kuma:  http://127.0.0.1:3004  (host: 3004)"
 log ""
 log "  Login Grafana: admin / <GRAFANA_ADMIN_PASSWORD do .env>"
 log ""
