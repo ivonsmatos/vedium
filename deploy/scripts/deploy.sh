@@ -76,14 +76,16 @@ fi
 log "✅ Backup criado em: $BACKUP_DIR/pre-deploy-$TIMESTAMP"
 
 # ===========================================
-# 2. Pull latest changes (if git repo)
+# 2. Pull latest changes via app-deploy script
 # ===========================================
-if [ -d "$DEPLOY_DIR/.git" ]; then
-    log "Atualizando do Git..."
-    cd "$DEPLOY_DIR"
-    git fetch origin
-    git reset --hard origin/main
-    git pull origin main
+if [ -x "/opt/vedium/scripts/app-deploy.sh" ]; then
+    log "Atualizando código da aplicação via git pull..."
+    /opt/vedium/scripts/app-deploy.sh
+    log "✅ Código atualizado e migrate concluído"
+elif [ -d "/opt/vedium-src/.git" ]; then
+    log "Atualizando do Git (fallback)..."
+    git -C /opt/vedium-src fetch origin main
+    git -C /opt/vedium-src reset --hard origin/main
     log "✅ Código atualizado"
 fi
 

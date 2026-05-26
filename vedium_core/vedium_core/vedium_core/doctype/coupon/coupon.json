@@ -1,0 +1,85 @@
+{
+    "actions": [],
+    "autoname": "field:coupon_code",
+    "creation": "2024-01-25 21:05:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "coupon_code",
+        "discount_percent",
+        "active",
+        "valid_from",
+        "valid_to",
+        "max_uses",
+        "used_count"
+    ],
+    "fields": [
+        {
+            "fieldname": "coupon_code",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Coupon Code",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "discount_percent",
+            "fieldtype": "Float",
+            "in_list_view": 1,
+            "label": "Discount (%)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "active",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Active",
+            "default": "1"
+        },
+        {
+            "fieldname": "valid_from",
+            "fieldtype": "Datetime",
+            "label": "Valid From"
+        },
+        {
+            "fieldname": "valid_to",
+            "fieldtype": "Datetime",
+            "label": "Valid To"
+        },
+        {
+            "fieldname": "max_uses",
+            "fieldtype": "Int",
+            "label": "Max Uses"
+        },
+        {
+            "fieldname": "used_count",
+            "fieldtype": "Int",
+            "label": "Used Count",
+            "default": "0"
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2024-01-25 21:05:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Coupon",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "All",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}
