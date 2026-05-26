@@ -645,13 +645,66 @@ class PaymentGateway:
 
 
 class StripeGateway(PaymentGateway):
-    def create_checkout(self, course, user):
-        # Placeholder Stripe logic
-        return f"/lms/courses/{course.name}/enroll"
+    def _get_api_key(self):
+        key = frappe.conf.get("STRIPE_SECRET_KEY")
+        if not key:
+            frappe.throw(_("STRIPE_SECRET_KEY n\u00e3o configurado no site_config.json"))
+        return key
 
-    def handle_webhook(self, data):
-        # Stripe webhook logic
-        pass
+    def create_checkout(self, course, user):
+        import stripe
+
+        stripe.api_key = self._get_api_key()
+
+        user_email = frappe.get_value("User", user, "email") or user
+        base_url = frappe.utils.get_url()
+        currency = (getattr(course, "currency", None) or "BRL").lower()
+        unit_amount = int(float(course.course_price or 0) * 100)  # centavos/cents
+
+        session = stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            line_items=[{
+                "price_data": {
+                    "currency": currency,
+                    "product_data": {"name": course.title},
+                    "unit_amount": unit_amount,
+                },
+                "quantity": 1,
+            }],
+            mode="payment",
+            customer_email=user_email,
+            client_reference_id=f"{course.name}|{user}",
+            success_url=(
+                f"{base_url}/lms/courses/{course.name}"
+                "?payment=success&session_id={CHECKOUT_SESSION_ID}"
+            ),
+            cancel_url=f"{base_url}/lms/courses/{course.name}?payment=cancelled",
+            metadata={
+                "course_name": course.name,
+                "user": user,
+                "site": frappe.local.site,
+            },
+        )
+        return session.url
+
+    def handle_webhook(self, event):
+        if event.get("type") == "checkout.session.completed":
+            session = event.get("data", {}).get("object", {})
+            ref = session.get("client_reference_id", "")
+            try:
+                course_name, user = ref.split("|", 1)
+                create_enrollment_if_paid(
+                    course_name,
+                    user,
+                    "stripe",
+                    session.get("payment_intent", ""),
+                    amount=(session.get("amount_total") or 0) / 100,
+                    currency=(session.get("currency") or "brl").upper(),
+                )
+            except ValueError:
+                frappe.log_error(
+                    f"Stripe webhook: client_reference_id inv\u00e1lido: {ref}"
+                )
 
 
 class MercadoPagoGateway(PaymentGateway):
@@ -766,6 +819,48 @@ def get_gateway(gateway_name):
         return CryptoGateway()
     else:
         raise Exception("Gateway não suportado")
+
+
+# =====================
+# Webhook dedicado Stripe (processa raw JSON body com verificação de assinatura)
+# =====================
+@frappe.whitelist(allow_guest=True)
+def stripe_webhook():
+    """
+    Endpoint exclusivo para webhooks do Stripe.
+    URL: /api/method/vedium_core.vedium_core.api.stripe_webhook
+    Registrar no Stripe Dashboard → Developers → Webhooks.
+    Eventos: checkout.session.completed
+    """
+    import stripe
+
+    stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY", "")
+    payload = frappe.request.get_data(as_text=True)
+    sig_header = frappe.request.headers.get("Stripe-Signature")
+    webhook_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET")
+
+    try:
+        if webhook_secret and sig_header:
+            event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
+        else:
+            # Sem segredo configurado: aceita em modo desenvolvimento (log de aviso)
+            frappe.log_error(
+                "STRIPE_WEBHOOK_SECRET não configurado — webhook não verificado",
+                "Stripe Webhook Warning",
+            )
+            event = stripe.Event.construct_from(
+                frappe.parse_json(payload), stripe.api_key
+            )
+    except stripe.error.SignatureVerificationError as e:
+        frappe.log_error(f"Stripe webhook signature inválida: {e}")
+        frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
+    except Exception as e:
+        frappe.log_error(f"Stripe webhook parse error: {e}")
+        frappe.throw(_("Webhook inválido"), frappe.AuthenticationError)
+
+    gateway_obj = StripeGateway()
+    gateway_obj.handle_webhook(event)
+    return {"status": "ok"}
 
 
 # =====================
