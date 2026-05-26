@@ -10,7 +10,9 @@
 | P0.4 Audit task.md | ✅ Done | Este arquivo atualizado |
 | P0.5 Makefile | ✅ Done | Committed |
 | P0.6 Healthchecks | ✅ Done | All containers healthy |
-| P0.7 Cloudflare CDN /assets/* | ❌ Requer CF panel | Precisa purgar cache /sw.js e /manifest.json no dashboard CF |
+| P0.7 Cloudflare CDN /assets/* | ✅ Done | Cache purgado via API (sw.js + manifest.json) |
+| P1.3 DocTypes faltantes | ✅ Done | LMS Certificate, LMS Badge Log, LMS Flashcard, Support Ticket, Coupon criados e migrados |
+| Git deploy no servidor | ✅ Done | Deploy key SSH + `/opt/vedium-src` clonado + `scripts/app-deploy.sh` (git pull → rsync → migrate) |
 
 ---
 
@@ -38,7 +40,7 @@
 
 ## 1c) Entrada de cupons/descontos
 
-- [ ] Permitir cupons em promoções e códigos especiais. ← **DocType `Coupon` não declarado no app** — endpoint existe mas quebra em runtime (P1.3)
+- [x] Permitir cupons em promoções e códigos especiais. ← DocType `Coupon` criado e migrado (P1.3 ✅)
 
 ## 1d) Testes automatizados para pagamentos
 
@@ -48,12 +50,12 @@
 
 # Task 2: Plataforma de Cursos de Idiomas – Funcionalidades Avançadas
 
-- [ ] Certificados digitais automáticos com código de verificação. ← **DocType `LMS Certificate` não declarado** — quebra em runtime (P1.3)
+- [x] Certificados digitais automáticos com código de verificação. ← DocType `LMS Certificate` criado e migrado (P1.3 ✅)
 - [x] Quiz/prova de nível com feedback instantâneo. ← usa DocTypes do frappe/lms oficial
 - [x] Suporte a aulas ao vivo e gravadas (Zoom, Meet, Vimeo/Youtube).
 - [x] Feedback automatizado (IA): avaliações de áudio/texto, dashboards. (Serviço de IA integrado)
-- [/] Recursos extras: escuta ativa, gravação de áudio, flashcards. ← **DocType `LMS Flashcard` não declarado** — placeholder apenas (P1.3)
-- [ ] Gamificação: emblemas, níveis, rankings. ← **DocType `LMS Badge Log` não declarado** — código existe, DocType não (P1.3)
+- [x] Recursos extras: escuta ativa, gravação de áudio, flashcards. ← DocType `LMS Flashcard` criado (P1.3 ✅)
+- [x] Gamificação: emblemas, níveis, rankings. ← DocType `LMS Badge Log` criado (P1.3 ✅)
 - [x] Comunidade: fórum, integração Telegram/Discord/Slack.
 - [x] Acessibilidade e internacionalização.
 
@@ -88,7 +90,7 @@
 
 # Task 5: Observabilidade e Suporte
 
-- [ ] Painel de suporte para chamados. ← **DocType `Support Ticket` não declarado** — placeholder (P1.3)
+- [x] Painel de suporte para chamados. ← DocType `Support Ticket` criado e migrado (P1.3 ✅)
 - [ ] Monitoramento automático: dashboard, webhooks para falhas/fraudes. ← Stack Prometheus/Grafana configurada mas NÃO rodando (workers faltavam — corrigido P0.1)
 - [x] Métricas: Google Analytics 4, Hotjar/Clarity, LGPD.
 
@@ -102,9 +104,9 @@
 - [x] Configurar Módulo de RH (HRMS) e Operações de Pessoal.
 - [x] Implementar Teste de Nivelamento (Placement Test) no LMS.
 - [x] Implementar Agendamento de Aulas Individuais (Booking System).
-- [ ] Implementar Flashcards (SRS). ← **DocType `LMS Flashcard` não declarado** (P1.3)
+- [x] Implementar Flashcards (SRS). ← DocType `LMS Flashcard` criado e migrado (P1.3 ✅)
 - [ ] Expandir IA de Pronúncia para Análise Fonética. ← P3 (requer GPU ou Replicate API)
-- [ ] Configurar Gamificação (Pontos, Níveis, Rankings). ← **DocType `LMS Badge Log` não declarado** (P1.3)
+- [x] Configurar Gamificação (Pontos, Níveis, Rankings). ← DocType `LMS Badge Log` criado e migrado (P1.3 ✅)
 - [x] Migrar as customizações do `vedium_core` (Mercado Pago, IA) para trabalhar com o oficial.
 
 ---
@@ -114,10 +116,10 @@
 > Código referencia estes DocTypes que **não existem** no banco/app ainda.
 > Criar em `vedium_core/doctype/` na Fase P1.
 
-| DocType           | Usado em                    | Prioridade |
-| ----------------- | --------------------------- | ---------- |
-| `LMS Certificate` | `api.py`, `gamification.py` | P1.3       |
-| `LMS Badge Log`   | `gamification.py`           | P1.3       |
-| `LMS Flashcard`   | `api.py`                    | P1.3       |
-| `Support Ticket`  | `api.py`                    | P1.3       |
-| `Coupon`          | `api.py`                    | P1.3       |
+| DocType           | Usado em                    | Prioridade           |
+| ----------------- | --------------------------- | -------------------- |
+| `LMS Certificate` | `api.py`, `gamification.py` | ✅ Criado 2026-05-25 |
+| `LMS Badge Log`   | `gamification.py`           | ✅ Criado 2026-05-25 |
+| `LMS Flashcard`   | `api.py`                    | ✅ Criado 2026-05-25 |
+| `Support Ticket`  | `api.py`                    | ✅ Criado 2026-05-25 |
+| `Coupon`          | `api.py`                    | ✅ Criado 2026-05-25 |
