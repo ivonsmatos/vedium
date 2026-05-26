@@ -313,6 +313,8 @@ services:
       GF_SMTP_FROM_ADDRESS: ${GRAFANA_SMTP_FROM:-${GRAFANA_SMTP_USER}}
       GF_SMTP_FROM_NAME: "Vedium Alertas"
       GF_SMTP_STARTTLS_POLICY: "MandatoryStartTLS"
+      # Destinatário dos alertas — usado pelo provisioning de contact points
+      GRAFANA_ALERT_EMAIL: ${GRAFANA_ALERT_EMAIL:?Defina GRAFANA_ALERT_EMAIL no .env}
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
