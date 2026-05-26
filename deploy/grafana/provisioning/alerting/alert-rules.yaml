@@ -3,6 +3,7 @@
 # Regras de alerta — Vedium
 # Pasta: Vedium Alertas
 # datasourceUid Prometheus: ffn6ohk6af9j4b
+# Nota: monitoramento de uptime do site é feito pelo Uptime Kuma
 
 groups:
   - orgId: 1
@@ -10,32 +11,6 @@ groups:
     folder: Vedium Alertas
     interval: 1m
     rules:
-
-      - uid: site-down-vedium
-        title: "Site fora do ar"
-        condition: A
-        data:
-          - refId: A
-            relativeTimeRange:
-              from: 300
-              to: 0
-            datasourceUid: ffn6ohk6af9j4b
-            model:
-              expr: 'up{job="vedium-frappe"} == 0'
-              intervalMs: 1000
-              maxDataPoints: 43200
-              refId: A
-        noDataState: Alerting
-        execErrState: Alerting
-        for: 2m
-        annotations:
-          summary: "Site app.vediums.com fora do ar"
-          description: "O container vedium-frappe esta down ha mais de 2 minutos."
-          runbook_url: "https://github.com/ivonsmatos/vedium/blob/main/deploy/docs/restore_procedure.md"
-        labels:
-          severity: critical
-          team: ops
-        isPaused: false
 
       - uid: cpu-high-vedium
         title: "CPU alta (>85%)"
