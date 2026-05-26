@@ -1,0 +1,20 @@
+apiVersion: 1
+
+# Contact Points — Grafana Alerting
+# Gerenciado via provisioning (não editar pela UI, as mudanças serão sobrescritas)
+#
+# Variável GRAFANA_ALERT_EMAIL deve estar definida no .env do servidor
+# Exemplo: GRAFANA_ALERT_EMAIL=ops@vediums.com
+
+contactPoints:
+  - orgId: 1
+    name: Email Alertas
+    receivers:
+      - uid: email-alertas-vedium
+        type: email
+        settings:
+          addresses: ${GRAFANA_ALERT_EMAIL}
+          singleEmail: false
+          message: |
+            {{ template "default.message" . }}
+        disableResolveMessage: false

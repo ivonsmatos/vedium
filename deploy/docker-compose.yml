@@ -305,8 +305,17 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Defina GRAFANA_ADMIN_PASSWORD no .env}
       GF_USERS_ALLOW_SIGN_UP: "false"
       GF_SERVER_ROOT_URL: https://metrics.vediums.com
+      # SMTP — preencher no .env do servidor (nunca commitar senhas)
+      GF_SMTP_ENABLED: "true"
+      GF_SMTP_HOST: ${GRAFANA_SMTP_HOST:-smtp.gmail.com:587}
+      GF_SMTP_USER: ${GRAFANA_SMTP_USER:?Defina GRAFANA_SMTP_USER no .env}
+      GF_SMTP_PASSWORD: ${GRAFANA_SMTP_PASSWORD:?Defina GRAFANA_SMTP_PASSWORD no .env}
+      GF_SMTP_FROM_ADDRESS: ${GRAFANA_SMTP_FROM:-${GRAFANA_SMTP_USER}}
+      GF_SMTP_FROM_NAME: "Vedium Alertas"
+      GF_SMTP_STARTTLS_POLICY: "MandatoryStartTLS"
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
     ports:
       - "127.0.0.1:3003:3000"
     networks:

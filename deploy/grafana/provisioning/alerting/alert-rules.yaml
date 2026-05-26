@@ -1,0 +1,116 @@
+apiVersion: 1
+
+# Regras de alerta — Vedium
+# Pasta: Vedium Alertas
+
+groups:
+  - orgId: 1
+    name: Vedium Alertas
+    folder: Vedium Alertas
+    interval: 1m
+    rules:
+
+      # ---------------------------------------------------
+      # Site fora do ar — sem resposta HTTP por 2 minutos
+      # ---------------------------------------------------
+      - uid: site-down-vedium
+        title: "Site fora do ar"
+        condition: A
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: |
+                up{job="vedium-frappe"} == 0
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: A
+        noDataState: Alerting
+        execErrState: Alerting
+        for: 2m
+        annotations:
+          summary: "Site app.vediums.com fora do ar"
+          description: "O container vedium-frappe está down há mais de 2 minutos."
+          runbook_url: "https://github.com/ivonsmatos/vedium/blob/main/deploy/docs/restore_procedure.md"
+        labels:
+          severity: critical
+          team: ops
+        isPaused: false
+
+      # ---------------------------------------------------
+      # CPU alta — média > 85% por 5 minutos
+      # ---------------------------------------------------
+      - uid: cpu-high-vedium
+        title: "CPU alta (>85%)"
+        condition: A
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: |
+                100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: A
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: "CPU acima de 85% no servidor"
+          description: "Uso médio de CPU: {{ $values.A.Value | printf \"%.1f\" }}% nos últimos 5 minutos."
+        labels:
+          severity: warning
+          team: ops
+        isPaused: false
+
+      # ---------------------------------------------------
+      # Memória alta — uso > 90% por 5 minutos
+      # ---------------------------------------------------
+      - uid: memory-high-vedium
+        title: "Memória alta (>90%)"
+        condition: A
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: |
+                (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: A
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: "Memória acima de 90% no servidor"
+          description: "Uso de memória: {{ $values.A.Value | printf \"%.1f\" }}%."
+        labels:
+          severity: warning
+          team: ops
+        isPaused: false
+
+      # ---------------------------------------------------
+      # Disco cheio — uso > 85%
+      # ---------------------------------------------------
+      - uid: disk-high-vedium
+        title: "Disco quase cheio (>85%)"
+        condition: A
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: |
+                (1 - (node_filesystem_avail_bytes{mountpoint="/",fstype!="tmpfs"} / node_filesystem_size_bytes{mountpoint="/",fstype!="tmpfs"})) * 100 > 85
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: A
+        noDataState: NoData
+        execErrState: Error
+        for: 1m
+        annotations:
+          summary: "Disco com mais de 85% de uso"
+          description: "Uso do disco /: {{ $values.A.Value | printf \"%.1f\" }}%."
+        labels:
+          severity: warning
+          team: ops
+        isPaused: false
