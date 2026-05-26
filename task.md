@@ -1,3 +1,19 @@
+---
+
+# Sprint P0 — Estabilização Produção (status 2026-05-26)
+
+| Item | Status | Notas |
+|------|--------|-------|
+| P0.1 Workers + Scheduler | ✅ Done | Stable, all containers healthy |
+| P0.2 Backup restic crontab | ✅ Done | `0 2 * * * . /opt/vedium/.env && /opt/vedium/scripts/backup.sh` — **⚠️ precisa configurar `RESTIC_REPOSITORY`, `RESTIC_PASSWORD`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` no `.env`** |
+| P0.3 PWA sw.js + manifest | ✅ Done | nginx alias `/opt/vedium/pwa/` → HTTP 200. **⚠️ copiar de novo após update do vedium_core**: `cp /var/lib/docker/volumes/vedium_frappe-bench-data/_data/apps/vedium_core/vedium_core/public/js/sw.js /opt/vedium/pwa/sw.js` |
+| P0.4 Audit task.md | ✅ Done | Este arquivo atualizado |
+| P0.5 Makefile | ✅ Done | Committed |
+| P0.6 Healthchecks | ✅ Done | All containers healthy |
+| P0.7 Cloudflare CDN /assets/* | ❌ Requer CF panel | Precisa purgar cache /sw.js e /manifest.json no dashboard CF |
+
+---
+
 # Task 8: Migração ERPNext v16 (Estável)
 
 > ⚠️ **AUDITORIA P0 (2026-05-25):** A documentação menciona "ERPNext v16" mas a produção
