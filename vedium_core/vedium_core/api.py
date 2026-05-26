@@ -843,6 +843,9 @@ def stripe_webhook():
     sig_header = frappe.request.headers.get("Stripe-Signature")
     webhook_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET")
 
+    if webhook_secret and not sig_header:
+        frappe.throw(_("Stripe-Signature header obrigatório"), frappe.AuthenticationError)
+
     try:
         if webhook_secret and sig_header:
             event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
