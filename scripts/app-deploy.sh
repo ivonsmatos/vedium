@@ -26,14 +26,21 @@ git -C "$REPO_DIR" reset --hard origin/main
 COMMIT=$(git -C "$REPO_DIR" log --oneline -1)
 log "Commit: $COMMIT"
 
-# 2. Rsync app para o volume Docker
+# 2a. Rsync app para o volume Docker
 log "Sincronizando vedium_core para o volume..."
 rsync -av --delete \
   --exclude="__pycache__" \
   --exclude="*.pyc" \
   --exclude=".git" \
   "$APP_SRC/" "$APP_DEST/"
-log "Rsync concluído."
+log "Rsync vedium_core concluído."
+
+# 2b. Rsync deploy/ para /opt/vedium (docker-compose, nginx, scripts, etc.)
+log "Sincronizando pasta deploy/ para $COMPOSE_DIR..."
+rsync -av --delete \
+  --exclude=".git" \
+  "$REPO_DIR/deploy/" "$COMPOSE_DIR/"
+log "Rsync deploy/ concluído."
 
 # 3. Bench migrate (a não ser que --no-migrate seja passado)
 if [[ "${1:-}" != "--no-migrate" ]]; then
