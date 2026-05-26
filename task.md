@@ -13,18 +13,22 @@
 | P0.7 Cloudflare CDN /assets/* | ✅ Done | Cache purgado via API (sw.js + manifest.json) |
 | P1.3 DocTypes faltantes | ✅ Done | LMS Certificate, LMS Badge Log, LMS Flashcard, Support Ticket, Coupon criados e migrados |
 | Git deploy no servidor | ✅ Done | Deploy key SSH + `/opt/vedium-src` clonado + `scripts/app-deploy.sh` (git pull → rsync → migrate) |
+| **Upgrade ERPNext v15 → v16** | ✅ Done | Frappe 16.18.3 / Python 3.14.2 / volume `frappe-bench-v16` — commit `9d83b55` |
+| **Grafana node-exporter** | ✅ Done | Adicionado ao docker-compose (profile observability, network_mode:host) — métricas reais de CPU/memória/disco |
+| **Grafana alertas** | ✅ Done | 3 regras ativas (CPU>85%, memória>90%, disco>85%) — falso positivo site-down removido |
+| **SMTP Grafana** | ⚠️ Pendente | Host corrigido para `smtp.office365.com:587` — **bloqueado: SmtpClientAuthentication desabilitado no tenant M365**. Ver seção "Task 5" abaixo |
 
 ---
 
-# Task 8: Migração ERPNext v16 (Estável)
+# Task 8: Migração ERPNext v16 ✅ Concluída (2026-05-26)
 
-> ⚠️ **AUDITORIA P0 (2026-05-25):** A documentação menciona "ERPNext v16" mas a produção
-> roda `frappe/erpnext:v15`. v16 NÃO está em uso. Atualizado abaixo para refletir a realidade.
+> ✅ **UPGRADE CONCLUÍDO (2026-05-26):** Frappe 16.18.3 / ERPNext v16 / Python 3.14.2
+> Volume `frappe-bench-v16` (external). Todos os containers healthy.
 
 - [x] Realizar backup completo (Banco + Arquivos).
-- [ ] Migrar apps para branch `version-16`. ← **NÃO FEITO** — produção está em v15 (decisão: manter v15, migrar Q3 2026)
-- [ ] Executar `bench update --upgrade`. ← **NÃO FEITO** (dependente do item acima)
-- [x] Validar integridade e Identidade "Raízes de Luxo". ← parcial
+- [x] Migrar apps para branch `version-16`. ← **CONCLUÍDO** — produção em v16 desde 2026-05-26
+- [x] Executar `bench update --upgrade`. ← **CONCLUÍDO** — `pyproject.toml` atualizado para `requires-python = ">=3.11"`
+- [x] Validar integridade e Identidade "Raízes de Luxo". ← validado, site saudável
 
 ## 1a) Mercado Pago e Basecommerce
 
@@ -91,7 +95,16 @@
 # Task 5: Observabilidade e Suporte
 
 - [x] Painel de suporte para chamados. ← DocType `Support Ticket` criado e migrado (P1.3 ✅)
-- [ ] Monitoramento automático: dashboard, webhooks para falhas/fraudes. ← Stack Prometheus/Grafana configurada mas NÃO rodando (workers faltavam — corrigido P0.1)
+- [x] **Monitoramento automático: stack Prometheus/Grafana rodando em produção** (profile `observability`)
+  - [x] Prometheus coletando métricas — targets: `node-exporter` + `prometheus` (2/2 UP)
+  - [x] node-exporter instalado (`network_mode: host`) — CPU, memória, disco do host
+  - [x] Grafana v13.0.1 com 3 alertas ativos: CPU >85%, Memória >90%, Disco >85%
+  - [x] Uptime Kuma monitorando uptime do site (http + TLS)
+  - [⚠️] **SMTP Grafana bloqueado**: tenant Microsoft 365 tem `SmtpClientAuthentication` desabilitado
+    - SMTP host já configurado: `smtp.office365.com:587`
+    - **Fix opção A**: Exchange Admin Center → Recipients → `contato@ivonmatos.com.br` → Mail flow → SMTP AUTH → Enable
+    - **Fix opção B**: Criar conta Gmail dedicada para alertas e trocar SMTP para `smtp.gmail.com:587`
+    - Ref: https://aka.ms/smtp_auth_disabled
 - [x] Métricas: Google Analytics 4, Hotjar/Clarity, LGPD.
 
 ---
