@@ -79,23 +79,22 @@ jobs:
           docker cp "\$TARGET_DIR/vedium_core" "\$CONTAINER":/home/frappe/frappe-bench/apps/
           docker exec -u root "\$CONTAINER" chown -R frappe:frappe /home/frappe/frappe-bench/apps/vedium_core
 
+          echo "📦 Crítico: instalar app + migrar banco (cria os doctypes)..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" pip install -e apps/vedium_core
-
-          echo "🎨 Build Tailwind..."
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css
-
-          echo "📦 Bench commands..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" install-app vedium_core || echo "ℹ️ App já instalado"
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" migrate
+
+          echo "🎨 Assets (não-crítico — guardado para não abortar o deploy)..."
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund || echo "⚠️ npm install falhou (assets)"
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css || echo "⚠️ build-css falhou (assets)"
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" build --app vedium_core
+              bench --site "$SITE_NAME" build --app vedium_core || echo "⚠️ bench build falhou (assets)"
+
+          echo "♻️ Limpando cache..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" clear-cache
-
-          echo "♻️ Clear website cache..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" clear-website-cache
 
