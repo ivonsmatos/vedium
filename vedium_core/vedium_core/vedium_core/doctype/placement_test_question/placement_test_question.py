@@ -4,5 +4,5 @@
 from frappe.model.document import Document
 
 
-class LessonSlot(Document):
+class PlacementTestQuestion(Document):
 	pass
