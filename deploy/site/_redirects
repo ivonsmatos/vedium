@@ -9,7 +9,8 @@
 # Redirect LMS routes to app subdomain
 /lms/*  https://app.vediums.com/lms/:splat  302
 /api/*  https://app.vediums.com/api/:splat  302
-/blog/*  https://app.vediums.com/blog/:splat  302
+/blog  https://app.vediums.com/news  302
+/blog/*  https://app.vediums.com/news  302
 /login  https://app.vediums.com/login  302
 /register  https://app.vediums.com/register  302
 /carreiras  https://app.vediums.com/carreiras  302

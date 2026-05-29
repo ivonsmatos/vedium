@@ -33,14 +33,64 @@ body {
     height: 40px;
 }
 
-.tg-header .nav-link {
-    color: var(--tg-text-dark);
+/* Sobre o hero escuro (header transparente), os links ficam claros.
+   Inclui .navbar-nav e .active para vencer a especificidade do Bootstrap
+   (.navbar-nav .nav-link.active deixaria o link ativo preto). */
+.tg-header .navbar-nav .nav-link,
+.tg-header .navbar-nav .nav-link.active {
+    color: #ffffff;
     font-weight: 500;
     padding: 0.5rem 1rem !important;
 }
 
-.tg-header .nav-link:hover {
+.tg-header .navbar-nav .nav-link:hover,
+.tg-header .navbar-nav .nav-link.active:hover {
+    color: #93c5fd;
+}
+
+/* Quando o header vira fixo (fundo branco), o texto volta a ser escuro */
+.tg-header.sticky .navbar-nav .nav-link {
+    color: var(--tg-text-dark);
+}
+
+.tg-header.sticky .navbar-nav .nav-link.active,
+.tg-header.sticky .navbar-nav .nav-link:hover {
     color: var(--tg-primary);
+}
+
+/* Ícone do menu mobile (hambúrguer) visível sobre o hero escuro */
+.tg-header .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+.tg-header .navbar-toggler-icon {
+    filter: invert(1) brightness(2);
+}
+
+.tg-header.sticky .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.tg-header.sticky .navbar-toggler-icon {
+    filter: none;
+}
+
+/* No mobile, o menu aberto recebe fundo sólido para legibilidade */
+@media (max-width: 991.98px) {
+    .tg-header .navbar-collapse {
+        background: rgba(15, 23, 42, 0.98);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 0.75rem;
+    }
+
+    .tg-header.sticky .navbar-collapse {
+        background: #ffffff;
+    }
+
+    .tg-header.sticky .navbar-collapse .nav-link {
+        color: var(--tg-text-dark);
+    }
 }
 
 .tg-header .btn-primary {
