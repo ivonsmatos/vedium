@@ -30,18 +30,37 @@ jobs:
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      - name: Sync code to server
+      # Sincroniza o repositório (necessário para o app Frappe em vedium_core).
+      # --omit-dir-times evita "failed to set times on /opt/vedium/." quando o
+      # DEPLOY_USER não é dono do diretório raiz.
+      # --exclude='/site' protege o diretório servido pelo nginx (vediums.com),
+      # que é publicado no passo seguinte — sem isso, o --delete tentaria apagá-lo.
+      - name: Sync code to server (app Frappe)
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          rsync -az --delete \
+          rsync -az --delete --omit-dir-times \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='__pycache__' \
             --exclude='*.pyc' \
             --exclude='.env' \
+            --exclude='/site' \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/"
+
+      # Publica o site institucional no caminho que o nginx serve de fato
+      # (root /opt/vedium/site;). A barra final em deploy/site/ envia o CONTEÚDO
+      # da pasta para /opt/vedium/site/. Requer que o DEPLOY_USER tenha permissão
+      # de escrita nesse diretório (rodar uma vez no servidor:
+      #   sudo chown -R "$DEPLOY_USER" /opt/vedium ).
+      - name: Publish marketing site (vediums.com)
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          rsync -az --delete --omit-dir-times \
+            deploy/site/ "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/site/"
 
       - name: Run deploy commands
         env:
