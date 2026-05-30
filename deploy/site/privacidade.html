@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#166534">
+
+    <title>Política de Privacidade (LGPD) - Vedium</title>
+    <meta name="description" content="Política de Privacidade da Vedium em conformidade com a LGPD: quais dados coletamos, como usamos, compartilhamos e os seus direitos como titular.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vediums.com/privacidade">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/icone-color.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icone-color.png">
+
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=outfit:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/vedium.css">
+
+    <style>
+        :root { --primary: #2563eb; --secondary: #1e3a5f; --dark: #0f172a; --text: #1e293b; --text-light: #64748b; }
+        body { font-family: 'Outfit', sans-serif; color: var(--text); }
+        .tg-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 0; transition: all 0.3s; }
+        .tg-header.sticky { background: rgba(255, 255, 255, 0.98); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); padding: 0.5rem 0; }
+        .tg-header .logo img { height: 40px; }
+        .tg-header .navbar-nav .nav-link, .tg-header .navbar-nav .nav-link.active { color: #ffffff; font-weight: 500; padding: 0.5rem 1rem !important; }
+        .tg-header .navbar-nav .nav-link:hover { color: #93c5fd; }
+        .tg-header.sticky .navbar-nav .nav-link { color: var(--text); }
+        .tg-header.sticky .navbar-nav .nav-link:hover { color: var(--primary); }
+        .tg-header .navbar-toggler { border-color: rgba(255,255,255,0.55); }
+        .tg-header .navbar-toggler-icon { filter: invert(1) brightness(2); }
+        .tg-header.sticky .navbar-toggler { border-color: rgba(0,0,0,0.2); }
+        .tg-header.sticky .navbar-toggler-icon { filter: none; }
+        @media (max-width: 991.98px) {
+            .tg-header .navbar-collapse { background: rgba(15,23,42,0.98); border-radius: 12px; padding: 1rem; margin-top: 0.75rem; }
+            .tg-header.sticky .navbar-collapse { background: #ffffff; }
+            .tg-header.sticky .navbar-collapse .nav-link { color: var(--text); }
+        }
+        .tg-header .btn-primary { background: var(--primary); border: none; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; }
+        .page-hero { background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%); padding: 9rem 0 3rem; text-align: center; }
+        .page-hero h1 { color: #fff; font-size: 2.6rem; font-weight: 700; margin-bottom: 1rem; }
+        .page-hero .breadcrumb { justify-content: center; }
+        .page-hero .breadcrumb-item, .page-hero .breadcrumb-item a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+        .page-hero .breadcrumb-item.active { color: #fff; }
+        .legal { padding: 4rem 0; }
+        .legal .container { max-width: 880px; }
+        .legal h2 { font-size: 1.35rem; font-weight: 700; margin: 2.5rem 0 1rem; color: var(--secondary); }
+        .legal h3 { font-size: 1.05rem; font-weight: 600; margin: 1.4rem 0 0.5rem; }
+        .legal p, .legal li { color: #334155; line-height: 1.8; }
+        .legal ul { margin-bottom: 1rem; }
+        .legal a { color: var(--primary); }
+        .legal .updated { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .legal .note { background: #f1f5f9; border-left: 4px solid var(--primary); padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 2rem; }
+        .legal table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+        .legal table th, .legal table td { border: 1px solid #e2e8f0; padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; font-size: 0.95rem; }
+        .legal table th { background: #f8fafc; }
+        .footer-section { background: var(--dark); padding: 4rem 0 0; color: #fff; }
+        .footer-section .footer-logo img { height: 40px; margin-bottom: 1rem; }
+        .footer-section p { color: rgba(255, 255, 255, 0.7); }
+        .footer-section h5 { font-weight: 600; margin-bottom: 1.5rem; }
+        .footer-section ul { list-style: none; padding: 0; margin: 0; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
+        .footer-section ul a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+        .footer-section ul a:hover { color: var(--primary); }
+        .footer-section .social a { display: inline-flex; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); color: #fff; border-radius: 50%; align-items: center; justify-content: center; margin-right: 0.5rem; transition: all 0.3s; }
+        .footer-section .social a:hover { background: var(--primary); }
+        .footer-bottom { background: rgba(0, 0, 0, 0.2); margin-top: 3rem; padding: 1.5rem 0; }
+        .footer-bottom p { color: rgba(255, 255, 255, 0.6); margin: 0; font-size: 0.875rem; }
+    </style>
+</head>
+
+<body>
+<header class="tg-header" id="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand logo" href="/"><img src="/images/vedium-logo-branca.png" alt="Vedium"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Idiomas</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://app.vediums.com/lms/courses">Inglês</a></li>
+                            <li><a class="dropdown-item" href="https://app.vediums.com/lms/courses">Iorubá</a></li>
+                            <li><a class="dropdown-item" href="https://app.vediums.com/lms/courses">Português para Estrangeiros</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="https://app.vediums.com/lms/courses">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sobre.html">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://app.vediums.com/news">Blog</a></li>
+                </ul>
+                <div class="ms-3">
+                    <a href="https://app.vediums.com/lms" class="btn btn-primary">Começar Agora</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <h1>Política de Privacidade</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
+                <li class="breadcrumb-item active">Privacidade</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section class="legal">
+    <div class="container">
+        <p class="updated">Última atualização: 29 de maio de 2026</p>
+        <div class="note">
+            Esta Política descreve como a Vedium coleta, usa, compartilha e protege seus dados pessoais, em conformidade
+            com a <strong>Lei Geral de Proteção de Dados (Lei nº 13.709/2018 – LGPD)</strong>. Ao usar a plataforma, você
+            concorda com as práticas aqui descritas.
+        </div>
+
+        <h2>1. Controlador dos dados</h2>
+        <p>A Vedium Global Education, sediada em São Paulo/SP, é a controladora dos dados pessoais tratados na plataforma.
+        Encarregado/DPO e contato para assuntos de privacidade: <a href="mailto:contato@vediums.com">contato@vediums.com</a> · (11) 91129-3075.</p>
+
+        <h2>2. Dados que coletamos</h2>
+        <ul>
+            <li><strong>Cadastro:</strong> nome, e-mail, senha (criptografada), telefone (quando informado).</li>
+            <li><strong>Pagamento:</strong> dados de transação processados pela Stripe. <em>Não armazenamos o número completo do cartão.</em></li>
+            <li><strong>Uso/aprendizado:</strong> cursos adquiridos, progresso, notas, participação em aulas ao vivo.</li>
+            <li><strong>Técnicos:</strong> endereço IP, navegador, dispositivo e cookies (ver seção 5).</li>
+            <li><strong>Comunicações:</strong> mensagens enviadas via formulário de contato ou suporte.</li>
+        </ul>
+
+        <h2>3. Finalidades e bases legais</h2>
+        <table>
+            <tr><th>Finalidade</th><th>Base legal (LGPD)</th></tr>
+            <tr><td>Criar e gerenciar sua conta; dar acesso aos cursos</td><td>Execução de contrato (art. 7º, V)</td></tr>
+            <tr><td>Processar pagamentos e emitir comprovantes</td><td>Execução de contrato / obrigação legal</td></tr>
+            <tr><td>Enviar e-mails transacionais (verificação, recibo, redefinição de senha)</td><td>Execução de contrato</td></tr>
+            <tr><td>Enviar comunicações de marketing (opcional)</td><td>Consentimento (art. 7º, I)</td></tr>
+            <tr><td>Melhorar a plataforma, segurança e prevenção a fraudes</td><td>Legítimo interesse (art. 7º, IX)</td></tr>
+            <tr><td>Cumprir obrigações legais e regulatórias</td><td>Obrigação legal (art. 7º, II)</td></tr>
+        </table>
+
+        <h2>4. Compartilhamento de dados</h2>
+        <p>Compartilhamos dados apenas com operadores necessários à prestação do serviço, sob contratos de proteção de dados:</p>
+        <ul>
+            <li><strong>Stripe</strong> — processamento de pagamentos.</li>
+            <li><strong>Google (Workspace/Calendar/Meet)</strong> — agendamento e realização das aulas ao vivo.</li>
+            <li><strong>Resend</strong> — envio de e-mails transacionais.</li>
+            <li><strong>Cloudflare e provedor de hospedagem</strong> — entrega, segurança e infraestrutura do site.</li>
+        </ul>
+        <p>Não vendemos seus dados pessoais. Compartilhamentos adicionais só ocorrem por exigência legal ou com seu consentimento.</p>
+
+        <h2>5. Cookies</h2>
+        <p>Utilizamos cookies essenciais (para login e funcionamento) e, mediante consentimento, cookies de análise para
+        entender o uso e melhorar a experiência. Você pode gerenciar cookies nas configurações do seu navegador.</p>
+
+        <h2>6. Seus direitos como titular</h2>
+        <p>Nos termos do art. 18 da LGPD, você pode, a qualquer momento, solicitar:</p>
+        <ul>
+            <li>Confirmação da existência de tratamento e acesso aos seus dados;</li>
+            <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
+            <li>Anonimização, bloqueio ou eliminação de dados desnecessários;</li>
+            <li>Portabilidade dos dados;</li>
+            <li>Eliminação dos dados tratados com base no consentimento;</li>
+            <li>Informação sobre compartilhamentos;</li>
+            <li>Revogação do consentimento.</li>
+        </ul>
+        <p>Para exercer seus direitos, escreva para <a href="mailto:contato@vediums.com">contato@vediums.com</a>.</p>
+
+        <h2>7. Segurança</h2>
+        <p>Adotamos medidas técnicas e organizacionais para proteger seus dados, incluindo criptografia de senhas e de
+        credenciais sensíveis, conexões via HTTPS, backups e controle de acesso. Nenhum sistema é 100% infalível, mas
+        trabalhamos continuamente para mitigar riscos.</p>
+
+        <h2>8. Retenção</h2>
+        <p>Mantemos seus dados pelo tempo necessário às finalidades descritas e ao cumprimento de obrigações legais. Após
+        esse período, os dados são eliminados ou anonimizados.</p>
+
+        <h2>9. Transferência internacional</h2>
+        <p>Alguns operadores (ex.: Stripe, Google, Resend, Cloudflare) podem processar dados fora do Brasil. Nesses casos,
+        garantimos que a transferência observe as salvaguardas exigidas pela LGPD.</p>
+
+        <h2>10. Alterações desta Política</h2>
+        <p>Esta Política pode ser atualizada. A versão vigente estará sempre disponível nesta página, com a data de
+        atualização. Mudanças relevantes poderão ser comunicadas por e-mail.</p>
+
+        <h2>11. Contato</h2>
+        <p>Dúvidas sobre privacidade ou solicitações relativas a dados pessoais:
+        <a href="mailto:contato@vediums.com">contato@vediums.com</a> ·
+        <a href="https://wa.me/5511911293075" target="_blank">WhatsApp (11) 91129-3075</a>.</p>
+    </div>
+</section>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-logo"><img src="/images/vedium-logo-branca.png" alt="Vedium"></div>
+                <p>A primeira plataforma de inteligência cultural para profissionais globais. Fluência além das palavras.</p>
+                <ul class="contact-info" style="list-style: none; padding: 0;">
+                    <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
+                    <li><i class="fas fa-phone"></i> (11) 91129-3075</li>
+                    <li><i class="fas fa-envelope"></i> contato@vediums.com</li>
+                </ul>
+                <div class="social">
+                    <a href="https://instagram.com/vedium" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/company/vedium" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@vedium" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/5511911293075" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <h5>Idiomas</h5>
+                <ul>
+                    <li><a href="https://app.vediums.com/lms/courses">Inglês</a></li>
+                    <li><a href="https://app.vediums.com/lms/courses">Iorubá</a></li>
+                    <li><a href="https://app.vediums.com/lms/courses">Português para Estrangeiros</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5>Institucional</h5>
+                <ul>
+                    <li><a href="/sobre.html">Sobre</a></li>
+                    <li><a href="https://app.vediums.com/news">Blog</a></li>
+                    <li><a href="https://wa.me/5511911293075" target="_blank">Contato</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="/termos.html">Termos de Uso</a></li>
+                    <li><a href="/privacidade.html">Política de Privacidade (LGPD)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start"><p>© 2026 Vedium Global Education. Todos os direitos reservados.</p></div>
+                <div class="col-lg-6 text-center text-lg-end"><p>vediums.com</p></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) { header.classList.add('sticky'); } else { header.classList.remove('sticky'); }
+    });
+</script>
+</body>
+</html>
