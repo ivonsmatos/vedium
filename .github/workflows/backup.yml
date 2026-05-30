@@ -1,27 +1,18 @@
-# Vedium LMS - Backup Workflow
-# Manual trigger to run backup on production server
+# Vedium LMS - Backup Production
+# Backup nativo do Frappe (bench backup --with-files) no servidor +
+# cópia offsite baixada como artifact do GitHub (retida 90 dias).
+# Não depende de restic/S3 — usa as credenciais do próprio site.
 
 name: Backup Production
 
 on:
   schedule:
-    - cron: "0 2 * * *" # Daily at 2:00 AM UTC
+    - cron: "0 2 * * *" # diário às 02:00 UTC
   workflow_dispatch:
-    inputs:
-      backup_type:
-        description: "Type of backup"
-        required: true
-        default: "full"
-        type: choice
-        options:
-          - full
-          - database-only
-          - site-only
 
 jobs:
   backup:
     runs-on: ubuntu-latest
-
     steps:
       - name: Setup SSH
         uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.0
@@ -30,55 +21,46 @@ jobs:
 
       - name: Add known hosts
         run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
-      - name: Run backup script
+      - name: Run Frappe backup on server
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          SITE: ${{ vars.SITE_NAME || 'app.vediums.com' }}
         run: |
-          echo "📦 Starting backup on production server..."
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se <<REMOTE
+          set -euo pipefail
+          echo "📦 Backup do site $SITE..."
+          docker exec vedium-frappe bench --site "$SITE" backup --with-files
+          rm -rf /tmp/vedium-backup && mkdir -p /tmp/vedium-backup
+          docker cp "vedium-frappe:/home/frappe/frappe-bench/sites/$SITE/private/backups/." /tmp/vedium-backup/
+          tar czf /tmp/vedium-backup.tgz -C /tmp/vedium-backup .
+          echo "✅ Backup empacotado:"
+          ls -lh /tmp/vedium-backup.tgz
+          REMOTE
 
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "/opt/vedium/scripts/backup.sh"
-
-          echo "✅ Backup completed"
-
-      - name: Verify backup
+      - name: Download backup to runner (cópia offsite)
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          echo "🔍 Verifying backup..."
+          scp -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST:/tmp/vedium-backup.tgz" ./vedium-backup.tgz
+          ls -lh ./vedium-backup.tgz
 
-          LAST_BACKUP=$(ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "ls -td /opt/vedium/backups/*/ | head -1")
+      - name: Upload artifact (retido 90 dias)
+        uses: actions/upload-artifact@v4
+        with:
+          name: vedium-backup-${{ github.run_id }}
+          path: ./vedium-backup.tgz
+          retention-days: 90
 
-          echo "Last backup directory: $LAST_BACKUP"
-
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "ls -lh $LAST_BACKUP"
-
-      - name: Check backup integrity
+      - name: Cleanup temp do servidor
+        if: always()
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          echo "🔐 Checking backup integrity..."
-
-          LAST_BACKUP=$(ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "ls -td /opt/vedium/backups/*/ | head -1")
-
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "cd $LAST_BACKUP && sha256sum -c checksums.sha256"
-
-          echo "✅ Backup integrity verified"
-
-      - name: Report backup size
-        run: |
-          BACKUP_SIZE=$(ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "du -sh /opt/vedium/backups/ | cut -f1")
-
-          echo "📊 Total backup size: $BACKUP_SIZE"
-
-          DISK_FREE=$(ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "df -h /opt/vedium/backups | tail -1 | awk '{print \$4}'")
-
-          echo "💾 Disk space available: $DISK_FREE"
+          ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" "rm -rf /tmp/vedium-backup /tmp/vedium-backup.tgz" || true
