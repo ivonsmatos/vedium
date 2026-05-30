@@ -33,6 +33,11 @@ body {
     height: 40px;
 }
 
+/* Troca de logo conforme o fundo do header: branco sobre o hero escuro, colorido quando fixo */
+.tg-header .logo-dark { display: none; }
+.tg-header.sticky .logo-light { display: none; }
+.tg-header.sticky .logo-dark { display: inline-block; }
+
 /* Sobre o hero escuro (header transparente), os links ficam claros.
    Inclui .navbar-nav e .active para vencer a especificidade do Bootstrap
    (.navbar-nav .nav-link.active deixaria o link ativo preto). */
