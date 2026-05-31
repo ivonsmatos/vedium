@@ -15,7 +15,6 @@ website_route_rules = [
     # Atalhos amigáveis para ferramentas integradas
     {"from_route": "/aluno", "to_route": "/lms/courses"},
     {"from_route": "/admin", "to_route": "/app"},
-    {"from_route": "/crm", "to_route": "/app/lead"},
     {"from_route": "/rh", "to_route": "/app/employee"},
     {"from_route": "/financeiro", "to_route": "/app/accounts"},
 ]
@@ -118,7 +117,10 @@ scheduler_events = {
 doc_events = {
     "LMS Course Progress": {
         "on_update": "vedium_core.gamification.Gamification.handle_lesson_completion"
-    }
+    },
+    "LMS Enrollment": {
+        "after_insert": "vedium_core.integrations.on_enrollment"
+    },
 }
 
 # =============================================================================

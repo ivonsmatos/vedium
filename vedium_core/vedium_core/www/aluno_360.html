@@ -1,0 +1,51 @@
+{% extends "templates/web.html" %}
+
+{% block title %}Aluno 360°{% endblock %}
+
+{% block page_content %}
+<div style="max-width:860px;margin:30px auto;font-family:Arial,Helvetica,sans-serif;color:#1f2937;">
+  <h2 style="color:#166534;margin-bottom:4px;">Aluno 360° — Visão Unificada</h2>
+  <p style="color:#6b7280;margin-top:0;">Cursos (LMS) + Chamados (Helpdesk) + CRM, num lugar só.</p>
+
+  {% if not is_staff %}
+    <p style="color:#dc2626;font-weight:600;">Acesso restrito à equipe.</p>
+  {% else %}
+    <form method="get" style="margin:18px 0;display:flex;gap:8px;flex-wrap:wrap;">
+      <input list="students" name="email" value="{{ email }}" placeholder="E-mail do aluno"
+             style="padding:11px 14px;width:340px;border:1.5px solid #cbd5e1;border-radius:9px;font-size:15px;">
+      <datalist id="students">{% for s in students %}<option value="{{ s }}">{% endfor %}</datalist>
+      <button type="submit" style="padding:11px 22px;background:#166534;color:#fff;border:none;border-radius:9px;font-weight:600;cursor:pointer;">Buscar</button>
+    </form>
+
+    {% if data and data.user %}
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;margin-bottom:16px;">
+        <h3 style="margin:0;font-size:19px;">{{ data.user.full_name or data.email }}</h3>
+        <p style="color:#6b7280;margin:6px 0;">{{ data.email }}{% if data.user.mobile_no %} &middot; {{ data.user.mobile_no }}{% endif %}</p>
+        {% if data.lead %}<span style="background:#f0fdf4;color:#15803d;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600;">CRM: {{ data.lead.status }}</span>{% endif %}
+      </div>
+
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:300px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;">
+          <h4 style="color:#166534;margin-top:0;">📚 Cursos ({{ data.enrollments|length }})</h4>
+          {% for c in data.enrollments %}
+            <div style="padding:8px 0;border-bottom:1px solid #f1f5f9;">{{ c.title }}<span style="color:#9ca3af;font-size:12px;"> &middot; {{ c.date }}</span></div>
+          {% else %}
+            <p style="color:#9ca3af;">Nenhum curso.</p>
+          {% endfor %}
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;">
+          <h4 style="color:#166534;margin-top:0;">🎫 Chamados ({{ data.tickets|length }})</h4>
+          {% for t in data.tickets %}
+            <div style="padding:8px 0;border-bottom:1px solid #f1f5f9;"><strong>#{{ t.name }}</strong> {{ t.subject }}<span style="color:#9ca3af;font-size:12px;"> &middot; {{ t.status }} &middot; {{ t.date }}</span></div>
+          {% else %}
+            <p style="color:#9ca3af;">Nenhum chamado.</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% elif email %}
+      <p style="color:#dc2626;">Aluno não encontrado para: {{ email }}</p>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}
