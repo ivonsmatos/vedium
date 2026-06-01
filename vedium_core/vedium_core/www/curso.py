@@ -118,9 +118,10 @@ def get_course_details(course_name):
         # Get enrollment count
         course.enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
         
-        # Format price
+        # Format price (R$ 320,00 — estilo BR, igual ao catálogo)
         if course.paid_course and course.course_price:
-            course.formatted_price = f"{course.currency or 'BRL'} {course.course_price:.2f}"
+            _p = float(course.course_price)
+            course.formatted_price = f"R$ {_p:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         else:
             course.formatted_price = "Gratuito"
         
