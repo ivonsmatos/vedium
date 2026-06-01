@@ -86,25 +86,31 @@ def get_course_details(course_name):
         for instructor in instructors:
             instructor_data = frappe.db.get_value("User",
                 instructor.instructor,
-                ["full_name", "user_image", "bio"],
+                ["full_name", "user_image"],
                 as_dict=True
             )
             if instructor_data:
                 course.instructors_list.append(instructor_data)
         
         # Get chapters and lessons
-        course.chapters_list = frappe.get_all("Course Chapter",
-            filters={"parent": course.name},
-            fields=["name", "title", "description", "idx"],
-            order_by="idx"
-        )
-        
-        for chapter in course.chapters_list:
-            chapter.lessons = frappe.get_all("Course Lesson",
-                filters={"chapter": chapter.name},
-                fields=["name", "title", "content_type", "duration", "idx"],
+        course.chapters_list = []
+        try:
+            course.chapters_list = frappe.get_all("Course Chapter",
+                filters={"course": course.name},
+                fields=["name", "title"],
                 order_by="idx"
             )
+            for chapter in course.chapters_list:
+                try:
+                    chapter.lessons = frappe.get_all("Course Lesson",
+                        filters={"chapter": chapter.name},
+                        fields=["name", "title"],
+                        order_by="idx"
+                    )
+                except Exception:
+                    chapter.lessons = []
+        except Exception:
+            course.chapters_list = []
         
         # Get total lesson count and duration
         course.total_lessons = frappe.db.count("Course Lesson", {"course": course.name})
