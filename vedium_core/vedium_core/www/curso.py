@@ -10,11 +10,13 @@ def get_context(context):
     # Resolve course slug from /curso/<slug> route (form_dict) or path fallback
     course_name = frappe.form_dict.get("course")
     if not course_name:
-        parts = [p for p in (frappe.local.path or "").split("/") if p and p != "course-details"]
+        parts = [p for p in (frappe.local.path or "").split("/") if p and p not in ("curso", "course-details")]
         course_name = parts[-1] if parts else None
 
     if not course_name:
-        frappe.throw(_("Curso não encontrado"), frappe.DoesNotExistError)
+        # Acesso sem curso (ex.: /curso) -> redireciona ao catálogo
+        frappe.local.flags.redirect_location = "/catalogo"
+        raise frappe.Redirect
 
     # Get course details
     context.course = get_course_details(course_name)
@@ -30,8 +32,8 @@ def get_context(context):
 
     # Page metadata (SEO) — título com nome do curso, descrição e canonical
     context.title = f"{context.course.title} — Curso de Idiomas Online ao Vivo | Vedium"
-    desc = (context.course.get("short_introduction") or context.course.get("description") or "").strip()
-    context.description = (frappe.utils.strip_html(desc)[:155] if desc else
+    desc = (context.course.get("short_introduction") or "").strip()
+    context.description = (desc[:155] if desc else
                            f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
     context.canonical_url = f"https://vediums.com/curso/{course_name}"
     context.og_image = (context.course.image if context.course.image and context.course.image.startswith("http")

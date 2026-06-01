@@ -13,12 +13,20 @@ website_route_rules = [
     {"from_route": "/trilhas", "to_route": "/catalogo"},
     {"from_route": "/cursos", "to_route": "/catalogo"},
     # Páginas de curso server-rendered (SEO + Schema) — /curso/<slug>
-    {"from_route": "/curso/<course>", "to_route": "course-details"},
+    {"from_route": "/curso/<course>", "to_route": "curso"},
     # Atalhos amigáveis para ferramentas integradas
     {"from_route": "/aluno", "to_route": "/lms/courses"},
     {"from_route": "/admin", "to_route": "/app"},
     {"from_route": "/rh", "to_route": "/app/employee"},
     {"from_route": "/financeiro", "to_route": "/app/accounts"},
+]
+
+# Redirecionamentos 301 (SEO) — URLs antigas/removidas -> destino canônico
+website_redirects = [
+    {"source": "/course-details", "target": "/catalogo"},
+    {"source": "/course-details.html", "target": "/catalogo"},
+    {"source": "/sobre.html", "target": "/about"},
+    {"source": "/index.html", "target": "/"},
 ]
 
 # App Logo
