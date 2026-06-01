@@ -4,13 +4,41 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courses || Vedium || Responsive HTML5 Template.</title>
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://vediums.com/catalogo" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vediums.com/catalogo" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Vedium" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/vedium_core/vedium_assets/images/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/vedium_core/vedium_assets/images/favicons/favicon-16x16.png" />
-    <link rel="manifest" href="/assets/vedium_core/vedium_assets/images/favicons/site.webmanifest" />
-    <meta name="description" content="Catálogo completo de cursos Vedium: inglês executivo, hebraico tech, iorubá ancestral e português para estrangeiros. Níveis A1 a C1, com IA e mentoria." />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+    <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+
+    <!-- Schema.org ItemList (catálogo de cursos) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Cursos Vedium",
+        "itemListElement": [
+            {% for course in courses %}{
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "url": "https://vediums.com{{ course.url }}",
+                "name": {{ course.title | tojson }}
+            }{% if not loop.last %},{% endif %}{% endfor %}
+        ]
+    }
+    </script>
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -53,7 +81,7 @@
                     <div class="main-header--one__top-inner clearfix">
                         <div class="main-header--one__top-left">
                             <div class="main-header--one__top-logo">
-                                <a href="index.html"><img src="/assets/vedium_core/vedium_assets/images/resources/logo-1.png" alt=""/></a>
+                                <a href="/"><img src="/assets/vedium_core/vedium_assets/images/resources/logo-1.png" alt="Vedium"/></a>
                             </div>
                         </div>
 
@@ -105,21 +133,9 @@
                                     <ul class="main-menu__list">
                                         <li><a href="/">Início</a></li>
                                         <li><a href="/about">Sobre</a></li>
-                                        <li class="dropdown current">
-                                            <a href="#">Trilhas</a>
-                                            <ul>
-                                                <li class="current"><a href="/catalogo">Todos os Cursos</a></li>
-                                                <li><a href="/course-details">Detalhes</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="current"><a href="/catalogo">Cursos</a></li>
                                         <li><a href="/teachers-1">Mentores</a></li>
-                                        <li class="dropdown">
-                                            <a href="#">Blog</a>
-                                            <ul>
-                                                <li><a href="/news">Notícias</a></li>
-                                                <li><a href="/news-details">Detalhes da Notícia</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="/news">Blog</a></li>
                                         <li><a href="/contact">Contato</a></li>
                                     </ul>
                                 </div>

@@ -1,0 +1,31 @@
+# Vedium
+
+> A Vedium é uma escola de idiomas 100% online com **aulas ao vivo** e professores qualificados. Ensinamos inglês (níveis A1 a C1, do iniciante ao avançado), com iorubá e português para estrangeiros em expansão. Cada curso inclui certificado de conclusão e suporte ao aluno. Atendimento em todo o Brasil, online.
+
+## Sobre
+- Modelo: aulas ao vivo (não são videoaulas gravadas), com turmas e professores reais.
+- Idiomas: Inglês (disponível, A1–C1); Iorubá e Português para Estrangeiros (em breve).
+- Diferenciais: aulas ao vivo, professores qualificados, certificado, suporte, pagamento online.
+- Público: profissionais, estudantes e empresas que querem fluência real.
+- País: Brasil. Idioma de atendimento: Português e Inglês.
+
+## Cursos
+- [Catálogo de cursos](https://vediums.com/catalogo): lista completa e atualizada dos cursos disponíveis, com níveis (A1 a C1), preços e matrícula.
+- [Inglês — Beginner (A1)](https://vediums.com/curso/ingl-s-beginner)
+- [Inglês — Elementary (A2)](https://vediums.com/curso/ingl-s-elementary)
+- [Inglês — Pré-Intermediário (B1-)](https://vediums.com/curso/ingl-s-pr-intermedi-rio)
+- [Inglês — Intermediário (B1)](https://vediums.com/curso/ingl-s-intermedi-rio)
+- [Inglês — Upper Intermediário (B1)](https://vediums.com/curso/ingl-s-upper-intermedi-rio)
+- [Inglês — Avançado (C1)](https://vediums.com/curso/ingl-s-avan-ado)
+
+## Páginas principais
+- [Início](https://vediums.com/): apresentação da Vedium, metodologia e planos.
+- [Sobre](https://vediums.com/about): história, missão e proposta da escola.
+- [Mentores / Professores](https://vediums.com/teachers-1): quem ensina na Vedium.
+- [Contato](https://vediums.com/contact): canais de atendimento.
+- [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.
+
+## Contato
+- E-mail: contato@vediums.com
+- Suporte: suporte@vediums.com
+- Site: https://vediums.com

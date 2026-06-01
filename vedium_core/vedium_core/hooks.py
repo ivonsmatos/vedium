@@ -12,6 +12,8 @@ website_route_rules = [
     # /courses é interceptado pelo LMS app — garante que /catalogo seja a rota do site
     {"from_route": "/trilhas", "to_route": "/catalogo"},
     {"from_route": "/cursos", "to_route": "/catalogo"},
+    # Páginas de curso server-rendered (SEO + Schema) — /curso/<slug>
+    {"from_route": "/curso/<course>", "to_route": "course-details"},
     # Atalhos amigáveis para ferramentas integradas
     {"from_route": "/aluno", "to_route": "/lms/courses"},
     {"from_route": "/admin", "to_route": "/app"},

@@ -7,28 +7,37 @@ def get_context(context):
     Context for course details page
     Fetches specific course details and related data
     """
-    # Get course name from route
-    course_name = frappe.form_dict.course or frappe.local.path.split('/')[-1]
-    
+    # Resolve course slug from /curso/<slug> route (form_dict) or path fallback
+    course_name = frappe.form_dict.get("course")
     if not course_name:
-        frappe.throw("Course not found", frappe.DoesNotExistError)
-    
+        parts = [p for p in (frappe.local.path or "").split("/") if p and p != "course-details"]
+        course_name = parts[-1] if parts else None
+
+    if not course_name:
+        frappe.throw(_("Curso não encontrado"), frappe.DoesNotExistError)
+
     # Get course details
     context.course = get_course_details(course_name)
-    
+
     # Check if user is enrolled
     context.is_enrolled = check_enrollment(course_name)
-    
+
     # Get related courses
     context.related_courses = get_related_courses(context.course.category, course_name)
-    
+
     # Shopping cart count
     context.cart_count = get_cart_count()
-    
-    # Page metadata
-    context.title = f"{context.course.title} - Vedium"
-    context.description = context.course.short_introduction or context.course.description
-    
+
+    # Page metadata (SEO) — título com nome do curso, descrição e canonical
+    context.title = f"{context.course.title} — Curso de Idiomas Online ao Vivo | Vedium"
+    desc = (context.course.get("short_introduction") or context.course.get("description") or "").strip()
+    context.description = (frappe.utils.strip_html(desc)[:155] if desc else
+                           f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
+    context.canonical_url = f"https://vediums.com/curso/{course_name}"
+    context.og_image = (context.course.image if context.course.image and context.course.image.startswith("http")
+                        else f"https://vediums.com{context.course.image}") if context.course.image else "https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
+    context.lms_url = f"/lms/courses/{course_name}"
+
     # GTM Event - view_course
     context.gtm_event = {
         'event': 'view_course',
@@ -154,7 +163,7 @@ def get_related_courses(category, exclude_course, limit=3):
         for course in courses:
             if not course.image:
                 course.image = "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
-            course.url = f"/lms/courses/{course.name}"
+            course.url = f"/curso/{course.name}"
             
             if course.paid_course and course.course_price:
                 course.formatted_price = f"{course.currency or 'BRL'} {course.course_price:.2f}"

@@ -15,10 +15,12 @@ def get_context(context):
     # Shopping cart count
     context.cart_count = get_cart_count()
 
-    # Page metadata
-    context.title = "Cursos - Vedium Global Education"
+    # Page metadata (SEO)
+    context.title = "Cursos de Inglês Online ao Vivo — Níveis A1 a C1 | Vedium"
     context.description = (
-        "Explore nossos cursos de Inglês Executivo, Hebraico Tech e Iorubá Ancestral"
+        "Catálogo de cursos de inglês online ao vivo da Vedium: do iniciante (A1) ao "
+        "avançado (C1), com professores e certificado. Iorubá e Português para "
+        "estrangeiros em breve."
     )
 
 
@@ -102,8 +104,8 @@ def get_published_courses():
                 "LMS Enrollment", {"course": course.name}
             )
 
-            # Course URL
-            course.url = f"/lms/courses/{course.name}"
+            # Course URL — página SEO server-rendered (não o SPA)
+            course.url = f"/curso/{course.name}"
 
             # Format price
             if course.paid_course and course.course_price:
