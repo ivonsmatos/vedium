@@ -9,7 +9,6 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://vediums.com/contato" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vediums.com/contato" />
     <meta property="og:title" content="Contato — Vedium" />
     <meta property="og:description" content="Fale com a Vedium: WhatsApp, e-mail e suporte ao aluno. Atendimento 100% online." />
     <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
@@ -41,73 +40,17 @@
       .vd-tag { color: #2E6DA4; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; font-size: 14px; }
       .vd-h2 { color: #234E70; font-size: 30px; font-weight: 700; margin: 4px 0 16px; }
       .vd-cc { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 30px 24px; text-align: center; height: 100%; box-shadow: 0 6px 24px rgba(0,0,0,.05); }
-      .vd-cc .ic { font-size: 32px; }
-      .vd-cc h3 { color: #234E70; font-size: 20px; margin: 10px 0 6px; }
-      .vd-cc p { color: #6b7280; margin: 0 0 16px; }
-      .vd-btn-blue { display: inline-block; background: #2E6DA4; color: #fff; padding: 12px 26px; border-radius: 9px; font-weight: 700; text-decoration: none; }
-      .vd-btn-blue:hover { background: #234E70; color: #fff; }
-      .vd-info { background: #eef4fb; border: 1px solid #d7e6f5; border-radius: 14px; padding: 24px; }
-      .vd-info p { margin: 0 0 10px; color: #374151; }
-      .vd-info b { color: #234E70; }
-      .vd-info a { color: #2E6DA4; }
-      .vd-cta { display: inline-block; background: #A12D1C; color: #fff; padding: 15px 36px; border-radius: 10px; font-weight: 700; font-size: 17px; text-decoration: none; }
-      .vd-cta:hover { background: #871f10; color: #fff; }
+      .vd-cc .ic { font-size: 32px; } .vd-cc h3 { color: #234E70; font-size: 20px; margin: 10px 0 6px; } .vd-cc p { color: #6b7280; margin: 0 0 16px; }
+      .vd-btn-blue { display: inline-block; background: #2E6DA4; color: #fff; padding: 12px 26px; border-radius: 9px; font-weight: 700; text-decoration: none; } .vd-btn-blue:hover { background: #234E70; color: #fff; }
+      .vd-info { background: #eef4fb; border: 1px solid #d7e6f5; border-radius: 14px; padding: 24px; } .vd-info p { margin: 0 0 10px; color: #374151; } .vd-info b { color: #234E70; } .vd-info a { color: #2E6DA4; }
+      .vd-cta { display: inline-block; background: #A12D1C; color: #fff; padding: 15px 36px; border-radius: 10px; font-weight: 700; font-size: 17px; text-decoration: none; } .vd-cta:hover { background: #871f10; color: #fff; }
     </style>
 </head>
 
 <body>
+{% set vd_page = "contato" %}
     <div class="page-wrapper">
-        <header class="main-header main-header--one clearfix">
-            <div class="main-header--one__top clearfix">
-                <div class="container">
-                    <div class="main-header--one__top-inner clearfix">
-                        <div class="main-header--one__top-left">
-                            <div class="main-header--one__top-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium"/></a></div>
-                        </div>
-                        <div class="main-header--one__top-right clearfix">
-                            <div class="main-header--one__top-contact-info clearfix">
-                                <ul class="main-header--one__top-contact-info-list list-unstyled">
-                                    <li class="main-header--one__top-contact-info-list-item">
-                                        <div class="icon"><span class="icon-message"></span></div>
-                                        <div class="text"><h6>Fale conosco</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="main-header-one__bottom clearfix">
-                <div class="container">
-                    <div class="main-header-one__bottom-inner clearfix">
-                        <nav class="main-menu main-menu--1">
-                            <div class="main-menu__inner">
-                                <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
-                                <div class="left">
-                                    <ul class="main-menu__list">
-                                        <li><a href="/">Início</a></li>
-                                        <li><a href="/sobre">Sobre</a></li>
-                                        <li><a href="/catalogo">Cursos</a></li>
-                                        <li><a href="/mentores">Mentores</a></li>
-                                        <li class="current"><a href="/contato">Contato</a></li>
-                                    </ul>
-                                </div>
-                                <div class="right">
-                                    <div class="main-menu__right">
-                                        <div class="main-menu__right-login-register">
-                                            <ul class="list-unstyled">
-                                                <li><a href="/login">Entrar</a></li>
-                                                <li><a href="/login#signup">Registrar</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
+        {% include "templates/includes/site_navbar.html" %}
 
         <section class="vd-wrap vd-ph">
             <div class="container">
@@ -123,74 +66,23 @@
                 <h2 class="vd-h2">Atendimento 100% online, em todo o Brasil</h2>
                 <div class="row" style="margin-top:18px;">
                     <div class="col-lg-6" style="margin-bottom:24px;">
-                        <div class="vd-cc">
-                            <div class="ic">💬</div>
-                            <h3>WhatsApp</h3>
-                            <p>Resposta rápida no horário comercial.</p>
-                            <a class="vd-btn-blue" href="https://wa.me/5511941906079" target="_blank" rel="noopener">Chamar no WhatsApp</a>
-                        </div>
+                        <div class="vd-cc"><div class="ic">💬</div><h3>WhatsApp</h3><p>Resposta rápida no horário comercial.</p><a class="vd-btn-blue" href="https://wa.me/5511941906079" target="_blank" rel="noopener">Chamar no WhatsApp</a></div>
                     </div>
                     <div class="col-lg-6" style="margin-bottom:24px;">
-                        <div class="vd-cc">
-                            <div class="ic">✉️</div>
-                            <h3>E-mail</h3>
-                            <p>Para assuntos gerais e comerciais.</p>
-                            <a class="vd-btn-blue" href="mailto:contato@vediums.com">contato@vediums.com</a>
-                        </div>
+                        <div class="vd-cc"><div class="ic">✉️</div><h3>E-mail</h3><p>Para assuntos gerais e comerciais.</p><a class="vd-btn-blue" href="mailto:contato@vediums.com">contato@vediums.com</a></div>
                     </div>
                 </div>
-                <div class="vd-info" style="margin-top:8px;">
+                <div class="vd-info">
                     <p><b>📞 Telefone:</b> <a href="tel:+5511941906079">+55 (11) 94190-6079</a></p>
                     <p><b>🎧 Suporte ao aluno:</b> <a href="mailto:suporte@vediums.com">suporte@vediums.com</a></p>
                     <p><b>🕘 Horário:</b> Seg a Sex, 9h–18h · Sáb, 9h–13h</p>
                     <p style="margin:0;"><b>📍 Atendimento:</b> 100% online, em todo o Brasil</p>
                 </div>
-                <div style="text-align:center;margin-top:34px;">
-                    <a href="/catalogo" class="vd-cta">Ver nossos cursos</a>
-                </div>
+                <div style="text-align:center;margin-top:34px;"><a href="/catalogo" class="vd-cta">Ver nossos cursos</a></div>
             </div>
         </section>
 
-        <footer class="footer-one">
-            <div class="footer-one__bg" style="background-color:#11161d;"></div>
-            <div class="footer-one__top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__about">
-                                <div class="footer-widget__about-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__links">
-                                <h3 class="footer-widget__title">Links Úteis</h3>
-                                <ul class="footer-widget__links-list list-unstyled">
-                                    <li><a href="/sobre">Sobre Nós</a></li>
-                                    <li><a href="/catalogo">Nossos Cursos</a></li>
-                                    <li><a href="/mentores">Mentores</a></li>
-                                    <li><a href="/carreiras">Trabalhe Conosco</a></li>
-                                    <li><a href="/termos">Termos</a></li>
-                                    <li><a href="/privacidade">Privacidade</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__contact">
-                                <h3 class="footer-widget__title">Contato</h3>
-                                <p class="text">Brasil — Atendimento 100% Online</p>
-                                <p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p>
-                                <p><a href="tel:+5511941906079">+55 (11) 94190-6079</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-one__bottom">
-                <div class="container"><div class="row"><div class="col-xl-12"><div class="footer-one__bottom-inner"><div class="footer-one__bottom-text text-center">
-                    <p>&copy; Copyright 2026 Vedium – Plataforma de Ensino de Idiomas</p>
-                </div></div></div></div></div>
-            </div>
-        </footer>
+        {% include "templates/includes/site_footer.html" %}
     </div>
 
     <div class="mobile-nav__wrapper">
@@ -198,9 +90,8 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
             <div class="logo-box"><a href="/" aria-label="logo"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" width="155" alt="Vedium" /></a></div>
-            <ul class="mobile-nav__contact list-unstyled">
-                <li><i class="icon-letter"></i><a href="mailto:contato@vediums.com">contato@vediums.com</a></li>
-            </ul>
+            <div class="mobile-nav__container"></div>
+            <ul class="mobile-nav__contact list-unstyled"><li><i class="icon-letter"></i><a href="mailto:contato@vediums.com">contato@vediums.com</a></li></ul>
         </div>
     </div>
 
