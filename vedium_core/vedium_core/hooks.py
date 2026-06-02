@@ -25,12 +25,16 @@ website_route_rules = [
 website_redirects = [
     {"source": "/course-details", "target": "/catalogo"},
     {"source": "/course-details.html", "target": "/catalogo"},
-    {"source": "/sobre.html", "target": "/about"},
     {"source": "/index.html", "target": "/"},
     {"source": "/news", "target": "/catalogo"},
     {"source": "/news-details", "target": "/catalogo"},
     {"source": "/news.html", "target": "/catalogo"},
-    {"source": "/contact.html", "target": "/contact"},
+    # URLs em portugues (paginas renomeadas)
+    {"source": "/about", "target": "/sobre"},
+    {"source": "/sobre.html", "target": "/sobre"},
+    {"source": "/contact", "target": "/contato"},
+    {"source": "/contact.html", "target": "/contato"},
+    {"source": "/teachers-1", "target": "/mentores"},
 ]
 
 # App Logo
@@ -62,7 +66,7 @@ web_include_css = [
 ]
 
 # Website JS
-web_include_js = ["/assets/vedium_core/js/pwa-register.js"]
+web_include_js = ["/assets/vedium_core/js/pwa-register.js", "/assets/vedium_core/js/cookie-consent.js"]
 
 # =============================================================================
 # PWA Configuration
