@@ -1,40 +1,209 @@
-{% extends "templates/web.html" %}
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-{% block title %}Mentores — Professores da Vedium{% endblock %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentores — Professores da Vedium</title>
+    <meta name="description" content="Conheça os professores da Vedium: especialistas em Inglês e Iorubá, com aulas ao vivo e foco na sua evolução." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://vediums.com/mentores" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vediums.com/mentores" />
+    <meta property="og:title" content="Mentores — Professores da Vedium" />
+    <meta property="og:description" content="Professores qualificados de Inglês e Iorubá, com aulas ao vivo." />
+    <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
 
-{% block head_include %}
-<meta name="description" content="Conheça os professores da Vedium: especialistas em Inglês e Iorubá, com aulas ao vivo e foco na sua evolução." />
-<link rel="canonical" href="https://vediums.com/teachers-1" />
-{% endblock %}
+    <link rel="apple-touch-icon" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+    <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 
-{% block page_content %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/reey-font/stylesheet.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+
+    <style>
+      img[src*="logo-color-reta"] { max-height: 46px !important; width: auto !important; }
+      .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
+      .stricky-header, .stricky-header.stricked-menu { display: none !important; }
+      .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+      .vd-wrap { font-family: 'Kumbh Sans', Arial, sans-serif; color: #1f2937; }
+      .vd-ph { background: linear-gradient(135deg, #234E70 0%, #2E6DA4 100%); color: #fff; padding: 58px 0; }
+      .vd-ph h1 { font-size: 36px; font-weight: 700; margin: 0 0 8px; }
+      .vd-ph .vd-bc { font-size: 14px; opacity: .9; } .vd-ph .vd-bc a { color: #cfe3f5; text-decoration: none; }
+      .vd-sec { padding: 60px 0; }
+      .vd-tag { color: #2E6DA4; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; font-size: 14px; }
+      .vd-h2 { color: #234E70; font-size: 30px; font-weight: 700; margin: 4px 0 16px; }
+      .vd-prof { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 28px; text-align: center; height: 100%; box-shadow: 0 6px 24px rgba(0,0,0,.05); }
+      .vd-prof img { width: 124px; height: 124px; border-radius: 50%; object-fit: cover; border: 3px solid #d7e6f5; }
+      .vd-prof h3 { color: #234E70; margin: 16px 0 2px; font-size: 21px; }
+      .vd-prof .role { color: #2E6DA4; font-weight: 700; margin: 0 0 10px; }
+      .vd-prof p { color: #6b7280; font-size: 15px; margin: 0; }
+      .vd-cta { display: inline-block; background: #A12D1C; color: #fff; padding: 15px 36px; border-radius: 10px; font-weight: 700; font-size: 17px; text-decoration: none; }
+      .vd-cta:hover { background: #871f10; color: #fff; }
+    </style>
+</head>
+
+<body>
 {% set fallback = "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" %}
 {% set kayode = frappe.db.get_value("User", "kayode@vediums.com", ["full_name", "user_image"], as_dict=True) or {} %}
 {% set busayo = frappe.db.get_value("User", "busayo@vediums.com", ["full_name", "user_image"], as_dict=True) or {} %}
-<div style="max-width:920px;margin:36px auto;padding:0 18px;font-family:Arial,Helvetica,sans-serif;color:#1f2937;line-height:1.7;">
-  <p style="color:#16a34a;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">NOSSOS MENTORES</p>
-  <h1 style="color:#166534;font-size:32px;margin:0 0 10px;">Quem ensina na Vedium</h1>
-  <p style="font-size:17px;color:#374151;">Professores qualificados, aulas ao vivo e atenção real ao seu progresso. Conheça parte do nosso time.</p>
+    <div class="page-wrapper">
+        <header class="main-header main-header--one clearfix">
+            <div class="main-header--one__top clearfix">
+                <div class="container">
+                    <div class="main-header--one__top-inner clearfix">
+                        <div class="main-header--one__top-left">
+                            <div class="main-header--one__top-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium"/></a></div>
+                        </div>
+                        <div class="main-header--one__top-right clearfix">
+                            <div class="main-header--one__top-contact-info clearfix">
+                                <ul class="main-header--one__top-contact-info-list list-unstyled">
+                                    <li class="main-header--one__top-contact-info-list-item">
+                                        <div class="icon"><span class="icon-message"></span></div>
+                                        <div class="text"><h6>Fale conosco</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-header-one__bottom clearfix">
+                <div class="container">
+                    <div class="main-header-one__bottom-inner clearfix">
+                        <nav class="main-menu main-menu--1">
+                            <div class="main-menu__inner">
+                                <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                                <div class="left">
+                                    <ul class="main-menu__list">
+                                        <li><a href="/">Início</a></li>
+                                        <li><a href="/sobre">Sobre</a></li>
+                                        <li><a href="/catalogo">Cursos</a></li>
+                                        <li class="current"><a href="/mentores">Mentores</a></li>
+                                        <li><a href="/contato">Contato</a></li>
+                                    </ul>
+                                </div>
+                                <div class="right">
+                                    <div class="main-menu__right">
+                                        <div class="main-menu__right-login-register">
+                                            <ul class="list-unstyled">
+                                                <li><a href="/login">Entrar</a></li>
+                                                <li><a href="/login#signup">Registrar</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-  <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;">
-    <!-- Kayode -->
-    <div style="flex:1;min-width:280px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:26px;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.04);">
-      <img src="{{ kayode.user_image or fallback }}" alt="{{ kayode.full_name or 'Kayode Joseph Alonge' }} — Professor de Inglês" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #dcfce7;" />
-      <h3 style="color:#166534;margin:14px 0 2px;">{{ kayode.full_name or "Kayode Joseph Alonge" }}</h3>
-      <p style="color:#16a34a;font-weight:600;margin:0 0 10px;">Professor de Inglês</p>
-      <p style="color:#6b7280;font-size:15px;margin:0;">Conduz os cursos de Inglês do nível iniciante (A1) ao avançado (C1), com aulas ao vivo e foco em conversação e fluência real.</p>
-    </div>
-    <!-- Busayo -->
-    <div style="flex:1;min-width:280px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:26px;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.04);">
-      <img src="{{ busayo.user_image or fallback }}" alt="{{ busayo.full_name or 'Busayo Frank Alonge' }} — Professor de Iorubá" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #dcfce7;" />
-      <h3 style="color:#166534;margin:14px 0 2px;">{{ busayo.full_name or "Busayo Frank Alonge" }}</h3>
-      <p style="color:#16a34a;font-weight:600;margin:0 0 10px;">Professor de Iorubá</p>
-      <p style="color:#6b7280;font-size:15px;margin:0;">Ensina Iorubá nos níveis básico, intermediário e avançado, trazendo o idioma e a cultura de forma viva e acessível.</p>
-    </div>
-  </div>
+        <section class="vd-wrap vd-ph">
+            <div class="container">
+                <div class="vd-bc"><a href="/">Início</a> &rsaquo; <span>Mentores</span></div>
+                <h1>Nossos Mentores</h1>
+                <p style="font-size:18px;opacity:.95;margin:0;max-width:720px;">Professores qualificados, aulas ao vivo e atenção real ao seu progresso.</p>
+            </div>
+        </section>
 
-  <div style="text-align:center;margin:42px 0 10px;">
-    <a href="/catalogo" style="display:inline-block;background:#166534;color:#fff;padding:14px 32px;border-radius:11px;font-weight:700;font-size:16px;text-decoration:none;">Conhecer os cursos</a>
-  </div>
-</div>
-{% endblock %}
+        <section class="vd-wrap vd-sec">
+            <div class="container">
+                <span class="vd-tag">Quem ensina</span>
+                <h2 class="vd-h2">Conheça parte do nosso time</h2>
+                <div class="row" style="margin-top:18px;">
+                    <div class="col-lg-6" style="margin-bottom:24px;">
+                        <div class="vd-prof">
+                            <img src="{{ kayode.user_image or fallback }}" alt="{{ kayode.full_name or 'Kayode Joseph Alonge' }} — Professor de Inglês" />
+                            <h3>{{ kayode.full_name or "Kayode Joseph Alonge" }}</h3>
+                            <p class="role">Professor de Inglês</p>
+                            <p>Conduz os cursos de Inglês do nível iniciante (A1) ao avançado (C1), com aulas ao vivo e foco em conversação e fluência real.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="margin-bottom:24px;">
+                        <div class="vd-prof">
+                            <img src="{{ busayo.user_image or fallback }}" alt="{{ busayo.full_name or 'Busayo Frank Alonge' }} — Professor de Iorubá" />
+                            <h3>{{ busayo.full_name or "Busayo Frank Alonge" }}</h3>
+                            <p class="role">Professor de Iorubá</p>
+                            <p>Ensina Iorubá nos níveis básico, intermediário e avançado, trazendo o idioma e a cultura de forma viva e acessível.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:24px;">
+                    <a href="/catalogo" class="vd-cta">Conhecer os cursos</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer-one">
+            <div class="footer-one__bg" style="background-color:#11161d;"></div>
+            <div class="footer-one__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4">
+                            <div class="footer-widget__column footer-widget__about">
+                                <div class="footer-widget__about-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4">
+                            <div class="footer-widget__column footer-widget__links">
+                                <h3 class="footer-widget__title">Links Úteis</h3>
+                                <ul class="footer-widget__links-list list-unstyled">
+                                    <li><a href="/sobre">Sobre Nós</a></li>
+                                    <li><a href="/catalogo">Nossos Cursos</a></li>
+                                    <li><a href="/mentores">Mentores</a></li>
+                                    <li><a href="/carreiras">Trabalhe Conosco</a></li>
+                                    <li><a href="/termos">Termos</a></li>
+                                    <li><a href="/privacidade">Privacidade</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4">
+                            <div class="footer-widget__column footer-widget__contact">
+                                <h3 class="footer-widget__title">Contato</h3>
+                                <p class="text">Brasil — Atendimento 100% Online</p>
+                                <p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p>
+                                <p><a href="tel:+5511941906079">+55 (11) 94190-6079</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-one__bottom">
+                <div class="container"><div class="row"><div class="col-xl-12"><div class="footer-one__bottom-inner"><div class="footer-one__bottom-text text-center">
+                    <p>&copy; Copyright 2026 Vedium – Plataforma de Ensino de Idiomas</p>
+                </div></div></div></div></div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+            <div class="logo-box"><a href="/" aria-label="logo"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" width="155" alt="Vedium" /></a></div>
+            <ul class="mobile-nav__contact list-unstyled">
+                <li><i class="icon-letter"></i><a href="mailto:contato@vediums.com">contato@vediums.com</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <script src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vedium_core/vedium_assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
+    <script src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+    <script src="/assets/vedium_core/js/cookie-consent.js"></script>
+</body>
+
+</html>
