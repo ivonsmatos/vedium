@@ -88,6 +88,15 @@
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
 
+    <!-- Ajustes Vedium: tamanho do logo + menu fixo ao rolar -->
+    <style>
+      img[src*="logo-color-reta"] { max-height: 46px !important; width: auto !important; }
+      .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
+      .stricky-header, .stricky-header.stricked-menu { display: none !important; }
+      .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+      .footer-widget__about-logo { margin-bottom: 10px; }
+    </style>
+
     <!-- Schema Markup JSON-LD -->
     <script type="application/ld+json">
     {
@@ -331,7 +340,7 @@
                                 src="/assets/vedium_core/vedium_assets/images/shapes/slider-v1-shape2.png" alt="" />
                         </div>
                         <div class="image-layer"
-                            style="background-image: linear-gradient(to right, rgba(10,20,50,0.75) 0%, rgba(10,20,50,0.50) 50%, rgba(10,20,50,0.20) 100%), url(https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&q=80);">
+                            style="background-image: linear-gradient(to right, rgba(10,20,50,0.75) 0%, rgba(10,20,50,0.50) 50%, rgba(10,20,50,0.20) 100%), url(https://images.unsplash.com/photo-1758270705518-b61b40527e76?w=1920&q=80);">
                         </div>
                         <!-- /.image-layer -->
                         <div class="container">
