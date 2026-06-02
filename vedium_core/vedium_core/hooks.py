@@ -76,7 +76,7 @@ web_include_js = ["/assets/vedium_core/js/pwa-register.js", "/assets/vedium_core
 web_manifest = "/manifest.json"
 
 # Theme Color for PWA
-app_theme_color = "#166534"
+app_theme_color = "#2E6DA4"
 
 # =============================================================================
 # Website Context - Bottom Navigation & PWA
@@ -95,7 +95,7 @@ website_context = {
 # Add custom context to all web pages
 def get_web_context(context):
     context.pwa_enabled = True
-    context.theme_color = "#166534"
+    context.theme_color = "#2E6DA4"
     context.background_color = "#0f1419"
     return context
 
