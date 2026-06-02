@@ -178,8 +178,8 @@
                                 {% endif %}
                                 <p class="courses-one__single-content-price">{{ course.formatted_price }}</p>
                                 <ul class="courses-one__single-content-courses-info list-unstyled">
-                                    <li>{{ course.lesson_count }} Aulas</li>
-                                    <li>{{ course.enrollment_count }} Alunos</li>
+                                    {% if course.lesson_count %}<li>{{ course.lesson_count }} Aulas</li>{% endif %}
+                                    {% if course.enrollment_count %}<li>{{ course.enrollment_count }} Alunos</li>{% endif %}
                                     {% if course.level_badge %}<li>{{ course.level_badge }}</li>{% endif %}
                                 </ul>
                             </div>
