@@ -16,7 +16,7 @@
     <!-- SEO Meta Tags -->
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
-    <meta name="author" content="Vedium Global Education" />
+    <meta name="author" content="Vedium" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href="{{ canonical_url }}" />
 
@@ -60,6 +60,10 @@
       .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
       .stricky-header, .stricky-header.stricked-menu { display: none !important; }
       .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+      .page-header__title h2 { color: #fff; }
+      .course-details__content-text2 { margin-top: 12px; }
+      .course-details__content-text2 p { margin-bottom: 12px; line-height: 1.75; }
+      .courses-one__single.style2 .courses-one__single-img img { width: 100%; max-height: 380px; object-fit: cover; }
     </style>
 
     <!-- Schema.org Course (JSON-LD) -->
@@ -113,43 +117,6 @@
         ]
     }
     </script>
-
-    <style>
-        .vd-course-wrap { font-family: 'Kumbh Sans', Arial, sans-serif; color: #1f2937; }
-        .vd-hero { background: linear-gradient(135deg, #234E70 0%, #2E6DA4 100%); color: #fff; padding: 54px 0 40px; }
-        .vd-hero .vd-breadcrumb { font-size: 13px; opacity: .85; margin-bottom: 14px; }
-        .vd-hero .vd-breadcrumb a { color: #d1fae5; text-decoration: none; }
-        .vd-hero h1 { font-size: 34px; font-weight: 700; margin: 0 0 12px; line-height: 1.25; }
-        .vd-hero .vd-sub { font-size: 17px; opacity: .92; max-width: 760px; }
-        .vd-badges { margin-top: 18px; }
-        .vd-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); padding: 5px 13px; border-radius: 30px; font-size: 13px; margin: 0 8px 8px 0; }
-        .vd-body { padding: 44px 0 60px; }
-        .vd-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 26px; margin-bottom: 24px; box-shadow: 0 6px 24px rgba(0,0,0,.04); }
-        .vd-card h2 { color: #2E6DA4; font-size: 22px; font-weight: 700; margin: 0 0 16px; }
-        .vd-card p { line-height: 1.7; color: #374151; }
-        .vd-chapter { border: 1px solid #eef2f7; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
-        .vd-chapter-h { background: #eef4fb; padding: 13px 18px; font-weight: 700; color: #234E70; display: flex; justify-content: space-between; }
-        .vd-lesson { padding: 11px 18px; border-top: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; color: #475569; font-size: 15px; }
-        .vd-lesson i { color: #2E6DA4; }
-        .vd-instructor { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
-        .vd-instructor img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
-        .vd-side { position: sticky; top: 24px; }
-        .vd-side-img { width: 100%; height: 200px; object-fit: cover; border-radius: 14px 14px 0 0; }
-        .vd-side-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.07); }
-        .vd-side-body { padding: 24px; }
-        .vd-price { font-size: 30px; font-weight: 800; color: #2E6DA4; }
-        .vd-price small { font-size: 15px; font-weight: 500; color: #6b7280; }
-        .vd-cta { display: block; width: 100%; text-align: center; background: #2E6DA4; color: #fff; padding: 15px; border-radius: 11px; font-weight: 700; font-size: 17px; text-decoration: none; margin: 18px 0 10px; transition: background .2s; }
-        .vd-cta:hover { background: #234E70; color: #fff; }
-        .vd-feat { list-style: none; padding: 0; margin: 14px 0 0; }
-        .vd-feat li { padding: 9px 0; border-top: 1px solid #f1f5f9; color: #374151; display: flex; align-items: center; gap: 10px; font-size: 15px; }
-        .vd-feat li i { color: #2E6DA4; width: 18px; }
-        .vd-related-card { background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; height:100%; }
-        .vd-related-card img { width:100%; height:150px; object-fit:cover; }
-        .vd-related-card .p { padding:15px; }
-        .vd-related-card a { color:#2E6DA4; font-weight:700; text-decoration:none; }
-        @media (max-width: 991px){ .vd-hero h1{font-size:27px;} .vd-side{position:static;} }
-    </style>
 </head>
 
 <body>
@@ -161,124 +128,188 @@
         {% set vd_page = "cursos" %}
         {% include "templates/includes/site_navbar.html" %}
 
-        <!-- Hero -->
-        <section class="vd-course-wrap vd-hero">
-            <div class="container">
-                <div class="vd-breadcrumb">
-                    <a href="/">Início</a> &rsaquo; <a href="/catalogo">Cursos</a> &rsaquo; <span>{{ course.title }}</span>
-                </div>
-                <h1>{{ course.title }}</h1>
-                {% if course.short_introduction %}<p class="vd-sub">{{ course.short_introduction }}</p>{% endif %}
-                <div class="vd-badges">
-                    <span class="vd-badge"><i class="fa fa-video"></i> Aulas ao vivo</span>
-                    {% if course.category_name %}<span class="vd-badge">{{ course.category_name }}</span>{% endif %}
-                    {% if course.total_lessons %}<span class="vd-badge">{{ course.total_lessons }} aulas</span>{% endif %}
-                    {% if course.enrollment_count %}<span class="vd-badge">{{ course.enrollment_count }} alunos</span>{% endif %}
-                    <span class="vd-badge"><i class="fa fa-certificate"></i> Certificado</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Body -->
-        <section class="vd-course-wrap vd-body">
+        <!--Page Header Start-->
+        <section class="page-header clearfix" style="background-image: linear-gradient(rgba(35,78,112,0.82), rgba(46,109,164,0.82)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80);">
             <div class="container">
                 <div class="row">
-                    <!-- Main -->
-                    <div class="col-lg-8">
-                        {% if course.image %}
-                        <img src="{{ course.image }}" alt="{{ course.title }}" style="width:100%;border-radius:16px;margin-bottom:24px;max-height:380px;object-fit:cover;" />
-                        {% endif %}
-
-                        {% if course.description %}
-                        <div class="vd-card">
-                            <h2>Sobre o curso</h2>
-                            <div>{{ course.description | safe }}</div>
-                        </div>
-                        {% endif %}
-
-                        {% if course.chapters_list %}
-                        <div class="vd-card">
-                            <h2>Conteúdo do curso</h2>
-                            {% for chapter in course.chapters_list %}
-                            <div class="vd-chapter">
-                                <div class="vd-chapter-h">
-                                    <span>{{ loop.index }}. {{ chapter.title }}</span>
-                                    <span style="font-weight:500;font-size:13px;">{{ chapter.lessons | length }} aula(s)</span>
-                                </div>
-                                {% for lesson in chapter.lessons %}
-                                <div class="vd-lesson"><i class="fa fa-play-circle"></i> {{ lesson.title }}{% if lesson.duration %} <span style="margin-left:auto;font-size:13px;color:#9ca3af;">{{ lesson.duration }}</span>{% endif %}</div>
-                                {% endfor %}
+                    <div class="col-xl-12">
+                        <div class="page-header__wrapper clearfix">
+                            <div class="page-header__title">
+                                <h2>{{ course.title }}</h2>
                             </div>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-
-                        {% if course.instructors_list %}
-                        <div class="vd-card">
-                            <h2>{% if course.instructors_list | length > 1 %}Professores{% else %}Professor(a){% endif %}</h2>
-                            {% for inst in course.instructors_list %}
-                            <div class="vd-instructor">
-                                {% if inst.user_image %}<img src="{{ inst.user_image }}" alt="{{ inst.full_name }}" />{% else %}<img src="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" alt="{{ inst.full_name }}" />{% endif %}
-                                <div>
-                                    <strong style="font-size:17px;color:#2E6DA4;">{{ inst.full_name }}</strong>
-                                    {% if inst.bio %}<p style="margin:4px 0 0;font-size:14px;">{{ inst.bio | striptags }}</p>{% endif %}
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Sidebar -->
-                    <div class="col-lg-4">
-                        <div class="vd-side">
-                            <div class="vd-side-card">
-                                {% if course.image %}<img class="vd-side-img" src="{{ course.image }}" alt="{{ course.title }}" />{% endif %}
-                                <div class="vd-side-body">
-                                    <div class="vd-price">{{ course.formatted_price }}{% if course.paid_course and course.course_price %} <small>/mês</small>{% endif %}</div>
-                                    {% if is_enrolled %}
-                                    <a class="vd-cta" href="{{ lms_url }}">Acessar curso</a>
-                                    <p style="text-align:center;color:#2E6DA4;font-size:13px;margin:0;"><i class="fa fa-check-circle"></i> Você já está matriculado</p>
-                                    {% else %}
-                                    <a class="vd-cta" href="{{ lms_url }}">Matricular agora</a>
-                                    <p style="text-align:center;color:#6b7280;font-size:13px;margin:0;">Aulas ao vivo &middot; Cancele quando quiser</p>
-                                    {% endif %}
-                                    <ul class="vd-feat">
-                                        <li><i class="fa fa-video"></i> Aulas 100% ao vivo</li>
-                                        <li><i class="fa fa-chalkboard-teacher"></i> Professores qualificados</li>
-                                        {% if course.total_lessons %}<li><i class="fa fa-book-open"></i> {{ course.total_lessons }} aulas</li>{% endif %}
-                                        <li><i class="fa fa-globe"></i> Online, de qualquer lugar</li>
-                                        <li><i class="fa fa-certificate"></i> Certificado de conclusão</li>
-                                        <li><i class="fa fa-headset"></i> Suporte ao aluno</li>
-                                    </ul>
-                                </div>
+                            <div class="page-header__menu">
+                                <ul class="page-header__menu-list list-unstyled clearfix">
+                                    <li><a href="/">Início</a></li>
+                                    <li><a href="/catalogo">Cursos</a></li>
+                                    <li class="active">{{ course.title }}</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {% if related_courses %}
-                <div style="margin-top:40px;">
-                    <h2 style="color:#2E6DA4;font-size:24px;font-weight:700;margin-bottom:22px;">Cursos relacionados</h2>
-                    <div class="row">
-                        {% for rc in related_courses %}
-                        <div class="col-md-4" style="margin-bottom:24px;">
-                            <div class="vd-related-card">
-                                <a href="{{ rc.url }}"><img src="{{ rc.image }}" alt="{{ rc.title }}" /></a>
-                                <div class="p">
-                                    <a href="{{ rc.url }}">{{ rc.title }}</a>
-                                    <p style="color:#6b7280;font-size:14px;margin:8px 0 0;">{{ rc.formatted_price }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
             </div>
         </section>
+        <!--Page Header End-->
 
-        <!-- Footer -->
+        <!--Course Details Start-->
+        <section class="course-details">
+            <div class="container">
+                <div class="row">
+                    <!--Start Course Details Content-->
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="course-details__content">
+                            <div class="courses-one__single style2">
+                                <div class="courses-one__single-img">
+                                    {% if course.image %}<img src="{{ course.image }}" alt="{{ course.title }}" />{% endif %}
+                                    <div class="overlay-text">
+                                        <p>{{ course.category_name or "Curso" }}</p>
+                                    </div>
+                                </div>
+                                <div class="courses-one__single-content">
+                                    {% if course.instructors_list and course.instructors_list[0].user_image %}
+                                    <div class="courses-one__single-content-overlay-img">
+                                        <img src="{{ course.instructors_list[0].user_image }}" alt="{{ course.instructors_list[0].full_name }}" />
+                                    </div>
+                                    {% endif %}
+                                    {% if course.instructors_list %}
+                                    <h6 class="courses-one__single-content-name">{{ course.instructors_list[0].full_name }} <span>Aulas ao vivo</span></h6>
+                                    {% endif %}
+                                    <h4 class="courses-one__single-content-title">{{ course.title }}</h4>
+                                    {% if course.short_introduction %}
+                                    <div class="course-details__content-text1">
+                                        <p>{{ course.short_introduction }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if course.description %}
+                                    <div class="course-details__content-text2">{{ course.description | safe }}</div>
+                                    {% endif %}
+                                    <div class="course-details__content-list">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <div class="icon"><span class="icon-confirmation"></span></div>
+                                                <div class="text"><p>Aulas 100% ao vivo, em tempo real</p></div>
+                                            </li>
+                                            <li>
+                                                <div class="icon"><span class="icon-confirmation"></span></div>
+                                                <div class="text"><p>Professor qualificado e turmas pequenas</p></div>
+                                            </li>
+                                            <li>
+                                                <div class="icon"><span class="icon-confirmation"></span></div>
+                                                <div class="text"><p>Certificado de conclusão</p></div>
+                                            </li>
+                                            <li>
+                                                <div class="icon"><span class="icon-confirmation"></span></div>
+                                                <div class="text"><p>Estude de qualquer lugar do Brasil</p></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if course.chapters_list %}
+                            <!--Start Course Details Curriculum-->
+                            <div class="course-details__curriculum">
+                                <h2 class="course-details__curriculum-title">Conteúdo do curso</h2>
+                                {% for chapter in course.chapters_list %}
+                                <div class="course-details__curriculum-single{% if loop.last %} mar-buttom0{% endif %}">
+                                    <h3 class="course-details__curriculum-single-title">{{ loop.index }}. {{ chapter.title }}</h3>
+                                    <ul class="course-details__curriculum-list list-unstyled">
+                                        {% for lesson in chapter.lessons %}
+                                        <li>
+                                            <div class="course-details__curriculum-list-left">
+                                                <div class="course-details__curriculum-list-left-icon">
+                                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                                </div>
+                                                <span class="course-details__curriculum-list-left-title">{{ lesson.title }}</span>
+                                            </div>
+                                            {% if lesson.duration %}
+                                            <div class="course-details__curriculum-list-right">
+                                                <p>{{ lesson.duration }}</p>
+                                            </div>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!--End Course Details Curriculum-->
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--End Course Details Content-->
+
+                    <!--Start Course Details Sidebar-->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="course-details__sidebar">
+                            <div class="course-details__price wow fadeInUp animated" data-wow-delay="0.1s">
+                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>/mês</span>{% endif %}</h2>
+                                <div class="course-details__price-btn">
+                                    {% if is_enrolled %}
+                                    <a href="{{ lms_url }}" class="thm-btn">Acessar curso</a>
+                                    {% else %}
+                                    <a href="{{ lms_url }}" class="thm-btn">Matricular agora</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="course-details__sidebar-meta wow fadeInUp animated" data-wow-delay="0.3s">
+                                <ul class="course-details__sidebar-meta-list list-unstyled">
+                                    {% if course.total_lessons %}
+                                    <li class="course-details__sidebar-meta-list-item">
+                                        <div class="icon"><a><i class="far fa-folder-open"></i></a></div>
+                                        <div class="text"><p><a>Aulas:<span>{{ course.total_lessons }}</span></a></p></div>
+                                    </li>
+                                    {% endif %}
+                                    {% if course.enrollment_count %}
+                                    <li class="course-details__sidebar-meta-list-item">
+                                        <div class="icon"><a><i class="far fa-user-circle"></i></a></div>
+                                        <div class="text"><p><a>Alunos:<span>{{ course.enrollment_count }}</span></a></p></div>
+                                    </li>
+                                    {% endif %}
+                                    <li class="course-details__sidebar-meta-list-item">
+                                        <div class="icon"><a><i class="fas fa-video"></i></a></div>
+                                        <div class="text"><p><a>Modalidade:<span>Online, ao vivo</span></a></p></div>
+                                    </li>
+                                    {% if course.category_name %}
+                                    <li class="course-details__sidebar-meta-list-item">
+                                        <div class="icon"><a><i class="far fa-flag"></i></a></div>
+                                        <div class="text"><p><a>Nível:<span>{{ course.category_name }}</span></a></p></div>
+                                    </li>
+                                    {% endif %}
+                                    <li class="course-details__sidebar-meta-list-item">
+                                        <div class="icon"><a><i class="fas fa-certificate"></i></a></div>
+                                        <div class="text"><p><a>Certificado:<span>Sim</span></a></p></div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {% if related_courses %}
+                            <div class="course-details__new-courses wow fadeInUp animated" data-wow-delay="0.5s">
+                                <h3 class="course-details__new-courses-title">Cursos relacionados</h3>
+                                <ul class="course-details__new-courses-list list-unstyled">
+                                    {% for rc in related_courses %}
+                                    <li class="course-details__new-courses-list-item">
+                                        <div class="course-details__new-courses-list-item-img">
+                                            <img src="{{ rc.image }}" alt="{{ rc.title }}" />
+                                        </div>
+                                        <div class="course-details__new-courses-list-item-content">
+                                            <h4 class="course-details__new-courses-list-item-content-title"><a href="{{ rc.url }}">{{ rc.title }}</a></h4>
+                                            <p class="course-details__new-courses-price">{{ rc.formatted_price }}</p>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--End Course Details Sidebar-->
+                </div>
+            </div>
+        </section>
+        <!--Course Details End-->
+
         {% include "templates/includes/site_footer.html" %}
 
     </div><!-- /.page-wrapper -->

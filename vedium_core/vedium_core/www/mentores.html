@@ -32,17 +32,9 @@
       .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
       .stricky-header, .stricky-header.stricked-menu { display: none !important; }
       .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
-      .vd-wrap { font-family: 'Kumbh Sans', Arial, sans-serif; color: #1f2937; }
-      .vd-ph { background: linear-gradient(135deg, #234E70 0%, #2E6DA4 100%); color: #fff; padding: 58px 0; }
-      .vd-ph h1 { font-size: 36px; font-weight: 700; margin: 0 0 8px; }
-      .vd-ph .vd-bc { font-size: 14px; opacity: .9; } .vd-ph .vd-bc a { color: #cfe3f5; text-decoration: none; }
-      .vd-sec { padding: 60px 0; }
-      .vd-tag { color: #2E6DA4; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; font-size: 14px; }
-      .vd-h2 { color: #234E70; font-size: 30px; font-weight: 700; margin: 4px 0 16px; }
-      .vd-prof { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 28px; text-align: center; height: 100%; box-shadow: 0 6px 24px rgba(0,0,0,.05); }
-      .vd-prof img { width: 124px; height: 124px; border-radius: 50%; object-fit: cover; border: 3px solid #d7e6f5; }
-      .vd-prof h3 { color: #234E70; margin: 16px 0 2px; font-size: 21px; } .vd-prof .role { color: #2E6DA4; font-weight: 700; margin: 0 0 10px; } .vd-prof p { color: #6b7280; font-size: 15px; margin: 0; }
-      .vd-cta { display: inline-block; background: #A12D1C; color: #fff; padding: 15px 36px; border-radius: 10px; font-weight: 700; font-size: 17px; text-decoration: none; } .vd-cta:hover { background: #871f10; color: #fff; }
+      .page-header__title h2 { color: #fff; }
+      .meet-teachers-one { padding: 70px 0; }
+      .meet-teachers-one__single-img img { width: 100%; height: 330px; object-fit: cover; }
     </style>
 </head>
 
@@ -54,39 +46,94 @@
     <div class="page-wrapper">
         {% include "templates/includes/site_navbar.html" %}
 
-        <section class="vd-wrap vd-ph">
+        <!--Page Header Start-->
+        <section class="page-header clearfix" style="background-image: linear-gradient(rgba(35,78,112,0.82), rgba(46,109,164,0.82)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80);">
             <div class="container">
-                <div class="vd-bc"><a href="/">Início</a> &rsaquo; <span>Mentores</span></div>
-                <h1>Nossos Mentores</h1>
-                <p style="font-size:18px;opacity:.95;margin:0;max-width:720px;">Professores qualificados, aulas ao vivo e atenção real ao seu progresso.</p>
-            </div>
-        </section>
-
-        <section class="vd-wrap vd-sec">
-            <div class="container">
-                <span class="vd-tag">Quem ensina</span>
-                <h2 class="vd-h2">Conheça parte do nosso time</h2>
-                <div class="row" style="margin-top:18px;">
-                    <div class="col-lg-6" style="margin-bottom:24px;">
-                        <div class="vd-prof">
-                            <img src="{{ kayode.user_image or fallback }}" alt="{{ kayode.full_name or 'Kayode Joseph Alonge' }} — Professor de Inglês" />
-                            <h3>{{ kayode.full_name or "Kayode Joseph Alonge" }}</h3>
-                            <p class="role">Professor de Inglês</p>
-                            <p>Conduz os cursos de Inglês do nível iniciante (A1) ao avançado (C1), com aulas ao vivo e foco em conversação e fluência real.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" style="margin-bottom:24px;">
-                        <div class="vd-prof">
-                            <img src="{{ busayo.user_image or fallback }}" alt="{{ busayo.full_name or 'Busayo Frank Alonge' }} — Professor de Iorubá" />
-                            <h3>{{ busayo.full_name or "Busayo Frank Alonge" }}</h3>
-                            <p class="role">Professor de Iorubá</p>
-                            <p>Ensina Iorubá nos níveis básico, intermediário e avançado, trazendo o idioma e a cultura de forma viva e acessível.</p>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="page-header__wrapper clearfix">
+                            <div class="page-header__title">
+                                <h2>Mentores</h2>
+                            </div>
+                            <div class="page-header__menu">
+                                <ul class="page-header__menu-list list-unstyled clearfix">
+                                    <li><a href="/">Início</a></li>
+                                    <li class="active">Mentores</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div style="text-align:center;margin-top:24px;"><a href="/catalogo" class="vd-cta">Conhecer os cursos</a></div>
             </div>
         </section>
+        <!--Page Header End-->
+
+        <!--Start Meet Teachers One-->
+        <section class="meet-teachers-one">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="section-title__tagline">Quem ensina</span>
+                    <h2 class="section-title__title">Nossos Mentores</h2>
+                </div>
+                <div class="row justify-content-center" style="margin-top:30px;">
+                    <!--Start Single Meet Teachers One-->
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="meet-teachers-one__single-img">
+                                <img src="{{ kayode.user_image or fallback }}" alt="{{ kayode.full_name or 'Kayode Joseph Alonge' }} — Professor de Inglês" />
+                            </div>
+                            <div class="meet-teachers-one__single-content">
+                                <div class="meet-teachers-one__single-middle-content">
+                                    <div class="title">
+                                        <h4><a href="/catalogo">{{ kayode.full_name or "Kayode Joseph Alonge" }}</a></h4>
+                                        <p>Professor de Inglês</p>
+                                    </div>
+                                    <p class="meet-teachers-one__single-content-text">Conduz os cursos de Inglês do nível iniciante (A1) ao avançado (C1), com aulas ao vivo e foco em conversação e fluência real.</p>
+                                </div>
+                                <div class="meet-teachers-one__single-bottom-content">
+                                    <div class="meet-teachers-one__single-content-courses-box">
+                                        <div class="text">
+                                            <p>Inglês · A1 a C1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Meet Teachers One-->
+
+                    <!--Start Single Meet Teachers One-->
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
+                            <div class="meet-teachers-one__single-img">
+                                <img src="{{ busayo.user_image or fallback }}" alt="{{ busayo.full_name or 'Busayo Frank Alonge' }} — Professor de Iorubá" />
+                            </div>
+                            <div class="meet-teachers-one__single-content">
+                                <div class="meet-teachers-one__single-middle-content">
+                                    <div class="title">
+                                        <h4><a href="/catalogo">{{ busayo.full_name or "Busayo Frank Alonge" }}</a></h4>
+                                        <p>Professor de Iorubá</p>
+                                    </div>
+                                    <p class="meet-teachers-one__single-content-text">Ensina Iorubá nos níveis básico, intermediário e avançado, trazendo o idioma e a cultura de forma viva e acessível.</p>
+                                </div>
+                                <div class="meet-teachers-one__single-bottom-content">
+                                    <div class="meet-teachers-one__single-content-courses-box">
+                                        <div class="text">
+                                            <p>Iorubá · Básico ao avançado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Meet Teachers One-->
+                </div>
+                <div class="text-center" style="margin-top:20px;">
+                    <a href="/catalogo" class="thm-btn">Conhecer os cursos</a>
+                </div>
+            </div>
+        </section>
+        <!--End Meet Teachers One-->
 
         {% include "templates/includes/site_footer.html" %}
     </div>
