@@ -158,59 +158,8 @@
 
     <div class="page-wrapper">
 
-        <header class="main-header main-header--one clearfix">
-            <div class="main-header--one__top clearfix">
-                <div class="container">
-                    <div class="main-header--one__top-inner clearfix">
-                        <div class="main-header--one__top-left">
-                            <div class="main-header--one__top-logo">
-                                <a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium"/></a>
-                            </div>
-                        </div>
-                        <div class="main-header--one__top-right clearfix">
-                            <div class="main-header--one__top-contact-info clearfix">
-                                <ul class="main-header--one__top-contact-info-list list-unstyled">
-                                    <li class="main-header--one__top-contact-info-list-item">
-                                        <div class="icon"><span class="icon-message"></span></div>
-                                        <div class="text"><h6>Fale conosco</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="main-header-one__bottom clearfix">
-                <div class="container">
-                    <div class="main-header-one__bottom-inner clearfix">
-                        <nav class="main-menu main-menu--1">
-                            <div class="main-menu__inner">
-                                <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
-                                <div class="left">
-                                    <ul class="main-menu__list">
-                                        <li><a href="/">Início</a></li>
-                                        <li><a href="/sobre">Sobre</a></li>
-                                        <li class="current"><a href="/catalogo">Cursos</a></li>
-                                        <li><a href="/mentores">Mentores</a></li>
-                                        <li><a href="/contato">Contato</a></li>
-                                    </ul>
-                                </div>
-                                <div class="right">
-                                    <div class="main-menu__right">
-                                        <div class="main-menu__right-login-register">
-                                            <ul class="list-unstyled">
-                                                <li><a href="/login">Entrar</a></li>
-                                                <li><a href="/login#signup">Registrar</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
+        {% set vd_page = "cursos" %}
+        {% include "templates/includes/site_navbar.html" %}
 
         <!-- Hero -->
         <section class="vd-course-wrap vd-hero">
@@ -330,52 +279,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer-one">
-            <div class="footer-one__bg" style="background-image: url(/assets/vedium_core/vedium_assets/images/backgrounds/footer-v1-bg.jpg);"></div>
-            <div class="footer-one__top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__about">
-                                <div class="footer-widget__about-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__links">
-                                <h3 class="footer-widget__title">Links Úteis</h3>
-                                <ul class="footer-widget__links-list list-unstyled">
-                                    <li><a href="/sobre">Sobre Nós</a></li>
-                                    <li><a href="/catalogo">Nossos Cursos</a></li>
-                                    <li><a href="/mentores">Mentores</a></li>
-                                    <li><a href="/lms/courses">Área do Aluno</a></li>
-                                    <li><a href="/carreiras">Trabalhe Conosco</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__contact">
-                                <h3 class="footer-widget__title">Contato</h3>
-                                <p class="text">Brasil – Atendimento 100% Online</p>
-                                <p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-one__bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="footer-one__bottom-inner">
-                                <div class="footer-one__bottom-text text-center">
-                                    <p>&copy; Copyright 2026 Vedium – Plataforma de Ensino de Idiomas</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {% include "templates/includes/site_footer.html" %}
 
     </div><!-- /.page-wrapper -->
 
