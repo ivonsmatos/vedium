@@ -15,9 +15,9 @@
     bar.innerHTML =
       '<span style="max-width:780px;">🍪 Usamos cookies para melhorar a sua experiência e analisar o uso do site. ' +
       'Ao continuar navegando, você concorda com a nossa ' +
-      '<a href="/privacidade" style="color:#4ade80;text-decoration:underline;">Política de Privacidade</a>.</span>' +
+      '<a href="/privacidade" style="color:#93c5fd;text-decoration:underline;">Política de Privacidade</a>.</span>' +
       '<span style="display:flex;gap:10px;">' +
-      '<button id="vd-cookie-ok" style="background:#166534;color:#fff;border:none;padding:11px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">Aceitar</button>' +
+      '<button id="vd-cookie-ok" style="background:#2E6DA4;color:#fff;border:none;padding:11px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">Aceitar</button>' +
       '<a href="/privacidade" style="background:transparent;color:#cbd5e1;border:1px solid #475569;padding:11px 18px;border-radius:8px;font-weight:600;text-decoration:none;font-size:14px;">Saiba mais</a>' +
       '</span>';
     document.body.appendChild(bar);
