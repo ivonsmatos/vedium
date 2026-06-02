@@ -111,12 +111,12 @@ def _enrich(course) -> dict:
         limit=1,
     )
     if instructors:
-        course["instructor_name"] = (
-            frappe.db.get_value("User", instructors[0]["instructor"], "full_name")
-            or "Vedium Instructor"
-        )
+        _idata = frappe.db.get_value("User", instructors[0]["instructor"], ["full_name", "user_image"], as_dict=True)
+        course["instructor_name"] = (_idata.full_name if _idata else None) or "Vedium Instructor"
+        course["instructor_image"] = _idata.user_image if _idata else None
     else:
         course["instructor_name"] = "Vedium Instructor"
+        course["instructor_image"] = None
 
     # Preço formatado
     if course.get("paid_course") and course.get("course_price"):

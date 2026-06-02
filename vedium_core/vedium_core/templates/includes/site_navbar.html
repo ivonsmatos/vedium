@@ -1,0 +1,67 @@
+<header class="main-header main-header--one clearfix">
+    <div class="main-header--one__top clearfix">
+        <div class="container">
+            <div class="main-header--one__top-inner clearfix">
+                <div class="main-header--one__top-left">
+                    <div class="main-header--one__top-logo">
+                        <a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium"/></a>
+                    </div>
+                </div>
+                <div class="main-header--one__top-right clearfix">
+                    <ul class="main-header--one__top-social-link list-unstyled clearfix">
+                        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://wa.me/5511941906079" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></li>
+                    </ul>
+                    <div class="main-header--one__top-contact-info clearfix">
+                        <ul class="main-header--one__top-contact-info-list list-unstyled">
+                            <li class="main-header--one__top-contact-info-list-item">
+                                <div class="icon"><span class="icon-phone-call-1"></span></div>
+                                <div class="text"><h6>Fale conosco</h6><p><a href="tel:+5511941906079">+55 (11) 94190-6079</a></p></div>
+                            </li>
+                            <li class="main-header--one__top-contact-info-list-item">
+                                <div class="icon"><span class="icon-message"></span></div>
+                                <div class="text"><h6>Fale conosco</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header-one__bottom clearfix">
+        <div class="container">
+            <div class="main-header-one__bottom-inner clearfix">
+                <nav class="main-menu main-menu--1">
+                    <div class="main-menu__inner">
+                        <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                        <div class="left">
+                            <ul class="main-menu__list">
+                                <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="/">Início</a></li>
+                                <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="/sobre">Sobre</a></li>
+                                <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="/catalogo">Cursos</a></li>
+                                <li{% if vd_page == "mentores" %} class="current"{% endif %}><a href="/mentores">Mentores</a></li>
+                                <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="/contato">Contato</a></li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <div class="main-menu__right">
+                                <div class="main-menu__right-login-register">
+                                    <ul class="list-unstyled">
+                                        <li><a href="/login">Entrar</a></li>
+                                        <li><a href="/login#signup">Registrar</a></li>
+                                    </ul>
+                                </div>
+                                <div class="main-menu__right-cart-search">
+                                    <div class="main-menu__right-search-box">
+                                        <a href="/catalogo" class="thm-btn">Ver cursos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

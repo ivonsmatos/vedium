@@ -33,12 +33,10 @@
       .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
       .stricky-header, .stricky-header.stricked-menu { display: none !important; }
       .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
-      /* Marca Vedium: azul + vermelho */
       .vd-wrap { font-family: 'Kumbh Sans', Arial, sans-serif; color: #1f2937; }
       .vd-ph { background: linear-gradient(135deg, #234E70 0%, #2E6DA4 100%); color: #fff; padding: 58px 0; }
       .vd-ph h1 { font-size: 36px; font-weight: 700; margin: 0 0 8px; }
-      .vd-ph .vd-bc { font-size: 14px; opacity: .9; }
-      .vd-ph .vd-bc a { color: #cfe3f5; text-decoration: none; }
+      .vd-ph .vd-bc { font-size: 14px; opacity: .9; } .vd-ph .vd-bc a { color: #cfe3f5; text-decoration: none; }
       .vd-sec { padding: 60px 0; }
       .vd-tag { color: #2E6DA4; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; font-size: 14px; }
       .vd-h2 { color: #234E70; font-size: 30px; font-weight: 700; margin: 4px 0 16px; }
@@ -50,71 +48,17 @@
       .vd-feat .ic { width: 46px; height: 46px; border-radius: 10px; background: #eef4fb; color: #2E6DA4; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
       .vd-feat strong { color: #234E70; display: block; margin-bottom: 4px; }
       .vd-feat span { color: #6b7280; font-size: 15px; }
-      .vd-cta { display: inline-block; background: #A12D1C; color: #fff; padding: 15px 36px; border-radius: 10px; font-weight: 700; font-size: 17px; text-decoration: none; transition: background .2s; }
+      .vd-cta { display: inline-block; background: #A12D1C; color: #fff; padding: 15px 36px; border-radius: 10px; font-weight: 700; font-size: 17px; text-decoration: none; }
       .vd-cta:hover { background: #871f10; color: #fff; }
-      .vd-list li { font-size: 17px; color: #374151; margin-bottom: 8px; }
-      .vd-list li b { color: #2E6DA4; }
+      .vd-list li { font-size: 17px; color: #374151; margin-bottom: 8px; } .vd-list li b { color: #2E6DA4; }
     </style>
 </head>
 
 <body>
+{% set vd_page = "sobre" %}
     <div class="page-wrapper">
+        {% include "templates/includes/site_navbar.html" %}
 
-        <header class="main-header main-header--one clearfix">
-            <div class="main-header--one__top clearfix">
-                <div class="container">
-                    <div class="main-header--one__top-inner clearfix">
-                        <div class="main-header--one__top-left">
-                            <div class="main-header--one__top-logo">
-                                <a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium"/></a>
-                            </div>
-                        </div>
-                        <div class="main-header--one__top-right clearfix">
-                            <div class="main-header--one__top-contact-info clearfix">
-                                <ul class="main-header--one__top-contact-info-list list-unstyled">
-                                    <li class="main-header--one__top-contact-info-list-item">
-                                        <div class="icon"><span class="icon-message"></span></div>
-                                        <div class="text"><h6>Fale conosco</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="main-header-one__bottom clearfix">
-                <div class="container">
-                    <div class="main-header-one__bottom-inner clearfix">
-                        <nav class="main-menu main-menu--1">
-                            <div class="main-menu__inner">
-                                <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
-                                <div class="left">
-                                    <ul class="main-menu__list">
-                                        <li><a href="/">Início</a></li>
-                                        <li class="current"><a href="/sobre">Sobre</a></li>
-                                        <li><a href="/catalogo">Cursos</a></li>
-                                        <li><a href="/mentores">Mentores</a></li>
-                                        <li><a href="/contato">Contato</a></li>
-                                    </ul>
-                                </div>
-                                <div class="right">
-                                    <div class="main-menu__right">
-                                        <div class="main-menu__right-login-register">
-                                            <ul class="list-unstyled">
-                                                <li><a href="/login">Entrar</a></li>
-                                                <li><a href="/login#signup">Registrar</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Page header -->
         <section class="vd-wrap vd-ph">
             <div class="container">
                 <div class="vd-bc"><a href="/">Início</a> &rsaquo; <span>Sobre</span></div>
@@ -123,31 +67,22 @@
             </div>
         </section>
 
-        <!-- Intro + missão/método -->
         <section class="vd-wrap vd-sec">
             <div class="container">
                 <span class="vd-tag">Quem somos</span>
                 <h2 class="vd-h2">Uma escola de idiomas feita de conexões reais</h2>
                 <p class="vd-lead">A Vedium é uma escola de idiomas <strong>100% online com aulas ao vivo</strong>. Acreditamos que aprender um idioma vai além de palavras: é conexão, cultura e oportunidade. Por isso unimos professores qualificados, turmas humanas e uma plataforma simples para você evoluir no seu ritmo — do iniciante ao avançado.</p>
-
                 <div class="row" style="margin-top:30px;">
                     <div class="col-lg-6" style="margin-bottom:24px;">
-                        <div class="vd-card">
-                            <h3>🎯 Nossa missão</h3>
-                            <p>Tornar a fluência em idiomas acessível, viva e conectada à realidade de cada aluno — com ensino de qualidade e atenção individual.</p>
-                        </div>
+                        <div class="vd-card"><h3>🎯 Nossa missão</h3><p>Tornar a fluência em idiomas acessível, viva e conectada à realidade de cada aluno — com ensino de qualidade e atenção individual.</p></div>
                     </div>
                     <div class="col-lg-6" style="margin-bottom:24px;">
-                        <div class="vd-card">
-                            <h3>📡 Nosso método</h3>
-                            <p>Aulas <strong>ao vivo</strong> (não são vídeos gravados), com prática real, correção na hora e imersão cultural com quem domina o idioma.</p>
-                        </div>
+                        <div class="vd-card"><h3>📡 Nosso método</h3><p>Aulas <strong>ao vivo</strong> (não são vídeos gravados), com prática real, correção na hora e imersão cultural com quem domina o idioma.</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Idiomas -->
         <section class="vd-wrap" style="background:#f7fafd;padding:60px 0;">
             <div class="container">
                 <span class="vd-tag">O que ensinamos</span>
@@ -160,7 +95,6 @@
             </div>
         </section>
 
-        <!-- Diferenciais -->
         <section class="vd-wrap vd-sec">
             <div class="container">
                 <span class="vd-tag">Por que a Vedium</span>
@@ -176,71 +110,23 @@
                     ] %}
                     {% for icon, title, desc in feats %}
                     <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
-                        <div class="vd-feat">
-                            <div class="ic">{{ icon }}</div>
-                            <strong>{{ title }}</strong>
-                            <span>{{ desc }}</span>
-                        </div>
+                        <div class="vd-feat"><div class="ic">{{ icon }}</div><strong>{{ title }}</strong><span>{{ desc }}</span></div>
                     </div>
                     {% endfor %}
                 </div>
-                <div style="text-align:center;margin-top:24px;">
-                    <a href="/catalogo" class="vd-cta">Ver cursos e preços</a>
-                </div>
+                <div style="text-align:center;margin-top:24px;"><a href="/catalogo" class="vd-cta">Ver cursos e preços</a></div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="footer-one">
-            <div class="footer-one__bg" style="background-color:#11161d;"></div>
-            <div class="footer-one__top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__about">
-                                <div class="footer-widget__about-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__links">
-                                <h3 class="footer-widget__title">Links Úteis</h3>
-                                <ul class="footer-widget__links-list list-unstyled">
-                                    <li><a href="/sobre">Sobre Nós</a></li>
-                                    <li><a href="/catalogo">Nossos Cursos</a></li>
-                                    <li><a href="/mentores">Mentores</a></li>
-                                    <li><a href="/carreiras">Trabalhe Conosco</a></li>
-                                    <li><a href="/termos">Termos</a></li>
-                                    <li><a href="/privacidade">Privacidade</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4">
-                            <div class="footer-widget__column footer-widget__contact">
-                                <h3 class="footer-widget__title">Contato</h3>
-                                <p class="text">Brasil — Atendimento 100% Online</p>
-                                <p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p>
-                                <p><a href="tel:+5511941906079">+55 (11) 94190-6079</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-one__bottom">
-                <div class="container">
-                    <div class="row"><div class="col-xl-12"><div class="footer-one__bottom-inner"><div class="footer-one__bottom-text text-center">
-                        <p>&copy; Copyright 2026 Vedium – Plataforma de Ensino de Idiomas</p>
-                    </div></div></div></div>
-                </div>
-            </div>
-        </footer>
-
-    </div><!-- /.page-wrapper -->
+        {% include "templates/includes/site_footer.html" %}
+    </div>
 
     <div class="mobile-nav__wrapper">
         <div class="mobile-nav__overlay mobile-nav__toggler"></div>
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
             <div class="logo-box"><a href="/" aria-label="logo"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" width="155" alt="Vedium" /></a></div>
+            <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">
                 <li><i class="icon-letter"></i><a href="mailto:contato@vediums.com">contato@vediums.com</a></li>
             </ul>
