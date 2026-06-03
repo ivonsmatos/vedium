@@ -47,6 +47,10 @@ jobs:
             --exclude='*.pyc' \
             --exclude='.env' \
             --exclude='/site' \
+            --exclude='idiomas' \
+            --exclude='*.pdf' \
+            --exclude='*.epub' \
+            --exclude='*.mobi' \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/"
 
       # Publica o site institucional no caminho que o nginx serve de fato

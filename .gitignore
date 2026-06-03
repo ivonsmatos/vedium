@@ -112,3 +112,12 @@ htmlcov/
 # Frappe sites/ data (caso bench rode local)
 # ============================================
 sites/
+
+# ============================================
+# Material de aulas (livros/dicionarios com direitos autorais)
+# NUNCA commitar no Git nem subir pro servidor
+# ============================================
+idiomas/
+*.pdf
+*.epub
+*.mobi
