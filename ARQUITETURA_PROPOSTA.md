@@ -356,7 +356,7 @@ sem release v16 estável). Migração de schema é não-trivial.
 | R1 | Perda de dados (sem backup verificado) | Média | **Catastrófico** | P0.2 — restic + restore mensal |
 | R2 | Workers fora do ar → emails não saem → cliente reclama | Alta | Alto | P0.1 — adicionar workers |
 | R3 | DocTypes faltantes → endpoints crasham em runtime quando alguém usa | Alta | Médio | P1.3 — criar DocTypes ou remover endpoints |
-| R4 | Senha admin única "Protonsysdba@1986" — sem rotação, sem MFA | Alta | Alto | P0+ — ativar 2FA no Administrator, criar usuário pessoal Ivon |
+| R4 | Senha admin única (reutilizada, **PRECISA SER ROTACIONADA**) — sem rotação, sem MFA | Alta | Alto | P0+ — rotacionar a senha, ativar 2FA no Administrator, criar usuário pessoal Ivon |
 | R5 | Server compartilhado com 7+ projetos (Optimahub, EcoMed, OpenProject, Vetta) — vizinhança ruidosa pode derrubar tudo | Média | Alto | P2 — separar VPS dedicado para Vedium quando faturar >R$30k/mês |
 | R6 | Sem CDN — todo asset pesa no gunicorn | Alta | Médio | P0.7 — Cloudflare |
 | R7 | Docs mentem (v16 vs v15) → onboarding de dev futuro vai falhar | Alta | Médio | P0.4 — sincronizar |
