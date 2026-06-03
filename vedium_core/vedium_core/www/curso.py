@@ -38,7 +38,7 @@ def get_context(context):
     context.canonical_url = f"https://vediums.com/curso/{course_name}"
     context.og_image = (context.course.image if context.course.image and context.course.image.startswith("http")
                         else f"https://vediums.com{context.course.image}") if context.course.image else "https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
-    context.lms_url = f"/lms/courses/{course_name}"
+    context.lms_url = f"https://app.vediums.com/lms/courses/{course_name}"
 
     # GTM Event - view_course
     context.gtm_event = {
