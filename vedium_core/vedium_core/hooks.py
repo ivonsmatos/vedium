@@ -114,11 +114,10 @@ jinja = {"methods": ["vedium_core.utils.jinja_methods"]}
 # =============================================================================
 
 scheduler_events = {
-    # "cron": {
-    #     "0 0 * * *": [
-    #         "vedium_core.tasks.daily"
-    #     ]
-    # }
+    "cron": {
+        # Segunda-feira 11:00 UTC = 08:00 BRT — resumo semanal de operação
+        "0 11 * * 1": ["vedium_core.reports.send_weekly_digest"],
+    }
 }
 
 # =============================================================================

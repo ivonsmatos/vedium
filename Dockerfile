@@ -1,7 +1,9 @@
 # Vedium Frappe — imagem de DEV (workspace bind-mount).
 # Para PROD, prefira frappe_docker oficial: https://github.com/frappe/frappe_docker
+# Versões alinhadas com produção (frappe/erpnext:v16 = Python 3.14 / Node 24)
+# para evitar drift "funciona em dev, quebra em prod".
 
-FROM python:3.11-slim-bookworm
+FROM python:3.14-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
@@ -20,8 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         redis-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Node.js 20 LTS (compatível com Frappe v15+) e Yarn
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+# Node.js 24 (mesma major de produção) e Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && npm install -g yarn \
     && rm -rf /var/lib/apt/lists/*

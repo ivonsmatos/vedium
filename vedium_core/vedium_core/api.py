@@ -89,7 +89,53 @@ def send_contact_message(
         reply_to=sender_email,
         now=True,
     )
+
+    # Alimenta o topo do funil: todo contato vira lead no CRM (com o
+    # histórico da mensagem). Defensivo — nunca quebra o envio do e-mail.
+    try:
+        _upsert_crm_lead_from_contact(sender_name, sender_email, phone, subject, message)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.crm.contact_lead")
+
     return {"success": True}
+
+
+def _upsert_crm_lead_from_contact(sender_name, sender_email, phone, subject, message):
+    """Cria (ou comenta em) um CRM Lead a partir do formulário de contato."""
+    if not frappe.db.exists("DocType", "CRM Lead"):
+        return
+
+    note = (
+        f"Mensagem via site — assunto: {subject or 'sem assunto'}\n\n"
+        f"{(message or '').strip()}"
+    )
+
+    from vedium_core.integrations import ensure_contact
+
+    parts = (sender_name or "").strip().split(" ", 1)
+    ensure_contact(
+        sender_email,
+        first_name=parts[0],
+        last_name=parts[1] if len(parts) > 1 else None,
+        mobile=phone,
+    )
+
+    existing = frappe.db.get_value("CRM Lead", {"email": sender_email}, "name")
+    if existing:
+        # Lead já existe (novo interesse) — registra a mensagem no histórico
+        frappe.get_doc("CRM Lead", existing).add_comment("Comment", note)
+    else:
+        lead = frappe.new_doc("CRM Lead")
+        lead.first_name = parts[0]
+        if len(parts) > 1:
+            lead.last_name = parts[1]
+        lead.lead_name = (sender_name or "").strip()
+        lead.email = sender_email
+        if phone:
+            lead.mobile_no = phone
+        lead.source = "Website"
+        lead.insert(ignore_permissions=True)
+        lead.add_comment("Comment", note)
 
 
 @frappe.whitelist()

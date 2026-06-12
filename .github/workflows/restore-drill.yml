@@ -1,0 +1,83 @@
+# Vedium — Restore Drill
+# "Backup que nunca foi restaurado é uma aposta."
+# Mensalmente, baixa o backup mais recente (artifact do backup.yml),
+# restaura o dump SQL num MariaDB descartável e valida tabelas críticas.
+
+name: Restore Drill
+
+on:
+  schedule:
+    - cron: "0 4 1 * *" # dia 1 de cada mês, 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  restore-drill:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: drill
+          MYSQL_DATABASE: drill_db
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+
+    steps:
+      - name: Find latest successful backup run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow=backup.yml --status=success --limit 1 \
+            --json databaseId --jq '.[0].databaseId')
+          if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+            echo "::error::Nenhum backup bem-sucedido encontrado nos artifacts"
+            exit 1
+          fi
+          echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
+          echo "Backup run: $RUN_ID"
+
+      - name: Download backup artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --dir backup/
+          ls -lhR backup/
+
+      - name: Extract database dump
+        run: |
+          TGZ=$(find backup/ -name '*.tgz' | head -1)
+          [ -n "$TGZ" ] || { echo "::error::vedium-backup.tgz não encontrado"; exit 1; }
+          mkdir -p extracted && tar xzf "$TGZ" -C extracted/
+          DUMP=$(find extracted/ -name '*-database.sql.gz' | sort | tail -1)
+          [ -n "$DUMP" ] || { echo "::error::dump *-database.sql.gz não encontrado"; exit 1; }
+          echo "DUMP=$DUMP" >> "$GITHUB_ENV"
+          ls -lh "$DUMP"
+
+      - name: Restore into disposable MariaDB
+        run: |
+          # utf8mb4 + desativa checks para velocidade (banco descartável)
+          ( echo "SET FOREIGN_KEY_CHECKS=0; SET UNIQUE_CHECKS=0;";
+            zcat "$DUMP" ) | \
+            mysql -h 127.0.0.1 -uroot -pdrill --default-character-set=utf8mb4 drill_db
+          echo "✅ Restore concluído sem erros de SQL"
+
+      - name: Sanity checks (tabelas e dados críticos)
+        run: |
+          q() { mysql -h 127.0.0.1 -uroot -pdrill drill_db -N -e "$1"; }
+
+          TABLES=$(q "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='drill_db'")
+          USERS=$(q "SELECT COUNT(*) FROM tabUser")
+          COURSES=$(q "SELECT COUNT(*) FROM \`tabLMS Course\`")
+          ENROLLMENTS=$(q "SELECT COUNT(*) FROM \`tabLMS Enrollment\`")
+
+          echo "Tabelas: $TABLES | Users: $USERS | Cursos: $COURSES | Matrículas: $ENROLLMENTS"
+
+          [ "$TABLES" -gt 300 ] || { echo "::error::Só $TABLES tabelas — dump incompleto?"; exit 1; }
+          [ "$USERS" -gt 0 ]    || { echo "::error::tabUser vazia"; exit 1; }
+          [ "$COURSES" -gt 0 ]  || { echo "::error::tabLMS Course vazia"; exit 1; }
+
+          echo "✅ Drill aprovado: o backup é restaurável e contém os dados críticos."

@@ -46,9 +46,12 @@ Iorubá Ancestral, Português para Estrangeiros) construída sobre o
 | Pagamentos | Stripe + Mercado Pago | + Basecommerce (stub) |
 | IA | Groq (Llama 3 70B) | via SDK oficial |
 
-⚠️ `bench list-apps` mostra frappe/erpnext como `UNVERSIONED` — os apps
-não estão presos a um branch de release. Antes de qualquer `bench update`,
-fixar branches (`version-16`) para evitar upgrade acidental.
+⚠️ `bench list-apps` mostra frappe/erpnext como `UNVERSIONED` porque eles
+vêm **baked na imagem** `frappe/erpnext:v16` (sem `.git` — verificado no
+container). Consequência: **NUNCA rodar `bench update`** para frappe/erpnext;
+o upgrade deles é trocar a tag da imagem no compose. Já `lms`, `crm` e
+`helpdesk` são repositórios git dentro do volume (branch `main`) e são
+atualizados via `git pull` controlado + `bench migrate`.
 
 ---
 

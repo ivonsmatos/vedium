@@ -4,6 +4,28 @@ Registro de mudanças relevantes do Vedium. Formato baseado em
 [Keep a Changelog](https://keepachangelog.com/) (datas absolutas, ordem
 cronológica reversa).
 
+## [2026-06-12] — CRM funcional de ponta a ponta + gestão
+
+### Adicionado
+- **Formulário de contato agora cria CRM Lead** (source Website) com a
+  mensagem no histórico; se o lead já existe, comenta nele. O topo do
+  funil finalmente alimenta o CRM — antes, contatos morriam no e-mail.
+- **Digest semanal de operação** (`vedium_core/reports.py`, scheduler
+  segunda 08:00 BRT): leads, matrículas, tickets, candidaturas e erros
+  da semana por e-mail.
+- **Restore drill mensal** (`.github/workflows/restore-drill.yml`):
+  baixa o backup mais recente, restaura num MariaDB descartável e valida
+  tabelas críticas (tabUser, tabLMS Course). Backup deixa de ser aposta.
+- `docs/CRM_PLAYBOOK.md`: estágios do funil + SLA, rotina semanal,
+  setup do Helpdesk por e-mail, newsletter com LGPD, alertas do Kuma.
+- Uptime Kuma (servidor): monitor **POST+Origin** criado (regressão
+  histórica do LMS); monitor do Grafana morto desativado.
+
+### Alterado
+- Dockerfile de dev alinhado com produção: Python 3.14 + Node 24.
+- ARCHITECTURE: esclarecido que frappe/erpnext são baked na imagem v16
+  (nunca `bench update`; upgrade = tag da imagem).
+
 ## [2026-06-12] — Correção de versões + limpeza do servidor
 
 ### Corrigido
