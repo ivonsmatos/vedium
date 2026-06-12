@@ -27,12 +27,6 @@ jobs:
           chmod 700 ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
 
-      - name: Run security monitor
-        run: |
-          echo "🔒 Running security check on production server..."
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "sudo /opt/vedium/deploy/scripts/security-monitor.sh"
-
       - name: Check SSL expiration
         run: |
           echo "🔐 Checking SSL certificate..."
@@ -75,6 +69,14 @@ jobs:
             404) echo "::error::POST retornou 404 — provável regressão do Host-rewrite (ver RUNBOOK)"; exit 1;;
             *) echo "::warning::POST retornou $HTTP_CODE (inesperado, verificar)";;
           esac
+
+      # Por último: se o monitor falhar, os checks acima já rodaram.
+      # "bash" explícito dispensa o bit +x no servidor.
+      - name: Run security monitor
+        run: |
+          echo "🔒 Running security check on production server..."
+          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "sudo bash /opt/vedium/deploy/scripts/security-monitor.sh"
 
   backup-check:
     runs-on: ubuntu-latest

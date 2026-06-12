@@ -332,4 +332,20 @@ Execute semanalmente:
 
 ---
 
-_Para dúvidas sobre a arquitetura, consultar [ARQUITETURA_PROPOSTA.md](../ARQUITETURA_PROPOSTA.md)._
+## Limpeza pós-remoção do Prometheus (ADR-005, 2026-06-11)
+
+A stack de observabilidade foi removida do repositório, mas containers já
+em execução no servidor NÃO somem sozinhos. Rodar UMA VEZ via SSH:
+
+```bash
+docker rm -f vedium-prometheus vedium-grafana vedium-node-exporter 2>/dev/null
+docker rm -f vedium-promtail vedium-loki 2>/dev/null   # se existirem
+docker volume ls -q | grep -E 'prometheus|grafana' | xargs -r docker volume rm
+```
+
+Verificar depois: `docker ps --filter name=vedium` deve listar apenas
+frappe, mariadb, redis (x3), workers (x3) e scheduler.
+
+---
+
+_Para dúvidas sobre a arquitetura, consultar [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md)._
