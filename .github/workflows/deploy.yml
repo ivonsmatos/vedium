@@ -102,6 +102,20 @@ jobs:
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" clear-website-cache
 
+          # Gunicorn NÃO recarrega .py sozinho (footgun documentado no
+          # RUNBOOK) — sem este restart, o servidor segue com código antigo.
+          echo "🔄 Reiniciando container (recarrega gunicorn com o código novo)..."
+          docker restart "\$CONTAINER"
+
+          echo "⏳ Aguardando o container voltar saudável..."
+          for i in \$(seq 1 30); do
+              status=\$(docker inspect -f '{{.State.Health.Status}}' "\$CONTAINER" 2>/dev/null || echo unknown)
+              [ "\$status" = "healthy" ] && break
+              sleep 5
+          done
+          echo "Healthcheck: \$status"
+          [ "\$status" = "healthy" ] || { echo "::error::Container não voltou healthy após restart"; exit 1; }
+
           echo "✅ Deploy finalizado."
           REMOTE
 
