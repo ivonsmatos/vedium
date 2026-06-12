@@ -1,11 +1,23 @@
 import frappe
-import json
+from frappe import _
+
+# NOTA: estas funções MONTAM o payload do evento (GTM dataLayer / GA4);
+# o disparo é client-side. Nada é enviado ao GA4 daqui.
+
+
+def _get_published_course(course_name):
+    """Carrega curso garantindo que está publicado (evita vazar rascunhos)."""
+    course = frappe.get_doc("LMS Course", course_name)
+    if not course.published:
+        frappe.throw(_("Curso não encontrado"), frappe.DoesNotExistError)
+    return course
+
 
 def track_course_view(course_name):
     """
     Rastreia visualização de curso
     """
-    course = frappe.get_doc("LMS Course", course_name)
+    course = _get_published_course(course_name)
     
     event_data = {
         'event': 'view_course',
@@ -22,7 +34,7 @@ def track_course_enrollment(course_name, user_email, payment_method=None):
     """
     Rastreia inscrição em curso
     """
-    course = frappe.get_doc("LMS Course", course_name)
+    course = _get_published_course(course_name)
     
     event_data = {
         'event': 'enroll_course',
@@ -39,8 +51,8 @@ def track_purchase(transaction_id, course_name, amount, currency='BRL', payment_
     """
     Rastreia compra concluída
     """
-    course = frappe.get_doc("LMS Course", course_name)
-    
+    course = _get_published_course(course_name)
+
     event_data = {
         'event': 'purchase',
         'transaction_id': transaction_id,
@@ -107,4 +119,9 @@ def send_analytics_event(event_type, **kwargs):
             kwargs.get('progress_percentage')
         )
     else:
-        frappe.throw(_(f"Tipo de evento desconhecido: '{event_type}'. Tipos válidos: view_course, enroll_course, purchase, complete_lesson."))
+        frappe.throw(
+            _("Tipo de evento desconhecido: '{0}'. Tipos válidos: "
+              "view_course, enroll_course, purchase, complete_lesson.").format(
+                frappe.utils.escape_html(str(event_type))
+            )
+        )

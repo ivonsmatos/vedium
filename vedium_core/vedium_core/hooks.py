@@ -69,13 +69,12 @@ web_include_css = [
 web_include_js = ["/assets/vedium_core/js/pwa-register.js", "/assets/vedium_core/js/cookie-consent.js"]
 
 # =============================================================================
-# PWA Configuration
+# PWA — DESATIVADO (ver pwa-register.js, que desregistra service workers)
+# O SW antigo cacheava respostas 404 de API e quebrava o LMS (telas brancas).
+# NÃO reativar sem estratégia network-first para /api/*.
 # =============================================================================
 
-# Web Manifest — servido em /manifest.json via nginx (scope root)
-web_manifest = "/manifest.json"
-
-# Theme Color for PWA
+# Theme Color (barra do navegador mobile) — azul da marca
 app_theme_color = "#2E6DA4"
 
 # =============================================================================
@@ -94,17 +93,11 @@ website_context = {
 
 # Add custom context to all web pages
 def get_web_context(context):
-    context.pwa_enabled = True
+    context.pwa_enabled = False  # PWA desativado — ver comentário acima
     context.theme_color = "#2E6DA4"
     context.background_color = "#0f1419"
     return context
 
-
-# =============================================================================
-# Boot Session
-# =============================================================================
-
-boot_session = "vedium_core.startup.boot.boot_session"
 
 # =============================================================================
 # Override Templates

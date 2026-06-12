@@ -1,64 +1,77 @@
 import frappe
 from frappe import _
-from datetime import datetime
+
+
+SITE_URL = "https://vediums.com"
+
 
 @frappe.whitelist(allow_guest=True)
 def generate_sitemap():
     """
-    Gera sitemap XML dinâmico para SEO
+    Gera sitemap XML dinâmico para SEO.
+
+    Retorna o XML cru com Content-Type correto (não envolve em JSON do Frappe).
+    Para servir em /sitemap.xml, mapear no nginx para esta whitelisted route.
     """
-    # URLs estáticas
     static_urls = [
-        {'loc': '/', 'priority': '1.0', 'changefreq': 'weekly'},
-        {'loc': '/courses', 'priority': '0.9', 'changefreq': 'daily'},
-        {'loc': '/about', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'loc': '/contact', 'priority': '0.6', 'changefreq': 'monthly'},
+        {"loc": "/", "priority": "1.0", "changefreq": "weekly"},
+        {"loc": "/catalogo", "priority": "0.9", "changefreq": "daily"},
+        {"loc": "/sobre", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/contato", "priority": "0.6", "changefreq": "monthly"},
+        {"loc": "/mentores", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/carreiras", "priority": "0.5", "changefreq": "monthly"},
     ]
-    
-    # Buscar cursos publicados
-    courses = frappe.get_all(
-        "LMS Course",
-        filters={"published": 1},
-        fields=["name", "modified"]
-    )
-    
-    # Adicionar URLs de cursos
-    course_urls = []
-    for course in courses:
-        course_urls.append({
-            'loc': f'/courses/{course.name}',
-            'priority': '0.8',
-            'changefreq': 'weekly',
-            'lastmod': course.modified.strftime('%Y-%m-%d')
-        })
-    
-    # Combinar todas as URLs
+
+    try:
+        courses = frappe.get_all(
+            "LMS Course",
+            filters={"published": 1},
+            fields=["name", "modified"],
+        )
+    except Exception as e:
+        frappe.log_error(f"Sitemap: erro buscando cursos: {e}", "Vedium.seo.sitemap")
+        courses = []
+
+    course_urls = [
+        {
+            "loc": f"/curso/{c.name}",
+            "priority": "0.8",
+            "changefreq": "weekly",
+            "lastmod": c.modified.strftime("%Y-%m-%d") if c.modified else None,
+        }
+        for c in courses
+    ]
+
     all_urls = static_urls + course_urls
-    
-    # Gerar XML
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    
+
+    parts = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
     for url in all_urls:
-        xml += '  <url>\n'
-        xml += f'    <loc>https://vediums.com{url["loc"]}</loc>\n'
-        xml += f'    <priority>{url["priority"]}</priority>\n'
-        xml += f'    <changefreq>{url["changefreq"]}</changefreq>\n'
-        if 'lastmod' in url:
-            xml += f'    <lastmod>{url["lastmod"]}</lastmod>\n'
-        xml += '  </url>\n'
-    
-    xml += '</urlset>'
-    
-    return xml
+        parts.append("  <url>")
+        parts.append(f"    <loc>{SITE_URL}{url['loc']}</loc>")
+        parts.append(f"    <priority>{url['priority']}</priority>")
+        parts.append(f"    <changefreq>{url['changefreq']}</changefreq>")
+        if url.get("lastmod"):
+            parts.append(f"    <lastmod>{url['lastmod']}</lastmod>")
+        parts.append("  </url>")
+    parts.append("</urlset>")
+
+    xml = "\n".join(parts)
+
+    # Devolver XML cru (sem JSON wrap do Frappe)
+    frappe.response["type"] = "binary"
+    frappe.response["filecontent"] = xml.encode("utf-8")
+    frappe.response["filename"] = "sitemap.xml"
+    frappe.response["content_type"] = "application/xml; charset=utf-8"
+
 
 @frappe.whitelist(allow_guest=True)
 def get_course_schema(course_name):
-    """
-    Gera schema markup (dados estruturados) para curso
-    """
+    """Schema.org Course markup para uma página de curso."""
     course = frappe.get_doc("LMS Course", course_name)
-    
+
     schema = {
         "@context": "https://schema.org",
         "@type": "Course",
@@ -67,72 +80,74 @@ def get_course_schema(course_name):
         "provider": {
             "@type": "Organization",
             "name": "Vedium Global Education",
-            "url": "https://vediums.com"
-        }
+            "url": SITE_URL,
+        },
     }
-    
-    # Adicionar preço se for curso pago
+
     if course.paid_course and course.course_price:
         schema["offers"] = {
             "@type": "Offer",
             "price": str(course.course_price),
             "priceCurrency": course.currency or "BRL",
-            "url": f"https://vediums.com/courses/{course.name}"
+            "url": f"{SITE_URL}/curso/{course.name}",
         }
-    
-    # Adicionar instrutor
-    if course.instructor:
-        instructor = frappe.get_doc("User", course.instructor)
-        schema["instructor"] = {
-            "@type": "Person",
-            "name": instructor.full_name
-        }
-    
-    # Adicionar avaliação se existir
-    avg_rating = frappe.db.get_value(
-        "LMS Course Review",
-        {"course": course.name},
-        "AVG(rating)"
+
+    # Instrutor — Course Instructor é child table; pegar o primeiro
+    instructors = frappe.get_all(
+        "Course Instructor",
+        filters={"parent": course.name},
+        fields=["instructor"],
+        limit=1,
     )
-    
-    if avg_rating:
-        review_count = frappe.db.count(
-            "LMS Course Review",
-            {"course": course.name}
+    if instructors:
+        instructor = frappe.db.get_value(
+            "User", instructors[0].instructor, "full_name"
         )
-        
-        schema["aggregateRating"] = {
-            "@type": "AggregateRating",
-            "ratingValue": str(round(avg_rating, 1)),
-            "reviewCount": str(review_count)
-        }
-    
+        if instructor:
+            schema["instructor"] = {"@type": "Person", "name": instructor}
+
+    if frappe.db.exists("DocType", "LMS Course Review"):
+        avg_rating = frappe.db.get_value(
+            "LMS Course Review", {"course": course.name}, "AVG(rating)"
+        )
+        if avg_rating:
+            review_count = frappe.db.count(
+                "LMS Course Review", {"course": course.name}
+            )
+            schema["aggregateRating"] = {
+                "@type": "AggregateRating",
+                "ratingValue": str(round(avg_rating, 1)),
+                "reviewCount": str(review_count),
+            }
+
     return schema
+
 
 @frappe.whitelist(allow_guest=True)
 def get_organization_schema():
-    """
-    Gera schema markup para organização
-    """
+    """Schema.org EducationalOrganization."""
     return {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "Vedium Global Education",
-        "url": "https://vediums.com",
-        "logo": "https://vediums.com/assets/vedium_core/images/logo.png",
-        "description": "Plataforma de cursos online de idiomas: Inglês Executivo, Hebraico Tech e Iorubá Ancestral",
+        "url": SITE_URL,
+        "logo": f"{SITE_URL}/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png",
+        "description": (
+            "Plataforma de cursos online de idiomas: Inglês Executivo, "
+            "Iorubá Ancestral e Português para Estrangeiros."
+        ),
         "address": {
             "@type": "PostalAddress",
-            "addressCountry": "BR"
+            "addressCountry": "BR",
         },
         "contactPoint": {
             "@type": "ContactPoint",
             "email": "contato@vediums.com",
-            "contactType": "Customer Service"
+            "contactType": "Customer Service",
         },
         "sameAs": [
             "https://facebook.com/vedium",
             "https://linkedin.com/company/vedium",
-            "https://instagram.com/vedium"
-        ]
+            "https://instagram.com/vedium",
+        ],
     }

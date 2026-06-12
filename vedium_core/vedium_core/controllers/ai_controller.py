@@ -29,37 +29,23 @@ def get_groq_client():
 def check_rate_limit(user):
     """
     Check if user has exceeded the rate limit of 50 messages per hour.
+    Janela FIXA por bucket de tempo — a chave inclui o número da janela,
+    expira sozinha e nunca fica sem TTL (o que bloquearia o usuário
+    para sempre).
     """
     if user == "Administrator":
         return
 
-    cache_key = f"ai_rate_limit:{user}"
-    # get_value returns None if not found, or the integer value
-    current_count = frappe.cache().get_value(cache_key) or 0
-    
-    if int(current_count) >= RATE_LIMIT_QUOTA:
+    bucket = int(time.time() // RATE_LIMIT_WINDOW)
+    cache_key = f"ai_rate_limit:{user}:{bucket}"
+    current_count = int(frappe.cache().get_value(cache_key) or 0)
+
+    if current_count >= RATE_LIMIT_QUOTA:
         frappe.throw(_("Rate limit exceeded. You can only send 50 messages per hour."), frappe.PermissionError)
-        
-    # Increment counter
-    # If key doesn't exist, set to 1 with expiry. If exists, incr.
-    # Frappe cache doesn't have atomic incr with expire easily exposed, 
-    # so we use set_value if new, or incr if existing (but incr in redis-py/frappe-wrapper might not reset expire).
-    # Simplified approach:
-    
-    new_count = int(current_count) + 1
-    if new_count == 1:
-        frappe.cache().set_value(cache_key, new_count, expires_in_sec=RATE_LIMIT_WINDOW)
-    else:
-        # Update without resetting ttl? Frappe set_value usually resets TTL. 
-        # Ideally we want strictly window based.
-        # Just set it again with remaining time or fixed window? 
-        # Using simple fixed window reset for now as per requirement simplicity.
-        # Or better: use user_specific TTL if precise. 
-        # For MVP: just increment.
-        try:
-            frappe.cache().incr(cache_key)
-        except Exception:
-             frappe.cache().set_value(cache_key, new_count, expires_in_sec=RATE_LIMIT_WINDOW)
+
+    frappe.cache().set_value(
+        cache_key, current_count + 1, expires_in_sec=RATE_LIMIT_WINDOW * 2
+    )
 
 @frappe.whitelist()
 def chat_with_tutor(message, persona_id, context=None):

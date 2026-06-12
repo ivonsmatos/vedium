@@ -1,14 +1,55 @@
 # -*- coding: utf-8 -*-
 # Vedium Core — API pública e endpoints internos
-# Imports pesados (prometheus_client, mercadopago, services.*) ficam lazy
-# dentro das funções que os usam, para o módulo carregar mesmo sem essas
-# dependências instaladas.
+# Imports pesados (mercadopago, stripe, services.*) ficam lazy dentro das
+# funções que os usam, para o módulo carregar mesmo sem essas dependências
+# instaladas (ex.: workers que só processam fila).
 
 import hashlib
 from datetime import datetime
 
 import frappe
 from frappe import _
+
+
+def _safe_get_all(doctype, **kwargs):
+    """
+    Versão defensiva de frappe.get_all que devolve [] se o DocType não
+    existe ainda (caso de funcionalidades opcionais como fórum, comunidade,
+    flashcards). Evita 500 silencioso até criarmos os DocTypes.
+    """
+    if not frappe.db.exists("DocType", doctype):
+        return []
+    try:
+        return frappe.get_all(doctype, **kwargs)
+    except Exception as e:
+        frappe.log_error(
+            f"Erro consultando {doctype}: {e}",
+            f"Vedium.api._safe_get_all.{doctype}",
+        )
+        return []
+
+
+def rate_limit_by_ip(action: str, limit: int, window_sec: int = 3600):
+    """
+    Rate-limit simples por IP para endpoints públicos (anti-spam).
+    Janela FIXA por bucket de tempo: a chave inclui o número da janela
+    atual, então expira sozinha e nunca fica órfã sem TTL (o que
+    bloquearia o IP para sempre).
+    """
+    import time
+
+    ip = getattr(frappe.local, "request_ip", None) or "unknown"
+    bucket = int(time.time() // window_sec)
+    cache_key = f"vedium_rl:{action}:{ip}:{bucket}"
+    current = int(frappe.cache().get_value(cache_key) or 0)
+    if current >= limit:
+        frappe.throw(
+            _("Muitas tentativas. Aguarde alguns minutos e tente novamente."),
+            frappe.TooManyRequestsError
+            if hasattr(frappe, "TooManyRequestsError")
+            else frappe.ValidationError,
+        )
+    frappe.cache().set_value(cache_key, current + 1, expires_in_sec=window_sec * 2)
 
 
 # =====================
@@ -22,6 +63,8 @@ def send_contact_message(
     Recebe mensagem do formulário de contato e envia por e-mail
     """
     import re
+
+    rate_limit_by_ip("contact", limit=5, window_sec=3600)
 
     if not sender_name or not sender_email:
         frappe.throw(_("Nome e e-mail são obrigatórios"))
@@ -83,48 +126,79 @@ def get_my_tickets():
 @frappe.whitelist()
 def get_monitoring_dashboard():
     """
-    Dashboard interno: status de containers, disco, memória, alertas críticos
+    Dashboard interno com dados REAIS do site: erros recentes, scheduler,
+    último backup e tamanho do banco. Restrito a operadores.
     """
-    # Exemplo: busca logs recentes e status de containers (mock)
-    import random
-
-    return {
-        "containers": [
-            {"name": "vedium-frappe", "status": "running"},
-            {"name": "vedium-mariadb", "status": "running"},
-            {"name": "vedium-redis", "status": "running"},
-        ],
-        "disk_usage": f"{random.randint(40, 80)}%",
-        "memory_usage": f"{random.randint(30, 75)}%",
-        "alerts": [
-            {"type": "info", "msg": "Backup diário concluído"},
-            {"type": "warning", "msg": "Uso de disco acima de 70%"},
-        ],
-    }
-
-
-@frappe.whitelist()
-def get_metrics():
-    """
-    Expõe métricas do Prometheus.
-    Requer autenticação. Em produção, adicionalmente proteger via nginx
-    (auth_basic) ou liberar apenas para IPs internos do scraper.
-    """
-    if not _user_can_view_metrics():
+    roles = set(frappe.get_roles(frappe.session.user))
+    if not roles & {"System Manager", "Administrator", "Vedium Ops"}:
         frappe.throw(_("Permissão negada"), frappe.PermissionError)
 
-    from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
+    import os
 
-    frappe.response["result"] = generate_latest()
-    frappe.response["type"] = "binary"
-    frappe.response["content_type"] = CONTENT_TYPE_LATEST
+    alerts = []
 
+    # Erros das últimas 24h (Error Log do próprio Frappe)
+    error_count_24h = frappe.db.count(
+        "Error Log",
+        {"creation": [">", frappe.utils.add_to_date(None, hours=-24)]},
+    )
+    if error_count_24h > 50:
+        alerts.append(
+            {"type": "warning", "msg": f"{error_count_24h} erros nas últimas 24h"}
+        )
 
-def _user_can_view_metrics() -> bool:
-    if frappe.session.user == "Guest":
-        return False
-    roles = set(frappe.get_roles(frappe.session.user))
-    return bool(roles & {"System Manager", "Administrator", "Vedium Ops"})
+    # Scheduler ativo?
+    scheduler_disabled = bool(
+        frappe.utils.cint(frappe.db.get_default("disable_scheduler") or 0)
+    )
+    if scheduler_disabled:
+        alerts.append({"type": "critical", "msg": "Scheduler DESATIVADO"})
+
+    # Último backup local (sites/<site>/private/backups)
+    last_backup = None
+    try:
+        backup_dir = frappe.utils.get_backups_path()
+        files = [
+            os.path.join(backup_dir, f)
+            for f in os.listdir(backup_dir)
+            if f.endswith(".sql.gz")
+        ]
+        if files:
+            newest = max(files, key=os.path.getmtime)
+            last_backup = datetime.fromtimestamp(
+                os.path.getmtime(newest)
+            ).isoformat()
+            age_hours = (
+                datetime.now() - datetime.fromtimestamp(os.path.getmtime(newest))
+            ).total_seconds() / 3600
+            if age_hours > 36:
+                alerts.append(
+                    {
+                        "type": "warning",
+                        "msg": f"Último backup local tem {age_hours:.0f}h",
+                    }
+                )
+    except Exception:
+        pass
+
+    # Tamanho do banco
+    db_size_mb = None
+    try:
+        row = frappe.db.sql(
+            """SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1)
+               FROM information_schema.tables WHERE table_schema = DATABASE()"""
+        )
+        db_size_mb = float(row[0][0]) if row and row[0][0] else None
+    except Exception:
+        pass
+
+    return {
+        "error_count_24h": error_count_24h,
+        "scheduler_enabled": not scheduler_disabled,
+        "last_backup": last_backup,
+        "db_size_mb": db_size_mb,
+        "alerts": alerts,
+    }
 
 
 # =====================
@@ -133,16 +207,16 @@ def _user_can_view_metrics() -> bool:
 @frappe.whitelist()
 def get_user_badges():
     """
-    Retorna emblemas e nível do usuário logado
+    Retorna emblemas e nível do usuário logado.
+    Se o DocType ainda não existe (feature opcional), retorna [].
     """
     if frappe.session.user == "Guest":
         frappe.throw(_("Faça login para ver seus emblemas"))
-    badges = frappe.get_all(
+    return _safe_get_all(
         "LMS Badge Log",
         filters={"user": frappe.session.user},
         fields=["badge", "level", "awarded_on"],
     )
-    return badges
 
 
 @frappe.whitelist(allow_guest=True)
@@ -164,54 +238,42 @@ def get_leaderboard(course_name):
 
 @frappe.whitelist(allow_guest=True)
 def get_forum_topics(course_name):
-    """
-    Retorna tópicos do fórum do curso
-    """
-    topics = frappe.get_all(
+    """Tópicos do fórum do curso. [] se DocType não existe ainda."""
+    return _safe_get_all(
         "LMS Forum Topic",
         filters={"course": course_name},
         fields=["name", "title", "created_by", "creation"],
     )
-    return topics
 
 
 @frappe.whitelist(allow_guest=True)
 def get_community_links(course_name):
-    """
-    Retorna links de comunidade (Telegram, Discord, Slack) do curso
-    """
-    links = frappe.get_all(
+    """Links de comunidade (Telegram, Discord, Slack). [] se DocType não existe."""
+    return _safe_get_all(
         "LMS Community Link",
         filters={"course": course_name},
         fields=["platform", "url"],
     )
-    return links
 
 
 @frappe.whitelist(allow_guest=True)
 def get_course_languages(course_name):
-    """
-    Retorna idiomas disponíveis para o curso (para internacionalização)
-    """
-    langs = frappe.get_all(
+    """Idiomas do curso para i18n. [] se DocType não existe."""
+    return _safe_get_all(
         "LMS Course Language",
         filters={"course": course_name},
         fields=["language_code", "language_name"],
     )
-    return langs
 
 
 @frappe.whitelist(allow_guest=True)
 def get_accessibility_features(course_name):
-    """
-    Retorna recursos de acessibilidade do curso (legenda, audiodescrição, contraste, navegação por teclado)
-    """
-    features = frappe.get_all(
+    """Recursos de acessibilidade. [] se DocType não existe."""
+    return _safe_get_all(
         "LMS Accessibility Feature",
         filters={"course": course_name},
         fields=["feature", "enabled"],
     )
-    return features
 
 
 # =====================
@@ -219,10 +281,8 @@ def get_accessibility_features(course_name):
 # =====================
 @frappe.whitelist(allow_guest=True)
 def get_course_sessions(course_name):
-    """
-    Retorna lista de sessões (ao vivo ou gravadas) do curso, com links (Zoom, Meet, Vimeo/Youtube)
-    """
-    sessions = frappe.get_all(
+    """Sessões (ao vivo/gravadas) do curso. [] se DocType não existe."""
+    return _safe_get_all(
         "LMS Session",
         filters={"course": course_name},
         fields=[
@@ -236,7 +296,6 @@ def get_course_sessions(course_name):
             "platform",
         ],
     )
-    return sessions
 
 
 # Recursos extras: escuta ativa, gravação de áudio, flashcards (placeholders)
@@ -266,13 +325,12 @@ def submit_speaking_exercise(course_name, audio_url):
 
 @frappe.whitelist(allow_guest=True)
 def get_flashcards(course_name):
-    """
-    Retorna flashcards do curso
-    """
-    cards = frappe.get_all(
-        "LMS Flashcard", filters={"course": course_name}, fields=["front", "back"]
+    """Flashcards do curso. [] se DocType não existe."""
+    return _safe_get_all(
+        "LMS Flashcard",
+        filters={"course": course_name},
+        fields=["front", "back"],
     )
-    return cards
 
 
 # =====================
@@ -293,7 +351,9 @@ def submit_quiz_attempt(course_name, answers):
         except (ValueError, TypeError):
             frappe.throw(_("Formato de respostas inválido"))
 
-    # Exemplo: busca questões e respostas corretas
+    if not frappe.db.exists("DocType", "LMS Quiz Question"):
+        frappe.throw(_("Quiz não disponível para este curso ainda"))
+
     questions = frappe.get_all(
         "LMS Quiz Question",
         filters={"course": course_name},
@@ -455,7 +515,11 @@ def create_checkout(course_name, gateway, coupon_code=None):
         course.course_price = final_price
 
     gateway_obj = get_gateway(gateway)
-    checkout_url = gateway_obj.create_checkout(course, frappe.session.user)
+    checkout_url = gateway_obj.create_checkout(
+        course,
+        frappe.session.user,
+        coupon_code=coupon_code if coupon_valid else None,
+    )
     return {
         "checkout_url": checkout_url,
         "discount_percent": discount,
@@ -471,10 +535,13 @@ def create_checkout(course_name, gateway, coupon_code=None):
 
 
 def create_enrollment_if_paid(
-    course_name, user, gateway, payment_id, amount=None, currency=None
+    course_name, user, gateway, payment_id, amount=None, currency=None,
+    coupon_code=None,
 ):
     """
-    Helper to create enrollment after successful payment
+    Helper to create enrollment after successful payment.
+    Consome 1 uso do cupom (se houver) — incremento atômico, só após
+    pagamento confirmado, garantindo que max_uses seja respeitado.
     """
     if frappe.db.exists("LMS Enrollment", {"course": course_name, "member": user}):
         return
@@ -493,6 +560,41 @@ def create_enrollment_if_paid(
         }
     )
     enrollment.insert(ignore_permissions=True)
+
+    if coupon_code and frappe.db.exists("Coupon", coupon_code):
+        frappe.db.sql(
+            """UPDATE `tabCoupon`
+               SET used_count = COALESCE(used_count, 0) + 1
+               WHERE name = %s""",
+            (coupon_code,),
+        )
+
+    # E-mail de boas-vindas (na fila, nunca bloqueia/aborta a matrícula)
+    try:
+        course_title = (
+            frappe.db.get_value("LMS Course", course_name, "title") or course_name
+        )
+        user_email = frappe.db.get_value("User", user, "email") or user
+        first_name = frappe.db.get_value("User", user, "first_name") or ""
+        frappe.sendmail(
+            recipients=[user_email],
+            subject=f"Matrícula confirmada — {course_title} | Vedium",
+            message=f"""
+                <h3>Bem-vindo(a){', ' + frappe.utils.escape_html(first_name) if first_name else ''}!</h3>
+                <p>Seu pagamento foi confirmado e sua matrícula no curso
+                <strong>{frappe.utils.escape_html(course_title)}</strong> está ativa.</p>
+                <p><a href="https://app.vediums.com/lms/courses/{course_name}">
+                Acessar o curso agora</a></p>
+                <p>Qualquer dúvida, responda este e-mail ou escreva para
+                contato@vediums.com.</p>
+                <p>— Equipe Vedium</p>
+            """,
+        )
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(), "Vedium.payments.enrollment_email"
+        )
+
     frappe.msgprint(_("Inscrição realizada com sucesso!"))
 
 
@@ -637,7 +739,7 @@ def create_checkout_session(course_name):
 # Payment Gateway Abstraction
 # =====================
 class PaymentGateway:
-    def create_checkout(self, course, user):
+    def create_checkout(self, course, user, coupon_code=None):
         raise NotImplementedError
 
     def handle_webhook(self, data):
@@ -653,7 +755,7 @@ class StripeGateway(PaymentGateway):
             )
         return key
 
-    def create_checkout(self, course, user):
+    def create_checkout(self, course, user, coupon_code=None):
         import stripe
 
         stripe.api_key = self._get_api_key()
@@ -687,6 +789,7 @@ class StripeGateway(PaymentGateway):
                 "course_name": course.name,
                 "user": user,
                 "site": frappe.local.site,
+                "coupon_code": coupon_code or "",
             },
         )
         return session.url
@@ -695,6 +798,7 @@ class StripeGateway(PaymentGateway):
         if event.get("type") == "checkout.session.completed":
             session = event.get("data", {}).get("object", {})
             ref = session.get("client_reference_id", "")
+            coupon_code = (session.get("metadata") or {}).get("coupon_code") or None
             try:
                 course_name, user = ref.split("|", 1)
                 create_enrollment_if_paid(
@@ -704,6 +808,7 @@ class StripeGateway(PaymentGateway):
                     session.get("payment_intent", ""),
                     amount=(session.get("amount_total") or 0) / 100,
                     currency=(session.get("currency") or "brl").upper(),
+                    coupon_code=coupon_code,
                 )
             except ValueError:
                 frappe.log_error(
@@ -720,7 +825,7 @@ class MercadoPagoGateway(PaymentGateway):
             frappe.throw(_("MERCADOPAGO_ACCESS_TOKEN não configurado"))
         return mercadopago.SDK(access_token)
 
-    def create_checkout(self, course, user):
+    def create_checkout(self, course, user, coupon_code=None):
         sdk = self.get_sdk()
 
         preference_data = {
@@ -739,7 +844,8 @@ class MercadoPagoGateway(PaymentGateway):
                 "pending": f"{frappe.utils.get_url()}/lms/enrollment/pending",
             },
             "auto_return": "approved",
-            "external_reference": f"{course.name}|{user}",
+            # Formato: course|user[|coupon] — webhook aceita 2 ou 3 segmentos
+            "external_reference": f"{course.name}|{user}|{coupon_code or ''}",
         }
 
         preference_response = sdk.preference().create(preference_data)
@@ -767,7 +873,12 @@ class MercadoPagoGateway(PaymentGateway):
 
                 if status == "approved" and external_ref:
                     try:
-                        course_name, user = external_ref.split("|")
+                        # 2 segmentos (legado) ou 3 (com cupom)
+                        parts = external_ref.split("|")
+                        if len(parts) < 2:
+                            raise ValueError(external_ref)
+                        course_name, user = parts[0], parts[1]
+                        coupon_code = parts[2] if len(parts) > 2 and parts[2] else None
                         create_enrollment_if_paid(
                             course_name,
                             user,
@@ -775,6 +886,7 @@ class MercadoPagoGateway(PaymentGateway):
                             str(resource_id),
                             amount=payment.get("transaction_amount"),
                             currency=payment.get("currency_id"),
+                            coupon_code=coupon_code,
                         )
                     except ValueError:
                         frappe.log_error(
@@ -783,7 +895,7 @@ class MercadoPagoGateway(PaymentGateway):
 
 
 class BasecommerceGateway(PaymentGateway):
-    def create_checkout(self, course, user):
+    def create_checkout(self, course, user, coupon_code=None):
         # TODO: Integrar com Basecommerce API
         return f"/lms/courses/{course.name}/enroll-basecommerce"
 
@@ -793,14 +905,19 @@ class BasecommerceGateway(PaymentGateway):
 
 
 class CryptoGateway(PaymentGateway):
-    def create_checkout(self, course, user):
+    def create_checkout(self, course, user, coupon_code=None):
         from vedium_core.services.crypto_service import CryptoService
 
         service = CryptoService()
         charge = service.create_charge(
             course.course_price, course.currency or "USD", user
         )
-        return charge.get("hosted_url")
+        url = charge.get("hosted_url")
+        if not url:
+            frappe.throw(
+                _("Pagamento em criptomoeda indisponível no momento"),
+            )
+        return url
 
     def handle_webhook(self, data):
         # M-08: Explicitly raise NotImplementedError — crypto webhooks are not yet handled.
@@ -820,6 +937,12 @@ def get_gateway(gateway_name):
     elif gateway_name == "basecommerce":
         return BasecommerceGateway()
     elif gateway_name == "crypto":
+        # Coinbase Commerce ainda não está integrado de verdade (mock).
+        # Só habilita com flag explícita + API key — evita URL falsa em prod.
+        if not (
+            frappe.conf.get("CRYPTO_ENABLED") and frappe.conf.get("CRYPTO_API_KEY")
+        ):
+            raise Exception("Gateway não suportado")
         return CryptoGateway()
     else:
         raise Exception("Gateway não suportado")
@@ -835,6 +958,9 @@ def stripe_webhook():
     URL: /api/method/vedium_core.api.stripe_webhook
     Registrar no Stripe Dashboard → Developers → Webhooks.
     Eventos: checkout.session.completed
+
+    Segurança: em produção (DEVELOPER_MODE=0), STRIPE_WEBHOOK_SECRET é
+    obrigatório. Sem segredo configurado em produção → 401.
     """
     import stripe
 
@@ -842,27 +968,49 @@ def stripe_webhook():
     payload = frappe.request.get_data(as_text=True)
     sig_header = frappe.request.headers.get("Stripe-Signature")
     webhook_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET")
+    is_dev = bool(frappe.conf.get("developer_mode") or frappe.conf.get("DEVELOPER_MODE"))
+
+    if not webhook_secret:
+        # Em produção, segredo ausente é falha de configuração crítica
+        if not is_dev:
+            frappe.log_error(
+                "STRIPE_WEBHOOK_SECRET ausente em produção — webhook rejeitado",
+                "Vedium.payments.stripe_webhook",
+            )
+            frappe.throw(
+                _("Webhook não configurado corretamente"),
+                frappe.AuthenticationError,
+            )
+        # Em dev: aceita sem verificar, mas loga
+        frappe.log_error(
+            "STRIPE_WEBHOOK_SECRET ausente (DEV) — webhook não verificado",
+            "Vedium.payments.stripe_webhook",
+        )
 
     if webhook_secret and not sig_header:
-        frappe.throw(_("Stripe-Signature header obrigatório"), frappe.AuthenticationError)
+        frappe.throw(
+            _("Stripe-Signature header obrigatório"),
+            frappe.AuthenticationError,
+        )
 
     try:
         if webhook_secret and sig_header:
             event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
         else:
-            # Sem segredo configurado: aceita em modo desenvolvimento (log de aviso)
-            frappe.log_error(
-                "STRIPE_WEBHOOK_SECRET não configurado — webhook não verificado",
-                "Stripe Webhook Warning",
-            )
             event = stripe.Event.construct_from(
                 frappe.parse_json(payload), stripe.api_key
             )
     except stripe.error.SignatureVerificationError as e:
-        frappe.log_error(f"Stripe webhook signature inválida: {e}")
+        frappe.log_error(
+            f"Stripe webhook signature inválida: {e}",
+            "Vedium.payments.stripe_webhook",
+        )
         frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
     except Exception as e:
-        frappe.log_error(f"Stripe webhook parse error: {e}")
+        frappe.log_error(
+            f"Stripe webhook parse error: {e}",
+            "Vedium.payments.stripe_webhook",
+        )
         frappe.throw(_("Webhook inválido"), frappe.AuthenticationError)
 
     gateway_obj = StripeGateway()
@@ -910,11 +1058,39 @@ def create_basecommerce_checkout(course_name):
 # =====================
 # Webhook centralizado
 # =====================
+def _is_dev_mode() -> bool:
+    return bool(
+        frappe.conf.get("developer_mode") or frappe.conf.get("DEVELOPER_MODE")
+    )
+
+
+def _require_webhook_secret(secret_name: str, gateway: str) -> str:
+    """Em produção, exige o segredo configurado. Em dev, permite ausente."""
+    secret = frappe.conf.get(secret_name)
+    if not secret:
+        if not _is_dev_mode():
+            frappe.log_error(
+                f"{secret_name} ausente em produção — webhook rejeitado",
+                f"Vedium.payments.{gateway}_webhook",
+            )
+            frappe.throw(
+                _("Webhook não configurado corretamente"),
+                frappe.AuthenticationError,
+            )
+        frappe.log_error(
+            f"{secret_name} ausente (DEV) — webhook não verificado",
+            f"Vedium.payments.{gateway}_webhook",
+        )
+    return secret or ""
+
+
 @frappe.whitelist(allow_guest=True)
 def handle_payment_webhook(gateway=None):
     """
     Centraliza webhooks de pagamento para todos os gateways.
-    C-03 fix: verifica assinatura HMAC antes de processar qualquer evento.
+    Verifica assinatura HMAC antes de processar qualquer evento.
+
+    Em produção (DEVELOPER_MODE=0), segredo HMAC do gateway é obrigatório.
     """
     import hashlib
     import hmac
@@ -925,19 +1101,24 @@ def handle_payment_webhook(gateway=None):
     if not gateway:
         frappe.throw(_("Gateway não informado"))
 
-    # --- C-03: HMAC signature verification ---
     if gateway == "mercadopago":
-        # MercadoPago sends X-Signature header: "ts=<timestamp>,v1=<hmac_sha256>"
         sig_header = frappe.request.headers.get("X-Signature", "")
-        webhook_secret = frappe.conf.get("MERCADOPAGO_WEBHOOK_SECRET")
-        if webhook_secret and sig_header:
+        webhook_secret = _require_webhook_secret(
+            "MERCADOPAGO_WEBHOOK_SECRET", "mercadopago"
+        )
+        if webhook_secret:
+            if not sig_header:
+                frappe.throw(
+                    _("X-Signature header obrigatório"),
+                    frappe.AuthenticationError,
+                )
             try:
                 parts = {
-                    k: v for k, v in (p.split("=", 1) for p in sig_header.split(","))
+                    k: v
+                    for k, v in (p.split("=", 1) for p in sig_header.split(","))
                 }
                 ts = parts.get("ts", "")
                 v1 = parts.get("v1", "")
-                # MercadoPago manifest: HMAC of "id:<payment_id>;request-id:<req_id>;ts:<ts>"
                 data_id = data.get("data", {}).get("id", data.get("id", ""))
                 request_id = frappe.request.headers.get("X-Request-Id", "")
                 manifest = f"id:{data_id};request-id:{request_id};ts:{ts}"
@@ -946,29 +1127,61 @@ def handle_payment_webhook(gateway=None):
                 ).hexdigest()
                 if not hmac.compare_digest(expected, v1):
                     frappe.throw(
-                        _("Webhook signature inválida"), frappe.AuthenticationError
+                        _("Webhook signature inválida"),
+                        frappe.AuthenticationError,
                     )
+            except frappe.AuthenticationError:
+                raise
             except Exception as e:
-                frappe.log_error(f"MercadoPago webhook signature check failed: {e}")
+                frappe.log_error(
+                    f"MercadoPago webhook signature check failed: {e}",
+                    "Vedium.payments.mercadopago_webhook",
+                )
                 frappe.throw(
-                    _("Webhook signature inválida"), frappe.AuthenticationError
+                    _("Webhook signature inválida"),
+                    frappe.AuthenticationError,
                 )
 
     elif gateway == "stripe":
-        # Stripe sends Stripe-Signature header for HMAC verification
         sig_header = frappe.request.headers.get("Stripe-Signature")
-        stripe_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET")
-        if stripe_secret and sig_header:
+        stripe_secret = _require_webhook_secret("STRIPE_WEBHOOK_SECRET", "stripe")
+        if stripe_secret:
+            if not sig_header:
+                frappe.throw(
+                    _("Stripe-Signature header obrigatório"),
+                    frappe.AuthenticationError,
+                )
             try:
                 import stripe
 
                 payload = frappe.request.get_data(as_text=True)
                 stripe.Webhook.construct_event(payload, sig_header, stripe_secret)
+            except frappe.AuthenticationError:
+                raise
             except Exception as e:
-                frappe.log_error(f"Stripe webhook signature check failed: {e}")
-                frappe.throw(
-                    _("Webhook signature inválida"), frappe.AuthenticationError
+                frappe.log_error(
+                    f"Stripe webhook signature check failed: {e}",
+                    "Vedium.payments.stripe_webhook",
                 )
+                frappe.throw(
+                    _("Webhook signature inválida"),
+                    frappe.AuthenticationError,
+                )
+
+    elif gateway == "crypto":
+        # CryptoGateway.handle_webhook ainda não implementa verificação HMAC
+        # do Coinbase Commerce. Em produção, falhamos cedo para não criar
+        # matrículas baseadas em payload não verificado.
+        if not _is_dev_mode():
+            frappe.log_error(
+                "Webhook crypto recebido mas handler ainda não implementa "
+                "verificação HMAC do Coinbase Commerce",
+                "Vedium.payments.crypto_webhook",
+            )
+            frappe.throw(
+                _("Gateway crypto não habilitado para webhooks em produção"),
+                frappe.AuthenticationError,
+            )
 
     gateway_obj = get_gateway(gateway)
     gateway_obj.handle_webhook(data)
@@ -990,24 +1203,3 @@ def create_crypto_checkout(course_name):
     gateway = get_gateway("crypto")
     checkout_url = gateway.create_checkout(course, frappe.session.user)
     return {"checkout_url": checkout_url}
-
-
-# =====================
-# PWA Analytics Tracking
-# =====================
-@frappe.whitelist()
-def track_pwa_install():
-    """
-    A-04 fix: Track PWA installation event.
-    Called by pwa-register.js when the user installs the app.
-    """
-    if frappe.session.user == "Guest":
-        return {"status": "ok", "tracked": False}
-
-    try:
-        frappe.log(f"Vedium: PWA installed by user {frappe.session.user}")
-        # Optionally store in a custom log or fire a server-side analytics event
-        return {"status": "ok", "tracked": True, "user": frappe.session.user}
-    except Exception as e:
-        frappe.log_error(f"track_pwa_install error: {e}")
-        return {"status": "error"}

@@ -1,277 +1,272 @@
+# Vedium — Endpoints GEO (Generative Engine Optimization)
+# Conteúdo lido por AIs (ChatGPT, Perplexity, Gemini). REGRA DE OURO:
+# tudo aqui deve refletir a oferta REAL (CDC art. 30: a oferta vincula).
+# Cursos/preços vêm do banco; nada de features anunciadas e não entregues.
+
 import frappe
-from frappe import _
 from datetime import datetime
+
+SITE_URL = "https://vediums.com"
+APP_URL = "https://app.vediums.com"
+CONTACT_EMAIL = "contato@vediums.com"
+CONTACT_PHONE = "+55 11 4190-6079"  # telefone do registro CNPJ
+
+
+def _now_iso():
+    return datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _published_courses(limit=50):
+    return frappe.get_all(
+        "LMS Course",
+        filters={"published": 1},
+        fields=["name", "title", "short_introduction", "course_price",
+                "currency", "paid_course", "category", "modified"],
+        order_by="title asc",
+        limit=limit,
+    )
+
+
+def _course_languages():
+    """Idiomas realmente ofertados, derivados das categorias publicadas."""
+    categories = frappe.get_all(
+        "LMS Course",
+        filters={"published": 1},
+        fields=["category"],
+        pluck="category",
+    )
+    langs = set()
+    for cat in categories:
+        if not cat:
+            continue
+        # Categorias seguem o padrão "Idioma - Nível"
+        langs.add(cat.split(" - ")[0].strip())
+    return sorted(langs)
+
+
+def _json_response(payload):
+    frappe.response["http_status_code"] = 200
+    frappe.response["type"] = "json"
+    frappe.response["message"] = payload
+    frappe.response.headers["Content-Type"] = "application/json"
+    frappe.response.headers["Cache-Control"] = (
+        "public, max-age=86400, stale-while-revalidate=604800"
+    )
+    return payload
+
 
 @frappe.whitelist(allow_guest=True)
 def get_ai_summary():
     """
-    GEO Endpoint: /ai/summary.json
-    Returns site summary for AI systems (≤800 chars)
+    GEO: resumo do site para sistemas de IA.
+    URL real: /api/method/vedium_core.geo_endpoints.get_ai_summary
     """
-    frappe.response['http_status_code'] = 200
-    frappe.response['type'] = 'json'
-    
+    languages = _course_languages()
+    lang_label = ", ".join(languages) if languages else "Inglês"
+
     summary = {
-        "version": "1.0",
-        "lastModified": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "version": "2.0",
+        "lastModified": _now_iso(),
         "name": "Vedium Global Education",
-        "description": "Vedium is a specialized online language learning platform offering Executive English, Tech Hebrew, Ancestral Yoruba, and Portuguese courses. We combine AI-powered 24/7 conversation practice with expert native instructors to accelerate global career development. Our industry-specific tracks serve business professionals, tech workers, cultural enthusiasts, and international students. Features include real-time AI training, certificate programs, corporate solutions, and flexible payment options including cryptocurrency (Bitcoin, Ethereum, USDC).",
-        "url": "https://vediums.com",
-        "contact": {
-            "email": "contato@vediums.com",
-            "phone": "+55 (11) 94190-6079"
-        },
-        "languages": ["en", "pt", "he", "yo"],
+        "description": (
+            f"Vedium é uma plataforma brasileira de cursos de idiomas online "
+            f"ao vivo. Idiomas ofertados atualmente: {lang_label}. "
+            "Aulas ao vivo com professores, trilhas por nível (CEFR A1-C1 "
+            "no inglês) e certificado de conclusão com código de verificação "
+            "pública. Plataforma de aprendizagem em app.vediums.com."
+        ),
+        "url": SITE_URL,
+        "platformUrl": APP_URL,
+        "contact": {"email": CONTACT_EMAIL, "phone": CONTACT_PHONE},
+        "languagesOffered": languages,
         "primaryServices": [
-            "Executive English courses",
-            "Tech Hebrew for programmers",
-            "Ancestral Yoruba cultural courses",
-            "Portuguese for international students",
-            "AI-powered conversation training",
-            "Corporate language training"
-        ],
-        "paymentMethods": ["Credit Card", "Cryptocurrency", "Corporate Invoice"]
+            f"Cursos de {lang}" for lang in languages
+        ] + ["Certificados verificáveis de conclusão"],
+        "paymentMethods": ["Cartão de crédito (Stripe)", "Mercado Pago"],
     }
-    
-    frappe.response['message'] = summary
-    frappe.response.headers['Content-Type'] = 'application/json'
-    frappe.response.headers['Cache-Control'] = 'public, max-age=86400, stale-while-revalidate=604800'
-    
-    return summary
+    return _json_response(summary)
+
 
 @frappe.whitelist(allow_guest=True)
 def get_ai_faq():
     """
-    GEO Endpoint: /ai/faq.json
-    Returns frequently asked questions
+    GEO: perguntas frequentes em formato legível por IA.
+    URL real: /api/method/vedium_core.geo_endpoints.get_ai_faq
     """
-    frappe.response['http_status_code'] = 200
-    frappe.response['type'] = 'json'
-    
+    languages = _course_languages()
+    lang_label = ", ".join(languages) if languages else "Inglês"
+
     faq = {
-        "version": "1.0",
-        "lastModified": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "version": "2.0",
+        "lastModified": _now_iso(),
         "faqs": [
             {
-                "question": "What languages does Vedium teach?",
-                "answer": "Vedium offers courses in four strategic languages: Executive English for business, Tech Hebrew for programmers, Ancestral Yoruba for cultural connection, and Portuguese for international students."
+                "question": "Quais idiomas a Vedium ensina?",
+                "answer": (
+                    f"Atualmente a Vedium oferece cursos de {lang_label}. "
+                    f"O catálogo completo e atualizado está em "
+                    f"{SITE_URL}/catalogo."
+                ),
             },
             {
-                "question": "How does the AI conversation training work?",
-                "answer": "Our platform provides 24/7 AI-powered conversation practice that simulates real-world scenarios specific to your industry. Practice anytime, get instant feedback, and build confidence before speaking with native instructors."
+                "question": "As aulas são ao vivo ou gravadas?",
+                "answer": (
+                    "Os cursos da Vedium são baseados em aulas ao vivo com "
+                    "professores, complementadas por material na plataforma."
+                ),
             },
             {
-                "question": "Do you offer certificates?",
-                "answer": "Yes, students who complete 100% of a course and achieve a minimum 70% score on assessments receive a certificate of completion."
+                "question": "A Vedium emite certificado?",
+                "answer": (
+                    "Sim. Alunos que concluem o curso recebem certificado "
+                    "digital com código de verificação pública."
+                ),
             },
             {
-                "question": "Can I pay with cryptocurrency?",
-                "answer": "Yes! We accept Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), USD Coin (USDC), and DAI through Coinbase Commerce. We also accept traditional payment methods like credit cards."
+                "question": "Quais formas de pagamento são aceitas?",
+                "answer": (
+                    "Cartão de crédito via Stripe e Mercado Pago, em reais "
+                    "(BRL)."
+                ),
             },
             {
-                "question": "Is there a free trial?",
-                "answer": "We offer free introductory lessons for each language track. You can explore the platform and experience our teaching methodology before committing to a paid course."
+                "question": "Como faço para me matricular?",
+                "answer": (
+                    f"Escolha um curso em {SITE_URL}/catalogo, acesse a "
+                    f"página do curso e clique em Matricular. A matrícula e "
+                    f"as aulas acontecem na plataforma {APP_URL}."
+                ),
             },
             {
-                "question": "Do you offer corporate training?",
-                "answer": "Yes, Vedium Corporate provides customized language training solutions for businesses, including bulk licensing, progress tracking, and industry-specific content."
+                "question": "A Vedium atende empresas?",
+                "answer": (
+                    f"Soluções corporativas são tratadas sob consulta pelo "
+                    f"e-mail {CONTACT_EMAIL}."
+                ),
             },
-            {
-                "question": "Who are the instructors?",
-                "answer": "All our instructors are native speakers with specialized expertise in their teaching areas - business English, tech industry Hebrew, cultural Yoruba, or Portuguese for foreigners."
-            },
-            {
-                "question": "How long does it take to complete a course?",
-                "answer": "Course duration varies by level and intensity. Most students complete a basic level in 2-3 months with consistent practice. Our flexible format allows you to learn at your own pace."
-            }
-        ]
+        ],
     }
-    
-    frappe.response['message'] = faq
-    frappe.response.headers['Content-Type'] = 'application/json'
-    frappe.response.headers['Cache-Control'] = 'public, max-age=86400, stale-while-revalidate=604800'
-    
-    return faq
+    return _json_response(faq)
+
 
 @frappe.whitelist(allow_guest=True)
 def get_ai_service():
     """
-    GEO Endpoint: /ai/service.json
-    Returns service capabilities and API information
+    GEO: capacidades e endpoints reais da plataforma.
+    URL real: /api/method/vedium_core.geo_endpoints.get_ai_service
     """
-    frappe.response['http_status_code'] = 200
-    frappe.response['type'] = 'json'
-    
     service = {
-        "version": "1.0",
-        "lastModified": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "version": "2.0",
+        "lastModified": _now_iso(),
         "name": "Vedium Global Education",
-        "description": "Online language learning platform with AI-powered training",
+        "description": "Plataforma de cursos de idiomas online ao vivo",
         "capabilities": [
             {
-                "name": "Course Catalog",
-                "description": "Browse available language courses",
-                "endpoint": "https://vediums.com/courses",
-                "methods": ["GET"]
-            },
-            {
-                "name": "Course Enrollment",
-                "description": "Enroll in language courses via checkout",
-                "endpoint": "https://vediums.com/api/method/vedium_core.api.create_checkout",
-                "methods": ["POST"],
-                "requiresAuth": True
-            },
-            {
-                "name": "AI Conversation Practice",
-                "description": "24/7 AI-powered conversation training",
-                "endpoint": "https://vediums.com/practice",
-                "methods": ["GET", "POST"],
-                "requiresAuth": True
-            },
-            {
-                "name": "Progress Tracking",
-                "description": "Track learning progress and payment history",
-                "endpoint": "https://vediums.com/api/method/vedium_core.api.get_payment_history",
+                "name": "Catálogo de cursos",
+                "description": "Lista de cursos publicados com preços",
+                "endpoint": f"{SITE_URL}/catalogo",
                 "methods": ["GET"],
-                "requiresAuth": True
             },
             {
-                "name": "Certificate Generation",
-                "description": "Generate course completion certificates",
-                "endpoint": "https://vediums.com/api/method/vedium_core.api.issue_certificate",
+                "name": "Página de curso",
+                "description": "Detalhes, preço e matrícula de um curso",
+                "endpoint": f"{SITE_URL}/curso/<slug>",
+                "methods": ["GET"],
+            },
+            {
+                "name": "Checkout",
+                "description": "Cria checkout de pagamento (login necessário)",
+                "endpoint": (
+                    f"{APP_URL}/api/method/vedium_core.api.create_checkout"
+                ),
                 "methods": ["POST"],
-                "requiresAuth": True
-            }
+                "requiresAuth": True,
+            },
+            {
+                "name": "Verificação de certificado",
+                "description": "Verifica autenticidade de um certificado",
+                "endpoint": (
+                    f"{APP_URL}/api/method/"
+                    "vedium_core.api.verify_certificate"
+                ),
+                "methods": ["GET"],
+            },
         ],
         "authentication": {
-            "type": "JWT",
-            "loginEndpoint": "https://vediums.com/api/method/login",
-            "signupEndpoint": "https://vediums.com/api/method/frappe.core.doctype.user.user.sign_up"
+            "loginUrl": f"{APP_URL}/login",
+            "signupUrl": f"{APP_URL}/signup",
         },
         "paymentMethods": [
             {
-                "name": "Credit/Debit Card",
+                "name": "Cartão de crédito / débito",
                 "providers": ["Stripe", "MercadoPago"],
-                "currencies": ["BRL", "USD", "EUR"]
-            },
-            {
-                "name": "Cryptocurrency",
-                "provider": "Coinbase Commerce",
-                "currencies": ["BTC", "ETH", "LTC", "USDC", "DAI"]
+                "currencies": ["BRL"],
             }
         ],
-        "supportedLanguages": ["en", "pt", "he", "yo"],
         "contactInfo": {
-            "email": "contato@vediums.com",
-            "phone": "+55 (11) 94190-6079",
-            "website": "https://vediums.com"
-        }
+            "email": CONTACT_EMAIL,
+            "phone": CONTACT_PHONE,
+            "website": SITE_URL,
+        },
     }
-    
-    frappe.response['message'] = service
-    frappe.response.headers['Content-Type'] = 'application/json'
-    frappe.response.headers['Cache-Control'] = 'public, max-age=86400, stale-while-revalidate=604800'
-    
-    return service
+    return _json_response(service)
+
 
 @frappe.whitelist(allow_guest=True)
 def get_llm_sitemap():
     """
-    GEO Endpoint: /sitemap-llm.xml
-    Returns LLM-optimized sitemap
+    GEO: sitemap otimizado para LLMs com as URLs REAIS do site.
+    URL real: /api/method/vedium_core.geo_endpoints.get_llm_sitemap
     """
-    frappe.response['http_status_code'] = 200
-    frappe.response['type'] = 'xml'
-    
-    # URLs estáticas importantes para LLMs
+    today = datetime.now().strftime("%Y-%m-%d")
+
     urls = [
-        {
-            'loc': 'https://vediums.com/',
-            'lastmod': '2026-02-08',
-            'changefreq': 'weekly',
-            'priority': '1.0',
-            'description': 'Homepage - Vedium Global Education platform'
-        },
-        {
-            'loc': 'https://vediums.com/courses',
-            'lastmod': '2026-02-08',
-            'changefreq': 'daily',
-            'priority': '0.9',
-            'description': 'Course catalog - Executive English, Tech Hebrew, Ancestral Yoruba, Portuguese'
-        },
-        {
-            'loc': 'https://vediums.com/about',
-            'lastmod': '2026-02-08',
-            'changefreq': 'monthly',
-            'priority': '0.7',
-            'description': 'About Vedium - Mission, vision, and teaching methodology'
-        },
-        {
-            'loc': 'https://vediums.com/pricing',
-            'lastmod': '2026-02-08',
-            'changefreq': 'weekly',
-            'priority': '0.8',
-            'description': 'Pricing plans - Individual and corporate options'
-        },
-        {
-            'loc': 'https://vediums.com/.well-known/ai.txt',
-            'lastmod': '2026-02-08',
-            'changefreq': 'monthly',
-            'priority': '0.6',
-            'description': 'AI discovery file'
-        },
-        {
-            'loc': 'https://vediums.com/ai/summary.json',
-            'lastmod': '2026-02-08',
-            'changefreq': 'weekly',
-            'priority': '0.6',
-            'description': 'AI-readable site summary'
-        },
-        {
-            'loc': 'https://vediums.com/ai/faq.json',
-            'lastmod': '2026-02-08',
-            'changefreq': 'weekly',
-            'priority': '0.6',
-            'description': 'Frequently asked questions in AI-readable format'
-        }
+        {"loc": f"{SITE_URL}/", "lastmod": today, "changefreq": "weekly",
+         "priority": "1.0", "description": "Homepage Vedium"},
+        {"loc": f"{SITE_URL}/catalogo", "lastmod": today,
+         "changefreq": "daily", "priority": "0.9",
+         "description": "Catálogo de cursos de idiomas"},
+        {"loc": f"{SITE_URL}/sobre", "lastmod": today,
+         "changefreq": "monthly", "priority": "0.7",
+         "description": "Sobre a Vedium"},
+        {"loc": f"{SITE_URL}/mentores", "lastmod": today,
+         "changefreq": "monthly", "priority": "0.7",
+         "description": "Professores e mentores"},
+        {"loc": f"{SITE_URL}/contato", "lastmod": today,
+         "changefreq": "monthly", "priority": "0.6",
+         "description": "Contato"},
+        {"loc": f"{SITE_URL}/carreiras", "lastmod": today,
+         "changefreq": "monthly", "priority": "0.5",
+         "description": "Trabalhe conosco"},
     ]
-    
-    # Buscar cursos publicados
-    courses = frappe.get_all(
-        "LMS Course",
-        filters={"published": 1},
-        fields=["name", "title", "modified"],
-        limit=20
-    )
-    
-    for course in courses:
+
+    for course in _published_courses(limit=20):
         urls.append({
-            'loc': f'https://vediums.com/courses/{course.name}',
-            'lastmod': course.modified.strftime('%Y-%m-%d'),
-            'changefreq': 'weekly',
-            'priority': '0.8',
-            'description': f'Course: {course.title}'
+            "loc": f"{SITE_URL}/curso/{course.name}",
+            "lastmod": course.modified.strftime("%Y-%m-%d"),
+            "changefreq": "weekly",
+            "priority": "0.8",
+            "description": f"Curso: {course.title}",
         })
-    
-    # Gerar XML
+
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-    xml += 'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
-    
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for url in urls:
-        xml += '  <url>\n'
+        xml += "  <url>\n"
         xml += f'    <loc>{url["loc"]}</loc>\n'
         xml += f'    <lastmod>{url["lastmod"]}</lastmod>\n'
         xml += f'    <changefreq>{url["changefreq"]}</changefreq>\n'
         xml += f'    <priority>{url["priority"]}</priority>\n'
-        if 'description' in url:
+        if "description" in url:
             xml += f'    <!-- {url["description"]} -->\n'
-        xml += '  </url>\n'
-    
-    xml += '</urlset>'
-    
-    frappe.response['message'] = xml
-    frappe.response.headers['Content-Type'] = 'application/xml'
-    frappe.response.headers['Cache-Control'] = 'public, max-age=86400, stale-while-revalidate=604800'
-    
+        xml += "  </url>\n"
+    xml += "</urlset>"
+
+    frappe.response["http_status_code"] = 200
+    frappe.response["type"] = "xml"
+    frappe.response["message"] = xml
+    frappe.response.headers["Content-Type"] = "application/xml"
+    frappe.response.headers["Cache-Control"] = (
+        "public, max-age=86400, stale-while-revalidate=604800"
+    )
     return xml

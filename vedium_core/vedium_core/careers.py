@@ -50,11 +50,16 @@ def ensure_candidatura_doctype():
 @frappe.whitelist(allow_guest=True)
 def submit_candidatura(candidate_name, email, position=None, phone=None, message=None, resume_url=None):
     """Recebe a candidatura do formulario publico /carreiras e cria o registro."""
+    from vedium_core.api import rate_limit_by_ip
+
+    rate_limit_by_ip("candidatura", limit=3, window_sec=3600)
+
     candidate_name = (candidate_name or "").strip()
     email = (email or "").strip()
     if not candidate_name or not email:
         frappe.throw("Nome e e-mail sao obrigatorios.")
 
+    # Fallback idempotente — o caminho normal é o after_migrate já ter criado
     ensure_candidatura_doctype()
 
     doc = frappe.new_doc(CANDIDATURA)

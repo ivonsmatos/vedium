@@ -8,7 +8,11 @@ def get_context(context):
     context.no_cache = 1
 
     if frappe.session.user == "Guest":
-        frappe.local.flags.redirect_location = "/login?redirect-to=/aluno_360"
+        # Login fica no host nativo da plataforma (app.vediums.com) —
+        # /login relativo quebra quando a página é acessada via vediums.com
+        frappe.local.flags.redirect_location = (
+            "https://app.vediums.com/login?redirect-to=/aluno_360"
+        )
         raise frappe.Redirect
 
     roles = set(frappe.get_roles())
