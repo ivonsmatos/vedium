@@ -15,19 +15,26 @@ e Português para Estrangeiros — construída sobre o **Frappe Framework**.
 
 ## Stack
 
-| Camada | Tecnologia | Versão |
-|---|---|---|
-| Backend | Frappe Framework | **v15** |
-| ERP | ERPNext | **v15** |
-| LMS | Frappe LMS | **v15** |
-| Linguagem | Python | **3.11** |
-| Runtime JS | Node.js | **20 LTS** |
-| Frontend | Jinja2 + Tailwind CSS v3 | — |
-| Banco de Dados | MariaDB | 10.6 |
-| Cache | Redis | 7-alpine |
-| Web Server | Nginx | host VM |
-| Container | Docker Compose | v2 |
-| CDN/Edge | Cloudflare | proxy ativo |
+Verificado direto no container de produção em 2026-06-12
+(`docker inspect` + `bench list-apps`):
+
+| Camada | Tecnologia | Produção | Dev local (Dockerfile) |
+|---|---|---|---|
+| Backend | Frappe Framework | **v16** (imagem `frappe/erpnext:v16`) | bench |
+| ERP | ERPNext | **v16** | bench |
+| LMS | Frappe LMS | 2.x (`main`) | bench |
+| CRM / Helpdesk | Frappe CRM 1.x / Helpdesk 1.x | instalados | — |
+| Linguagem | Python | **3.14** | 3.11 |
+| Runtime JS | Node.js | **24** | 20 LTS |
+| Frontend | Jinja2 + Tailwind CSS v3 | — | — |
+| Banco de Dados | MariaDB | 10.6 | 10.6 |
+| Cache | Redis | 7-alpine ×3 | 7-alpine ×3 |
+| Web Server | Nginx | host VM | — |
+| CDN/Edge | Cloudflare | proxy ativo | — |
+
+> ⚠️ O `Dockerfile` da raiz é o ambiente de **desenvolvimento** (bench);
+> produção usa a imagem oficial `frappe/erpnext:v16`. Não confundir as
+> versões de um com o outro.
 
 ---
 

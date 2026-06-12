@@ -10,7 +10,7 @@
 
 Vedium é uma plataforma de cursos de idiomas premium (Inglês Executivo,
 Iorubá Ancestral, Português para Estrangeiros) construída sobre o
-**Frappe Framework v15** com **ERPNext v15** e **Frappe LMS v15**.
+**Frappe Framework v16** com **ERPNext v16** e **Frappe LMS 2.x**.
 
 - **Site institucional** (vediums.com): páginas SEO server-rendered pelo
   Frappe (`vedium_core/www/`), tema "Raízes de Luxo".
@@ -20,23 +20,35 @@ Iorubá Ancestral, Português para Estrangeiros) construída sobre o
 
 ---
 
-## 2. Stack real (não confiar em READMEs antigos)
+## 2. Stack real (verificada no container em 2026-06-12)
 
-| Camada | Tecnologia | Versão |
+> Histórico: a auditoria de 2026-05-25 (task.md arquivado) afirmou que a
+> produção rodava v15 — estava ERRADA. `docker inspect` confirma imagem
+> `frappe/erpnext:v16`. O Dockerfile da raiz (Python 3.11/Node 20) é
+> apenas o ambiente de DEV, não reflete produção.
+
+| Camada | Tecnologia | Versão (produção) |
 |---|---|---|
-| Backend | Frappe Framework | **v15** |
-| ERP | ERPNext | **v15** |
-| LMS | Frappe LMS | **v15** |
-| Linguagem | Python | **3.11** |
-| Runtime JS | Node.js | **20 LTS** |
+| Backend | Frappe Framework | **v16** (16.18.x) |
+| ERP | ERPNext | **v16** (16.19.x) |
+| LMS | Frappe LMS | 2.x (branch `main`) |
+| CRM | Frappe CRM | 1.x (branch `main`) |
+| Helpdesk | Frappe Helpdesk | 1.x (branch `main`) |
+| Linguagem | Python | **3.14** |
+| Runtime JS | Node.js | **24** |
 | Frontend | Jinja2 + Tailwind CSS | Tailwind v3 |
 | DB | MariaDB | 10.6 |
 | Cache/fila | Redis | 7-alpine (3 instâncias: cache, queue, socketio) |
 | Web | Nginx | host do servidor |
 | Container | Docker Compose | v2 |
 | CDN/edge | Cloudflare | proxy ativo |
+| Monitoramento | Uptime Kuma | container `vedium-uptime-kuma` |
 | Pagamentos | Stripe + Mercado Pago | + Basecommerce (stub) |
 | IA | Groq (Llama 3 70B) | via SDK oficial |
+
+⚠️ `bench list-apps` mostra frappe/erpnext como `UNVERSIONED` — os apps
+não estão presos a um branch de release. Antes de qualquer `bench update`,
+fixar branches (`version-16`) para evitar upgrade acidental.
 
 ---
 
@@ -152,7 +164,7 @@ gateway.handle_webhook(event) → cria LMS Enrollment
 
 | ID | Decisão | Data | Motivo |
 |---|---|---|---|
-| ADR-001 | Manter v15 (não migrar para v16) | 2026-05-25 | v16 ainda instável; benefícios não compensam risco |
+| ADR-001 | ~~Manter v15~~ **SUPERADO**: produção já roda v16 (verificado 2026-06-12) — a premissa do ADR era falsa | 2026-06-12 | Auditoria de maio leu o ambiente errado (Dockerfile dev) |
 | ADR-002 | Docker Compose (não Kubernetes) | 2026-05-29 | <1k MAU; complexidade k8s não se paga |
 | ADR-003 | Cloudflare (não AWS CloudFront) | 2026-05-29 | Custo zero, DNS+WAF+cache no mesmo painel |
 | ADR-004 | Single-master MariaDB | 2026-05-29 | Replica = manutenção extra sem ganho real ainda |

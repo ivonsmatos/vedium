@@ -4,6 +4,20 @@ Registro de mudanças relevantes do Vedium. Formato baseado em
 [Keep a Changelog](https://keepachangelog.com/) (datas absolutas, ordem
 cronológica reversa).
 
+## [2026-06-12] — Correção de versões + limpeza do servidor
+
+### Corrigido
+- **ERRATA: produção roda Frappe/ERPNext v16, Python 3.14, Node 24**
+  (verificado via `docker inspect` + `bench list-apps` no container).
+  A auditoria de 2026-05-25 que afirmava v15 estava errada — leu o
+  Dockerfile de DEV. README/ARCHITECTURE/.env.example corrigidos;
+  ADR-001 marcado como superado.
+
+### Removido (servidor)
+- Containers e volumes da stack de observabilidade morta executados via
+  SSH: prometheus, grafana, node-exporter, promtail, loki (ADR-005).
+  Uptime Kuma mantido como monitoramento leve.
+
 ## [Não lançado] — 2026-06-11 (QA rodada 2)
 
 ### Adicionado (fechamento dos QAs)
