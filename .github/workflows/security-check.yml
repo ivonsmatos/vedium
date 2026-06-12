@@ -58,6 +58,24 @@ jobs:
             fi
           done
 
+      # Regressão histórica: o LMS já quebrou com GET=200 mas POST=404
+      # (Origin/Host mismatch no rewrite do nginx). curl simples sem Origin
+      # mascarava o bug — este check reproduz o que o navegador envia.
+      - name: Check LMS POST with Origin (regression guard)
+        run: |
+          HTTP_CODE=$(curl -sk -X POST \
+            -H "Origin: https://app.vediums.com" \
+            -H "Content-Type: application/json" \
+            -o /dev/null -w '%{http_code}' --max-time 30 \
+            "https://app.vediums.com/api/method/ping")
+          echo "POST /api/method/ping (com Origin) → HTTP $HTTP_CODE"
+          # 200 = ok; 403 = CSRF de guest (aceitável — rota respondeu)
+          case "$HTTP_CODE" in
+            200|403) echo "✅ POST com Origin respondido pelo Frappe";;
+            404) echo "::error::POST retornou 404 — provável regressão do Host-rewrite (ver RUNBOOK)"; exit 1;;
+            *) echo "::warning::POST retornou $HTTP_CODE (inesperado, verificar)";;
+          esac
+
   backup-check:
     runs-on: ubuntu-latest
 

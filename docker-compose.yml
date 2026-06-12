@@ -75,44 +75,12 @@ services:
     networks:
       - vedium-network
 
-  # ---------------------------------------------------
-  # Observabilidade — apenas em DEV. Em PROD, expor
-  # via nginx + auth básica + TLS, ou usar SaaS.
-  # ---------------------------------------------------
-  prometheus:
-    image: prom/prometheus
-    container_name: vedium-prometheus
-    profiles: ["observability"]
-    volumes:
-      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - prometheus-data:/prometheus
-    ports:
-      - "127.0.0.1:9090:9090"
-    networks:
-      - vedium-network
-
-  grafana:
-    image: grafana/grafana
-    container_name: vedium-grafana
-    profiles: ["observability"]
-    environment:
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Defina GRAFANA_ADMIN_PASSWORD no .env}
-      GF_USERS_ALLOW_SIGN_UP: "false"
-    volumes:
-      - grafana-data:/var/lib/grafana
-    ports:
-      - "127.0.0.1:3000:3000"
-    networks:
-      - vedium-network
-
 volumes:
   frappe-bench-data:
   mariadb-data:
   redis-cache-data:
   redis-queue-data:
   redis-socketio-data:
-  prometheus-data:
-  grafana-data:
 
 networks:
   vedium-network:

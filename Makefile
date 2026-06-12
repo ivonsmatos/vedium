@@ -23,7 +23,7 @@ SITE         := $(if $(SITE),$(SITE),app.vediums.com)
 .DEFAULT_GOAL := help
 
 .PHONY: help up down restart logs logs-frappe logs-workers shell migrate backup restore \
-        status workers ps clean obs-up obs-down health lint test
+        status workers ps clean uptime-up uptime-down health lint test
 
 # ------------------------------------------------------------------
 help:
@@ -121,11 +121,11 @@ health: ## Testa /api/method/ping do Frappe
 	    echo "FALHOU — container pode não estar rodando"
 
 # ------------------------------------------------------------------
-obs-up: ## Sobe stack de observabilidade (Prometheus + Grafana + Loki)
-	$(COMPOSE_OBS) up -d
+uptime-up: ## Sobe Uptime Kuma (monitoramento simples — localhost:3004)
+	$(COMPOSE_OBS) up -d vedium-uptime-kuma
 
-obs-down: ## Para stack de observabilidade
-	$(COMPOSE_OBS) down
+uptime-down: ## Para Uptime Kuma
+	$(COMPOSE_OBS) stop vedium-uptime-kuma
 
 # ------------------------------------------------------------------
 clean: ## Remove volumes não utilizados (CUIDADO: irreversível)

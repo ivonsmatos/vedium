@@ -30,28 +30,31 @@ jobs:
       - name: Lint (syntax errors block build)
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics \
-              --exclude=.git,__pycache__,node_modules,vedium_core/vedium_core/public/vedium_assets
+              --exclude=.git,__pycache__,node_modules,vedium_core/vedium_core/public/vedium_assets,docs/archive,scripts/migrations/oneshot
 
       - name: Lint (style — warnings only)
         run: |
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 \
               --statistics \
-              --exclude=.git,__pycache__,node_modules,vedium_core/vedium_core/public/vedium_assets
+              --exclude=.git,__pycache__,node_modules,vedium_core/vedium_core/public/vedium_assets,docs/archive,scripts/migrations/oneshot
 
+      # Vulnerabilidades em dependências bloqueiam o merge.
+      # Para suprimir um CVE específico (com justificativa): use --ignore-vuln.
       - name: Security audit (pip-audit)
-        run: pip-audit --strict || true   # report-only por enquanto
+        run: pip-audit --strict
 
       - name: Detect leaked secrets
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Testes "pure" — sem dependência de Frappe bench.
+      # Cobrem lógica isolada: cupom, assinatura HMAC, helpers puros.
       - name: Unit tests (sem Frappe bench)
         run: |
-          # Roda apenas testes que não dependem de bench/Frappe.
-          # Testes de integração com bench rodam via job separado em ambiente próprio.
           if compgen -G "vedium_core/vedium_core/tests/test_pure_*.py" > /dev/null; then
               pytest -v vedium_core/vedium_core/tests/test_pure_*.py
           else
-              echo "ℹ️ Nenhum teste 'pure' encontrado — pulando."
+              echo "::error::Nenhum teste 'pure' encontrado — CI deveria rodar pelo menos os testes isolados."
+              exit 1
           fi
