@@ -121,3 +121,6 @@ idiomas/
 *.pdf
 *.epub
 *.mobi
+
+# Notas de trabalho locais (memoria de sessao) — nao versionar
+memory/
