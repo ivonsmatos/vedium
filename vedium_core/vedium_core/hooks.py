@@ -66,7 +66,11 @@ web_include_css = [
 ]
 
 # Website JS
-web_include_js = ["/assets/vedium_core/js/pwa-register.js", "/assets/vedium_core/js/cookie-consent.js"]
+web_include_js = [
+    "/assets/vedium_core/js/pwa-register.js",
+    "/assets/vedium_core/js/cookie-consent.js",
+    "/assets/vedium_core/js/meta-pixel.js",
+]
 
 # =============================================================================
 # PWA — DESATIVADO (ver pwa-register.js, que desregistra service workers)
