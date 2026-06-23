@@ -24,6 +24,8 @@
     var btn = document.getElementById("vd-cookie-ok");
     if (btn) btn.addEventListener("click", function () {
       try { localStorage.setItem("vedium_cookie_consent", "1"); } catch (e) {}
+      // avisa os trackers (ex.: meta-pixel.js) para dispararem nesta navegação
+      try { window.dispatchEvent(new Event("vedium:consent")); } catch (e) {}
       if (bar.parentNode) bar.parentNode.removeChild(bar);
     });
   }
