@@ -163,6 +163,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "BRASIL | PORTUGUÊS" in navbar
     assert "🇧🇷" in navbar and "🇺🇸" in navbar and "🇨🇳" in navbar
     assert "GTM-P6Q2FXLK" in footer
+    assert "vedium-language.js?v=" in footer
     assert "navigator.language" in lang_js
     assert "language_selected" in lang_js
     assert "setModalOpen" in lang_js
