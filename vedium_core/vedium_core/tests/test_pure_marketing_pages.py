@@ -173,6 +173,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert '"type": "template"' not in raw_gtm
     assert '"type": "boolean"' not in raw_gtm
     assert '"type": "integer"' not in raw_gtm
+    assert '"tagFiringOption": "ONCE_PER_PAGE"' not in raw_gtm
+    assert '"tagFiringOption": "oncePerLoad"' in raw_gtm
     names = {tag["name"] for tag in gtm["containerVersion"]["tag"]}
     triggers = {trigger["name"] for trigger in gtm["containerVersion"]["trigger"]}
     assert "GA4 - Base Config" in names
