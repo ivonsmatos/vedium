@@ -63,6 +63,7 @@ def test_public_pages_do_not_reintroduce_template_residue():
         "[email protected]",
         "testimonials-one",
         "Prova Social",
+        "Prova social",
         "Ana Oliveira",
         "Dra. Juliana Costa",
         "pravatar.cc",
