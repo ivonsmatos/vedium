@@ -153,6 +153,7 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     robots = (ROOT / "vedium_core" / "vedium_core" / "public" / "robots.txt").read_text(
         encoding="utf-8"
     )
+    robots_page = (WWW / "robots.txt").read_text(encoding="utf-8")
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
         encoding="utf-8"
     )
@@ -170,6 +171,8 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     assert "Sitemap: https://vediums.com/sitemap.xml" in robots
     assert "sitemap-courses.xml" not in robots
     assert "sitemap-llm.xml" not in robots
+    assert "Sitemap: https://vediums.com/sitemap.xml" in robots_page
+    assert "User-agent: *" in robots_page
 
 
 def test_public_language_selector_and_gtm_import_are_available():
