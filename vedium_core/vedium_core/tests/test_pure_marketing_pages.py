@@ -35,7 +35,7 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
         assert f"https://vediums.com/{slug}" in html
         assert "/teste-de-nivel" in html
         assert "schema.org" in html
-        assert "wa.me/5511941906079" in html
+        assert "wa.me/5511911293075" in html
 
 
 def test_public_pages_do_not_reintroduce_template_residue():

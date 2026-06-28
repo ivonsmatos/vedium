@@ -164,4 +164,5 @@ Copyright © 2026 Vedium Global Education. Todos os direitos reservados.
 ## Contato
 
 - Email: <contato@vediums.com>
-- LinkedIn: <https://linkedin.com/company/vedium>
+- Instagram: <https://www.instagram.com/vediumsglobal/>
+- LinkedIn: <https://www.linkedin.com/company/vediums>

@@ -146,8 +146,7 @@ def get_organization_schema():
             "contactType": "Customer Service",
         },
         "sameAs": [
-            "https://facebook.com/vedium",
-            "https://linkedin.com/company/vedium",
-            "https://instagram.com/vedium",
+            "https://www.instagram.com/vediumsglobal/",
+            "https://www.linkedin.com/company/vediums",
         ],
     }
