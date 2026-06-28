@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[3]
 WWW = ROOT / "vedium_core" / "vedium_core" / "www"
 TPL = ROOT / "vedium_core" / "vedium_core" / "templates" / "includes"
 PUBLIC_JS = ROOT / "vedium_core" / "vedium_core" / "public" / "js"
+PUBLIC_CSS = ROOT / "vedium_core" / "vedium_core" / "public" / "css"
 GTM_IMPORT = ROOT / "docs" / "gtm" / "vedium-gtm-container-import.json"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
@@ -156,12 +157,15 @@ def test_public_language_selector_and_gtm_import_are_available():
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
+    theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
     for lang in ["pt", "en", "es", "fr", "de", "ru", "zh-CN"]:
         assert f'data-vd-lang="{lang}"' in navbar
     assert "data-vd-language-open" in navbar
     assert "Select your region and language" in navbar
     assert "BRASIL | PORTUGUÊS" in navbar
     assert "vedium-language-chips" not in navbar
+    assert ".vedium-language-chips" in theme_css
+    assert "display: none !important" in theme_css
     assert "🇧🇷" in navbar and "🇺🇸" in navbar and "🇨🇳" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.js?v=" in footer

@@ -85,3 +85,8 @@ h4,
 [data-theme="dark"] {
     --text-primary: var(--text-on-dark);
 }
+
+/* Public marketing header: hide deprecated quick language chips from cached HTML. */
+.vedium-language-chips {
+    display: none !important;
+}
