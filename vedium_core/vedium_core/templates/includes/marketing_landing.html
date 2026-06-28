@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ landing.title }}</title>
+<meta name="description" content="{{ landing.meta_description }}" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="{{ landing.url }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ landing.title }}" />
+<meta property="og:description" content="{{ landing.meta_description }}" />
+<meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+<link rel="apple-touch-icon" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>
+  img[src*="logo-color-reta"] { max-height:46px !important;width:auto !important; }
+  .footer-one img[src*="logo-branca-reta"] { max-width:145px !important;height:auto !important; }
+  .stricky-header, .stricky-header.stricked-menu { display:none !important; }
+  .main-header-one__bottom { position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07); }
+  .page-header__title h2 { color:#fff; }
+  .vd-landing-section { padding:76px 0;background:#fff; }
+  .vd-landing-alt { background:#f8fafc; }
+  .vd-landing-hero { padding:86px 0;background:#fff; }
+  .vd-card { background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:28px;height:100%;box-shadow:0 14px 34px rgba(15,23,42,.06); }
+  .vd-card h3, .vd-card h4 { color:#111827;margin-bottom:10px; }
+  .vd-card p, .vd-card li, .vd-muted { color:#5f6b7a;line-height:1.78; }
+  .vd-pill { display:inline-block;border-radius:999px;padding:6px 12px;background:#eaf2ff;color:#2563eb;font-size:12px;font-weight:800;margin-bottom:12px; }
+  .vd-hero-list { padding-left:18px;margin:20px 0 28px; }
+  .vd-hero-list li { color:#4b5563;line-height:1.75;margin-bottom:6px; }
+  .vd-stat { display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #edf2f7; }
+  .vd-stat strong { min-width:98px;color:#111827; }
+  .vd-faq-item { border-top:1px solid #e5e7eb;padding:22px 0; }
+  .vd-faq-item h3 { color:#111827;font-size:21px;margin-bottom:8px; }
+  .vd-cta-row { display:flex;gap:12px;flex-wrap:wrap;align-items:center; }
+  @media (max-width:767px) { .vd-landing-hero, .vd-landing-section { padding:54px 0; } .vd-cta-row .thm-btn { width:100%;text-align:center; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": {{ landing.title | tojson }},
+  "description": {{ landing.meta_description | tojson }},
+  "url": {{ landing.url | tojson }},
+  "provider": {"@type": "Organization", "name": "Vedium", "url": "https://vediums.com"},
+  "educationalLevel": {{ landing.level | tojson }},
+  "inLanguage": "pt-BR"
+}
+</script>
+</head>
+<body>
+<div class="page-wrapper">
+{% set vd_page = "cursos" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="page-header clearfix" style="background-image:linear-gradient(rgba(15,23,42,.84),rgba(46,109,164,.80)),url({{ landing.hero_image }});">
+  <div class="container"><div class="page-header__wrapper clearfix">
+    <div class="page-header__title"><h2>{{ landing.short_title }}</h2></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">Início</a></li><li><a href="/catalogo">Cursos</a></li><li class="active">{{ landing.short_title }}</li></ul></div>
+  </div></div>
+</section>
+
+<section class="vd-landing-hero">
+  <div class="container"><div class="row align-items-center" style="row-gap:28px;">
+    <div class="col-lg-7">
+      <span class="vd-pill">{{ landing.tagline }}</span>
+      <h1 style="color:#111827;margin-bottom:16px;">{{ landing.h1 }}</h1>
+      <p class="vd-muted" style="font-size:18px;">{{ landing.lead }}</p>
+      <ul class="vd-hero-list">
+        {% for outcome in landing.outcomes %}{% if loop.index <= 3 %}<li>{{ outcome }}</li>{% endif %}{% endfor %}
+      </ul>
+      <div class="vd-cta-row">
+        <a href="/teste-de-nivel" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_test_click',landing:'{{ landing.slug }}'});">Fazer teste de nível grátis</a>
+        <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_whatsapp_click',landing:'{{ landing.slug }}'});">Falar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="vd-card">
+        <h3>Resumo da trilha</h3>
+        <p>{{ landing.summary }}</p>
+        <div class="vd-stat"><strong>Para quem</strong><span>{{ landing.audience }}</span></div>
+        <div class="vd-stat"><strong>Nível</strong><span>{{ landing.level }}</span></div>
+        <div class="vd-stat"><strong>Frequência</strong><span>{{ landing.frequency }}</span></div>
+        <div class="vd-stat" style="border-bottom:0;"><strong>Duração</strong><span>{{ landing.duration }}</span></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="vd-landing-section vd-landing-alt">
+  <div class="container"><div class="row" style="row-gap:28px;">
+    <div class="col-lg-5">
+      <span class="vd-pill">Diagnóstico da necessidade</span>
+      <h2 style="color:#111827;">{{ landing.pain_title }}</h2>
+      <p class="vd-muted">{{ landing.pain_intro }}</p>
+    </div>
+    <div class="col-lg-7">
+      <div class="row" style="row-gap:18px;">
+        {% for pain in landing.pain_points %}
+        <div class="col-md-6"><div class="vd-card"><h4>Ponto crítico</h4><p>{{ pain }}</p></div></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="vd-landing-section">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">Conteúdo da trilha</span><h2 class="section-title__title">O que você vai aprender</h2></div>
+    <div class="row" style="row-gap:24px;margin-top:34px;">
+      {% for module in landing.modules %}
+      <div class="col-lg-4 col-md-6"><div class="vd-card"><span class="vd-pill">{{ loop.index }}</span><h3>{{ module.title }}</h3><p>{{ module.text }}</p></div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="vd-landing-section vd-landing-alt">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">Método Vedium</span><h2 class="section-title__title">Como funciona na prática</h2></div>
+    <div class="row" style="row-gap:24px;margin-top:34px;">
+      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">1</span><h3>Teste e diagnóstico</h3><p>Você faz o teste gratuito, informa seu objetivo e recebe uma primeira estimativa de nível antes de falar com a equipe.</p></div></div>
+      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">2</span><h3>Plano de estudo</h3><p>A Vedium recomenda trilha, frequência e prioridade de conteúdo conforme nível, prazo e objetivo de campanha ou carreira.</p></div></div>
+      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">3</span><h3>Aulas ao vivo</h3><p>As aulas combinam prática oral, correção, tarefas e acompanhamento, sempre com professor e foco em evolução real.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="vd-landing-section">
+  <div class="container"><div class="row" style="row-gap:28px;">
+    <div class="col-lg-5"><span class="vd-pill">Formato</span><h2 style="color:#111827;">O que esperar das aulas</h2><p class="vd-muted">A proposta é clara: curso livre online, aulas ao vivo, acompanhamento humano e plano orientado por objetivo. Não é conteúdo gravado genérico.</p></div>
+    <div class="col-lg-7"><div class="vd-card"><ul style="padding-left:18px;margin:0;">{% for item in landing.format_items %}<li>{{ item }}</li>{% endfor %}</ul></div></div>
+  </div></div>
+</section>
+
+<section class="vd-landing-section vd-landing-alt">
+  <div class="container" style="max-width:920px;">
+    <div class="section-title text-center"><span class="section-title__tagline">Dúvidas comuns</span><h2 class="section-title__title">Perguntas frequentes</h2></div>
+    {% for item in landing.faqs %}
+    <div class="vd-faq-item"><h3>{{ item.q }}</h3><p>{{ item.a }}</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="vd-landing-section">
+  <div class="container"><div class="vd-card" style="text-align:center;">
+    <span class="vd-pill">Comece sem compromisso</span>
+    <h2 style="color:#111827;">Descubra seu nível antes de escolher o plano</h2>
+    <p class="vd-muted" style="max-width:760px;margin:12px auto 22px;">O teste gratuito ajuda a orientar a conversa com a Vedium e evita começar por uma trilha desalinhada ao seu momento.</p>
+    <div class="vd-cta-row" style="justify-content:center;">
+      <a href="/teste-de-nivel" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_bottom_test_click',landing:'{{ landing.slug }}'});">Fazer teste de nível grátis</a>
+      <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_bottom_whatsapp_click',landing:'{{ landing.slug }}'});">Falar no WhatsApp</a>
+    </div>
+  </div></div>
+</section>
+
+{% include "templates/includes/site_footer.html" %}
+</div>
+<script src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
+<script src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script src="/assets/vedium_core/js/cookie-consent.js"></script>
+</body>
+</html>

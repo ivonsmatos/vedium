@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = "Inglês para Viagens — Vedium"
-    context.description = "Curso de ingles para viagens com aulas ao vivo, conversacao pratica, aeroporto, hotel, restaurantes e emergencias."
+    apply_landing_context(context, "ingles-para-viagens")

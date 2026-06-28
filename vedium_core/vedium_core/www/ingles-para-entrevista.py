@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = 'Inglês para Entrevista de Emprego — Vedium'
-    context.description = 'Trilha de inglês para entrevista de emprego com aulas ao vivo, simulações, vocabulário profissional e preparação para responder com segurança.'
+    apply_landing_context(context, "ingles-para-entrevista")

@@ -23,7 +23,6 @@
 - [Sobre](https://vediums.com/sobre): história, missão e proposta da escola.
 - [Como funciona](https://vediums.com/como-funciona): teste de nível, diagnóstico e aulas ao vivo em 3 passos.
 - [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
-- [Mentores / Professores](https://vediums.com/mentores): quem ensina na Vedium.
 - [Contato](https://vediums.com/contato): canais de atendimento.
 - [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.
 

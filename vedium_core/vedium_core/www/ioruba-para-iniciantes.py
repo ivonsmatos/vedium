@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = 'Iorubá para Iniciantes — Vedium'
-    context.description = 'Iorubá para iniciantes brasileiros: primeiras palavras, saudações, pronúncia, cultura e aulas online ao vivo.'
+    apply_landing_context(context, "ioruba-para-iniciantes")

@@ -1,0 +1,230 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-06-28 12:45:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "name": "Vedium Public Site Tracking",
+    "container": {
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Vedium Public Site",
+      "publicId": "GTM-P6Q2FXLK",
+      "usageContext": ["WEB"],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "GA4 - Base Config",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\n(function(){\n  var id='{{Constant - GA4 Measurement ID}}';\n  if(!id || id.indexOf('G-')!==0) return;\n  if(!document.querySelector('script[src*=\"gtag/js?id='+id+'\"]')){\n    var s=document.createElement('script');\n    s.async=true;\n    s.src='https://www.googletagmanager.com/gtag/js?id='+id;\n    document.head.appendChild(s);\n  }\n  window.dataLayer=window.dataLayer||[];\n  window.gtag=window.gtag||function(){dataLayer.push(arguments);};\n  gtag('js', new Date());\n  gtag('config', id, {'send_page_view': true});\n})();\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_PAGE"
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "2",
+        "name": "GA4 - Event - Public CTA Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','public_cta_click',{\n  cta:'{{DLV - cta}}',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["10"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "3",
+        "name": "GA4 - Event - SEO Landing Test Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','generate_lead',{\n  lead_type:'level_test_click',\n  landing:'{{DLV - landing}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["11"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "4",
+        "name": "GA4 - Event - SEO Landing WhatsApp Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','contact',{\n  contact_method:'whatsapp',\n  landing:'{{DLV - landing}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["12"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "5",
+        "name": "GA4 - Event - Level Test Completed",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','level_test_completed',{\n  level:'{{DLV - level}}',\n  score:'{{DLV - score}}',\n  goal:'{{DLV - goal}}',\n  recommendation:'{{DLV - recommendation}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["13"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "6",
+        "name": "GA4 - Event - Level Test WhatsApp Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','contact',{\n  contact_method:'whatsapp',\n  lead_type:'level_test_result',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["14"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "7",
+        "name": "GA4 - Event - View Course",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','view_item',{\n  item_name:'{{DLV - course_name}}',\n  item_category:'{{DLV - course_category}}',\n  value:'{{DLV - course_price}}',\n  currency:'{{DLV - currency}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["15"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "8",
+        "name": "GA4 - Event - Language Selected",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','language_selected',{\n  language:'{{DLV - language}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {"type": "boolean", "key": "supportDocumentWrite", "value": "false"}
+        ],
+        "firingTriggerId": ["16"]
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "10",
+        "name": "CE - public_cta_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "public_cta_click"}]}]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "11",
+        "name": "CE - seo_landing_test_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "seo_landing_test_click"}]}]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "12",
+        "name": "CE - seo_landing_whatsapp_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "seo_landing_whatsapp_click"}]}]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "13",
+        "name": "CE - level_test_completed",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "level_test_completed"}]}]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "14",
+        "name": "CE - level_test_whatsapp_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "level_test_whatsapp_click"}]}]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "15",
+        "name": "CE - view_course",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "view_course"}]}]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "16",
+        "name": "CE - language_selected",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "template", "key": "arg0", "value": "{{_event}}"}, {"type": "template", "key": "arg1", "value": "language_selected"}]}]
+      }
+    ],
+    "variable": [
+      {"accountId": "0", "containerId": "0", "variableId": "1", "name": "Constant - GA4 Measurement ID", "type": "c", "parameter": [{"type": "template", "key": "value", "value": "G-TMBTXVRMLE"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "2", "name": "DLV - cta", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "cta"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "3", "name": "DLV - location", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "location"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "4", "name": "DLV - landing", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "landing"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "5", "name": "DLV - level", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "level"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "6", "name": "DLV - score", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "score"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "7", "name": "DLV - goal", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "goal"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "8", "name": "DLV - recommendation", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "recommendation"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "9", "name": "DLV - course_name", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "course_name"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "10", "name": "DLV - course_category", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "course_category"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "11", "name": "DLV - course_price", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "course_price"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "12", "name": "DLV - currency", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "currency"}]},
+      {"accountId": "0", "containerId": "0", "variableId": "13", "name": "DLV - language", "type": "v", "parameter": [{"type": "integer", "key": "dataLayerVersion", "value": "2"}, {"type": "template", "key": "name", "value": "language"}]}
+    ],
+    "builtInVariable": [
+      {"accountId": "0", "containerId": "0", "type": "PAGE_URL", "name": "Page URL"},
+      {"accountId": "0", "containerId": "0", "type": "PAGE_PATH", "name": "Page Path"},
+      {"accountId": "0", "containerId": "0", "type": "PAGE_HOSTNAME", "name": "Page Hostname"}
+    ],
+    "fingerprint": "0"
+  }
+}

@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = "Preparatório Celpe-Bras — Vedium"
-    context.description = "Preparacao para Celpe-Bras com portugues para estrangeiros, escrita, fala, compreensao e simulados orientados."
+    apply_landing_context(context, "preparatorio-celpe-bras")

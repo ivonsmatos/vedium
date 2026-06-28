@@ -3,11 +3,18 @@
 Estes testes rodam sem Frappe/bench e protegem o pacote seguro de produção:
 não validam banco, Stripe, LMS, professores, alunos ou assinaturas.
 """
+import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 WWW = ROOT / "vedium_core" / "vedium_core" / "www"
 TPL = ROOT / "vedium_core" / "vedium_core" / "templates" / "includes"
+PUBLIC_JS = ROOT / "vedium_core" / "vedium_core" / "public" / "js"
+GTM_IMPORT = ROOT / "docs" / "gtm" / "vedium-gtm-container-import.json"
+
+sys.path.insert(0, str(ROOT / "vedium_core"))
+from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
 
 SEO_SLUGS = [
     "ingles-para-entrevista",
@@ -35,17 +42,27 @@ def read_public_text():
 
 
 def test_seo_objective_pages_exist_and_link_to_existing_funnel():
+    template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    assert "O que você vai aprender" in template
+    assert "Perguntas frequentes" in template
+    assert "seo_landing_test_click" in template
+    assert "seo_landing_whatsapp_click" in template
+
     for slug in SEO_SLUGS:
         html_path = WWW / f"{slug}.html"
         py_path = WWW / f"{slug}.py"
         assert html_path.exists()
         assert py_path.exists()
         html = html_path.read_text(encoding="utf-8")
-        assert f"https://vediums.com/{slug}" in html
-        assert "/teste-de-nivel" in html
-        assert "schema.org" in html
-        assert "wa.me/5511911293075" in html
-        assert "dataLayer" in html
+        py = py_path.read_text(encoding="utf-8")
+        landing = LANDINGS[slug]
+        assert 'marketing_landing.html' in html
+        assert slug in py
+        assert len(landing["lead"]) > 120
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
 
 
 def test_commercial_pages_exist_and_drive_to_public_ctas():
@@ -95,9 +112,11 @@ def test_public_pages_do_not_reintroduce_template_residue():
         "pravatar.cc",
         "Company-Logos",
         "Who Will You Learn With?",
+        'href="/mentores"',
     ]
     for item in forbidden:
         assert item not in text
+    assert not (WWW / "mentores.html").exists()
 
 
 def test_company_legal_data_is_visible_without_touching_checkout():
@@ -120,6 +139,7 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
     assert "Upper Intermediário (B1)" not in llms
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS:
         assert f"https://vediums.com/{slug}" in llms
+    assert "https://vediums.com/mentores" not in llms
 
 
 def test_dynamic_sitemap_lists_public_marketing_pages():
@@ -128,3 +148,24 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     )
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS + ["teste-de-nivel"]:
         assert f'"/{slug}"' in sitemap
+    assert '"/mentores"' not in sitemap
+
+
+def test_public_language_selector_and_gtm_import_are_available():
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
+    for lang in ["pt", "en", "es", "fr", "de", "ru", "zh-CN"]:
+        assert f'data-vd-lang="{lang}"' in navbar
+    assert "GTM-P6Q2FXLK" in footer
+    assert "navigator.language" in lang_js
+    assert "language_selected" in lang_js
+
+    gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))
+    names = {tag["name"] for tag in gtm["containerVersion"]["tag"]}
+    triggers = {trigger["name"] for trigger in gtm["containerVersion"]["trigger"]}
+    assert "GA4 - Base Config" in names
+    assert "GA4 - Event - Public CTA Click" in names
+    assert "GA4 - Event - Level Test Completed" in names
+    assert "CE - public_cta_click" in triggers
+    assert "CE - language_selected" in triggers

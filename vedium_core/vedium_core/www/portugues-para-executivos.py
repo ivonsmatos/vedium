@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = 'Português para Executivos Estrangeiros — Vedium'
-    context.description = 'Português para executivos estrangeiros com foco em reuniões, negócios, apresentações, adaptação cultural e comunicação no Brasil.'
+    apply_landing_context(context, "portugues-para-executivos")

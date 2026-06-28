@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = "Iorubá, Cultura e Ancestralidade — Vedium"
-    context.description = "Aprenda ioruba online com contexto cultural, ancestralidade, saudacoes, pronuncia e pratica guiada."
+    apply_landing_context(context, "ioruba-cultura-e-ancestralidade")

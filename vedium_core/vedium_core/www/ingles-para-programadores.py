@@ -1,3 +1,5 @@
+from vedium_core.marketing_landing_content import apply_landing_context
+
+
 def get_context(context):
-    context.title = 'Inglês para Programadores — Vedium'
-    context.description = 'Curso de inglês para programadores com foco em reuniões, documentação, entrevistas técnicas, daily meetings e comunicação em tecnologia.'
+    apply_landing_context(context, "ingles-para-programadores")

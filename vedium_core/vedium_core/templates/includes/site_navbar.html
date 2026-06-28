@@ -13,6 +13,15 @@
                         <li><a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                         <li><a href="https://wa.me/5511911293075" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></li>
                     </ul>
+                    <div class="vedium-language-switcher" aria-label="Selecionar idioma">
+                        <button type="button" data-vd-lang="pt" title="Português" aria-label="Português">🇧🇷</button>
+                        <button type="button" data-vd-lang="en" title="English" aria-label="English">🇺🇸</button>
+                        <button type="button" data-vd-lang="es" title="Español" aria-label="Español">🇪🇸</button>
+                        <button type="button" data-vd-lang="fr" title="Français" aria-label="Français">🇫🇷</button>
+                        <button type="button" data-vd-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
+                        <button type="button" data-vd-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
+                        <button type="button" data-vd-lang="zh-CN" title="中文" aria-label="中文">🇨🇳</button>
+                    </div>
                     <div class="main-header--one__top-contact-info clearfix">
                         <ul class="main-header--one__top-contact-info-list list-unstyled">
                             <li class="main-header--one__top-contact-info-list-item">
@@ -42,7 +51,6 @@
                                 <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="/sobre">Sobre</a></li>
                                 <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="/catalogo">Cursos</a></li>
                                 <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="/faq">FAQ</a></li>
-                                <li{% if vd_page == "mentores" %} class="current"{% endif %}><a href="/mentores">Mentores</a></li>
                                 <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="/contato">Contato</a></li>
                             </ul>
                         </div>
@@ -67,3 +75,34 @@
         </div>
     </div>
 </header>
+<div id="google_translate_element" style="display:none;"></div>
+<style>
+  .vedium-language-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+  .vedium-language-switcher button {
+    width: 31px;
+    height: 31px;
+    padding: 0;
+    border: 1px solid #dbe3ee;
+    border-radius: 999px;
+    background: #fff;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, .06);
+  }
+  .vedium-language-switcher button.is-active {
+    border-color: #2E6DA4;
+    box-shadow: 0 0 0 2px rgba(46, 109, 164, .16);
+  }
+  .goog-te-banner-frame.skiptranslate,
+  body > .skiptranslate { display: none !important; }
+  body { top: 0 !important; }
+  @media (max-width: 991px) {
+    .vedium-language-switcher { margin: 10px 0 0; }
+  }
+</style>

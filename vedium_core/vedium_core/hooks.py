@@ -34,7 +34,8 @@ website_redirects = [
     {"source": "/sobre.html", "target": "/sobre"},
     {"source": "/contact", "target": "/contato"},
     {"source": "/contact.html", "target": "/contato"},
-    {"source": "/teachers-1", "target": "/mentores"},
+    {"source": "/teachers-1", "target": "/sobre"},
+    {"source": "/mentores", "target": "/sobre"},
 ]
 
 # App Logo
