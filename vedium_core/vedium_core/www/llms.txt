@@ -4,7 +4,7 @@
 
 ## Sobre
 - Modelo: aulas ao vivo (não são videoaulas gravadas), com turmas e professores reais.
-- Idiomas: Inglês (disponível, A1–C1); Iorubá e Português para Estrangeiros (em breve).
+- Idiomas: Inglês (disponível, A1–C1); Iorubá e Português para Estrangeiros como trilhas de nicho em expansão.
 - Diferenciais: aulas ao vivo, professores qualificados, certificado, suporte, pagamento online.
 - Público: profissionais, estudantes e empresas que querem fluência real.
 - País: Brasil. Idioma de atendimento: Português e Inglês.
@@ -15,7 +15,7 @@
 - [Inglês — Elementary (A2)](https://vediums.com/curso/ingl-s-elementary)
 - [Inglês — Pré-Intermediário (B1-)](https://vediums.com/curso/ingl-s-pr-intermedi-rio)
 - [Inglês — Intermediário (B1)](https://vediums.com/curso/ingl-s-intermedi-rio)
-- [Inglês — Upper Intermediário (B1)](https://vediums.com/curso/ingl-s-upper-intermedi-rio)
+- [Inglês — Upper Intermediário (B2)](https://vediums.com/curso/ingl-s-upper-intermedi-rio)
 - [Inglês — Avançado (C1)](https://vediums.com/curso/ingl-s-avan-ado)
 
 ## Páginas principais
@@ -29,3 +29,14 @@
 - E-mail: contato@vediums.com
 - Suporte: suporte@vediums.com
 - Site: https://vediums.com
+
+
+## Trilhas por objetivo
+- [Inglês para entrevista de emprego](https://vediums.com/ingles-para-entrevista): preparação para entrevistas, RH e carreira.
+- [Inglês para programadores](https://vediums.com/ingles-para-programadores): reuniões, documentação, entrevistas técnicas e comunicação em tecnologia.
+- [Inglês executivo](https://vediums.com/ingles-executivo): negócios, liderança, reuniões e apresentações.
+- [Curso de iorubá online](https://vediums.com/curso-de-ioruba-online): idioma, cultura e trilha estruturada.
+- [Iorubá para iniciantes](https://vediums.com/ioruba-para-iniciantes): primeiras palavras, saudações e pronúncia.
+- [Português para estrangeiros](https://vediums.com/portugues-para-estrangeiros): comunicação prática no Brasil.
+- [Português para executivos](https://vediums.com/portugues-para-executivos): reuniões, negócios e adaptação cultural.
+- [Teste de nível gratuito](https://vediums.com/teste-de-nivel): diagnóstico inicial antes da matrícula.
