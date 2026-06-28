@@ -13,8 +13,6 @@
     "zh-cn": { lang: "zh-CN", prefix: "/zh-cn/", flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" },
     "en-au": { lang: "en", prefix: "/en-au/", flag: "https://flagcdn.com/w20/au.png", flag2x: "https://flagcdn.com/w40/au.png 2x", alt: "Australia", label: "AUSTRALIA | ENGLISH" }
   };
-  var supported = Object.keys(localeMeta).map(function (locale) { return localeMeta[locale].lang; })
-    .filter(function (lang, index, all) { return all.indexOf(lang) === index; });
   var browserMap = {
     pt: "pt-br",
     "pt-br": "pt-br",
@@ -31,7 +29,6 @@
     "zh-hans": "zh-cn"
   };
   var storageKey = "vedium_preferred_locale";
-  var cookieName = "googtrans";
 
   function normalize(lang) {
     if (!lang) return "pt-br";
@@ -41,29 +38,19 @@
     return browserMap[root] || "pt-br";
   }
 
-  function setCookie(locale) {
-    var meta = localeMeta[locale] || localeMeta["pt-br"];
-    var cookieValue = meta.lang === "pt" ? "/pt/pt" : "/pt/" + meta.lang;
-    var maxAge = 60 * 60 * 24 * 365;
-    document.cookie = cookieName + "=" + cookieValue + ";path=/;max-age=" + maxAge + ";SameSite=Lax";
-    if (location.hostname.indexOf(".") > -1) {
-      document.cookie = cookieName + "=" + cookieValue + ";path=/;domain=." + location.hostname.replace(/^www\./, "") + ";max-age=" + maxAge + ";SameSite=Lax";
-    }
-  }
-
-  function loadGoogleTranslate() {
-    if (document.querySelector('script[src*="translate_a/element.js"]')) return;
-    var script = document.createElement("script");
-    script.src = "https://translate.google.com/translate_a/element.js?cb=vediumInitGoogleTranslate";
-    script.async = true;
-    document.head.appendChild(script);
-  }
-
   function getCurrentLang() {
     var preferred = localStorage.getItem(storageKey);
     if (preferred) return preferred;
-    var match = document.cookie.match(/(?:^|;\s*)googtrans=\/pt\/([^;]+)/);
-    return match ? normalize(decodeURIComponent(match[1])) : "pt-br";
+    return "pt-br";
+  }
+
+  function clearLegacyTranslateCookie() {
+    ["googtrans", "googtransopt"].forEach(function (name) {
+      document.cookie = name + "=;path=/;max-age=0;SameSite=Lax";
+      if (location.hostname.indexOf(".") > -1) {
+        document.cookie = name + "=;path=/;domain=." + location.hostname.replace(/^www\./, "") + ";max-age=0;SameSite=Lax";
+      }
+    });
   }
 
   function getLocaleFromPath() {
@@ -119,7 +106,7 @@
   function selectLocale(locale) {
     var meta = localeMeta[locale];
     if (!meta) return;
-    setCookie(locale);
+    clearLegacyTranslateCookie();
     localStorage.setItem(storageKey, locale);
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "language_selected", language: meta.lang, locale: locale });
@@ -128,16 +115,9 @@
     window.location.assign(buildLocaleUrl(locale));
   }
 
-  window.vediumInitGoogleTranslate = function () {
-    if (!window.google || !google.translate || !document.getElementById("google_translate_element")) return;
-    new google.translate.TranslateElement({
-      pageLanguage: "pt",
-      includedLanguages: supported.join(","),
-      autoDisplay: false
-    }, "google_translate_element");
-  };
-
   document.addEventListener("DOMContentLoaded", function () {
+    clearLegacyTranslateCookie();
+
     document.querySelectorAll("[data-vd-language-open]").forEach(function (button) {
       button.addEventListener("click", function () {
         setModalOpen(true);
@@ -177,9 +157,5 @@
       current = normalize(navigator.language || (navigator.languages && navigator.languages[0]));
     }
     markActive(current);
-    if (getLocaleFromPath() && localeMeta[current] && localeMeta[current].lang !== "pt") {
-      setCookie(current);
-      loadGoogleTranslate();
-    }
   });
 }());

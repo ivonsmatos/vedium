@@ -206,6 +206,11 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/br.png" in lang_js
     assert "switchLanguage(detected" not in lang_js
     assert "switchLanguage(" not in lang_js
+    assert "translate.google.com" not in lang_js
+    assert "loadGoogleTranslate" not in lang_js
+    assert "vediumInitGoogleTranslate" not in lang_js
+    assert "google_translate_element" not in navbar
+    assert "googtrans=" not in lang_js
     assert "target.closest" in lang_js
 
     gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))
