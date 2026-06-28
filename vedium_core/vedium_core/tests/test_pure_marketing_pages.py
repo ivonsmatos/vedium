@@ -161,6 +161,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "data-vd-language-open" in navbar
     assert "Select your region and language" in navbar
     assert "BRASIL | PORTUGUÊS" in navbar
+    assert "vedium-language-chips" not in navbar
     assert "🇧🇷" in navbar and "🇺🇸" in navbar and "🇨🇳" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.js?v=" in footer
