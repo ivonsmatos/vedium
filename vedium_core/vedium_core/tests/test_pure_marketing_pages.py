@@ -166,7 +166,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "vedium-language-chips" not in navbar
     assert ".vedium-language-chips" in theme_css
     assert "display: none !important" in theme_css
-    assert "🇧🇷" in navbar and "🇺🇸" in navbar and "🇨🇳" in navbar
+    assert "flagcdn.com/w20/br.png" in navbar
+    assert "flagcdn.com/w20/us.png" in navbar
+    assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.js?v=" in footer
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
@@ -174,6 +176,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "navigator.language" in lang_js
     assert "language_selected" in lang_js
     assert "setModalOpen" in lang_js
+    assert "flagcdn.com/w20/br.png" in lang_js
     assert "switchLanguage(detected" not in lang_js
     assert "target.closest" in lang_js
 

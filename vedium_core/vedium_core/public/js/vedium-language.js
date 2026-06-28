@@ -1,13 +1,13 @@
 (function () {
   var supported = ["pt", "en", "es", "fr", "de", "ru", "zh-CN"];
   var languageMeta = {
-    pt: { flag: "🇧🇷", label: "BRASIL | PORTUGUÊS" },
-    en: { flag: "🇺🇸", label: "UNITED STATES | ENGLISH" },
-    es: { flag: "🇪🇸", label: "SPAIN | ESPAÑOL" },
-    fr: { flag: "🇫🇷", label: "FRANCE | FRANÇAIS" },
-    de: { flag: "🇩🇪", label: "DACH REGION | DEUTSCH" },
-    ru: { flag: "🇷🇺", label: "RUSSIA | РУССКИЙ" },
-    "zh-CN": { flag: "🇨🇳", label: "CHINA | 中文" }
+    pt: { flag: "https://flagcdn.com/w20/br.png", flag2x: "https://flagcdn.com/w40/br.png 2x", alt: "Brazil", label: "BRASIL | PORTUGUÊS" },
+    en: { flag: "https://flagcdn.com/w20/us.png", flag2x: "https://flagcdn.com/w40/us.png 2x", alt: "United States", label: "UNITED STATES | ENGLISH" },
+    es: { flag: "https://flagcdn.com/w20/es.png", flag2x: "https://flagcdn.com/w40/es.png 2x", alt: "Spain", label: "SPAIN | ESPAÑOL" },
+    fr: { flag: "https://flagcdn.com/w20/fr.png", flag2x: "https://flagcdn.com/w40/fr.png 2x", alt: "France", label: "FRANCE | FRANÇAIS" },
+    de: { flag: "https://flagcdn.com/w20/de.png", flag2x: "https://flagcdn.com/w40/de.png 2x", alt: "Germany", label: "DACH REGION | DEUTSCH" },
+    ru: { flag: "https://flagcdn.com/w20/ru.png", flag2x: "https://flagcdn.com/w40/ru.png 2x", alt: "Russia", label: "RUSSIA | РУССКИЙ" },
+    "zh-CN": { flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" }
   };
   var browserMap = {
     pt: "pt",
@@ -61,7 +61,13 @@
       button.classList.toggle("is-active", button.getAttribute("data-vd-lang") === lang);
     });
     document.querySelectorAll("[data-vd-current-flag]").forEach(function (node) {
-      node.textContent = meta.flag;
+      if (node.tagName && node.tagName.toLowerCase() === "img") {
+        node.src = meta.flag;
+        node.srcset = meta.flag2x;
+        node.alt = meta.alt;
+      } else {
+        node.textContent = meta.alt;
+      }
     });
     document.querySelectorAll("[data-vd-current-label]").forEach(function (node) {
       node.textContent = meta.label;
