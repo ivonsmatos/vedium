@@ -32,7 +32,7 @@
           {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
         ],
         "firingTriggerId": ["2147479553"],
-        "tagFiringOption": "oncePerLoad"
+        "tagFiringOption": "ONCE_PER_EVENT"
       },
       {
         "accountId": "0",
