@@ -33,8 +33,6 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://vediums.com/sitemap.xml
-Sitemap: https://vediums.com/sitemap-courses.xml
-Sitemap: https://vediums.com/sitemap-llm.xml
 
 # GEO Endpoints
 # AI Discovery: https://vediums.com/.well-known/ai.txt
