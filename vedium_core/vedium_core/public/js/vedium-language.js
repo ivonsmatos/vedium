@@ -1,5 +1,14 @@
 (function () {
   var supported = ["pt", "en", "es", "fr", "de", "ru", "zh-CN"];
+  var languageMeta = {
+    pt: { flag: "🇧🇷", label: "BRASIL | PORTUGUÊS" },
+    en: { flag: "🇺🇸", label: "UNITED STATES | ENGLISH" },
+    es: { flag: "🇪🇸", label: "SPAIN | ESPAÑOL" },
+    fr: { flag: "🇫🇷", label: "FRANCE | FRANÇAIS" },
+    de: { flag: "🇩🇪", label: "DACH REGION | DEUTSCH" },
+    ru: { flag: "🇷🇺", label: "RUSSIA | РУССКИЙ" },
+    "zh-CN": { flag: "🇨🇳", label: "CHINA | 中文" }
+  };
   var browserMap = {
     pt: "pt",
     en: "en",
@@ -40,8 +49,26 @@
   }
 
   function markActive(lang) {
+    var meta = languageMeta[lang] || languageMeta.pt;
     document.querySelectorAll("[data-vd-lang]").forEach(function (button) {
       button.classList.toggle("is-active", button.getAttribute("data-vd-lang") === lang);
+    });
+    document.querySelectorAll("[data-vd-current-flag]").forEach(function (node) {
+      node.textContent = meta.flag;
+    });
+    document.querySelectorAll("[data-vd-current-label]").forEach(function (node) {
+      node.textContent = meta.label;
+    });
+  }
+
+  function setModalOpen(open) {
+    var modal = document.querySelector("[data-vd-language-modal]");
+    var openButtons = document.querySelectorAll("[data-vd-language-open]");
+    if (!modal) return;
+    modal.hidden = !open;
+    document.body.classList.toggle("vedium-language-modal-open", open);
+    openButtons.forEach(function (button) {
+      button.setAttribute("aria-expanded", open ? "true" : "false");
     });
   }
 
@@ -68,10 +95,26 @@
   };
 
   document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-vd-language-open]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        setModalOpen(true);
+      });
+    });
+
+    document.querySelectorAll("[data-vd-language-close]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        setModalOpen(false);
+      });
+    });
+
     document.querySelectorAll("[data-vd-lang]").forEach(function (button) {
       button.addEventListener("click", function () {
         switchLanguage(button.getAttribute("data-vd-lang"), true);
       });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setModalOpen(false);
     });
 
     var current = getCurrentLang();

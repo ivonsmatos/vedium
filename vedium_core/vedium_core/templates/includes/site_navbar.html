@@ -13,14 +13,21 @@
                         <li><a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                         <li><a href="https://wa.me/5511911293075" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></li>
                     </ul>
-                    <div class="vedium-language-switcher" aria-label="Selecionar idioma">
-                        <button type="button" data-vd-lang="pt" title="Português" aria-label="Português">🇧🇷</button>
-                        <button type="button" data-vd-lang="en" title="English" aria-label="English">🇺🇸</button>
-                        <button type="button" data-vd-lang="es" title="Español" aria-label="Español">🇪🇸</button>
-                        <button type="button" data-vd-lang="fr" title="Français" aria-label="Français">🇫🇷</button>
-                        <button type="button" data-vd-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
-                        <button type="button" data-vd-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
-                        <button type="button" data-vd-lang="zh-CN" title="中文" aria-label="中文">🇨🇳</button>
+                    <div class="vedium-language-switcher" aria-label="Selecionar região e idioma">
+                        <button type="button" class="vedium-language-current" data-vd-language-open aria-haspopup="dialog" aria-expanded="false" aria-controls="vedium-language-modal">
+                            <span class="vedium-language-current__flag" data-vd-current-flag>🇧🇷</span>
+                            <span class="vedium-language-current__label" data-vd-current-label>BRASIL | PORTUGUÊS</span>
+                            <span class="vedium-language-current__caret" aria-hidden="true">▲</span>
+                        </button>
+                        <div class="vedium-language-chips" aria-label="Idiomas rápidos">
+                            <button type="button" data-vd-lang="pt" title="Brazil | Português" aria-label="Brazil | Português"><span class="vd-flag">🇧🇷</span><span>BR</span></button>
+                            <button type="button" data-vd-lang="en" title="United States | English" aria-label="United States | English"><span class="vd-flag">🇺🇸</span><span>US</span></button>
+                            <button type="button" data-vd-lang="es" title="Spain | Español" aria-label="Spain | Español"><span class="vd-flag">🇪🇸</span><span>ES</span></button>
+                            <button type="button" data-vd-lang="fr" title="France | Français" aria-label="France | Français"><span class="vd-flag">🇫🇷</span><span>FR</span></button>
+                            <button type="button" data-vd-lang="de" title="DACH Region | Deutsch" aria-label="DACH Region | Deutsch"><span class="vd-flag">🇩🇪</span><span>DE</span></button>
+                            <button type="button" data-vd-lang="ru" title="Russia | Русский" aria-label="Russia | Русский"><span class="vd-flag">🇷🇺</span><span>RU</span></button>
+                            <button type="button" data-vd-lang="zh-CN" title="China | 中文" aria-label="China | 中文"><span class="vd-flag">🇨🇳</span><span>CN</span></button>
+                        </div>
                     </div>
                     <div class="main-header--one__top-contact-info clearfix">
                         <ul class="main-header--one__top-contact-info-list list-unstyled">
@@ -76,33 +83,223 @@
     </div>
 </header>
 <div id="google_translate_element" style="display:none;"></div>
+<div class="vedium-language-modal" id="vedium-language-modal" data-vd-language-modal hidden>
+  <div class="vedium-language-modal__backdrop" data-vd-language-close></div>
+  <section class="vedium-language-modal__panel" role="dialog" aria-modal="true" aria-labelledby="vedium-language-title">
+    <div class="vedium-language-modal__head">
+      <h2 id="vedium-language-title">Select your region and language</h2>
+      <button type="button" class="vedium-language-modal__close" data-vd-language-close aria-label="Close">Close ×</button>
+    </div>
+    <div class="vedium-language-modal__grid">
+      <div class="vedium-language-modal__group">
+        <h3>Global</h3>
+        <button type="button" data-vd-lang="en"><span>🌐</span><strong>Global</strong><small>English</small></button>
+      </div>
+      <div class="vedium-language-modal__group">
+        <h3>North & Latin America</h3>
+        <button type="button" data-vd-lang="pt"><span>🇧🇷</span><strong>Brazil</strong><small>Português</small></button>
+        <button type="button" data-vd-lang="es"><span>🇦🇷</span><strong>Argentina</strong><small>Español</small></button>
+        <button type="button" data-vd-lang="fr"><span>🇨🇦</span><strong>Canada</strong><small>Français</small></button>
+        <button type="button" data-vd-lang="es"><span>🇨🇴</span><strong>Colombia</strong><small>Español</small></button>
+      </div>
+      <div class="vedium-language-modal__group">
+        <h3>Europe, Middle East, & Africa</h3>
+        <button type="button" data-vd-lang="fr"><span>🇫🇷</span><strong>France</strong><small>Français</small></button>
+        <button type="button" data-vd-lang="de"><span>🇩🇪</span><strong>DACH Region</strong><small>Deutsch</small></button>
+        <button type="button" data-vd-lang="es"><span>🇪🇸</span><strong>Spain</strong><small>Español</small></button>
+        <button type="button" data-vd-lang="ru"><span>🇷🇺</span><strong>Russia</strong><small>Русский</small></button>
+      </div>
+      <div class="vedium-language-modal__group">
+        <h3>Asia & Australia</h3>
+        <button type="button" data-vd-lang="zh-CN"><span>🇨🇳</span><strong>China</strong><small>中文版</small></button>
+        <button type="button" data-vd-lang="en"><span>🇦🇺</span><strong>Australia</strong><small>English</small></button>
+      </div>
+    </div>
+  </section>
+</div>
 <style>
   .vedium-language-switcher {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     margin-left: 12px;
     vertical-align: middle;
+    flex-wrap: wrap;
   }
-  .vedium-language-switcher button {
-    width: 31px;
-    height: 31px;
+  .vedium-language-current,
+  .vedium-language-chips button {
     padding: 0;
     border: 1px solid #dbe3ee;
     border-radius: 999px;
     background: #fff;
-    line-height: 1;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(15, 23, 42, .06);
   }
-  .vedium-language-switcher button.is-active {
+  .vedium-language-current {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 32px;
+    padding: 0 11px;
+    color: #111827;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .vedium-language-current__flag,
+  .vd-flag {
+    font-size: 15px;
+    line-height: 1;
+  }
+  .vedium-language-current__caret {
+    font-size: 9px;
+    color: #111827;
+  }
+  .vedium-language-chips {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .vedium-language-chips button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 38px;
+    height: 31px;
+    color: #0f172a;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .vedium-language-chips button.is-active,
+  .vedium-language-modal [data-vd-lang].is-active {
     border-color: #2E6DA4;
     box-shadow: 0 0 0 2px rgba(46, 109, 164, .16);
   }
+  .vedium-language-modal[hidden] { display: none; }
+  .vedium-language-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+  }
+  .vedium-language-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, .38);
+  }
+  .vedium-language-modal__panel {
+    position: relative;
+    width: min(1180px, calc(100vw - 32px));
+    margin: 38px auto;
+    padding: 30px 34px 34px;
+    background: #fff;
+    color: #111827;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, .24);
+  }
+  .vedium-language-modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .vedium-language-modal__head h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  .vedium-language-modal__close {
+    border: 0;
+    background: transparent;
+    color: #64748b;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .vedium-language-modal__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .vedium-language-modal__group {
+    min-height: 178px;
+    padding-right: 20px;
+    border-right: 1px solid #d9dee8;
+  }
+  .vedium-language-modal__group:last-child {
+    border-right: 0;
+  }
+  .vedium-language-modal__group h3 {
+    margin: 0 0 13px;
+    color: #111827;
+    font-size: 17px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+  .vedium-language-modal__group button {
+    display: grid;
+    grid-template-columns: 22px auto 1fr;
+    align-items: center;
+    width: 100%;
+    min-height: 32px;
+    margin: 0 0 4px;
+    padding: 4px 6px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: #111827;
+    text-align: left;
+    cursor: pointer;
+  }
+  .vedium-language-modal__group button:hover {
+    background: #f4f7fb;
+  }
+  .vedium-language-modal__group button span {
+    font-size: 17px;
+    line-height: 1;
+  }
+  .vedium-language-modal__group button strong {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .vedium-language-modal__group button small {
+    padding-left: 6px;
+    color: #475569;
+    font-size: 13px;
+  }
   .goog-te-banner-frame.skiptranslate,
   body > .skiptranslate { display: none !important; }
+  body.vedium-language-modal-open { overflow: hidden; }
   body { top: 0 !important; }
   @media (max-width: 991px) {
     .vedium-language-switcher { margin: 10px 0 0; }
+    .vedium-language-current { max-width: 100%; }
+    .vedium-language-chips { flex-wrap: wrap; }
+    .vedium-language-modal__panel {
+      width: min(680px, calc(100vw - 20px));
+      max-height: calc(100vh - 28px);
+      margin: 14px auto;
+      padding: 22px 18px;
+      overflow: auto;
+    }
+    .vedium-language-modal__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .vedium-language-modal__group {
+      min-height: 0;
+      padding-right: 0;
+      padding-bottom: 14px;
+      border-right: 0;
+      border-bottom: 1px solid #d9dee8;
+    }
+    .vedium-language-modal__group:last-child {
+      border-bottom: 0;
+    }
   }
 </style>

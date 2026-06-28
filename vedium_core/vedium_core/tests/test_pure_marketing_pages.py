@@ -158,11 +158,20 @@ def test_public_language_selector_and_gtm_import_are_available():
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
     for lang in ["pt", "en", "es", "fr", "de", "ru", "zh-CN"]:
         assert f'data-vd-lang="{lang}"' in navbar
+    assert "data-vd-language-open" in navbar
+    assert "Select your region and language" in navbar
+    assert "BRASIL | PORTUGUÊS" in navbar
+    assert "🇧🇷" in navbar and "🇺🇸" in navbar and "🇨🇳" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "navigator.language" in lang_js
     assert "language_selected" in lang_js
+    assert "setModalOpen" in lang_js
 
     gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))
+    raw_gtm = GTM_IMPORT.read_text(encoding="utf-8")
+    assert '"type": "template"' not in raw_gtm
+    assert '"type": "boolean"' not in raw_gtm
+    assert '"type": "integer"' not in raw_gtm
     names = {tag["name"] for tag in gtm["containerVersion"]["tag"]}
     triggers = {trigger["name"] for trigger in gtm["containerVersion"]["trigger"]}
     assert "GA4 - Base Config" in names
