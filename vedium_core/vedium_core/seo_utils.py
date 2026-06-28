@@ -17,9 +17,23 @@ def generate_sitemap():
         {"loc": "/", "priority": "1.0", "changefreq": "weekly"},
         {"loc": "/catalogo", "priority": "0.9", "changefreq": "daily"},
         {"loc": "/sobre", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/como-funciona", "priority": "0.8", "changefreq": "monthly"},
+        {"loc": "/faq", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/teste-de-nivel", "priority": "0.8", "changefreq": "monthly"},
         {"loc": "/contato", "priority": "0.6", "changefreq": "monthly"},
         {"loc": "/mentores", "priority": "0.7", "changefreq": "monthly"},
         {"loc": "/carreiras", "priority": "0.5", "changefreq": "monthly"},
+        {"loc": "/ingles-para-entrevista", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/ingles-para-programadores", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/ingles-executivo", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/ingles-para-viagens", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/ingles-para-atendimento-ao-cliente", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/curso-de-ioruba-online", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/ioruba-para-iniciantes", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/ioruba-cultura-e-ancestralidade", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/portugues-para-estrangeiros", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/portugues-para-executivos", "priority": "0.7", "changefreq": "monthly"},
+        {"loc": "/preparatorio-celpe-bras", "priority": "0.7", "changefreq": "monthly"},
     ]
 
     try:

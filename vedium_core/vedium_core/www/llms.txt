@@ -20,9 +20,11 @@
 
 ## Páginas principais
 - [Início](https://vediums.com/): apresentação da Vedium, metodologia e planos.
-- [Sobre](https://vediums.com/about): história, missão e proposta da escola.
-- [Mentores / Professores](https://vediums.com/teachers-1): quem ensina na Vedium.
-- [Contato](https://vediums.com/contact): canais de atendimento.
+- [Sobre](https://vediums.com/sobre): história, missão e proposta da escola.
+- [Como funciona](https://vediums.com/como-funciona): teste de nível, diagnóstico e aulas ao vivo em 3 passos.
+- [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
+- [Mentores / Professores](https://vediums.com/mentores): quem ensina na Vedium.
+- [Contato](https://vediums.com/contato): canais de atendimento.
 - [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.
 
 ## Contato
@@ -35,8 +37,12 @@
 - [Inglês para entrevista de emprego](https://vediums.com/ingles-para-entrevista): preparação para entrevistas, RH e carreira.
 - [Inglês para programadores](https://vediums.com/ingles-para-programadores): reuniões, documentação, entrevistas técnicas e comunicação em tecnologia.
 - [Inglês executivo](https://vediums.com/ingles-executivo): negócios, liderança, reuniões e apresentações.
+- [Inglês para viagens](https://vediums.com/ingles-para-viagens): aeroportos, hotéis, restaurantes, transporte e conversas de viagem.
+- [Inglês para atendimento ao cliente](https://vediums.com/ingles-para-atendimento-ao-cliente): suporte, CS, vendas, pós-venda e comunicação com clientes.
 - [Curso de iorubá online](https://vediums.com/curso-de-ioruba-online): idioma, cultura e trilha estruturada.
 - [Iorubá para iniciantes](https://vediums.com/ioruba-para-iniciantes): primeiras palavras, saudações e pronúncia.
+- [Iorubá, cultura e ancestralidade](https://vediums.com/ioruba-cultura-e-ancestralidade): idioma iorubá com contexto cultural e prática ao vivo.
 - [Português para estrangeiros](https://vediums.com/portugues-para-estrangeiros): comunicação prática no Brasil.
 - [Português para executivos](https://vediums.com/portugues-para-executivos): reuniões, negócios e adaptação cultural.
+- [Preparatório Celpe-Bras](https://vediums.com/preparatorio-celpe-bras): português para estrangeiros com foco em prova, fala, escrita e simulados.
 - [Teste de nível gratuito](https://vediums.com/teste-de-nivel): diagnóstico inicial antes da matrícula.

@@ -41,3 +41,5 @@ Sitemap: https://vediums.com/sitemap-llm.xml
 # AI Summary: https://vediums.com/ai/summary.json
 # AI FAQ: https://vediums.com/ai/faq.json
 # AI Services: https://vediums.com/ai/service.json
+# Public FAQ: https://vediums.com/faq
+# How it works: https://vediums.com/como-funciona

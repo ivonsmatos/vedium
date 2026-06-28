@@ -38,8 +38,10 @@
                         <div class="left">
                             <ul class="main-menu__list">
                                 <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="/">Início</a></li>
+                                <li{% if vd_page == "como-funciona" %} class="current"{% endif %}><a href="/como-funciona">Como funciona</a></li>
                                 <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="/sobre">Sobre</a></li>
                                 <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="/catalogo">Cursos</a></li>
+                                <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="/faq">FAQ</a></li>
                                 <li{% if vd_page == "mentores" %} class="current"{% endif %}><a href="/mentores">Mentores</a></li>
                                 <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="/contato">Contato</a></li>
                             </ul>
@@ -54,7 +56,7 @@
                                 </div>
                                 <div class="main-menu__right-cart-search">
                                     <div class="main-menu__right-search-box">
-                                        <a href="/catalogo" class="thm-btn">Ver cursos</a>
+                                        <a href="/teste-de-nivel" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_cta_click',location:'navbar',cta:'level_test'});">Teste grátis</a>
                                     </div>
                                 </div>
                             </div>

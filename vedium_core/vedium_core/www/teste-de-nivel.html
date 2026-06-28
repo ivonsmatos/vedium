@@ -66,7 +66,7 @@
         <div class="vd-test-card">
           <span class="vd-pill">Gratuito e rápido</span>
           <h1 style="color:#111827;margin-bottom:14px;">Descubra seu nível inicial antes de escolher a trilha</h1>
-          <p class="vd-muted">Este diagnóstico não substitui uma avaliação completa com professor, mas ajuda a orientar o primeiro atendimento. Responda às perguntas e envie o resultado para a Vedium pelo WhatsApp.</p>
+          <p class="vd-muted">Este diagnóstico estima seu nível CEFR inicial, aponta uma prioridade de estudo e recomenda a próxima trilha. Ele não substitui uma avaliação completa com professor, mas ajuda a orientar o primeiro atendimento.</p>
 
           <form id="level-test" novalidate>
             <div class="vd-question">
@@ -116,6 +116,8 @@
           <div id="test-result" class="vd-result">
             <h3 id="result-title">Seu resultado</h3>
             <p id="result-copy" class="vd-muted"></p>
+            <p id="result-diagnostic" class="vd-muted"></p>
+            <p id="result-recommendation" class="vd-muted"></p>
             <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click'});">Enviar resultado no WhatsApp</a>
           </div>
         </div>
@@ -152,6 +154,8 @@
     var result = document.getElementById('test-result');
     var title = document.getElementById('result-title');
     var copy = document.getElementById('result-copy');
+    var diagnostic = document.getElementById('result-diagnostic');
+    var recommendation = document.getElementById('result-recommendation');
     var whats = document.getElementById('result-whatsapp');
     var labels = {
       A1: 'A1 - iniciante',
@@ -160,6 +164,19 @@
       B2: 'B2 - intermediário alto',
       C1: 'C1 - avançado'
     };
+    var diagnostics = {
+      A1: 'Diagnóstico: você precisa consolidar frases básicas, pronúncia inicial, vocabulário de rotina e confiança para responder perguntas simples.',
+      A2: 'Diagnóstico: você já entende situações familiares, mas precisa ampliar vocabulário, passado/futuro e fluidez em conversas curtas.',
+      B1: 'Diagnóstico: você consegue se comunicar em temas conhecidos e deve evoluir precisão, conectores, listening e fala profissional.',
+      B2: 'Diagnóstico: você já sustenta conversas mais completas e deve trabalhar naturalidade, argumentação, vocabulário específico e correção fina.',
+      C1: 'Diagnóstico: seu foco deve ser refinamento, espontaneidade, nuances, sotaques, apresentações e objetivos profissionais ou acadêmicos avançados.'
+    };
+    function getRecommendation(level, goal) {
+      if (goal === 'Inglês para entrevistas') return 'Recomendação: iniciar por inglês para entrevista, com simulações, respostas comportamentais e feedback de speaking no nível ' + level + '.';
+      if (goal === 'Inglês profissional ou executivo') return 'Recomendação: seguir para inglês executivo, com reuniões, apresentações, e-mails e vocabulário de negócios no nível ' + level + '.';
+      if (goal === 'Inglês para tecnologia') return 'Recomendação: seguir para inglês para programadores, com documentação, entrevistas técnicas, reuniões e comunicação em times globais no nível ' + level + '.';
+      return 'Recomendação: falar com a Vedium para confirmar idioma, objetivo e trilha mais adequada antes da matrícula.';
+    }
     function getValue(name) {
       var item = form.querySelector('input[name="' + name + '"]:checked');
       return item ? item.value : null;
@@ -176,14 +193,17 @@
       error.style.display = 'none';
       var score = values.reduce(function (sum, value) { return sum + Number(value); }, 0);
       var level = score <= 5 ? 'A1' : score <= 8 ? 'A2' : score <= 11 ? 'B1' : score <= 14 ? 'B2' : 'C1';
-      var text = 'Resultado estimado: ' + labels[level] + '. Objetivo informado: ' + goal + '. Recomendamos confirmar esse diagnóstico em uma conversa rápida com professor.';
+      var rec = getRecommendation(level, goal);
+      var text = 'Resultado estimado: ' + labels[level] + '. Objetivo informado: ' + goal + '.';
       title.textContent = labels[level];
       copy.textContent = text;
-      whats.href = 'https://wa.me/5511911293075?text=' + encodeURIComponent('Olá, fiz o teste de nível da Vedium. ' + text);
+      diagnostic.textContent = diagnostics[level];
+      recommendation.textContent = rec;
+      whats.href = 'https://wa.me/5511911293075?text=' + encodeURIComponent('Olá, fiz o teste de nível da Vedium. ' + text + ' ' + diagnostics[level] + ' ' + rec);
       result.style.display = 'block';
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'level_test_completed', level: level, score: score, goal: goal });
+      window.dataLayer.push({ event: 'level_test_completed', level: level, score: score, goal: goal, recommendation: rec });
     });
   }());
 </script>
