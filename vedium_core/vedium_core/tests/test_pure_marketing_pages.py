@@ -182,6 +182,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
     for locale in ["pt-br", "en-us", "es-ar", "fr", "de", "ru", "zh-cn"]:
         assert f'data-vd-locale="{locale}"' in navbar
+    for href in ["/pt-br/", "/en-us/", "/es-ar/", "/de/", "/zh-cn/"]:
+        assert f'href="{href}"' in navbar
     assert "data-vd-language-open" in navbar
     assert "Select your region and language" in navbar
     assert "BRASIL | PORTUGUÊS" in navbar
@@ -195,10 +197,11 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "vedium-language.js?v=" in footer
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
-    assert "navigator.language" in lang_js
-    assert "language_selected" in lang_js
-    assert "vedium_preferred_locale" in lang_js
-    assert "window.location.assign(buildLocaleUrl(locale))" in lang_js
+    assert "navigator.language" not in lang_js
+    assert "language_selected" not in lang_js
+    assert "vedium_preferred_locale" not in lang_js
+    assert "window.location.assign" not in lang_js
+    assert 'var current = getLocaleFromPath() || "pt-br";' in lang_js
     assert 'prefix: "/pt-br/"' in lang_js
     assert 'prefix: "/es-ar/"' in lang_js
     assert 'prefix: "/de/"' in lang_js

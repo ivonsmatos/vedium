@@ -13,36 +13,6 @@
     "zh-cn": { lang: "zh-CN", prefix: "/zh-cn/", flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" },
     "en-au": { lang: "en", prefix: "/en-au/", flag: "https://flagcdn.com/w20/au.png", flag2x: "https://flagcdn.com/w40/au.png 2x", alt: "Australia", label: "AUSTRALIA | ENGLISH" }
   };
-  var browserMap = {
-    pt: "pt-br",
-    "pt-br": "pt-br",
-    en: "en-us",
-    "en-us": "en-us",
-    es: "es",
-    "es-ar": "es-ar",
-    fr: "fr",
-    "fr-ca": "fr-ca",
-    de: "de",
-    ru: "ru",
-    zh: "zh-cn",
-    "zh-cn": "zh-cn",
-    "zh-hans": "zh-cn"
-  };
-  var storageKey = "vedium_preferred_locale";
-
-  function normalize(lang) {
-    if (!lang) return "pt-br";
-    var value = String(lang).toLowerCase();
-    if (browserMap[value]) return browserMap[value];
-    var root = value.split("-")[0];
-    return browserMap[root] || "pt-br";
-  }
-
-  function getCurrentLang() {
-    var preferred = localStorage.getItem(storageKey);
-    if (preferred) return preferred;
-    return "pt-br";
-  }
 
   function clearLegacyTranslateCookie() {
     ["googtrans", "googtransopt"].forEach(function (name) {
@@ -56,21 +26,6 @@
   function getLocaleFromPath() {
     var firstSegment = location.pathname.split("/").filter(Boolean)[0];
     return localeMeta[firstSegment] ? firstSegment : "";
-  }
-
-  function stripLocalePrefix(pathname) {
-    var parts = pathname.split("/").filter(Boolean);
-    if (parts.length && localeMeta[parts[0]]) {
-      parts.shift();
-    }
-    return "/" + parts.join("/");
-  }
-
-  function buildLocaleUrl(locale) {
-    var meta = localeMeta[locale] || localeMeta["pt-br"];
-    var cleanPath = stripLocalePrefix(location.pathname);
-    var path = cleanPath === "/" ? meta.prefix : meta.prefix + cleanPath.replace(/^\//, "");
-    return path.replace(/\/{2,}/g, "/") + location.search + location.hash;
   }
 
   function markActive(locale) {
@@ -103,18 +58,6 @@
     });
   }
 
-  function selectLocale(locale) {
-    var meta = localeMeta[locale];
-    if (!meta) return;
-    clearLegacyTranslateCookie();
-    localStorage.setItem(storageKey, locale);
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: "language_selected", language: meta.lang, locale: locale });
-    markActive(locale);
-    setModalOpen(false);
-    window.location.assign(buildLocaleUrl(locale));
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
     clearLegacyTranslateCookie();
 
@@ -127,12 +70,6 @@
     document.querySelectorAll("[data-vd-language-close]").forEach(function (button) {
       button.addEventListener("click", function () {
         setModalOpen(false);
-      });
-    });
-
-    document.querySelectorAll("[data-vd-locale]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        selectLocale(button.getAttribute("data-vd-locale"));
       });
     });
 
@@ -152,10 +89,7 @@
       if (event.key === "Escape") setModalOpen(false);
     });
 
-    var current = getLocaleFromPath() || localStorage.getItem(storageKey) || getCurrentLang();
-    if (!getLocaleFromPath() && !localStorage.getItem(storageKey)) {
-      current = normalize(navigator.language || (navigator.languages && navigator.languages[0]));
-    }
+    var current = getLocaleFromPath() || "pt-br";
     markActive(current);
   });
 }());
