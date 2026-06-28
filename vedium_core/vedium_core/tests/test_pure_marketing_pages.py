@@ -56,6 +56,7 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
         html = html_path.read_text(encoding="utf-8")
         py = py_path.read_text(encoding="utf-8")
         landing = LANDINGS[slug]
+        assert f'get_marketing_landing("{slug}")' in html
         assert 'marketing_landing.html' in html
         assert slug in py
         assert len(landing["lead"]) > 120

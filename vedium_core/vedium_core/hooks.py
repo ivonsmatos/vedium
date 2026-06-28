@@ -112,7 +112,12 @@ def get_web_context(context):
 override_doctype_templates = {}
 
 # Jinja Environment Customization
-jinja = {"methods": ["vedium_core.utils.jinja_methods"]}
+jinja = {
+    "methods": [
+        "vedium_core.marketing_landing_content.get_marketing_landing",
+        "vedium_core.utils.jinja_methods",
+    ]
+}
 
 # =============================================================================
 # Scheduled Tasks

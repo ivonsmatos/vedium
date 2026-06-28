@@ -549,12 +549,20 @@ LANDINGS = {
 
 
 def apply_landing_context(context, slug):
+    landing = get_marketing_landing(slug)
+    context.title = landing["title"]
+    context.description = landing["meta_description"]
+    context.landing = landing
+
+
+def get_marketing_landing(slug):
     landing = dict(LANDINGS[slug])
     landing["slug"] = slug
     landing["url"] = f"{BASE_URL}/{slug}"
     landing["whatsapp_url"] = (
         f"https://wa.me/{WHATSAPP_PHONE}?text={quote(landing['whatsapp_text'])}"
     )
-    context.title = landing["title"]
-    context.description = landing["meta_description"]
-    context.landing = landing
+    return landing
+
+
+get_landing_for_template = get_marketing_landing
