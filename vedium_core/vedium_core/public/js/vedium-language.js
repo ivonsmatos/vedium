@@ -1,38 +1,49 @@
 (function () {
-  var supported = ["pt", "en", "es", "fr", "de", "ru", "zh-CN"];
-  var languageMeta = {
-    pt: { flag: "https://flagcdn.com/w20/br.png", flag2x: "https://flagcdn.com/w40/br.png 2x", alt: "Brazil", label: "BRASIL | PORTUGUÊS" },
-    en: { flag: "https://flagcdn.com/w20/us.png", flag2x: "https://flagcdn.com/w40/us.png 2x", alt: "United States", label: "UNITED STATES | ENGLISH" },
-    es: { flag: "https://flagcdn.com/w20/es.png", flag2x: "https://flagcdn.com/w40/es.png 2x", alt: "Spain", label: "SPAIN | ESPAÑOL" },
-    fr: { flag: "https://flagcdn.com/w20/fr.png", flag2x: "https://flagcdn.com/w40/fr.png 2x", alt: "France", label: "FRANCE | FRANÇAIS" },
-    de: { flag: "https://flagcdn.com/w20/de.png", flag2x: "https://flagcdn.com/w40/de.png 2x", alt: "Germany", label: "DACH REGION | DEUTSCH" },
-    ru: { flag: "https://flagcdn.com/w20/ru.png", flag2x: "https://flagcdn.com/w40/ru.png 2x", alt: "Russia", label: "RUSSIA | РУССКИЙ" },
-    "zh-CN": { flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" }
+  var localeMeta = {
+    "pt-br": { lang: "pt", prefix: "/pt-br/", flag: "https://flagcdn.com/w20/br.png", flag2x: "https://flagcdn.com/w40/br.png 2x", alt: "Brazil", label: "BRASIL | PORTUGUÊS" },
+    "en": { lang: "en", prefix: "/en/", flag: "https://flagcdn.com/w20/un.png", flag2x: "https://flagcdn.com/w40/un.png 2x", alt: "Global", label: "GLOBAL | ENGLISH" },
+    "en-us": { lang: "en", prefix: "/en-us/", flag: "https://flagcdn.com/w20/us.png", flag2x: "https://flagcdn.com/w40/us.png 2x", alt: "United States", label: "UNITED STATES | ENGLISH" },
+    "es-ar": { lang: "es", prefix: "/es-ar/", flag: "https://flagcdn.com/w20/ar.png", flag2x: "https://flagcdn.com/w40/ar.png 2x", alt: "Argentina", label: "ARGENTINA | ESPAÑOL" },
+    "fr-ca": { lang: "fr", prefix: "/fr-ca/", flag: "https://flagcdn.com/w20/ca.png", flag2x: "https://flagcdn.com/w40/ca.png 2x", alt: "Canada", label: "CANADA | FRANÇAIS" },
+    "es-co": { lang: "es", prefix: "/es-co/", flag: "https://flagcdn.com/w20/co.png", flag2x: "https://flagcdn.com/w40/co.png 2x", alt: "Colombia", label: "COLOMBIA | ESPAÑOL" },
+    "fr": { lang: "fr", prefix: "/fr/", flag: "https://flagcdn.com/w20/fr.png", flag2x: "https://flagcdn.com/w40/fr.png 2x", alt: "France", label: "FRANCE | FRANÇAIS" },
+    "de": { lang: "de", prefix: "/de/", flag: "https://flagcdn.com/w20/de.png", flag2x: "https://flagcdn.com/w40/de.png 2x", alt: "Germany", label: "DACH REGION | DEUTSCH" },
+    "es": { lang: "es", prefix: "/es/", flag: "https://flagcdn.com/w20/es.png", flag2x: "https://flagcdn.com/w40/es.png 2x", alt: "Spain", label: "SPAIN | ESPAÑOL" },
+    "ru": { lang: "ru", prefix: "/ru/", flag: "https://flagcdn.com/w20/ru.png", flag2x: "https://flagcdn.com/w40/ru.png 2x", alt: "Russia", label: "RUSSIA | РУССКИЙ" },
+    "zh-cn": { lang: "zh-CN", prefix: "/zh-cn/", flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" },
+    "en-au": { lang: "en", prefix: "/en-au/", flag: "https://flagcdn.com/w20/au.png", flag2x: "https://flagcdn.com/w40/au.png 2x", alt: "Australia", label: "AUSTRALIA | ENGLISH" }
   };
+  var supported = Object.keys(localeMeta).map(function (locale) { return localeMeta[locale].lang; })
+    .filter(function (lang, index, all) { return all.indexOf(lang) === index; });
   var browserMap = {
-    pt: "pt",
-    en: "en",
+    pt: "pt-br",
+    "pt-br": "pt-br",
+    en: "en-us",
+    "en-us": "en-us",
     es: "es",
+    "es-ar": "es-ar",
     fr: "fr",
+    "fr-ca": "fr-ca",
     de: "de",
     ru: "ru",
-    zh: "zh-CN",
-    "zh-cn": "zh-CN",
-    "zh-hans": "zh-CN"
+    zh: "zh-cn",
+    "zh-cn": "zh-cn",
+    "zh-hans": "zh-cn"
   };
-  var storageKey = "vedium_preferred_language";
+  var storageKey = "vedium_preferred_locale";
   var cookieName = "googtrans";
 
   function normalize(lang) {
-    if (!lang) return "pt";
+    if (!lang) return "pt-br";
     var value = String(lang).toLowerCase();
     if (browserMap[value]) return browserMap[value];
     var root = value.split("-")[0];
-    return browserMap[root] || "pt";
+    return browserMap[root] || "pt-br";
   }
 
-  function setCookie(lang) {
-    var cookieValue = lang === "pt" ? "/pt/pt" : "/pt/" + lang;
+  function setCookie(locale) {
+    var meta = localeMeta[locale] || localeMeta["pt-br"];
+    var cookieValue = meta.lang === "pt" ? "/pt/pt" : "/pt/" + meta.lang;
     var maxAge = 60 * 60 * 24 * 365;
     document.cookie = cookieName + "=" + cookieValue + ";path=/;max-age=" + maxAge + ";SameSite=Lax";
     if (location.hostname.indexOf(".") > -1) {
@@ -52,13 +63,33 @@
     var preferred = localStorage.getItem(storageKey);
     if (preferred) return preferred;
     var match = document.cookie.match(/(?:^|;\s*)googtrans=\/pt\/([^;]+)/);
-    return match ? decodeURIComponent(match[1]) : "pt";
+    return match ? normalize(decodeURIComponent(match[1])) : "pt-br";
   }
 
-  function markActive(lang) {
-    var meta = languageMeta[lang] || languageMeta.pt;
-    document.querySelectorAll("[data-vd-lang]").forEach(function (button) {
-      button.classList.toggle("is-active", button.getAttribute("data-vd-lang") === lang);
+  function getLocaleFromPath() {
+    var firstSegment = location.pathname.split("/").filter(Boolean)[0];
+    return localeMeta[firstSegment] ? firstSegment : "";
+  }
+
+  function stripLocalePrefix(pathname) {
+    var parts = pathname.split("/").filter(Boolean);
+    if (parts.length && localeMeta[parts[0]]) {
+      parts.shift();
+    }
+    return "/" + parts.join("/");
+  }
+
+  function buildLocaleUrl(locale) {
+    var meta = localeMeta[locale] || localeMeta["pt-br"];
+    var cleanPath = stripLocalePrefix(location.pathname);
+    var path = cleanPath === "/" ? meta.prefix : meta.prefix + cleanPath.replace(/^\//, "");
+    return path.replace(/\/{2,}/g, "/") + location.search + location.hash;
+  }
+
+  function markActive(locale) {
+    var meta = localeMeta[locale] || localeMeta["pt-br"];
+    document.querySelectorAll("[data-vd-locale]").forEach(function (button) {
+      button.classList.toggle("is-active", button.getAttribute("data-vd-locale") === locale);
     });
     document.querySelectorAll("[data-vd-current-flag]").forEach(function (node) {
       if (node.tagName && node.tagName.toLowerCase() === "img") {
@@ -85,20 +116,16 @@
     });
   }
 
-  function switchLanguage(lang, userSelected) {
-    if (supported.indexOf(lang) === -1) return;
-    setCookie(lang);
-    localStorage.setItem(storageKey, lang);
-    if (userSelected) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "language_selected", language: lang });
-    }
-    markActive(lang);
-    if (lang === "pt") {
-      window.location.reload();
-      return;
-    }
-    loadGoogleTranslate();
+  function selectLocale(locale) {
+    var meta = localeMeta[locale];
+    if (!meta) return;
+    setCookie(locale);
+    localStorage.setItem(storageKey, locale);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "language_selected", language: meta.lang, locale: locale });
+    markActive(locale);
+    setModalOpen(false);
+    window.location.assign(buildLocaleUrl(locale));
   }
 
   window.vediumInitGoogleTranslate = function () {
@@ -123,9 +150,9 @@
       });
     });
 
-    document.querySelectorAll("[data-vd-lang]").forEach(function (button) {
+    document.querySelectorAll("[data-vd-locale]").forEach(function (button) {
       button.addEventListener("click", function () {
-        switchLanguage(button.getAttribute("data-vd-lang"), true);
+        selectLocale(button.getAttribute("data-vd-locale"));
       });
     });
 
@@ -145,12 +172,13 @@
       if (event.key === "Escape") setModalOpen(false);
     });
 
-    var current = localStorage.getItem(storageKey) || getCurrentLang();
-    if (!localStorage.getItem(storageKey)) {
+    var current = getLocaleFromPath() || localStorage.getItem(storageKey) || getCurrentLang();
+    if (!getLocaleFromPath() && !localStorage.getItem(storageKey)) {
       current = normalize(navigator.language || (navigator.languages && navigator.languages[0]));
     }
     markActive(current);
-    if (localStorage.getItem(storageKey) && current !== "pt") {
+    if (getLocaleFromPath() && localeMeta[current] && localeMeta[current].lang !== "pt") {
+      setCookie(current);
       loadGoogleTranslate();
     }
   });

@@ -148,8 +148,15 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     sitemap = (ROOT / "vedium_core" / "vedium_core" / "seo_utils.py").read_text(
         encoding="utf-8"
     )
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
+        encoding="utf-8"
+    )
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS + ["teste-de-nivel"]:
         assert f'"/{slug}"' in sitemap
+        assert f'"{slug}"' in hooks
+    for prefix in ["pt-br", "en-us", "es-ar", "de", "zh-cn"]:
+        assert f'"{prefix}"' in hooks
+        assert f'"{prefix}"' in sitemap
     assert '"/mentores"' not in sitemap
 
 
@@ -158,8 +165,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
     theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
-    for lang in ["pt", "en", "es", "fr", "de", "ru", "zh-CN"]:
-        assert f'data-vd-lang="{lang}"' in navbar
+    for locale in ["pt-br", "en-us", "es-ar", "fr", "de", "ru", "zh-cn"]:
+        assert f'data-vd-locale="{locale}"' in navbar
     assert "data-vd-language-open" in navbar
     assert "Select your region and language" in navbar
     assert "BRASIL | PORTUGUÊS" in navbar
@@ -175,9 +182,15 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" in lang_js
     assert "language_selected" in lang_js
+    assert "vedium_preferred_locale" in lang_js
+    assert "window.location.assign(buildLocaleUrl(locale))" in lang_js
+    assert 'prefix: "/pt-br/"' in lang_js
+    assert 'prefix: "/es-ar/"' in lang_js
+    assert 'prefix: "/de/"' in lang_js
     assert "setModalOpen" in lang_js
     assert "flagcdn.com/w20/br.png" in lang_js
     assert "switchLanguage(detected" not in lang_js
+    assert "switchLanguage(" not in lang_js
     assert "target.closest" in lang_js
 
     gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))

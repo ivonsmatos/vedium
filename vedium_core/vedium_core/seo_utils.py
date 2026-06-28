@@ -3,6 +3,20 @@ from frappe import _
 
 
 SITE_URL = "https://vediums.com"
+LANGUAGE_ROUTE_PREFIXES = (
+    "pt-br",
+    "en",
+    "en-us",
+    "en-au",
+    "es",
+    "es-ar",
+    "es-co",
+    "fr",
+    "fr-ca",
+    "de",
+    "ru",
+    "zh-cn",
+)
 
 
 @frappe.whitelist(allow_guest=True)
@@ -55,7 +69,17 @@ def generate_sitemap():
         for c in courses
     ]
 
-    all_urls = static_urls + course_urls
+    localized_static_urls = [
+        {
+            **url,
+            "loc": f"/{prefix}/" if url["loc"] == "/" else f"/{prefix}{url['loc']}",
+            "priority": "0.6" if url["loc"] == "/" else "0.5",
+        }
+        for prefix in LANGUAGE_ROUTE_PREFIXES
+        for url in static_urls
+    ]
+
+    all_urls = static_urls + localized_static_urls + course_urls
 
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',

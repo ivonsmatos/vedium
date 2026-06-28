@@ -8,7 +8,59 @@ app_license = "MIT"
 # =============================================================================
 # Roteamento do site
 # =============================================================================
+LANGUAGE_ROUTE_PREFIXES = (
+    "pt-br",
+    "en",
+    "en-us",
+    "en-au",
+    "es",
+    "es-ar",
+    "es-co",
+    "fr",
+    "fr-ca",
+    "de",
+    "ru",
+    "zh-cn",
+)
+
+PUBLIC_LANGUAGE_ROUTES = (
+    "catalogo",
+    "sobre",
+    "como-funciona",
+    "faq",
+    "teste-de-nivel",
+    "contato",
+    "carreiras",
+    "termos",
+    "privacidade",
+    "ingles-para-entrevista",
+    "ingles-para-programadores",
+    "ingles-executivo",
+    "ingles-para-viagens",
+    "ingles-para-atendimento-ao-cliente",
+    "curso-de-ioruba-online",
+    "ioruba-para-iniciantes",
+    "ioruba-cultura-e-ancestralidade",
+    "portugues-para-estrangeiros",
+    "portugues-para-executivos",
+    "preparatorio-celpe-bras",
+)
+
+LANGUAGE_ROUTE_RULES = (
+    [{"from_route": f"/{prefix}", "to_route": "index"} for prefix in LANGUAGE_ROUTE_PREFIXES]
+    + [
+        {"from_route": f"/{prefix}/{route}", "to_route": route}
+        for prefix in LANGUAGE_ROUTE_PREFIXES
+        for route in PUBLIC_LANGUAGE_ROUTES
+    ]
+    + [
+        {"from_route": f"/{prefix}/curso/<course>", "to_route": "curso"}
+        for prefix in LANGUAGE_ROUTE_PREFIXES
+    ]
+)
+
 website_route_rules = [
+    *LANGUAGE_ROUTE_RULES,
     # /courses é interceptado pelo LMS app — garante que /catalogo seja a rota do site
     {"from_route": "/trilhas", "to_route": "/catalogo"},
     {"from_route": "/cursos", "to_route": "/catalogo"},
