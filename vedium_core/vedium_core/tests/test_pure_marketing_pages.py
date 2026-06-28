@@ -38,6 +38,21 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
         assert "wa.me/5511911293075" in html
 
 
+def test_public_level_test_exists_without_backend_dependency():
+    html_path = WWW / "teste-de-nivel.html"
+    py_path = WWW / "teste-de-nivel.py"
+    assert html_path.exists()
+    assert py_path.exists()
+    html = html_path.read_text(encoding="utf-8")
+    assert "https://vediums.com/teste-de-nivel" in html
+    assert "Teste de Nível Gratuito" in html
+    assert "level_test_completed" in html
+    assert "wa.me/5511911293075" in html
+    assert "A1" in html and "C1" in html
+    assert "/api/method" not in html
+    assert "stripe" not in html.lower()
+
+
 def test_public_pages_do_not_reintroduce_template_residue():
     text = read_public_text()
     forbidden = [

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teste de Nível Gratuito — Vedium</title>
+<meta name="description" content="Faça um teste rápido e gratuito para estimar seu nível inicial de idioma e falar com a Vedium sobre a melhor trilha para seu objetivo." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://vediums.com/teste-de-nivel" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Teste de Nível Gratuito — Vedium" />
+<meta property="og:description" content="Descubra seu nível inicial e receba orientação para escolher a trilha certa na Vedium." />
+<meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+<link rel="apple-touch-icon" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>
+  img[src*="logo-color-reta"] { max-height: 46px !important; width: auto !important; }
+  .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
+  .stricky-header, .stricky-header.stricked-menu { display: none !important; }
+  .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+  .page-header__title h2 { color:#fff; }
+  .vd-test { padding: 72px 0; background: #f8fafc; }
+  .vd-test-card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:28px; box-shadow:0 14px 34px rgba(15,23,42,.06); }
+  .vd-test-card h3, .vd-test-card h4 { color:#111827; }
+  .vd-test-card p, .vd-test-card label, .vd-test-card li { color:#5f6b7a; line-height:1.7; }
+  .vd-pill { display:inline-block; border-radius:999px; padding:6px 12px; background:#eaf2ff; color:#2563eb; font-size:12px; font-weight:800; margin-bottom:10px; }
+  .vd-question { border-top:1px solid #edf2f7; padding-top:22px; margin-top:22px; }
+  .vd-option { display:block; padding:10px 12px; border:1px solid #e5e7eb; border-radius:8px; margin:8px 0; cursor:pointer; }
+  .vd-option:hover { border-color:#2E6DA4; background:#f8fbff; }
+  .vd-result { display:none; margin-top:24px; padding:22px; border-radius:12px; background:#eef7ff; border:1px solid #bfdbfe; }
+  .vd-error { display:none; margin-top:16px; color:#b91c1c; font-weight:700; }
+  .vd-muted { color:#6b7280; line-height:1.8; }
+  .vd-side-list { padding-left:18px; }
+</style>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Teste de Nível Gratuito — Vedium",
+  "description":"Teste rápido para estimar o nível inicial de idioma antes da matrícula.",
+  "url":"https://vediums.com/teste-de-nivel",
+  "publisher":{"@type":"Organization","name":"Vedium","sameAs":"https://vediums.com"}
+}</script>
+</head>
+<body>
+<div class="page-wrapper">
+{% set vd_page = "cursos" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="page-header clearfix" style="background-image: linear-gradient(rgba(15,23,42,0.84), rgba(46,109,164,0.80)), url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80);">
+  <div class="container"><div class="row"><div class="col-xl-12"><div class="page-header__wrapper clearfix">
+    <div class="page-header__title"><h2>Teste de Nível</h2></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">Início</a></li><li><a href="/catalogo">Cursos</a></li><li class="active">Teste de Nível</li></ul></div>
+  </div></div></div></div>
+</section>
+
+<section class="vd-test">
+  <div class="container">
+    <div class="row" style="row-gap:28px;">
+      <div class="col-lg-8">
+        <div class="vd-test-card">
+          <span class="vd-pill">Gratuito e rápido</span>
+          <h1 style="color:#111827;margin-bottom:14px;">Descubra seu nível inicial antes de escolher a trilha</h1>
+          <p class="vd-muted">Este diagnóstico não substitui uma avaliação completa com professor, mas ajuda a orientar o primeiro atendimento. Responda às perguntas e envie o resultado para a Vedium pelo WhatsApp.</p>
+
+          <form id="level-test" novalidate>
+            <div class="vd-question">
+              <h4>1. Quando você lê um texto simples em inglês, você consegue entender:</h4>
+              <label class="vd-option"><input type="radio" name="q1" value="1"> Palavras soltas e frases muito básicas.</label>
+              <label class="vd-option"><input type="radio" name="q1" value="2"> A ideia geral de textos curtos e familiares.</label>
+              <label class="vd-option"><input type="radio" name="q1" value="3"> Textos profissionais simples, e-mails e instruções.</label>
+              <label class="vd-option"><input type="radio" name="q1" value="4"> Textos longos, artigos e nuances de opinião.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>2. Em uma conversa ao vivo, você normalmente:</h4>
+              <label class="vd-option"><input type="radio" name="q2" value="1"> Precisa de fala lenta e muita repetição.</label>
+              <label class="vd-option"><input type="radio" name="q2" value="2"> Consegue responder perguntas básicas sobre rotina.</label>
+              <label class="vd-option"><input type="radio" name="q2" value="3"> Mantém conversas sobre trabalho, estudos e planos.</label>
+              <label class="vd-option"><input type="radio" name="q2" value="4"> Argumenta, negocia e improvisa com segurança.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>3. Para falar sobre sua carreira, estudos ou objetivos, você:</h4>
+              <label class="vd-option"><input type="radio" name="q3" value="1"> Ainda monta frases muito curtas.</label>
+              <label class="vd-option"><input type="radio" name="q3" value="2"> Explica pontos simples, mas trava com detalhes.</label>
+              <label class="vd-option"><input type="radio" name="q3" value="3"> Explica experiências e resultados com alguma fluidez.</label>
+              <label class="vd-option"><input type="radio" name="q3" value="4"> Adapta tom, vocabulário e exemplos ao contexto.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>4. Em gramática e estrutura, você se sente mais confortável com:</h4>
+              <label class="vd-option"><input type="radio" name="q4" value="1"> Verbo to be, presente simples e frases básicas.</label>
+              <label class="vd-option"><input type="radio" name="q4" value="2"> Passado, futuro e comparações simples.</label>
+              <label class="vd-option"><input type="radio" name="q4" value="3"> Tempos verbais variados, condicionais e conectores.</label>
+              <label class="vd-option"><input type="radio" name="q4" value="4"> Estruturas complexas, precisão e estilo natural.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>5. Qual objetivo mais combina com você agora?</h4>
+              <label class="vd-option"><input type="radio" name="goal" value="Inglês para entrevistas"> Inglês para entrevistas.</label>
+              <label class="vd-option"><input type="radio" name="goal" value="Inglês profissional ou executivo"> Inglês profissional ou executivo.</label>
+              <label class="vd-option"><input type="radio" name="goal" value="Inglês para tecnologia"> Inglês para tecnologia.</label>
+              <label class="vd-option"><input type="radio" name="goal" value="Iorubá ou português para estrangeiros"> Iorubá ou português para estrangeiros.</label>
+            </div>
+
+            <p id="test-error" class="vd-error">Responda todas as perguntas para ver seu resultado.</p>
+            <button type="submit" class="thm-btn" style="margin-top:22px;">Ver meu resultado</button>
+          </form>
+
+          <div id="test-result" class="vd-result">
+            <h3 id="result-title">Seu resultado</h3>
+            <p id="result-copy" class="vd-muted"></p>
+            <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click'});">Enviar resultado no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="vd-test-card">
+          <h3>Como usar o resultado</h3>
+          <ul class="vd-side-list">
+            <li>Use como estimativa inicial, não como certificado.</li>
+            <li>Envie o resultado para combinarmos a melhor trilha.</li>
+            <li>Na aula diagnóstica, o professor confirma speaking, listening e objetivo.</li>
+          </ul>
+          <hr>
+          <h4>Próximo passo</h4>
+          <p class="vd-muted">Depois do teste, a Vedium pode orientar frequência, nível e plano de estudo mais adequado.</p>
+          <a href="https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20aula%20diagn%C3%B3stica%20na%20Vedium" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;">Falar com a Vedium</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "templates/includes/site_footer.html" %}
+</div>
+<script src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
+<script src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script src="/assets/vedium_core/js/cookie-consent.js"></script>
+<script>
+  (function () {
+    var form = document.getElementById('level-test');
+    var error = document.getElementById('test-error');
+    var result = document.getElementById('test-result');
+    var title = document.getElementById('result-title');
+    var copy = document.getElementById('result-copy');
+    var whats = document.getElementById('result-whatsapp');
+    var labels = {
+      A1: 'A1 - iniciante',
+      A2: 'A2 - básico',
+      B1: 'B1 - intermediário',
+      B2: 'B2 - intermediário alto',
+      C1: 'C1 - avançado'
+    };
+    function getValue(name) {
+      var item = form.querySelector('input[name="' + name + '"]:checked');
+      return item ? item.value : null;
+    }
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var values = ['q1', 'q2', 'q3', 'q4'].map(getValue);
+      var goal = getValue('goal');
+      if (values.some(function (value) { return value === null; }) || !goal) {
+        error.style.display = 'block';
+        result.style.display = 'none';
+        return;
+      }
+      error.style.display = 'none';
+      var score = values.reduce(function (sum, value) { return sum + Number(value); }, 0);
+      var level = score <= 5 ? 'A1' : score <= 8 ? 'A2' : score <= 11 ? 'B1' : score <= 14 ? 'B2' : 'C1';
+      var text = 'Resultado estimado: ' + labels[level] + '. Objetivo informado: ' + goal + '. Recomendamos confirmar esse diagnóstico em uma conversa rápida com professor.';
+      title.textContent = labels[level];
+      copy.textContent = text;
+      whats.href = 'https://wa.me/5511911293075?text=' + encodeURIComponent('Olá, fiz o teste de nível da Vedium. ' + text);
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'level_test_completed', level: level, score: score, goal: goal });
+    });
+  }());
+</script>
+</body>
+</html>
