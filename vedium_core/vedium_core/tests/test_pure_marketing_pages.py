@@ -169,9 +169,13 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "🇧🇷" in navbar and "🇺🇸" in navbar and "🇨🇳" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.js?v=" in footer
+    assert "api.whatsapp.com/send?phone=5511911293075" in footer
+    assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" in lang_js
     assert "language_selected" in lang_js
     assert "setModalOpen" in lang_js
+    assert "switchLanguage(detected" not in lang_js
+    assert "target.closest" in lang_js
 
     gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))
     raw_gtm = GTM_IMPORT.read_text(encoding="utf-8")

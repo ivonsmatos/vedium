@@ -21,7 +21,6 @@
     "zh-hans": "zh-CN"
   };
   var storageKey = "vedium_preferred_language";
-  var autoKey = "vedium_language_autodetected";
   var cookieName = "googtrans";
 
   function normalize(lang) {
@@ -39,6 +38,14 @@
     if (location.hostname.indexOf(".") > -1) {
       document.cookie = cookieName + "=" + cookieValue + ";path=/;domain=." + location.hostname.replace(/^www\./, "") + ";max-age=" + maxAge + ";SameSite=Lax";
     }
+  }
+
+  function loadGoogleTranslate() {
+    if (document.querySelector('script[src*="translate_a/element.js"]')) return;
+    var script = document.createElement("script");
+    script.src = "https://translate.google.com/translate_a/element.js?cb=vediumInitGoogleTranslate";
+    script.async = true;
+    document.head.appendChild(script);
   }
 
   function getCurrentLang() {
@@ -77,12 +84,15 @@
     setCookie(lang);
     localStorage.setItem(storageKey, lang);
     if (userSelected) {
-      localStorage.setItem(autoKey, "1");
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "language_selected", language: lang });
     }
     markActive(lang);
-    window.location.reload();
+    if (lang === "pt") {
+      window.location.reload();
+      return;
+    }
+    loadGoogleTranslate();
   }
 
   window.vediumInitGoogleTranslate = function () {
@@ -113,27 +123,29 @@
       });
     });
 
+    document.addEventListener("click", function (event) {
+      var target = event.target && event.target.closest ? event.target : event.target.parentElement;
+      var link = target && target.closest ? target.closest('a[href*="wa.me/"], a[href*="api.whatsapp.com/"]') : null;
+      if (!link) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "public_cta_click", location: link.getAttribute("data-vd-location") || "whatsapp_link", cta: "whatsapp" });
+      if (window.matchMedia("(hover: none)").matches || window.innerWidth <= 768) {
+        event.preventDefault();
+        window.location.href = link.href;
+      }
+    }, true);
+
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") setModalOpen(false);
     });
 
-    var current = getCurrentLang();
-    markActive(current);
-
-    if (!localStorage.getItem(autoKey) && !localStorage.getItem(storageKey)) {
-      var detected = normalize(navigator.language || (navigator.languages && navigator.languages[0]));
-      localStorage.setItem(autoKey, "1");
-      if (detected !== "pt") {
-        switchLanguage(detected, false);
-        return;
-      }
+    var current = localStorage.getItem(storageKey) || getCurrentLang();
+    if (!localStorage.getItem(storageKey)) {
+      current = normalize(navigator.language || (navigator.languages && navigator.languages[0]));
     }
-
-    if (!document.querySelector('script[src*="translate_a/element.js"]')) {
-      var script = document.createElement("script");
-      script.src = "https://translate.google.com/translate_a/element.js?cb=vediumInitGoogleTranslate";
-      script.async = true;
-      document.head.appendChild(script);
+    markActive(current);
+    if (localStorage.getItem(storageKey) && current !== "pt") {
+      loadGoogleTranslate();
     }
   });
 }());
