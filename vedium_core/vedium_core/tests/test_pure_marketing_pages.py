@@ -61,6 +61,13 @@ def test_public_pages_do_not_reintroduce_template_residue():
         "Kevin Martin",
         "666 888 0000",
         "[email protected]",
+        "testimonials-one",
+        "Prova Social",
+        "Ana Oliveira",
+        "Dra. Juliana Costa",
+        "pravatar.cc",
+        "Company-Logos",
+        "Who Will You Learn With?",
     ]
     for item in forbidden:
         assert item not in text
