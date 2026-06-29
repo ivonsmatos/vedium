@@ -449,7 +449,7 @@ def issue_certificate(enrollment_name):
     return {
         "certificate_id": cert.name,
         "verification_code": code,
-        "verify_url": f"/certificado/{code}",
+        "verify_url": f"/certificado?code={code}",
     }
 
 

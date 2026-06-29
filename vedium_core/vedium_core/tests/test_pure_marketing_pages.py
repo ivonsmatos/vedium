@@ -20,6 +20,7 @@ CATALOG_AUDIT = ROOT / "vedium_core" / "vedium_core" / "catalog_audit.py"
 CATALOG_AUDIT_WORKFLOW = ROOT / ".github" / "workflows" / "catalog-audit.yml"
 PUBLIC_FUNNEL = ROOT / "vedium_core" / "vedium_core" / "public_funnel.py"
 PUBLIC_E2E_WORKFLOW = ROOT / ".github" / "workflows" / "e2e-public.yml"
+API = ROOT / "vedium_core" / "vedium_core" / "api.py"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
@@ -150,6 +151,10 @@ def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
     assert "verify_certificate" in html
     assert "vedium_core.public_funnel.verify_certificate" in html
     assert "Verificar certificado" in html
+    assert "quickchart.io/qr" in html
+    assert "QR Code verificável" in html
+    assert "URLSearchParams(location.search)" in html
+    assert "?code=" in html
     assert "vendors/fontawesome/css/all.min.css" in html
     assert "vendors/icomoon-icons/style.css" in html
     assert "vedium-responsive.css" in html
@@ -171,6 +176,8 @@ def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
     assert "create_checkout" not in funnel
     assert "Stripe" not in funnel
     assert "LMS Enrollment" not in funnel
+    api = API.read_text(encoding="utf-8")
+    assert 'verify_url": f"/certificado?code={code}"' in api
 
 
 def test_public_interest_pages_create_support_tickets_without_checkout_touch():
@@ -474,6 +481,17 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "window.location.assign" not in lang_js
     assert 'var current = getLocaleFromPath() || "pt-br";' in lang_js
     assert "localeCopy" in lang_js
+    assert "editorialCopy" in lang_js
+    assert "Verify certificate" in lang_js
+    assert "Verificar certificado" in lang_js
+    assert "Vérifier le certificat" in lang_js
+    assert "Zertifikat prüfen" in lang_js
+    assert "Проверить сертификат" in lang_js
+    assert "验证证书" in lang_js
+    assert "English for job interviews with real speaking practice" in lang_js
+    assert "Inglés para entrevistas laborales con práctica real de conversación" in lang_js
+    assert "Anglais pour entretien d'embauche avec vraie pratique orale" in lang_js
+    assert "面试英语，真实口语训练" in lang_js
     assert "translateTextNodes" in lang_js
     assert "updateLocaleLinks" in lang_js
     assert "Take the free placement test" in lang_js
