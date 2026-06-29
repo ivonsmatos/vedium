@@ -432,7 +432,13 @@
 
   function localizePage(locale) {
     var meta = localeMeta[locale] || localeMeta["pt-br"];
-    document.documentElement.lang = meta.lang === "zh-CN" ? "zh-CN" : meta.lang;
+    // CRÍTICO: NÃO alterar document.documentElement.lang para um idioma
+    // diferente do conteúdo real (que é português). Fazer isso marcava a
+    // página como "inglês"/"espanhol"/etc. e disparava a TRADUÇÃO NATIVA do
+    // navegador (Chrome "sempre traduzir") sobre a página inteira — o que
+    // TRAVAVA a aba ("página sem resposta") e ainda competia com a nossa
+    // tradução de UI. O conteúdo permanece em pt-BR (correto para SEO/a11y);
+    // traduzimos apenas as strings de interface do dicionário.
     if (meta.lang !== "pt") {
       translateTextNodes(meta.lang);
       window.dataLayer = window.dataLayer || [];
