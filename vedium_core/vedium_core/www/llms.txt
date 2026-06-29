@@ -22,6 +22,10 @@
 - [Início](https://vediums.com/): apresentação da Vedium, metodologia e planos.
 - [Sobre](https://vediums.com/sobre): história, missão e proposta da escola.
 - [Como funciona](https://vediums.com/como-funciona): teste de nível, diagnóstico e aulas ao vivo em 3 passos.
+- [Aula diagnóstica](https://vediums.com/aula-diagnostica): orientação humana para confirmar nível, objetivo, frequência e plano antes da matrícula.
+- [Planos](https://vediums.com/planos): comparação de frequências de aulas ao vivo e indicação de plano por objetivo.
+- [Professores](https://vediums.com/professores): perfis públicos de professores e compromisso de não usar prova social inventada.
+- [Professor Busayo Frank Alonge](https://vediums.com/professor-busayo-frank-alonge): perfil público para aulas de iorubá, cultura e comunicação.
 - [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
 - [Contato](https://vediums.com/contato): canais de atendimento.
 - [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.

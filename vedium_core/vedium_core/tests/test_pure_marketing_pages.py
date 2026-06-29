@@ -34,6 +34,10 @@ SEO_SLUGS = [
 
 COMMERCIAL_SLUGS = [
     "como-funciona",
+    "aula-diagnostica",
+    "planos",
+    "professores",
+    "professor-busayo-frank-alonge",
     "faq",
 ]
 
@@ -128,6 +132,8 @@ def test_public_level_test_exists_without_backend_dependency():
     assert "level_test_completed" in html
     assert "level_test_plan_click" in html
     assert "level_test_catalog_click" in html
+    assert "/aula-diagnostica" in html
+    assert "/planos" in html
     assert "portuguese_foreigners" in html
     assert "Diagnóstico:" in html
     assert "Recomendação:" in html
@@ -152,6 +158,8 @@ def test_public_level_test_exists_without_backend_dependency():
     assert "level_test_completed" in english_html
     assert "level_test_plan_click" in english_html
     assert "level_test_catalog_click" in english_html
+    assert "/aula-diagnostica" in english_html
+    assert "/planos" in english_html
     assert "english_learners" in english_html
     assert "Diagnóstico:" in english_html
     assert "Recomendação:" in english_html
