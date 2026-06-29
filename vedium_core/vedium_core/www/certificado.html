@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verificar certificado — Vedium</title>
+<meta name="description" content="Verifique a autenticidade de certificados Vedium por código." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://vediums.com/certificado" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<style>.vd-section{padding:76px 0}.vd-card{max-width:720px;margin:auto;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-input{width:100%;border:1px solid #dbe4ff;border-radius:10px;padding:13px 14px;margin:10px 0}.vd-result{margin-top:16px;color:#475569;line-height:1.7}</style>
+</head>
+<body><div class="page-wrapper">
+{% include "templates/includes/site_navbar.html" %}
+<section class="vd-section"><div class="container"><div class="vd-card"><h1 style="color:#111827;">Verificar certificado</h1><p>Digite o código de verificação impresso no certificado Vedium.</p><input id="code" class="vd-input" placeholder="Código de verificação"><button id="verify" class="thm-btn">Verificar</button><div id="result" class="vd-result"></div></div></div></section>
+{% include "templates/includes/site_footer.html" %}</div>
+<script>
+document.getElementById('verify').addEventListener('click', function(){
+  var code=document.getElementById('code').value.trim();
+  var result=document.getElementById('result');
+  if(!code){result.textContent='Informe o código.';return;}
+  fetch('/api/method/vedium_core.public_funnel.verify_certificate?code='+encodeURIComponent(code), {headers:{Accept:'application/json'}})
+    .then(function(r){return r.json();})
+    .then(function(data){var msg=data.message||data;if(msg.valid){result.innerHTML='<strong>Certificado válido.</strong><br>Aluno: '+msg.student+'<br>Curso: '+msg.course+'<br>Emissão: '+msg.issue_date;}else{result.textContent='Certificado não encontrado.';}})
+    .catch(function(){result.textContent='Não foi possível verificar agora.';});
+});
+</script>
+</body></html>

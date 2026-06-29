@@ -18,6 +18,8 @@ REVIEWS_PROCESS = ROOT / "docs" / "reviews" / "VERIFIED_REVIEWS_PROCESS.md"
 REVIEWS_TEMPLATE = ROOT / "docs" / "reviews" / "verified_reviews_template.csv"
 CATALOG_AUDIT = ROOT / "vedium_core" / "vedium_core" / "catalog_audit.py"
 CATALOG_AUDIT_WORKFLOW = ROOT / ".github" / "workflows" / "catalog-audit.yml"
+PUBLIC_FUNNEL = ROOT / "vedium_core" / "vedium_core" / "public_funnel.py"
+PUBLIC_E2E_WORKFLOW = ROOT / ".github" / "workflows" / "e2e-public.yml"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
@@ -42,6 +44,14 @@ COMMERCIAL_SLUGS = [
     "planos",
     "matricula",
     "faq",
+]
+
+PUBLIC_INTENT_SLUGS = [
+    "certificado",
+    "comunidade",
+    "programa-de-indicacao",
+    "empresas",
+    "pratica-diaria",
 ]
 
 
@@ -95,12 +105,14 @@ def test_diagnostic_scheduling_is_public_and_checkout_safe():
     html = (WWW / "aula-diagnostica.html").read_text(encoding="utf-8")
     assert "Pré-agendamento" in html
     assert "diagnostic_schedule_click" in html
+    assert "diagnostic_slot_click" in html
+    assert "get_available_diagnostic_slots" in html
     assert 'data-vd-diagnostic="english"' in html
     assert 'data-vd-diagnostic="portuguese_foreigners"' in html
     assert 'data-vd-diagnostic="yoruba"' in html
     assert html.count("https://wa.me/5511911293075") >= 4
     assert "não cria reserva automática, matrícula, cobrança ou alteração de plano" in html
-    assert "/api/method" not in html
+    assert "vedium_core.public_funnel.get_available_diagnostic_slots" in html
     assert "stripe" not in html.lower()
 
 
@@ -128,6 +140,58 @@ def test_public_enrollment_intent_page_keeps_checkout_on_platform():
     assert "Stripe preservado" in html
     assert "get_context" in py
     assert "/api/method" not in html
+
+
+def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
+    html = (WWW / "certificado.html").read_text(encoding="utf-8")
+    py = (WWW / "certificado.py").read_text(encoding="utf-8")
+    funnel = PUBLIC_FUNNEL.read_text(encoding="utf-8")
+    assert "https://vediums.com/certificado" in html
+    assert "verify_certificate" in html
+    assert "vedium_core.public_funnel.verify_certificate" in html
+    assert "Verificar certificado" in html
+    assert "get_context" in py
+    assert "submit_public_intent" in funnel
+    assert "request_diagnostic_class" in funnel
+    assert "get_available_diagnostic_slots" in funnel
+    assert "verify_certificate" in funnel
+    for intent in ["lead", "diagnostic", "community", "referral", "b2b", "review"]:
+        assert f'"{intent}"' in funnel
+    assert '"doctype": "Support Ticket"' in funnel
+    assert "frappe.sendmail" in funnel
+    assert '"opened_by"' in funnel
+    assert "LMS Certificate" in funnel
+    assert "Lesson Slot" in funnel
+    assert "create_checkout" not in funnel
+    assert "Stripe" not in funnel
+    assert "LMS Enrollment" not in funnel
+
+
+def test_public_interest_pages_create_support_tickets_without_checkout_touch():
+    template = (TPL / "public_intent_page.html").read_text(encoding="utf-8")
+    assert "vedium_core.public_funnel.submit_public_intent" in template
+    assert "public_intent_submit" in template
+    assert "public_cta_click" in template
+    assert "wa.me/5511911293075" in template
+    assert "/teste-de-nivel" in template
+    assert 'https://vediums.com/{{ page_slug }}' in template
+    assert "Enviando..." in template
+    assert "create_checkout" not in template
+    assert "stripe" not in template.lower()
+
+    expectations = {
+        "comunidade": "community",
+        "programa-de-indicacao": "referral",
+        "empresas": "b2b",
+        "pratica-diaria": "lead",
+    }
+    for slug, intent in expectations.items():
+        html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
+        py = (WWW / f"{slug}.py").read_text(encoding="utf-8")
+        assert f'page_slug = "{slug}"' in html
+        assert f'page_intent = "{intent}"' in html
+        assert 'public_intent_page.html' in html
+        assert "get_context" in py
 
 
 def test_verified_reviews_process_exists_without_fake_public_reviews():
@@ -285,7 +349,7 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
     llms = (WWW / "llms.txt").read_text(encoding="utf-8")
     assert "Upper Intermediário (B2)" in llms
     assert "Upper Intermediário (B1)" not in llms
-    for slug in SEO_SLUGS + COMMERCIAL_SLUGS:
+    for slug in SEO_SLUGS + COMMERCIAL_SLUGS + PUBLIC_INTENT_SLUGS:
         assert f"https://vediums.com/{slug}" in llms
     assert "https://vediums.com/mentores" not in llms
 
@@ -324,7 +388,12 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
         encoding="utf-8"
     )
-    for slug in SEO_SLUGS + COMMERCIAL_SLUGS + ["teste-de-nivel", "teste-de-nivel-ingles"]:
+    for slug in (
+        SEO_SLUGS
+        + COMMERCIAL_SLUGS
+        + PUBLIC_INTENT_SLUGS
+        + ["teste-de-nivel", "teste-de-nivel-ingles"]
+    ):
         # seo_utils.generate_sitemap() foi removido (órfão); checar www/sitemap.py
         assert f'"loc": "/{slug}"' in sitemap_context
         assert f'"{slug}"' in hooks
@@ -338,6 +407,10 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     assert "sitemap-llm.xml" not in robots_page
     assert "User-agent: *" in robots_page
     assert '{"from_route": "/sw.js", "to_route": "sw"}' in hooks
+    e2e = PUBLIC_E2E_WORKFLOW.read_text(encoding="utf-8")
+    assert "python -m playwright install --with-deps chromium" in e2e
+    assert "VEDIUM_RUN_PUBLIC_E2E" in e2e
+    assert "test_pure_public_e2e_playwright.py" in e2e
 
 
 def test_public_language_selector_and_gtm_import_are_available():

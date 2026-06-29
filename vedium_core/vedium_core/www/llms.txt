@@ -25,6 +25,11 @@
 - [Aula diagnóstica](https://vediums.com/aula-diagnostica): orientação humana para confirmar nível, objetivo, frequência e plano antes da matrícula.
 - [Planos](https://vediums.com/planos): comparação de frequências de aulas ao vivo e indicação de plano por objetivo.
 - [Matrícula](https://vediums.com/matricula): etapa pública para escolher curso, plano e objetivo antes de seguir para login e checkout na plataforma.
+- [Verificar certificado](https://vediums.com/certificado): verificação pública de autenticidade por código de certificado.
+- [Comunidade](https://vediums.com/comunidade): lista de interesse para comunidade por idioma e nível.
+- [Programa de indicação](https://vediums.com/programa-de-indicacao): registro de interesse em indicações, com regras comerciais a publicar.
+- [Vedium para empresas](https://vediums.com/empresas): interesse B2B para diagnóstico e trilhas por equipe.
+- [Prática diária](https://vediums.com/pratica-diaria): interesse em prática de voz, shadowing e revisão diária.
 - [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
 - [Contato](https://vediums.com/contato): canais de atendimento.
 - [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.

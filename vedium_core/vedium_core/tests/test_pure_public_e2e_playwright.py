@@ -37,4 +37,13 @@ def test_public_level_test_to_diagnostic_and_plans_flow():
         page.goto(f"{base_url}/planos", wait_until="domcontentloaded")
         assert page.locator("text=Planos").first.is_visible()
         assert page.locator("a[href='/teste-de-nivel']").first.is_visible()
+
+        page.goto(f"{base_url}/matricula", wait_until="domcontentloaded")
+        assert page.locator("text=Matrícula").first.is_visible()
+        assert page.locator("#vd-platform-link").first.get_attribute("href").startswith(
+            "https://app.vediums.com/lms/courses/"
+        )
+
+        page.goto(f"{base_url}/certificado", wait_until="domcontentloaded")
+        assert page.locator("text=Verificar certificado").first.is_visible()
         browser.close()
