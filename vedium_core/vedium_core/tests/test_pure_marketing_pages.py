@@ -285,6 +285,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
     assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
     assert 'a[href="/teste-de-nivel"], a[href="/teste-de-nivel-ingles"]' in footer
+    assert "document.addEventListener('touchend', vediumGoToLevelTest" in footer
+    assert "window.location.href = link.href" in footer
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" not in lang_js

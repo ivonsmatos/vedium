@@ -93,13 +93,15 @@
 <script src="/assets/vedium_core/js/vedium-language.js?v=22bcefc-localize1"></script>
 <script src="/assets/vedium_core/js/pwa-register.js?v=static-v4"></script>
 <script>
-  document.addEventListener('click', function(event) {
+  function vediumGoToLevelTest(event) {
     var target = event.target && event.target.closest ? event.target : null;
     var link = target && target.closest('a[href="/teste-de-nivel"], a[href="/teste-de-nivel-ingles"]');
     if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    window.setTimeout(function() {
-      var targetUrl = new URL(link.href, window.location.href);
-      if (window.location.pathname !== targetUrl.pathname) window.location.href = targetUrl.href;
-    }, 120);
-  }, true);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event:'public_cta_click', location: link.getAttribute('data-vd-location') || 'level_test_link', cta:'level_test'});
+    event.preventDefault();
+    window.location.href = link.href;
+  }
+  document.addEventListener('touchend', vediumGoToLevelTest, {capture:true, passive:false});
+  document.addEventListener('click', vediumGoToLevelTest, true);
 </script>
