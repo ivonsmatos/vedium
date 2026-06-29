@@ -437,6 +437,9 @@ def test_rich_footer_matches_public_site_structure():
     assert "vd-rich-footer" in footer
     assert "--vd-footer-bg: #164f86" in footer
     assert "vd-rich-footer__language" not in footer
+    assert ".vd-rich-footer .swiper-pagination" in footer
+    assert ".vd-rich-footer .owl-dots" in footer
+    assert "display: none !important" in footer
     assert "Cursos de Idiomas" in footer
     assert "Objetivos" in footer
     assert "Vedium online para você" in footer
