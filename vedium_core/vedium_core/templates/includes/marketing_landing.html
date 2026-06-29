@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ landing.lang or 'pt-BR' }}">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +7,9 @@
 <meta name="description" content="{{ landing.meta_description }}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="{{ landing.url }}" />
+{%- for alt in landing.alternates %}
+<link rel="alternate" hreflang="{{ alt.hreflang }}" href="{{ alt.href }}" />
+{%- endfor %}
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ landing.title }}" />
 <meta property="og:description" content="{{ landing.meta_description }}" />
@@ -51,7 +54,7 @@
   "url": {{ landing.url | tojson }},
   "provider": {"@type": "Organization", "name": "Vedium", "url": "https://vediums.com"},
   "educationalLevel": {{ landing.level | tojson }},
-  "inLanguage": "pt-BR"
+  "inLanguage": {{ (landing.lang or "pt-BR") | tojson }}
 }
 </script>
 </head>
@@ -60,10 +63,48 @@
 {% set vd_page = "cursos" %}
 {% include "templates/includes/site_navbar.html" %}
 {% set landing_test_url = "/teste-de-nivel-ingles" if landing.slug.startswith("ingles-") else "/teste-de-nivel" %}
+{%- set vd_lang = landing.lang or "pt-BR" %}
+{%- set vd_i18n = {
+  "pt-BR": {
+    "home": "Início", "courses": "Cursos",
+    "cta_test": "Fazer teste de nível grátis", "cta_whats": "Falar no WhatsApp",
+    "summary": "Resumo da trilha", "for_whom": "Para quem", "level": "Nível",
+    "frequency": "Frequência", "duration": "Duração",
+    "need_diag": "Diagnóstico da necessidade", "pain_point": "Ponto crítico",
+    "track_content": "Conteúdo da trilha", "what_learn": "O que você vai aprender",
+    "method": "Método Vedium", "how_works": "Como funciona na prática",
+    "step1_t": "Teste e diagnóstico", "step1_p": "Você faz o teste gratuito, informa seu objetivo e recebe uma primeira estimativa de nível antes de falar com a equipe.",
+    "step2_t": "Plano de estudo", "step2_p": "A Vedium recomenda trilha, frequência e prioridade de conteúdo conforme nível, prazo e objetivo de campanha ou carreira.",
+    "step3_t": "Aulas ao vivo", "step3_p": "As aulas combinam prática oral, correção, tarefas e acompanhamento, sempre com professor e foco em evolução real.",
+    "format": "Formato", "what_expect": "O que esperar das aulas",
+    "format_p": "A proposta é clara: curso livre online, aulas ao vivo, acompanhamento humano e plano orientado por objetivo. Não é conteúdo gravado genérico.",
+    "common_q": "Dúvidas comuns", "faq": "Perguntas frequentes",
+    "no_commit": "Comece sem compromisso", "find_level": "Descubra seu nível antes de escolher o plano",
+    "find_level_p": "O teste gratuito ajuda a orientar a conversa com a Vedium e evita começar por uma trilha desalinhada ao seu momento."
+  },
+  "en": {
+    "home": "Home", "courses": "Courses",
+    "cta_test": "Take the free placement test", "cta_whats": "Chat on WhatsApp",
+    "summary": "Program summary", "for_whom": "Who it's for", "level": "Level",
+    "frequency": "Frequency", "duration": "Duration",
+    "need_diag": "Needs assessment", "pain_point": "Key challenge",
+    "track_content": "Program content", "what_learn": "What you'll learn",
+    "method": "The Vedium method", "how_works": "How it works in practice",
+    "step1_t": "Test & diagnosis", "step1_p": "You take the free test, tell us your goal, and get a first estimate of your level before talking to the team.",
+    "step2_t": "Study plan", "step2_p": "Vedium recommends a path, frequency and content priorities based on your level, timeline and goal.",
+    "step3_t": "Live classes", "step3_p": "Classes combine speaking practice, correction, tasks and follow-up — always with a teacher, focused on real progress.",
+    "format": "Format", "what_expect": "What to expect from classes",
+    "format_p": "The approach is clear: an online course, live classes, human guidance and a goal-driven plan. Not generic recorded content.",
+    "common_q": "Common questions", "faq": "Frequently asked questions",
+    "no_commit": "Start with no commitment", "find_level": "Find your level before choosing a plan",
+    "find_level_p": "The free test helps guide your conversation with Vedium and avoids starting on a path that doesn't fit your moment."
+  }
+} %}
+{%- set t = vd_i18n.get(vd_lang, vd_i18n["pt-BR"]) %}
 <section class="page-header clearfix" style="background-image:linear-gradient(rgba(15,23,42,.84),rgba(46,109,164,.80)),url({{ landing.hero_image }});">
   <div class="container"><div class="page-header__wrapper clearfix">
     <div class="page-header__title"><h2>{{ landing.short_title }}</h2></div>
-    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">Início</a></li><li><a href="/catalogo">Cursos</a></li><li class="active">{{ landing.short_title }}</li></ul></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">{{ t.home }}</a></li><li><a href="/catalogo">{{ t.courses }}</a></li><li class="active">{{ landing.short_title }}</li></ul></div>
   </div></div>
 </section>
 
@@ -77,18 +118,18 @@
         {% for outcome in landing.outcomes %}{% if loop.index <= 3 %}<li>{{ outcome }}</li>{% endif %}{% endfor %}
       </ul>
       <div class="vd-cta-row">
-        <a href="{{ landing_test_url }}" class="thm-btn">Fazer teste de nível grátis</a>
-        <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_whatsapp_click',landing:'{{ landing.slug }}'});">Falar no WhatsApp</a>
+        <a href="{{ landing_test_url }}" class="thm-btn">{{ t.cta_test }}</a>
+        <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_whatsapp_click',landing:'{{ landing.slug }}'});">{{ t.cta_whats }}</a>
       </div>
     </div>
     <div class="col-lg-5">
       <div class="vd-card">
-        <h3>Resumo da trilha</h3>
+        <h3>{{ t.summary }}</h3>
         <p>{{ landing.summary }}</p>
-        <div class="vd-stat"><strong>Para quem</strong><span>{{ landing.audience }}</span></div>
-        <div class="vd-stat"><strong>Nível</strong><span>{{ landing.level }}</span></div>
-        <div class="vd-stat"><strong>Frequência</strong><span>{{ landing.frequency }}</span></div>
-        <div class="vd-stat" style="border-bottom:0;"><strong>Duração</strong><span>{{ landing.duration }}</span></div>
+        <div class="vd-stat"><strong>{{ t.for_whom }}</strong><span>{{ landing.audience }}</span></div>
+        <div class="vd-stat"><strong>{{ t.level }}</strong><span>{{ landing.level }}</span></div>
+        <div class="vd-stat"><strong>{{ t.frequency }}</strong><span>{{ landing.frequency }}</span></div>
+        <div class="vd-stat" style="border-bottom:0;"><strong>{{ t.duration }}</strong><span>{{ landing.duration }}</span></div>
       </div>
     </div>
   </div></div>
@@ -97,14 +138,14 @@
 <section class="vd-landing-section vd-landing-alt">
   <div class="container"><div class="row" style="row-gap:28px;">
     <div class="col-lg-5">
-      <span class="vd-pill">Diagnóstico da necessidade</span>
+      <span class="vd-pill">{{ t.need_diag }}</span>
       <h2 style="color:#111827;">{{ landing.pain_title }}</h2>
       <p class="vd-muted">{{ landing.pain_intro }}</p>
     </div>
     <div class="col-lg-7">
       <div class="row" style="row-gap:18px;">
         {% for pain in landing.pain_points %}
-        <div class="col-md-6"><div class="vd-card"><h4>Ponto crítico</h4><p>{{ pain }}</p></div></div>
+        <div class="col-md-6"><div class="vd-card"><h4>{{ t.pain_point }}</h4><p>{{ pain }}</p></div></div>
         {% endfor %}
       </div>
     </div>
@@ -113,7 +154,7 @@
 
 <section class="vd-landing-section">
   <div class="container">
-    <div class="section-title text-center"><span class="section-title__tagline">Conteúdo da trilha</span><h2 class="section-title__title">O que você vai aprender</h2></div>
+    <div class="section-title text-center"><span class="section-title__tagline">{{ t.track_content }}</span><h2 class="section-title__title">{{ t.what_learn }}</h2></div>
     <div class="row" style="row-gap:24px;margin-top:34px;">
       {% for module in landing.modules %}
       <div class="col-lg-4 col-md-6"><div class="vd-card"><span class="vd-pill">{{ loop.index }}</span><h3>{{ module.title }}</h3><p>{{ module.text }}</p></div></div>
@@ -124,25 +165,25 @@
 
 <section class="vd-landing-section vd-landing-alt">
   <div class="container">
-    <div class="section-title text-center"><span class="section-title__tagline">Método Vedium</span><h2 class="section-title__title">Como funciona na prática</h2></div>
+    <div class="section-title text-center"><span class="section-title__tagline">{{ t.method }}</span><h2 class="section-title__title">{{ t.how_works }}</h2></div>
     <div class="row" style="row-gap:24px;margin-top:34px;">
-      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">1</span><h3>Teste e diagnóstico</h3><p>Você faz o teste gratuito, informa seu objetivo e recebe uma primeira estimativa de nível antes de falar com a equipe.</p></div></div>
-      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">2</span><h3>Plano de estudo</h3><p>A Vedium recomenda trilha, frequência e prioridade de conteúdo conforme nível, prazo e objetivo de campanha ou carreira.</p></div></div>
-      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">3</span><h3>Aulas ao vivo</h3><p>As aulas combinam prática oral, correção, tarefas e acompanhamento, sempre com professor e foco em evolução real.</p></div></div>
+      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">1</span><h3>{{ t.step1_t }}</h3><p>{{ t.step1_p }}</p></div></div>
+      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">2</span><h3>{{ t.step2_t }}</h3><p>{{ t.step2_p }}</p></div></div>
+      <div class="col-md-4"><div class="vd-card"><span class="vd-pill">3</span><h3>{{ t.step3_t }}</h3><p>{{ t.step3_p }}</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="vd-landing-section">
   <div class="container"><div class="row" style="row-gap:28px;">
-    <div class="col-lg-5"><span class="vd-pill">Formato</span><h2 style="color:#111827;">O que esperar das aulas</h2><p class="vd-muted">A proposta é clara: curso livre online, aulas ao vivo, acompanhamento humano e plano orientado por objetivo. Não é conteúdo gravado genérico.</p></div>
+    <div class="col-lg-5"><span class="vd-pill">{{ t.format }}</span><h2 style="color:#111827;">{{ t.what_expect }}</h2><p class="vd-muted">{{ t.format_p }}</p></div>
     <div class="col-lg-7"><div class="vd-card"><ul style="padding-left:18px;margin:0;">{% for item in landing.format_items %}<li>{{ item }}</li>{% endfor %}</ul></div></div>
   </div></div>
 </section>
 
 <section class="vd-landing-section vd-landing-alt">
   <div class="container" style="max-width:920px;">
-    <div class="section-title text-center"><span class="section-title__tagline">Dúvidas comuns</span><h2 class="section-title__title">Perguntas frequentes</h2></div>
+    <div class="section-title text-center"><span class="section-title__tagline">{{ t.common_q }}</span><h2 class="section-title__title">{{ t.faq }}</h2></div>
     {% for item in landing.faqs %}
     <div class="vd-faq-item"><h3>{{ item.q }}</h3><p>{{ item.a }}</p></div>
     {% endfor %}
@@ -151,12 +192,12 @@
 
 <section class="vd-landing-section">
   <div class="container"><div class="vd-card" style="text-align:center;">
-    <span class="vd-pill">Comece sem compromisso</span>
-    <h2 style="color:#111827;">Descubra seu nível antes de escolher o plano</h2>
-    <p class="vd-muted" style="max-width:760px;margin:12px auto 22px;">O teste gratuito ajuda a orientar a conversa com a Vedium e evita começar por uma trilha desalinhada ao seu momento.</p>
+    <span class="vd-pill">{{ t.no_commit }}</span>
+    <h2 style="color:#111827;">{{ t.find_level }}</h2>
+    <p class="vd-muted" style="max-width:760px;margin:12px auto 22px;">{{ t.find_level_p }}</p>
     <div class="vd-cta-row" style="justify-content:center;">
-      <a href="{{ landing_test_url }}" class="thm-btn">Fazer teste de nível grátis</a>
-      <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_bottom_whatsapp_click',landing:'{{ landing.slug }}'});">Falar no WhatsApp</a>
+      <a href="{{ landing_test_url }}" class="thm-btn">{{ t.cta_test }}</a>
+      <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_bottom_whatsapp_click',landing:'{{ landing.slug }}'});">{{ t.cta_whats }}</a>
     </div>
   </div></div>
 </section>

@@ -156,6 +156,7 @@ LANDINGS = {
     "curso-de-ioruba-online": {
         "title": "Curso de Iorubá Online — Vedium",
         "short_title": "Curso de Iorubá Online",
+        "alt": {"pt-BR": "curso-de-ioruba-online", "en": "learn-yoruba-online"},
         "meta_description": "Curso de iorubá online com aulas ao vivo, pronúncia, vocabulário, cultura e trilha estruturada para iniciantes.",
         "tagline": "Idioma e cultura",
         "h1": "Aprenda iorubá online com estrutura, pronúncia e contexto cultural",
@@ -254,6 +255,7 @@ LANDINGS = {
     "portugues-para-estrangeiros": {
         "title": "Português para Estrangeiros — Vedium",
         "short_title": "Português para Estrangeiros",
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil"},
         "meta_description": "Português para estrangeiros com aulas ao vivo para morar, trabalhar, estudar e se comunicar melhor no Brasil.",
         "tagline": "Portuguese for foreigners",
         "h1": "Português para estrangeiros com foco em vida real no Brasil",
@@ -545,7 +547,133 @@ LANDINGS = {
         ],
         "whatsapp_text": "Olá, quero preparatório Celpe-Bras na Vedium.",
     },
+
+    # =========================================================================
+    # English landing pages (real, server-rendered) for international SEO.
+    # Audiences for Yoruba (diaspora/heritage) and Portuguese-for-foreigners
+    # are English-speaking, so these are native English pages — not auto-swaps.
+    # =========================================================================
+    "learn-yoruba-online": {
+        "lang": "en",
+        "alt": {"pt-BR": "curso-de-ioruba-online", "en": "learn-yoruba-online"},
+        "title": "Learn Yoruba Online — Live Classes with Real Teachers | Vedium",
+        "short_title": "Learn Yoruba Online",
+        "meta_description": "Learn Yoruba online with live classes: pronunciation, tones, greetings, vocabulary and cultural context. A structured path for beginners and heritage learners.",
+        "tagline": "Language and culture",
+        "h1": "Learn Yoruba online with structure, pronunciation and real cultural context",
+        "lead": "Vedium treats Yoruba as a journey of language, culture and belonging. Live classes combine speaking practice, essential vocabulary and respectful cultural context — guided by real teachers, at your own pace.",
+        "hero_image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80",
+        "audience": "Heritage learners, the African diaspora, students of African culture, and anyone who wants to start Yoruba from scratch or reconnect with their roots.",
+        "level": "Beginner to intermediate",
+        "frequency": "1 or 2 live classes per week",
+        "duration": "Progressive modules",
+        "summary": "You learn sounds, tones, greetings, everyday vocabulary, essential phrases and cultural foundations — so you can study with respect and continuity.",
+        "pain_title": "Yoruba needs listening, tone and guidance",
+        "pain_intro": "Studying alone often leaves doubts about pronunciation and meaning. Live classes help you correct sounds, understand context and practice with confidence.",
+        "pain_points": [
+            "Hard to find an organized, trustworthy learning path.",
+            "Uncertainty with tones, accents and pronunciation.",
+            "Confusion between vocabulary, culture and real-world usage.",
+            "No guidance to progress beyond word lists.",
+        ],
+        "outcomes": [
+            "Pronounce greetings and first words more accurately.",
+            "Build simple sentences for introductions and daily life.",
+            "Understand vocabulary within its cultural context.",
+            "Create a solid base to move on to intermediate modules.",
+        ],
+        "modules": [
+            {"title": "Sounds and tones", "text": "Introduction to pronunciation, listening and key tonal differences."},
+            {"title": "Greetings", "text": "Greetings, introductions and expressions of respect."},
+            {"title": "Essential vocabulary", "text": "Family, body, home, routine, numbers and common objects."},
+            {"title": "First sentences", "text": "Structures to ask, answer and form simple sentences."},
+            {"title": "Culture in context", "text": "Social use of the language, meaning and cultural references handled with care."},
+            {"title": "Speaking practice", "text": "Guided repetition, short dialogues and teacher feedback."},
+        ],
+        "format_items": [
+            "Live online classes with pronunciation practice.",
+            "A gradual path for absolute beginners.",
+            "Cultural context — no religious or sensationalist claims.",
+            "Guidance to continue through progressive modules.",
+        ],
+        "faqs": [
+            {"q": "Do I need any prior knowledge?", "a": "No. The path can start from zero, focused on pronunciation and first vocabulary."},
+            {"q": "Is the course religious?", "a": "It is educational and linguistic, with cultural context treated respectfully."},
+            {"q": "Is there a certificate?", "a": "Yes, upon completion and according to the course requirements."},
+            {"q": "How do I know where to start?", "a": "You can talk to our team and take a diagnostic assessment before enrolling."},
+        ],
+        "whatsapp_text": "Hello, I'd like to learn Yoruba online with Vedium.",
+    },
+    "learn-portuguese-brazil": {
+        "lang": "en",
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil"},
+        "title": "Learn Brazilian Portuguese Online — Classes for Foreigners | Vedium",
+        "short_title": "Brazilian Portuguese for Foreigners",
+        "meta_description": "Learn Brazilian Portuguese online with live classes for foreigners: real conversation, pronunciation, everyday vocabulary and culture to live, work and study in Brazil.",
+        "tagline": "Portuguese for foreigners",
+        "h1": "Brazilian Portuguese for foreigners, focused on real life in Brazil",
+        "lead": "Live classes for foreigners who need to communicate in Portuguese at work, in their studies, with services, while traveling, or adapting to life in Brazil. English support is available whenever you need it.",
+        "hero_image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1920&q=80",
+        "audience": "Foreigners in Brazil, expats, international students, remote workers, and anyone who interacts with Brazilians.",
+        "level": "A1 to B2",
+        "frequency": "1 or 2 live classes per week",
+        "duration": "Plan built around your adaptation goal",
+        "summary": "You practice real conversations, pronunciation, listening, Brazilian vocabulary and everyday situations.",
+        "pain_title": "Portuguese to live, not just to memorize",
+        "pain_intro": "Brazilian Portuguese has a rhythm, expressions and cultural contexts that never show up in vocabulary lists.",
+        "pain_points": [
+            "Struggling to understand Brazilians speaking quickly.",
+            "Feeling insecure at banks, appointments, meetings or services.",
+            "Confusion with gender, verbs, prepositions and pronunciation.",
+            "Lacking vocabulary for work and daily life.",
+        ],
+        "outcomes": [
+            "Hold real conversations with more independence.",
+            "Understand common instructions, questions and answers.",
+            "Improve pronunciation and speaking rhythm.",
+            "Gain vocabulary for work, housing and daily routine.",
+        ],
+        "modules": [
+            {"title": "About me", "text": "Introductions, nationality, profession, family and interests."},
+            {"title": "Daily life in Brazil", "text": "Shopping, transport, food, schedules and services."},
+            {"title": "Portuguese at work", "text": "Meetings, messages, short presentations and check-ins."},
+            {"title": "Practical grammar", "text": "Verbs, gender, number, questions and useful phrases."},
+            {"title": "Culture and expressions", "text": "Natural usage, informality and Brazilian context."},
+            {"title": "Conversation", "text": "Role-plays and real-time speaking correction."},
+        ],
+        "format_items": [
+            "Live online classes in Portuguese with gradual support.",
+            "English explanations whenever needed.",
+            "A path by goal: life in Brazil, work, or exam prep.",
+            "Optional Celpe-Bras preparation in a dedicated track.",
+        ],
+        "faqs": [
+            {"q": "Can the classes include English support?", "a": "Yes. The teacher can use English support when needed, while progressively increasing Portuguese practice."},
+            {"q": "Is it Brazilian Portuguese?", "a": "Yes. The focus is Portuguese as it is used in Brazil."},
+            {"q": "Can I prepare for work situations?", "a": "Yes. We can include meetings, e-mails, presentations and daily professional vocabulary."},
+            {"q": "Do I need a placement test?", "a": "The free test helps us estimate your level before recommending a path."},
+        ],
+        "whatsapp_text": "Hello, I want to learn Brazilian Portuguese for foreigners with Vedium.",
+    },
 }
+
+
+# Prefixo de URL por idioma (pt-BR é a raiz; demais idiomas ganham /<lang>/).
+LANG_URL_PREFIX = {
+    "pt-BR": "",
+    "en": "en/",
+}
+
+# Código hreflang correspondente a cada idioma do conteúdo.
+LANG_HREFLANG = {
+    "pt-BR": "pt-br",
+    "en": "en",
+}
+
+
+def _landing_url(slug, lang):
+    prefix = LANG_URL_PREFIX.get(lang, "")
+    return f"{BASE_URL}/{prefix}{slug}"
 
 
 def apply_landing_context(context, slug):
@@ -557,11 +685,33 @@ def apply_landing_context(context, slug):
 
 def get_marketing_landing(slug):
     landing = dict(LANDINGS[slug])
+    lang = landing.get("lang", "pt-BR")
     landing["slug"] = slug
-    landing["url"] = f"{BASE_URL}/{slug}"
+    landing["lang"] = lang
+    landing["lang_code"] = LANG_HREFLANG.get(lang, "pt-br")
+    landing["url"] = _landing_url(slug, lang)
     landing["whatsapp_url"] = (
         f"https://wa.me/{WHATSAPP_PHONE}?text={quote(landing['whatsapp_text'])}"
     )
+
+    # Versões alternativas em outros idiomas (hreflang). "alt" mapeia idioma -> slug.
+    # Inclui a própria página + x-default (sempre o pt-BR quando existir).
+    alt = landing.get("alt")
+    alternates = []
+    if alt:
+        for alt_lang, alt_slug in alt.items():
+            alternates.append({
+                "hreflang": LANG_HREFLANG.get(alt_lang, alt_lang),
+                "href": _landing_url(alt_slug, alt_lang),
+            })
+        x_default_slug = alt.get("pt-BR") or alt.get("en")
+        if x_default_slug:
+            x_default_lang = "pt-BR" if "pt-BR" in alt else "en"
+            alternates.append({
+                "hreflang": "x-default",
+                "href": _landing_url(x_default_slug, x_default_lang),
+            })
+    landing["alternates"] = alternates
     return landing
 
 

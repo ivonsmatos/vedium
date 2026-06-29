@@ -45,6 +45,9 @@ STATIC_URLS = [
     {"loc": "/portugues-para-estrangeiros", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/portugues-para-executivos", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/preparatorio-celpe-bras", "priority": "0.7", "changefreq": "monthly"},
+    # Páginas em inglês (SEO internacional)
+    {"loc": "/en/learn-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/en/learn-portuguese-brazil", "priority": "0.7", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):
