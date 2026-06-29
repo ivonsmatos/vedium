@@ -248,9 +248,9 @@
                                 <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>/mês</span>{% endif %}</h2>
                                 <div class="course-details__price-btn">
                                     {% if is_enrolled %}
-                                    <a href="{{ lms_url }}" class="thm-btn">Acessar curso</a>
+                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">Acessar curso</a>
                                     {% else %}
-                                    <a href="{{ lms_url }}" class="thm-btn">Matricular agora</a>
+                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',location:'course_detail'});">Matricular agora</a>
                                     {% endif %}
                                 </div>
                             </div>

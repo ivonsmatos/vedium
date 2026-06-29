@@ -305,6 +305,94 @@
         "firingTriggerId": [
           "21"
         ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "14",
+        "name": "GA4 - Event - Enrollment Intent Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','begin_checkout',{\n  checkout_step:'public_enrollment_intent',\n  item_name:'{{DLV - course}}',\n  plan:'{{DLV - plan}}',\n  goal:'{{DLV - goal}}',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "22"
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "15",
+        "name": "GA4 - Event - Enrollment WhatsApp Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','contact',{\n  contact_method:'whatsapp',\n  lead_type:'enrollment_help',\n  item_name:'{{DLV - course}}',\n  plan:'{{DLV - plan}}',\n  goal:'{{DLV - goal}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "23"
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "16",
+        "name": "GA4 - Event - Course Enrollment Intent Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','begin_checkout',{\n  checkout_step:'course_detail_intent',\n  item_name:'{{DLV - course}}',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "24"
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "17",
+        "name": "GA4 - Event - Course Platform Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','select_item',{\n  item_name:'{{DLV - course}}',\n  item_list_name:'course_detail_platform',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "25"
+        ]
       }
     ],
     "trigger": [
@@ -595,6 +683,102 @@
             ]
           }
         ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "22",
+        "name": "CE - enrollment_intent_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "enrollment_intent_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "23",
+        "name": "CE - enrollment_whatsapp_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "enrollment_whatsapp_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "24",
+        "name": "CE - course_enrollment_intent_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "course_enrollment_intent_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "25",
+        "name": "CE - course_platform_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "course_platform_click"
+              }
+            ]
+          }
+        ]
       }
     ],
     "variable": [
@@ -856,6 +1040,44 @@
             "type": "TEMPLATE",
             "key": "name",
             "value": "plan"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "15",
+        "name": "DLV - course",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "course"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "16",
+        "name": "DLV - checkout_step",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "checkout_step"
           }
         ]
       }

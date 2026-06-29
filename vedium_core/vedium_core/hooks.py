@@ -29,6 +29,7 @@ PUBLIC_LANGUAGE_ROUTES = (
     "como-funciona",
     "aula-diagnostica",
     "planos",
+    "matricula",
     "faq",
     "teste-de-nivel",
     "teste-de-nivel-ingles",

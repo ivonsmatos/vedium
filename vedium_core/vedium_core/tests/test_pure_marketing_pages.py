@@ -40,6 +40,7 @@ COMMERCIAL_SLUGS = [
     "como-funciona",
     "aula-diagnostica",
     "planos",
+    "matricula",
     "faq",
 ]
 
@@ -110,8 +111,22 @@ def test_public_plan_selection_tracks_funnel_without_checkout_mutation():
     assert "Escolher plano leve" in html
     assert "Escolher plano recomendado" in html
     assert "Escolher plano intensivo" in html
-    assert "https://app.vediums.com/lms/courses" in html
+    assert "/matricula" in html
     assert html.count("https://wa.me/5511911293075") >= 4
+    assert "/api/method" not in html
+
+
+def test_public_enrollment_intent_page_keeps_checkout_on_platform():
+    html = (WWW / "matricula.html").read_text(encoding="utf-8")
+    py = (WWW / "matricula.py").read_text(encoding="utf-8")
+    assert "https://vediums.com/matricula" in html
+    assert "Continuar na plataforma" in html
+    assert "https://app.vediums.com/lms/courses/" in html
+    assert "source=public_funnel" in html
+    assert "enrollment_intent_click" in html
+    assert "enrollment_whatsapp_click" in html
+    assert "Stripe preservado" in html
+    assert "get_context" in py
     assert "/api/method" not in html
 
 
@@ -391,6 +406,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "Diagnosestunde" in lang_js
     assert "诊断课" in lang_js
     assert "Choose recommended plan" in lang_js
+    assert "Continue on the platform" in lang_js
+    assert "Configura tu intención de matrícula" in lang_js
+    assert "Zur Anmeldung" in lang_js
     assert 'prefix: "/pt-br/"' in lang_js
     assert 'prefix: "/es-ar/"' in lang_js
     assert 'prefix: "/de/"' in lang_js
@@ -445,6 +463,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "GA4 - Event - Diagnostic Schedule Click" in names
     assert "GA4 - Event - Plan Select Click" in names
     assert "GA4 - Event - Plan Platform Click" in names
+    assert "GA4 - Event - Enrollment Intent Click" in names
+    assert "GA4 - Event - Course Enrollment Intent Click" in names
     assert "CE - public_cta_click" in triggers
     assert "CE - language_selected" in triggers
     assert "CE - level_test_plan_click" in triggers
@@ -452,3 +472,5 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "CE - diagnostic_schedule_click" in triggers
     assert "CE - plan_select_click" in triggers
     assert "CE - plan_platform_click" in triggers
+    assert "CE - enrollment_intent_click" in triggers
+    assert "CE - course_enrollment_intent_click" in triggers

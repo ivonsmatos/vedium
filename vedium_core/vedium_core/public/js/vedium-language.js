@@ -93,7 +93,22 @@
       "Ver catálogo": "View catalog",
       "Quer uma recomendação de plano?": "Want a plan recommendation?",
       "Matrícula na plataforma": "Enrollment on the platform",
-      "O que acontece depois": "What happens next"
+      "O que acontece depois": "What happens next",
+      "Matrícula": "Enrollment",
+      "Último passo público": "Last public step",
+      "Escolha a trilha antes de entrar na plataforma": "Choose your path before entering the platform",
+      "Monte sua intenção de matrícula": "Set up your enrollment intent",
+      "Curso ou trilha": "Course or path",
+      "Plano desejado": "Desired plan",
+      "Objetivo principal": "Main goal",
+      "Continuar na plataforma": "Continue on the platform",
+      "Tirar dúvida no WhatsApp": "Ask on WhatsApp",
+      "Por que o checkout fica na plataforma": "Why checkout stays on the platform",
+      "Login correto": "Correct login",
+      "Stripe preservado": "Stripe preserved",
+      "Acesso ao curso": "Course access",
+      "Escolher curso e seguir": "Choose course and continue",
+      "Ir para matrícula": "Go to enrollment"
     },
     es: {
       "Início": "Inicio",
@@ -156,7 +171,19 @@
       "Escolher plano intensivo": "Elegir plan intensivo",
       "Ir para a plataforma": "Ir a la plataforma",
       "Ver catálogo": "Ver catálogo",
-      "Quer uma recomendação de plano?": "¿Quieres una recomendación de plan?"
+      "Quer uma recomendação de plano?": "¿Quieres una recomendación de plan?",
+      "Matrícula": "Matrícula",
+      "Último passo público": "Último paso público",
+      "Escolha a trilha antes de entrar na plataforma": "Elige la ruta antes de entrar a la plataforma",
+      "Monte sua intenção de matrícula": "Configura tu intención de matrícula",
+      "Curso ou trilha": "Curso o ruta",
+      "Plano desejado": "Plan deseado",
+      "Objetivo principal": "Objetivo principal",
+      "Continuar na plataforma": "Continuar en la plataforma",
+      "Tirar dúvida no WhatsApp": "Preguntar por WhatsApp",
+      "Por que o checkout fica na plataforma": "Por qué el checkout queda en la plataforma",
+      "Escolher curso e seguir": "Elegir curso y continuar",
+      "Ir para matrícula": "Ir a matrícula"
     },
     fr: {
       "Início": "Accueil",
@@ -192,7 +219,18 @@
       "Escolher plano recomendado": "Choisir la formule recommandée",
       "Escolher plano intensivo": "Choisir la formule intensive",
       "Ir para a plataforma": "Aller à la plateforme",
-      "Ver catálogo": "Voir le catalogue"
+      "Ver catálogo": "Voir le catalogue",
+      "Matrícula": "Inscription",
+      "Último passo público": "Dernière étape publique",
+      "Escolha a trilha antes de entrar na plataforma": "Choisissez le parcours avant d'entrer sur la plateforme",
+      "Monte sua intenção de matrícula": "Préparez votre intention d'inscription",
+      "Curso ou trilha": "Cours ou parcours",
+      "Plano desejado": "Formule souhaitée",
+      "Objetivo principal": "Objectif principal",
+      "Continuar na plataforma": "Continuer sur la plateforme",
+      "Tirar dúvida no WhatsApp": "Poser une question sur WhatsApp",
+      "Escolher curso e seguir": "Choisir le cours et continuer",
+      "Ir para matrícula": "Aller à l'inscription"
     },
     de: {
       "Início": "Start",
@@ -228,7 +266,18 @@
       "Escolher plano recomendado": "Empfohlenen Plan wählen",
       "Escolher plano intensivo": "Intensivplan wählen",
       "Ir para a plataforma": "Zur Plattform",
-      "Ver catálogo": "Katalog ansehen"
+      "Ver catálogo": "Katalog ansehen",
+      "Matrícula": "Anmeldung",
+      "Último passo público": "Letzter öffentlicher Schritt",
+      "Escolha a trilha antes de entrar na plataforma": "Wählen Sie den Lernpfad vor dem Plattformzugang",
+      "Monte sua intenção de matrícula": "Bereiten Sie Ihre Anmeldung vor",
+      "Curso ou trilha": "Kurs oder Lernpfad",
+      "Plano desejado": "Gewünschter Plan",
+      "Objetivo principal": "Hauptziel",
+      "Continuar na plataforma": "Auf der Plattform fortfahren",
+      "Tirar dúvida no WhatsApp": "Frage per WhatsApp stellen",
+      "Escolher curso e seguir": "Kurs wählen und fortfahren",
+      "Ir para matrícula": "Zur Anmeldung"
     },
     ru: {
       "Início": "Главная",
@@ -263,7 +312,18 @@
       "Escolher plano recomendado": "Выбрать рекомендуемый план",
       "Escolher plano intensivo": "Выбрать интенсивный план",
       "Ir para a plataforma": "Перейти на платформу",
-      "Ver catálogo": "Смотреть каталог"
+      "Ver catálogo": "Смотреть каталог",
+      "Matrícula": "Зачисление",
+      "Último passo público": "Последний публичный шаг",
+      "Escolha a trilha antes de entrar na plataforma": "Выберите путь перед входом на платформу",
+      "Monte sua intenção de matrícula": "Сформируйте намерение зачисления",
+      "Curso ou trilha": "Курс или путь",
+      "Plano desejado": "Желаемый план",
+      "Objetivo principal": "Главная цель",
+      "Continuar na plataforma": "Продолжить на платформе",
+      "Tirar dúvida no WhatsApp": "Задать вопрос в WhatsApp",
+      "Escolher curso e seguir": "Выбрать курс и продолжить",
+      "Ir para matrícula": "Перейти к зачислению"
     },
     "zh-CN": {
       "Início": "首页",
@@ -298,7 +358,18 @@
       "Escolher plano recomendado": "选择推荐计划",
       "Escolher plano intensivo": "选择强化计划",
       "Ir para a plataforma": "前往平台",
-      "Ver catálogo": "查看课程目录"
+      "Ver catálogo": "查看课程目录",
+      "Matrícula": "报名",
+      "Último passo público": "最后一个公开步骤",
+      "Escolha a trilha antes de entrar na plataforma": "进入平台前选择学习路径",
+      "Monte sua intenção de matrícula": "设置你的报名意向",
+      "Curso ou trilha": "课程或路径",
+      "Plano desejado": "期望计划",
+      "Objetivo principal": "主要目标",
+      "Continuar na plataforma": "继续前往平台",
+      "Tirar dúvida no WhatsApp": "通过 WhatsApp 咨询",
+      "Escolher curso e seguir": "选择课程并继续",
+      "Ir para matrícula": "前往报名"
     }
   };
 

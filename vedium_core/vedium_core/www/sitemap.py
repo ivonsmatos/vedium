@@ -16,6 +16,7 @@ STATIC_URLS = [
     {"loc": "/como-funciona", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/planos", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/matricula", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/faq", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/teste-de-nivel", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/teste-de-nivel-ingles", "priority": "0.8", "changefreq": "monthly"},

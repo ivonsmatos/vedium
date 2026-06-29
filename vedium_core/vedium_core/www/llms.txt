@@ -24,6 +24,7 @@
 - [Como funciona](https://vediums.com/como-funciona): teste de nível, diagnóstico e aulas ao vivo em 3 passos.
 - [Aula diagnóstica](https://vediums.com/aula-diagnostica): orientação humana para confirmar nível, objetivo, frequência e plano antes da matrícula.
 - [Planos](https://vediums.com/planos): comparação de frequências de aulas ao vivo e indicação de plano por objetivo.
+- [Matrícula](https://vediums.com/matricula): etapa pública para escolher curso, plano e objetivo antes de seguir para login e checkout na plataforma.
 - [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
 - [Contato](https://vediums.com/contato): canais de atendimento.
 - [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.
