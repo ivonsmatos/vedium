@@ -1,16 +1,16 @@
 """Criação dos cursos PLE — Português para Estrangeiros (Básico, Intermediário, Avançado).
 
-Grade curricular baseada em "Nota 10: Português do Brasil" (Dias & Frota, Lidel 2015).
-
 Executar UMA VEZ no servidor após o deploy:
     bench execute vedium_core.scripts.migrations.oneshot.create_ple_courses.run
 """
 
+import json
+
 import frappe
 
 PLE_CATEGORY = "Português para Estrangeiros"
-COURSE_PRICE = 240
-CURRENCY = "BRL"
+COURSE_PRICE = 120
+CURRENCY = "USD"
 
 
 # ---------------------------------------------------------------------------
@@ -37,7 +37,7 @@ def _basico_chapters():
                 "Seu primo é um gato! — Família e amigos",
                 "Descrever pessoas — características físicas e de personalidade",
                 "Gênero e número dos adjetivos, possessivos e vocabulário de família",
-                "Tudo o Santo Dia — Rotinas diárias e horários",
+                "Todo Santo Dia — Rotinas diárias e horários",
                 "Advérbios de frequência e verbos reflexivos",
                 "Que comidinha boa! — Pedir comida e fazer compras de alimentos",
                 "Imperativo básico e vocabulário de comidas, bebidas e restaurante",
@@ -59,8 +59,7 @@ def _basico_chapters():
 
 def _basico_description():
     return """<p>O curso <strong>PLE Básico</strong> é destinado a quem não tem nenhum conhecimento
-ou tem contato muito limitado com o português. Com base no método
-<em>Nota 10: Português do Brasil</em>, você aprenderá as estruturas essenciais
+ou tem contato muito limitado com o português. Você aprenderá as estruturas essenciais
 e o vocabulário necessário para se comunicar em situações do dia a dia, com
 forte imersão na cultura brasileira.</p>
 <p><strong>Ao final do curso você será capaz de:</strong></p>
@@ -112,9 +111,8 @@ def _intermediario_chapters():
 def _intermediario_description():
     return """<p>O curso <strong>PLE Intermediário</strong> é para quem já tem uma base sólida em
 português e deseja expandir a capacidade de comunicação em contextos mais variados
-e complexos. Com base no livro <em>Nota 10: Português do Brasil</em>, este nível
-aprofunda a gramática, amplia o vocabulário e desenvolve a fluência em situações
-sociais e profissionais.</p>
+e complexos. Este nível aprofunda a gramática, amplia o vocabulário e desenvolve
+a fluência em situações sociais e profissionais.</p>
 <p><strong>Ao final do curso você será capaz de:</strong></p>
 <ul>
 <li>Participar de conversas longas e detalhadas sobre variados tópicos</li>
@@ -163,9 +161,8 @@ def _avancado_chapters():
 def _avancado_description():
     return """<p>O curso <strong>PLE Avançado</strong> é para quem já tem fluência significativa
 e deseja aprimorar o uso da língua em contextos acadêmicos, profissionais e culturais
-complexos. Além do <em>Nota 10</em>, este nível expande consideravelmente o escopo,
-com o modo subjuntivo, análise de textos autênticos e aprofundamento na cultura
-e sociedade brasileiras.</p>
+complexos. Este nível traz o modo subjuntivo, análise de textos autênticos e
+aprofundamento na cultura e sociedade brasileiras.</p>
 <p><strong>Ao final do curso você será capaz de:</strong></p>
 <ul>
 <li>Compreender e produzir textos complexos — artigos de opinião, ensaios e relatórios</li>
@@ -238,27 +235,69 @@ def _ensure_ple_category():
     print(f"  ✓ Categoria '{PLE_CATEGORY}' criada.")
 
 
+def _default_instructor():
+    """Retorna um usuário válido para o campo obrigatório 'instructors'.
+    O campo é só back-end — o front-end não exibe mais professores.
+    """
+    for candidate in ("Administrator", "contato@vediums.com"):
+        if frappe.db.exists("User", candidate):
+            return candidate
+    # último recurso: qualquer System Manager
+    user = frappe.db.get_value("User", {"enabled": 1, "user_type": "System User"}, "name")
+    return user or "Administrator"
+
+
+def _lesson_content(text):
+    """Retorna content no formato EditorJS que o Course Lesson.validate_quiz_id() espera."""
+    return json.dumps({
+        "blocks": [
+            {
+                "type": "paragraph",
+                "data": {"text": text},
+            }
+        ],
+        "version": "2.27.0",
+        "time": 1000000000,
+    })
+
+
 def _create_course(data, category_name):
     slug = data["slug"]
 
-    if frappe.db.exists("LMS Course", slug):
-        print(f"  — Curso '{slug}' já existe, pulando.")
-        return
+    # Já existe pelo título com slug diferente? Renomeia.
+    existing_name = frappe.db.get_value("LMS Course", {"title": data["title"]}, "name")
+    if existing_name and existing_name != slug:
+        print(f"  — Encontrado '{existing_name}' → renomeando para '{slug}'...")
+        frappe.rename_doc("LMS Course", existing_name, slug, force=True)
+        frappe.db.commit()
 
-    course = frappe.get_doc({
-        "doctype": "LMS Course",
-        "name": slug,
-        "title": data["title"],
-        "short_introduction": data["short_introduction"],
-        "description": data["description_fn"](),
-        "paid_course": 1,
-        "course_price": COURSE_PRICE,
-        "currency": CURRENCY,
-        "published": 1,
-        "category": category_name,
-    })
-    course.insert(ignore_permissions=True)
-    print(f"\n  ✓ Curso '{slug}' criado.")
+    # Se ainda não existe com o slug correto, cria agora
+    if not frappe.db.exists("LMS Course", slug):
+        instructor = _default_instructor()
+        course = frappe.get_doc({
+            "doctype": "LMS Course",
+            "title": data["title"],
+            "short_introduction": data["short_introduction"],
+            "description": data["description_fn"](),
+            "paid_course": 1,
+            "course_price": COURSE_PRICE,
+            "currency": CURRENCY,
+            "published": 1,
+            "category": category_name,
+            "instructors": [{"instructor": instructor}],
+        })
+        course.insert(ignore_permissions=True)
+        if course.name != slug:
+            print(f"    (auto-name '{course.name}' → renomeando para '{slug}')")
+            frappe.rename_doc("LMS Course", course.name, slug, force=True)
+        frappe.db.commit()
+        print(f"\n  ✓ Curso '{slug}' criado (instrutor back-end: {instructor}).")
+
+    # Capítulos — pula apenas se já existirem
+    existing_chapters = frappe.db.count("Course Chapter", {"course": slug})
+    if existing_chapters > 0:
+        print(f"  — '{slug}' já tem {existing_chapters} módulo(s), pulando capítulos.")
+        return
 
     for idx, chapter_data in enumerate(data["chapters_fn"](), start=1):
         chapter = frappe.get_doc({
@@ -274,7 +313,7 @@ def _create_course(data, category_name):
                 "title": lesson_title,
                 "chapter": chapter.name,
                 "course": slug,
-                "content": f"<p>{lesson_title}</p>",
+                "content": _lesson_content(lesson_title),
             }).insert(ignore_permissions=True)
 
         print(f"    Módulo {idx}: {chapter_data['title']} — {len(chapter_data['lessons'])} aulas")
