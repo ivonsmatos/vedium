@@ -8,6 +8,8 @@ import frappe
 def _infer_expected_level(title, category=None):
     text = f"{title or ''} {category or ''}".lower()
     normalized = re.sub(r"\s+", " ", text)
+    if "ingl" not in normalized and "english" not in normalized:
+        return None
     if "upper" in normalized or "intermediário superior" in normalized:
         return "B2"
     if "pré-intermedi" in normalized or "pre-intermedi" in normalized:
