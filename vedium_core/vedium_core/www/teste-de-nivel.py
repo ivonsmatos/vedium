@@ -1,6 +1,6 @@
 def get_context(context):
-    context.title = "Teste de Nível Gratuito — Vedium"
+    context.title = "Teste de Nível de Português para Estrangeiros — Vedium"
     context.description = (
-        "Teste rápido e gratuito para estimar seu nível inicial de idioma "
-        "antes de escolher uma trilha na Vedium."
+        "Teste gratuito de português para estrangeiros com gramática, leitura, "
+        "escuta, escrita e fala para estimar seu nível CEFR A1 a C1."
     )

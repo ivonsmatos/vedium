@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Teste de Nível Gratuito — Vedium</title>
-<meta name="description" content="Faça um teste rápido e gratuito para estimar seu nível inicial de idioma e falar com a Vedium sobre a melhor trilha para seu objetivo." />
+<title>Teste de Nível de Português para Estrangeiros — Vedium</title>
+<meta name="description" content="Faça um teste gratuito de português para estrangeiros com gramática, leitura, escuta, escrita e fala para estimar seu nível CEFR A1 a C1." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://vediums.com/teste-de-nivel" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Teste de Nível Gratuito — Vedium" />
-<meta property="og:description" content="Descubra seu nível inicial e receba orientação para escolher a trilha certa na Vedium." />
+<meta property="og:title" content="Teste de Nível de Português para Estrangeiros — Vedium" />
+<meta property="og:description" content="Descubra seu nível inicial de português e receba orientação para escolher a trilha certa na Vedium." />
 <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
 <link rel="apple-touch-icon" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
@@ -27,23 +27,45 @@
   .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
   .page-header__title h2 { color:#fff; }
   .vd-test { padding: 72px 0; background: #f8fafc; }
-  .vd-test-card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:28px; box-shadow:0 14px 34px rgba(15,23,42,.06); }
-  .vd-test-card h3, .vd-test-card h4 { color:#111827; }
+  .vd-test-card { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:28px; box-shadow:0 14px 34px rgba(15,23,42,.06); }
+  .vd-test-card h1, .vd-test-card h2, .vd-test-card h3, .vd-test-card h4 { color:#111827; }
   .vd-test-card p, .vd-test-card label, .vd-test-card li { color:#5f6b7a; line-height:1.7; }
-  .vd-pill { display:inline-block; border-radius:999px; padding:6px 12px; background:#eaf2ff; color:#2563eb; font-size:12px; font-weight:800; margin-bottom:10px; }
-  .vd-question { border-top:1px solid #edf2f7; padding-top:22px; margin-top:22px; }
-  .vd-option { display:block; padding:10px 12px; border:1px solid #e5e7eb; border-radius:8px; margin:8px 0; cursor:pointer; }
+  .vd-pill { display:inline-block; border-radius:999px; padding:6px 12px; background:#eaf2ff; color:#2563eb; font-size:12px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0; }
+  .vd-section-title { border-top:1px solid #edf2f7; padding-top:28px; margin-top:28px; }
+  .vd-question { border-top:1px solid #edf2f7; padding-top:20px; margin-top:20px; }
+  .vd-question h4 { font-size:18px; line-height:1.45; margin-bottom:14px; }
+  .vd-option { display:block; padding:10px 12px; border:1px solid #e5e7eb; border-radius:8px; margin:8px 0; cursor:pointer; transition:border-color .15s ease, background .15s ease; }
   .vd-option:hover { border-color:#2E6DA4; background:#f8fbff; }
+  .vd-textarea { width:100%; min-height:108px; border:1px solid #dbe3ef; border-radius:8px; padding:12px; color:#111827; resize:vertical; }
+  .vd-textarea:focus { border-color:#2563eb; outline:0; box-shadow:0 0 0 3px rgba(37,99,235,.13); }
+  .vd-reading { background:#f8fafc; border:1px solid #e5e7eb; border-radius:10px; padding:18px; color:#374151; line-height:1.8; }
+  .vd-audio-box { background:#f0f7ff; border:1px solid #bfdbfe; border-radius:10px; padding:18px; }
+  .vd-audio-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:12px; }
+  .vd-small-btn { border:0; border-radius:8px; padding:10px 14px; background:#2563eb; color:#fff; font-weight:800; cursor:pointer; }
+  .vd-small-btn:hover { background:#1d4ed8; }
+  .vd-note { font-size:14px; color:#64748b; margin-top:8px; }
   .vd-result { display:none; margin-top:24px; padding:22px; border-radius:12px; background:#eef7ff; border:1px solid #bfdbfe; }
+  .vd-result strong { color:#111827; }
   .vd-error { display:none; margin-top:16px; color:#b91c1c; font-weight:700; }
   .vd-muted { color:#6b7280; line-height:1.8; }
   .vd-side-list { padding-left:18px; }
+  .vd-score-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; margin:18px 0; }
+  .vd-score-item { background:#fff; border:1px solid #dbeafe; border-radius:10px; padding:14px; }
+  .vd-score-item span { display:block; color:#64748b; font-size:13px; }
+  .vd-score-item strong { display:block; color:#111827; font-size:20px; }
+  .vd-sticky-side { position:sticky; top:105px; }
+  @media (max-width: 767px) {
+    .vd-test { padding: 42px 0; }
+    .vd-test-card { padding:20px; }
+    .vd-score-grid { grid-template-columns:1fr; }
+    .vd-sticky-side { position:static; }
+  }
 </style>
 <script type="application/ld+json">{
   "@context":"https://schema.org",
   "@type":"WebPage",
-  "name":"Teste de Nível Gratuito — Vedium",
-  "description":"Teste rápido para estimar o nível inicial de idioma antes da matrícula.",
+  "name":"Teste de Nível de Português para Estrangeiros — Vedium",
+  "description":"Teste gratuito de português para estrangeiros com estimativa CEFR A1 a C1.",
   "url":"https://vediums.com/teste-de-nivel",
   "publisher":{"@type":"Organization","name":"Vedium","sameAs":"https://vediums.com"}
 }</script>
@@ -55,7 +77,7 @@
 <section class="page-header clearfix" style="background-image: linear-gradient(rgba(15,23,42,0.84), rgba(46,109,164,0.80)), url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80);">
   <div class="container"><div class="row"><div class="col-xl-12"><div class="page-header__wrapper clearfix">
     <div class="page-header__title"><h2>Teste de Nível</h2></div>
-    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">Início</a></li><li><a href="/catalogo">Cursos</a></li><li class="active">Teste de Nível</li></ul></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">Início</a></li><li><a href="/portugues-para-estrangeiros">Português para estrangeiros</a></li><li class="active">Teste de Nível</li></ul></div>
   </div></div></div></div>
 </section>
 
@@ -64,76 +86,274 @@
     <div class="row" style="row-gap:28px;">
       <div class="col-lg-8">
         <div class="vd-test-card">
-          <span class="vd-pill">Gratuito e rápido</span>
-          <h1 style="color:#111827;margin-bottom:14px;">Descubra seu nível inicial antes de escolher a trilha</h1>
-          <p class="vd-muted">Este diagnóstico estima seu nível CEFR inicial, aponta uma prioridade de estudo e recomenda a próxima trilha. Ele não substitui uma avaliação completa com professor, mas ajuda a orientar o primeiro atendimento.</p>
+          <span class="vd-pill">Português para estrangeiros</span>
+          <h1 style="margin-bottom:14px;">Descubra seu nível de português antes de começar as aulas</h1>
+          <p class="vd-muted">Este diagnóstico combina gramática, vocabulário, leitura, escuta simulada, escrita e fala. As questões objetivas geram uma estimativa CEFR de A1 a C1, e as respostas abertas ajudam a equipe da Vedium a confirmar seu perfil antes da matrícula.</p>
+          <p class="vd-muted"><strong>Como funciona:</strong> responda todas as questões de múltipla escolha para liberar o resultado automático. As respostas escritas e orais são recomendadas, principalmente se você quer uma avaliação mais fiel para estudar, trabalhar ou fazer negócios em português.</p>
 
-          <form id="level-test" novalidate>
-            <div class="vd-question">
-              <h4>1. Quando você lê um texto simples em inglês, você consegue entender:</h4>
-              <label class="vd-option"><input type="radio" name="q1" value="1"> Palavras soltas e frases muito básicas.</label>
-              <label class="vd-option"><input type="radio" name="q1" value="2"> A ideia geral de textos curtos e familiares.</label>
-              <label class="vd-option"><input type="radio" name="q1" value="3"> Textos profissionais simples, e-mails e instruções.</label>
-              <label class="vd-option"><input type="radio" name="q1" value="4"> Textos longos, artigos e nuances de opinião.</label>
+          <form id="portuguese-level-test" novalidate>
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 1</span>
+              <h2>Gramática e vocabulário</h2>
+              <p class="vd-muted">Escolha a opção correta para completar cada frase.</p>
+            </div>
+
+            <div class="vd-question" data-question="1" data-cefr="A1" data-correct="a">
+              <h4>1. Eu _ estudante e _ no Brasil há um mês.</h4>
+              <label class="vd-option"><input type="radio" name="q1" value="a"> sou / moro</label>
+              <label class="vd-option"><input type="radio" name="q1" value="b"> estou / vivo</label>
+              <label class="vd-option"><input type="radio" name="q1" value="c"> é / mora</label>
+              <label class="vd-option"><input type="radio" name="q1" value="d"> são / vivemos</label>
+            </div>
+
+            <div class="vd-question" data-question="2" data-cefr="A1" data-correct="c">
+              <h4>2. O supermercado fica _ lado da farmácia.</h4>
+              <label class="vd-option"><input type="radio" name="q2" value="a"> no</label>
+              <label class="vd-option"><input type="radio" name="q2" value="b"> na</label>
+              <label class="vd-option"><input type="radio" name="q2" value="c"> ao</label>
+              <label class="vd-option"><input type="radio" name="q2" value="d"> em</label>
+            </div>
+
+            <div class="vd-question" data-question="3" data-cefr="A2" data-correct="a">
+              <h4>3. Ontem à noite, nós _ uma pizza muito boa.</h4>
+              <label class="vd-option"><input type="radio" name="q3" value="a"> comemos</label>
+              <label class="vd-option"><input type="radio" name="q3" value="b"> comíamos</label>
+              <label class="vd-option"><input type="radio" name="q3" value="c"> comermos</label>
+              <label class="vd-option"><input type="radio" name="q3" value="d"> comeremos</label>
+            </div>
+
+            <div class="vd-question" data-question="4" data-cefr="A2" data-correct="c">
+              <h4>4. Quando eu era criança, eu sempre _ de bicicleta na rua.</h4>
+              <label class="vd-option"><input type="radio" name="q4" value="a"> ando</label>
+              <label class="vd-option"><input type="radio" name="q4" value="b"> andei</label>
+              <label class="vd-option"><input type="radio" name="q4" value="c"> andava</label>
+              <label class="vd-option"><input type="radio" name="q4" value="d"> andaria</label>
+            </div>
+
+            <div class="vd-question" data-question="5" data-cefr="B1" data-correct="c">
+              <h4>5. Se eu _ mais tempo livre, viajaria todos os meses.</h4>
+              <label class="vd-option"><input type="radio" name="q5" value="a"> tenho</label>
+              <label class="vd-option"><input type="radio" name="q5" value="b"> tinha</label>
+              <label class="vd-option"><input type="radio" name="q5" value="c"> tivesse</label>
+              <label class="vd-option"><input type="radio" name="q5" value="d"> tiver</label>
+            </div>
+
+            <div class="vd-question" data-question="6" data-cefr="B1" data-correct="b">
+              <h4>6. É importante que você _ cedo amanhã para a reunião.</h4>
+              <label class="vd-option"><input type="radio" name="q6" value="a"> chega</label>
+              <label class="vd-option"><input type="radio" name="q6" value="b"> chegue</label>
+              <label class="vd-option"><input type="radio" name="q6" value="c"> chegou</label>
+              <label class="vd-option"><input type="radio" name="q6" value="d"> chegar</label>
+            </div>
+
+            <div class="vd-question" data-question="7" data-cefr="B2" data-correct="b">
+              <h4>7. Embora _ chovendo bastante, eles decidiram ir à praia.</h4>
+              <label class="vd-option"><input type="radio" name="q7" value="a"> estava</label>
+              <label class="vd-option"><input type="radio" name="q7" value="b"> estivesse</label>
+              <label class="vd-option"><input type="radio" name="q7" value="c"> esteja</label>
+              <label class="vd-option"><input type="radio" name="q7" value="d"> estiver</label>
+            </div>
+
+            <div class="vd-question" data-question="8" data-cefr="B2" data-correct="b">
+              <h4>8. Quando o chefe pediu o relatório, eu já o _.</h4>
+              <label class="vd-option"><input type="radio" name="q8" value="a"> terminei</label>
+              <label class="vd-option"><input type="radio" name="q8" value="b"> tinha terminado</label>
+              <label class="vd-option"><input type="radio" name="q8" value="c"> terminava</label>
+              <label class="vd-option"><input type="radio" name="q8" value="d"> termino</label>
+            </div>
+
+            <div class="vd-question" data-question="9" data-cefr="C1" data-correct="b">
+              <h4>9. O diretor discursou com veemência; _, não convenceu os funcionários da mudança.</h4>
+              <label class="vd-option"><input type="radio" name="q9" value="a"> portanto</label>
+              <label class="vd-option"><input type="radio" name="q9" value="b"> contudo</label>
+              <label class="vd-option"><input type="radio" name="q9" value="c"> porquanto</label>
+              <label class="vd-option"><input type="radio" name="q9" value="d"> consoante</label>
+            </div>
+
+            <div class="vd-question" data-question="10" data-cefr="C1" data-correct="b">
+              <h4>10. É imprescindível que as medidas _ tomadas antes que a situação _.</h4>
+              <label class="vd-option"><input type="radio" name="q10" value="a"> são / piora</label>
+              <label class="vd-option"><input type="radio" name="q10" value="b"> sejam / piore</label>
+              <label class="vd-option"><input type="radio" name="q10" value="c"> fossem / piorou</label>
+              <label class="vd-option"><input type="radio" name="q10" value="d"> serem / piorar</label>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 2</span>
+              <h2>Compreensão de leitura</h2>
             </div>
 
             <div class="vd-question">
-              <h4>2. Em uma conversa ao vivo, você normalmente:</h4>
-              <label class="vd-option"><input type="radio" name="q2" value="1"> Precisa de fala lenta e muita repetição.</label>
-              <label class="vd-option"><input type="radio" name="q2" value="2"> Consegue responder perguntas básicas sobre rotina.</label>
-              <label class="vd-option"><input type="radio" name="q2" value="3"> Mantém conversas sobre trabalho, estudos e planos.</label>
-              <label class="vd-option"><input type="radio" name="q2" value="4"> Argumenta, negocia e improvisa com segurança.</label>
+              <h4>Texto 1: rotina de Mariana</h4>
+              <div class="vd-reading">A rotina de Mariana mudou muito desde que começou a trabalhar em casa. Ela acorda às 7h, toma café e liga o computador. Antes, ela gastava duas horas no trânsito. Agora, usa esse tempo para fazer exercícios físicos no parque perto de sua casa.</div>
+            </div>
+
+            <div class="vd-question" data-question="11" data-cefr="A2" data-correct="c">
+              <h4>11. O que Mariana faz agora com o tempo que passava no trânsito?</h4>
+              <label class="vd-option"><input type="radio" name="q11" value="a"> Dorme mais.</label>
+              <label class="vd-option"><input type="radio" name="q11" value="b"> Toma café da manhã.</label>
+              <label class="vd-option"><input type="radio" name="q11" value="c"> Faz exercícios.</label>
+              <label class="vd-option"><input type="radio" name="q11" value="d"> Trabalha mais horas.</label>
             </div>
 
             <div class="vd-question">
-              <h4>3. Para falar sobre sua carreira, estudos ou objetivos, você:</h4>
-              <label class="vd-option"><input type="radio" name="q3" value="1"> Ainda monta frases muito curtas.</label>
-              <label class="vd-option"><input type="radio" name="q3" value="2"> Explica pontos simples, mas trava com detalhes.</label>
-              <label class="vd-option"><input type="radio" name="q3" value="3"> Explica experiências e resultados com alguma fluidez.</label>
-              <label class="vd-option"><input type="radio" name="q3" value="4"> Adapta tom, vocabulário e exemplos ao contexto.</label>
+              <h4>12. Explique, com suas palavras, como era a vida de Mariana antes da mudança.</h4>
+              <textarea class="vd-textarea" name="w12" placeholder="Escreva uma resposta curta em português."></textarea>
             </div>
 
             <div class="vd-question">
-              <h4>4. Em gramática e estrutura, você se sente mais confortável com:</h4>
-              <label class="vd-option"><input type="radio" name="q4" value="1"> Verbo to be, presente simples e frases básicas.</label>
-              <label class="vd-option"><input type="radio" name="q4" value="2"> Passado, futuro e comparações simples.</label>
-              <label class="vd-option"><input type="radio" name="q4" value="3"> Tempos verbais variados, condicionais e conectores.</label>
-              <label class="vd-option"><input type="radio" name="q4" value="4"> Estruturas complexas, precisão e estilo natural.</label>
+              <h4>Texto 2: inteligência artificial</h4>
+              <div class="vd-reading">A inteligência artificial tem permeado diversos setores da sociedade contemporânea. Não obstante os inegáveis avanços na otimização de processos, surgem dilemas éticos complexos, especialmente no que tange à substituição da mão de obra humana e à privacidade de dados.</div>
+            </div>
+
+            <div class="vd-question" data-question="13" data-cefr="B2" data-correct="c">
+              <h4>13. Qual é a principal preocupação do autor em relação à inteligência artificial?</h4>
+              <label class="vd-option"><input type="radio" name="q13" value="a"> A ineficiência nos processos.</label>
+              <label class="vd-option"><input type="radio" name="q13" value="b"> O custo da tecnologia.</label>
+              <label class="vd-option"><input type="radio" name="q13" value="c"> Os dilemas éticos e a substituição do trabalho humano.</label>
+              <label class="vd-option"><input type="radio" name="q13" value="d"> A falta de dados na sociedade contemporânea.</label>
+            </div>
+
+            <div class="vd-question" data-question="14" data-cefr="C1" data-correct="b">
+              <h4>14. A expressão "Não obstante" poderia ser substituída, sem alteração de sentido, por:</h4>
+              <label class="vd-option"><input type="radio" name="q14" value="a"> Por conseguinte</label>
+              <label class="vd-option"><input type="radio" name="q14" value="b"> Apesar de</label>
+              <label class="vd-option"><input type="radio" name="q14" value="c"> Conquanto que</label>
+              <label class="vd-option"><input type="radio" name="q14" value="d"> Visto que</label>
             </div>
 
             <div class="vd-question">
-              <h4>5. Qual objetivo mais combina com você agora?</h4>
-              <label class="vd-option"><input type="radio" name="goal" value="Inglês para entrevistas"> Inglês para entrevistas.</label>
-              <label class="vd-option"><input type="radio" name="goal" value="Inglês profissional ou executivo"> Inglês profissional ou executivo.</label>
-              <label class="vd-option"><input type="radio" name="goal" value="Inglês para tecnologia"> Inglês para tecnologia.</label>
-              <label class="vd-option"><input type="radio" name="goal" value="Iorubá ou português para estrangeiros"> Iorubá ou português para estrangeiros.</label>
+              <h4>15. Explique o que significa "tem permeado diversos setores" no contexto do texto.</h4>
+              <textarea class="vd-textarea" name="w15" placeholder="Escreva sua explicação em português."></textarea>
             </div>
 
-            <p id="test-error" class="vd-error">Responda todas as perguntas para ver seu resultado.</p>
-            <button type="submit" class="thm-btn" style="margin-top:22px;">Ver meu resultado</button>
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 3</span>
+              <h2>Compreensão auditiva</h2>
+              <p class="vd-muted">Clique em ouvir. Se o navegador bloquear o áudio, leia o texto em voz alta ou peça para alguém ler antes de responder.</p>
+            </div>
+
+            <div class="vd-question">
+              <h4>Áudio 1: estação de trem</h4>
+              <div class="vd-audio-box">
+                <p class="vd-muted" data-audio-text="Atenção passageiros. O trem com destino ao Rio de Janeiro partirá da plataforma quatro às quinze horas e trinta minutos.">Clique para ouvir o aviso da estação e responda sem consultar o roteiro.</p>
+                <div class="vd-audio-actions"><button type="button" class="vd-small-btn" data-play-audio>Ouvir áudio 1</button><span class="vd-note">Use fone de ouvido se estiver no celular.</span></div>
+                <details class="vd-note"><summary>Mostrar roteiro somente se o áudio não funcionar</summary><p>Atenção passageiros. O trem com destino ao Rio de Janeiro partirá da plataforma 4 às quinze horas e trinta minutos.</p></details>
+              </div>
+            </div>
+
+            <div class="vd-question" data-question="16" data-cefr="A1" data-correct="b">
+              <h4>16. Para onde vai o trem e de qual plataforma ele sai?</h4>
+              <label class="vd-option"><input type="radio" name="q16" value="a"> São Paulo, plataforma 3.</label>
+              <label class="vd-option"><input type="radio" name="q16" value="b"> Rio de Janeiro, plataforma 4.</label>
+              <label class="vd-option"><input type="radio" name="q16" value="c"> Rio de Janeiro, plataforma 15.</label>
+              <label class="vd-option"><input type="radio" name="q16" value="d"> São Paulo, plataforma 4.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>17. Escreva por extenso a que horas o trem vai partir.</h4>
+              <textarea class="vd-textarea" name="w17" placeholder="Exemplo: quinze horas e trinta minutos."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>Áudio 2: médico de resgate</h4>
+              <div class="vd-audio-box">
+                <p class="vd-muted" data-audio-text="Trabalhar como médico de resgate é gratificante, mas exaustivo. A maior dificuldade não é a falta de equipamento, mas sim manter a calma sob pressão quando cada segundo conta.">Clique para ouvir o depoimento e responda sem consultar o roteiro.</p>
+                <div class="vd-audio-actions"><button type="button" class="vd-small-btn" data-play-audio>Ouvir áudio 2</button><span class="vd-note">A fala é curta para medir compreensão geral.</span></div>
+                <details class="vd-note"><summary>Mostrar roteiro somente se o áudio não funcionar</summary><p>Trabalhar como médico de resgate é gratificante, mas exaustivo. A maior dificuldade não é a falta de equipamento, mas sim manter a calma sob pressão quando cada segundo conta.</p></details>
+              </div>
+            </div>
+
+            <div class="vd-question" data-question="18" data-cefr="B1" data-correct="c">
+              <h4>18. Segundo o áudio, qual é o sentimento do profissional em relação ao trabalho?</h4>
+              <label class="vd-option"><input type="radio" name="q18" value="a"> Apenas exaustivo.</label>
+              <label class="vd-option"><input type="radio" name="q18" value="b"> Frustrante devido aos equipamentos.</label>
+              <label class="vd-option"><input type="radio" name="q18" value="c"> Gratificante, porém cansativo.</label>
+              <label class="vd-option"><input type="radio" name="q18" value="d"> Calmo e sem pressão.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>19. Qual é o maior desafio citado pelo médico?</h4>
+              <textarea class="vd-textarea" name="w19" placeholder="Escreva a resposta em português."></textarea>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 4</span>
+              <h2>Produção escrita</h2>
+              <p class="vd-muted">Estas respostas não entram na pontuação automática, mas ajudam muito na avaliação humana.</p>
+            </div>
+
+            <div class="vd-question">
+              <h4>20. A2: escreva um parágrafo curto se apresentando.</h4>
+              <textarea class="vd-textarea" name="w20" placeholder="Diga seu nome, nacionalidade, profissão e o que gosta de fazer no tempo livre."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>21. B1/B2: escreva um e-mail formal para o gerente de um hotel.</h4>
+              <textarea class="vd-textarea" name="w21" placeholder="Você fez uma reserva, ficou doente e precisa cancelar. Peça o reembolso do valor pago."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>22. C1: escreva um texto argumentativo sobre trabalho remoto.</h4>
+              <textarea class="vd-textarea" name="w22" placeholder="Discuta prós e contras do trabalho remoto e defenda seu ponto de vista."></textarea>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 5</span>
+              <h2>Produção oral</h2>
+              <p class="vd-muted">Leia as perguntas em voz alta e grave suas respostas no celular, ou envie por WhatsApp depois do resultado.</p>
+            </div>
+
+            <div class="vd-question">
+              <h4>23. A1/A2: O que você fez no seu último fim de semana?</h4>
+              <textarea class="vd-textarea" name="w23" placeholder="Use este campo para anotar sua resposta ou preparar o áudio."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>24. B1/B2: descreva uma viagem inesquecível.</h4>
+              <textarea class="vd-textarea" name="w24" placeholder="Conte o que deu certo e o que deu errado nessa viagem."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>25. C1: as redes sociais conectam ou isolam as pessoas?</h4>
+              <textarea class="vd-textarea" name="w25" placeholder="Justifique sua opinião com exemplos."></textarea>
+            </div>
+
+            <p id="test-error" class="vd-error">Responda todas as questões de múltipla escolha para ver seu resultado automático.</p>
+            <button type="submit" class="thm-btn" style="margin-top:22px;">Ver meu resultado CEFR</button>
           </form>
 
-          <div id="test-result" class="vd-result">
+          <div id="test-result" class="vd-result" aria-live="polite">
             <h3 id="result-title">Seu resultado</h3>
+            <div class="vd-score-grid">
+              <div class="vd-score-item"><span>Nível estimado</span><strong id="result-level">-</strong></div>
+              <div class="vd-score-item"><span>Acertos objetivos</span><strong id="result-score">-</strong></div>
+              <div class="vd-score-item"><span>Foco inicial</span><strong id="result-focus">-</strong></div>
+            </div>
             <p id="result-copy" class="vd-muted"></p>
             <p id="result-diagnostic" class="vd-muted"></p>
             <p id="result-recommendation" class="vd-muted"></p>
-            <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click'});">Enviar resultado no WhatsApp</a>
+            <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click',language:'portuguese_foreigners'});">Enviar resultado no WhatsApp</a>
           </div>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="vd-test-card">
-          <h3>Como usar o resultado</h3>
+        <div class="vd-test-card vd-sticky-side">
+          <h3>O que este teste mede</h3>
           <ul class="vd-side-list">
-            <li>Use como estimativa inicial, não como certificado.</li>
-            <li>Envie o resultado para combinarmos a melhor trilha.</li>
-            <li>Na aula diagnóstica, o professor confirma speaking, listening e objetivo.</li>
+            <li>Gramática e vocabulário do A1 ao C1.</li>
+            <li>Leitura de textos simples e complexos.</li>
+            <li>Escuta por frases curtas lidas em voz alta.</li>
+            <li>Escrita funcional, formal e argumentativa.</li>
+            <li>Fala sobre rotina, experiências e opinião.</li>
           </ul>
           <hr>
-          <h4>Próximo passo</h4>
-          <p class="vd-muted">Depois do teste, a Vedium pode orientar frequência, nível e plano de estudo mais adequado.</p>
-          <a href="https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20aula%20diagn%C3%B3stica%20na%20Vedium" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;">Falar com a Vedium</a>
+          <h4>Depois do resultado</h4>
+          <p class="vd-muted">Envie o resultado para a Vedium. A equipe confirma speaking, writing e objetivo antes de recomendar a turma de português para estrangeiros.</p>
+          <a href="https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20fazer%20o%20teste%20de%20n%C3%ADvel%20de%20portugu%C3%AAs%20para%20estrangeiros" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;">Falar com a Vedium</a>
+          <hr>
+          <h4>Importante</h4>
+          <p class="vd-muted">O resultado é uma estimativa inicial. A confirmação final depende da avaliação de um professor, principalmente nas partes de escrita e fala.</p>
         </div>
       </div>
     </div>
@@ -149,15 +369,18 @@
 <script src="/assets/vedium_core/js/cookie-consent.js"></script>
 <script>
   (function () {
-    var form = document.getElementById('level-test');
+    var form = document.getElementById('portuguese-level-test');
     var error = document.getElementById('test-error');
     var result = document.getElementById('test-result');
     var title = document.getElementById('result-title');
+    var levelNode = document.getElementById('result-level');
+    var scoreNode = document.getElementById('result-score');
+    var focusNode = document.getElementById('result-focus');
     var copy = document.getElementById('result-copy');
     var diagnostic = document.getElementById('result-diagnostic');
     var recommendation = document.getElementById('result-recommendation');
     var whats = document.getElementById('result-whatsapp');
-    var labels = {
+    var levels = {
       A1: 'A1 - iniciante',
       A2: 'A2 - básico',
       B1: 'B1 - intermediário',
@@ -165,45 +388,113 @@
       C1: 'C1 - avançado'
     };
     var diagnostics = {
-      A1: 'Diagnóstico: você precisa consolidar frases básicas, pronúncia inicial, vocabulário de rotina e confiança para responder perguntas simples.',
-      A2: 'Diagnóstico: você já entende situações familiares, mas precisa ampliar vocabulário, passado/futuro e fluidez em conversas curtas.',
-      B1: 'Diagnóstico: você consegue se comunicar em temas conhecidos e deve evoluir precisão, conectores, listening e fala profissional.',
-      B2: 'Diagnóstico: você já sustenta conversas mais completas e deve trabalhar naturalidade, argumentação, vocabulário específico e correção fina.',
-      C1: 'Diagnóstico: seu foco deve ser refinamento, espontaneidade, nuances, sotaques, apresentações e objetivos profissionais ou acadêmicos avançados.'
+      A1: 'Diagnóstico: você reconhece frases muito básicas e precisa consolidar apresentação pessoal, rotina, números, horários, perguntas simples e pronúncia inicial.',
+      A2: 'Diagnóstico: você já entende situações familiares e consegue produzir frases simples, mas precisa ampliar passado, futuro, conectores e vocabulário de sobrevivência.',
+      B1: 'Diagnóstico: você se comunica em temas conhecidos, entende textos do cotidiano e deve evoluir fluência, precisão gramatical, escuta natural e escrita funcional.',
+      B2: 'Diagnóstico: você sustenta conversas mais completas e deve trabalhar argumentação, linguagem formal, vocabulário profissional e compreensão de textos mais densos.',
+      C1: 'Diagnóstico: você já lida com estruturas complexas e deve focar nuances, estilo, persuasão, fala espontânea, escrita argumentativa e contextos acadêmicos ou executivos.'
     };
-    function getRecommendation(level, goal) {
-      if (goal === 'Inglês para entrevistas') return 'Recomendação: iniciar por inglês para entrevista, com simulações, respostas comportamentais e feedback de speaking no nível ' + level + '.';
-      if (goal === 'Inglês profissional ou executivo') return 'Recomendação: seguir para inglês executivo, com reuniões, apresentações, e-mails e vocabulário de negócios no nível ' + level + '.';
-      if (goal === 'Inglês para tecnologia') return 'Recomendação: seguir para inglês para programadores, com documentação, entrevistas técnicas, reuniões e comunicação em times globais no nível ' + level + '.';
-      return 'Recomendação: falar com a Vedium para confirmar idioma, objetivo e trilha mais adequada antes da matrícula.';
+    var recommendations = {
+      A1: 'Recomendação: começar por português para estrangeiros A1, com foco em sobrevivência comunicativa, pronúncia, frases essenciais e confiança para interações do dia a dia.',
+      A2: 'Recomendação: seguir para uma trilha A2, com mais prática de conversação, passado, futuro, situações reais no Brasil e vocabulário para trabalho, viagem ou rotina.',
+      B1: 'Recomendação: entrar em uma trilha intermediária, combinando conversação guiada, leitura, escrita de e-mails, listening e correção dos principais erros recorrentes.',
+      B2: 'Recomendação: buscar aulas B2 com debates, apresentações, escrita formal, vocabulário profissional e treino para interações mais rápidas com brasileiros.',
+      C1: 'Recomendação: fazer acompanhamento avançado com professor, focando naturalidade, repertório cultural, precisão, argumentação e objetivos específicos como negócios, CELPE-Bras ou carreira.'
+    };
+    function getChecked(name) {
+      var input = form.querySelector('input[name="' + name + '"]:checked');
+      return input ? input.value : null;
     }
-    function getValue(name) {
-      var item = form.querySelector('input[name="' + name + '"]:checked');
-      return item ? item.value : null;
+    function getLevel(score) {
+      if (score <= 4) return 'A1';
+      if (score <= 7) return 'A2';
+      if (score <= 10) return 'B1';
+      if (score <= 13) return 'B2';
+      return 'C1';
     }
+    function getFocus(wrongByLevel) {
+      var order = ['A1', 'A2', 'B1', 'B2', 'C1'];
+      var weakest = order.reduce(function (current, level) {
+        return wrongByLevel[level] > wrongByLevel[current] ? level : current;
+      }, 'A1');
+      if (wrongByLevel[weakest] === 0) return 'refinamento';
+      return weakest;
+    }
+    function getOpenAnswerSummary() {
+      var filled = Array.prototype.slice.call(form.querySelectorAll('textarea')).filter(function (field) {
+        return field.value.trim().length > 0;
+      }).length;
+      if (filled === 0) return 'Nenhuma resposta aberta preenchida.';
+      return filled + ' respostas abertas preenchidas para avaliação humana.';
+    }
+    function speakText(text) {
+      if (!('speechSynthesis' in window) || !window.SpeechSynthesisUtterance) {
+        window.alert('Seu navegador não liberou áudio automático. Leia o texto em voz alta para continuar.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      var utterance = new window.SpeechSynthesisUtterance(text);
+      utterance.lang = 'pt-BR';
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
+    }
+    Array.prototype.slice.call(document.querySelectorAll('[data-play-audio]')).forEach(function (button) {
+      button.addEventListener('click', function () {
+        var box = button.closest('.vd-audio-box');
+        var textNode = box ? box.querySelector('[data-audio-text]') : null;
+        if (textNode) speakText(textNode.getAttribute('data-audio-text'));
+      });
+    });
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      var values = ['q1', 'q2', 'q3', 'q4'].map(getValue);
-      var goal = getValue('goal');
-      if (values.some(function (value) { return value === null; }) || !goal) {
+      var questions = Array.prototype.slice.call(form.querySelectorAll('[data-correct]'));
+      var unanswered = questions.filter(function (question) {
+        return !getChecked('q' + question.getAttribute('data-question'));
+      });
+      if (unanswered.length) {
         error.style.display = 'block';
         result.style.display = 'none';
+        unanswered[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
       error.style.display = 'none';
-      var score = values.reduce(function (sum, value) { return sum + Number(value); }, 0);
-      var level = score <= 5 ? 'A1' : score <= 8 ? 'A2' : score <= 11 ? 'B1' : score <= 14 ? 'B2' : 'C1';
-      var rec = getRecommendation(level, goal);
-      var text = 'Resultado estimado: ' + labels[level] + '. Objetivo informado: ' + goal + '.';
-      title.textContent = labels[level];
-      copy.textContent = text;
+      var score = 0;
+      var wrongByLevel = { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0 };
+      questions.forEach(function (question) {
+        var number = question.getAttribute('data-question');
+        var cefr = question.getAttribute('data-cefr');
+        var correct = question.getAttribute('data-correct');
+        var selected = getChecked('q' + number);
+        if (selected === correct) {
+          score += 1;
+        } else {
+          wrongByLevel[cefr] += 1;
+        }
+      });
+      var level = getLevel(score);
+      var focus = getFocus(wrongByLevel);
+      var answerSummary = getOpenAnswerSummary();
+      var resultText = 'Resultado estimado: ' + levels[level] + '. Acertos: ' + score + '/' + questions.length + '. Foco inicial: ' + focus + '.';
+      title.textContent = levels[level];
+      levelNode.textContent = level;
+      scoreNode.textContent = score + '/' + questions.length;
+      focusNode.textContent = focus;
+      copy.textContent = resultText + ' ' + answerSummary;
       diagnostic.textContent = diagnostics[level];
-      recommendation.textContent = rec;
-      whats.href = 'https://wa.me/5511911293075?text=' + encodeURIComponent('Olá, fiz o teste de nível da Vedium. ' + text + ' ' + diagnostics[level] + ' ' + rec);
+      recommendation.textContent = recommendations[level];
+      whats.href = 'https://wa.me/5511911293075?text=' + encodeURIComponent('Olá, fiz o teste de nível de português para estrangeiros da Vedium. ' + resultText + ' ' + answerSummary + ' ' + diagnostics[level] + ' ' + recommendations[level]);
       result.style.display = 'block';
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'level_test_completed', level: level, score: score, goal: goal, recommendation: rec });
+      window.dataLayer.push({
+        event: 'level_test_completed',
+        language: 'portuguese_foreigners',
+        level: level,
+        score: score,
+        total_questions: questions.length,
+        focus: focus,
+        open_answers_filled: answerSummary
+      });
     });
   }());
 </script>

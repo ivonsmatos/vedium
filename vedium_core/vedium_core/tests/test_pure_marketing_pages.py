@@ -87,8 +87,19 @@ def test_public_level_test_exists_without_backend_dependency():
     assert py_path.exists()
     html = html_path.read_text(encoding="utf-8")
     assert "https://vediums.com/teste-de-nivel" in html
-    assert "Teste de Nível Gratuito" in html
+    assert "Teste de Nível de Português para Estrangeiros" in html
+    assert "portuguese-level-test" in html
+    assert html.count("data-correct=") == 15
+    assert "Gramática e vocabulário" in html
+    assert "Compreensão de leitura" in html
+    assert "Compreensão auditiva" in html
+    assert "Produção escrita" in html
+    assert "Produção oral" in html
+    assert "Atenção passageiros" in html
+    assert "médico de resgate" in html
+    assert "SpeechSynthesisUtterance" in html
     assert "level_test_completed" in html
+    assert "portuguese_foreigners" in html
     assert "Diagnóstico:" in html
     assert "Recomendação:" in html
     assert "recommendation" in html
