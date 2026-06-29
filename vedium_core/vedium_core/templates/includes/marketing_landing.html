@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ landing.lang or 'pt-BR' }}">
+<html lang="{{ landing.lang or 'pt-BR' }}"{% if (landing.lang or 'pt-BR') != 'pt-BR' %} translate="no"{% endif %}>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{{ landing.title }}</title>
 <meta name="description" content="{{ landing.meta_description }}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
+{%- if (landing.lang or 'pt-BR') != 'pt-BR' %}
+<meta name="google" content="notranslate" />
+{%- endif %}
 <link rel="canonical" href="{{ landing.url }}" />
 {%- for alt in landing.alternates %}
 <link rel="alternate" hreflang="{{ alt.hreflang }}" href="{{ alt.href }}" />
