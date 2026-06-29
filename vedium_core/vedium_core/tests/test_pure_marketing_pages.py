@@ -16,6 +16,8 @@ PUBLIC_CSS = ROOT / "vedium_core" / "vedium_core" / "public" / "css"
 GTM_IMPORT = ROOT / "docs" / "gtm" / "vedium-gtm-container-import.json"
 REVIEWS_PROCESS = ROOT / "docs" / "reviews" / "VERIFIED_REVIEWS_PROCESS.md"
 REVIEWS_TEMPLATE = ROOT / "docs" / "reviews" / "verified_reviews_template.csv"
+CATALOG_AUDIT = ROOT / "vedium_core" / "vedium_core" / "catalog_audit.py"
+CATALOG_AUDIT_WORKFLOW = ROOT / ".github" / "workflows" / "catalog-audit.yml"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
@@ -101,6 +103,18 @@ def test_diagnostic_scheduling_is_public_and_checkout_safe():
     assert "stripe" not in html.lower()
 
 
+def test_public_plan_selection_tracks_funnel_without_checkout_mutation():
+    html = (WWW / "planos.html").read_text(encoding="utf-8")
+    assert "plan_select_click" in html
+    assert "plan_platform_click" in html
+    assert "Escolher plano leve" in html
+    assert "Escolher plano recomendado" in html
+    assert "Escolher plano intensivo" in html
+    assert "https://app.vediums.com/lms/courses" in html
+    assert html.count("https://wa.me/5511911293075") >= 4
+    assert "/api/method" not in html
+
+
 def test_verified_reviews_process_exists_without_fake_public_reviews():
     process = REVIEWS_PROCESS.read_text(encoding="utf-8")
     template = REVIEWS_TEMPLATE.read_text(encoding="utf-8")
@@ -110,6 +124,22 @@ def test_verified_reviews_process_exists_without_fake_public_reviews():
     assert "public_name,course_or_goal,collection_date" in template
     assert "approved_quote" in template
     assert "authorization_evidence" in template
+
+
+def test_production_catalog_audit_is_read_only_and_checks_b1_b2():
+    audit = CATALOG_AUDIT.read_text(encoding="utf-8")
+    workflow = CATALOG_AUDIT_WORKFLOW.read_text(encoding="utf-8")
+    assert "def audit_course_levels" in audit
+    assert "frappe.get_all" in audit
+    assert "filters={\"published\": 1}" in audit
+    assert "Upper Intermediario appears with B1" in audit
+    assert "Intermediario appears with B2" in audit
+    assert ".save(" not in audit
+    assert ".insert(" not in audit
+    assert "frappe.db.set_value" not in audit
+    assert "workflow_dispatch" in workflow
+    assert "bench --site" in workflow
+    assert "vedium_core.catalog_audit.audit_course_levels" in workflow
 
 
 def test_level_test_ctas_use_native_navigation_only():
@@ -356,6 +386,11 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "updateLocaleLinks" in lang_js
     assert "Take the free placement test" in lang_js
     assert "Kostenlosen Einstufungstest machen" in lang_js
+    assert "Diagnostic class" in lang_js
+    assert "Clase diagnóstica" in lang_js
+    assert "Diagnosestunde" in lang_js
+    assert "诊断课" in lang_js
+    assert "Choose recommended plan" in lang_js
     assert 'prefix: "/pt-br/"' in lang_js
     assert 'prefix: "/es-ar/"' in lang_js
     assert 'prefix: "/de/"' in lang_js
@@ -407,7 +442,13 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "GA4 - Event - Level Test Completed" in names
     assert "GA4 - Event - Level Test Plan Click" in names
     assert "GA4 - Event - Level Test Catalog Click" in names
+    assert "GA4 - Event - Diagnostic Schedule Click" in names
+    assert "GA4 - Event - Plan Select Click" in names
+    assert "GA4 - Event - Plan Platform Click" in names
     assert "CE - public_cta_click" in triggers
     assert "CE - language_selected" in triggers
     assert "CE - level_test_plan_click" in triggers
     assert "CE - level_test_catalog_click" in triggers
+    assert "CE - diagnostic_schedule_click" in triggers
+    assert "CE - plan_select_click" in triggers
+    assert "CE - plan_platform_click" in triggers

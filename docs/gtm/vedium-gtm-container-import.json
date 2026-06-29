@@ -12,7 +12,9 @@
       "containerId": "0",
       "name": "Vedium Public Site",
       "publicId": "GTM-P6Q2FXLK",
-      "usageContext": ["WEB"],
+      "usageContext": [
+        "WEB"
+      ],
       "fingerprint": "0",
       "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
     },
@@ -29,9 +31,15 @@
             "key": "html",
             "value": "<script>\n(function(){\n  var id='{{Constant - GA4 Measurement ID}}';\n  if(!id || id.indexOf('G-')!==0) return;\n  if(!document.querySelector('script[src*=\"gtag/js?id='+id+'\"]')){\n    var s=document.createElement('script');\n    s.async=true;\n    s.src='https://www.googletagmanager.com/gtag/js?id='+id;\n    document.head.appendChild(s);\n  }\n  window.dataLayer=window.dataLayer||[];\n  window.gtag=window.gtag||function(){dataLayer.push(arguments);};\n  gtag('js', new Date());\n  gtag('config', id, {'send_page_view': true});\n})();\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["2147479553"],
+        "firingTriggerId": [
+          "2147479553"
+        ],
         "tagFiringOption": "ONCE_PER_EVENT"
       },
       {
@@ -46,9 +54,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','public_cta_click',{\n  cta:'{{DLV - cta}}',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["10"]
+        "firingTriggerId": [
+          "10"
+        ]
       },
       {
         "accountId": "0",
@@ -62,9 +76,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','generate_lead',{\n  lead_type:'level_test_click',\n  landing:'{{DLV - landing}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["11"]
+        "firingTriggerId": [
+          "11"
+        ]
       },
       {
         "accountId": "0",
@@ -78,9 +98,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','contact',{\n  contact_method:'whatsapp',\n  landing:'{{DLV - landing}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["12"]
+        "firingTriggerId": [
+          "12"
+        ]
       },
       {
         "accountId": "0",
@@ -94,9 +120,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','level_test_completed',{\n  level:'{{DLV - level}}',\n  score:'{{DLV - score}}',\n  goal:'{{DLV - goal}}',\n  recommendation:'{{DLV - recommendation}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["13"]
+        "firingTriggerId": [
+          "13"
+        ]
       },
       {
         "accountId": "0",
@@ -110,9 +142,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','contact',{\n  contact_method:'whatsapp',\n  lead_type:'level_test_result',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["14"]
+        "firingTriggerId": [
+          "14"
+        ]
       },
       {
         "accountId": "0",
@@ -126,9 +164,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','view_item',{\n  item_name:'{{DLV - course_name}}',\n  item_category:'{{DLV - course_category}}',\n  value:'{{DLV - course_price}}',\n  currency:'{{DLV - currency}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["15"]
+        "firingTriggerId": [
+          "15"
+        ]
       },
       {
         "accountId": "0",
@@ -142,9 +186,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','language_selected',{\n  language:'{{DLV - language}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["16"]
+        "firingTriggerId": [
+          "16"
+        ]
       },
       {
         "accountId": "0",
@@ -158,9 +208,15 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','select_promotion',{\n  promotion_name:'level_test_to_plan',\n  language:'{{DLV - language}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["17"]
+        "firingTriggerId": [
+          "17"
+        ]
       },
       {
         "accountId": "0",
@@ -174,9 +230,81 @@
             "key": "html",
             "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','view_item_list',{\n  item_list_name:'level_test_recommended_catalog',\n  language:'{{DLV - language}}',\n  page_path: location.pathname\n});\n</script>"
           },
-          {"type": "BOOLEAN", "key": "supportDocumentWrite", "value": "false"}
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
         ],
-        "firingTriggerId": ["18"]
+        "firingTriggerId": [
+          "18"
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "11",
+        "name": "GA4 - Event - Diagnostic Schedule Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','generate_lead',{\n  lead_type:'diagnostic_schedule',\n  language:'{{DLV - language}}',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "19"
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "12",
+        "name": "GA4 - Event - Plan Select Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','select_item',{\n  item_list_name:'public_plans',\n  item_name:'{{DLV - plan}}',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "20"
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "13",
+        "name": "GA4 - Event - Plan Platform Click",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\nwindow.dataLayer=window.dataLayer||[];\nwindow.gtag=window.gtag||function(){dataLayer.push(arguments);};\ngtag('event','begin_checkout',{\n  checkout_step:'platform_entry',\n  location:'{{DLV - location}}',\n  page_path: location.pathname\n});\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "21"
+        ]
       }
     ],
     "trigger": [
@@ -186,7 +314,23 @@
         "triggerId": "10",
         "name": "CE - public_cta_click",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "public_cta_click"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "public_cta_click"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -194,7 +338,23 @@
         "triggerId": "11",
         "name": "CE - seo_landing_test_click",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "seo_landing_test_click"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "seo_landing_test_click"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -202,7 +362,23 @@
         "triggerId": "12",
         "name": "CE - seo_landing_whatsapp_click",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "seo_landing_whatsapp_click"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "seo_landing_whatsapp_click"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -210,7 +386,23 @@
         "triggerId": "13",
         "name": "CE - level_test_completed",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "level_test_completed"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "level_test_completed"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -218,7 +410,23 @@
         "triggerId": "14",
         "name": "CE - level_test_whatsapp_click",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "level_test_whatsapp_click"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "level_test_whatsapp_click"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -226,7 +434,23 @@
         "triggerId": "15",
         "name": "CE - view_course",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "view_course"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "view_course"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -234,7 +458,23 @@
         "triggerId": "16",
         "name": "CE - language_selected",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "language_selected"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "language_selected"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -242,7 +482,23 @@
         "triggerId": "17",
         "name": "CE - level_test_plan_click",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "level_test_plan_click"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "level_test_plan_click"
+              }
+            ]
+          }
+        ]
       },
       {
         "accountId": "0",
@@ -250,28 +506,379 @@
         "triggerId": "18",
         "name": "CE - level_test_catalog_click",
         "type": "CUSTOM_EVENT",
-        "customEventFilter": [{"type": "EQUALS", "parameter": [{"type": "TEMPLATE", "key": "arg0", "value": "{{_event}}"}, {"type": "TEMPLATE", "key": "arg1", "value": "level_test_catalog_click"}]}]
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "level_test_catalog_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "19",
+        "name": "CE - diagnostic_schedule_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "diagnostic_schedule_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "20",
+        "name": "CE - plan_select_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "plan_select_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "21",
+        "name": "CE - plan_platform_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "plan_platform_click"
+              }
+            ]
+          }
+        ]
       }
     ],
     "variable": [
-      {"accountId": "0", "containerId": "0", "variableId": "1", "name": "Constant - GA4 Measurement ID", "type": "c", "parameter": [{"type": "TEMPLATE", "key": "value", "value": "G-TMBTXVRMLE"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "2", "name": "DLV - cta", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "cta"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "3", "name": "DLV - location", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "location"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "4", "name": "DLV - landing", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "landing"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "5", "name": "DLV - level", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "level"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "6", "name": "DLV - score", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "score"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "7", "name": "DLV - goal", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "goal"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "8", "name": "DLV - recommendation", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "recommendation"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "9", "name": "DLV - course_name", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "course_name"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "10", "name": "DLV - course_category", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "course_category"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "11", "name": "DLV - course_price", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "course_price"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "12", "name": "DLV - currency", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "currency"}]},
-      {"accountId": "0", "containerId": "0", "variableId": "13", "name": "DLV - language", "type": "v", "parameter": [{"type": "INTEGER", "key": "dataLayerVersion", "value": "2"}, {"type": "TEMPLATE", "key": "name", "value": "language"}]}
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "Constant - GA4 Measurement ID",
+        "type": "c",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "value",
+            "value": "G-TMBTXVRMLE"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "2",
+        "name": "DLV - cta",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "cta"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "3",
+        "name": "DLV - location",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "location"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "4",
+        "name": "DLV - landing",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "landing"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "5",
+        "name": "DLV - level",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "level"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "6",
+        "name": "DLV - score",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "score"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "7",
+        "name": "DLV - goal",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "goal"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "8",
+        "name": "DLV - recommendation",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "recommendation"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "9",
+        "name": "DLV - course_name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "course_name"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "10",
+        "name": "DLV - course_category",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "course_category"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "11",
+        "name": "DLV - course_price",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "course_price"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "12",
+        "name": "DLV - currency",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "currency"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "13",
+        "name": "DLV - language",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "language"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "14",
+        "name": "DLV - plan",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "plan"
+          }
+        ]
+      }
     ],
     "builtInVariable": [
-      {"accountId": "0", "containerId": "0", "type": "PAGE_URL", "name": "Page URL"},
-      {"accountId": "0", "containerId": "0", "type": "PAGE_PATH", "name": "Page Path"},
-      {"accountId": "0", "containerId": "0", "type": "PAGE_HOSTNAME", "name": "Page Hostname"}
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "type": "PAGE_URL",
+        "name": "Page URL"
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "type": "PAGE_PATH",
+        "name": "Page Path"
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "type": "PAGE_HOSTNAME",
+        "name": "Page Hostname"
+      }
     ],
     "fingerprint": "0"
   }
