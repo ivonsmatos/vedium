@@ -189,12 +189,22 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
 
 
 def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
+    index_html = (WWW / "index.html").read_text(encoding="utf-8")
     index_py = (WWW / "index.py").read_text(encoding="utf-8")
     catalogo_py = (WWW / "catalogo.py").read_text(encoding="utf-8")
     curso_py = (WWW / "curso.py").read_text(encoding="utf-8")
+    static_index = (ROOT / "deploy" / "site" / "index.html").read_text(encoding="utf-8")
+    nginx_primary = (ROOT / "deploy" / "nginx" / "vediums.com.conf").read_text(encoding="utf-8")
+    nginx_legacy = (ROOT / "deploy" / "vediums.com.nginx").read_text(encoding="utf-8")
     assert "app.vediums.com" in index_py
     assert 'redirect_location = "/login"' in index_py
     assert "raise frappe.Redirect" in index_py
+    for html in [index_html, static_index]:
+        assert "app.vediums.com" in html
+        assert "window.location.replace('/login')" in html
+    for nginx in [nginx_primary, nginx_legacy]:
+        assert "location = /" in nginx
+        assert "return 302 /login;" in nginx
     assert catalogo_py.index('"Upper Intermediário": "B2"') < catalogo_py.index('"Intermediário": "B1"')
     assert index_py.index('"Upper Intermediário": "B2"') < index_py.index('"Intermediário": "B1"')
     assert "_dedupe_chapters" in curso_py

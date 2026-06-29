@@ -2,6 +2,14 @@
 <html lang="pt-BR">
 
 <head>
+    <script>
+        (function () {
+            if (window.location.hostname === 'app.vediums.com' && window.location.pathname === '/') {
+                window.location.replace('/login');
+            }
+        }());
+    </script>
+
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
