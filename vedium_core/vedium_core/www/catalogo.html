@@ -143,6 +143,7 @@
                                 <li data-filter=".filter-item" class="active"><span class="filter-text">Todos</span></li>
                                 <li data-filter=".ingles"><span class="filter-text">Inglês</span></li>
                                 <li data-filter=".ioruba"><span class="filter-text">Iorubá</span></li>
+                                <li data-filter=".portugues"><span class="filter-text">Português (PLE)</span></li>
                             </ul>
                         </div>
                     </div>
@@ -165,11 +166,7 @@
                                 </div>
                                 {% endif %}
                             </div>
-                            <div class="courses-one__single-content" style="flex:1;display:flex;flex-direction:column;">
-                                <div class="courses-one__single-content-overlay-img">
-                                    <img src="{{ course.instructor_image or '/assets/vedium_core/vedium_assets/images/logos/Icone-color.png' }}" alt="{{ course.instructor_name }}" style="width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #fff;"/>
-                                </div>
-                                <h6 class="courses-one__single-content-name">{{ course.instructor_name }}</h6>
+                            <div class="courses-one__single-content" style="flex:1;display:flex;flex-direction:column;padding-top:28px;">
                                 <h4 class="courses-one__single-content-title">
                                     <a href="{{ course.url }}">{{ course.title }}</a>
                                 </h4>

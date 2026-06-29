@@ -18,9 +18,8 @@ def get_context(context):
     # Page metadata (SEO)
     context.title = "Cursos de Inglês Online ao Vivo — Níveis A1 a C1 | Vedium"
     context.description = (
-        "Catálogo de cursos de inglês online ao vivo da Vedium: do iniciante (A1) ao "
-        "avançado (C1), com professores e certificado. Iorubá e Português para "
-        "estrangeiros em breve."
+        "Catálogo de cursos online ao vivo da Vedium: Inglês (A1 ao C1), Iorubá e "
+        "Português para Estrangeiros (PLE). Professores qualificados e certificado."
     )
 
 
@@ -67,33 +66,6 @@ def get_published_courses():
             if not course.image:
                 course.image = "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
 
-            # Get instructor info
-            instructors = frappe.get_all(
-                "Course Instructor",
-                filters={"parent": course.name},
-                fields=["instructor"],
-                limit=1,
-            )
-
-            if instructors:
-                instructor_data = frappe.db.get_value(
-                    "User",
-                    instructors[0].instructor,
-                    ["full_name", "user_image"],
-                    as_dict=True,
-                )
-                course.instructor_name = (
-                    instructor_data.full_name
-                    if instructor_data
-                    else "Vedium Instructor"
-                )
-                course.instructor_image = (
-                    instructor_data.user_image if instructor_data else None
-                )
-            else:
-                course.instructor_name = "Vedium Instructor"
-                course.instructor_image = None
-
             # Get lesson count
             course.lesson_count = frappe.db.count(
                 "Course Lesson", {"course": course.name}
@@ -127,8 +99,9 @@ def get_published_courses():
                     "LMS Category", course.category, "category"
                 )
 
-        # Sort by CEFR level (A1 → C1)
-        level_order = {"A1": 1, "A2": 2, "B1-": 3, "B1": 4, "B2": 5, "C1": 6}
+        # Sort by level — CEFR first (A1→C1), PLE after, outros por último
+        level_order = {"A1": 1, "A2": 2, "B1-": 3, "B1": 4, "B2": 5, "C1": 6,
+                       "Básico": 10, "Intermediário": 11, "Avançado": 12}
         courses.sort(key=lambda c: level_order.get(c.get("level_badge", ""), 99))
 
         return courses
@@ -153,8 +126,14 @@ def get_course_categories():
 
 
 def _get_level_badge(title):
-    """Retorna o código CEFR a partir do título do curso."""
-    badges = {
+    """Retorna o nível/código a partir do título do curso."""
+    # PLE tem labels próprios (não CEFR)
+    if "PLE" in title or "Estrangeiros" in title:
+        for label in ("Básico", "Intermediário", "Avançado"):
+            if label in title:
+                return label
+    # Cursos CEFR (Inglês, Iorubá)
+    cefr = {
         "Beginner": "A1",
         "Elementary": "A2",
         "Pré-Intermediário": "B1-",
@@ -162,7 +141,7 @@ def _get_level_badge(title):
         "Intermediário": "B1",
         "Avançado": "C1",
     }
-    for label, code in badges.items():
+    for label, code in cefr.items():
         if label in title:
             return code
     return ""
