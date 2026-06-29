@@ -36,8 +36,6 @@ COMMERCIAL_SLUGS = [
     "como-funciona",
     "aula-diagnostica",
     "planos",
-    "professores",
-    "professor-busayo-frank-alonge",
     "faq",
 ]
 
@@ -186,10 +184,16 @@ def test_public_pages_do_not_reintroduce_template_residue():
         "Company-Logos",
         "Who Will You Learn With?",
         'href="/mentores"',
+        'href="/professores"',
+        'href="/professor-busayo-frank-alonge"',
     ]
     for item in forbidden:
         assert item not in text
     assert not (WWW / "mentores.html").exists()
+    assert not (WWW / "professores.html").exists()
+    assert not (WWW / "professores.py").exists()
+    assert not (WWW / "professor-busayo-frank-alonge.html").exists()
+    assert not (WWW / "professor-busayo-frank-alonge.py").exists()
 
 
 def test_company_legal_data_is_visible_without_touching_checkout():

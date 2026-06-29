@@ -29,8 +29,6 @@ PUBLIC_LANGUAGE_ROUTES = (
     "como-funciona",
     "aula-diagnostica",
     "planos",
-    "professores",
-    "professor-busayo-frank-alonge",
     "faq",
     "teste-de-nivel",
     "teste-de-nivel-ingles",
@@ -94,6 +92,8 @@ website_redirects = [
     {"source": "/contact.html", "target": "/contato"},
     {"source": "/teachers-1", "target": "/sobre"},
     {"source": "/mentores", "target": "/sobre"},
+    {"source": "/professores", "target": "/sobre"},
+    {"source": "/professor-busayo-frank-alonge", "target": "/curso-de-ioruba-online"},
 ]
 
 # App Logo

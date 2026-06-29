@@ -34,8 +34,6 @@ def generate_sitemap():
         {"loc": "/como-funciona", "priority": "0.8", "changefreq": "monthly"},
         {"loc": "/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
         {"loc": "/planos", "priority": "0.8", "changefreq": "monthly"},
-        {"loc": "/professores", "priority": "0.7", "changefreq": "monthly"},
-        {"loc": "/professor-busayo-frank-alonge", "priority": "0.6", "changefreq": "monthly"},
         {"loc": "/faq", "priority": "0.7", "changefreq": "monthly"},
         {"loc": "/teste-de-nivel", "priority": "0.8", "changefreq": "monthly"},
         {"loc": "/teste-de-nivel-ingles", "priority": "0.8", "changefreq": "monthly"},
