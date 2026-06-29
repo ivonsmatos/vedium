@@ -38,7 +38,8 @@
 
   var consented = false;
   try {
-    consented = localStorage.getItem("vedium_cookie_consent") === "1";
+    var _c = localStorage.getItem("vedium_cookie_consent");
+    consented = _c === "1" || _c === "accepted";
   } catch (e) {}
 
   if (consented) {

@@ -317,33 +317,25 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
 
 
 def test_dynamic_sitemap_lists_public_marketing_pages():
-    sitemap = (ROOT / "vedium_core" / "vedium_core" / "seo_utils.py").read_text(
-        encoding="utf-8"
-    )
     sitemap_page = (WWW / "sitemap.xml").read_text(encoding="utf-8")
     sitemap_context = (WWW / "sitemap.py").read_text(encoding="utf-8")
-    robots = (ROOT / "vedium_core" / "vedium_core" / "public" / "robots.txt").read_text(
-        encoding="utf-8"
-    )
+    # public/robots.txt removido (duplicata) — o canônico é www/robots.txt
     robots_page = (WWW / "robots.txt").read_text(encoding="utf-8")
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
         encoding="utf-8"
     )
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS + ["teste-de-nivel", "teste-de-nivel-ingles"]:
-        assert f'"/{slug}"' in sitemap
+        # seo_utils.generate_sitemap() foi removido (órfão); checar www/sitemap.py
         assert f'"loc": "/{slug}"' in sitemap_context
         assert f'"{slug}"' in hooks
     for prefix in ["pt-br", "en-us", "es-ar", "de", "zh-cn"]:
+        # LANGUAGE_ROUTE_PREFIXES vive somente em hooks.py e em vedium-language.js
         assert f'"{prefix}"' in hooks
-        assert f'"{prefix}"' in sitemap
-        assert f'"{prefix}"' in sitemap_context
-    assert '"/mentores"' not in sitemap
     assert "urlset" in sitemap_page
     assert "links" in sitemap_page
-    assert "Sitemap: https://vediums.com/sitemap.xml" in robots
-    assert "sitemap-courses.xml" not in robots
-    assert "sitemap-llm.xml" not in robots
     assert "Sitemap: https://vediums.com/sitemap.xml" in robots_page
+    assert "sitemap-courses.xml" not in robots_page
+    assert "sitemap-llm.xml" not in robots_page
     assert "User-agent: *" in robots_page
     assert '{"from_route": "/sw.js", "to_route": "sw"}' in hooks
 
@@ -354,7 +346,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
     pwa_js = (PUBLIC_JS / "pwa-register.js").read_text(encoding="utf-8")
     sw_js = (PUBLIC_JS / "sw.js").read_text(encoding="utf-8")
-    root_sw_js = (WWW / "sw.js").read_text(encoding="utf-8")
+    # www/sw.js removido (duplicata) — sw.py serve public/js/sw.js diretamente
     sw_py = (WWW / "sw.py").read_text(encoding="utf-8")
     cookie_js = (PUBLIC_JS / "cookie-consent.js").read_text(encoding="utf-8")
     theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
@@ -427,7 +419,6 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "PUBLIC_HOSTS" in pwa_js
     assert "app.vediums.com" not in pwa_js
     assert "request.mode === 'navigate'" in sw_js
-    assert "request.mode === 'navigate'" in root_sw_js
     assert "request.mode === 'navigate'" in static_sw
     assert "application/javascript; charset=utf-8" in sw_py
     assert 'frappe.response["type"] = "binary"' in sw_py

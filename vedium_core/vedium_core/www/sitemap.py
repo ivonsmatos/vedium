@@ -43,35 +43,8 @@ STATIC_URLS = [
     {"loc": "/preparatorio-celpe-bras", "priority": "0.7", "changefreq": "monthly"},
 ]
 
-LANGUAGE_ROUTE_PREFIXES = (
-    "pt-br",
-    "en",
-    "en-us",
-    "en-au",
-    "es",
-    "es-ar",
-    "es-co",
-    "fr",
-    "fr-ca",
-    "de",
-    "ru",
-    "zh-cn",
-)
-
-
 def _absolute_url(path):
     return f"{SITE_URL}{quote(path, safe='/-')}"
-
-
-def _localized_urls():
-    for prefix in LANGUAGE_ROUTE_PREFIXES:
-        for url in STATIC_URLS:
-            loc = f"/{prefix}/" if url["loc"] == "/" else f"/{prefix}{url['loc']}"
-            yield {
-                **url,
-                "loc": loc,
-                "priority": "0.6" if url["loc"] == "/" else "0.5",
-            }
 
 
 def _course_urls():
@@ -100,7 +73,7 @@ def _course_urls():
 
 def get_context(context):
     today = nowdate()
-    urls = STATIC_URLS + list(_localized_urls()) + _course_urls()
+    urls = STATIC_URLS + _course_urls()
 
     context.no_cache = 1
     context.links = [

@@ -129,7 +129,7 @@ web_include_css = [
 web_include_js = [
     "/assets/vedium_core/js/pwa-register.js?v=static-v4",
     "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix",
-    "/assets/vedium_core/js/meta-pixel.js",
+    "/assets/vedium_core/js/meta-pixel.js?v=consent-lgpd",
 ]
 
 # =============================================================================
