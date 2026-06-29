@@ -67,6 +67,26 @@ def _create_ticket(intent, subject, details):
         )
     except Exception as exc:
         frappe.log_error(f"Public funnel email failed: {exc}", "Vedium Public Funnel")
+    lead_email = _clean(details.get("email"), 180)
+    if lead_email:
+        try:
+            frappe.sendmail(
+                recipients=[lead_email],
+                subject="Recebemos seu contato | Vedium",
+                message=(
+                    "<p>Olá! Recebemos seu interesse na Vedium.</p>"
+                    "<p>Nossa equipe vai analisar seu objetivo e retornar com o próximo passo. "
+                    "Se preferir atendimento imediato, fale pelo WhatsApp: "
+                    '<a href="https://wa.me/5511911293075">+55 (11) 91129-3075</a>.</p>'
+                    "<p>Equipe Vedium</p>"
+                ),
+                delayed=False,
+            )
+        except Exception as exc:
+            frappe.log_error(
+                f"Public funnel lead confirmation failed: {exc}",
+                "Vedium Public Funnel",
+            )
     return ticket
 
 

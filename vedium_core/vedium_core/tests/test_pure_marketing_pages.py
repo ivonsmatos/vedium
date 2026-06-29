@@ -170,6 +170,8 @@ def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
         assert f'"{intent}"' in funnel
     assert '"doctype": "Support Ticket"' in funnel
     assert "frappe.sendmail" in funnel
+    assert "Recebemos seu contato | Vedium" in funnel
+    assert "Public funnel lead confirmation failed" in funnel
     assert '"opened_by"' in funnel
     assert "LMS Certificate" in funnel
     assert "Lesson Slot" in funnel
@@ -202,7 +204,6 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
         "comunidade": "community",
         "programa-de-indicacao": "referral",
         "empresas": "b2b",
-        "pratica-diaria": "lead",
     }
     for slug, intent in expectations.items():
         html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
@@ -211,6 +212,38 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
         assert f'page_intent = "{intent}"' in html
         assert 'public_intent_page.html' in html
         assert "get_context" in py
+
+
+def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
+    practice = (WWW / "pratica-diaria.html").read_text(encoding="utf-8")
+    progress_html = (WWW / "meu-progresso.html").read_text(encoding="utf-8")
+    progress_py = (WWW / "meu-progresso.py").read_text(encoding="utf-8")
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
+        encoding="utf-8"
+    )
+
+    assert "SpeechSynthesisUtterance" in practice
+    assert "SpeechRecognition" in practice
+    assert "daily_practice_listen" in practice
+    assert "daily_practice_speak" in practice
+    assert "similarity" in practice
+    assert "yo-NG" in practice
+    assert "/meu-progresso" in practice
+    assert "/api/method" not in practice
+    assert "stripe" not in practice.lower()
+
+    assert "Meu progresso Vedium" in progress_html
+    assert "noindex, nofollow" in progress_html
+    assert "Streak" in progress_html
+    assert "CEFR" in progress_html
+    assert "LMS Enrollment" in progress_py
+    assert "LMS Flashcard" in progress_py
+    assert "LMS Badge Log" in progress_py
+    assert "Lesson Slot" in progress_py
+    assert "redirect-to=/meu-progresso" in progress_py
+    assert '"meu-progresso"' in hooks
+    assert "create_checkout" not in progress_py
+    assert "stripe" not in progress_py.lower()
 
 
 def test_verified_reviews_process_exists_without_fake_public_reviews():
@@ -416,6 +449,8 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
         # seo_utils.generate_sitemap() foi removido (órfão); checar www/sitemap.py
         assert f'"loc": "/{slug}"' in sitemap_context
         assert f'"{slug}"' in hooks
+    assert '"meu-progresso"' in hooks
+    assert '"loc": "/meu-progresso"' not in sitemap_context
     for prefix in ["pt-br", "en-us", "es-ar", "de", "zh-cn"]:
         # LANGUAGE_ROUTE_PREFIXES vive somente em hooks.py e em vedium-language.js
         assert f'"{prefix}"' in hooks

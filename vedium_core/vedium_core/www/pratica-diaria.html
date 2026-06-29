@@ -1,9 +1,79 @@
-{% set page_slug = "pratica-diaria" %}
-{% set page_title = "Prática diária com voz — Vedium" %}
-{% set page_description = "Pratique fala, shadowing e revisão diária com recursos seguros no navegador." %}
-{% set page_tagline = "IA e voz" %}
-{% set page_h1 = "Prática diária com voz e shadowing" %}
-{% set page_lead = "Esta etapa prepara a experiência de prática diária da Vedium: fala, repetição guiada, revisão e plano de estudo conectado ao nível do aluno." %}
-{% set page_items = ["Shadowing com frases curtas.", "Uso futuro de IA tutorada dentro da plataforma.", "Correção e plano de estudo com segurança.", "Registro de interesse para priorizar acesso."] %}
-{% set page_intent = "lead" %}
-{% include "templates/includes/public_intent_page.html" %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prática diária com voz — Vedium</title>
+<meta name="description" content="Pratique fala, shadowing e revisão diária com frases guiadas de inglês, português para estrangeiros e iorubá." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://vediums.com/pratica-diaria" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-section{padding:76px 0}.vd-alt{background:#f8fafc}.vd-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:28px;height:100%;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-muted{color:#5f6b7a;line-height:1.75}.vd-pill{display:inline-block;border-radius:999px;padding:6px 12px;background:#eaf2ff;color:#2563eb;font-size:12px;font-weight:800;margin-bottom:12px}.vd-tool{max-width:960px;margin:0 auto}.vd-controls{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.vd-select{border:1px solid #dbe4ff;border-radius:10px;padding:12px 14px;background:#fff;color:#111827}.vd-phrase{font-size:30px;line-height:1.25;color:#111827;font-weight:800;margin:18px 0}.vd-transcript{min-height:72px;border:1px dashed #bfdbfe;border-radius:12px;padding:16px;background:#f8fbff;color:#1f2937}.vd-score{font-size:42px;font-weight:800;color:#2563eb}.vd-list{padding-left:18px;margin:0}@media(max-width:767px){.vd-section{padding:52px 0}.vd-phrase{font-size:24px}.vd-controls .thm-btn,.vd-select{width:100%;text-align:center}}</style>
+</head>
+<body><div class="page-wrapper">
+{% set vd_page = "pratica-diaria" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="vd-section"><div class="container"><div class="vd-tool">
+  <span class="vd-pill">Voz e shadowing</span>
+  <h1 style="color:#111827;">Prática diária com voz</h1>
+  <p class="vd-muted">Escolha o idioma, escute a frase, repita em voz alta e compare sua fala. Esta versão roda no navegador, sem salvar áudio e sem alterar seu histórico de matrícula.</p>
+  <div class="vd-card">
+    <div class="vd-controls">
+      <select id="vd-language" class="vd-select" aria-label="Idioma da prática">
+        <option value="en-US">Inglês</option>
+        <option value="pt-BR">Português para estrangeiros</option>
+        <option value="yo-NG">Iorubá</option>
+      </select>
+      <select id="vd-level" class="vd-select" aria-label="Nível">
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="B1">B1</option>
+        <option value="B2">B2</option>
+      </select>
+      <button id="vd-next" type="button" class="thm-btn">Nova frase</button>
+      <button id="vd-listen" type="button" class="thm-btn" style="background:#111827;">Ouvir</button>
+      <button id="vd-speak" type="button" class="thm-btn" style="background:#25D366;">Falar</button>
+    </div>
+    <div class="vd-phrase" id="vd-phrase">I would like to schedule a diagnostic class.</div>
+    <p class="vd-muted" id="vd-tip">Dica: repita no mesmo ritmo, sem traduzir palavra por palavra.</p>
+    <div class="vd-transcript" id="vd-transcript">Sua fala aparecerá aqui quando o navegador permitir reconhecimento de voz.</div>
+    <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:20px;"><div><span class="vd-pill">Similaridade</span><div class="vd-score" id="vd-score">--</div></div><div class="vd-muted">Use o resultado como orientação leve. A correção final de pronúncia continua sendo feita com professor.</div></div>
+  </div>
+</div></div></section>
+<section class="vd-section vd-alt"><div class="container"><div class="row" style="row-gap:24px;">
+  <div class="col-md-4"><div class="vd-card"><span class="vd-pill">1</span><h3 style="color:#111827;">Escute</h3><p class="vd-muted">Ouça a frase com síntese de voz do navegador.</p></div></div>
+  <div class="col-md-4"><div class="vd-card"><span class="vd-pill">2</span><h3 style="color:#111827;">Repita</h3><p class="vd-muted">Faça shadowing: copie ritmo, pausa e intenção.</p></div></div>
+  <div class="col-md-4"><div class="vd-card"><span class="vd-pill">3</span><h3 style="color:#111827;">Revise</h3><p class="vd-muted">Anote a frase difícil e leve para sua aula ao vivo.</p></div></div>
+</div></div></section>
+<section class="vd-section"><div class="container"><div class="vd-card"><h2 style="color:#111827;">Plano rápido de 10 minutos</h2><ul class="vd-list vd-muted"><li>2 minutos ouvindo e repetindo frases A1/A2.</li><li>4 minutos gravando e comparando sua fala.</li><li>2 minutos criando uma frase parecida sobre sua rotina.</li><li>2 minutos anotando vocabulário para revisar na próxima aula.</li></ul><a href="/meu-progresso" class="thm-btn" style="margin-top:18px;">Ver meu progresso</a></div></div></section>
+{% include "templates/includes/site_footer.html" %}</div>
+<script>
+(function(){
+  var phrases={
+    "en-US":{A1:["I would like to schedule a diagnostic class.","My goal is to speak with more confidence.","I study English twice a week."],A2:["Could you help me choose the right course?","I need English for work and travel.","I can understand simple conversations."],B1:["I want to improve my speaking for meetings.","The main challenge is explaining my ideas clearly.","I have studied before, but I need more practice."],B2:["I need to negotiate deadlines and explain technical decisions.","My objective is to sound natural in professional conversations.","I want feedback on pronunciation, rhythm and vocabulary."]},
+    "pt-BR":{A1:["Eu quero aprender português para viver no Brasil.","Meu objetivo é falar com mais segurança.","Eu estudo duas vezes por semana."],A2:["Você pode me ajudar a escolher o curso certo?","Eu preciso de português para trabalho e rotina.","Eu entendo conversas simples."],B1:["Quero melhorar minha fala para reuniões.","Minha maior dificuldade é explicar minhas ideias.","Já estudei antes, mas preciso praticar mais."],B2:["Preciso negociar prazos e apresentar resultados em português.","Quero soar mais natural em conversas profissionais.","Preciso de feedback de pronúncia, ritmo e vocabulário."]},
+    "yo-NG":{A1:["Ẹ káàárọ̀.","Orúkọ mi ni Vedium.","Mo fẹ́ kọ́ èdè Yorùbá."],A2:["Mo fẹ́ ṣe ìdánilẹ́kọ̀ọ́ pẹ̀lú olùkọ́.","Mo ń kọ́ ìkíni àti gbolohun kúkúrú.","Jọ̀wọ́ sọ lẹ́ẹ̀kan síi."],B1:["Mo fẹ́ sọ Yorùbá pẹ̀lú ìgboyà díẹ̀ síi.","Ìdí mi ni láti lóye àṣà àti èdè.","Mo nílò ìtúnṣe fún ìsọ̀rọ̀ mi."],B2:["Mo fẹ́ ṣiṣẹ́ lori ohun, orin ede ati itumọ.","Ẹ jọ̀wọ́ fun mi ní ìdáhùn lórí bí mo ṣe sọ ọ.","Mo fẹ́ ni ìjíròrò tó jinlẹ̀ síi."]}
+  };
+  var lang=document.getElementById('vd-language'),level=document.getElementById('vd-level'),phrase=document.getElementById('vd-phrase'),transcript=document.getElementById('vd-transcript'),score=document.getElementById('vd-score');
+  function pool(){return phrases[lang.value][level.value]||phrases[lang.value].A1;}
+  function next(){var list=pool();phrase.textContent=list[Math.floor(Math.random()*list.length)];transcript.textContent='Sua fala aparecerá aqui quando o navegador permitir reconhecimento de voz.';score.textContent='--';}
+  function normalize(text){return String(text||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s]/g,'').replace(/\s+/g,' ').trim();}
+  function similarity(a,b){a=normalize(a).split(' ');b=normalize(b).split(' ');if(!a.length||!b.length)return 0;var hits=a.filter(function(w){return b.indexOf(w)>-1;}).length;return Math.round((hits/Math.max(a.length,b.length))*100);}
+  document.getElementById('vd-next').addEventListener('click',function(){next();window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'daily_practice_next',language:lang.value,level:level.value});});
+  document.getElementById('vd-listen').addEventListener('click',function(){if(!window.speechSynthesis){return;}var utter=new SpeechSynthesisUtterance(phrase.textContent);utter.lang=lang.value;utter.rate=.88;window.speechSynthesis.cancel();window.speechSynthesis.speak(utter);window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'daily_practice_listen',language:lang.value,level:level.value});});
+  document.getElementById('vd-speak').addEventListener('click',function(){var SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SpeechRecognition){transcript.textContent='Seu navegador não liberou reconhecimento de voz. Você ainda pode ouvir e repetir em voz alta.';return;}var rec=new SpeechRecognition();rec.lang=lang.value;rec.interimResults=false;rec.maxAlternatives=1;transcript.textContent='Ouvindo...';rec.onresult=function(event){var said=event.results[0][0].transcript;transcript.textContent=said;score.textContent=similarity(phrase.textContent,said)+'%';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'daily_practice_speak',language:lang.value,level:level.value,score:score.textContent});};rec.onerror=function(){transcript.textContent='Não consegui captar a fala agora. Tente novamente em um ambiente mais silencioso.';};rec.start();});
+  lang.addEventListener('change',next);level.addEventListener('change',next);next();
+})();
+</script>
+<script src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+</body></html>

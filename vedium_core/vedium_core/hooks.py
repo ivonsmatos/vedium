@@ -30,6 +30,7 @@ PUBLIC_LANGUAGE_ROUTES = (
     "aula-diagnostica",
     "planos",
     "matricula",
+    "meu-progresso",
     "certificado",
     "comunidade",
     "programa-de-indicacao",
