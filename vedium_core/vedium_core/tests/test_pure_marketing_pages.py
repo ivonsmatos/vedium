@@ -198,10 +198,15 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" not in lang_js
-    assert "language_selected" not in lang_js
+    assert "language_selected" in lang_js
     assert "vedium_preferred_locale" not in lang_js
     assert "window.location.assign" not in lang_js
     assert 'var current = getLocaleFromPath() || "pt-br";' in lang_js
+    assert "localeCopy" in lang_js
+    assert "translateTextNodes" in lang_js
+    assert "updateLocaleLinks" in lang_js
+    assert "Take the free placement test" in lang_js
+    assert "Kostenlosen Einstufungstest machen" in lang_js
     assert 'prefix: "/pt-br/"' in lang_js
     assert 'prefix: "/es-ar/"' in lang_js
     assert 'prefix: "/de/"' in lang_js
