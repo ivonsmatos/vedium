@@ -62,6 +62,7 @@ LANGUAGE_ROUTE_RULES = (
 
 website_route_rules = [
     *LANGUAGE_ROUTE_RULES,
+    {"from_route": "/sw.js", "to_route": "sw"},
     # /courses é interceptado pelo LMS app — garante que /catalogo seja a rota do site
     {"from_route": "/trilhas", "to_route": "/catalogo"},
     {"from_route": "/cursos", "to_route": "/catalogo"},

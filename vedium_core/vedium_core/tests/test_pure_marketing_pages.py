@@ -243,6 +243,7 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     assert "sitemap-llm.xml" not in robots
     assert "Sitemap: https://vediums.com/sitemap.xml" in robots_page
     assert "User-agent: *" in robots_page
+    assert '{"from_route": "/sw.js", "to_route": "sw"}' in hooks
 
 
 def test_public_language_selector_and_gtm_import_are_available():
@@ -252,6 +253,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     pwa_js = (PUBLIC_JS / "pwa-register.js").read_text(encoding="utf-8")
     sw_js = (PUBLIC_JS / "sw.js").read_text(encoding="utf-8")
     root_sw_js = (WWW / "sw.js").read_text(encoding="utf-8")
+    sw_py = (WWW / "sw.py").read_text(encoding="utf-8")
     cookie_js = (PUBLIC_JS / "cookie-consent.js").read_text(encoding="utf-8")
     theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
     manifest = json.loads(
@@ -309,6 +311,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "request.mode === 'navigate'" in sw_js
     assert "request.mode === 'navigate'" in root_sw_js
     assert "request.mode === 'navigate'" in static_sw
+    assert "application/javascript; charset=utf-8" in sw_py
+    assert 'frappe.response["type"] = "binary"' in sw_py
     assert "'/api/'" in sw_js
     assert "'/lms'" in sw_js
     assert "'/checkout'" in sw_js
