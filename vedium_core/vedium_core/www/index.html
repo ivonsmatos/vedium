@@ -552,12 +552,7 @@
                                     <p>Destaque</p>
                                 </div>
                             </div>
-                            <div class="courses-one__single-content" style="flex:1;display:flex;flex-direction:column;">
-                                <div class="courses-one__single-content-overlay-img">
-                                    <img src="{{ course.instructor_image or '/assets/vedium_core/vedium_assets/images/logos/Icone-color.png' }}"
-                                        alt="{{ course.instructor_name }}" style="width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #fff;" />
-                                </div>
-                                <h6 class="courses-one__single-content-name">{{ course.instructor_name }}</h6>
+                            <div class="courses-one__single-content" style="flex:1;display:flex;flex-direction:column;padding-top:28px;">
                                 <h4 class="courses-one__single-content-title">
                                     <a href="/curso/{{ course.name }}">{{ course.title }}</a>
                                 </h4>

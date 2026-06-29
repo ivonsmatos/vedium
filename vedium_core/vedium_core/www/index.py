@@ -121,21 +121,6 @@ def _enrich(course) -> dict:
         lang = _detect_language(course.get("category", ""))
         course["image"] = LANGUAGE_FALLBACK_IMAGES.get(lang, DEFAULT_FALLBACK)
 
-    # Nome do instrutor (instructors é child table, busca só o primeiro)
-    instructors = frappe.get_all(
-        "Course Instructor",
-        filters={"parent": course["name"]},
-        fields=["instructor"],
-        limit=1,
-    )
-    if instructors:
-        _idata = frappe.db.get_value("User", instructors[0]["instructor"], ["full_name", "user_image"], as_dict=True)
-        course["instructor_name"] = (_idata.full_name if _idata else None) or "Vedium Instructor"
-        course["instructor_image"] = _idata.user_image if _idata else None
-    else:
-        course["instructor_name"] = "Vedium Instructor"
-        course["instructor_image"] = None
-
     # Preço formatado
     if course.get("paid_course") and course.get("course_price"):
         price = float(course["course_price"])
