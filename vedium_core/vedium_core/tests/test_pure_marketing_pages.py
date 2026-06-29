@@ -52,6 +52,10 @@ PUBLIC_INTENT_SLUGS = [
     "comunidade",
     "programa-de-indicacao",
     "empresas",
+]
+
+PLATFORM_SLUGS = [
+    "meu-progresso",
     "pratica-diaria",
 ]
 
@@ -216,6 +220,7 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
 
 def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
     practice = (WWW / "pratica-diaria.html").read_text(encoding="utf-8")
+    practice_py = (WWW / "pratica-diaria.py").read_text(encoding="utf-8")
     progress_html = (WWW / "meu-progresso.html").read_text(encoding="utf-8")
     progress_py = (WWW / "meu-progresso.py").read_text(encoding="utf-8")
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
@@ -228,7 +233,16 @@ def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
     assert "daily_practice_speak" in practice
     assert "similarity" in practice
     assert "yo-NG" in practice
-    assert "/meu-progresso" in practice
+    assert "https://app.vediums.com/meu-progresso" in practice
+    assert "https://app.vediums.com/pratica-diaria" in progress_html
+    assert 'APP_URL = "https://app.vediums.com"' in practice_py
+    assert 'APP_URL = "https://app.vediums.com"' in progress_py
+    assert '_redirect_public_host("/pratica-diaria")' in practice_py
+    assert '_redirect_public_host("/meu-progresso")' in progress_py
+    assert "PUBLIC_HOSTS" in practice_py
+    assert "PUBLIC_HOSTS" in progress_py
+    assert "_redirect_public_host" in practice_py
+    assert "_redirect_public_host" in progress_py
     assert "/api/method" not in practice
     assert "stripe" not in practice.lower()
 
@@ -403,6 +417,8 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
     assert "Upper Intermediário (B1)" not in llms
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS + PUBLIC_INTENT_SLUGS:
         assert f"https://vediums.com/{slug}" in llms
+    for slug in PLATFORM_SLUGS:
+        assert f"https://vediums.com/{slug}" not in llms
     assert "https://vediums.com/mentores" not in llms
 
 
@@ -450,7 +466,9 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
         assert f'"loc": "/{slug}"' in sitemap_context
         assert f'"{slug}"' in hooks
     assert '"meu-progresso"' in hooks
+    assert '"pratica-diaria"' in hooks
     assert '"loc": "/meu-progresso"' not in sitemap_context
+    assert '"loc": "/pratica-diaria"' not in sitemap_context
     for prefix in ["pt-br", "en-us", "es-ar", "de", "zh-cn"]:
         # LANGUAGE_ROUTE_PREFIXES vive somente em hooks.py e em vedium-language.js
         assert f'"{prefix}"' in hooks

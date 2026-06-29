@@ -21,7 +21,6 @@ STATIC_URLS = [
     {"loc": "/comunidade", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/programa-de-indicacao", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/empresas", "priority": "0.6", "changefreq": "monthly"},
-    {"loc": "/pratica-diaria", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/faq", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/teste-de-nivel", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/teste-de-nivel-ingles", "priority": "0.8", "changefreq": "monthly"},

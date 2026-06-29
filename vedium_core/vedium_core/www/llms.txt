@@ -29,7 +29,6 @@
 - [Comunidade](https://vediums.com/comunidade): lista de interesse para comunidade por idioma e nível.
 - [Programa de indicação](https://vediums.com/programa-de-indicacao): registro de interesse em indicações, com regras comerciais a publicar.
 - [Vedium para empresas](https://vediums.com/empresas): interesse B2B para diagnóstico e trilhas por equipe.
-- [Prática diária](https://vediums.com/pratica-diaria): interesse em prática de voz, shadowing e revisão diária.
 - [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
 - [Contato](https://vediums.com/contato): canais de atendimento.
 - [Trabalhe Conosco](https://vediums.com/carreiras): vagas e candidaturas.
