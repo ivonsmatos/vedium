@@ -8,11 +8,17 @@
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://vediums.com/certificado" />
 <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
-<style>.vd-section{padding:76px 0}.vd-card{max-width:720px;margin:auto;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-input{width:100%;border:1px solid #dbe4ff;border-radius:10px;padding:13px 14px;margin:10px 0}.vd-result{margin-top:16px;color:#475569;line-height:1.7}</style>
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-section{padding:76px 0}.vd-card{max-width:720px;margin:auto;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-input{width:100%;border:1px solid #dbe4ff;border-radius:10px;padding:13px 14px;margin:10px 0}.vd-result{margin-top:16px;color:#475569;line-height:1.7}@media(max-width:767px){.vd-section{padding:52px 0}.vd-card{padding:22px}}</style>
 </head>
 <body><div class="page-wrapper">
+{% set vd_page = "certificado" %}
 {% include "templates/includes/site_navbar.html" %}
 <section class="vd-section"><div class="container"><div class="vd-card"><h1 style="color:#111827;">Verificar certificado</h1><p>Digite o código de verificação impresso no certificado Vedium.</p><input id="code" class="vd-input" placeholder="Código de verificação"><button id="verify" class="thm-btn">Verificar</button><div id="result" class="vd-result"></div></div></div></section>
 {% include "templates/includes/site_footer.html" %}</div>
@@ -27,4 +33,8 @@ document.getElementById('verify').addEventListener('click', function(){
     .catch(function(){result.textContent='Não foi possível verificar agora.';});
 });
 </script>
+<script src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
 </body></html>

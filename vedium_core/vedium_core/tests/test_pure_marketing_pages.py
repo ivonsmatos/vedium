@@ -150,6 +150,12 @@ def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
     assert "verify_certificate" in html
     assert "vedium_core.public_funnel.verify_certificate" in html
     assert "Verificar certificado" in html
+    assert "vendors/fontawesome/css/all.min.css" in html
+    assert "vendors/icomoon-icons/style.css" in html
+    assert "vedium-responsive.css" in html
+    assert 'img[src*="logo-color-reta"]' in html
+    assert '.footer-one img[src*="logo-branca-reta"]' in html
+    assert "vedium.js" in html
     assert "get_context" in py
     assert "submit_public_intent" in funnel
     assert "request_diagnostic_class" in funnel
@@ -172,6 +178,12 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
     assert "vedium_core.public_funnel.submit_public_intent" in template
     assert "public_intent_submit" in template
     assert "public_cta_click" in template
+    assert "vendors/fontawesome/css/all.min.css" in template
+    assert "vendors/icomoon-icons/style.css" in template
+    assert "vedium-responsive.css" in template
+    assert 'img[src*="logo-color-reta"]' in template
+    assert '.footer-one img[src*="logo-branca-reta"]' in template
+    assert "vedium.js" in template
     assert "wa.me/5511911293075" in template
     assert "/teste-de-nivel" in template
     assert 'https://vediums.com/{{ page_slug }}' in template
