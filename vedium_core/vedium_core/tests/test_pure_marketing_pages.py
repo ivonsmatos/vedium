@@ -206,7 +206,6 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
 
     expectations = {
         "comunidade": "community",
-        "programa-de-indicacao": "referral",
         "empresas": "b2b",
     }
     for slug, intent in expectations.items():
@@ -216,6 +215,25 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
         assert f'page_intent = "{intent}"' in html
         assert 'public_intent_page.html' in html
         assert "get_context" in py
+
+
+def test_referral_program_generates_trackable_links_without_checkout():
+    html = (WWW / "programa-de-indicacao.html").read_text(encoding="utf-8")
+    py = (WWW / "programa-de-indicacao.py").read_text(encoding="utf-8")
+    assert "https://vediums.com/programa-de-indicacao" in html
+    assert "Gerar link de indicação" in html
+    assert "Registrar indicação" in html
+    assert "utm_source=referral" in html
+    assert "utm_campaign=programa_indicacao" in html
+    assert "referral_link_copy" in html
+    assert "referral_share_click" in html
+    assert "referral_register_submit" in html
+    assert "vedium_core.public_funnel.submit_public_intent" in html
+    assert "intent:'referral'" in html
+    assert "não gera desconto automático no checkout" in html
+    assert "create_checkout" not in html
+    assert "stripe" not in html.lower()
+    assert "Gere um link de indicação Vedium" in py
 
 
 def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
