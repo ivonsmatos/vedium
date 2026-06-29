@@ -33,9 +33,15 @@ def get_context(context):
 def _redirect_app_root_to_login():
     """Keep app.vediums.com as product/login, while vediums.com remains marketing."""
     request = getattr(frappe.local, "request", None)
-    host = (getattr(request, "host", "") or "").split(":")[0].lower()
-    path = getattr(frappe.local, "path", "") or "/"
-    if host == "app.vediums.com" and path in ("", "/"):
+    host_candidates = [
+        frappe.get_request_header("X-Forwarded-Host"),
+        frappe.get_request_header("Host"),
+        getattr(request, "host", ""),
+        getattr(request, "host_url", ""),
+    ]
+    host = " ".join(str(item or "") for item in host_candidates).lower()
+    path = getattr(frappe.local, "path", "") or getattr(request, "path", "") or "/"
+    if "app.vediums.com" in host and path in ("", "/"):
         frappe.local.flags.redirect_location = "/login"
         raise frappe.Redirect
 
