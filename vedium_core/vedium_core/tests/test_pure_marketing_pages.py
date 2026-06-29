@@ -14,6 +14,8 @@ TPL = ROOT / "vedium_core" / "vedium_core" / "templates" / "includes"
 PUBLIC_JS = ROOT / "vedium_core" / "vedium_core" / "public" / "js"
 PUBLIC_CSS = ROOT / "vedium_core" / "vedium_core" / "public" / "css"
 GTM_IMPORT = ROOT / "docs" / "gtm" / "vedium-gtm-container-import.json"
+REVIEWS_PROCESS = ROOT / "docs" / "reviews" / "VERIFIED_REVIEWS_PROCESS.md"
+REVIEWS_TEMPLATE = ROOT / "docs" / "reviews" / "verified_reviews_template.csv"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
@@ -84,6 +86,30 @@ def test_commercial_pages_exist_and_drive_to_public_ctas():
         assert "/teste-de-nivel" in html
         assert "wa.me/5511911293075" in html
         assert "public_cta_click" in html
+
+
+def test_diagnostic_scheduling_is_public_and_checkout_safe():
+    html = (WWW / "aula-diagnostica.html").read_text(encoding="utf-8")
+    assert "Pré-agendamento" in html
+    assert "diagnostic_schedule_click" in html
+    assert 'data-vd-diagnostic="english"' in html
+    assert 'data-vd-diagnostic="portuguese_foreigners"' in html
+    assert 'data-vd-diagnostic="yoruba"' in html
+    assert html.count("https://wa.me/5511911293075") >= 4
+    assert "não cria reserva automática, matrícula, cobrança ou alteração de plano" in html
+    assert "/api/method" not in html
+    assert "stripe" not in html.lower()
+
+
+def test_verified_reviews_process_exists_without_fake_public_reviews():
+    process = REVIEWS_PROCESS.read_text(encoding="utf-8")
+    template = REVIEWS_TEMPLATE.read_text(encoding="utf-8")
+    assert "Só publicar depoimento quando houver autorização explícita" in process
+    assert "Depoimento de template" in process
+    assert "Review ligado a professor individual" in process
+    assert "public_name,course_or_goal,collection_date" in template
+    assert "approved_quote" in template
+    assert "authorization_evidence" in template
 
 
 def test_level_test_ctas_use_native_navigation_only():
