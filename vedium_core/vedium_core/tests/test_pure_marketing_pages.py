@@ -48,6 +48,8 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
     assert "Perguntas frequentes" in template
     assert "seo_landing_test_click" in template
     assert "seo_landing_whatsapp_click" in template
+    assert "landing_test_url" in template
+    assert "/teste-de-nivel-ingles" in template
 
     for slug in SEO_SLUGS:
         html_path = WWW / f"{slug}.html"
@@ -105,6 +107,8 @@ def test_public_level_test_exists_without_backend_dependency():
     assert "médico de resgate" in html
     assert "SpeechSynthesisUtterance" in html
     assert "level_test_completed" in html
+    assert "level_test_plan_click" in html
+    assert "level_test_catalog_click" in html
     assert "portuguese_foreigners" in html
     assert "Diagnóstico:" in html
     assert "Recomendação:" in html
@@ -127,6 +131,8 @@ def test_public_level_test_exists_without_backend_dependency():
     assert "project was successful" in english_html
     assert "SpeechSynthesisUtterance" in english_html
     assert "level_test_completed" in english_html
+    assert "level_test_plan_click" in english_html
+    assert "level_test_catalog_click" in english_html
     assert "english_learners" in english_html
     assert "Diagnóstico:" in english_html
     assert "Recomendação:" in english_html
@@ -180,6 +186,20 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS:
         assert f"https://vediums.com/{slug}" in llms
     assert "https://vediums.com/mentores" not in llms
+
+
+def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
+    index_py = (WWW / "index.py").read_text(encoding="utf-8")
+    catalogo_py = (WWW / "catalogo.py").read_text(encoding="utf-8")
+    curso_py = (WWW / "curso.py").read_text(encoding="utf-8")
+    assert "app.vediums.com" in index_py
+    assert 'redirect_location = "/login"' in index_py
+    assert "raise frappe.Redirect" in index_py
+    assert catalogo_py.index('"Upper Intermediário": "B2"') < catalogo_py.index('"Intermediário": "B1"')
+    assert index_py.index('"Upper Intermediário": "B2"') < index_py.index('"Intermediário": "B1"')
+    assert "_dedupe_chapters" in curso_py
+    assert "_dedupe_lessons" in curso_py
+    assert "chapter.lessons = _dedupe_lessons" in curso_py
 
 
 def test_dynamic_sitemap_lists_public_marketing_pages():
@@ -272,5 +292,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "GA4 - Base Config" in names
     assert "GA4 - Event - Public CTA Click" in names
     assert "GA4 - Event - Level Test Completed" in names
+    assert "GA4 - Event - Level Test Plan Click" in names
+    assert "GA4 - Event - Level Test Catalog Click" in names
     assert "CE - public_cta_click" in triggers
     assert "CE - language_selected" in triggers
+    assert "CE - level_test_plan_click" in triggers
+    assert "CE - level_test_catalog_click" in triggers

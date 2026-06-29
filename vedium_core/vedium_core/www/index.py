@@ -16,6 +16,8 @@ DEFAULT_FALLBACK = (
 
 
 def get_context(context):
+    _redirect_app_root_to_login()
+
     # Todos os cursos publicados, agrupados por idioma
     context.courses = get_courses()
     context.courses_by_language = get_courses_by_language()
@@ -26,6 +28,16 @@ def get_context(context):
 
     # Shopping Cart Count
     context.cart_count = get_cart_count()
+
+
+def _redirect_app_root_to_login():
+    """Keep app.vediums.com as product/login, while vediums.com remains marketing."""
+    request = getattr(frappe.local, "request", None)
+    host = (getattr(request, "host", "") or "").split(":")[0].lower()
+    path = getattr(frappe.local, "path", "") or "/"
+    if host == "app.vediums.com" and path in ("", "/"):
+        frappe.local.flags.redirect_location = "/login"
+        raise frappe.Redirect
 
 
 def get_cart_count():
@@ -138,8 +150,8 @@ def _level_badge(title: str) -> str:
         "Beginner": "A1",
         "Elementary": "A2",
         "Pré-Intermediário": "B1-",
-        "Intermediário": "B1",
         "Upper Intermediário": "B2",
+        "Intermediário": "B1",
         "Avançado": "C1",
     }
     for label, code in BADGES.items():

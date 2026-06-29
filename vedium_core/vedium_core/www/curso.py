@@ -104,11 +104,13 @@ def get_course_details(course_name):
                 try:
                     chapter.lessons = frappe.get_all("Course Lesson",
                         filters={"chapter": chapter.name},
-                        fields=["name", "title"],
+                        fields=["name", "title", "idx"],
                         order_by="idx"
                     )
+                    chapter.lessons = _dedupe_lessons(chapter.lessons)
                 except Exception:
                     chapter.lessons = []
+            course.chapters_list = _dedupe_chapters(course.chapters_list)
         except Exception:
             course.chapters_list = []
         
@@ -212,3 +214,31 @@ def calculate_average_rating(reviews):
     if not rated:
         return 0
     return round(sum(r.rating for r in rated) / len(rated), 1)
+
+
+def _dedupe_chapters(chapters):
+    """Avoid repeated curriculum blocks when production data contains duplicates."""
+    seen = set()
+    unique = []
+    for chapter in chapters:
+        key = (chapter.get("title") or chapter.get("name") or "").strip().lower()
+        if key and key in seen:
+            continue
+        if key:
+            seen.add(key)
+        unique.append(chapter)
+    return unique
+
+
+def _dedupe_lessons(lessons):
+    """Render a clean ordered curriculum even if the LMS has duplicate lessons."""
+    seen = set()
+    unique = []
+    for lesson in sorted(lessons, key=lambda item: (item.get("idx") or 0, item.get("title") or "")):
+        key = (lesson.get("title") or lesson.get("name") or "").strip().lower()
+        if key and key in seen:
+            continue
+        if key:
+            seen.add(key)
+        unique.append(lesson)
+    return unique

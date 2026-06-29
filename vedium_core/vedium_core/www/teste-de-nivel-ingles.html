@@ -49,6 +49,7 @@
   .vd-note { font-size:14px; color:#64748b; margin-top:8px; }
   .vd-result { display:none; margin-top:24px; padding:22px; border-radius:12px; background:#eef7ff; border:1px solid #bfdbfe; }
   .vd-result strong { color:#111827; }
+  .vd-result-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
   .vd-error { display:none; margin-top:16px; color:#b91c1c; font-weight:700; }
   .vd-muted { color:#6b7280; line-height:1.8; }
   .vd-side-list { padding-left:18px; }
@@ -339,7 +340,11 @@
             <p id="result-copy" class="vd-muted"></p>
             <p id="result-diagnostic" class="vd-muted"></p>
             <p id="result-recommendation" class="vd-muted"></p>
-            <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click',language:'english_learners'});">Enviar resultado no WhatsApp</a>
+            <div class="vd-result-actions">
+              <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click',language:'english_learners'});">Enviar resultado no WhatsApp</a>
+              <a href="/#planos" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_plan_click',language:'english_learners'});">Ver planos</a>
+              <a href="/catalogo" class="thm-btn" style="background:#111827;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_catalog_click',language:'english_learners'});">Escolher curso</a>
+            </div>
           </div>
         </div>
       </div>

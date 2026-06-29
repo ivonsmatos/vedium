@@ -158,8 +158,8 @@ def _get_level_badge(title):
         "Beginner": "A1",
         "Elementary": "A2",
         "Pré-Intermediário": "B1-",
-        "Intermediário": "B1",
         "Upper Intermediário": "B2",
+        "Intermediário": "B1",
         "Avançado": "C1",
     }
     for label, code in badges.items():
