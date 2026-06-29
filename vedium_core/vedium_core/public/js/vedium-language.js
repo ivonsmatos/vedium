@@ -608,6 +608,14 @@
     // TRAVAVA a aba ("página sem resposta") e ainda competia com a nossa
     // tradução de UI. O conteúdo permanece em pt-BR (correto para SEO/a11y);
     // traduzimos apenas as strings de interface do dicionário.
+    //
+    // Páginas SEO server-rendered nativas (ex.: /en/learn-yoruba-online) já
+    // nascem com lang real (<html lang="en">) e conteúdo já no idioma certo.
+    // Rodar a troca de texto nelas reabre o MESMO travamento (lang real +
+    // mutação de texto via JS competindo com o tradutor nativo do Chrome) —
+    // então pulamos a tradução quando o lang do documento já é o idioma alvo.
+    var pageLang = (document.documentElement.lang || "").toLowerCase();
+    if (pageLang && pageLang.indexOf(meta.lang) === 0) return;
     if (meta.lang !== "pt") {
       translateTextNodes(meta.lang);
       window.dataLayer = window.dataLayer || [];
