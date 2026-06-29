@@ -29,6 +29,7 @@ PUBLIC_LANGUAGE_ROUTES = (
     "como-funciona",
     "faq",
     "teste-de-nivel",
+    "teste-de-nivel-ingles",
     "contato",
     "carreiras",
     "termos",

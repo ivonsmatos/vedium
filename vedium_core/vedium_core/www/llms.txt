@@ -44,4 +44,5 @@
 - [Português para estrangeiros](https://vediums.com/portugues-para-estrangeiros): comunicação prática no Brasil.
 - [Português para executivos](https://vediums.com/portugues-para-executivos): reuniões, negócios e adaptação cultural.
 - [Preparatório Celpe-Bras](https://vediums.com/preparatorio-celpe-bras): português para estrangeiros com foco em prova, fala, escrita e simulados.
-- [Teste de nível gratuito](https://vediums.com/teste-de-nivel): diagnóstico inicial antes da matrícula.
+- [Teste de nível de português para estrangeiros](https://vediums.com/teste-de-nivel): diagnóstico inicial antes da matrícula em português para estrangeiros.
+- [Teste de nível de inglês](https://vediums.com/teste-de-nivel-ingles): diagnóstico inicial de inglês com estimativa CEFR antes da matrícula.

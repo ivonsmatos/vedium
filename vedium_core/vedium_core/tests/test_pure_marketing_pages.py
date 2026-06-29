@@ -82,14 +82,20 @@ def test_commercial_pages_exist_and_drive_to_public_ctas():
 
 def test_public_level_test_exists_without_backend_dependency():
     html_path = WWW / "teste-de-nivel.html"
+    english_html_path = WWW / "teste-de-nivel-ingles.html"
     py_path = WWW / "teste-de-nivel.py"
+    english_py_path = WWW / "teste-de-nivel-ingles.py"
     assert html_path.exists()
+    assert english_html_path.exists()
     assert py_path.exists()
+    assert english_py_path.exists()
     html = html_path.read_text(encoding="utf-8")
+    english_html = english_html_path.read_text(encoding="utf-8")
     assert "https://vediums.com/teste-de-nivel" in html
     assert "Teste de Nível de Português para Estrangeiros" in html
     assert "portuguese-level-test" in html
     assert html.count("data-correct=") == 15
+    assert "/teste-de-nivel-ingles" in html
     assert "Gramática e vocabulário" in html
     assert "Compreensão de leitura" in html
     assert "Compreensão auditiva" in html
@@ -107,6 +113,27 @@ def test_public_level_test_exists_without_backend_dependency():
     assert "A1" in html and "C1" in html
     assert "/api/method" not in html
     assert "stripe" not in html.lower()
+    assert "https://vediums.com/teste-de-nivel-ingles" in english_html
+    assert "Teste de Nível de Inglês" in english_html
+    assert "english-level-test" in english_html
+    assert english_html.count("data-correct=") == 15
+    assert "/teste-de-nivel" in english_html
+    assert "Grammar and vocabulary" in english_html
+    assert "Reading comprehension" in english_html
+    assert "Listening comprehension" in english_html
+    assert "Writing" in english_html
+    assert "Speaking" in english_html
+    assert "Flight 204 to London" in english_html
+    assert "project was successful" in english_html
+    assert "SpeechSynthesisUtterance" in english_html
+    assert "level_test_completed" in english_html
+    assert "english_learners" in english_html
+    assert "Diagnóstico:" in english_html
+    assert "Recomendação:" in english_html
+    assert "wa.me/5511911293075" in english_html
+    assert "A1" in english_html and "C1" in english_html
+    assert "/api/method" not in english_html
+    assert "stripe" not in english_html.lower()
 
 
 def test_public_pages_do_not_reintroduce_template_residue():
@@ -168,7 +195,7 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
         encoding="utf-8"
     )
-    for slug in SEO_SLUGS + COMMERCIAL_SLUGS + ["teste-de-nivel"]:
+    for slug in SEO_SLUGS + COMMERCIAL_SLUGS + ["teste-de-nivel", "teste-de-nivel-ingles"]:
         assert f'"/{slug}"' in sitemap
         assert f'"loc": "/{slug}"' in sitemap_context
         assert f'"{slug}"' in hooks

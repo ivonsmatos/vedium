@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teste de Nível de Inglês — Vedium</title>
+<meta name="description" content="Faça um teste gratuito de inglês com gramática, leitura, escuta, escrita e fala para estimar seu nível CEFR A1 a C1." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://vediums.com/teste-de-nivel-ingles" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Teste de Nível de Inglês — Vedium" />
+<meta property="og:description" content="Descubra seu nível de inglês e receba orientação para escolher a trilha certa na Vedium." />
+<meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+<link rel="apple-touch-icon" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>
+  img[src*="logo-color-reta"] { max-height: 46px !important; width: auto !important; }
+  .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
+  .stricky-header, .stricky-header.stricked-menu { display: none !important; }
+  .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+  .page-header__title h2 { color:#fff; }
+  .vd-test { padding: 72px 0; background: #f8fafc; }
+  .vd-test-card { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:28px; box-shadow:0 14px 34px rgba(15,23,42,.06); }
+  .vd-test-card h1, .vd-test-card h2, .vd-test-card h3, .vd-test-card h4 { color:#111827; }
+  .vd-test-card p, .vd-test-card label, .vd-test-card li { color:#5f6b7a; line-height:1.7; }
+  .vd-pill { display:inline-block; border-radius:999px; padding:6px 12px; background:#eaf2ff; color:#2563eb; font-size:12px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0; }
+  .vd-switch { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 6px; }
+  .vd-switch a { border:1px solid #dbe3ef; border-radius:8px; padding:10px 14px; font-weight:800; color:#1f2937; background:#fff; }
+  .vd-switch a.active { border-color:#2563eb; color:#2563eb; background:#eff6ff; }
+  .vd-section-title { border-top:1px solid #edf2f7; padding-top:28px; margin-top:28px; }
+  .vd-question { border-top:1px solid #edf2f7; padding-top:20px; margin-top:20px; }
+  .vd-question h4 { font-size:18px; line-height:1.45; margin-bottom:14px; }
+  .vd-option { display:block; padding:10px 12px; border:1px solid #e5e7eb; border-radius:8px; margin:8px 0; cursor:pointer; transition:border-color .15s ease, background .15s ease; }
+  .vd-option:hover { border-color:#2E6DA4; background:#f8fbff; }
+  .vd-textarea { width:100%; min-height:108px; border:1px solid #dbe3ef; border-radius:8px; padding:12px; color:#111827; resize:vertical; }
+  .vd-textarea:focus { border-color:#2563eb; outline:0; box-shadow:0 0 0 3px rgba(37,99,235,.13); }
+  .vd-reading { background:#f8fafc; border:1px solid #e5e7eb; border-radius:10px; padding:18px; color:#374151; line-height:1.8; }
+  .vd-audio-box { background:#f0f7ff; border:1px solid #bfdbfe; border-radius:10px; padding:18px; }
+  .vd-audio-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:12px; }
+  .vd-small-btn { border:0; border-radius:8px; padding:10px 14px; background:#2563eb; color:#fff; font-weight:800; cursor:pointer; }
+  .vd-small-btn:hover { background:#1d4ed8; }
+  .vd-note { font-size:14px; color:#64748b; margin-top:8px; }
+  .vd-result { display:none; margin-top:24px; padding:22px; border-radius:12px; background:#eef7ff; border:1px solid #bfdbfe; }
+  .vd-result strong { color:#111827; }
+  .vd-error { display:none; margin-top:16px; color:#b91c1c; font-weight:700; }
+  .vd-muted { color:#6b7280; line-height:1.8; }
+  .vd-side-list { padding-left:18px; }
+  .vd-score-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; margin:18px 0; }
+  .vd-score-item { background:#fff; border:1px solid #dbeafe; border-radius:10px; padding:14px; }
+  .vd-score-item span { display:block; color:#64748b; font-size:13px; }
+  .vd-score-item strong { display:block; color:#111827; font-size:20px; }
+  .vd-sticky-side { position:sticky; top:105px; }
+  @media (max-width: 767px) {
+    .vd-test { padding: 42px 0; }
+    .vd-test-card { padding:20px; }
+    .vd-score-grid { grid-template-columns:1fr; }
+    .vd-sticky-side { position:static; }
+  }
+</style>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Teste de Nível de Inglês — Vedium",
+  "description":"Teste gratuito de inglês com estimativa CEFR A1 a C1.",
+  "url":"https://vediums.com/teste-de-nivel-ingles",
+  "publisher":{"@type":"Organization","name":"Vedium","sameAs":"https://vediums.com"}
+}</script>
+</head>
+<body>
+<div class="page-wrapper">
+{% set vd_page = "cursos" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="page-header clearfix" style="background-image: linear-gradient(rgba(15,23,42,0.84), rgba(46,109,164,0.80)), url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80);">
+  <div class="container"><div class="row"><div class="col-xl-12"><div class="page-header__wrapper clearfix">
+    <div class="page-header__title"><h2>Teste de Nível</h2></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">Início</a></li><li><a href="/ingles-executivo">Inglês</a></li><li class="active">Teste de Nível</li></ul></div>
+  </div></div></div></div>
+</section>
+
+<section class="vd-test">
+  <div class="container">
+    <div class="row" style="row-gap:28px;">
+      <div class="col-lg-8">
+        <div class="vd-test-card">
+          <span class="vd-pill">Inglês</span>
+          <h1 style="margin-bottom:14px;">Descubra seu nível de inglês antes de escolher a trilha</h1>
+          <p class="vd-muted">Este diagnóstico segue a mesma linha do teste de português: gramática, vocabulário, leitura, escuta simulada, escrita e fala. As questões objetivas estimam seu nível CEFR de A1 a C1; as respostas abertas ajudam a Vedium a confirmar seu perfil com professor.</p>
+          <div class="vd-switch">
+            <a href="/teste-de-nivel">Português para estrangeiros</a>
+            <a href="/teste-de-nivel-ingles" class="active">Inglês</a>
+          </div>
+
+          <form id="english-level-test" novalidate>
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 1</span>
+              <h2>Grammar and vocabulary</h2>
+              <p class="vd-muted">Escolha a opção correta para completar cada frase.</p>
+            </div>
+
+            <div class="vd-question" data-question="1" data-cefr="A1" data-correct="a">
+              <h4>1. I _ from Brazil and I _ English every day.</h4>
+              <label class="vd-option"><input type="radio" name="q1" value="a"> am / study</label>
+              <label class="vd-option"><input type="radio" name="q1" value="b"> is / studies</label>
+              <label class="vd-option"><input type="radio" name="q1" value="c"> are / studied</label>
+              <label class="vd-option"><input type="radio" name="q1" value="d"> be / studying</label>
+            </div>
+
+            <div class="vd-question" data-question="2" data-cefr="A1" data-correct="b">
+              <h4>2. She works _ a hospital.</h4>
+              <label class="vd-option"><input type="radio" name="q2" value="a"> on</label>
+              <label class="vd-option"><input type="radio" name="q2" value="b"> in</label>
+              <label class="vd-option"><input type="radio" name="q2" value="c"> at the</label>
+              <label class="vd-option"><input type="radio" name="q2" value="d"> to</label>
+            </div>
+
+            <div class="vd-question" data-question="3" data-cefr="A2" data-correct="b">
+              <h4>3. Yesterday, we _ to the airport by taxi.</h4>
+              <label class="vd-option"><input type="radio" name="q3" value="a"> go</label>
+              <label class="vd-option"><input type="radio" name="q3" value="b"> went</label>
+              <label class="vd-option"><input type="radio" name="q3" value="c"> gone</label>
+              <label class="vd-option"><input type="radio" name="q3" value="d"> going</label>
+            </div>
+
+            <div class="vd-question" data-question="4" data-cefr="A2" data-correct="c">
+              <h4>4. They have lived in Canada _ 2021.</h4>
+              <label class="vd-option"><input type="radio" name="q4" value="a"> for</label>
+              <label class="vd-option"><input type="radio" name="q4" value="b"> during</label>
+              <label class="vd-option"><input type="radio" name="q4" value="c"> since</label>
+              <label class="vd-option"><input type="radio" name="q4" value="d"> ago</label>
+            </div>
+
+            <div class="vd-question" data-question="5" data-cefr="B1" data-correct="b">
+              <h4>5. If I had more time, I _ a new language.</h4>
+              <label class="vd-option"><input type="radio" name="q5" value="a"> learn</label>
+              <label class="vd-option"><input type="radio" name="q5" value="b"> would learn</label>
+              <label class="vd-option"><input type="radio" name="q5" value="c"> will learn</label>
+              <label class="vd-option"><input type="radio" name="q5" value="d"> learned</label>
+            </div>
+
+            <div class="vd-question" data-question="6" data-cefr="B1" data-correct="c">
+              <h4>6. I need to improve my English so that I _ better at work.</h4>
+              <label class="vd-option"><input type="radio" name="q6" value="a"> communicated</label>
+              <label class="vd-option"><input type="radio" name="q6" value="b"> communicating</label>
+              <label class="vd-option"><input type="radio" name="q6" value="c"> can communicate</label>
+              <label class="vd-option"><input type="radio" name="q6" value="d"> have communicated</label>
+            </div>
+
+            <div class="vd-question" data-question="7" data-cefr="B2" data-correct="c">
+              <h4>7. By the time she arrived, the meeting _.</h4>
+              <label class="vd-option"><input type="radio" name="q7" value="a"> started</label>
+              <label class="vd-option"><input type="radio" name="q7" value="b"> has started</label>
+              <label class="vd-option"><input type="radio" name="q7" value="c"> had already started</label>
+              <label class="vd-option"><input type="radio" name="q7" value="d"> starts</label>
+            </div>
+
+            <div class="vd-question" data-question="8" data-cefr="B2" data-correct="a">
+              <h4>8. The report, _ was sent yesterday, contains the latest updates.</h4>
+              <label class="vd-option"><input type="radio" name="q8" value="a"> which</label>
+              <label class="vd-option"><input type="radio" name="q8" value="b"> who</label>
+              <label class="vd-option"><input type="radio" name="q8" value="c"> where</label>
+              <label class="vd-option"><input type="radio" name="q8" value="d"> what</label>
+            </div>
+
+            <div class="vd-question" data-question="9" data-cefr="C1" data-correct="d">
+              <h4>9. Had I known about the delay, I _ earlier.</h4>
+              <label class="vd-option"><input type="radio" name="q9" value="a"> leave</label>
+              <label class="vd-option"><input type="radio" name="q9" value="b"> will leave</label>
+              <label class="vd-option"><input type="radio" name="q9" value="c"> had left</label>
+              <label class="vd-option"><input type="radio" name="q9" value="d"> would have left</label>
+            </div>
+
+            <div class="vd-question" data-question="10" data-cefr="C1" data-correct="c">
+              <h4>10. The proposal was rejected because it was not financially _.</h4>
+              <label class="vd-option"><input type="radio" name="q10" value="a"> plentiful</label>
+              <label class="vd-option"><input type="radio" name="q10" value="b"> fluent</label>
+              <label class="vd-option"><input type="radio" name="q10" value="c"> viable</label>
+              <label class="vd-option"><input type="radio" name="q10" value="d"> eventual</label>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 2</span>
+              <h2>Reading comprehension</h2>
+            </div>
+
+            <div class="vd-question">
+              <h4>Text 1: Lucas's new job</h4>
+              <div class="vd-reading">Lucas started a new job at an international company. Every morning, he reads short emails in English and joins a quick meeting with his team. At first, he was nervous, but now he understands the main ideas and asks simple questions when he needs help.</div>
+            </div>
+
+            <div class="vd-question" data-question="11" data-cefr="A2" data-correct="c">
+              <h4>11. What does Lucas do every morning?</h4>
+              <label class="vd-option"><input type="radio" name="q11" value="a"> He travels to another country.</label>
+              <label class="vd-option"><input type="radio" name="q11" value="b"> He writes long reports.</label>
+              <label class="vd-option"><input type="radio" name="q11" value="c"> He reads short emails and joins a quick meeting.</label>
+              <label class="vd-option"><input type="radio" name="q11" value="d"> He teaches English to his team.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>12. In English, write one sentence explaining how Lucas felt at first.</h4>
+              <textarea class="vd-textarea" name="w12" placeholder="Write a short answer in English."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>Text 2: hybrid work</h4>
+              <div class="vd-reading">Hybrid work has reshaped how companies organize collaboration. While employees often appreciate flexibility, managers must intentionally create routines that preserve communication, accountability and a shared sense of purpose across distributed teams.</div>
+            </div>
+
+            <div class="vd-question" data-question="13" data-cefr="B2" data-correct="b">
+              <h4>13. What is the main idea of Text 2?</h4>
+              <label class="vd-option"><input type="radio" name="q13" value="a"> Hybrid work should be avoided by all companies.</label>
+              <label class="vd-option"><input type="radio" name="q13" value="b"> Hybrid work requires intentional routines to keep teams aligned.</label>
+              <label class="vd-option"><input type="radio" name="q13" value="c"> Employees do not like flexibility.</label>
+              <label class="vd-option"><input type="radio" name="q13" value="d"> Managers should stop using online communication.</label>
+            </div>
+
+            <div class="vd-question" data-question="14" data-cefr="C1" data-correct="a">
+              <h4>14. In the text, "preserve communication" is closest in meaning to:</h4>
+              <label class="vd-option"><input type="radio" name="q14" value="a"> maintain communication</label>
+              <label class="vd-option"><input type="radio" name="q14" value="b"> remove communication</label>
+              <label class="vd-option"><input type="radio" name="q14" value="c"> delay communication</label>
+              <label class="vd-option"><input type="radio" name="q14" value="d"> translate communication</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>15. Explain, in your own words, what "a shared sense of purpose" means.</h4>
+              <textarea class="vd-textarea" name="w15" placeholder="Write your explanation in English."></textarea>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 3</span>
+              <h2>Listening comprehension</h2>
+              <p class="vd-muted">Clique em ouvir. Se o navegador bloquear o áudio, abra o roteiro apenas como alternativa.</p>
+            </div>
+
+            <div class="vd-question">
+              <h4>Audio 1: airport announcement</h4>
+              <div class="vd-audio-box">
+                <p class="vd-muted" data-audio-text="Attention passengers. Flight two zero four to London will board at gate seven at six forty-five.">Clique para ouvir o aviso e responda sem consultar o roteiro.</p>
+                <div class="vd-audio-actions"><button type="button" class="vd-small-btn" data-play-audio>Ouvir áudio 1</button><span class="vd-note">Use fone de ouvido se estiver no celular.</span></div>
+                <details class="vd-note"><summary>Mostrar roteiro somente se o áudio não funcionar</summary><p>Attention passengers. Flight 204 to London will board at gate 7 at 6:45.</p></details>
+              </div>
+            </div>
+
+            <div class="vd-question" data-question="16" data-cefr="A1" data-correct="b">
+              <h4>16. Where is the flight going and which gate will it use?</h4>
+              <label class="vd-option"><input type="radio" name="q16" value="a"> Paris, gate 6.</label>
+              <label class="vd-option"><input type="radio" name="q16" value="b"> London, gate 7.</label>
+              <label class="vd-option"><input type="radio" name="q16" value="c"> London, gate 45.</label>
+              <label class="vd-option"><input type="radio" name="q16" value="d"> New York, gate 7.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>17. Write the boarding time in words.</h4>
+              <textarea class="vd-textarea" name="w17" placeholder="Example: six forty-five."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>Audio 2: project update</h4>
+              <div class="vd-audio-box">
+                <p class="vd-muted" data-audio-text="The project was successful, but the deadline was challenging. The team solved several problems by communicating clearly and asking for feedback early.">Clique para ouvir o depoimento e responda sem consultar o roteiro.</p>
+                <div class="vd-audio-actions"><button type="button" class="vd-small-btn" data-play-audio>Ouvir áudio 2</button><span class="vd-note">A fala mede compreensão geral e inferência.</span></div>
+                <details class="vd-note"><summary>Mostrar roteiro somente se o áudio não funcionar</summary><p>The project was successful, but the deadline was challenging. The team solved several problems by communicating clearly and asking for feedback early.</p></details>
+              </div>
+            </div>
+
+            <div class="vd-question" data-question="18" data-cefr="B1" data-correct="c">
+              <h4>18. What does the speaker say about the project?</h4>
+              <label class="vd-option"><input type="radio" name="q18" value="a"> It failed because nobody communicated.</label>
+              <label class="vd-option"><input type="radio" name="q18" value="b"> It was easy and had no problems.</label>
+              <label class="vd-option"><input type="radio" name="q18" value="c"> It was successful, although the deadline was challenging.</label>
+              <label class="vd-option"><input type="radio" name="q18" value="d"> It was cancelled before the deadline.</label>
+            </div>
+
+            <div class="vd-question">
+              <h4>19. What helped the team solve problems?</h4>
+              <textarea class="vd-textarea" name="w19" placeholder="Write the answer in English."></textarea>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 4</span>
+              <h2>Writing</h2>
+              <p class="vd-muted">Estas respostas ajudam a equipe a confirmar seu nível além da pontuação automática.</p>
+            </div>
+
+            <div class="vd-question">
+              <h4>20. A2: write a short paragraph introducing yourself.</h4>
+              <textarea class="vd-textarea" name="w20" placeholder="Write your name, job, country and what you like doing in your free time."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>21. B1/B2: write a formal email to reschedule a meeting.</h4>
+              <textarea class="vd-textarea" name="w21" placeholder="Explain that you are sick, apologize and suggest a new date."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>22. C1: write an argumentative paragraph about remote work.</h4>
+              <textarea class="vd-textarea" name="w22" placeholder="Discuss advantages and disadvantages and defend your point of view."></textarea>
+            </div>
+
+            <div class="vd-section-title">
+              <span class="vd-pill">Parte 5</span>
+              <h2>Speaking</h2>
+              <p class="vd-muted">Leia as perguntas em voz alta e grave suas respostas no celular, ou envie por WhatsApp depois do resultado.</p>
+            </div>
+
+            <div class="vd-question">
+              <h4>23. A1/A2: What did you do last weekend?</h4>
+              <textarea class="vd-textarea" name="w23" placeholder="Use this field to prepare your spoken answer."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>24. B1/B2: Describe a trip you will never forget.</h4>
+              <textarea class="vd-textarea" name="w24" placeholder="Say what went well and what went wrong."></textarea>
+            </div>
+
+            <div class="vd-question">
+              <h4>25. C1: Do social media connect people or make them more isolated?</h4>
+              <textarea class="vd-textarea" name="w25" placeholder="Justify your opinion with examples."></textarea>
+            </div>
+
+            <p id="test-error" class="vd-error">Responda todas as questões de múltipla escolha para ver seu resultado automático.</p>
+            <button type="submit" class="thm-btn" style="margin-top:22px;">Ver meu resultado CEFR</button>
+          </form>
+
+          <div id="test-result" class="vd-result" aria-live="polite">
+            <h3 id="result-title">Seu resultado</h3>
+            <div class="vd-score-grid">
+              <div class="vd-score-item"><span>Nível estimado</span><strong id="result-level">-</strong></div>
+              <div class="vd-score-item"><span>Acertos objetivos</span><strong id="result-score">-</strong></div>
+              <div class="vd-score-item"><span>Foco inicial</span><strong id="result-focus">-</strong></div>
+            </div>
+            <p id="result-copy" class="vd-muted"></p>
+            <p id="result-diagnostic" class="vd-muted"></p>
+            <p id="result-recommendation" class="vd-muted"></p>
+            <a id="result-whatsapp" href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_whatsapp_click',language:'english_learners'});">Enviar resultado no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="vd-test-card vd-sticky-side">
+          <h3>O que este teste mede</h3>
+          <ul class="vd-side-list">
+            <li>Grammar e vocabulary do A1 ao C1.</li>
+            <li>Reading com textos curtos e profissionais.</li>
+            <li>Listening com avisos e situações de trabalho.</li>
+            <li>Writing funcional, formal e argumentativo.</li>
+            <li>Speaking sobre rotina, experiências e opinião.</li>
+          </ul>
+          <hr>
+          <h4>Depois do resultado</h4>
+          <p class="vd-muted">Envie o resultado para a Vedium. A equipe confirma speaking, writing e objetivo antes de recomendar a trilha: geral, entrevista, executivo, tecnologia, viagem ou atendimento.</p>
+          <a href="https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20fazer%20o%20teste%20de%20n%C3%ADvel%20de%20ingl%C3%AAs" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;">Falar com a Vedium</a>
+          <hr>
+          <h4>Importante</h4>
+          <p class="vd-muted">O resultado é uma estimativa inicial. A confirmação final depende da avaliação de um professor, principalmente nas partes de escrita e fala.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "templates/includes/site_footer.html" %}
+</div>
+<script src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
+<script src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script src="/assets/vedium_core/js/cookie-consent.js"></script>
+<script>
+  (function () {
+    var form = document.getElementById('english-level-test');
+    var error = document.getElementById('test-error');
+    var result = document.getElementById('test-result');
+    var title = document.getElementById('result-title');
+    var levelNode = document.getElementById('result-level');
+    var scoreNode = document.getElementById('result-score');
+    var focusNode = document.getElementById('result-focus');
+    var copy = document.getElementById('result-copy');
+    var diagnostic = document.getElementById('result-diagnostic');
+    var recommendation = document.getElementById('result-recommendation');
+    var whats = document.getElementById('result-whatsapp');
+    var levels = {
+      A1: 'A1 - iniciante',
+      A2: 'A2 - básico',
+      B1: 'B1 - intermediário',
+      B2: 'B2 - intermediário alto',
+      C1: 'C1 - avançado'
+    };
+    var diagnostics = {
+      A1: 'Diagnóstico: você reconhece frases básicas e precisa consolidar apresentação pessoal, verbo to be, presente simples, vocabulário essencial, números, horários e pronúncia inicial.',
+      A2: 'Diagnóstico: você já entende situações familiares, mas precisa ampliar passado, futuro, perguntas, listening lento e confiança para conversas curtas.',
+      B1: 'Diagnóstico: você se comunica em temas conhecidos e deve evoluir fluência, tempos verbais, conectores, listening natural e escrita funcional.',
+      B2: 'Diagnóstico: você sustenta conversas mais completas e deve trabalhar argumentação, vocabulário profissional, reuniões, apresentações e correção fina.',
+      C1: 'Diagnóstico: você já lida com estruturas complexas e deve focar nuances, precisão, sotaques, repertório profissional, escrita persuasiva e espontaneidade.'
+    };
+    var recommendations = {
+      A1: 'Recomendação: começar por Inglês Beginner A1, com foco em base comunicativa, pronúncia, frases essenciais e segurança para falar desde o início.',
+      A2: 'Recomendação: seguir para Inglês Elementary A2, com conversação guiada, passado, futuro, vocabulário de rotina, viagens e primeiras situações profissionais.',
+      B1: 'Recomendação: entrar na trilha intermediária, combinando conversação, listening, e-mails, reuniões simples e correção dos erros mais recorrentes.',
+      B2: 'Recomendação: buscar trilhas B2 por objetivo, como entrevistas, inglês executivo, tecnologia ou atendimento ao cliente, com simulações e feedback de speaking.',
+      C1: 'Recomendação: fazer acompanhamento avançado com professor, focando precisão, naturalidade, apresentações, negociação, entrevistas e objetivos internacionais.'
+    };
+    function getChecked(name) {
+      var input = form.querySelector('input[name="' + name + '"]:checked');
+      return input ? input.value : null;
+    }
+    function getLevel(score) {
+      if (score <= 4) return 'A1';
+      if (score <= 7) return 'A2';
+      if (score <= 10) return 'B1';
+      if (score <= 13) return 'B2';
+      return 'C1';
+    }
+    function getFocus(wrongByLevel) {
+      var order = ['A1', 'A2', 'B1', 'B2', 'C1'];
+      var weakest = order.reduce(function (current, level) {
+        return wrongByLevel[level] > wrongByLevel[current] ? level : current;
+      }, 'A1');
+      if (wrongByLevel[weakest] === 0) return 'refinamento';
+      return weakest;
+    }
+    function getOpenAnswerSummary() {
+      var filled = Array.prototype.slice.call(form.querySelectorAll('textarea')).filter(function (field) {
+        return field.value.trim().length > 0;
+      }).length;
+      if (filled === 0) return 'Nenhuma resposta aberta preenchida.';
+      return filled + ' respostas abertas preenchidas para avaliação humana.';
+    }
+    function speakText(text) {
+      if (!('speechSynthesis' in window) || !window.SpeechSynthesisUtterance) {
+        window.alert('Seu navegador não liberou áudio automático. Leia o texto em voz alta para continuar.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      var utterance = new window.SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.86;
+      window.speechSynthesis.speak(utterance);
+    }
+    Array.prototype.slice.call(document.querySelectorAll('[data-play-audio]')).forEach(function (button) {
+      button.addEventListener('click', function () {
+        var box = button.closest('.vd-audio-box');
+        var textNode = box ? box.querySelector('[data-audio-text]') : null;
+        if (textNode) speakText(textNode.getAttribute('data-audio-text'));
+      });
+    });
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var questions = Array.prototype.slice.call(form.querySelectorAll('[data-correct]'));
+      var unanswered = questions.filter(function (question) {
+        return !getChecked('q' + question.getAttribute('data-question'));
+      });
+      if (unanswered.length) {
+        error.style.display = 'block';
+        result.style.display = 'none';
+        unanswered[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      error.style.display = 'none';
+      var score = 0;
+      var wrongByLevel = { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0 };
+      questions.forEach(function (question) {
+        var number = question.getAttribute('data-question');
+        var cefr = question.getAttribute('data-cefr');
+        var correct = question.getAttribute('data-correct');
+        var selected = getChecked('q' + number);
+        if (selected === correct) {
+          score += 1;
+        } else {
+          wrongByLevel[cefr] += 1;
+        }
+      });
+      var level = getLevel(score);
+      var focus = getFocus(wrongByLevel);
+      var answerSummary = getOpenAnswerSummary();
+      var resultText = 'Resultado estimado: ' + levels[level] + '. Acertos: ' + score + '/' + questions.length + '. Foco inicial: ' + focus + '.';
+      title.textContent = levels[level];
+      levelNode.textContent = level;
+      scoreNode.textContent = score + '/' + questions.length;
+      focusNode.textContent = focus;
+      copy.textContent = resultText + ' ' + answerSummary;
+      diagnostic.textContent = diagnostics[level];
+      recommendation.textContent = recommendations[level];
+      whats.href = 'https://wa.me/5511911293075?text=' + encodeURIComponent('Olá, fiz o teste de nível de inglês da Vedium. ' + resultText + ' ' + answerSummary + ' ' + diagnostics[level] + ' ' + recommendations[level]);
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'level_test_completed',
+        language: 'english_learners',
+        level: level,
+        score: score,
+        total_questions: questions.length,
+        focus: focus,
+        open_answers_filled: answerSummary
+      });
+    });
+  }());
+</script>
+</body>
+</html>

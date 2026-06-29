@@ -31,6 +31,9 @@
   .vd-test-card h1, .vd-test-card h2, .vd-test-card h3, .vd-test-card h4 { color:#111827; }
   .vd-test-card p, .vd-test-card label, .vd-test-card li { color:#5f6b7a; line-height:1.7; }
   .vd-pill { display:inline-block; border-radius:999px; padding:6px 12px; background:#eaf2ff; color:#2563eb; font-size:12px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0; }
+  .vd-switch { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 6px; }
+  .vd-switch a { border:1px solid #dbe3ef; border-radius:8px; padding:10px 14px; font-weight:800; color:#1f2937; background:#fff; }
+  .vd-switch a.active { border-color:#2563eb; color:#2563eb; background:#eff6ff; }
   .vd-section-title { border-top:1px solid #edf2f7; padding-top:28px; margin-top:28px; }
   .vd-question { border-top:1px solid #edf2f7; padding-top:20px; margin-top:20px; }
   .vd-question h4 { font-size:18px; line-height:1.45; margin-bottom:14px; }
@@ -90,6 +93,10 @@
           <h1 style="margin-bottom:14px;">Descubra seu nível de português antes de começar as aulas</h1>
           <p class="vd-muted">Este diagnóstico combina gramática, vocabulário, leitura, escuta simulada, escrita e fala. As questões objetivas geram uma estimativa CEFR de A1 a C1, e as respostas abertas ajudam a equipe da Vedium a confirmar seu perfil antes da matrícula.</p>
           <p class="vd-muted"><strong>Como funciona:</strong> responda todas as questões de múltipla escolha para liberar o resultado automático. As respostas escritas e orais são recomendadas, principalmente se você quer uma avaliação mais fiel para estudar, trabalhar ou fazer negócios em português.</p>
+          <div class="vd-switch">
+            <a href="/teste-de-nivel" class="active">Português para estrangeiros</a>
+            <a href="/teste-de-nivel-ingles">Inglês</a>
+          </div>
 
           <form id="portuguese-level-test" novalidate>
             <div class="vd-section-title">

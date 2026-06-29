@@ -34,6 +34,7 @@ def generate_sitemap():
         {"loc": "/como-funciona", "priority": "0.8", "changefreq": "monthly"},
         {"loc": "/faq", "priority": "0.7", "changefreq": "monthly"},
         {"loc": "/teste-de-nivel", "priority": "0.8", "changefreq": "monthly"},
+        {"loc": "/teste-de-nivel-ingles", "priority": "0.8", "changefreq": "monthly"},
         {"loc": "/contato", "priority": "0.6", "changefreq": "monthly"},
         {"loc": "/carreiras", "priority": "0.5", "changefreq": "monthly"},
         {"loc": "/ingles-para-entrevista", "priority": "0.7", "changefreq": "monthly"},
