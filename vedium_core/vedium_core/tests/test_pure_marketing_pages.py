@@ -233,6 +233,9 @@ def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
     assert "daily_practice_speak" in practice
     assert "similarity" in practice
     assert "yo-NG" in practice
+    assert 'location.replace("https://app.vediums.com/pratica-diaria"' in practice
+    assert 'location.replace("https://app.vediums.com/meu-progresso"' in progress_html
+    assert "noindex, nofollow" in practice
     assert "https://app.vediums.com/meu-progresso" in practice
     assert "https://app.vediums.com/pratica-diaria" in progress_html
     assert 'APP_URL = "https://app.vediums.com"' in practice_py
