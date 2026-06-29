@@ -1,84 +1,246 @@
-<footer class="footer-one">
-    <div class="footer-one__bg" style="background-color:#11161d;"></div>
-    <div class="footer-one__top">
+<footer class="footer-one vd-rich-footer">
+    <style>
+      .vd-rich-footer {
+        --vd-footer-bg: #5b35e8;
+        --vd-footer-bg-2: #6f42f5;
+        --vd-footer-text: #ffffff;
+        --vd-footer-soft: rgba(255,255,255,.78);
+        --vd-footer-line: rgba(255,255,255,.22);
+        background: linear-gradient(135deg, var(--vd-footer-bg), var(--vd-footer-bg-2));
+        color: var(--vd-footer-text);
+      }
+      .vd-rich-footer .footer-one__bg,
+      .vd-rich-footer .footer-one__bottom { display: none; }
+      .vd-rich-footer__inner { padding: 48px 0 28px; }
+      .vd-rich-footer a { color: var(--vd-footer-text); text-decoration: none; }
+      .vd-rich-footer a:hover { color: #f8fbff; text-decoration: underline; }
+      .vd-rich-footer h3 {
+        color: #fff;
+        font-size: 19px;
+        line-height: 1.25;
+        margin: 0 0 18px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+      .vd-rich-footer ul { margin: 0; padding: 0; list-style: none; }
+      .vd-rich-footer li { margin: 0 0 12px; }
+      .vd-rich-footer p,
+      .vd-rich-footer li,
+      .vd-rich-footer small {
+        color: var(--vd-footer-soft);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .vd-rich-footer__grid {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr 1.25fr 1.25fr 1.15fr;
+        gap: 34px;
+      }
+      .vd-rich-footer__logo img { max-width: 146px; height: auto; margin-bottom: 14px; }
+      .vd-rich-footer__social {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin: 16px 0 22px;
+      }
+      .vd-rich-footer__social a {
+        width: 34px;
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: rgba(255,255,255,.14);
+      }
+      .vd-rich-footer__social i { font-size: 16px; }
+      .vd-rich-footer__whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 800;
+        margin: 8px 0 18px;
+      }
+      .vd-rich-footer__language {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 160px;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 18px;
+        background: #fff;
+        color: #111827 !important;
+        font-weight: 800;
+        box-shadow: 0 14px 30px rgba(15,23,42,.18);
+      }
+      .vd-rich-footer__language i,
+      .vd-rich-footer__language span { color: #111827; }
+      .vd-rich-footer__section {
+        border-top: 1px solid var(--vd-footer-line);
+        margin-top: 28px;
+        padding-top: 28px;
+      }
+      .vd-rich-footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 30px;
+      }
+      .vd-rich-footer__links a {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .vd-rich-footer__legal {
+        border-top: 1px solid var(--vd-footer-line);
+        margin-top: 30px;
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .vd-rich-footer__legal p { margin: 0; font-size: 13px; }
+      .vedium-whatsapp-float {
+        position: fixed;
+        right: 22px;
+        bottom: 88px;
+        z-index: 2147482500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: #25D366;
+        color: #fff !important;
+        font-weight: 700;
+        line-height: 1;
+        box-shadow: 0 14px 32px rgba(37, 211, 102, .28);
+        pointer-events: auto;
+        touch-action: manipulation;
+      }
+      .vedium-whatsapp-float i { font-size: 20px; }
+      .vedium-whatsapp-float:hover { color: #fff !important; transform: translateY(-1px); }
+      @media (max-width: 1199px) {
+        .vd-rich-footer__grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 767px) {
+        .vd-rich-footer__inner { padding: 38px 0 24px; }
+        .vd-rich-footer__grid { grid-template-columns: 1fr; gap: 24px; }
+        .vd-rich-footer__links { gap: 12px 20px; }
+        .vd-rich-footer__legal { display: block; }
+        .vd-rich-footer__legal p + p { margin-top: 10px; }
+        .vedium-whatsapp-float { right: 16px; bottom: 76px; padding: 12px; }
+        .vedium-whatsapp-float span { display: none; }
+      }
+    </style>
+    <div class="vd-rich-footer__inner">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-4">
-                    <div class="footer-widget__column footer-widget__about">
-                        <div class="footer-widget__about-logo"><a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a></div>
-                        <p style="color:#9aa6b2;font-size:15px;line-height:1.7;margin-top:14px;">Escola de idiomas 100% online, com aulas ao vivo de Inglês e Iorubá. Professores qualificados e foco real na sua fluência.</p>
+            <div class="vd-rich-footer__grid">
+                <div>
+                    <div class="vd-rich-footer__logo">
+                        <a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a>
+                    </div>
+                    <p>Escola de idiomas 100% online, com aulas ao vivo, professores qualificados e foco real na fluência.</p>
+                    <div class="vd-rich-footer__social">
+                        <a href="https://www.instagram.com/vediumsglobal/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=5511911293075&text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" target="_blank" rel="noopener" aria-label="WhatsApp" data-vd-location="footer_social"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-4">
-                    <div class="footer-widget__column footer-widget__links">
-                        <h3 class="footer-widget__title">Links Úteis</h3>
-                        <ul class="footer-widget__links-list list-unstyled">
-                            <li><a href="/sobre">Sobre Nós</a></li>
-                            <li><a href="/como-funciona">Como funciona</a></li>
-                            <li><a href="/catalogo">Nossos Cursos</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/carreiras">Trabalhe Conosco</a></li>
-                            <li><a href="/termos">Termos</a></li>
-                            <li><a href="/privacidade">Privacidade</a></li>
-                        </ul>
-                    </div>
+                <div>
+                    <h3>Cursos de Idiomas</h3>
+                    <ul>
+                        <li><a href="/catalogo">Catálogo de cursos</a></li>
+                        <li><a href="/ingles-para-entrevista">Inglês para entrevista</a></li>
+                        <li><a href="/ingles-para-programadores">Inglês para programadores</a></li>
+                        <li><a href="/ingles-executivo">Inglês executivo</a></li>
+                        <li><a href="/curso-de-ioruba-online">Curso de iorubá online</a></li>
+                        <li><a href="/portugues-para-estrangeiros">Português para estrangeiros</a></li>
+                    </ul>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-4">
-                    <div class="footer-widget__column footer-widget__contact">
-                        <h3 class="footer-widget__title">Contato</h3>
-                        <p class="text">VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA<br>CNPJ 58.434.869/0001-24</p>
-                        <p class="text">Brasil — Atendimento 100% Online</p>
-                        <p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p>
-                        <p><a href="tel:+5511911293075">+55 (11) 91129-3075</a></p>
-                    </div>
+                <div>
+                    <h3>Objetivos</h3>
+                    <ul>
+                        <li><a href="/ingles-para-viagens">Inglês para viagens</a></li>
+                        <li><a href="/ingles-para-atendimento-ao-cliente">Inglês para atendimento</a></li>
+                        <li><a href="/portugues-para-executivos">Português para executivos</a></li>
+                        <li><a href="/preparatorio-celpe-bras">Preparatório Celpe-Bras</a></li>
+                        <li><a href="/ioruba-cultura-e-ancestralidade">Iorubá, cultura e ancestralidade</a></li>
+                        <li><a href="/teste-de-nivel">Teste de nível grátis</a></li>
+                    </ul>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <div class="footer-widget__column footer-widget__social-links">
-                        <ul class="footer-widget__social-links-list list-unstyled clearfix">
-                            <li><a href="https://www.instagram.com/vediumsglobal/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="https://api.whatsapp.com/send?phone=5511911293075&text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" target="_blank" rel="noopener" aria-label="WhatsApp" data-vd-location="footer_social"><i class="fab fa-whatsapp"></i></a></li>
-                        </ul>
-                    </div>
+                <div>
+                    <h3>Vedium</h3>
+                    <ul>
+                        <li><a href="/como-funciona">Como funciona</a></li>
+                        <li><a href="/sobre">Nossa história</a></li>
+                        <li><a href="/planos">Planos</a></li>
+                        <li><a href="/aula-diagnostica">Aula diagnóstica</a></li>
+                        <li><a href="/programa-de-indicacao">Programa de indicação</a></li>
+                        <li><a href="/empresas">Vedium para empresas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="/faq">FAQ & Suporte</a></li>
+                        <li><a href="/contato">Contato</a></li>
+                        <li><a href="/termos">Termos de Uso</a></li>
+                        <li><a href="/privacidade">Privacidade</a></li>
+                        <li><a href="/certificado">Verificar certificado</a></li>
+                        <li><a href="https://app.vediums.com/login">Entrar na plataforma</a></li>
+                    </ul>
+                    <a class="vd-rich-footer__whatsapp" href="https://api.whatsapp.com/send?phone=5511911293075&text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" target="_blank" rel="noopener" data-vd-location="footer_support_whatsapp"><i class="fab fa-whatsapp"></i> +55 (11) 91129-3075</a>
+                    <a class="vd-rich-footer__language" href="/pt-br/" aria-label="Selecionar idioma"><i class="fas fa-globe"></i><span>PT</span><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
+
+            <div class="vd-rich-footer__section">
+                <h3>Vedium online para você</h3>
+                <div class="vd-rich-footer__links">
+                    <a href="/ingles-para-entrevista">Inglês para carreira</a>
+                    <a href="/ingles-para-programadores">Inglês para tecnologia</a>
+                    <a href="/ingles-executivo">Inglês para negócios</a>
+                    <a href="/ingles-para-viagens">Inglês para viagens</a>
+                    <a href="/portugues-para-estrangeiros">Português para estrangeiros</a>
+                    <a href="/curso-de-ioruba-online">Iorubá online</a>
+                    <a href="/preparatorio-celpe-bras">Celpe-Bras</a>
+                </div>
+            </div>
+
+            <div class="vd-rich-footer__section">
+                <h3>Conteúdos gratuitos</h3>
+                <div class="vd-rich-footer__links">
+                    <a href="/blog/niveis-de-ingles-a1-c1">Níveis de inglês A1 a C1</a>
+                    <a href="/blog/como-funcionam-as-aulas-ao-vivo">Como funcionam as aulas ao vivo</a>
+                    <a href="/blog/aprender-ioruba-lingua-e-cultura">Aprender iorubá: língua e cultura</a>
+                    <a href="/teste-de-nivel">Teste de português para estrangeiros</a>
+                    <a href="/teste-de-nivel-ingles">Teste de inglês</a>
+                </div>
+            </div>
+
+            <div class="vd-rich-footer__section">
+                <h3>Conteúdos e oportunidades</h3>
+                <div class="vd-rich-footer__links">
+                    <a href="/programa-de-indicacao">Indique a Vedium</a>
+                    <a href="/carreiras">Trabalhe conosco</a>
+                    <a href="/empresas">Treinamento para empresas</a>
+                    <a href="/comunidade">Comunidade por idioma</a>
+                    <a href="/matricula">Matrícula</a>
+                </div>
+            </div>
+
+            <div class="vd-rich-footer__legal">
+                <p>VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA · CNPJ 58.434.869/0001-24 · Brasil — Atendimento 100% Online</p>
+                <p>&copy; Copyright 2026 Vedium · Desenvolvido por <a href="https://scaledata.com.br" target="_blank" rel="noopener">Scaledata</a></p>
+            </div>
         </div>
-    </div>
-    <div class="footer-one__bottom">
-        <div class="container"><div class="row"><div class="col-xl-12"><div class="footer-one__bottom-inner"><div class="footer-one__bottom-text text-center">
-            <p>&copy; Copyright 2026 Vedium – Plataforma de Ensino de Idiomas &nbsp;|&nbsp; Desenvolvido por <a href="https://scaledata.com.br" target="_blank" rel="noopener" style="color:#9aa6b2;">Scaledata</a></p>
-        </div></div></div></div></div>
     </div>
 </footer>
 <a class="vedium-whatsapp-float" href="https://api.whatsapp.com/send?phone=5511911293075&text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" target="_blank" rel="noopener" aria-label="Falar com a Vedium no WhatsApp" data-vd-location="floating_whatsapp">
     <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
 </a>
-<style>
-  .vedium-whatsapp-float {
-    position: fixed;
-    right: 22px;
-    bottom: 88px;
-    z-index: 2147482500;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    border-radius: 999px;
-    background: #25D366;
-    color: #fff !important;
-    font-weight: 700;
-    line-height: 1;
-    box-shadow: 0 14px 32px rgba(37, 211, 102, .28);
-    pointer-events: auto;
-    touch-action: manipulation;
-  }
-  .vedium-whatsapp-float i { font-size: 20px; }
-  .vedium-whatsapp-float:hover { color: #fff !important; transform: translateY(-1px); }
-  @media (max-width: 575px) {
-    .vedium-whatsapp-float { right: 16px; bottom: 76px; padding: 12px; }
-    .vedium-whatsapp-float span { display: none; }
-  }
-</style>
 <script>
   (function(w,d,s,l,i){
     w[l]=w[l]||[];

@@ -432,6 +432,30 @@ def test_company_legal_data_is_visible_without_touching_checkout():
     assert "não altera o checkout" in terms
 
 
+def test_rich_footer_matches_public_site_structure():
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    assert "vd-rich-footer" in footer
+    assert "Cursos de Idiomas" in footer
+    assert "Objetivos" in footer
+    assert "Vedium online para você" in footer
+    assert "Conteúdos gratuitos" in footer
+    assert "Conteúdos e oportunidades" in footer
+    assert "FAQ & Suporte" in footer
+    assert "/ingles-para-entrevista" in footer
+    assert "/portugues-para-estrangeiros" in footer
+    assert "/curso-de-ioruba-online" in footer
+    assert "/blog/niveis-de-ingles-a1-c1" in footer
+    assert "/teste-de-nivel-ingles" in footer
+    assert "https://www.instagram.com/vediumsglobal/" in footer
+    assert "https://www.linkedin.com/company/vediums" in footer
+    assert "api.whatsapp.com/send?phone=5511911293075" in footer
+    assert "VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA" in footer
+    assert "58.434.869/0001-24" in footer
+    assert "/mentores" not in footer
+    assert "/professores" not in footer
+    assert "/professor-busayo-frank-alonge" not in footer
+
+
 def test_llms_txt_has_current_course_level_and_objective_pages():
     llms = (WWW / "llms.txt").read_text(encoding="utf-8")
     assert "Upper Intermediário (B2)" in llms
