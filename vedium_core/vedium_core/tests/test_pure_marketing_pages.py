@@ -4,6 +4,7 @@ Estes testes rodam sem Frappe/bench e protegem o pacote seguro de produção:
 não validam banco, Stripe, LMS, professores, alunos ou assinaturas.
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -46,10 +47,11 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
     template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
     assert "O que você vai aprender" in template
     assert "Perguntas frequentes" in template
-    assert "seo_landing_test_click" in template
     assert "seo_landing_whatsapp_click" in template
     assert "landing_test_url" in template
     assert "/teste-de-nivel-ingles" in template
+    assert 'href="{{ landing_test_url }}" class="thm-btn"' in template
+    assert "seo_landing_test_click" not in template
 
     for slug in SEO_SLUGS:
         html_path = WWW / f"{slug}.html"
@@ -80,6 +82,23 @@ def test_commercial_pages_exist_and_drive_to_public_ctas():
         assert "/teste-de-nivel" in html
         assert "wa.me/5511911293075" in html
         assert "public_cta_click" in html
+
+
+def test_level_test_ctas_use_native_navigation_only():
+    files = [
+        WWW / "index.html",
+        TPL / "site_navbar.html",
+        TPL / "marketing_landing.html",
+        WWW / "como-funciona.html",
+    ]
+    combined = "\n".join(path.read_text(encoding="utf-8") for path in files)
+    assert re.search(r'href="(?:\{\{ landing_test_url \}\}|/teste-de-nivel(?:-ingles)?)"', combined)
+    assert not re.search(
+        r'href="(?:\{\{ landing_test_url \}\}|/teste-de-nivel(?:-ingles)?)"[^>]*\sonclick=',
+        combined,
+    )
+    assert "seo_landing_test_click" not in combined
+    assert "cta:'level_test'" not in combined
 
 
 def test_public_level_test_exists_without_backend_dependency():
@@ -284,9 +303,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "pwa-register.js?v=static-v4" in footer
     assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
     assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
-    assert 'a[href="/teste-de-nivel"], a[href="/teste-de-nivel-ingles"]' in footer
-    assert "document.addEventListener('touchend', vediumGoToLevelTest" in footer
-    assert "window.location.href = link.href" in footer
+    assert "vediumGoToLevelTest" not in footer
+    assert "document.addEventListener('touchend'" not in footer
+    assert "window.location.href = link.href" not in footer
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" not in lang_js
