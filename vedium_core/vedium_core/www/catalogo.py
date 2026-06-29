@@ -81,12 +81,7 @@ def get_published_courses():
 
             # Format price
             if course.paid_course and course.course_price:
-                price = float(course.course_price)
-                course.formatted_price = (
-                    f"R$ {price:,.2f}".replace(",", "X")
-                    .replace(".", ",")
-                    .replace("X", ".")
-                )
+                course.formatted_price = _format_price(course.course_price, course.currency)
             else:
                 course.formatted_price = "Gratuito"
 
@@ -123,6 +118,13 @@ def get_course_categories():
     except Exception as e:
         frappe.log_error(f"Error fetching categories: {str(e)}", "Vedium Courses Page")
         return []
+
+
+def _format_price(price, currency):
+    p = float(price)
+    if (currency or "BRL") == "USD":
+        return f"US$ {p:,.2f}"
+    return f"R$ {p:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
 def _get_level_badge(title):

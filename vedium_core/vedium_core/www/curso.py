@@ -123,10 +123,8 @@ def get_course_details(course_name):
         # Get enrollment count
         course.enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
         
-        # Format price (R$ 320,00 — estilo BR, igual ao catálogo)
         if course.paid_course and course.course_price:
-            _p = float(course.course_price)
-            course.formatted_price = f"R$ {_p:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+            course.formatted_price = _format_price(course.course_price, course.currency)
         else:
             course.formatted_price = "Gratuito"
         
@@ -180,7 +178,7 @@ def get_related_courses(category, exclude_course, limit=3):
             course.url = f"/curso/{course.name}"
             
             if course.paid_course and course.course_price:
-                course.formatted_price = f"{course.currency or 'BRL'} {course.course_price:.2f}"
+                course.formatted_price = _format_price(course.course_price, course.currency)
             else:
                 course.formatted_price = "Gratuito"
         
@@ -217,6 +215,13 @@ def calculate_average_rating(reviews):
     if not rated:
         return 0
     return round(sum(r.rating for r in rated) / len(rated), 1)
+
+
+def _format_price(price, currency):
+    p = float(price)
+    if (currency or "BRL") == "USD":
+        return f"US$ {p:,.2f}"
+    return f"R$ {p:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
 def _dedupe_chapters(chapters):
