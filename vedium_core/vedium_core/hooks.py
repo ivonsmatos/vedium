@@ -127,9 +127,10 @@ web_include_js = [
 ]
 
 # =============================================================================
-# PWA — DESATIVADO (ver pwa-register.js, que desregistra service workers)
-# O SW antigo cacheava respostas 404 de API e quebrava o LMS (telas brancas).
-# NÃO reativar sem estratégia network-first para /api/*.
+# PWA publico seguro
+# O SW antigo cacheava navegacao/API e quebrava o LMS (telas brancas).
+# O registro atual fica restrito a vediums.com/www e o SW ignora navegacao,
+# /api, /app, /lms, /login e checkout.
 # =============================================================================
 
 # Theme Color (barra do navegador mobile) — azul da marca
@@ -151,7 +152,7 @@ website_context = {
 
 # Add custom context to all web pages
 def get_web_context(context):
-    context.pwa_enabled = False  # PWA desativado — ver comentário acima
+    context.pwa_enabled = True
     context.theme_color = "#2E6DA4"
     context.background_color = "#0f1419"
     return context

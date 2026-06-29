@@ -1,69 +1,38 @@
-const CACHE_NAME = 'vedium-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/sobre.html',
-  '/css/vedium.css',
-  '/images/vedium-logo-branca.png',
-  '/images/icone-color.png',
-  '/manifest.json'
-];
+const CACHE_NAME = 'vedium-static-v3';
+const BYPASS_PREFIXES = ['/api/', '/app', '/lms', '/login', '/checkout', '/socket.io/', '/payments', '/webhook'];
 
-// Install
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-      .then(() => self.skipWaiting())
+    caches.keys()
+      .then((keys) => Promise.all(keys.map((key) => key === CACHE_NAME ? undefined : caches.delete(key))))
+      .then(() => self.clients.claim())
   );
 });
 
-// Activate
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
-});
+function shouldBypass(requestUrl, request) {
+  if (request.method !== 'GET') return true;
+  if (requestUrl.origin !== self.location.origin) return true;
+  if (request.mode === 'navigate') return true;
+  return BYPASS_PREFIXES.some((prefix) => requestUrl.pathname.startsWith(prefix));
+}
 
-// Fetch - Network first, fallback to cache
-self.addEventListener('fetch', event => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
-
-  // Skip external requests
-  if (!event.request.url.startsWith(self.location.origin)) return;
+self.addEventListener('fetch', (event) => {
+  const requestUrl = new URL(event.request.url);
+  if (shouldBypass(requestUrl, event.request)) return;
 
   event.respondWith(
     fetch(event.request)
-      .then(response => {
-        // Clone and cache successful responses
-        if (response && response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseClone);
-          });
+      .then((response) => {
+        if (response && response.ok && requestUrl.pathname.startsWith('/assets/')) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)).catch(() => undefined);
         }
         return response;
       })
-      .catch(() => {
-        // Fallback to cache
-        return caches.match(event.request).then(cachedResponse => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-          // If no cache and offline, return offline page for navigation
-          if (event.request.mode === 'navigate') {
-            return caches.match('/index.html');
-          }
-        });
-      })
+      .catch(() => caches.match(event.request))
   );
 });

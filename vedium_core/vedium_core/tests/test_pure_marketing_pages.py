@@ -202,6 +202,8 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     for html in [index_html, static_index]:
         assert "app.vediums.com" in html
         assert "window.location.replace('/login')" in html
+    assert ".main-slider .swiper-slide { display: flex !important; align-items: center !important; pointer-events: none; }" in index_html
+    assert ".main-slider .swiper-slide-active { pointer-events: auto; }" in index_html
     for nginx in [nginx_primary, nginx_legacy]:
         assert "location = /" in nginx
         assert "return 302 /login;" in nginx
@@ -247,7 +249,18 @@ def test_public_language_selector_and_gtm_import_are_available():
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
+    pwa_js = (PUBLIC_JS / "pwa-register.js").read_text(encoding="utf-8")
+    sw_js = (PUBLIC_JS / "sw.js").read_text(encoding="utf-8")
+    root_sw_js = (WWW / "sw.js").read_text(encoding="utf-8")
+    cookie_js = (PUBLIC_JS / "cookie-consent.js").read_text(encoding="utf-8")
     theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
+    manifest = json.loads(
+        (ROOT / "vedium_core" / "vedium_core" / "public" / "vedium_assets" / "images" / "favicons" / "site.webmanifest").read_text(
+            encoding="utf-8"
+        )
+    )
+    static_index = (ROOT / "deploy" / "site" / "index.html").read_text(encoding="utf-8")
+    static_sw = (ROOT / "deploy" / "site" / "sw.js").read_text(encoding="utf-8")
     for locale in ["pt-br", "en-us", "es-ar", "fr", "de", "ru", "zh-cn"]:
         assert f'data-vd-locale="{locale}"' in navbar
     for href in ["/pt-br/", "/en-us/", "/es-ar/", "/de/", "/zh-cn/"]:
@@ -263,6 +276,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.js?v=" in footer
+    assert "pwa-register.js?v=static-v3" in footer
+    assert 'a[href="/teste-de-nivel"], a[href="/teste-de-nivel-ingles"]' in footer
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" not in lang_js
@@ -288,6 +303,25 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "google_translate_element" not in navbar
     assert "googtrans=" not in lang_js
     assert "target.closest" in lang_js
+    assert "navigator.serviceWorker.register('/sw.js'" in pwa_js
+    assert "PUBLIC_HOSTS" in pwa_js
+    assert "app.vediums.com" not in pwa_js
+    assert "request.mode === 'navigate'" in sw_js
+    assert "request.mode === 'navigate'" in root_sw_js
+    assert "request.mode === 'navigate'" in static_sw
+    assert "'/api/'" in sw_js
+    assert "'/lms'" in sw_js
+    assert "'/checkout'" in sw_js
+    assert "caches.match('/index.html')" not in sw_js
+    assert "caches.match('/index.html')" not in static_sw
+    assert "serviceWorker.register('/sw.js')" not in static_index
+    assert "@media(max-width:767px)" in cookie_js
+    assert "top:12px" in cookie_js
+    assert "bottom:auto" in cookie_js
+    assert manifest["name"] == "Vedium"
+    assert manifest["short_name"] == "Vedium"
+    assert manifest["start_url"] == "/"
+    assert manifest["icons"][0]["src"].startswith("/assets/vedium_core/")
 
     gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))
     raw_gtm = GTM_IMPORT.read_text(encoding="utf-8")

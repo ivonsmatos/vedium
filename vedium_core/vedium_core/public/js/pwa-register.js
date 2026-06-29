@@ -1,36 +1,59 @@
 // =============================================================================
-// Vedium - Limpeza de Service Worker (PWA desativado)
+// Vedium - Registro PWA seguro
 // -----------------------------------------------------------------------------
-// O service worker do PWA estava interceptando e cacheando respostas de API
-// (inclusive 404 capturados durante deploys), o que quebrava o LMS (telas em
-// branco, erros "Failed to convert value to 'Response'"). Como o site não
-// depende de PWA/offline, este script DESREGISTRA qualquer service worker
-// existente e limpa todos os caches do navegador. Roda em todas as paginas do
-// site (web_include_js), entao limpa o SW de quem ja visitou.
+// O PWA antigo cacheava navegacao/API e podia deixar paginas brancas apos deploy.
+// Este registro fica restrito ao site publico e usa um SW network-safe: sem cache
+// para login, API, LMS, app, checkout ou navegacao HTML.
 // =============================================================================
 
 (function () {
     'use strict';
 
+    var PUBLIC_HOSTS = ['vediums.com', 'www.vediums.com'];
+    var SAFE_CACHE = 'vedium-static-v3';
+
+    function isPublicHost() {
+        return PUBLIC_HOSTS.indexOf(window.location.hostname) !== -1;
+    }
+
+    function cleanupCaches() {
+        if (!window.caches || !caches.keys) return;
+        caches.keys()
+            .then(function (keys) {
+                keys.forEach(function (key) {
+                    if (key !== SAFE_CACHE) caches.delete(key);
+                });
+            })
+            .catch(function () { /* noop */ });
+    }
+
+    function unregisterAll() {
+        if (!('serviceWorker' in navigator) || !navigator.serviceWorker.getRegistrations) return;
+        navigator.serviceWorker.getRegistrations()
+            .then(function (registrations) {
+                registrations.forEach(function (reg) {
+                    reg.unregister();
+                });
+            })
+            .catch(function () { /* noop */ });
+    }
+
     try {
-        if ('serviceWorker' in navigator && navigator.serviceWorker.getRegistrations) {
-            navigator.serviceWorker.getRegistrations()
-                .then(function (registrations) {
-                    registrations.forEach(function (reg) {
-                        reg.unregister();
-                    });
-                })
-                .catch(function () { /* noop */ });
+        cleanupCaches();
+
+        if (!isPublicHost()) {
+            unregisterAll();
+            return;
         }
 
-        if (window.caches && caches.keys) {
-            caches.keys()
-                .then(function (keys) {
-                    keys.forEach(function (key) {
-                        caches.delete(key);
-                    });
-                })
-                .catch(function () { /* noop */ });
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(function (registration) {
+                        registration.update();
+                    })
+                    .catch(function () { /* noop */ });
+            });
         }
     } catch (e) {
         /* noop */

@@ -24,7 +24,9 @@
     + '#vd-consent .vd-accept:hover{background:#1d4ed8;}'
     + '#vd-consent .vd-reject{background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.3);}'
     + '#vd-consent .vd-reject:hover{color:#fff;border-color:#fff;}'
-    + '@media(max-width:600px){#vd-consent{flex-direction:column;align-items:stretch;text-align:left;}'
+    + '@media(max-width:600px){#vd-consent{top:12px;bottom:auto;left:12px;right:12px;flex-direction:column;align-items:stretch;text-align:left;padding:12px;}'
+    + '#vd-consent p{font-size:.82rem;line-height:1.35;flex:1 1 auto;}'
+    + '#vd-consent button{padding:.55rem .9rem;font-size:.82rem;}'
     + '#vd-consent .vd-actions{justify-content:flex-end;}}';
 
   function inject() {

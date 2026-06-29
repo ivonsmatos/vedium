@@ -109,7 +109,11 @@
       .main-slider__content-tagline, .main-slider .thm-base-color { color: #93c5fd !important; }
       /* Banner: tamanho fixo + sem imagem sobreposta */
       .main-slider, .main-slider .swiper-container, .main-slider .swiper-wrapper, .main-slider .swiper-slide { height: 740px !important; min-height: 740px !important; }
-      .main-slider .swiper-slide { display: flex !important; align-items: center !important; }
+      .main-slider .swiper-slide { display: flex !important; align-items: center !important; pointer-events: none; }
+      .main-slider .swiper-slide-active { pointer-events: auto; }
+      .main-slider .swiper-slide-active .main-slider__content,
+      .main-slider .swiper-slide-active .main-slider__content-btn,
+      .main-slider .swiper-slide-active .thm-btn { position: relative; z-index: 25; pointer-events: auto; }
       .main-slider { overflow: hidden !important; position: relative; }
       .main-slider .image-layer { position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100% !important; height: 100% !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
       @media (max-width: 768px) { .main-slider, .main-slider .swiper-container, .main-slider .swiper-wrapper, .main-slider .swiper-slide { height: 640px !important; min-height: 640px !important; } }
