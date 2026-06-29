@@ -48,9 +48,13 @@
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                fetch('/sw.js', { method: 'HEAD', cache: 'no-store' })
+                    .then(function (response) {
+                        if (!response.ok) return null;
+                        return navigator.serviceWorker.register('/sw.js', { scope: '/' });
+                    })
                     .then(function (registration) {
-                        registration.update();
+                        if (registration) registration.update();
                     })
                     .catch(function () { /* noop */ });
             });

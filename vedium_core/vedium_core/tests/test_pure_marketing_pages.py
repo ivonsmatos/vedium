@@ -256,6 +256,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     sw_py = (WWW / "sw.py").read_text(encoding="utf-8")
     cookie_js = (PUBLIC_JS / "cookie-consent.js").read_text(encoding="utf-8")
     theme_css = (PUBLIC_CSS / "luxo_theme.css").read_text(encoding="utf-8")
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
+        encoding="utf-8"
+    )
     manifest = json.loads(
         (ROOT / "vedium_core" / "vedium_core" / "public" / "vedium_assets" / "images" / "favicons" / "site.webmanifest").read_text(
             encoding="utf-8"
@@ -278,7 +281,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.js?v=" in footer
-    assert "pwa-register.js?v=static-v3" in footer
+    assert "pwa-register.js?v=static-v4" in footer
+    assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
+    assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
     assert 'a[href="/teste-de-nivel"], a[href="/teste-de-nivel-ingles"]' in footer
     assert "api.whatsapp.com/send?phone=5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
@@ -306,6 +311,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "googtrans=" not in lang_js
     assert "target.closest" in lang_js
     assert "navigator.serviceWorker.register('/sw.js'" in pwa_js
+    assert "fetch('/sw.js', { method: 'HEAD', cache: 'no-store' })" in pwa_js
     assert "PUBLIC_HOSTS" in pwa_js
     assert "app.vediums.com" not in pwa_js
     assert "request.mode === 'navigate'" in sw_js
