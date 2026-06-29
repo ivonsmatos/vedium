@@ -435,6 +435,8 @@ def test_company_legal_data_is_visible_without_touching_checkout():
 def test_rich_footer_matches_public_site_structure():
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
     assert "vd-rich-footer" in footer
+    assert "--vd-footer-bg: #164f86" in footer
+    assert "vd-rich-footer__language" not in footer
     assert "Cursos de Idiomas" in footer
     assert "Objetivos" in footer
     assert "Vedium online para você" in footer
