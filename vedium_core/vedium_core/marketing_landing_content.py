@@ -296,6 +296,48 @@ LANDINGS = {
             "Contexto cultural sem promessas religiosas ou sensacionalistas.",
             "Orientação para continuidade por módulos.",
         ],
+        "price_from": "320",
+        "price_display": "A partir de R$ 320/mês",
+        "price_note": "Valor de referência do plano leve (1 aula ao vivo por semana). O iorubá é um curso de nicho com professor especializado; planos com mais aulas têm valores diferentes — fale com a equipe.",
+        "workload": "PT1H30M",
+        "seo_title": "Tudo sobre o curso de iorubá online da Vedium",
+        "seo_sections": [
+            {
+                "heading": "O que é o iorubá e onde é falado",
+                "body": [
+                    "<p>O <strong>iorubá</strong> (yorùbá) é uma das línguas mais faladas da África Ocidental, com dezenas de milhões de falantes — principalmente no <strong>sudoeste da Nigéria</strong> e em países vizinhos como <strong>Benim e Togo</strong>, além de uma extensa comunidade na diáspora. É uma língua viva, com literatura, provérbios, música e uma tradição oral riquíssima.</p>",
+                    "<p>Uma característica marca o idioma desde a primeira aula: o iorubá é uma <strong>língua tonal</strong>. Isso significa que a mesma sequência de letras pode ter significados diferentes conforme o tom da voz. Por isso, aprender iorubá com áudio e correção ao vivo faz tanta diferença — listas de palavras sozinhas não ensinam a ouvir e produzir os tons corretamente.</p>",
+                ],
+            },
+            {
+                "heading": "Iorubá no Brasil: uma herança viva",
+                "body": [
+                    "<p>Poucas línguas africanas têm uma ligação tão profunda com o Brasil quanto o iorubá. Sua presença é forte na <strong>música, na culinária, nos nomes e nas tradições de matriz africana</strong>, fruto da história da diáspora. Para muitas pessoas, estudar iorubá é também uma forma de reconexão com raízes culturais e de entender essa herança na fonte, em vez de por intermediários.</p>",
+                    "<p>Na Vedium, esse contexto cultural é tratado com <strong>respeito e responsabilidade</strong>, do ponto de vista educacional e linguístico — sem promessas religiosas nem sensacionalismo. O foco é você compreender o idioma, sua lógica e seu uso real, com a cultura entrando como contexto que dá sentido às palavras.</p>",
+                ],
+            },
+            {
+                "heading": "Como aprender os tons do iorubá",
+                "body": [
+                    "<p>O iorubá tem <strong>três tons básicos</strong> — alto, médio e baixo — marcados na escrita por acentos. Para o ouvido brasileiro, treinar essa diferença é o passo mais importante do começo, e é exatamente onde a aula ao vivo se destaca: o professor pronuncia, você repete e recebe correção imediata, em vez de fixar um som errado por conta própria.</p>",
+                    "<p>A trilha começa pelos <strong>sons e tons</strong>, passa por saudações e expressões de respeito, vocabulário do cotidiano (família, casa, números, rotina) e chega à formação de frases simples. Cada etapa combina escuta, repetição guiada e diálogos curtos, sempre com feedback.</p>",
+                ],
+            },
+            {
+                "heading": "Como é o curso de iorubá ao vivo na Vedium",
+                "body": [
+                    "<p>O iorubá na Vedium é ensinado em <strong>aulas ao vivo, do básico ao avançado</strong>, com professor especializado no idioma e na cultura. As turmas são pensadas para quem começa do zero, com ritmo gradual e foco em fazer você <strong>falar de verdade</strong> — não apenas decorar listas. Para aprofundar a parte cultural, há também a trilha <a href=\"/ioruba-cultura-e-ancestralidade\">iorubá, cultura e ancestralidade</a>.</p>",
+                    "<p>Por ser um idioma de nicho, com pouca oferta de cursos sérios no Brasil, encontrar uma trilha organizada e confiável já é um diferencial. A proposta da Vedium é justamente essa: estrutura, pronúncia correta e continuidade por módulos, com acompanhamento humano em cada etapa.</p>",
+                ],
+            },
+            {
+                "heading": "Quanto custa e como começar",
+                "body": [
+                    "<p>Os planos de iorubá começam <strong>a partir de R$ 320/mês</strong> no formato leve (uma aula ao vivo por semana). Por se tratar de um curso especializado, com professor dedicado ao idioma, o valor reflete a profundidade do acompanhamento. Planos com mais aulas por semana, para quem quer evoluir mais rápido, têm valores proporcionais.</p>",
+                    "<p>Para começar, fale com a equipe da Vedium pelo WhatsApp ou faça o diagnóstico inicial. Você sai da primeira conversa entendendo o ponto de partida, a frequência indicada e o caminho até falar iorubá com mais segurança.</p>",
+                ],
+            },
+        ],
         "faqs": [
             {"q": "Preciso ter conhecimento prévio?", "a": "Não. A trilha pode começar do zero, com foco em pronúncia e vocabulário inicial."},
             {"q": "O curso é religioso?", "a": "A proposta é educacional e linguística, com contexto cultural tratado com respeito."},
@@ -394,6 +436,44 @@ LANDINGS = {
             "Explicações em inglês quando necessário.",
             "Trilha por objetivo: vida no Brasil, trabalho ou prova.",
             "Possibilidade de preparação para Celpe-Bras em trilha específica.",
+        ],
+        "workload": "PT1H30M",
+        "seo_title": "Tudo sobre o curso de português para estrangeiros da Vedium",
+        "seo_sections": [
+            {
+                "heading": "Português do Brasil ou de Portugal: qual você precisa?",
+                "body": [
+                    "<p>Quem vai morar, trabalhar ou estudar no Brasil precisa do <strong>português brasileiro</strong> — que tem pronúncia, vocabulário e expressões próprias, diferentes do português europeu. Frases do dia a dia, gírias, o jeito de tratar as pessoas e até a forma de marcar horário mudam. Aprender com um professor brasileiro, em situações reais do Brasil, evita o descompasso de estudar uma variante que não é a que você vai ouvir na rua.</p>",
+                    "<p>Na Vedium, as aulas são <strong>ao vivo e centradas no português falado no Brasil</strong>, com apoio em inglês quando necessário, especialmente no começo. O objetivo é que você entenda brasileiros falando em ritmo normal e consiga se virar com autonomia — não apenas montar frases corretas no papel.</p>",
+                ],
+            },
+            {
+                "heading": "Português para morar, trabalhar e estudar no Brasil",
+                "body": [
+                    "<p>O curso parte de situações concretas: <strong>apresentar-se, resolver serviços, ir ao banco e ao médico, alugar moradia, usar transporte e participar de reuniões de trabalho</strong>. Para profissionais, há foco em português corporativo — mensagens, alinhamentos e apresentações curtas. Para quem se relaciona com brasileiros, o foco vai para a conversa natural e as expressões do cotidiano.</p>",
+                    "<p>Esse recorte prático é o que diferencia aprender português \"para a vida real\" de apenas memorizar gramática. A cada aula, você pratica o que vai usar fora dela, com correção de pronúncia e ritmo em tempo real.</p>",
+                ],
+            },
+            {
+                "heading": "Quanto tempo um estrangeiro leva para aprender português?",
+                "body": [
+                    "<p>Depende da língua materna e da frequência de estudo, mas há uma boa notícia: para falantes de <strong>espanhol, inglês e outras línguas latinas</strong>, o português brasileiro costuma evoluir rápido nas primeiras etapas, porque há muito vocabulário próximo. Em geral, com estudo consistente, é possível alcançar um nível funcional para o dia a dia (A2–B1) em poucos meses.</p>",
+                    "<p>O que mais acelera é a <strong>prática oral frequente</strong> e a imersão no contexto brasileiro. Por isso as aulas ao vivo priorizam conversa desde cedo, e a frequência (1 ou 2 aulas por semana) é ajustada ao seu prazo de adaptação.</p>",
+                ],
+            },
+            {
+                "heading": "Celpe-Bras: a prova oficial de proficiência",
+                "body": [
+                    "<p>O <strong>Celpe-Bras</strong> é o exame oficial de proficiência em português brasileiro, reconhecido para fins acadêmicos e profissionais no Brasil. Quem precisa do certificado — para universidade, validação profissional ou processos de imigração — encontra na Vedium uma <a href=\"/preparatorio-celpe-bras\">trilha específica de preparação para o Celpe-Bras</a>, com foco no formato da prova, na parte oral e na escrita.</p>",
+                    "<p>Mesmo quem não vai prestar a prova se beneficia de uma trilha estruturada por nível, que dá clareza sobre o progresso e organiza o aprendizado em etapas com objetivo definido.</p>",
+                ],
+            },
+            {
+                "heading": "Como começar",
+                "body": [
+                    "<p>Para começar, fale com a equipe da Vedium pelo WhatsApp ou faça o <a href=\"/teste-de-nivel\">teste de nível de português para estrangeiros</a>. Você recebe uma estimativa do seu nível, uma recomendação de frequência e um plano alinhado ao seu objetivo — morar, trabalhar, estudar ou prestar o Celpe-Bras.</p>",
+                ],
+            },
         ],
         "faqs": [
             {"q": "The classes can include English support?", "a": "Yes. The teacher can use English support when needed, while progressively increasing Portuguese practice."},
