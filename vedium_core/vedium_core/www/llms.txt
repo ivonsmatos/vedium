@@ -27,7 +27,7 @@
 - [Matrícula](https://vediums.com/matricula): etapa pública para escolher curso, plano e objetivo antes de seguir para login e checkout na plataforma.
 - [Verificar certificado](https://vediums.com/certificado): verificação pública de autenticidade por código de certificado.
 - [Comunidade](https://vediums.com/comunidade): lista de interesse para comunidade por idioma e nível.
-- [Programa de indicação](https://vediums.com/programa-de-indicacao): registro de interesse em indicações, com regras comerciais a publicar.
+- [Programa de indicação](https://vediums.com/programa-de-indicacao): página informativa; a operação do programa é feita dentro da plataforma Frappe, com acesso logado.
 - [Vedium para empresas](https://vediums.com/empresas): interesse B2B para diagnóstico e trilhas por equipe.
 - [FAQ](https://vediums.com/faq): dúvidas comerciais sobre cursos, planos, pagamento, cancelamento e certificado.
 - [Contato](https://vediums.com/contato): canais de atendimento.

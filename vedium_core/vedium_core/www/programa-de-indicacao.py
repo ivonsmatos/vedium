@@ -1,8 +1,8 @@
 def get_context(context):
     context.title = "Programa de indicação — Vedium"
     context.description = (
-        "Gere um link de indicação Vedium e registre indicações para "
-        "acompanhamento comercial."
+        "O programa de indicação da Vedium é gerenciado dentro da plataforma Frappe, "
+        "com acesso logado e validação da equipe."
     )
     context.no_cache = 1
     return context
