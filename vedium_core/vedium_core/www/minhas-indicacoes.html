@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Minhas indicações — Vedium</title>
+<meta name="robots" content="noindex, nofollow" />
+<script>(function(){if(["vediums.com","www.vediums.com"].indexOf(location.hostname)>-1){location.replace("https://app.vediums.com/minhas-indicacoes"+location.search+location.hash);}}());</script>
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-section{padding:72px 0}.vd-alt{background:#f8fafc}.vd-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.vd-card{grid-column:span 4;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-wide{grid-column:span 8}.vd-full{grid-column:1/-1}.vd-pill{display:inline-block;border-radius:999px;padding:6px 12px;background:#eaf2ff;color:#2563eb;font-size:12px;font-weight:800;margin-bottom:12px}.vd-muted{color:#5f6b7a;line-height:1.7}.vd-list{padding-left:18px;margin:0}.vd-kpi{font-size:40px;line-height:1;color:#111827;font-weight:800}.vd-row{padding:12px 0;border-top:1px solid #edf2f7}.vd-row:first-child{border-top:0}.vd-code-box{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#f8fbff;border:1px solid #bfdbfe;border-radius:12px;padding:18px 20px;margin-top:10px}.vd-code{font-size:24px;font-weight:800;color:#1d4ed8;letter-spacing:1px}.vd-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}@media(max-width:991px){.vd-card,.vd-wide{grid-column:1/-1}}@media(max-width:767px){.vd-cta-row .thm-btn{width:100%;text-align:center}}</style>
+</head>
+<body><div class="page-wrapper">
+{% set vd_page = "minhas-indicacoes" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="vd-section"><div class="container">
+  <span class="vd-pill">Programa de indicação</span><h1 style="color:#111827;">Minhas indicações</h1>
+  <p class="vd-muted" style="max-width:840px;">Compartilhe seu código com amigos. Quando alguém se matricular usando ele, o desconto é aplicado automaticamente no checkout da pessoa indicada, e você recebe um cupom de recompensa por e-mail.</p>
+
+  <div class="vd-code-box">
+    <div>
+      <div class="vd-muted" style="font-size:13px;font-weight:700;text-transform:uppercase;">Seu código</div>
+      <div class="vd-code" id="vd-referral-code">{{ referral.referral_code }}</div>
+    </div>
+    <div class="vd-cta-row" style="margin-top:0;">
+      <button type="button" class="thm-btn" id="vd-copy-link" data-link="{{ referral.share_link }}">Copiar link</button>
+      <a class="thm-btn" style="background:#25D366;" href="{{ referral.whatsapp_link }}" target="_blank" rel="noopener" data-vd-location="referral_dashboard_whatsapp">Compartilhar no WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="vd-grid" style="margin-top:28px;">
+    <div class="vd-card"><span class="vd-pill">Desconto do amigo</span><div class="vd-kpi">{{ referral.discount_percent|int }}%</div><p class="vd-muted">Aplicado automaticamente quando seu amigo usa o código no checkout.</p></div>
+    <div class="vd-card"><span class="vd-pill">Sua recompensa</span><div class="vd-kpi">{{ referral.reward_percent|int }}%</div><p class="vd-muted">Cupom gerado pra você a cada matrícula confirmada com seu código.</p></div>
+    <div class="vd-card"><span class="vd-pill">Conversões</span><div class="vd-kpi">{{ referral.total_conversions }}</div><p class="vd-muted">Amigos que já se matricularam usando seu código.</p></div>
+    <div class="vd-card vd-full"><h2 style="color:#111827;">Suas indicações</h2>{% for c in conversions %}<div class="vd-row"><strong>{{ c.referee_name }}</strong><br><span class="vd-muted">{{ c.course_title or c.course }} · cupom {{ c.reward_coupon }} ({{ c.reward_percent|int }}%) · {{ c.converted_on }}</span></div>{% else %}<p class="vd-muted">Nenhuma indicação convertida ainda. Compartilhe seu link para começar.</p>{% endfor %}</div>
+  </div>
+</div></section>
+{% include "templates/includes/site_footer.html" %}</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var btn = document.getElementById("vd-copy-link");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var link = btn.getAttribute("data-link");
+    if (navigator.clipboard && link) {
+      navigator.clipboard.writeText(link).then(function () {
+        var original = btn.textContent;
+        btn.textContent = "Link copiado!";
+        setTimeout(function () { btn.textContent = original; }, 2000);
+      });
+    }
+  });
+});
+</script>
+<script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+</body></html>

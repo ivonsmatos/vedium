@@ -535,22 +535,33 @@ def create_checkout(course_name, gateway, coupon_code=None):
             ],
             as_dict=True,
         )
-        from datetime import datetime
 
         now = datetime.now()
-        if (
-            coupon
-            and coupon.active
-            and (not coupon.valid_from or coupon.valid_from <= now)
-            and (not coupon.valid_to or coupon.valid_to >= now)
-        ):
-            if not coupon.max_uses or (coupon.used_count or 0) < coupon.max_uses:
-                discount = float(coupon.discount_percent or 0)
+        if coupon:
+            if (
+                coupon.active
+                and (not coupon.valid_from or coupon.valid_from <= now)
+                and (not coupon.valid_to or coupon.valid_to >= now)
+            ):
+                if not coupon.max_uses or (coupon.used_count or 0) < coupon.max_uses:
+                    discount = float(coupon.discount_percent or 0)
+                    coupon_valid = True
+                else:
+                    coupon_msg = _("Cupom já atingiu o limite de uso")
+            else:
+                coupon_msg = _("Cupom inválido ou expirado")
+        else:
+            # Não é um Coupon — tenta como código de indicação (programa de
+            # indicação). Mesmo parâmetro coupon_code, mesmo contrato de
+            # retorno: nenhuma mudança necessária nos gateways de pagamento.
+            from vedium_core.referrals import validate_referral_code
+
+            referral = validate_referral_code(coupon_code, referee=frappe.session.user)
+            if referral:
+                discount = float(referral.discount_percent or 0)
                 coupon_valid = True
             else:
-                coupon_msg = _("Cupom já atingiu o limite de uso")
-        else:
-            coupon_msg = _("Cupom inválido ou expirado")
+                coupon_msg = _("Cupom inválido ou expirado")
 
     # M-03 fix: apply the discount to the course price before creating checkout
     # We pass the discounted price to the gateway instead of the full price
@@ -614,6 +625,10 @@ def create_enrollment_if_paid(
                WHERE name = %s""",
             (coupon_code,),
         )
+    elif coupon_code and frappe.db.exists("Referral", coupon_code):
+        from vedium_core.referrals import record_referral_conversion
+
+        record_referral_conversion(coupon_code, user, course_name, enrollment.name)
 
     # E-mail de boas-vindas (na fila, nunca bloqueia/aborta a matrícula)
     try:

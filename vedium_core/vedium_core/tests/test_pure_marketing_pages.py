@@ -217,25 +217,35 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
         assert "get_context" in py
 
 
-def test_referral_program_is_platform_managed_without_public_collection():
+def test_referral_program_links_to_authenticated_dashboard():
     html = (WWW / "programa-de-indicacao.html").read_text(encoding="utf-8")
     py = (WWW / "programa-de-indicacao.py").read_text(encoding="utf-8")
     assert "https://vediums.com/programa-de-indicacao" in html
     assert "Dentro da plataforma" in html
-    assert "https://app.vediums.com/login" in html
+    # Programa agora é funcional: CTA leva ao painel autenticado, não a um
+    # login genérico — a página pública em si não gera cupom/coleta dados,
+    # isso acontece em minhas-indicacoes.py (sessão logada obrigatória).
+    assert "https://app.vediums.com/minhas-indicacoes" in html
     assert "referral_platform_click" in html
-    assert "site público não gera cupom, desconto, matrícula, cobrança ou link automático" in html
-    assert "A página pública não coleta dados de indicação nem registra ticket comercial" in html
     assert "Gerar link de indicação" not in html
     assert "Registrar indicação" not in html
     assert "utm_source=referral" not in html
     assert "referral_link_copy" not in html
     assert "referral_register_submit" not in html
     assert "vedium_core.public_funnel.submit_public_intent" not in html
-    assert "intent:'referral'" not in html
+
+
+def test_referral_dashboard_requires_login_and_uses_referrals_module():
+    py = (WWW / "minhas-indicacoes.py").read_text(encoding="utf-8")
+    html = (WWW / "minhas-indicacoes.html").read_text(encoding="utf-8")
+    assert 'frappe.session.user == "Guest"' in py
+    assert "app.vediums.com/login?redirect-to=/minhas-indicacoes" in py
+    assert "from vedium_core.referrals import get_my_referral, get_my_referral_conversions" in py
+    assert 'noindex, nofollow' in html
+    assert "referral.referral_code" in html
+    assert "referral.whatsapp_link" in html
     assert "create_checkout" not in html
     assert "stripe" not in html.lower()
-    assert "plataforma Frappe" in py
 
 
 def test_daily_practice_tool_and_student_progress_dashboard_are_safe():

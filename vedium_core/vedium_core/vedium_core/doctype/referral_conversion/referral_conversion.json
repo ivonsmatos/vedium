@@ -1,0 +1,96 @@
+{
+    "actions": [],
+    "autoname": "hash",
+    "creation": "2026-06-30 21:30:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "referral",
+        "referrer",
+        "referee",
+        "course",
+        "enrollment",
+        "reward_coupon",
+        "reward_percent",
+        "converted_on"
+    ],
+    "fields": [
+        {
+            "fieldname": "referral",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Referral",
+            "options": "Referral",
+            "reqd": 1
+        },
+        {
+            "fieldname": "referrer",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Referrer",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "referee",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Referee",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "course",
+            "fieldtype": "Link",
+            "label": "Course",
+            "options": "LMS Course"
+        },
+        {
+            "fieldname": "enrollment",
+            "fieldtype": "Link",
+            "label": "Enrollment",
+            "options": "LMS Enrollment"
+        },
+        {
+            "fieldname": "reward_coupon",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Reward Coupon"
+        },
+        {
+            "fieldname": "reward_percent",
+            "fieldtype": "Float",
+            "label": "Reward (%)"
+        },
+        {
+            "fieldname": "converted_on",
+            "fieldtype": "Datetime",
+            "in_list_view": 1,
+            "label": "Converted On"
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2026-06-30 21:30:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Referral Conversion",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

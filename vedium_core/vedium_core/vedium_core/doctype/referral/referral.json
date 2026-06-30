@@ -1,0 +1,98 @@
+{
+    "actions": [],
+    "autoname": "field:referral_code",
+    "creation": "2026-06-30 21:30:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "referral_code",
+        "referrer",
+        "active",
+        "discount_percent",
+        "reward_percent",
+        "total_conversions"
+    ],
+    "fields": [
+        {
+            "fieldname": "referral_code",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Referral Code",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "referrer",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Referrer",
+            "options": "User",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "active",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Active",
+            "default": "1"
+        },
+        {
+            "fieldname": "discount_percent",
+            "fieldtype": "Float",
+            "label": "Referee Discount (%)",
+            "default": "10",
+            "description": "Desconto automático aplicado no checkout de quem usa este código."
+        },
+        {
+            "fieldname": "reward_percent",
+            "fieldtype": "Float",
+            "label": "Referrer Reward (%)",
+            "default": "15",
+            "description": "Desconto do cupom de recompensa gerado para quem indicou, a cada conversão."
+        },
+        {
+            "fieldname": "total_conversions",
+            "fieldtype": "Int",
+            "label": "Total Conversions",
+            "default": "0",
+            "read_only": 1
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2026-06-30 21:30:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Referral",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 0,
+            "delete": 0,
+            "email": 0,
+            "export": 0,
+            "print": 0,
+            "read": 1,
+            "report": 0,
+            "role": "All",
+            "share": 0,
+            "write": 0
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}
