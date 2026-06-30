@@ -490,6 +490,8 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
         assert "window.location.replace('/login')" in html
     assert ".main-slider .swiper-slide { display: flex !important; align-items: center !important; pointer-events: none; }" in index_html
     assert ".main-slider .swiper-slide-active { pointer-events: auto; }" in index_html
+    assert "testimonials-pagination" not in index_html
+    assert "pagination: { el: '.testimonials-pagination'" not in index_html
     for nginx in [nginx_primary, nginx_legacy]:
         assert "location = /" in nginx
         assert "return 302 /login;" in nginx

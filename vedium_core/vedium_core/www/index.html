@@ -940,7 +940,7 @@
                     <span class="section-title__tagline">Histórias Reais</span>
                     <h2 class="section-title__title">O que Nossos Alunos Dizem</h2>
                 </div>
-                <div class="swiper testimonials-swiper" style="padding-bottom:50px;">
+                <div class="swiper testimonials-swiper">
                     <div class="swiper-wrapper">
 
                         <!-- 1 Ana Lúcia S. — PLE Básico -->
@@ -1148,12 +1148,10 @@
                         </div>
 
                     </div><!-- /.swiper-wrapper -->
-                    <div class="swiper-pagination testimonials-pagination" style="bottom:0;"></div>
                 </div>
             </div>
             <style>
                 .testimonials-swiper .swiper-slide { height: auto; }
-                .testimonials-pagination .swiper-pagination-bullet-active { background: #2E6DA4; }
             </style>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
@@ -1163,7 +1161,6 @@
                             spaceBetween: 24,
                             loop: true,
                             autoplay: { delay: 5000, disableOnInteraction: false },
-                            pagination: { el: '.testimonials-pagination', clickable: true },
                             breakpoints: {
                                 768:  { slidesPerView: 2 },
                                 1024: { slidesPerView: 3 }
