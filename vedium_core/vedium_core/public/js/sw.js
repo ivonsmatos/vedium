@@ -1,8 +1,8 @@
-const CACHE_NAME = 'vedium-static-v3';
+const CACHE_NAME = 'vedium-static-v4';
 const CACHEABLE_PATHS = [
     '/assets/vedium_core/vedium_assets/images/logos/Icone-color.png',
-    '/assets/vedium_core/vedium_assets/images/favicons/android-chrome-192x192.png',
-    '/assets/vedium_core/vedium_assets/images/favicons/android-chrome-512x512.png'
+    '/assets/vedium_core/vedium_assets/images/favicons/android-chrome-192x192.png?v=icon-v2',
+    '/assets/vedium_core/vedium_assets/images/favicons/android-chrome-512x512.png?v=icon-v2'
 ];
 const BYPASS_PREFIXES = [
     '/api/',

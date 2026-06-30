@@ -579,11 +579,12 @@
     return String(value || "").replace(/\s+/g, " ").trim();
   }
 
-  function translateTextNodes(lang) {
+  function translateTextNodes(lang, root) {
     var copy = localeCopy[lang];
     if (!copy) return;
+    var scope = root || document.body;
     var skip = "SCRIPT,STYLE,NOSCRIPT,IFRAME,SVG";
-    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
       acceptNode: function (node) {
         if (!node.nodeValue || !normalizedText(node.nodeValue)) return NodeFilter.FILTER_REJECT;
         if (node.parentElement && node.parentElement.closest(skip)) return NodeFilter.FILTER_REJECT;
@@ -609,13 +610,25 @@
     // tradução de UI. O conteúdo permanece em pt-BR (correto para SEO/a11y);
     // traduzimos apenas as strings de interface do dicionário.
     //
-    // As páginas nativas EN (ex.: /en/learn-yoruba-online) têm translate="no"
-    // no <html> + <meta name="google" content="notranslate"> para impedir que
-    // o Chrome dispare sua engine ML de tradução (o que travava a aba). Com
-    // esse bloqueio no lugar, nossa tradução JS de UI (navbar/footer) pode
-    // correr normalmente sem competição com o tradutor nativo.
+    // Páginas SEO server-rendered nativas (ex.: /en/learn-yoruba-online) têm
+    // translate="no" + notranslate e o body já sai em inglês do servidor.
+    // Percorrer document.body inteiro com translateTextNodes nessas páginas
+    // trava o renderer (interação com scripts já ativos). Solução: traduzir
+    // apenas navbar e footer (escopo pequeno, único que tem texto em PT).
+    var pageLang = (document.documentElement.lang || "").toLowerCase();
+    var isNativeLangPage = pageLang && pageLang !== "pt" && pageLang !== "pt-br" && pageLang.indexOf(meta.lang) === 0;
     if (meta.lang !== "pt") {
-      translateTextNodes(meta.lang);
+      if (isNativeLangPage) {
+        // Traduz só shell (navbar + footer) — body já está no idioma correto
+        var shells = [
+          document.querySelector("header"),
+          document.querySelector("footer"),
+          document.querySelector(".main-header-one")
+        ].filter(function (el) { return el; });
+        shells.forEach(function (el) { translateTextNodes(meta.lang, el); });
+      } else {
+        translateTextNodes(meta.lang, document.body);
+      }
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "language_selected", language: meta.lang, locale: locale });
     }
@@ -673,10 +686,9 @@
       if (!link) return;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "public_cta_click", location: link.getAttribute("data-vd-location") || "whatsapp_link", cta: "whatsapp" });
-      if (window.matchMedia("(hover: none)").matches || window.innerWidth <= 768) {
-        event.preventDefault();
-        window.location.href = link.href;
-      }
+      // NÃO chamar preventDefault()/location.href aqui: isso sequestra a navegação
+      // nativa do target="_blank" e trava a aba no mobile esperando o handshake do
+      // app do WhatsApp. O <a target="_blank" rel="noopener"> já funciona sozinho.
     }, true);
 
     document.addEventListener("keydown", function (event) {
