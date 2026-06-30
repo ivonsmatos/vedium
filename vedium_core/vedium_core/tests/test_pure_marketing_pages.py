@@ -465,7 +465,7 @@ def test_rich_footer_matches_public_site_structure():
     assert "/teste-de-nivel-ingles" in footer
     assert "https://www.instagram.com/vediumsglobal/" in footer
     assert "https://www.linkedin.com/company/vediums" in footer
-    assert "api.whatsapp.com/send?phone=5511911293075" in footer
+    assert "wa.me/5511911293075" in footer
     assert "VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA" in footer
     assert "58.434.869/0001-24" in footer
     assert "/mentores" not in footer
@@ -592,7 +592,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "vediumGoToLevelTest" not in footer
     assert "document.addEventListener('touchend'" not in footer
     assert "window.location.href = link.href" not in footer
-    assert "api.whatsapp.com/send?phone=5511911293075" in footer
+    assert "wa.me/5511911293075" in footer
     assert "data-vd-location=\"floating_whatsapp\"" in footer
     assert "navigator.language" not in lang_js
     assert "language_selected" in lang_js
