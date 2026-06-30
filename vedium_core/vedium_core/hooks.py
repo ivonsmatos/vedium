@@ -43,6 +43,7 @@ PUBLIC_LANGUAGE_ROUTES = (
     "carreiras",
     "termos",
     "privacidade",
+    "curso-de-ingles-online",
     "ingles-para-entrevista",
     "ingles-para-programadores",
     "ingles-executivo",

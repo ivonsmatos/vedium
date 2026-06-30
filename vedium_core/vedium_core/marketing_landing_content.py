@@ -6,6 +6,107 @@ WHATSAPP_PHONE = "5511911293075"
 
 
 LANDINGS = {
+    "curso-de-ingles-online": {
+        "title": "Curso de Inglês Online ao Vivo (A1 a C1) — Vedium",
+        "short_title": "Curso de Inglês Online",
+        "meta_description": "Curso de inglês online ao vivo da Vedium: aulas com professor em tempo real, do A1 ao C1, foco em conversação, certificado e plano por objetivo. A partir de R$ 240/mês.",
+        "tagline": "Inglês do A1 ao C1",
+        "h1": "Curso de inglês online ao vivo, com professor de verdade",
+        "lead": "A Vedium ensina inglês em aulas ao vivo, não em vídeos gravados. Você evolui do A1 ao C1 com um professor que corrige sua fala em tempo real, turmas pequenas, plano por objetivo e foco em conversação desde a primeira aula.",
+        "hero_image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80",
+        "audience": "Iniciantes absolutos, quem travou na conversação, profissionais em recolocação, quem vai viajar ou morar fora, e estudantes que precisam de inglês para prova, trabalho ou faculdade.",
+        "level": "A1 a C1 (CEFR)",
+        "frequency": "1 a 4 aulas ao vivo por semana",
+        "duration": "Plano contínuo por nível e objetivo",
+        "summary": "Você é avaliado por nível CEFR, recebe um plano de estudo e estuda com aulas ao vivo, prática oral, correção individual, tarefas curtas e acompanhamento humano até atingir o objetivo.",
+        "pain_title": "Por que tanta gente estuda anos e não destrava a fala",
+        "pain_intro": "A maioria dos cursos entrega vídeo gravado e exercício solto. Sem alguém para ouvir e corrigir você falando, a conversação não evolui. A aula ao vivo resolve exatamente isso.",
+        "pain_points": [
+            "Entende inglês lendo e ouvindo, mas trava na hora de falar.",
+            "Já tentou app e curso gravado e perdeu a constância sem acompanhamento.",
+            "Não sabe ao certo o próprio nível nem por onde recomeçar.",
+            "Precisa de inglês para uma meta concreta (entrevista, viagem, prova) e tem prazo.",
+        ],
+        "outcomes": [
+            "Falar inglês com mais naturalidade e menos medo de errar.",
+            "Saber exatamente seu nível CEFR e o caminho até o próximo.",
+            "Ganhar vocabulário e estrutura aplicáveis ao seu objetivo real.",
+            "Manter constância com aulas ao vivo e acompanhamento do professor.",
+        ],
+        "modules": [
+            {"title": "Diagnóstico de nível", "text": "Teste e conversa inicial para situar você no CEFR (A1 a C1) e definir prioridades."},
+            {"title": "Conversação guiada", "text": "Prática oral desde o início, com correção de pronúncia, ritmo e vocabulário."},
+            {"title": "Gramática com uso real", "text": "Estruturas explicadas a partir de situações concretas, não de regras soltas."},
+            {"title": "Listening e compreensão", "text": "Treino de escuta com áudios, diálogos e materiais autênticos por nível."},
+            {"title": "Inglês para o seu objetivo", "text": "Trilhas para entrevista, negócios, viagem, atendimento ou tecnologia."},
+            {"title": "Preparação para provas", "text": "Apoio para TOEFL, IELTS e provas de proficiência conforme a necessidade."},
+        ],
+        "format_items": [
+            "Aulas online ao vivo, com professor e prática oral — não é vídeo gravado.",
+            "Turmas pequenas e plano ajustado ao seu nível e prazo.",
+            "Tarefas curtas entre as aulas para fixar o conteúdo.",
+            "Certificado de conclusão conforme requisitos do curso livre.",
+        ],
+        "price_from": "240",
+        "price_display": "A partir de R$ 240/mês",
+        "price_note": "Valor de referência do plano leve (1 aula ao vivo por semana). Planos com mais aulas por semana têm valores diferentes — veja a página de Planos ou fale com a equipe para o valor do seu objetivo.",
+        "workload": "PT2H",
+        "seo_title": "Tudo sobre o curso de inglês online ao vivo da Vedium",
+        "seo_sections": [
+            {
+                "heading": "Como funciona um curso de inglês online ao vivo",
+                "body": [
+                    "<p>No curso de inglês online da Vedium, cada aula acontece <strong>ao vivo, com um professor em tempo real</strong> — diferente de plataformas que entregam apenas vídeos gravados e exercícios automáticos. Essa é a diferença que mais impacta a fala: quando alguém ouve você falando e corrige na hora a pronúncia, o vocabulário e a estrutura, a conversação evolui de verdade. Em vídeo gravado, ninguém percebe que você está repetindo o mesmo erro há meses.</p>",
+                    "<p>As aulas são em <strong>turmas pequenas</strong>, o que garante tempo de fala para cada aluno. Você começa com um diagnóstico de nível, recebe um plano de estudo orientado ao seu objetivo e segue uma trilha contínua, com tarefas curtas entre as aulas para fixar o conteúdo. O acompanhamento é humano: o professor sabe onde você está, o que precisa destravar e ajusta o ritmo conforme sua evolução.</p>",
+                ],
+            },
+            {
+                "heading": "Do A1 ao C1: o que significam os níveis de inglês",
+                "body": [
+                    "<p>A Vedium organiza o inglês pelo <strong>Quadro Europeu Comum de Referência (CEFR)</strong>, o padrão internacional usado para medir proficiência em idiomas. Saber seu nível evita recomeçar do zero sem necessidade ou pular etapas importantes:</p>",
+                    "<ul><li><strong>A1 e A2 (básico):</strong> você se apresenta, fala sobre rotina, faz pedidos simples e entende frases do dia a dia.</li><li><strong>B1 e B2 (intermediário):</strong> você sustenta conversas, dá opiniões, lida com situações de trabalho e viagem e entende a maior parte de filmes e textos.</li><li><strong>C1 (avançado):</strong> você se comunica com fluência e naturalidade em contextos profissionais e acadêmicos, com vocabulário amplo e poucos travamentos.</li></ul>",
+                    "<p>No primeiro contato, um <strong>teste de nível gratuito</strong> e uma conversa diagnóstica situam você no CEFR. A partir daí, o plano mostra com clareza onde você está e o que falta para o próximo nível.</p>",
+                ],
+            },
+            {
+                "heading": "Quanto tempo leva para aprender inglês?",
+                "body": [
+                    "<p>Não existe um número único, mas há uma referência honesta: avançar <strong>um nível do CEFR costuma exigir de 3 a 6 meses</strong> de estudo consistente, dependendo do ponto de partida, da frequência das aulas e da prática entre elas. Quem faz duas aulas por semana e revisa nos intervalos evolui mais rápido do que quem estuda de forma esparsa.</p>",
+                    "<p>Os fatores que mais aceleram o aprendizado são <strong>constância, prática oral frequente e um objetivo claro</strong>. Por isso a Vedium trabalha com planos de 1 a 4 aulas por semana: a frequência certa é a que cabe na sua rotina e mantém você praticando sem grandes intervalos, que é quando o progresso costuma se perder.</p>",
+                ],
+            },
+            {
+                "heading": "Aula ao vivo ou aplicativo de idiomas: o que funciona melhor?",
+                "body": [
+                    "<p>Aplicativos de idiomas são ótimos para criar o hábito e treinar vocabulário em pequenas doses, mas têm um limite claro: <strong>eles não conversam de verdade com você</strong>. Reconhecimento de fala automático não percebe a entonação errada, não pergunta o que você quis dizer e não adapta a explicação ao seu contexto. É por isso que muita gente acumula meses de app e ainda trava numa conversa real.</p>",
+                    "<p>A aula ao vivo cobre exatamente essa lacuna. Um professor humano <strong>ouve, corrige e provoca a fala</strong> — faz a pergunta de acompanhamento, puxa o assunto que interessa à sua carreira e ajusta o ritmo quando percebe uma dificuldade. Na prática, o melhor resultado costuma vir da combinação: o app para revisar entre as aulas e a aula ao vivo para destravar a conversação. Na Vedium, o foco está na aula ao vivo, porque é ali que a fluência realmente acontece.</p>",
+                ],
+            },
+            {
+                "heading": "Inglês para conversação, trabalho, viagem e provas",
+                "body": [
+                    "<p>O mesmo curso se adapta a objetivos diferentes. Se a sua meta é <strong>conversação</strong>, a prática oral guiada está no centro de cada aula. Se é <strong>carreira</strong>, há trilhas específicas como <a href=\"/ingles-para-entrevista\">inglês para entrevista de emprego</a>, <a href=\"/ingles-executivo\">inglês executivo</a> e <a href=\"/ingles-para-programadores\">inglês para programadores</a>. Para quem vai viajar, o <a href=\"/ingles-para-viagens\">inglês para viagens</a> prioriza situações reais de aeroporto, hotel e restaurante.</p>",
+                    "<p>Quem precisa comprovar proficiência conta com apoio para <strong>TOEFL e IELTS</strong> e outras provas, com foco no formato do exame e nas habilidades cobradas. Em todos os casos, o ponto de partida é o mesmo: descobrir seu nível e montar um plano que leve do ponto atual até o objetivo, sem conteúdo genérico.</p>",
+                ],
+            },
+            {
+                "heading": "Quanto custa e como começar",
+                "body": [
+                    "<p>Os planos da Vedium começam <strong>a partir de R$ 240/mês</strong> no formato leve (uma aula ao vivo por semana). Planos com mais aulas semanais — indicados para quem tem prazo ou quer acelerar — têm valores proporcionais à frequência. Você não precisa decidir sozinho: a equipe recomenda o ritmo ideal a partir do seu nível, objetivo e disponibilidade.</p>",
+                    "<p>Para começar, faça o <a href=\"/teste-de-nivel-ingles\">teste de nível de inglês gratuito</a> e, em seguida, fale com a equipe para a aula diagnóstica. É a forma mais segura de não começar por uma trilha desalinhada ao seu momento — e de já sair da primeira conversa com um plano claro.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "As aulas são ao vivo ou gravadas?", "a": "Ao vivo, com professor em tempo real e turmas pequenas. Você pratica a fala e é corrigido na hora — não é videoaula gravada."},
+            {"q": "Como descubro meu nível de inglês?", "a": "Você faz o teste de nível gratuito e uma conversa diagnóstica com a equipe, que situam você no CEFR (A1 a C1) antes de definir o plano."},
+            {"q": "Quanto custa o curso de inglês?", "a": "Os planos começam a partir de R$ 240/mês no formato leve (1 aula por semana). Planos com mais aulas têm valores proporcionais. A equipe recomenda a frequência ideal para o seu objetivo."},
+            {"q": "Em quanto tempo eu evoluo?", "a": "Em média, avançar um nível do CEFR leva de 3 a 6 meses com estudo consistente. A frequência das aulas e a prática entre elas influenciam diretamente o ritmo."},
+            {"q": "Preciso já saber alguma coisa de inglês?", "a": "Não. A trilha pode começar do zero (A1) ou continuar de onde você parou, conforme o resultado do diagnóstico."},
+            {"q": "O curso tem certificado?", "a": "Sim, há certificado de conclusão conforme os requisitos do curso livre."},
+        ],
+        "whatsapp_text": "Olá, quero saber sobre o curso de inglês online ao vivo da Vedium.",
+    },
     "ingles-para-entrevista": {
         "title": "Inglês para Entrevista de Emprego — Vedium",
         "short_title": "Inglês para Entrevista",

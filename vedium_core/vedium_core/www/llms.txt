@@ -39,6 +39,11 @@
 - Site: https://vediums.com
 
 
+## Cursos por idioma (páginas pilar)
+- [Curso de inglês online ao vivo](https://vediums.com/curso-de-ingles-online): aulas ao vivo do A1 ao C1, conversação, certificado e planos a partir de R$ 240/mês.
+- [Curso de iorubá online](https://vediums.com/curso-de-ioruba-online): iorubá do zero com aulas ao vivo, pronúncia, tons e contexto cultural.
+- [Português para estrangeiros](https://vediums.com/portugues-para-estrangeiros): português brasileiro para quem mora, trabalha ou vai morar no Brasil.
+
 ## Trilhas por objetivo
 - [Inglês para entrevista de emprego](https://vediums.com/ingles-para-entrevista): preparação para entrevistas, RH e carreira.
 - [Inglês para programadores](https://vediums.com/ingles-para-programadores): reuniões, documentação, entrevistas técnicas e comunicação em tecnologia.

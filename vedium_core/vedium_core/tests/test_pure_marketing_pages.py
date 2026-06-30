@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
 
 SEO_SLUGS = [
+    "curso-de-ingles-online",
     "ingles-para-entrevista",
     "ingles-para-programadores",
     "ingles-executivo",
@@ -74,6 +75,32 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
     assert "/teste-de-nivel-ingles" in template
     assert 'href="{{ landing_test_url }}" class="thm-btn"' in template
     assert "seo_landing_test_click" not in template
+    # Infra SEO/GEO: FAQPage schema, offers no Course, prosa longa e preço
+    assert '"@type": "FAQPage"' in template
+    assert '"offers"' in template
+    assert "landing.seo_sections" in template
+    assert "landing.price_display" in template
+    # scripts com defer (performance no mobile)
+    assert "<script defer src=" in template
+    assert template.count("<script src=") == 0
+
+
+def test_english_pillar_page_is_rich_for_seo():
+    landing = LANDINGS["curso-de-ingles-online"]
+    # prosa longa de verdade (SEO/GEO exige corpo de texto substancial)
+    prose = " ".join(
+        block
+        for sec in landing["seo_sections"]
+        for block in sec["body"]
+    )
+    word_count = len(re.sub(r"<[^>]+>", " ", prose).split())
+    assert word_count >= 700, f"prosa muito curta: {word_count} palavras"
+    assert len(landing["seo_sections"]) >= 4
+    assert landing["price_from"] == "240"
+    assert "240" in landing["price_display"]
+    # links internos para o cluster de inglês (link building interno)
+    assert "/ingles-para-entrevista" in prose
+    assert "/teste-de-nivel-ingles" in prose
 
     for slug in SEO_SLUGS:
         html_path = WWW / f"{slug}.html"

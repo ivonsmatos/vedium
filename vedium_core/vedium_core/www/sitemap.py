@@ -26,6 +26,7 @@ STATIC_URLS = [
     {"loc": "/teste-de-nivel-ingles", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/contato", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/carreiras", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/curso-de-ingles-online", "priority": "0.9", "changefreq": "monthly"},
     {"loc": "/ingles-para-entrevista", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/ingles-para-programadores", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/ingles-executivo", "priority": "0.7", "changefreq": "monthly"},
