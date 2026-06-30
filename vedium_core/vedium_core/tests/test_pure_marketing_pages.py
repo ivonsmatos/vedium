@@ -492,6 +492,8 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     assert ".main-slider .swiper-slide-active { pointer-events: auto; }" in index_html
     assert "testimonials-pagination" not in index_html
     assert "pagination: { el: '.testimonials-pagination'" not in index_html
+    assert "blog-one__single-content-overlay-mata-info" not in index_html
+    assert "2 de junho de 2026" not in index_html
     for nginx in [nginx_primary, nginx_legacy]:
         assert "location = /" in nginx
         assert "return 302 /login;" in nginx
