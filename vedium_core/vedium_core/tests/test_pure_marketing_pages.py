@@ -593,7 +593,10 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "document.addEventListener('touchend'" not in footer
     assert "window.location.href = link.href" not in footer
     assert "wa.me/5511911293075" in footer
-    assert "data-vd-location=\"floating_whatsapp\"" in footer
+    # Botão flutuante removido a pedido do usuário (2026-06-30) — travava o
+    # site no mobile ao tentar abrir o app do WhatsApp.
+    assert "vedium-whatsapp-float" not in footer
+    assert "data-vd-location=\"floating_whatsapp\"" not in footer
     assert "navigator.language" not in lang_js
     assert "language_selected" in lang_js
     assert "vedium_preferred_locale" not in lang_js
