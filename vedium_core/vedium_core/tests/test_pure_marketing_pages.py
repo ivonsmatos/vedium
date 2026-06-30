@@ -585,7 +585,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/us.png" in navbar
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
-    assert "vedium-language.js?v=editorial-v3" in footer
+    assert "vedium-language.js?v=editorial-v4" in footer
     assert "pwa-register.js?v=static-v4" in footer
     assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
     assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
