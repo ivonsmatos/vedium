@@ -12,7 +12,7 @@ dependencies = [
     "openai>=1.0",
     "groq>=0.5",
     "requests>=2.31",
-    "stripe>=8.0,<11.0",
+    "stripe>=8.0,<16.0",
 ]
 
 [project.optional-dependencies]
