@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agendar aula — Vedium</title>
+<meta name="robots" content="noindex, nofollow" />
+<script>(function(){if(["vediums.com","www.vediums.com"].indexOf(location.hostname)>-1){location.replace("https://app.vediums.com/agendar-aula"+location.search+location.hash);}}());</script>
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>
+img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}
+.vd-section{padding:56px 0}.vd-alt{background:#f8fafc}.vd-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;box-shadow:0 14px 34px rgba(15,23,42,.06)}
+.vd-pill{display:inline-block;border-radius:999px;padding:6px 12px;background:#eaf2ff;color:#2563eb;font-size:12px;font-weight:800;margin-bottom:12px}
+.vd-muted{color:#5f6b7a;line-height:1.7}.vd-row{padding:14px 0;border-top:1px solid #edf2f7}.vd-row:first-child{border-top:0}
+.vd-course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:20px}
+.vd-course-btn{display:block;width:100%;text-align:left;border:1px solid #e5e7eb;border-radius:12px;padding:18px;background:#fff;cursor:pointer;transition:.15s ease}
+.vd-course-btn:hover,.vd-course-btn.is-active{border-color:#2E6DA4;box-shadow:0 10px 24px rgba(46,109,164,.14)}
+.vd-course-btn strong{display:block;color:#111827;font-size:16px;margin-bottom:4px}
+.vd-teacher-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.vd-teacher-btn{display:flex;align-items:center;gap:8px;border:1px solid #dbe4ff;border-radius:999px;padding:8px 16px 8px 8px;background:#fff;cursor:pointer;font-weight:700;color:#111827}
+.vd-teacher-btn img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:#eaf2ff}
+.vd-teacher-btn:hover,.vd-teacher-btn.is-active{border-color:#2E6DA4;background:#eaf2ff}
+.vd-slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:16px}
+.vd-slot-btn{border:1px solid #dbe4ff;border-radius:10px;padding:12px;background:#fff;cursor:pointer;text-align:center;font-weight:700;color:#111827}
+.vd-slot-btn:hover{border-color:#2E6DA4;background:#eaf2ff}
+.vd-slot-btn:disabled{opacity:.5;cursor:not-allowed}
+.vd-lesson-row{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.vd-status{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:800}
+.vd-status.Booked{background:#eaf2ff;color:#2563eb}.vd-status.Completed{background:#eafaf0;color:#16a34a}
+.vd-cancel-btn{border:1px solid #fecaca;color:#b91c1c;background:#fff5f5;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+.vd-cancel-btn:hover{background:#fee2e2}
+.vd-msg{margin-top:14px;padding:12px 16px;border-radius:10px;font-size:14.5px}
+.vd-msg.ok{background:#eafaf0;color:#166534}.vd-msg.err{background:#fef2f2;color:#b91c1c}
+@media(max-width:767px){.vd-section{padding:38px 0}}
+</style>
+</head>
+<body><div class="page-wrapper">
+{% set vd_page = "agendar-aula" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="vd-section"><div class="container">
+  <span class="vd-pill">Aluno</span>
+  <h1 style="color:#111827;">Agendar aula</h1>
+  <p class="vd-muted" style="max-width:760px;">Escolha o curso em que você está matriculado, depois o professor e um horário disponível na agenda dele. A confirmação chega por e-mail para você e para o professor.</p>
+
+  <div class="vd-card" style="margin-top:26px;">
+    <h2 style="color:#111827;">1. Escolha o curso</h2>
+    <div id="vd-course-grid" class="vd-course-grid"><p class="vd-muted">Carregando seus cursos...</p></div>
+  </div>
+
+  <div id="vd-teacher-block" class="vd-card" style="margin-top:20px;display:none;">
+    <h2 style="color:#111827;">2. Escolha o professor</h2>
+    <div id="vd-teacher-list" class="vd-teacher-list"></div>
+  </div>
+
+  <div id="vd-slot-block" class="vd-card" style="margin-top:20px;display:none;">
+    <h2 style="color:#111827;">3. Escolha o horário</h2>
+    <div id="vd-slot-grid" class="vd-slot-grid"></div>
+    <div id="vd-book-msg"></div>
+  </div>
+
+  <div class="vd-card" style="margin-top:20px;">
+    <h2 style="color:#111827;">Minhas próximas aulas</h2>
+    <div id="vd-my-lessons"><p class="vd-muted">Carregando...</p></div>
+  </div>
+</div></section>
+{% include "templates/includes/site_footer.html" %}</div>
+<script>window.VD_CSRF = {{ csrf_token | tojson }};</script>
+<script>
+(function(){
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+  function call(method, payload){
+    return fetch('/api/method/vedium_core.scheduling.'+method, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json', 'X-Frappe-CSRF-Token': window.VD_CSRF, 'Accept': 'application/json'},
+      body: JSON.stringify(payload || {})
+    }).then(function(r){
+      return r.json().then(function(data){
+        if(!r.ok){ throw new Error((data && (data.message || (data.exc_type && data._server_messages))) || 'Erro'); }
+        return data.message;
+      });
+    });
+  }
+
+  var state = { course: null, teacher: null };
+
+  function loadCourses(){
+    call('get_my_courses').then(function(courses){
+      var grid = document.getElementById('vd-course-grid');
+      if(!courses || !courses.length){
+        grid.innerHTML = '<p class="vd-muted">Nenhuma matrícula encontrada. <a href="/catalogo">Veja o catálogo de cursos</a>.</p>';
+        return;
+      }
+      grid.innerHTML = '';
+      courses.forEach(function(c){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'vd-course-btn';
+        btn.dataset.course = c.course;
+        var teacherNames = (c.teachers||[]).map(function(t){return t.full_name;}).join(', ') || 'Professor a definir';
+        btn.innerHTML = '<strong>'+esc(c.title)+'</strong><span class="vd-muted">'+esc(teacherNames)+'</span>';
+        btn.addEventListener('click', function(){ selectCourse(c, btn); });
+        grid.appendChild(btn);
+      });
+    }).catch(function(){
+      document.getElementById('vd-course-grid').innerHTML = '<p class="vd-muted">Não foi possível carregar seus cursos. Recarregue a página.</p>';
+    });
+  }
+
+  function selectCourse(course, btn){
+    state.course = course; state.teacher = null;
+    document.querySelectorAll('.vd-course-btn').forEach(function(b){b.classList.remove('is-active');});
+    btn.classList.add('is-active');
+    document.getElementById('vd-slot-block').style.display = 'none';
+    var teacherBlock = document.getElementById('vd-teacher-block');
+    var list = document.getElementById('vd-teacher-list');
+    list.innerHTML = '';
+    if(!course.teachers || !course.teachers.length){
+      list.innerHTML = '<p class="vd-muted">Ainda não há professor vinculado a este curso. Fale com a equipe pelo WhatsApp.</p>';
+    } else {
+      course.teachers.forEach(function(t){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'vd-teacher-btn';
+        b.innerHTML = (t.user_image ? '<img src="'+esc(t.user_image)+'" alt="">' : '') + '<span>'+esc(t.full_name)+'</span>';
+        b.addEventListener('click', function(){ selectTeacher(t, b); });
+        list.appendChild(b);
+      });
+    }
+    teacherBlock.style.display = 'block';
+    teacherBlock.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function selectTeacher(teacher, btn){
+    state.teacher = teacher;
+    document.querySelectorAll('.vd-teacher-btn').forEach(function(b){b.classList.remove('is-active');});
+    btn.classList.add('is-active');
+    var slotBlock = document.getElementById('vd-slot-block');
+    var grid = document.getElementById('vd-slot-grid');
+    grid.innerHTML = '<p class="vd-muted">Consultando horários...</p>';
+    document.getElementById('vd-book-msg').innerHTML = '';
+    slotBlock.style.display = 'block';
+    call('get_teacher_availability', {course: state.course.course, teacher: teacher.user}).then(function(slots){
+      grid.innerHTML = '';
+      if(!slots || !slots.length){
+        grid.innerHTML = '<p class="vd-muted">Nenhum horário disponível no momento. Tente novamente mais tarde ou fale com a equipe.</p>';
+        return;
+      }
+      slots.forEach(function(s){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'vd-slot-btn';
+        b.textContent = s.start_time;
+        b.addEventListener('click', function(){ bookSlot(s.slot, b); });
+        grid.appendChild(b);
+      });
+    }).catch(function(){
+      grid.innerHTML = '<p class="vd-muted">Não foi possível carregar os horários. Tente novamente.</p>';
+    });
+    slotBlock.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function bookSlot(slot, btn){
+    btn.disabled = true;
+    var msg = document.getElementById('vd-book-msg');
+    call('book_lesson', {course: state.course.course, slot: slot}).then(function(){
+      msg.innerHTML = '<div class="vd-msg ok">Aula agendada! Confira em "Minhas próximas aulas" abaixo. Você recebeu um e-mail de confirmação.</div>';
+      selectTeacher(state.teacher, document.querySelector('.vd-teacher-btn.is-active'));
+      loadMyLessons();
+    }).catch(function(err){
+      msg.innerHTML = '<div class="vd-msg err">'+esc(err.message || 'Não foi possível agendar. Escolha outro horário.')+'</div>';
+      btn.disabled = false;
+    });
+  }
+
+  function loadMyLessons(){
+    var box = document.getElementById('vd-my-lessons');
+    call('get_my_upcoming_lessons').then(function(lessons){
+      if(!lessons || !lessons.length){
+        box.innerHTML = '<p class="vd-muted">Nenhuma aula agendada ainda.</p>';
+        return;
+      }
+      box.innerHTML = '';
+      lessons.forEach(function(l){
+        var row = document.createElement('div');
+        row.className = 'vd-row vd-lesson-row';
+        var link = l.meeting_link ? ' · <a href="'+esc(l.meeting_link)+'" target="_blank" rel="noopener">Entrar na aula</a>' : '';
+        var cancelBtn = l.status === 'Booked' ? '<button type="button" class="vd-cancel-btn" data-slot="'+esc(l.name)+'">Cancelar</button>' : '';
+        row.innerHTML = '<div><strong>'+esc(l.course_title)+'</strong><br><span class="vd-muted">'+esc(l.start_display)+' · '+esc(l.teacher_name)+link+'</span></div>'+
+          '<div><span class="vd-status '+esc(l.status)+'">'+esc(l.status)+'</span> '+cancelBtn+'</div>';
+        box.appendChild(row);
+      });
+      box.querySelectorAll('.vd-cancel-btn').forEach(function(b){
+        b.addEventListener('click', function(){
+          if(!confirm('Cancelar esta aula? O horário ficará disponível para outro aluno.')) return;
+          b.disabled = true;
+          call('cancel_lesson', {slot: b.dataset.slot}).then(loadMyLessons).catch(function(err){
+            alert(err.message || 'Não foi possível cancelar.');
+            b.disabled = false;
+          });
+        });
+      });
+    }).catch(function(){
+      box.innerHTML = '<p class="vd-muted">Não foi possível carregar suas aulas.</p>';
+    });
+  }
+
+  loadCourses();
+  loadMyLessons();
+})();
+</script>
+<script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+<script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+<script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+</body></html>

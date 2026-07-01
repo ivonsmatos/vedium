@@ -31,6 +31,8 @@ PUBLIC_LANGUAGE_ROUTES = (
     "planos",
     "matricula",
     "meu-progresso",
+    "agendar-aula",
+    "minha-agenda",
     "certificado",
     "comunidade",
     "programa-de-indicacao",
@@ -182,6 +184,8 @@ override_doctype_templates = {}
 jinja = {
     "methods": [
         "vedium_core.marketing_landing_content.get_marketing_landing",
+        "vedium_core.blog_content.get_blog_post",
+        "vedium_core.blog_content.list_blog_posts",
         "vedium_core.utils.jinja_methods",
     ]
 }
@@ -215,7 +219,11 @@ doc_events = {
 # =============================================================================
 
 has_permission = {
-    # "DocType": "vedium_core.permissions.has_permission"
+    "Lesson Slot": "vedium_core.scheduling.lesson_slot_has_permission",
+}
+
+permission_query_conditions = {
+    "Lesson Slot": "vedium_core.scheduling.lesson_slot_query_conditions",
 }
 
 # =============================================================================
