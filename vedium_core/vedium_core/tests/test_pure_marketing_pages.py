@@ -746,6 +746,13 @@ def test_lesson_scheduling_requires_login_and_locks_down_direct_rest_access():
         assert f'location.replace("https://app.vediums.com{path}"' in html
         assert "X-Frappe-CSRF-Token" in html
         assert "window.VD_CSRF" in html
+        # 500 real reproduzido em produção: quando o redirect de Guest
+        # interrompe get_context antes de setar context.csrf_token, o
+        # Frappe ainda tenta pré-renderizar o template — `{{ csrf_token |
+        # tojson }}` explode com "Object of type DebugUndefined is not
+        # JSON serializable". `default("")` via `or ""` blinda o filtro.
+        assert '{{ (csrf_token or "") | tojson }}' in html
+        assert "{{ csrf_token | tojson }}" not in html
 
     # Aluno: matrícula obrigatória para ver agenda e reservar
     assert "def get_teacher_availability" in scheduling

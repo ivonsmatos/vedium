@@ -62,7 +62,7 @@ select.vd-select{width:100%;border:1px solid #d9dee8;border-radius:10px;padding:
   </div>
 </div></section>
 {% include "templates/includes/site_footer.html" %}</div>
-<script>window.VD_CSRF = {{ csrf_token | tojson }};</script>
+<script>window.VD_CSRF = {{ (csrf_token or "") | tojson }};</script>
 <script>
 (function(){
   function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
