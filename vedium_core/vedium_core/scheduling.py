@@ -259,18 +259,21 @@ def book_lesson(course, slot):
     if not _is_course_instructor(slot_doc.teacher, course):
         frappe.throw(_("Este horário não pertence a um professor deste curso."))
 
-    # UPDATE condicional: só um aluno consegue "ganhar" a corrida pelo mesmo horário.
+    # UPDATE condicional: só quem de fato flipar a linha (rowcount=1) ganhou a
+    # reserva. Checar o estado final por SELECT (em vez do rowcount) não
+    # distingue "eu venci a corrida agora" de "esse horário já era meu/de
+    # outra pessoa antes" — e deixava reservas repetidas passarem em silêncio.
     frappe.db.sql(
         """UPDATE `tabLesson Slot`
            SET status='Booked', student=%(student)s, course=%(course)s
            WHERE name=%(slot)s AND status='Available'""",
         {"student": user, "course": course, "slot": slot},
     )
+    affected = frappe.db._cursor.rowcount if frappe.db._cursor else 0
     frappe.db.commit()
 
-    confirmed = frappe.db.get_value("Lesson Slot", slot, ["status", "student"], as_dict=True)
-    if not confirmed or confirmed.status != "Booked" or confirmed.student != user:
-        frappe.throw(_("Este horário acabou de ser reservado por outra pessoa. Escolha outro horário."))
+    if not affected:
+        frappe.throw(_("Este horário já foi reservado. Escolha outro horário."))
 
     student_info = frappe.db.get_value("User", user, ["full_name", "first_name", "email"], as_dict=True) or {}
     teacher_info = frappe.db.get_value("User", slot_doc.teacher, ["full_name", "email"], as_dict=True) or {}

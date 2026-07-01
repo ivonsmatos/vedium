@@ -758,7 +758,12 @@ def test_lesson_scheduling_requires_login_and_locks_down_direct_rest_access():
     # gamification.add_points / Coupon.used_count) — evita 2 alunos
     # ganharem o mesmo horário numa corrida.
     assert "WHERE name=%(slot)s AND status='Available'" in scheduling
-    assert "confirmed.student != user" in scheduling
+    # rowcount (não um SELECT pós-UPDATE) detecta a reserva vencedora — um
+    # SELECT comparando estado final não distingue "eu venci agora" de
+    # "esse horário já era meu/de outra pessoa antes" e deixava reservas
+    # repetidas (e e-mails de confirmação duplicados) passarem em silêncio.
+    assert "affected = frappe.db._cursor.rowcount" in scheduling
+    assert "if not affected:" in scheduling
 
     # Professor: só cadastra disponibilidade nos próprios cursos
     assert "def create_availability" in scheduling
