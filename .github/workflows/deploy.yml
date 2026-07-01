@@ -116,6 +116,12 @@ jobs:
           echo "Healthcheck: \$status"
           [ "\$status" = "healthy" ] || { echo "::error::Container não voltou healthy após restart"; exit 1; }
 
+          echo "🌐 Criando cursos PLE (idempotente — pula se já existirem)..."
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" execute \
+              vedium_core.scripts.migrations.oneshot.create_ple_courses.run \
+              || echo "⚠️ create_ple_courses falhou (não-crítico)"
+
           echo "✅ Deploy finalizado."
           REMOTE
 

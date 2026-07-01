@@ -46,6 +46,14 @@ STATIC_URLS = [
     {"loc": "/portugues-para-estrangeiros", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/portugues-para-executivos", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/preparatorio-celpe-bras", "priority": "0.7", "changefreq": "monthly"},
+    # Blog
+    {"loc": "/blog", "priority": "0.7", "changefreq": "weekly"},
+    {"loc": "/blog/alfabeto-ioruba", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/blog/saudacoes-em-ioruba", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/blog/numeros-em-ioruba", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/blog/niveis-de-ingles-a1-c1", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/blog/como-funcionam-as-aulas-ao-vivo", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/blog/aprender-ioruba-lingua-e-cultura", "priority": "0.6", "changefreq": "monthly"},
     # Páginas em inglês (SEO internacional)
     {"loc": "/en/learn-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/learn-portuguese-brazil", "priority": "0.7", "changefreq": "monthly"},
