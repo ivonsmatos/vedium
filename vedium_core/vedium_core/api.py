@@ -445,7 +445,12 @@ def issue_certificate(enrollment_name):
             "verification_code": code,
         }
     )
-    cert.insert(ignore_permissions=True, ignore_if_duplicate=True)
+    # ignore_mandatory: o certificado NATIVO do LMS marca `template` como
+    # obrigatório; a emissão da Vedium usa código de verificação próprio e não
+    # depende de template, então dispensamos essa obrigatoriedade.
+    cert.insert(
+        ignore_permissions=True, ignore_if_duplicate=True, ignore_mandatory=True
+    )
     return {
         "certificate_id": cert.name,
         "verification_code": code,

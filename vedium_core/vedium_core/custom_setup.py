@@ -22,7 +22,28 @@ CUSTOM_FIELDS = {
             "options": "Language",
             "insert_after": "vedium_points",
         },
-    ]
+    ],
+    # Extensões Vedium ao certificado NATIVO do LMS (LMS Certificate).
+    # Antes existia um doctype custom homônimo que sequestrava o nativo; foi
+    # removido. Estas duas colunas dão suporte à verificação pública em
+    # /certificado (api.issue_certificate / verify_certificate).
+    "LMS Certificate": [
+        {
+            "fieldname": "verification_code",
+            "label": "Verification Code",
+            "fieldtype": "Data",
+            "insert_after": "member",
+            "unique": 1,
+            "read_only": 1,
+        },
+        {
+            "fieldname": "enrollment",
+            "label": "Enrollment",
+            "fieldtype": "Link",
+            "options": "LMS Enrollment",
+            "insert_after": "verification_code",
+        },
+    ],
 }
 
 
