@@ -101,7 +101,7 @@
       {% if post.hero_image %}<img src="{{ post.hero_image }}" alt="{{ post.hero_alt or post.title }}" />{% endif %}
       {% if post.lead %}<p class="vd-lead">{{ post.lead }}</p>{% endif %}
       {% for sec in post.sections %}
-      <h2>{{ sec.heading }}</h2>
+      {% if sec.heading %}<h2>{{ sec.heading }}</h2>{% endif %}
       {% for block in sec.body %}{{ block | safe }}{% endfor %}
       {% endfor %}
     </article>

@@ -1,0 +1,179 @@
+{
+    "actions": [],
+    "autoname": "field:slug",
+    "creation": "2026-07-01 00:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "title",
+        "slug",
+        "published",
+        "column_break_1",
+        "tag",
+        "date",
+        "section_break_1",
+        "meta_description",
+        "hero_image",
+        "hero_alt",
+        "lead",
+        "content",
+        "section_break_2",
+        "faqs",
+        "section_break_3",
+        "cta_title",
+        "cta_text",
+        "column_break_2",
+        "cta_label",
+        "cta_url"
+    ],
+    "fields": [
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Título",
+            "reqd": 1
+        },
+        {
+            "description": "Parte final da URL, ex.: minha-materia-nova (vira /blog/minha-materia-nova). Gerado automaticamente do título se deixado em branco.",
+            "fieldname": "slug",
+            "fieldtype": "Data",
+            "label": "Slug (URL)",
+            "unique": 1
+        },
+        {
+            "default": "0",
+            "fieldname": "published",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Publicado"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "default": "Vedium",
+            "fieldname": "tag",
+            "fieldtype": "Data",
+            "label": "Categoria (tag)"
+        },
+        {
+            "default": "Today",
+            "fieldname": "date",
+            "fieldtype": "Date",
+            "label": "Data de publicação"
+        },
+        {
+            "fieldname": "section_break_1",
+            "fieldtype": "Section Break",
+            "label": "Conteúdo"
+        },
+        {
+            "description": "Resumo curto (até 160 caracteres) usado no Google e nas redes sociais.",
+            "fieldname": "meta_description",
+            "fieldtype": "Small Text",
+            "label": "Meta descrição (SEO)"
+        },
+        {
+            "fieldname": "hero_image",
+            "fieldtype": "Attach Image",
+            "label": "Imagem de capa"
+        },
+        {
+            "fieldname": "hero_alt",
+            "fieldtype": "Data",
+            "label": "Texto alternativo da imagem"
+        },
+        {
+            "description": "Parágrafo de abertura, em destaque logo no topo do artigo.",
+            "fieldname": "lead",
+            "fieldtype": "Small Text",
+            "label": "Introdução (lead)"
+        },
+        {
+            "fieldname": "content",
+            "fieldtype": "Text Editor",
+            "label": "Corpo do artigo",
+            "reqd": 1
+        },
+        {
+            "fieldname": "section_break_2",
+            "fieldtype": "Section Break",
+            "label": "Perguntas frequentes (opcional)"
+        },
+        {
+            "fieldname": "faqs",
+            "fieldtype": "Table",
+            "label": "FAQs",
+            "options": "Vedium Blog FAQ"
+        },
+        {
+            "fieldname": "section_break_3",
+            "fieldtype": "Section Break",
+            "label": "Chamada para ação (opcional)"
+        },
+        {
+            "fieldname": "cta_title",
+            "fieldtype": "Data",
+            "label": "Título do CTA"
+        },
+        {
+            "fieldname": "cta_text",
+            "fieldtype": "Small Text",
+            "label": "Texto do CTA"
+        },
+        {
+            "fieldname": "column_break_2",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "cta_label",
+            "fieldtype": "Data",
+            "label": "Texto do botão"
+        },
+        {
+            "fieldname": "cta_url",
+            "fieldtype": "Data",
+            "label": "Link do botão"
+        }
+    ],
+    "index_pages": [],
+    "links": [],
+    "modified": "2026-07-01 00:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Vedium Blog Post",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "LMS Moderator",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "title_field": "title"
+}

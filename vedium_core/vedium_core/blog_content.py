@@ -1,9 +1,16 @@
 """Conteúdo do blog da Vedium — posts ricos (SEO/GEO) renderizados pelo
 template compartilhado templates/includes/blog_post.html.
 
-Cada post fica em www/blog/<slug>.html (2 linhas, chama get_blog_post) +
-www/blog/<slug>.py (apply_blog_context). O índice em www/blog.html lista
-BLOG_INDEX (posts deste dict + posts legados standalone).
+Há DUAS fontes de posts, e ambas caem no mesmo template:
+1. Este dict BLOG_POSTS — posts "de código" (SEO/GEO trabalhados a fundo,
+   com várias seções), editados por nós via commit/deploy.
+2. O doctype "Vedium Blog Post" — posts que QUALQUER pessoa com acesso ao
+   Frappe Desk publica sozinha, em /app/vedium-blog-post, sem precisar de
+   código nem de deploy. É o caminho recomendado para conteúdo novo.
+
+Toda URL /blog/<slug> passa por www/blog_post.py, que procura primeiro no
+doctype (post publicado pelo painel) e só then cai neste dict. O índice em
+/blog (www/blog.py) lista os dois juntos, ordenados por data.
 
 Convenção de conteúdo: corpo em HTML controlado por nós (parágrafos,
 listas e tabelas), com no mínimo ~900 palavras por post, headings H2 e
@@ -279,34 +286,132 @@ BLOG_POSTS = {
         "cta_label": "Conhecer o curso de iorubá",
         "cta_url": "/curso-de-ioruba-online",
     },
-}
-
-
-# Posts legados (HTML standalone) que ainda não migraram para o dict, mas
-# devem aparecer no índice /blog.
-LEGACY_POSTS = [
-    {
-        "slug": "niveis-de-ingles-a1-c1",
+    # --- Posts migrados de HTML standalone (2026-06-02) para este dict, sem
+    # reescrever o texto original — só reorganizados no formato de seções. ---
+    "niveis-de-ingles-a1-c1": {
         "title": "Níveis de inglês: do A1 ao C1, por onde começar",
-        "meta_description": "Entenda o que significam os níveis A1, A2, B1, B2 e C1 e descubra em qual deles você está antes de começar.",
+        "meta_description": "O que significam os níveis A1, A2, B1, B2 e C1 do inglês (CEFR) e como descobrir em qual deles você está antes de começar as aulas na Vedium.",
+        "h1": "Níveis de inglês: do A1 ao C1, por onde começar",
         "date": "2026-06-02",
+        "date_display": "2 de junho de 2026",
+        "hero_image": "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Estudante avançando nos níveis de inglês na Vedium",
         "tag": "Inglês",
+        "lead": "Os níveis de inglês seguem o Quadro Europeu Comum de Referência (CEFR), um padrão internacional que vai do A1 (iniciante) ao C1/C2 (avançado). Conhecer esses níveis ajuda você a entender onde está e até onde quer chegar.",
+        "sections": [
+            {
+                "heading": "O que significa cada nível",
+                "body": [
+                    "<ul>"
+                    "<li><strong>A1 — Iniciante:</strong> entende e usa frases simples do dia a dia.</li>"
+                    "<li><strong>A2 — Básico:</strong> conversas curtas sobre assuntos familiares.</li>"
+                    "<li><strong>B1 — Intermediário:</strong> se vira em viagens e situações comuns.</li>"
+                    "<li><strong>B2 — Intermediário superior:</strong> conversa com fluência sobre vários temas.</li>"
+                    "<li><strong>C1 — Avançado:</strong> usa o inglês com naturalidade no trabalho e nos estudos.</li>"
+                    "</ul>",
+                ],
+            },
+            {
+                "heading": "Como saber o meu nível",
+                "body": [
+                    "<p>Não é preciso adivinhar. Na Vedium, antes de começar, ajudamos você a identificar o seu nível para entrar na turma certa — nem fácil demais, nem difícil demais. Assim o seu tempo rende e a evolução é mais rápida.</p>",
+                ],
+            },
+            {
+                "heading": "Por onde começar",
+                "body": [
+                    "<p>Se você nunca estudou inglês, começa no A1. Se já tem alguma base, pode entrar em um nível mais adiantado. O programa da Vedium cobre toda a jornada, do A1 ao C1, com aulas ao vivo e professor dedicado.</p>",
+                ],
+            },
+        ],
+        "faqs": [],
+        "cta_title": "Pronto para descobrir seu nível?",
+        "cta_text": "Faça o teste gratuito e comece no nível certo, sem perder tempo.",
+        "cta_label": "Ver os níveis de inglês",
+        "cta_url": "/catalogo",
     },
-    {
-        "slug": "como-funcionam-as-aulas-ao-vivo",
+    "como-funcionam-as-aulas-ao-vivo": {
         "title": "Como funcionam as aulas ao vivo na Vedium",
         "meta_description": "Aulas em tempo real, turmas pequenas e professor de verdade: veja como é estudar Inglês e Iorubá online na Vedium.",
+        "h1": "Como funcionam as aulas ao vivo na Vedium",
         "date": "2026-06-02",
+        "date_display": "2 de junho de 2026",
+        "hero_image": "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Aluno em aula ao vivo de idiomas na Vedium",
         "tag": "Vedium",
+        "lead": "Na Vedium, você não assiste a vídeos gravados: estuda em aulas ao vivo, em tempo real, com um professor que conduz a aula, tira dúvidas na hora e adapta o ritmo à turma. É o jeito mais próximo de uma sala de aula presencial — só que de onde você estiver.",
+        "sections": [
+            {
+                "heading": "Como é uma aula",
+                "body": [
+                    "<p>Cada aula tem 1 hora de duração e acontece em uma chamada de vídeo. As turmas são pequenas, o que garante que todos falem, pratiquem e recebam correção. O foco é a <strong>conversação</strong>: você usa o idioma desde o primeiro dia, com apoio de materiais e exercícios.</p>",
+                ],
+            },
+            {
+                "heading": "O que você precisa",
+                "body": [
+                    "<ul>"
+                    "<li>Um computador ou celular com câmera e microfone;</li>"
+                    "<li>Conexão estável com a internet;</li>"
+                    "<li>Vontade de praticar — o resto a gente conduz.</li>"
+                    "</ul>",
+                ],
+            },
+            {
+                "heading": "Quais idiomas e níveis",
+                "body": [
+                    "<p>Você pode estudar <strong>Inglês</strong>, do básico (A1) ao avançado (C1), ou <strong>Iorubá</strong>, do básico ao avançado. Escolhe a frequência (de 1 a 4 aulas por semana) de acordo com a sua rotina e o seu objetivo. Ao concluir, você recebe um <strong>certificado</strong>.</p>",
+                ],
+            },
+        ],
+        "faqs": [],
+        "cta_title": "Quer experimentar uma aula ao vivo?",
+        "cta_text": "Veja os cursos disponíveis e escolha o idioma e o nível certos para você.",
+        "cta_label": "Ver os cursos",
+        "cta_url": "/catalogo",
     },
-    {
-        "slug": "aprender-ioruba-lingua-e-cultura",
+    "aprender-ioruba-lingua-e-cultura": {
         "title": "Iorubá: conheça o idioma e por que aprendê-lo",
         "meta_description": "O iorubá é falado por milhões na África Ocidental e tem forte presença na cultura brasileira. Conheça o idioma.",
+        "h1": "Iorubá: conheça o idioma e por que aprendê-lo",
         "date": "2026-06-02",
+        "date_display": "2 de junho de 2026",
+        "hero_image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Aula de Iorubá: língua e cultura na Vedium",
         "tag": "Iorubá",
+        "lead": "O iorubá é uma das línguas mais faladas da África Ocidental, com milhões de falantes na Nigéria, no Benim e no Togo, além de uma grande comunidade na diáspora — inclusive no Brasil. É um idioma vivo, com tom, ritmo e uma cultura riquíssima por trás.",
+        "sections": [
+            {
+                "heading": "Uma língua ligada ao Brasil",
+                "body": [
+                    "<p>A presença iorubá é forte na história e na cultura brasileiras, especialmente na música, na culinária e nas tradições de matriz africana. Aprender o idioma é também uma forma de se reconectar com essa herança e entendê-la na fonte.</p>",
+                ],
+            },
+            {
+                "heading": "Por que estudar iorubá",
+                "body": [
+                    "<ul>"
+                    "<li>Reconexão com raízes culturais e religiosas;</li>"
+                    "<li>Acesso a músicas, provérbios e literatura no original;</li>"
+                    "<li>Comunicação com falantes na África e na diáspora;</li>"
+                    "<li>Um diferencial cultural e acadêmico.</li>"
+                    "</ul>",
+                ],
+            },
+            {
+                "heading": "Como é o curso na Vedium",
+                "body": [
+                    "<p>Na Vedium, o iorubá é ensinado em <strong>aulas ao vivo</strong>, do básico ao avançado, com o professor Busayo Frank Alonge. As aulas trazem o idioma e a cultura de forma viva e acessível, com foco em você falar de verdade.</p>",
+                ],
+            },
+        ],
+        "faqs": [],
+        "cta_title": "Quer aprender iorubá do zero?",
+        "cta_text": "Conheça as aulas ao vivo de iorubá, com foco em cultura e conversação real.",
+        "cta_label": "Conhecer o curso de Iorubá",
+        "cta_url": "/curso-de-ioruba-online",
     },
-]
+}
 
 
 def _post_card(slug, post):
@@ -315,29 +420,43 @@ def _post_card(slug, post):
         "url": f"/blog/{slug}",
         "title": post["title"],
         "meta_description": post["meta_description"],
-        "date": post.get("date", ""),
+        "date": str(post.get("date", "")),
         "date_display": post.get("date_display", ""),
         "tag": post.get("tag", "Vedium"),
         "hero_image": post.get("hero_image", ""),
     }
 
 
+def _db_post_card(row):
+    return {
+        "slug": row.slug,
+        "url": f"/blog/{row.slug}",
+        "title": row.title,
+        "meta_description": row.meta_description or "",
+        "date": str(row.date or ""),
+        "date_display": "",
+        "tag": row.tag or "Vedium",
+        "hero_image": row.hero_image or "",
+    }
+
+
+def list_db_blog_posts():
+    """Posts publicados via painel (doctype Vedium Blog Post, sem código/deploy)."""
+    import frappe
+
+    rows = frappe.get_all(
+        "Vedium Blog Post",
+        filters={"published": 1},
+        fields=["name as slug", "title", "meta_description", "tag", "date", "hero_image"],
+        ignore_permissions=True,
+    )
+    return [_db_post_card(row) for row in rows]
+
+
 def list_blog_posts():
-    """Lista combinada (dict + legados), mais recente primeiro, para o índice."""
+    """Lista combinada (posts do painel + posts de código), mais recente primeiro."""
     cards = [_post_card(slug, post) for slug, post in BLOG_POSTS.items()]
-    cards += [
-        {
-            "slug": p["slug"],
-            "url": f"/blog/{p['slug']}",
-            "title": p["title"],
-            "meta_description": p["meta_description"],
-            "date": p.get("date", ""),
-            "date_display": "",
-            "tag": p.get("tag", "Vedium"),
-            "hero_image": "",
-        }
-        for p in LEGACY_POSTS
-    ]
+    cards += list_db_blog_posts()
     cards.sort(key=lambda c: c["date"], reverse=True)
     return cards
 
@@ -347,6 +466,61 @@ def get_blog_post(slug):
     post["slug"] = slug
     post["url"] = f"{BASE_URL}/blog/{slug}"
     return post
+
+
+def get_blog_post_from_db(slug):
+    """Post publicado via painel do Frappe (/app/vedium-blog-post). None se não existir/publicado."""
+    import frappe
+
+    doc = frappe.db.get_value(
+        "Vedium Blog Post",
+        {"slug": slug, "published": 1},
+        [
+            "title", "meta_description", "tag", "date", "hero_image", "hero_alt",
+            "lead", "content", "cta_title", "cta_text", "cta_label", "cta_url",
+        ],
+        as_dict=True,
+    )
+    if not doc:
+        return None
+    faqs = frappe.get_all(
+        "Vedium Blog FAQ",
+        filters={"parenttype": "Vedium Blog Post", "parent": slug},
+        fields=["question as q", "answer as a"],
+        order_by="idx asc",
+        ignore_permissions=True,
+    )
+    return {
+        "slug": slug,
+        "url": f"{BASE_URL}/blog/{slug}",
+        "title": doc.title,
+        "h1": doc.title,
+        "meta_description": doc.meta_description or "",
+        "tag": doc.tag or "Vedium",
+        "date": str(doc.date or ""),
+        "date_display": str(doc.date or ""),
+        "hero_image": doc.hero_image or "",
+        "hero_alt": doc.hero_alt or "",
+        "lead": doc.lead or "",
+        # content é HTML de um Text Editor (rich text) — uma seção única sem
+        # heading (o template pula o <h2> quando heading está vazio).
+        "sections": [{"heading": "", "body": [doc.content or ""]}],
+        "faqs": faqs,
+        "cta_title": doc.cta_title or "",
+        "cta_text": doc.cta_text or "",
+        "cta_label": doc.cta_label or "",
+        "cta_url": doc.cta_url or "",
+    }
+
+
+def get_blog_post_any(slug):
+    """Procura o post primeiro no painel (banco), depois no dict de código."""
+    post = get_blog_post_from_db(slug)
+    if post:
+        return post
+    if slug in BLOG_POSTS:
+        return get_blog_post(slug)
+    return None
 
 
 def apply_blog_context(context, slug):

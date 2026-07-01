@@ -78,6 +78,12 @@ website_route_rules = [
     {"from_route": "/cursos", "to_route": "/catalogo"},
     # Páginas de curso server-rendered (SEO + Schema) — /curso/<slug>
     {"from_route": "/curso/<course>", "to_route": "curso"},
+    # Post de blog dinâmico — busca no doctype Vedium Blog Post (painel) e,
+    # se não achar, no dict de código (blog_content.BLOG_POSTS). Route rules
+    # do Frappe têm prioridade sobre arquivos www/ estáticos, então TODOS os
+    # posts (inclusive os antigos) passam por aqui agora — não há mais
+    # www/blog/<slug>.html individuais.
+    {"from_route": "/blog/<slug>", "to_route": "blog_post"},
     # Atalhos amigáveis para ferramentas integradas
     {"from_route": "/aluno", "to_route": "/lms/courses"},
     {"from_route": "/admin", "to_route": "/app"},

@@ -719,6 +719,49 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "CE - course_enrollment_intent_click" in triggers
 
 
+def test_blog_has_self_service_panel_and_dynamic_route():
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    blog_content = (ROOT / "vedium_core" / "vedium_core" / "blog_content.py").read_text(encoding="utf-8")
+    blog_post_py = (WWW / "blog_post.py").read_text(encoding="utf-8")
+    blog_post_html = (WWW / "blog_post.html").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    # Menu: link para o blog
+    assert '<a href="/blog">Blog</a>' in navbar
+
+    # Rota dinâmica /blog/<slug> — substitui os arquivos www/blog/<slug>.html
+    # individuais (removidos: route rules do Frappe têm prioridade sobre
+    # arquivos estáticos, então mantê-los seria código morto e confuso).
+    assert '{"from_route": "/blog/<slug>", "to_route": "blog_post"}' in hooks
+    assert not (WWW / "blog").exists()
+
+    # Doctype self-service: qualquer um com acesso ao Desk publica sem
+    # depender de código/deploy.
+    doctype_json = (
+        ROOT / "vedium_core" / "vedium_core" / "vedium_core" / "doctype"
+        / "vedium_blog_post" / "vedium_blog_post.json"
+    )
+    assert doctype_json.exists()
+    doctype = json.loads(doctype_json.read_text(encoding="utf-8"))
+    assert doctype["autoname"] == "field:slug"
+    field_names = {f["fieldname"] for f in doctype["fields"]}
+    assert {"title", "slug", "published", "content", "meta_description"} <= field_names
+    roles = {p["role"] for p in doctype["permissions"]}
+    assert "System Manager" in roles
+    assert "All" not in roles  # publicação é só via Desk, não REST pública
+
+    # blog_post.py procura primeiro no painel (banco), depois no código
+    assert "get_blog_post_any" in blog_post_py
+    assert "get_blog_post_from_db" in blog_content
+    assert "def list_db_blog_posts" in blog_content
+    assert '{% include "templates/includes/blog_post.html" %}' in blog_post_html
+
+    # Sitemap lista os posts dinamicamente (inclui os publicados pelo painel)
+    assert "_blog_urls" in sitemap_py
+    assert "list_blog_posts" in sitemap_py
+
+
 def test_lesson_slot_doctype_is_not_world_writable():
     """O agendamento aluno<->professor usa o fluxo NATIVO do Frappe LMS
     (Course Evaluator + Google Meet / LMS Live Class), não páginas custom.
