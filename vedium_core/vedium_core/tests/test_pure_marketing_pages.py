@@ -719,86 +719,28 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "CE - course_enrollment_intent_click" in triggers
 
 
-def test_lesson_scheduling_requires_login_and_locks_down_direct_rest_access():
-    scheduling = (ROOT / "vedium_core" / "vedium_core" / "scheduling.py").read_text(encoding="utf-8")
-    agenda_py = (WWW / "agendar-aula.py").read_text(encoding="utf-8")
-    agenda_html = (WWW / "agendar-aula.html").read_text(encoding="utf-8")
-    teacher_py = (WWW / "minha-agenda.py").read_text(encoding="utf-8")
-    teacher_html = (WWW / "minha-agenda.html").read_text(encoding="utf-8")
-    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+def test_lesson_slot_doctype_is_not_world_writable():
+    """O agendamento aluno<->professor usa o fluxo NATIVO do Frappe LMS
+    (Course Evaluator + Google Meet / LMS Live Class), não páginas custom.
+    O doctype legado Lesson Slot só alimenta a exibição de aulas em
+    meu-progresso/aula-diagnóstica, mas seguia com a role "All" tendo
+    CRUD total via REST API padrão — expondo horários e dados pessoais.
+    Esta trava de permissão é mantida como correção de segurança."""
     slot_json = json.loads(
         (
             ROOT / "vedium_core" / "vedium_core" / "vedium_core" / "doctype"
             / "lesson_slot" / "lesson_slot.json"
         ).read_text(encoding="utf-8")
     )
-
-    # Páginas logadas seguem o mesmo padrão de redirect de meu-progresso.py
-    for py, path in ((agenda_py, "/agendar-aula"), (teacher_py, "/minha-agenda")):
-        assert 'frappe.session.user == "Guest"' in py
-        assert f"app.vediums.com/login?redirect-to={path}" in py
-        assert "PUBLIC_HOSTS" in py
-        assert "_redirect_public_host" in py
-        assert "frappe.sessions.get_csrf_token()" in py
-
-    for html, path in ((agenda_html, "/agendar-aula"), (teacher_html, "/minha-agenda")):
-        assert "noindex, nofollow" in html
-        assert f'location.replace("https://app.vediums.com{path}"' in html
-        assert "X-Frappe-CSRF-Token" in html
-        assert "window.VD_CSRF" in html
-        # 500 real reproduzido em produção: quando o redirect de Guest
-        # interrompe get_context antes de setar context.csrf_token, o
-        # Frappe ainda tenta pré-renderizar o template — `{{ csrf_token |
-        # tojson }}` explode com "Object of type DebugUndefined is not
-        # JSON serializable". `default("")` via `or ""` blinda o filtro.
-        assert '{{ (csrf_token or "") | tojson }}' in html
-        assert "{{ csrf_token | tojson }}" not in html
-
-    # Aluno: matrícula obrigatória para ver agenda e reservar
-    assert "def get_teacher_availability" in scheduling
-    assert "_is_enrolled(user, course)" in scheduling
-    assert "_is_course_instructor(" in scheduling
-    assert "def book_lesson" in scheduling
-    assert "def cancel_lesson" in scheduling
-
-    # Reserva atômica (mesmo padrão de UPDATE condicional já usado em
-    # gamification.add_points / Coupon.used_count) — evita 2 alunos
-    # ganharem o mesmo horário numa corrida.
-    assert "WHERE name=%(slot)s AND status='Available'" in scheduling
-    # rowcount (não um SELECT pós-UPDATE) detecta a reserva vencedora — um
-    # SELECT comparando estado final não distingue "eu venci agora" de
-    # "esse horário já era meu/de outra pessoa antes" e deixava reservas
-    # repetidas (e e-mails de confirmação duplicados) passarem em silêncio.
-    assert "affected = frappe.db._cursor.rowcount" in scheduling
-    assert "if not affected:" in scheduling
-
-    # Professor: só cadastra disponibilidade nos próprios cursos
-    assert "def create_availability" in scheduling
-    assert "def get_my_agenda" in scheduling
-    assert "def cancel_availability" in scheduling
-
-    # Notificações por e-mail em cada evento do ciclo de vida da aula
-    assert '"booked"' in scheduling
-    assert '"cancelled_by_student"' in scheduling
-    assert '"cancelled_by_teacher"' in scheduling
-    assert "delayed=False" in scheduling
-
-    # hooks.py registra has_permission/permission_query_conditions —
-    # sem isso, a REST API padrão do Frappe (/api/resource/Lesson Slot)
-    # exporia horários e dados pessoais de qualquer aluno/professor.
-    assert '"Lesson Slot": "vedium_core.scheduling.lesson_slot_has_permission"' in hooks
-    assert '"Lesson Slot": "vedium_core.scheduling.lesson_slot_query_conditions"' in hooks
-    assert '"agendar-aula"' in hooks
-    assert '"minha-agenda"' in hooks
-
-    # Doctype não pode mais dar create/write/delete livre para qualquer
-    # usuário logado (bug original: role "All" com CRUD total).
     perms_by_role = {p["role"]: p for p in slot_json["permissions"]}
     assert perms_by_role["All"]["write"] == 0
     assert perms_by_role["All"]["create"] == 0
     assert perms_by_role["All"]["delete"] == 0
+    assert perms_by_role["All"]["read"] == 1
     assert perms_by_role["System Manager"]["write"] == 1
     assert perms_by_role["LMS Moderator"]["write"] == 1
 
-    field_names = {f["fieldname"] for f in slot_json["fields"]}
-    assert "course" in field_names
+    # As páginas custom de agendamento foram removidas em favor do fluxo nativo.
+    assert not (WWW / "agendar-aula.html").exists()
+    assert not (WWW / "minha-agenda.html").exists()
+    assert not (ROOT / "vedium_core" / "vedium_core" / "scheduling.py").exists()

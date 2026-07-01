@@ -31,8 +31,6 @@ PUBLIC_LANGUAGE_ROUTES = (
     "planos",
     "matricula",
     "meu-progresso",
-    "agendar-aula",
-    "minha-agenda",
     "certificado",
     "comunidade",
     "programa-de-indicacao",
@@ -219,11 +217,7 @@ doc_events = {
 # =============================================================================
 
 has_permission = {
-    "Lesson Slot": "vedium_core.scheduling.lesson_slot_has_permission",
-}
-
-permission_query_conditions = {
-    "Lesson Slot": "vedium_core.scheduling.lesson_slot_query_conditions",
+    # "DocType": "vedium_core.permissions.has_permission"
 }
 
 # =============================================================================
