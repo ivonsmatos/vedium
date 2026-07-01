@@ -191,16 +191,18 @@ def get_course_reviews(course_name):
     """Get course reviews/ratings"""
     try:
         if frappe.db.exists("DocType", "LMS Course Review"):
+            # LMS Course Review (v16) não tem colunas `member` nem `published`;
+            # o autor da avaliação é o `owner` do registro.
             reviews = frappe.get_all("LMS Course Review",
-                filters={"course": course_name, "published": 1},
-                fields=["rating", "review", "member", "creation"],
+                filters={"course": course_name},
+                fields=["rating", "review", "owner", "creation"],
                 order_by="creation desc",
                 limit=10
             )
-            
+
             for review in reviews:
-                review.member_name = frappe.db.get_value("User", review.member, "full_name")
-            
+                review.member_name = frappe.db.get_value("User", review.owner, "full_name")
+
             return reviews
     except Exception as e:
         frappe.log_error(f"Error fetching reviews: {str(e)}", "Vedium Course Details")

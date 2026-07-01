@@ -84,11 +84,6 @@ website_route_rules = [
     # posts (inclusive os antigos) passam por aqui agora — não há mais
     # www/blog/<slug>.html individuais.
     {"from_route": "/blog/<slug>", "to_route": "blog_post"},
-    # Atalhos amigáveis para ferramentas integradas
-    {"from_route": "/aluno", "to_route": "/lms/courses"},
-    {"from_route": "/admin", "to_route": "/app"},
-    {"from_route": "/rh", "to_route": "/app/employee"},
-    {"from_route": "/financeiro", "to_route": "/app/accounts"},
 ]
 
 # Redirecionamentos 301 (SEO) — URLs antigas/removidas -> destino canônico
@@ -108,6 +103,16 @@ website_redirects = [
     {"source": "/mentores", "target": "/sobre"},
     {"source": "/professores", "target": "/sobre"},
     {"source": "/professor-busayo-frank-alonge", "target": "/curso-de-ioruba-online"},
+    # Link do footer para página ainda não escrita (QA 2026-07-01): aponta para
+    # /planos até a landing "quanto custa / vale a pena" existir de verdade.
+    {"source": "/quanto-custa-curso-de-idiomas", "target": "/planos"},
+    # Atalhos para fora do www/ precisam ser REDIRECT, não route rule:
+    # website_route_rules só resolve templates do próprio www/ — apontar
+    # to_route para /lms/... ou /app dava 404 (achado do QA 2026-07-01).
+    {"source": "/aluno", "target": "https://app.vediums.com/lms/courses"},
+    {"source": "/admin", "target": "https://app.vediums.com/app"},
+    {"source": "/rh", "target": "https://app.vediums.com/app/employee"},
+    {"source": "/financeiro", "target": "https://app.vediums.com/app/accounts"},
 ]
 
 # App Logo

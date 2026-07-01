@@ -6,8 +6,13 @@ Causa raiz: `lms.lms.api.get_pwa_manifest` usa
 cai no fallback `manifest-icon-192.maskable.png` do próprio app lms — o
 chapéu de formatura azul que aparece na splash/ícone instalado.
 
-Correção: aponta banner_image para o ícone oficial da Vedium (já usado no
-manifest do site institucional). Idempotente.
+⚠️ O ícone PRECISA ser o de 192x192: get_pwa_manifest declara
+"sizes": "192x192" fixo no manifest, então arquivo de outra dimensão
+(a 1ª versão deste fix usava o de 512x512) é rejeitado na validação do
+navegador e o chapéu volta (achado do QA 2026-07-01).
+
+Correção: aponta banner_image para o ícone oficial da Vedium em 192x192.
+Idempotente.
 
 Rodar:
   bench --site app.vediums.com execute \
@@ -15,7 +20,7 @@ Rodar:
 """
 import frappe
 
-VEDIUM_ICON = "/assets/vedium_core/images/icon-512x512.png"
+VEDIUM_ICON = "/assets/vedium_core/images/icon-192x192.png"
 
 
 def run():

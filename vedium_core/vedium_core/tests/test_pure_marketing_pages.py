@@ -104,7 +104,9 @@ def test_english_pillar_page_is_rich_for_seo():
 
     for slug in SEO_SLUGS:
         html_path = WWW / f"{slug}.html"
-        py_path = WWW / f"{slug}.py"
+        # Controller www: Frappe converte hífen→underscore no nome do módulo
+        # Python (template_page.set_pymodule) — o .py DEVE usar underscore.
+        py_path = WWW / f"{slug.replace('-', '_')}.py"
         assert html_path.exists()
         assert py_path.exists()
         html = html_path.read_text(encoding="utf-8")
@@ -123,7 +125,9 @@ def test_english_pillar_page_is_rich_for_seo():
 def test_commercial_pages_exist_and_drive_to_public_ctas():
     for slug in COMMERCIAL_SLUGS:
         html_path = WWW / f"{slug}.html"
-        py_path = WWW / f"{slug}.py"
+        # Controller www: Frappe converte hífen→underscore no nome do módulo
+        # Python (template_page.set_pymodule) — o .py DEVE usar underscore.
+        py_path = WWW / f"{slug.replace('-', '_')}.py"
         assert html_path.exists()
         assert py_path.exists()
         html = html_path.read_text(encoding="utf-8")
@@ -246,7 +250,7 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
 
 def test_referral_program_links_to_authenticated_dashboard():
     html = (WWW / "programa-de-indicacao.html").read_text(encoding="utf-8")
-    py = (WWW / "programa-de-indicacao.py").read_text(encoding="utf-8")
+    py = (WWW / "programa_de_indicacao.py").read_text(encoding="utf-8")
     assert "https://vediums.com/programa-de-indicacao" in html
     assert "Dentro da plataforma" in html
     # Programa agora é funcional: CTA leva ao painel autenticado, não a um
@@ -263,7 +267,7 @@ def test_referral_program_links_to_authenticated_dashboard():
 
 
 def test_referral_dashboard_requires_login_and_uses_referrals_module():
-    py = (WWW / "minhas-indicacoes.py").read_text(encoding="utf-8")
+    py = (WWW / "minhas_indicacoes.py").read_text(encoding="utf-8")
     html = (WWW / "minhas-indicacoes.html").read_text(encoding="utf-8")
     assert 'frappe.session.user == "Guest"' in py
     assert "app.vediums.com/login?redirect-to=/minhas-indicacoes" in py
@@ -277,9 +281,9 @@ def test_referral_dashboard_requires_login_and_uses_referrals_module():
 
 def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
     practice = (WWW / "pratica-diaria.html").read_text(encoding="utf-8")
-    practice_py = (WWW / "pratica-diaria.py").read_text(encoding="utf-8")
+    practice_py = (WWW / "pratica_diaria.py").read_text(encoding="utf-8")
     progress_html = (WWW / "meu-progresso.html").read_text(encoding="utf-8")
-    progress_py = (WWW / "meu-progresso.py").read_text(encoding="utf-8")
+    progress_py = (WWW / "meu_progresso.py").read_text(encoding="utf-8")
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
         encoding="utf-8"
     )
@@ -367,8 +371,8 @@ def test_level_test_ctas_use_native_navigation_only():
 def test_public_level_test_exists_without_backend_dependency():
     html_path = WWW / "teste-de-nivel.html"
     english_html_path = WWW / "teste-de-nivel-ingles.html"
-    py_path = WWW / "teste-de-nivel.py"
-    english_py_path = WWW / "teste-de-nivel-ingles.py"
+    py_path = WWW / "teste_de_nivel.py"
+    english_py_path = WWW / "teste_de_nivel_ingles.py"
     assert html_path.exists()
     assert english_html_path.exists()
     assert py_path.exists()
