@@ -579,6 +579,12 @@
     return String(value || "").replace(/\s+/g, " ").trim();
   }
 
+  // Traduz em lotes pequenos, cedendo a thread principal entre eles
+  // (requestIdleCallback/setTimeout). Uma varredura síncrona do body inteiro
+  // em páginas grandes (ex.: a home, com vários carrosséis) segurava a thread
+  // tempo suficiente para o Chrome mostrar "Página sem resposta" logo depois
+  // do carregamento — sobretudo em /en-us/, /es-ar/ etc., que reescrevem para
+  // a home. Isso não trava mais nada: só demora alguns lotes a mais.
   function translateTextNodes(lang, root) {
     var copy = localeCopy[lang];
     if (!copy) return;
@@ -591,12 +597,33 @@
         return NodeFilter.FILTER_ACCEPT;
       }
     });
+    var nodes = [];
     var node;
     while ((node = walker.nextNode())) {
-      var original = normalizedText(node.nodeValue);
-      if (copy[original]) {
-        node.nodeValue = node.nodeValue.replace(original, copy[original]);
+      nodes.push(node);
+    }
+
+    var BATCH_SIZE = 150;
+    var index = 0;
+    var schedule = window.requestIdleCallback
+      ? function (fn) { window.requestIdleCallback(fn, { timeout: 100 }); }
+      : function (fn) { window.setTimeout(fn, 0); };
+
+    function processBatch() {
+      var end = Math.min(index + BATCH_SIZE, nodes.length);
+      for (; index < end; index++) {
+        var n = nodes[index];
+        var original = normalizedText(n.nodeValue);
+        if (copy[original]) {
+          n.nodeValue = n.nodeValue.replace(original, copy[original]);
+        }
       }
+      if (index < nodes.length) {
+        schedule(processBatch);
+      }
+    }
+    if (nodes.length) {
+      schedule(processBatch);
     }
   }
 

@@ -96,6 +96,12 @@ jobs:
               vedium_core.scripts.migrations.oneshot.fix_certificate_collision.run \
               || echo "⚠️ fix_certificate_collision falhou (revisar)"
 
+          echo "🖼️ Corrige ícone do PWA (chapéu de formatura padrão do LMS -> marca Vedium)..."
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" execute \
+              vedium_core.scripts.migrations.oneshot.fix_lms_pwa_icon.run \
+              || echo "⚠️ fix_lms_pwa_icon falhou (não-crítico)"
+
           echo "🎨 Assets (não-crítico — guardado para não abortar o deploy)..."
           docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund || echo "⚠️ npm install falhou (assets)"
           docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css || echo "⚠️ build-css falhou (assets)"
