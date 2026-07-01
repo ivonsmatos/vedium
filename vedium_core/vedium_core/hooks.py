@@ -73,6 +73,12 @@ LANGUAGE_ROUTE_RULES = (
 website_route_rules = [
     *LANGUAGE_ROUTE_RULES,
     {"from_route": "/sw.js", "to_route": "sw"},
+    # Mesmo padrão do /sw.js: serve o manifest.json na raiz (escopo exigido
+    # pelo PWA) via Frappe, contornando o nginx (achado do QA 2026-07-01: o
+    # nginx tinha um alias fixo para /opt/vedium/pwa/manifest.json, pasta que
+    # nunca existiu no host — 404 sempre. Ver docs/plataforma/pendente-pwa-marketing-404.md
+    # para o que ainda falta corrigir na config do nginx, fora deste repo).
+    {"from_route": "/manifest.json", "to_route": "manifest"},
     # /courses é interceptado pelo LMS app — garante que /catalogo seja a rota do site
     {"from_route": "/trilhas", "to_route": "/catalogo"},
     {"from_route": "/cursos", "to_route": "/catalogo"},

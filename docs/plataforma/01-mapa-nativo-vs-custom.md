@@ -31,7 +31,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 | Cursos, capítulos, lições | 🟢 Nativo | `LMS Course`, `Course Chapter`, `Course Lesson` | Autoria pelo `/lms` (moderador/instrutor). |
 | Quiz / prova dentro do curso | 🟢 Nativo | `LMS Quiz`, `LMS Question` | — |
 | Teste de nível público (pré-matrícula) | 🔵 Custom | Doctypes `Placement Test`, `Placement Test Question`; páginas `www/teste-de-nivel*.html` | Separado do quiz nativo por ser público e sem login. |
-| Flashcards / revisão | 🔵 Custom | Doctypes `Flashcard` e `LMS Flashcard`; `www/pratica-diaria.html` | ⚠️ Dois doctypes de flashcard coexistem — ver [doc 02](02-dicionario-doctypes.md). |
+| Flashcards / revisão | 🔵 Custom | Doctype `LMS Flashcard`; `www/pratica-diaria.html` | Doctype duplicado `Flashcard` (SRS/SM-2, órfão, 0 uso) removido 2026-07-01 — ver [doc 02](02-dicionario-doctypes.md). |
 | Tutor de IA (fala/escuta) | ⚪ Previsto | Citado na `.env`/diagnóstico (Groq/Llama) | Status de produção **a confirmar**; não documentado como ligado. |
 
 ## Matrícula e acesso
@@ -52,7 +52,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 | Aula 1-a-1 aluno↔professor por disponibilidade | 🟢 Nativo | `Course Evaluator` + `Evaluator Schedule` + `LMS Certificate Evaluation` | Professor cadastra slots e conecta Google Calendar em `/lms/user/<username>/slots`. Aluno agenda pelo curso/progresso. Gera Google Meet. |
 | Aula ao vivo em grupo | 🟢 Nativo | `LMS Live Class` (+ `LMS Batch`) | Via **Zoom** (⚪ Zoom Settings ainda não configurado). Moderador cria da página da turma. |
 | Convites de calendário | 🟢 Nativo | Integração Google Calendar | Google Settings **ligado** (client_id presente). Cada professor autoriza o próprio calendário. |
-| Slot custom "Lesson Slot" | 🔴 Legado | Doctype `Lesson Slot` (`vedium_core`) | **Não usar.** Substituído pelo nativo. Mantido só com permissão travada (correção de segurança). Ver [doc 02](02-dicionario-doctypes.md). |
+| Slot custom "Lesson Slot" | 🔴 Legado | Doctype `Lesson Slot` (`vedium_core`) | **Não usar.** Substituído pelo nativo. Permanentemente vazio em produção (0 registros). Leituras mortas em `meu_progresso.py` foram removidas 2026-07-01; o único uso restante é `public_funnel.get_available_diagnostic_slots` (aula diagnóstica pública), mantido de propósito e sempre retornando lista vazia até uma decisão de produto sobre portar isso para o Course Evaluator nativo. Doctype não pode ser removido enquanto esse endpoint existir. Ver [doc 02](02-dicionario-doctypes.md). |
 
 ## Avaliação e certificação
 
@@ -79,7 +79,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 |---|---|---|---|
 | Gamificação (pontos, emblemas) | 🔵 Custom | `gamification.py`, campo `User.vedium_points`, doctype `LMS Badge Log` | `add_points` usa UPDATE atômico. |
 | Comunidade / fórum | 🟢 Nativo | Discussões do LMS | Custom só a landing `www/comunidade`. |
-| Suporte / chamados | 🟡 Híbrido ⚠️ | Nativo `HD Ticket` (helpdesk); **também** custom `Support Ticket` (`vedium_core`) | ⚠️ Funil público (`public_funnel.py`) cria `Support Ticket` custom, não `HD Ticket`. Reconciliar. |
+| Suporte / chamados | 🟡 Híbrido ⚠️ | Nativo `HD Ticket` (helpdesk); **também** custom `Support Ticket` (`vedium_core`) | ⚠️ Investigado 2026-07-01: **ambos vazios de uso real** (Support Ticket = 0 registros; HD Ticket = 1, e é o ticket-seed da instalação, não um chamado real). Ninguém da equipe tem role de agente do Helpdesk. Sem evidência de qual tela é "a usada" — migração NÃO feita por falta de dado. Ver [doc 02](02-dicionario-doctypes.md). |
 | CRM / leads | 🟢 Nativo | `CRM Lead` (app `crm`) | 🔴 **Módulo `crm` está quebrado em produção** (`ModuleNotFoundError: No module named 'crm'`) — derruba overrides de Contact/Email. Ver [doc 08]. |
 | Sincronizar aluno → CRM | 🔵 Custom | `integrations.py` (`sync_student_to_crm`) | Enfileirado no `after_insert` da matrícula. |
 
@@ -101,7 +101,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 | Sitemap / SEO / GEO | 🔵 Custom | `sitemap.py`, `seo_utils.py`, `geo_endpoints.py`, `llms.txt` | — |
 | Páginas EN de SEO internacional | 🔵 Custom | `www/en/*.html` | hreflang. |
 | Tradução da plataforma | 🟢 Nativo | Traduções do Frappe | O switcher de idioma do site é custom (`vedium-language.js`). |
-| PWA instalável | 🔵 Custom | `pwa-register.js`, manifest, `sw.js` | — |
+| PWA instalável | 🔵 Custom | `pwa-register.js`, manifest, `sw.js` | `/sw.js` e `/manifest.json` na raiz servidos pelo Frappe (`www/sw.py`, `www/manifest.py`) — mas o nginx do servidor ainda intercepta as duas URLs com um `alias` quebrado (pasta `/opt/vedium/pwa/` inexistente) e dá 404 antes de chegar no Frappe. Pendência de infra fora do repo: [pendente-pwa-marketing-404.md](pendente-pwa-marketing-404.md). |
 
 ---
 
@@ -134,7 +134,7 @@ configuração, não código.
 ## Pendências que este mapa expôs (a reconciliar)
 
 - ⚠️ **Certificado:** doctype custom `LMS Certificate` vs. nativo — confirmar qual é a fonte da verdade.
-- ⚠️ **Flashcards:** `Flashcard` custom vs. `LMS Flashcard` — dois modelos para a mesma ideia.
-- ⚠️ **Suporte:** `Support Ticket` custom vs. `HD Ticket` nativo — o funil público usa o custom.
+- ✅ **Flashcards:** resolvido 2026-07-01 — `Flashcard` era órfão (0 uso no código, 0 registros), removido do repo. `LMS Flashcard` é o canônico.
+- ⚠️ **Suporte:** `Support Ticket` custom vs. `HD Ticket` nativo — investigado 2026-07-01, permanece ambíguo (ambos sem uso real em produção); não migrado por falta de evidência. Ver [doc 02](02-dicionario-doctypes.md).
 - 🔴 **CRM quebrado:** app `crm` com `ModuleNotFoundError` — impacta Contato e e-mail. Prioridade em [doc 08].
-- 🔴 **Lesson Slot legado:** garantir que nada novo o referencie.
+- 🔴 **Lesson Slot legado:** ✅ leituras mortas removidas 2026-07-01 (`meu_progresso.py`). Doctype mantido só porque `public_funnel.get_available_diagnostic_slots` ainda o consulta (sempre vazio); garantir que nada novo o referencie além disso.

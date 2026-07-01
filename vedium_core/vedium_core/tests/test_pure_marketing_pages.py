@@ -317,7 +317,12 @@ def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
     assert "LMS Enrollment" in progress_py
     assert "LMS Flashcard" in progress_py
     assert "LMS Badge Log" in progress_py
-    assert "Lesson Slot" in progress_py
+    # Lesson Slot é doctype legado (0 registros para sempre em produção) —
+    # a leitura morta foi removida 2026-07-01; só resta o comentário
+    # explicando a remoção, não uma query real.
+    assert 'frappe.get_all(\n        "Lesson Slot"' not in progress_py
+    assert "context.slots" not in progress_py
+    assert "Aulas e tarefas" not in progress_html
     assert "redirect-to=/meu-progresso" in progress_py
     assert '"meu-progresso"' in hooks
     assert "create_checkout" not in progress_py
@@ -602,6 +607,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     )
     static_index = (ROOT / "deploy" / "site" / "index.html").read_text(encoding="utf-8")
     static_sw = (ROOT / "deploy" / "site" / "sw.js").read_text(encoding="utf-8")
+    static_manifest_raw = (ROOT / "deploy" / "site" / "manifest.json").read_text(
+        encoding="utf-8"
+    )
     for locale in ["pt-br", "en-us", "es-ar", "fr", "de", "ru", "zh-cn"]:
         assert f'data-vd-locale="{locale}"' in navbar
     for href in ["/pt-br/", "/en-us/", "/es-ar/", "/de/", "/zh-cn/"]:
@@ -691,6 +699,25 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert manifest["short_name"] == "Vedium"
     assert manifest["start_url"] == "/"
     assert manifest["icons"][0]["src"].startswith("/assets/vedium_core/")
+
+    # /manifest.json na raiz — mesmo padrão do /sw.js (achado do QA 2026-07-01:
+    # nginx tinha alias fixo para pasta inexistente /opt/vedium/pwa/, 404
+    # sempre). Servido via Frappe contornando o problema dentro do repo; ver
+    # docs/plataforma/pendente-pwa-marketing-404.md para a parte que ainda
+    # depende de mexer no nginx (fora do repo).
+    manifest_py = (WWW / "manifest.py").read_text(encoding="utf-8")
+    assert '{"from_route": "/manifest.json", "to_route": "manifest"}' in hooks
+    assert "application/manifest+json; charset=utf-8" in manifest_py
+    assert 'frappe.response["type"] = "binary"' in manifest_py
+    root_manifest = json.loads(
+        (ROOT / "vedium_core" / "vedium_core" / "public" / "manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert root_manifest["theme_color"] == "#2E6DA4"
+    static_manifest = json.loads(static_manifest_raw)
+    assert static_manifest["theme_color"] == "#2E6DA4"
+    assert "Inteligência Cultural" not in static_manifest_raw
 
     gtm = json.loads(GTM_IMPORT.read_text(encoding="utf-8"))
     raw_gtm = GTM_IMPORT.read_text(encoding="utf-8")

@@ -84,25 +84,16 @@ def get_context(context):
         order_by="awarded_on desc",
         limit_page_length=8,
     )
-    raw_slots = frappe.get_all(
-        "Lesson Slot",
-        filters={"student": user},
-        fields=["start_time", "end_time", "status", "meeting_link"],
-        order_by="start_time desc",
-        limit_page_length=6,
-    )
-    slots = [
-        {
-            "start": frappe.utils.format_datetime(slot.start_time, "dd/MM/yyyy HH:mm"),
-            "status": slot.status,
-            "meeting_link": slot.meeting_link,
-        }
-        for slot in raw_slots
-    ]
+
+    # Removido 2026-07-01: a seção "Aulas e tarefas" lia o doctype legado
+    # Lesson Slot, substituído pelo agendamento NATIVO do Frappe LMS (Course
+    # Evaluator + Google Meet). Lesson Slot está permanentemente vazio em
+    # produção (0 registros) desde a migração — a query nunca retornava nada,
+    # era código morto rodando a cada carregamento da página. Ver
+    # docs/plataforma/01-mapa-nativo-vs-custom.md.
 
     context.courses = courses
     context.flashcards = flashcards
     context.badges = badges
-    context.slots = slots
     context.streak_hint = min(len(badges) + len(flashcards), 30)
     return context

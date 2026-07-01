@@ -141,6 +141,22 @@ def request_diagnostic_class():
 
 @frappe.whitelist(allow_guest=True)
 def get_available_diagnostic_slots(limit=8):
+    """Lista horários livres para a aula diagnóstica pública.
+
+    ATENÇÃO (2026-07-01): o doctype Lesson Slot que esta função consulta é
+    legado — o agendamento de aulas migrou para o fluxo NATIVO do Frappe LMS
+    (Course Evaluator + Google Calendar/Meet), que não tem endpoint público
+    equivalente para "aula diagnóstica" ainda. Lesson Slot está permanente e
+    propositalmente vazio em produção (0 registros, ninguém mais escreve
+    nele), então esta função sempre retorna `slots: []`. Isso é aceitável
+    hoje: www/aula-diagnostica.html já cai no fallback "consultar pelo
+    WhatsApp" quando a lista vem vazia.
+    Mantido de propósito (não removido) porque o JS de aula-diagnostica.html
+    ainda chama este endpoint. NÃO portar isso para Course Evaluator aqui —
+    é uma decisão de produto maior (unificar a aula diagnóstica com o
+    agendamento nativo), fora do escopo desta limpeza. Ver
+    docs/plataforma/01-mapa-nativo-vs-custom.md.
+    """
     limit = max(1, min(cint(limit) or 8, 20))
     slots = frappe.get_all(
         "Lesson Slot",

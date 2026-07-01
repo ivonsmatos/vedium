@@ -1,11 +1,11 @@
 {
-  "name": "Vedium - Inteligência Cultural",
+  "name": "Vedium - Cursos de Idiomas Online ao Vivo",
   "short_name": "Vedium",
-  "description": "A primeira plataforma de inteligência cultural para líderes globais.",
+  "description": "Escola de idiomas online com aulas ao vivo: Inglês, Iorubá e Português para estrangeiros.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#166534",
+  "background_color": "#ffffff",
+  "theme_color": "#2E6DA4",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -21,7 +21,7 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["education", "business"],
+  "categories": ["education"],
   "lang": "pt-BR",
   "dir": "ltr",
   "scope": "/",
