@@ -128,6 +128,29 @@ jobs:
           echo "Healthcheck: \$status"
           [ "\$status" = "healthy" ] || { echo "::error::Container não voltou healthy após restart"; exit 1; }
 
+          # Os workers de fila (RQ) e o scheduler compartilham o MESMO volume
+          # de código que vedium-frappe (mesmo hooks.py, mesmo timestamp) —
+          # mas são processos Python de LONGA duração que só carregam os
+          # módulos uma vez na memória. Sem reiniciá-los, e-mails, sync com
+          # CRM e qualquer frappe.enqueue() continuam rodando com o código/
+          # estado de semanas atrás mesmo após o deploy trocar os arquivos.
+          # Achado do QA 2026-07-01: workers ficaram "Up 4 weeks" enquanto
+          # só vedium-frappe era reiniciado a cada deploy — e um e-mail de
+          # matrícula falhou com ModuleNotFoundError num worker desatualizado.
+          echo "🔄 Reiniciando workers de fila e scheduler..."
+          for WORKER in vedium-worker-short vedium-worker-long vedium-worker-default vedium-scheduler; do
+              docker restart "\$WORKER" || echo "⚠️ restart de \$WORKER falhou (revisar)"
+          done
+          echo "⏳ Aguardando os workers voltarem saudáveis..."
+          for WORKER in vedium-worker-short vedium-worker-long vedium-worker-default vedium-scheduler; do
+              for i in \$(seq 1 30); do
+                  wstatus=\$(docker inspect -f '{{.State.Health.Status}}' "\$WORKER" 2>/dev/null || echo unknown)
+                  [ "\$wstatus" = "healthy" ] && break
+                  sleep 5
+              done
+              echo "  \$WORKER: \$wstatus"
+          done
+
           echo "🌐 Criando cursos PLE (idempotente — pula se já existirem)..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" execute \
