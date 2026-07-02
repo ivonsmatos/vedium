@@ -24,7 +24,13 @@ def get_context(context):
     # Versão em inglês: só existe pra cursos com tradução (Iorubá e PLE —
     # público que não fala PT). Sem tradução, manda pra versão em português
     # em vez de criar uma página fina/duplicada.
-    is_en = (frappe.local.path or "").startswith("/en/curso/")
+    # OBS: frappe.local.path NUNCA tem barra inicial — PathResolver.__init__
+    # faz path.strip("/ ") antes de setar frappe.local.path (ver
+    # frappe/website/path_resolver.py). Checar com "/en/curso/" (barra na
+    # frente) nunca bate — bug real que só apareceu em produção, pego via
+    # verificação pós-deploy (curl mostrou title/canonical em PT mesmo em
+    # /en/curso/<slug>). lstrip("/") deixa a checagem à prova disso.
+    is_en = (frappe.local.path or "").lstrip("/").startswith("en/curso/")
     has_translation = course_name in COURSE_TRANSLATIONS
     if is_en and not has_translation:
         frappe.local.flags.redirect_location = f"/curso/{course_name}"

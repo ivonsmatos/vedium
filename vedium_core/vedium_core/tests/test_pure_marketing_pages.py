@@ -1016,6 +1016,18 @@ def test_individual_course_pages_have_english_translation():
     assert "alt_lang_url" in curso_html
     assert '"Enroll now" if vd_course_en else "Matricular agora"' in curso_html
 
+    # Bug real achado em produção (2026-07-02, pós-deploy): frappe.local.path
+    # NUNCA tem barra inicial — PathResolver.__init__ faz path.strip("/ ")
+    # antes de setar frappe.local.path (frappe/website/path_resolver.py).
+    # startswith("/en/curso/") com barra na frente nunca batia, então
+    # /en/curso/<slug> sempre renderizava em português. Trava a versão
+    # corrigida (lstrip antes do startswith).
+    assert '.startswith("/en/curso/")' not in curso_py, (
+        "startswith com barra inicial nunca bate — frappe.local.path não tem "
+        "barra na frente (path_resolver.py faz .strip('/ '))"
+    )
+    assert '.lstrip("/").startswith("en/curso/")' in curso_py
+
 
 def test_english_pillar_course_grid_links_to_english_course_pages():
     """As páginas pilar EN (learn-yoruba-online, learn-portuguese-brazil)
