@@ -16,6 +16,7 @@ STATIC_URLS = [
     {"loc": "/como-funciona", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/planos", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/quanto-custa-curso-de-idiomas", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/matricula", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/certificado", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/comunidade", "priority": "0.5", "changefreq": "monthly"},

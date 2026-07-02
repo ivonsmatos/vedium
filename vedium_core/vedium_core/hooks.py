@@ -109,9 +109,6 @@ website_redirects = [
     {"source": "/mentores", "target": "/sobre"},
     {"source": "/professores", "target": "/sobre"},
     {"source": "/professor-busayo-frank-alonge", "target": "/curso-de-ioruba-online"},
-    # Link do footer para página ainda não escrita (QA 2026-07-01): aponta para
-    # /planos até a landing "quanto custa / vale a pena" existir de verdade.
-    {"source": "/quanto-custa-curso-de-idiomas", "target": "/planos"},
     # Atalhos para fora do www/ precisam ser REDIRECT, não route rule:
     # website_route_rules só resolve templates do próprio www/ — apontar
     # to_route para /lms/... ou /app dava 404 (achado do QA 2026-07-01).

@@ -818,3 +818,40 @@ def test_lesson_slot_doctype_is_not_world_writable():
     assert not (WWW / "agendar-aula.html").exists()
     assert not (WWW / "minha-agenda.html").exists()
     assert not (ROOT / "vedium_core" / "vedium_core" / "scheduling.py").exists()
+
+
+def test_pricing_value_page_has_real_prices_and_no_stale_redirect():
+    html_path = WWW / "quanto-custa-curso-de-idiomas.html"
+    py_path = WWW / "quanto_custa_curso_de_idiomas.py"
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+
+    assert html_path.exists()
+    assert py_path.exists()
+    html = html_path.read_text(encoding="utf-8")
+
+    # Preços reais (confirmados em produção), não achismo.
+    assert "R$ 240" in html
+    assert "R$ 320" in html
+    assert "US$ 120" in html
+
+    # Honesto sobre não ser a mais barata — não pode prometer isso.
+    assert "não somos a opção mais barata" in html.lower() or "não afirmamos isso" in html.lower()
+
+    # FAQ schema para rich snippet.
+    assert '"@type": "FAQPage"' in html
+
+    # Word count mínimo (padrão do projeto: 900+ palavras de conteúdo real).
+    body = re.search(r"<body>(.*)</body>", html, re.S).group(1)
+    body = re.sub(r"<script.*?</script>", " ", body, flags=re.S)
+    body = re.sub(r"<style.*?</style>", " ", body, flags=re.S)
+    text = re.sub(r"<[^>]+>", " ", body)
+    assert len(text.split()) >= 900
+
+    # O redirect temporário /planos foi removido — a página real existe agora.
+    assert '{"source": "/quanto-custa-curso-de-idiomas", "target": "/planos"}' not in hooks
+
+    # Sitemap e footer apontam pra ela.
+    assert '"/quanto-custa-curso-de-idiomas"' in sitemap_py
+    assert '<a href="/quanto-custa-curso-de-idiomas">' in footer
