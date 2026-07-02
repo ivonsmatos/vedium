@@ -15,8 +15,11 @@ def get_context(context):
     # Shopping cart count
     context.cart_count = get_cart_count()
 
-    # Page metadata (SEO)
-    context.title = "Cursos de Inglês Online ao Vivo — Níveis A1 a C1 | Vedium"
+    # Page metadata (SEO) — título genérico: a página lista TODOS os idiomas
+    # (Inglês, Iorubá, PLE), não só Inglês (bug achado no QA 2026-07-02: o
+    # título antigo mencionava só "Inglês... A1 a C1", enganando quem chegava
+    # via busca/redes procurando iorubá ou português para estrangeiros).
+    context.title = "Catálogo de Cursos de Idiomas Online ao Vivo | Vedium"
     context.description = (
         "Catálogo de cursos online ao vivo da Vedium: Inglês (A1 ao C1), Iorubá e "
         "Português para Estrangeiros (PLE). Professores qualificados e certificado."

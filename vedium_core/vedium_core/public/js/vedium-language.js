@@ -585,11 +585,19 @@
   // tempo suficiente para o Chrome mostrar "Página sem resposta" logo depois
   // do carregamento — sobretudo em /en-us/, /es-ar/ etc., que reescrevem para
   // a home. Isso não trava mais nada: só demora alguns lotes a mais.
+  //
+  // /en-us/catalogo (e qualquer página com grid de cards) ainda travava mesmo
+  // com os lotes: o catálogo carrega isotope.js + swiper + owl-carousel para
+  // o grid/filtro de cursos, e cada troca de nodeValue dentro dessas áreas
+  // competia com o layout/animação desses plugins no mesmo main thread —
+  // pior ainda porque títulos de curso, preço e "N Aulas" nem existem no
+  // dicionário de tradução (são dados do banco, não strings de UI), então
+  // pular essas áreas não perde nada visualmente. Achado do QA 2026-07-02.
   function translateTextNodes(lang, root) {
     var copy = localeCopy[lang];
     if (!copy) return;
     var scope = root || document.body;
-    var skip = "SCRIPT,STYLE,NOSCRIPT,IFRAME,SVG";
+    var skip = "SCRIPT,STYLE,NOSCRIPT,IFRAME,SVG,.filter-layout,.masonary-layout,.owl-carousel,.swiper,.swiper-container,.tns-outer";
     var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
       acceptNode: function (node) {
         if (!node.nodeValue || !normalizedText(node.nodeValue)) return NodeFilter.FILTER_REJECT;
