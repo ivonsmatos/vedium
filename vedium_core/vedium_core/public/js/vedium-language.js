@@ -635,37 +635,22 @@
     }
   }
 
+  // DESLIGADO TEMPORARIAMENTE (QA 2026-07-02): esta função chegou a rodar
+  // apenas translateTextNodes(shell) + dataLayer.push, e MESMO ASSIM
+  // /en-us/contato (página leve, sem isotope/carousel) travou a aba
+  // reproduzivelmente — CDP Runtime.evaluate chegou a expirar (45s),
+  // confirmando bloqueio síncrono real do renderer, não só lentidão de
+  // tradução. Não foi possível isolar com certeza se a causa é a própria
+  // varredura de texto ou o evento "language_selected" disparando tags
+  // adicionais no GTM (Meta Pixel etc.) sem acesso a profiler real do
+  // DevTools. Diante de travamentos repetidos mesmo após duas correções
+  // "confiantes", a prioridade agora é parar de travar a aba do usuário:
+  // localizePage não mexe mais no DOM nem dispara dataLayer.push. O
+  // seletor de idioma (modal, links, ícone ativo) continua funcionando
+  // normalmente — só o efeito de "traduzir a interface" fica pausado até
+  // isolar a causa raiz com ferramentas de profiling adequadas.
   function localizePage(locale) {
-    var meta = localeMeta[locale] || localeMeta["pt-br"];
-    // CRÍTICO: NÃO alterar document.documentElement.lang para um idioma
-    // diferente do conteúdo real (que é português). Fazer isso marcava a
-    // página como "inglês"/"espanhol"/etc. e disparava a TRADUÇÃO NATIVA do
-    // navegador (Chrome "sempre traduzir") sobre a página inteira — o que
-    // TRAVAVA a aba ("página sem resposta") e ainda competia com a nossa
-    // tradução de UI. O conteúdo permanece em pt-BR (correto para SEO/a11y);
-    // traduzimos apenas as strings de interface do dicionário.
-    //
-    // NUNCA mais varrer document.body inteiro aqui (achado do QA 2026-07-02):
-    // mesmo com tradução em lotes via requestIdleCallback, /en-us/catalogo e
-    // /en-us/contato — páginas bem diferentes em peso/estrutura — travaram a
-    // aba ("Página sem resposta") de forma reproduzível, com até o
-    // CDP Runtime.evaluate expirando (bloqueio síncrono real da thread, não
-    // só lentidão). Sem conseguir isolar o mecanismo exato com as ferramentas
-    // disponíveis, a correção segura é tratar TODA página assim como já se
-    // tratava as SEO nativas (ex.: /en/learn-yoruba-online): traduzir só o
-    // shell (navbar + footer), nunca o corpo. O corpo já fica sempre em
-    // pt-BR mesmo (decisão intencional, ok para SEO/a11y) — perder a
-    // tradução do texto de UI no corpo é aceitável; travar a aba não é.
-    if (meta.lang !== "pt") {
-      var shells = [
-        document.querySelector("header"),
-        document.querySelector("footer"),
-        document.querySelector(".main-header-one")
-      ].filter(function (el) { return el; });
-      shells.forEach(function (el) { translateTextNodes(meta.lang, el); });
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "language_selected", language: meta.lang, locale: locale });
-    }
+    return;
   }
 
   function markActive(locale) {
