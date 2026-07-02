@@ -102,6 +102,12 @@ jobs:
               vedium_core.scripts.migrations.oneshot.fix_lms_pwa_icon.run \
               || echo "⚠️ fix_lms_pwa_icon falhou (não-crítico)"
 
+          echo "✉️ Corrige nome de exibição do remetente (Vedium Resend -> Vedium)..."
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" execute \
+              vedium_core.scripts.migrations.oneshot.fix_email_sender_display_name.run \
+              || echo "⚠️ fix_email_sender_display_name falhou (não-crítico)"
+
           echo "🎨 Assets (não-crítico — guardado para não abortar o deploy)..."
           docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund || echo "⚠️ npm install falhou (assets)"
           docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css || echo "⚠️ build-css falhou (assets)"
