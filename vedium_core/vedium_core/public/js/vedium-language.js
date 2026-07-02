@@ -645,25 +645,24 @@
     // tradução de UI. O conteúdo permanece em pt-BR (correto para SEO/a11y);
     // traduzimos apenas as strings de interface do dicionário.
     //
-    // Páginas SEO server-rendered nativas (ex.: /en/learn-yoruba-online) têm
-    // translate="no" + notranslate e o body já sai em inglês do servidor.
-    // Percorrer document.body inteiro com translateTextNodes nessas páginas
-    // trava o renderer (interação com scripts já ativos). Solução: traduzir
-    // apenas navbar e footer (escopo pequeno, único que tem texto em PT).
-    var pageLang = (document.documentElement.lang || "").toLowerCase();
-    var isNativeLangPage = pageLang && pageLang !== "pt" && pageLang !== "pt-br" && pageLang.indexOf(meta.lang) === 0;
+    // NUNCA mais varrer document.body inteiro aqui (achado do QA 2026-07-02):
+    // mesmo com tradução em lotes via requestIdleCallback, /en-us/catalogo e
+    // /en-us/contato — páginas bem diferentes em peso/estrutura — travaram a
+    // aba ("Página sem resposta") de forma reproduzível, com até o
+    // CDP Runtime.evaluate expirando (bloqueio síncrono real da thread, não
+    // só lentidão). Sem conseguir isolar o mecanismo exato com as ferramentas
+    // disponíveis, a correção segura é tratar TODA página assim como já se
+    // tratava as SEO nativas (ex.: /en/learn-yoruba-online): traduzir só o
+    // shell (navbar + footer), nunca o corpo. O corpo já fica sempre em
+    // pt-BR mesmo (decisão intencional, ok para SEO/a11y) — perder a
+    // tradução do texto de UI no corpo é aceitável; travar a aba não é.
     if (meta.lang !== "pt") {
-      if (isNativeLangPage) {
-        // Traduz só shell (navbar + footer) — body já está no idioma correto
-        var shells = [
-          document.querySelector("header"),
-          document.querySelector("footer"),
-          document.querySelector(".main-header-one")
-        ].filter(function (el) { return el; });
-        shells.forEach(function (el) { translateTextNodes(meta.lang, el); });
-      } else {
-        translateTextNodes(meta.lang, document.body);
-      }
+      var shells = [
+        document.querySelector("header"),
+        document.querySelector("footer"),
+        document.querySelector(".main-header-one")
+      ].filter(function (el) { return el; });
+      shells.forEach(function (el) { translateTextNodes(meta.lang, el); });
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "language_selected", language: meta.lang, locale: locale });
     }
