@@ -757,6 +757,32 @@ def test_language_switcher_uses_real_translated_urls_not_prefix_guessing():
     assert "meta.prefix + cleanPath" in lang_js
 
 
+def test_language_switcher_remembers_which_english_flag_was_clicked():
+    """Segundo bug achado pelo usuário na mesma sessão (2026-07-03): Global,
+    United States e Australia têm o MESMO conteúdo real (só existe um
+    /en/... por página) — depois do fix anterior, clicar em "United States"
+    levava pra essa única URL, mas o indicador do cabeçalho sempre voltava
+    a mostrar "Global" (perdia qual bandeira a pessoa realmente escolheu).
+    Corrigido com ?locale=en-us na própria URL (não localStorage — removido
+    antes por decisão do time, commit "Use native locale links"). Espanhol/
+    francês/alemão/russo/chinês NÃO entram nesse mecanismo: como não têm
+    conteúdo de verdade, cair no inglês deve mostrar "Global" (honesto),
+    não fingir estar naquele idioma.
+    """
+    lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
+
+    assert 'var ENGLISH_LOCALES = { "en": true, "en-us": true, "en-au": true };' in lang_js
+    assert "function getPreferredLocaleFromQuery()" in lang_js
+    assert 'var localeParam = ENGLISH_LOCALES[locale] ? "?locale=" + locale : "";' in lang_js
+    assert (
+        'var current = (pageNav.current === "en" && (preferredLocale || "en")) '
+        '|| getLocaleFromPath() || "pt-br";'
+    ) in lang_js
+    # não reintroduz o padrão removido antes (localStorage) — usa querystring
+    assert "localStorage." not in lang_js
+    assert "vedium_preferred_locale" not in lang_js
+
+
 def test_public_language_selector_and_gtm_import_are_available():
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
@@ -794,7 +820,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/us.png" in navbar
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
-    assert "vedium-language.js?v=v9-real-lang-urls" in footer
+    assert "vedium-language.js?v=v10-keep-flag-choice" in footer
     assert "pwa-register.js?v=static-v4" in footer
     assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
     assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
@@ -810,7 +836,6 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "language_selected" in lang_js
     assert "vedium_preferred_locale" not in lang_js
     assert "window.location.assign" not in lang_js
-    assert 'var current = (pageNav.current === "en" && "en") || getLocaleFromPath() || "pt-br";' in lang_js
     assert "localeCopy" in lang_js
     assert "editorialCopy" in lang_js
     assert "Verify certificate" in lang_js

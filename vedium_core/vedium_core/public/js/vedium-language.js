@@ -13,6 +13,16 @@
     "zh-cn": { lang: "zh-CN", prefix: "/zh-cn/", flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" },
     "en-au": { lang: "en", prefix: "/en-au/", flag: "https://flagcdn.com/w20/au.png", flag2x: "https://flagcdn.com/w40/au.png 2x", alt: "Australia", label: "AUSTRALIA | ENGLISH" }
   };
+  // Global/United States/Australia têm o MESMO conteúdo real (só existe um
+  // /en/... por página) — a bandeira que a pessoa clica é só uma preferência
+  // regional, não um idioma diferente. Guardamos ela via ?locale= na própria
+  // URL (não localStorage — foi removido antes por decisão do time, ver
+  // commit "Use native locale links in language selector") pra não perder a
+  // bandeira escolhida quando as 3 caem na mesma página. Espanhol/francês/
+  // alemão/russo/chinês NÃO têm conteúdo de verdade, então não entram aqui:
+  // ao cair no inglês por falta de tradução, o indicador mostra "Global"
+  // (honesto) em vez de fingir que o conteúdo está naquele idioma.
+  var ENGLISH_LOCALES = { "en": true, "en-us": true, "en-au": true };
   var localeCopy = {
     en: {
       "Início": "Home",
@@ -585,6 +595,15 @@
     };
   }
 
+  function getPreferredLocaleFromQuery() {
+    try {
+      var value = new URLSearchParams(location.search).get("locale");
+      return ENGLISH_LOCALES[value] ? value : "";
+    } catch (e) {
+      return "";
+    }
+  }
+
   function updateLocaleLinks() {
     var cleanPath = stripLocalePrefix(location.pathname);
     var pageNav = getPageNavUrls();
@@ -594,7 +613,12 @@
       if (!meta || !link.setAttribute) return;
       var realUrl = locale === "pt-br" ? pageNav.ptUrl : (pageNav.enUrl || pageNav.ptUrl);
       if (realUrl) {
-        link.setAttribute("href", realUrl + location.search + location.hash);
+        // en/en-us/en-au caem todos na MESMA página real — sem isso, o
+        // indicador do cabeçalho esquece qual bandeira a pessoa escolheu
+        // e sempre volta pra "Global" depois de navegar. Achado pelo
+        // usuário em produção (2026-07-03).
+        var localeParam = ENGLISH_LOCALES[locale] ? "?locale=" + locale : "";
+        link.setAttribute("href", realUrl + localeParam);
         return;
       }
       var path = cleanPath === "/" ? meta.prefix : meta.prefix + cleanPath.replace(/^\//, "");
@@ -744,9 +768,12 @@
     // Página com tradução real (post de blog em inglês, por exemplo) não
     // tem prefixo /en/ na URL — getLocaleFromPath() sozinho não percebe.
     // data-vd-nav-current (calculado no servidor a partir do post/landing/
-    // curso de verdade) tem prioridade quando disponível.
+    // curso de verdade) tem prioridade quando disponível. ?locale=en-us
+    // (setado por updateLocaleLinks) mantém a bandeira específica que a
+    // pessoa clicou, já que en/en-us/en-au caem todos na mesma página.
     var pageNav = getPageNavUrls();
-    var current = (pageNav.current === "en" && "en") || getLocaleFromPath() || "pt-br";
+    var preferredLocale = getPreferredLocaleFromQuery();
+    var current = (pageNav.current === "en" && (preferredLocale || "en")) || getLocaleFromPath() || "pt-br";
     markActive(current);
     localizePage(current);
   });
