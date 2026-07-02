@@ -1,16 +1,19 @@
 import frappe
 from frappe import _
 
+from vedium_core.course_translations import COURSE_TRANSLATIONS
+
 
 def get_context(context):
     """
     Context for course details page
     Fetches specific course details and related data
     """
-    # Resolve course slug from /curso/<slug> route (form_dict) or path fallback
+    # Resolve course slug from /curso/<slug> ou /en/curso/<slug> (form_dict)
+    # ou path fallback
     course_name = frappe.form_dict.get("course")
     if not course_name:
-        parts = [p for p in (frappe.local.path or "").split("/") if p and p not in ("curso", "course-details")]
+        parts = [p for p in (frappe.local.path or "").split("/") if p and p not in ("en", "curso", "course-details")]
         course_name = parts[-1] if parts else None
 
     if not course_name:
@@ -18,8 +21,24 @@ def get_context(context):
         frappe.local.flags.redirect_location = "/catalogo"
         raise frappe.Redirect
 
-    # Get course details
+    # Versão em inglês: só existe pra cursos com tradução (Iorubá e PLE —
+    # público que não fala PT). Sem tradução, manda pra versão em português
+    # em vez de criar uma página fina/duplicada.
+    is_en = (frappe.local.path or "").startswith("/en/curso/")
+    has_translation = course_name in COURSE_TRANSLATIONS
+    if is_en and not has_translation:
+        frappe.local.flags.redirect_location = f"/curso/{course_name}"
+        raise frappe.Redirect
+    translation = COURSE_TRANSLATIONS[course_name] if is_en else None
+
+    # Get course details (preço, vagas, avaliações etc. sempre ao vivo do banco)
     context.course = get_course_details(course_name)
+    if translation:
+        context.course.title = translation["title"]
+        context.course.short_introduction = translation["short_introduction"]
+        context.course.description = translation["description"]
+
+    context.lang = "en" if translation else "pt-BR"
 
     # Check if user is enrolled
     context.is_enrolled = check_enrollment(course_name)
@@ -31,11 +50,29 @@ def get_context(context):
     context.cart_count = get_cart_count()
 
     # Page metadata (SEO) — título com nome do curso, descrição e canonical
-    context.title = f"{context.course.title} — Curso de Idiomas Online ao Vivo | Vedium"
+    if translation:
+        context.title = f"{context.course.title} — Live Online Language Course | Vedium"
+    else:
+        context.title = f"{context.course.title} — Curso de Idiomas Online ao Vivo | Vedium"
     desc = (context.course.get("short_introduction") or "").strip()
-    context.description = (desc[:155] if desc else
-                           f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
-    context.canonical_url = f"https://vediums.com/curso/{course_name}"
+    if translation:
+        context.description = (desc[:155] if desc else
+                               f"{context.course.title}: live classes, real teachers and a certificate. Enroll at Vedium.")
+    else:
+        context.description = (desc[:155] if desc else
+                               f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
+    context.canonical_url = (
+        f"https://vediums.com/en/curso/{course_name}" if translation
+        else f"https://vediums.com/curso/{course_name}"
+    )
+    # hreflang recíproco — só quando existe tradução pra esse curso
+    if has_translation:
+        context.alt_lang_url = (
+            f"https://vediums.com/curso/{course_name}" if translation
+            else f"https://vediums.com/en/curso/{course_name}"
+        )
+    else:
+        context.alt_lang_url = None
     context.og_image = (context.course.image if context.course.image and context.course.image.startswith("http")
                         else f"https://vediums.com{context.course.image}") if context.course.image else "https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
     context.lms_url = (

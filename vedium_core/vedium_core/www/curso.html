@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ lang or 'pt-BR' }}"{% if (lang or 'pt-BR') != 'pt-BR' %} translate="no"{% endif %}>
+{%- set vd_course_en = (lang or "pt-BR") != "pt-BR" %}
 
 <head>
     <!-- Google Tag Manager -->
@@ -18,7 +19,15 @@
     <meta name="description" content="{{ description }}" />
     <meta name="author" content="Vedium" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    {%- if vd_course_en %}
+    <meta name="google" content="notranslate" />
+    {%- endif %}
     <link rel="canonical" href="{{ canonical_url }}" />
+    {%- if alt_lang_url %}
+    <link rel="alternate" hreflang="{{ 'en' if vd_course_en else 'pt-br' }}" href="{{ canonical_url }}" />
+    <link rel="alternate" hreflang="{{ 'pt-br' if vd_course_en else 'en' }}" href="{{ alt_lang_url }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ canonical_url if not vd_course_en else alt_lang_url }}" />
+    {%- endif %}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -26,7 +35,7 @@
     <meta property="og:title" content="{{ course.title }} | Vedium" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="{{ og_image }}" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content="{{ 'en_US' if vd_course_en else 'pt_BR' }}" />
     <meta property="og:site_name" content="Vedium" />
 
     <!-- Twitter -->
@@ -82,7 +91,7 @@
         "description": {{ description | tojson }},
         "url": {{ canonical_url | tojson }},
         "image": {{ og_image | tojson }},
-        "inLanguage": "pt-BR",
+        "inLanguage": {{ ("en" if vd_course_en else "pt-BR") | tojson }},
         "provider": {
             "@type": "Organization",
             "name": "Vedium",
@@ -92,7 +101,7 @@
         "hasCourseInstance": {
             "@type": "CourseInstance",
             "courseMode": "Online",
-            "inLanguage": "pt-BR"{% if course.instructors_list %},
+            "inLanguage": {{ ("en" if vd_course_en else "pt-BR") | tojson }}{% if course.instructors_list %},
             "instructor": [{% for i in course.instructors_list %}{"@type": "Person", "name": {{ (i.full_name or "Vedium") | tojson }}}{% if not loop.last %},{% endif %}{% endfor %}]{% endif %}
         }{% if course.paid_course and course.course_price %},
         "offers": {
@@ -118,8 +127,8 @@
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Início", "item": "https://vediums.com/"},
-            {"@type": "ListItem", "position": 2, "name": "Cursos", "item": "https://vediums.com/catalogo"},
+            {"@type": "ListItem", "position": 1, "name": {{ ("Home" if vd_course_en else "Início") | tojson }}, "item": "https://vediums.com/"},
+            {"@type": "ListItem", "position": 2, "name": {{ ("Courses" if vd_course_en else "Cursos") | tojson }}, "item": "https://vediums.com/catalogo"},
             {"@type": "ListItem", "position": 3, "name": {{ course.title | tojson }}, "item": {{ canonical_url | tojson }}}
         ]
     }
@@ -146,8 +155,8 @@
                             </div>
                             <div class="page-header__menu">
                                 <ul class="page-header__menu-list list-unstyled clearfix">
-                                    <li><a href="/">Início</a></li>
-                                    <li><a href="/catalogo">Cursos</a></li>
+                                    <li><a href="/">{{ "Home" if vd_course_en else "Início" }}</a></li>
+                                    <li><a href="/catalogo">{{ "Courses" if vd_course_en else "Cursos" }}</a></li>
                                     <li class="active">{{ course.title }}</li>
                                 </ul>
                             </div>
@@ -169,7 +178,7 @@
                                 <div class="courses-one__single-img">
                                     {% if course.image %}<img src="{{ course.image }}" alt="{{ course.title }}" />{% endif %}
                                     <div class="overlay-text">
-                                        <p>{{ course.category_name or "Curso" }}</p>
+                                        <p>{{ course.category_name or ("Course" if vd_course_en else "Curso") }}</p>
                                     </div>
                                 </div>
                                 <div class="courses-one__single-content">
@@ -186,19 +195,19 @@
                                         <ul class="list-unstyled">
                                             <li>
                                                 <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>Aulas 100% ao vivo, em tempo real</p></div>
+                                                <div class="text"><p>{{ "100% live classes, in real time" if vd_course_en else "Aulas 100% ao vivo, em tempo real" }}</p></div>
                                             </li>
                                             <li>
                                                 <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>Professor qualificado e turmas pequenas</p></div>
+                                                <div class="text"><p>{{ "Qualified teacher and small classes" if vd_course_en else "Professor qualificado e turmas pequenas" }}</p></div>
                                             </li>
                                             <li>
                                                 <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>Certificado de conclusão</p></div>
+                                                <div class="text"><p>{{ "Certificate of completion" if vd_course_en else "Certificado de conclusão" }}</p></div>
                                             </li>
                                             <li>
                                                 <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>Estude de qualquer lugar do Brasil</p></div>
+                                                <div class="text"><p>{{ "Study from anywhere in the world" if vd_course_en else "Estude de qualquer lugar do Brasil" }}</p></div>
                                             </li>
                                         </ul>
                                     </div>
@@ -208,7 +217,7 @@
                             {% if course.chapters_list %}
                             <!--Start Course Details Curriculum-->
                             <div class="course-details__curriculum">
-                                <h2 class="course-details__curriculum-title">Conteúdo do curso</h2>
+                                <h2 class="course-details__curriculum-title">{{ "Course content" if vd_course_en else "Conteúdo do curso" }}</h2>
                                 {% for chapter in course.chapters_list %}
                                 <div class="course-details__curriculum-single{% if loop.last %} mar-buttom0{% endif %}">
                                     <h3 class="course-details__curriculum-single-title">{{ loop.index }}. {{ chapter.title }}</h3>
@@ -242,12 +251,12 @@
                     <div class="col-xl-4 col-lg-4">
                         <div class="course-details__sidebar">
                             <div class="course-details__price wow fadeInUp animated" data-wow-delay="0.1s">
-                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>/mês</span>{% endif %}</h2>
+                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ "/month" if vd_course_en else "/mês" }}</span>{% endif %}</h2>
                                 <div class="course-details__price-btn">
                                     {% if is_enrolled %}
-                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">Acessar curso</a>
+                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ "Access course" if vd_course_en else "Acessar curso" }}</a>
                                     {% else %}
-                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',location:'course_detail'});">Matricular agora</a>
+                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',location:'course_detail'});">{{ "Enroll now" if vd_course_en else "Matricular agora" }}</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -257,35 +266,35 @@
                                     {% if course.total_lessons %}
                                     <li class="course-details__sidebar-meta-list-item">
                                         <div class="icon"><a><i class="far fa-folder-open"></i></a></div>
-                                        <div class="text"><p><a>Aulas:<span>{{ course.total_lessons }}</span></a></p></div>
+                                        <div class="text"><p><a>{{ "Lessons:" if vd_course_en else "Aulas:" }}<span>{{ course.total_lessons }}</span></a></p></div>
                                     </li>
                                     {% endif %}
                                     {% if course.enrollment_count %}
                                     <li class="course-details__sidebar-meta-list-item">
                                         <div class="icon"><a><i class="far fa-user-circle"></i></a></div>
-                                        <div class="text"><p><a>Alunos:<span>{{ course.enrollment_count }}</span></a></p></div>
+                                        <div class="text"><p><a>{{ "Students:" if vd_course_en else "Alunos:" }}<span>{{ course.enrollment_count }}</span></a></p></div>
                                     </li>
                                     {% endif %}
                                     <li class="course-details__sidebar-meta-list-item">
                                         <div class="icon"><a><i class="fas fa-video"></i></a></div>
-                                        <div class="text"><p><a>Modalidade:<span>Online, ao vivo</span></a></p></div>
+                                        <div class="text"><p><a>{{ "Format:" if vd_course_en else "Modalidade:" }}<span>{{ "Online, live" if vd_course_en else "Online, ao vivo" }}</span></a></p></div>
                                     </li>
                                     {% if course.category_name %}
                                     <li class="course-details__sidebar-meta-list-item">
                                         <div class="icon"><a><i class="far fa-flag"></i></a></div>
-                                        <div class="text"><p><a>Nível:<span>{{ course.category_name }}</span></a></p></div>
+                                        <div class="text"><p><a>{{ "Level:" if vd_course_en else "Nível:" }}<span>{{ course.category_name }}</span></a></p></div>
                                     </li>
                                     {% endif %}
                                     <li class="course-details__sidebar-meta-list-item">
                                         <div class="icon"><a><i class="fas fa-certificate"></i></a></div>
-                                        <div class="text"><p><a>Certificado:<span>Sim</span></a></p></div>
+                                        <div class="text"><p><a>{{ "Certificate:" if vd_course_en else "Certificado:" }}<span>{{ "Yes" if vd_course_en else "Sim" }}</span></a></p></div>
                                     </li>
                                 </ul>
                             </div>
 
                             {% if related_courses %}
                             <div class="course-details__new-courses wow fadeInUp animated" data-wow-delay="0.5s">
-                                <h3 class="course-details__new-courses-title">Cursos relacionados</h3>
+                                <h3 class="course-details__new-courses-title">{{ "Related courses" if vd_course_en else "Cursos relacionados" }}</h3>
                                 <ul class="course-details__new-courses-list list-unstyled">
                                     {% for rc in related_courses %}
                                     <li class="course-details__new-courses-list-item">

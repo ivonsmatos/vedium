@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ post.lang or 'pt-BR' }}"{% if (post.lang or 'pt-BR') != 'pt-BR' %} translate="no"{% endif %}>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{{ post.title }}</title>
 <meta name="description" content="{{ post.meta_description }}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
+{%- if (post.lang or 'pt-BR') != 'pt-BR' %}
+<meta name="google" content="notranslate" />
+{%- endif %}
 <link rel="canonical" href="{{ post.url }}" />
+{%- if post.alt %}
+{%- for alt_lang, alt_slug in post.alt.items() %}
+<link rel="alternate" hreflang="{{ 'pt-br' if alt_lang == 'pt-BR' else alt_lang }}" href="https://vediums.com/blog/{{ alt_slug }}" />
+{%- endfor %}
+<link rel="alternate" hreflang="x-default" href="https://vediums.com/blog/{{ post.alt.get('pt-BR', post.slug) }}" />
+{%- endif %}
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ post.title }}" />
 <meta property="og:description" content="{{ post.meta_description }}" />
@@ -60,7 +69,7 @@
   "author": {"@type": "Organization", "name": "Vedium"},
   "publisher": {"@type": "Organization", "name": "Vedium", "logo": {"@type": "ImageObject", "url": "https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"}},
   "mainEntityOfPage": {{ post.url | tojson }},
-  "inLanguage": "pt-BR"
+  "inLanguage": {{ (post.lang or "pt-BR") | tojson }}
 }
 </script>
 {%- if post.faqs %}
@@ -85,13 +94,14 @@
 <div class="page-wrapper">
 {% set vd_page = "blog" %}
 {% include "templates/includes/site_navbar.html" %}
+{%- set vd_bp_en = (post.lang or "pt-BR") != "pt-BR" %}
 
 <section class="vd-bp-head">
   <div class="container">
-    <div class="vd-bc"><a href="/">Início</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; <span>{{ post.tag }}</span></div>
+    <div class="vd-bc"><a href="/">{{ "Home" if vd_bp_en else "Início" }}</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; <span>{{ post.tag }}</span></div>
     <span class="vd-bp-tag">{{ post.tag }}</span>
     <h1>{{ post.h1 or post.title }}</h1>
-    <p class="vd-bp-meta">Equipe Vedium · {{ post.date_display or post.date }}</p>
+    <p class="vd-bp-meta">{{ "Vedium Team" if vd_bp_en else "Equipe Vedium" }} · {{ post.date_display or post.date }}</p>
   </div>
 </section>
 
@@ -108,7 +118,7 @@
 
     {%- if post.faqs %}
     <div class="vd-faq">
-      <h2>Perguntas frequentes</h2>
+      <h2>{{ "Frequently asked questions" if vd_bp_en else "Perguntas frequentes" }}</h2>
       {% for item in post.faqs %}
       <div class="vd-faq-item"><h3>{{ item.q }}</h3><p>{{ item.a }}</p></div>
       {% endfor %}

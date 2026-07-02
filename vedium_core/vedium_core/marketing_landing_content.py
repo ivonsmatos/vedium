@@ -106,6 +106,10 @@ LANDINGS = {
             {"q": "O curso tem certificado?", "a": "Sim, há certificado de conclusão conforme os requisitos do curso livre."},
         ],
         "whatsapp_text": "Olá, quero saber sobre o curso de inglês online ao vivo da Vedium.",
+        # Bug real achado em produção (2026-07-02): o slug "curso-de-ingles-online"
+        # não começa com "ingles-", então a heurística antiga do template mandava
+        # o CTA de teste de nível pro teste de PORTUGUÊS por engano.
+        "test_url": "/teste-de-nivel-ingles",
     },
     "ingles-para-entrevista": {
         "title": "Inglês para Entrevista de Emprego — Vedium",
@@ -345,8 +349,13 @@ LANDINGS = {
             {"q": "Como sei por onde começar?", "a": "Você pode falar com a equipe e fazer o diagnóstico inicial antes da matrícula."},
         ],
         "whatsapp_text": "Olá, quero saber sobre curso de iorubá online na Vedium.",
+        # Sem teste de nível formal pro Iorubá (não é um idioma CEFR e o público
+        # majoritariamente começa do zero) — CTA vira "falar com a equipe" em vez
+        # de simular um teste que não existe.
+        "test_url": None,
     },
     "ioruba-para-iniciantes": {
+        "alt": {"pt-BR": "ioruba-para-iniciantes", "en": "yoruba-for-beginners"},
         "title": "Iorubá para Iniciantes — Vedium",
         "short_title": "Iorubá para Iniciantes",
         "meta_description": "Iorubá para iniciantes com aulas ao vivo: saudações, pronúncia, vocabulário básico, tons e contexto cultural.",
@@ -394,6 +403,7 @@ LANDINGS = {
             {"q": "Posso estudar em grupo?", "a": "A disponibilidade depende das turmas abertas e horários."},
         ],
         "whatsapp_text": "Olá, quero começar iorubá para iniciantes na Vedium.",
+        "test_url": None,
     },
     "portugues-para-estrangeiros": {
         "title": "Português para Estrangeiros — Vedium",
@@ -484,6 +494,7 @@ LANDINGS = {
         "whatsapp_text": "Hello, I want to learn Portuguese for foreigners with Vedium.",
     },
     "portugues-para-executivos": {
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives"},
         "title": "Português para Executivos — Vedium",
         "short_title": "Português para Executivos",
         "meta_description": "Português para executivos estrangeiros com aulas ao vivo para reuniões, negócios, apresentações e adaptação cultural no Brasil.",
@@ -531,6 +542,7 @@ LANDINGS = {
             {"q": "Can this be offered to a team?", "a": "Yes, B2B formats can be discussed with the Vedium team."},
         ],
         "whatsapp_text": "Hello, I want Portuguese classes for executives with Vedium.",
+        "test_url": "/teste-de-nivel",
     },
     "ingles-para-viagens": {
         "title": "Inglês para Viagens — Vedium",
@@ -631,6 +643,7 @@ LANDINGS = {
         "whatsapp_text": "Olá, quero inglês para atendimento ao cliente na Vedium.",
     },
     "ioruba-cultura-e-ancestralidade": {
+        "alt": {"pt-BR": "ioruba-cultura-e-ancestralidade", "en": "yoruba-culture-and-heritage"},
         "title": "Iorubá, Cultura e Ancestralidade — Vedium",
         "short_title": "Iorubá e Cultura",
         "meta_description": "Aprenda iorubá online com contexto cultural, ancestralidade, saudações, pronúncia e prática guiada ao vivo.",
@@ -678,8 +691,10 @@ LANDINGS = {
             {"q": "Tem prática oral?", "a": "Sim. Pronúncia, escuta e fala são parte central da jornada."},
         ],
         "whatsapp_text": "Olá, quero iorubá com cultura e ancestralidade na Vedium.",
+        "test_url": None,
     },
     "preparatorio-celpe-bras": {
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep"},
         "title": "Preparatório Celpe-Bras — Vedium",
         "short_title": "Preparatório Celpe-Bras",
         "meta_description": "Preparação para Celpe-Bras com português para estrangeiros, escrita, fala, compreensão e simulados orientados.",
@@ -727,6 +742,7 @@ LANDINGS = {
             {"q": "Can classes include English explanations?", "a": "Yes, when needed, but the goal is to increase Portuguese use progressively."},
         ],
         "whatsapp_text": "Olá, quero preparatório Celpe-Bras na Vedium.",
+        "test_url": "/teste-de-nivel",
     },
 
     # =========================================================================
@@ -784,6 +800,7 @@ LANDINGS = {
             {"q": "How do I know where to start?", "a": "You can talk to our team and take a diagnostic assessment before enrolling."},
         ],
         "whatsapp_text": "Hello, I'd like to learn Yoruba online with Vedium.",
+        "test_url": None,
     },
     "learn-portuguese-brazil": {
         "lang": "en",
@@ -835,6 +852,215 @@ LANDINGS = {
             {"q": "Do I need a placement test?", "a": "The free test helps us estimate your level before recommending a path."},
         ],
         "whatsapp_text": "Hello, I want to learn Brazilian Portuguese for foreigners with Vedium.",
+        "test_url": "/en/portuguese-placement-test",
+    },
+    "yoruba-for-beginners": {
+        "lang": "en",
+        "alt": {"pt-BR": "ioruba-para-iniciantes", "en": "yoruba-for-beginners"},
+        "title": "Yoruba for Beginners — Vedium",
+        "short_title": "Yoruba for Beginners",
+        "meta_description": "Yoruba for absolute beginners with live classes: greetings, pronunciation, basic vocabulary, tones and cultural context.",
+        "tagline": "First steps",
+        "h1": "Start Yoruba the right way: sounds, tones, greetings and useful phrases",
+        "lead": "A guided entry point for anyone who wants to learn Yoruba without getting lost. The path organizes the first sounds, words and structures into a real foundation for study.",
+        "hero_image": "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1920&q=80",
+        "audience": "Absolute beginners, students of African culture, members of the diaspora, and anyone looking for a first real experience with the language.",
+        "level": "Absolute beginner",
+        "frequency": "1 or 2 live classes per week",
+        "duration": "First introductory module",
+        "summary": "You learn pronunciation, initial listening, greetings, numbers, self-introduction phrases and everyday vocabulary.",
+        "pain_title": "The beginning shapes the foundation",
+        "pain_intro": "In Yoruba, learning sounds and tones from day one avoids habits that are hard to correct later.",
+        "pain_points": [
+            "Trouble finding an organized, trustworthy learning path.",
+            "Uncertainty with tones, stress and pronunciation.",
+            "Confusing vocabulary, culture and real-world usage.",
+            "No guidance to move beyond word lists.",
+        ],
+        "outcomes": [
+            "Pronounce greetings and first words more accurately.",
+            "Use simple greetings and introductions.",
+            "Build short sentences with essential vocabulary.",
+            "Understand how to continue into the next module.",
+        ],
+        "modules": [
+            {"title": "Alphabet and sounds", "text": "Introduction to sounds and active listening."},
+            {"title": "Tones", "text": "First awareness of tone and meaning."},
+            {"title": "Greetings", "text": "Ways to greet and respond."},
+            {"title": "Self-introduction", "text": "Name, origin, family and first phrases."},
+            {"title": "Numbers and routine", "text": "Practical everyday vocabulary."},
+            {"title": "Guided dialogues", "text": "Short conversations with feedback."},
+        ],
+        "format_items": [
+            "Live classes to correct pronunciation from the start.",
+            "Simple repetition and listening exercises.",
+            "Material organized by topic.",
+            "Suggested next steps at the end of the module.",
+        ],
+        "faqs": [
+            {"q": "Is this for people who have never studied Yoruba?", "a": "Yes. This page was designed for absolute beginners."},
+            {"q": "Will I learn to speak, or just vocabulary?", "a": "The goal is to use vocabulary in simple sentences and dialogues."},
+            {"q": "Do I need materials before class?", "a": "No. Vedium provides the initial guidance."},
+            {"q": "Can I study in a group?", "a": "Availability depends on open classes and schedules."},
+        ],
+        "whatsapp_text": "Hello, I'd like to start learning Yoruba for beginners with Vedium.",
+        "test_url": None,
+    },
+    "yoruba-culture-and-heritage": {
+        "lang": "en",
+        "alt": {"pt-BR": "ioruba-cultura-e-ancestralidade", "en": "yoruba-culture-and-heritage"},
+        "title": "Yoruba, Culture and Heritage — Vedium",
+        "short_title": "Yoruba and Culture",
+        "meta_description": "Learn Yoruba online with cultural context, heritage, greetings, pronunciation and live guided practice.",
+        "tagline": "Language with context",
+        "h1": "Yoruba to learn language, memory and culture",
+        "lead": "A path to study Yoruba with respect for the language, the culture and the ancestry behind it. Classes connect pronunciation, vocabulary and context without turning learning into a shallow promise.",
+        "hero_image": "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1920&q=80",
+        "audience": "Students of Afro-diasporic culture, Yoruba beginners, researchers, artists, educators, and anyone seeking cultural reconnection.",
+        "level": "Beginner to elementary",
+        "frequency": "1 or 2 live classes per week",
+        "duration": "Modules organized by theme",
+        "summary": "You learn the language in use, pronunciation, greetings, expressions, cultural vocabulary and an understanding of historical and social context.",
+        "pain_title": "Culture needs to be handled with care",
+        "pain_intro": "When language is separated from context, learning loses depth. When context is handled without method, learning becomes confusing.",
+        "pain_points": [
+            "Wanting to learn Yoruba without finding a serious learning path.",
+            "Uncertainty about pronunciation, tones and meaning.",
+            "Mixing cultural references without understanding their limits and uses.",
+            "Needing a teacher to structure study and practice.",
+        ],
+        "outcomes": [
+            "Build a linguistic foundation that respects context.",
+            "Understand greetings, expressions and cultural vocabulary.",
+            "Practice pronunciation and listening with guidance.",
+            "Follow a path of continuity without superficiality.",
+        ],
+        "modules": [
+            {"title": "Pronunciation and tones", "text": "Listening, guided repetition and attention to key sounds."},
+            {"title": "Greetings and respect", "text": "Ways to greet, respond and introduce yourself."},
+            {"title": "Family and community", "text": "Vocabulary for relationships, belonging and daily life."},
+            {"title": "Cultural expressions", "text": "Words and usages presented with educational context."},
+            {"title": "History and diaspora", "text": "Cultural connections presented with care and responsibility."},
+            {"title": "Living practice", "text": "Dialogues, short readings, listening and feedback."},
+        ],
+        "format_items": [
+            "Live classes with practice and context.",
+            "Educational, cultural and linguistic approach.",
+            "Progressive content for beginners.",
+            "Guidance on continuing by goal.",
+        ],
+        "faqs": [
+            {"q": "Does the course mix language and culture?", "a": "Yes, but with an educational focus, without promising experiences beyond the scope of a language course."},
+            {"q": "Do I need to know Yoruba beforehand?", "a": "No. The path can start from zero."},
+            {"q": "Is it suitable for educators and artists?", "a": "Yes, especially for those seeking linguistic and cultural repertoire."},
+            {"q": "Is there speaking practice?", "a": "Yes. Pronunciation, listening and speaking are central to the journey."},
+        ],
+        "whatsapp_text": "Hello, I'd like to learn about Yoruba culture and heritage with Vedium.",
+        "test_url": None,
+    },
+    "portuguese-for-executives": {
+        "lang": "en",
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives"},
+        "title": "Portuguese for Executives — Vedium",
+        "short_title": "Portuguese for Executives",
+        "meta_description": "Portuguese for foreign executives with live classes for meetings, business, presentations and cultural adaptation in Brazil.",
+        "tagline": "Business Portuguese",
+        "h1": "Portuguese for executives working with Brazil",
+        "lead": "A path for foreign professionals who need to lead meetings, negotiate, present results and communicate with Brazilian teams, clients or partners.",
+        "hero_image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920&q=80",
+        "audience": "Foreign executives, expats, regional leaders, investors, consultants and global professionals operating in Brazil.",
+        "level": "A2 to C1",
+        "frequency": "2 live classes per week",
+        "duration": "Plan built around your executive schedule",
+        "summary": "You practice business Portuguese, Brazilian corporate culture, meetings, negotiation, presentations and professional writing.",
+        "pain_title": "Doing business in Brazil requires language and context",
+        "pain_intro": "Beyond grammar, executives need to understand tone, formality, meeting rhythm and cultural nuance.",
+        "pain_points": [
+            "Taking part in meetings in Portuguese without relying on translation.",
+            "Adapting your language for Brazilian teams.",
+            "Negotiating with clarity and diplomacy.",
+            "Writing messages and presentations with a professional tone.",
+        ],
+        "outcomes": [
+            "Lead business conversations in Brazilian Portuguese.",
+            "Present data, decisions and recommendations.",
+            "Negotiate deadlines, scope and alignment.",
+            "Gain cultural repertoire to operate in Brazil.",
+        ],
+        "modules": [
+            {"title": "Meetings", "text": "Opening, agenda, alignment, decisions and follow-up."},
+            {"title": "Presentations", "text": "Results, metrics, plans and Q&A."},
+            {"title": "Negotiation", "text": "Agreeing, disagreeing, proposing, conceding and closing."},
+            {"title": "Executive writing", "text": "Emails, messages, invitations and summaries."},
+            {"title": "Corporate culture", "text": "Formality, rapport, pace and relationship-building."},
+            {"title": "Pronunciation", "text": "Clarity, rhythm and key sounds of Brazilian Portuguese."},
+        ],
+        "format_items": [
+            "Live classes with executive-routine role-plays.",
+            "Content adapted to your industry, role and schedule.",
+            "English support whenever needed.",
+            "Possible B2B program for teams.",
+        ],
+        "faqs": [
+            {"q": "Is this course for foreigners?", "a": "Yes. It is designed for non-native Portuguese speakers working with Brazil."},
+            {"q": "Can classes focus on my company context?", "a": "Yes. Meetings, presentations and vocabulary can be adapted to your role."},
+            {"q": "Do you teach Brazilian business culture?", "a": "Yes. Cultural context is part of the communication training."},
+            {"q": "Can this be offered to a team?", "a": "Yes, B2B formats can be discussed with the Vedium team."},
+        ],
+        "whatsapp_text": "Hello, I want Portuguese classes for executives with Vedium.",
+        "test_url": "/en/portuguese-placement-test",
+    },
+    "celpe-bras-exam-prep": {
+        "lang": "en",
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep"},
+        "title": "Celpe-Bras Exam Prep — Vedium",
+        "short_title": "Celpe-Bras Prep",
+        "meta_description": "Celpe-Bras exam preparation with Portuguese for foreigners: writing, speaking, listening and guided mock exams.",
+        "tagline": "Portuguese for certification",
+        "h1": "Guided preparation for the Celpe-Bras exam",
+        "lead": "A path for foreigners who need to prove proficiency in Brazilian Portuguese. The focus is real communication, integrated tasks, writing, speaking and interpretation.",
+        "hero_image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1920&q=80",
+        "audience": "Foreigners planning to take the Celpe-Bras exam, international students, professionals and anyone who needs to prove their Portuguese.",
+        "level": "A2 to C1",
+        "frequency": "2 live classes per week",
+        "duration": "Plan built around your exam date",
+        "summary": "You work on reading, listening, writing, speaking, topical repertoire and mock exams with targeted feedback.",
+        "pain_title": "Celpe-Bras tests real language use",
+        "pain_intro": "Memorizing grammar isn't enough. The exam requires understanding texts, organizing ideas and responding to communicative tasks.",
+        "pain_points": [
+            "Trouble turning reading and listening input into a written response.",
+            "Lack of repertoire on Brazilian and everyday topics.",
+            "Insecurity during the oral interaction.",
+            "Texts lacking organization, cohesion or the right genre.",
+        ],
+        "outcomes": [
+            "Better understand the exam format and its tasks.",
+            "Produce texts with purpose, organization and appropriate language.",
+            "Speak with more clarity and fluency in the oral section.",
+            "Get feedback on priority points before the exam.",
+        ],
+        "modules": [
+            {"title": "Diagnosis", "text": "Mapping your level, writing, speaking and time until the exam."},
+            {"title": "Integrated tasks", "text": "Reading, audio, interpretation and communicative response."},
+            {"title": "Written production", "text": "Email, letter, report, opinion, request and summary."},
+            {"title": "Oral interaction", "text": "Questions, answers, description, opinion and argumentation."},
+            {"title": "Brazilian repertoire", "text": "Culture, work, education, health, technology and society."},
+            {"title": "Mock exams", "text": "Guided practice with performance feedback."},
+        ],
+        "format_items": [
+            "Live classes focused on the exam.",
+            "Plan adjusted to your level and exam date.",
+            "Writing and speaking correction.",
+            "Study guidance between classes.",
+        ],
+        "faqs": [
+            {"q": "Does Vedium administer the Celpe-Bras exam?", "a": "No. Vedium offers exam prep; registration and the exam itself follow the official channels."},
+            {"q": "Do I need to already speak Portuguese?", "a": "An initial base is recommended. The diagnostic assessment points you to the right track."},
+            {"q": "Does it include mock exams?", "a": "Yes, the prep can include simulated tasks and feedback."},
+            {"q": "Can classes include English explanations?", "a": "Yes, when needed, but the goal is to increase Portuguese use progressively."},
+        ],
+        "whatsapp_text": "Hello, I want Celpe-Bras exam prep with Vedium.",
+        "test_url": "/en/portuguese-placement-test",
     },
 }
 
@@ -857,6 +1083,23 @@ def _landing_url(slug, lang):
     return f"{BASE_URL}/{prefix}{slug}"
 
 
+# Páginas pilar que servem de destino de campanha por idioma: cada uma
+# recebe um grid com os cursos/níveis reais daquele idioma (preço, aulas,
+# link para a página do curso), em vez de só o preço agregado do landing.
+LANDING_COURSE_FILTERS = {
+    "curso-de-ingles-online": {"category_prefix": "Inglês"},
+    "curso-de-ioruba-online": {"category_prefix": "Iorubá"},
+    "portugues-para-estrangeiros": {"category_exact": "Português para Estrangeiros"},
+    "learn-yoruba-online": {"category_prefix": "Iorubá"},
+    "learn-portuguese-brazil": {"category_exact": "Português para Estrangeiros"},
+}
+
+# Landings em inglês cujo grid de cursos deve linkar pra /en/curso/<slug>
+# (traduzido) em vez de /curso/<slug> — os 2 clusters aqui têm 100% dos
+# cursos cobertos por course_translations.COURSE_TRANSLATIONS.
+LANDING_COURSE_GRID_USES_EN_COURSE_URL = {"learn-yoruba-online", "learn-portuguese-brazil"}
+
+
 def apply_landing_context(context, slug):
     landing = get_marketing_landing(slug)
     context.title = landing["title"]
@@ -865,6 +1108,15 @@ def apply_landing_context(context, slug):
 
 
 def get_marketing_landing(slug):
+    """Fonte única de verdade pro objeto `landing`.
+
+    IMPORTANTE: os www/*.html das páginas pilar chamam esta função
+    DIRETO como global do Jinja (`{% set landing = get_marketing_landing(...) %}`),
+    sem passar pelo controller .py — então `context.landing` setado em
+    apply_landing_context() é sobrescrito e nunca chega a ser usado pelo
+    template. Qualquer dado que precise aparecer na página (como o grid de
+    cursos abaixo) tem que ser calculado AQUI, não em apply_landing_context.
+    """
     landing = dict(LANDINGS[slug])
     lang = landing.get("lang", "pt-BR")
     landing["slug"] = slug
@@ -874,6 +1126,21 @@ def get_marketing_landing(slug):
     landing["whatsapp_url"] = (
         f"https://wa.me/{WHATSAPP_PHONE}?text={quote(landing['whatsapp_text'])}"
     )
+
+    course_filter = LANDING_COURSE_FILTERS.get(slug)
+    if course_filter:
+        from vedium_core.courses import get_published_courses
+
+        course_grid = get_published_courses(**course_filter)
+        if slug in LANDING_COURSE_GRID_USES_EN_COURSE_URL:
+            from vedium_core.course_translations import COURSE_TRANSLATIONS
+
+            for course in course_grid:
+                if course.name in COURSE_TRANSLATIONS:
+                    course.title = COURSE_TRANSLATIONS[course.name]["title"]
+                    course.short_introduction = COURSE_TRANSLATIONS[course.name]["short_introduction"]
+                    course.url = f"/en/curso/{course.name}"
+        landing["course_grid"] = course_grid
 
     # Versões alternativas em outros idiomas (hreflang). "alt" mapeia idioma -> slug.
     # Inclui a própria página + x-default (sempre o pt-BR quando existir).

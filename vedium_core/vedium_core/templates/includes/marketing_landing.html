@@ -105,7 +105,7 @@
 <div class="page-wrapper">
 {% set vd_page = "cursos" %}
 {% include "templates/includes/site_navbar.html" %}
-{% set landing_test_url = "/teste-de-nivel-ingles" if landing.slug.startswith("ingles-") else "/teste-de-nivel" %}
+{%- set landing_test_url = landing.test_url if "test_url" in landing else ("/teste-de-nivel-ingles" if landing.slug.startswith("ingles-") else "/teste-de-nivel") %}
 {%- set vd_lang = landing.lang or "pt-BR" %}
 {%- set vd_i18n = {
   "pt-BR": {
@@ -124,7 +124,11 @@
     "common_q": "Dúvidas comuns", "faq": "Perguntas frequentes",
     "price": "Investimento", "see_plans": "Ver planos e frequências", "understand": "Entenda melhor",
     "no_commit": "Comece sem compromisso", "find_level": "Descubra seu nível antes de escolher o plano",
-    "find_level_p": "O teste gratuito ajuda a orientar a conversa com a Vedium e evita começar por uma trilha desalinhada ao seu momento."
+    "find_level_p": "O teste gratuito ajuda a orientar a conversa com a Vedium e evita começar por uma trilha desalinhada ao seu momento.",
+    "no_test_title": "Fale com a equipe antes de começar",
+    "no_test_p": "Conte seu objetivo e nível atual — a equipe da Vedium indica o módulo certo pra você começar.",
+    "levels_available": "Níveis disponíveis", "choose_level": "Escolha seu nível e comece agora",
+    "see_course": "Ver curso", "lessons_count": "aulas"
   },
   "en": {
     "home": "Home", "courses": "Courses",
@@ -142,7 +146,11 @@
     "common_q": "Common questions", "faq": "Frequently asked questions",
     "price": "Pricing", "see_plans": "See plans and frequency", "understand": "Understand it better",
     "no_commit": "Start with no commitment", "find_level": "Find your level before choosing a plan",
-    "find_level_p": "The free test helps guide your conversation with Vedium and avoids starting on a path that doesn't fit your moment."
+    "find_level_p": "The free test helps guide your conversation with Vedium and avoids starting on a path that doesn't fit your moment.",
+    "no_test_title": "Talk to our team before you start",
+    "no_test_p": "Tell us your goal and current level — the Vedium team will point you to the right module to begin.",
+    "levels_available": "Levels available", "choose_level": "Choose your level and start now",
+    "see_course": "See course", "lessons_count": "lessons"
   }
 } %}
 {%- set t = vd_i18n.get(vd_lang, vd_i18n["pt-BR"]) %}
@@ -163,7 +171,7 @@
         {% for outcome in landing.outcomes %}{% if loop.index <= 3 %}<li>{{ outcome }}</li>{% endif %}{% endfor %}
       </ul>
       <div class="vd-cta-row">
-        <a href="{{ landing_test_url }}" class="thm-btn">{{ t.cta_test }}</a>
+        {% if landing_test_url %}<a href="{{ landing_test_url }}" class="thm-btn">{{ t.cta_test }}</a>{% endif %}
         <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_whatsapp_click',landing:'{{ landing.slug }}'});">{{ t.cta_whats }}</a>
       </div>
     </div>
@@ -207,6 +215,28 @@
     </div>
   </div>
 </section>
+
+{%- if landing.course_grid %}
+<section class="vd-landing-section vd-landing-alt">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">{{ t.price }}</span><h2 class="section-title__title">{{ t.choose_level }}</h2></div>
+    <div class="row" style="row-gap:24px;margin-top:34px;">
+      {% for course in landing.course_grid %}
+      <div class="col-lg-4 col-md-6">
+        <div class="vd-card" style="display:flex;flex-direction:column;height:100%;">
+          {% if course.level_badge %}<span class="vd-pill">{{ course.level_badge }}</span>{% endif %}
+          <h3>{{ course.title }}</h3>
+          <p style="flex:1;">{{ course.short_introduction }}</p>
+          {% if course.lesson_count %}<p class="vd-muted" style="font-size:14px;margin-bottom:6px;">{{ course.lesson_count }} {{ t.lessons_count }}</p>{% endif %}
+          <div class="vd-price-val" style="font-size:24px;margin:4px 0 16px;">{{ course.formatted_price }}</div>
+          <a href="{{ course.url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_course_grid_click',landing:'{{ landing.slug }}',course:'{{ course.name }}'});">{{ t.see_course }}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
 
 <section class="vd-landing-section vd-landing-alt">
   <div class="container">
@@ -268,10 +298,10 @@
 <section class="vd-landing-section">
   <div class="container"><div class="vd-card" style="text-align:center;">
     <span class="vd-pill">{{ t.no_commit }}</span>
-    <h2 style="color:#111827;">{{ t.find_level }}</h2>
-    <p class="vd-muted" style="max-width:760px;margin:12px auto 22px;">{{ t.find_level_p }}</p>
+    <h2 style="color:#111827;">{{ t.find_level if landing_test_url else t.no_test_title }}</h2>
+    <p class="vd-muted" style="max-width:760px;margin:12px auto 22px;">{{ t.find_level_p if landing_test_url else t.no_test_p }}</p>
     <div class="vd-cta-row" style="justify-content:center;">
-      <a href="{{ landing_test_url }}" class="thm-btn">{{ t.cta_test }}</a>
+      {% if landing_test_url %}<a href="{{ landing_test_url }}" class="thm-btn">{{ t.cta_test }}</a>{% endif %}
       <a href="{{ landing.whatsapp_url }}" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_bottom_whatsapp_click',landing:'{{ landing.slug }}'});">{{ t.cta_whats }}</a>
     </div>
   </div></div>

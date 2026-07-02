@@ -84,6 +84,12 @@ website_route_rules = [
     {"from_route": "/cursos", "to_route": "/catalogo"},
     # Páginas de curso server-rendered (SEO + Schema) — /curso/<slug>
     {"from_route": "/curso/<course>", "to_route": "curso"},
+    # Mesma página de curso, versão em inglês (mesmo controller: curso.py
+    # detecta o prefixo /en/ e sobrepõe título/descrição via
+    # course_translations.COURSE_TRANSLATIONS — só existe para Iorubá e PLE,
+    # que têm público que não fala PT). Sem isso, /en/curso/<slug> 404 antes
+    # de chegar no controller.
+    {"from_route": "/en/curso/<course>", "to_route": "curso"},
     # Post de blog dinâmico — busca no doctype Vedium Blog Post (painel) e,
     # se não achar, no dict de código (blog_content.BLOG_POSTS). Route rules
     # do Frappe têm prioridade sobre arquivos www/ estáticos, então TODOS os

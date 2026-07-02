@@ -53,6 +53,11 @@ STATIC_URLS = [
     # Páginas em inglês (SEO internacional)
     {"loc": "/en/learn-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/learn-portuguese-brazil", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/en/portuguese-placement-test", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/yoruba-for-beginners", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/yoruba-culture-and-heritage", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/portuguese-for-executives", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/celpe-bras-exam-prep", "priority": "0.6", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):
@@ -70,17 +75,25 @@ def _course_urls():
         frappe.log_error(f"Sitemap: erro buscando cursos: {exc}", "Vedium.sitemap")
         return []
 
-    return [
-        {
+    from vedium_core.course_translations import COURSE_TRANSLATIONS
+
+    urls = []
+    for course in courses:
+        lastmod = course.modified.strftime("%Y-%m-%d") if course.modified else nowdate()
+        urls.append({
             "loc": f"/curso/{course.name}",
             "priority": "0.8",
             "changefreq": "weekly",
-            "lastmod": course.modified.strftime("%Y-%m-%d")
-            if course.modified
-            else nowdate(),
-        }
-        for course in courses
-    ]
+            "lastmod": lastmod,
+        })
+        if course.name in COURSE_TRANSLATIONS:
+            urls.append({
+                "loc": f"/en/curso/{course.name}",
+                "priority": "0.6",
+                "changefreq": "weekly",
+                "lastmod": lastmod,
+            })
+    return urls
 
 
 def _blog_urls():

@@ -23,6 +23,7 @@ WHATSAPP_PHONE = "5511911293075"
 
 BLOG_POSTS = {
     "alfabeto-ioruba": {
+        "alt": {"pt-BR": "alfabeto-ioruba", "en": "yoruba-alphabet-guide"},
         "title": "Alfabeto iorubá: as 25 letras, vogais e tons (guia para iniciantes)",
         "meta_description": "Conheça o alfabeto iorubá completo: as 25 letras, as 7 vogais orais, as vogais nasais, os sons especiais como gb, p e ṣ, e os três tons do idioma.",
         "h1": "Alfabeto iorubá: as 25 letras, as vogais e os tons",
@@ -108,6 +109,7 @@ BLOG_POSTS = {
         "cta_url": "/curso-de-ioruba-online",
     },
     "saudacoes-em-ioruba": {
+        "alt": {"pt-BR": "saudacoes-em-ioruba", "en": "yoruba-greetings"},
         "title": "Saudações em iorubá: como cumprimentar (bom dia, obrigado e mais)",
         "meta_description": "Aprenda as principais saudações em iorubá: bom dia, boa tarde, boa noite, como vai, obrigado e bem-vindo, com a forma respeitosa e a informal.",
         "h1": "Saudações em iorubá: bom dia, obrigado e os cumprimentos do dia a dia",
@@ -189,6 +191,7 @@ BLOG_POSTS = {
         "cta_url": "/curso-de-ioruba-online",
     },
     "numeros-em-ioruba": {
+        "alt": {"pt-BR": "numeros-em-ioruba", "en": "yoruba-numbers-1-to-20"},
         "title": "Números em iorubá de 1 a 20: como contar (e a lógica de base 20)",
         "meta_description": "Aprenda os números em iorubá de 1 a 20, com a pronúncia aproximada e a curiosa lógica vigesimal (base 20) que usa subtração para formar 15 a 19.",
         "h1": "Números em iorubá de 1 a 20",
@@ -371,6 +374,7 @@ BLOG_POSTS = {
         "cta_url": "/catalogo",
     },
     "aprender-ioruba-lingua-e-cultura": {
+        "alt": {"pt-BR": "aprender-ioruba-lingua-e-cultura", "en": "yoruba-language-and-culture"},
         "title": "Iorubá: conheça o idioma e por que aprendê-lo",
         "meta_description": "O iorubá é falado por milhões na África Ocidental e tem forte presença na cultura brasileira. Conheça o idioma.",
         "h1": "Iorubá: conheça o idioma e por que aprendê-lo",
@@ -410,6 +414,325 @@ BLOG_POSTS = {
         "cta_text": "Conheça as aulas ao vivo de iorubá, com foco em cultura e conversação real.",
         "cta_label": "Conhecer o curso de Iorubá",
         "cta_url": "/curso-de-ioruba-online",
+    },
+
+    # =========================================================================
+    # English posts (real, server-rendered) — traduções dos 4 posts do
+    # cluster Iorubá acima. Público: diáspora / fora do Brasil, não fala PT.
+    # Mesma URL flat /blog/<slug>, distinguidos pelo slug em inglês + "lang".
+    # =========================================================================
+    "yoruba-alphabet-guide": {
+        "lang": "en",
+        "alt": {"pt-BR": "alfabeto-ioruba", "en": "yoruba-alphabet-guide"},
+        "title": "Yoruba alphabet: the 25 letters, vowels and tones (a beginner's guide)",
+        "meta_description": "Learn the full Yoruba alphabet: the 25 letters, the 7 oral vowels, nasal vowels, special sounds like gb, p and ṣ, and the three tones of the language.",
+        "h1": "Yoruba alphabet: the 25 letters, the vowels and the tones",
+        "date": "2026-07-02",
+        "date_display": "July 2, 2026",
+        "hero_image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Studying the Yoruba alphabet with Vedium",
+        "tag": "Yoruba",
+        "lead": "The Yoruba alphabet is where anyone learning the language starts. It has 25 letters, sounds that don't exist in English, and a three-tone system that changes the meaning of words. In this guide, you'll learn the structure of the alphabet, the oral and nasal vowels, the special sounds, and why pronunciation needs to be trained with audio.",
+        "sections": [
+            {
+                "heading": "How many letters does the Yoruba alphabet have?",
+                "body": [
+                    "<p>The modern Yoruba alphabet, standardized from the 19th-century work of Bishop Samuel Ajayi Crowther, has <strong>25 letters</strong>. It uses the same Latin alphabet as English, but with important differences: some letters carry a <strong>subdot</strong> (like ẹ, ọ and ṣ), which marks a different sound, and several letters common in English simply don't exist.</p>",
+                    "<p>The 25 letters are: <strong>a, b, d, e, ẹ, f, g, gb, h, i, j, k, l, m, n, o, ọ, p, r, s, ṣ, t, u, w, y</strong>. Notice that <strong>c, q, v, x and z are not part of</strong> Yoruba, and that <em>gb</em> is treated as a single letter, with its own sound.</p>",
+                ],
+            },
+            {
+                "heading": "The 7 oral vowels of Yoruba",
+                "body": [
+                    "<p>Yoruba has <strong>seven oral vowels</strong>, two more than written English typically distinguishes. The difference lies in the mid vowels, which split into open and closed:</p>",
+                    "<ul>"
+                    "<li><strong>a</strong> — as in \"father\";</li>"
+                    "<li><strong>e</strong> — closed, similar to the \"e\" in \"café\";</li>"
+                    "<li><strong>ẹ</strong> (e with a subdot) — open, closer to the \"e\" in \"bed\";</li>"
+                    "<li><strong>i</strong> — as in \"machine\";</li>"
+                    "<li><strong>o</strong> — closed, similar to the \"o\" in \"go\";</li>"
+                    "<li><strong>ọ</strong> (o with a subdot) — open, closer to the \"o\" in \"law\";</li>"
+                    "<li><strong>u</strong> — as in \"flute\".</li>"
+                    "</ul>",
+                    "<p>The dot under <strong>ẹ</strong> and <strong>ọ</strong> is essential: it marks a more open sound and can completely change a word's meaning. Confusing <em>e</em> with <em>ẹ</em> is one of the first things a teacher corrects in class.</p>",
+                ],
+            },
+            {
+                "heading": "Nasal vowels",
+                "body": [
+                    "<p>Besides the oral vowels, Yoruba has <strong>nasal vowels</strong> — sounds where air passes through the nose, somewhat like the nasalized vowels found in French. In writing, they're usually followed by <strong>n</strong>, as in <em>an</em>, <em>ẹn</em>, <em>in</em>, <em>ọn</em> and <em>un</em>.</p>",
+                    "<p>For English speakers, nasal vowels can take a bit more practice than for speakers of languages with built-in nasalization. Even so, the exact placement of the nasal sound in Yoruba needs to be heard and repeated to sound natural.</p>",
+                ],
+            },
+            {
+                "heading": "Special sounds: gb, p and ṣ",
+                "body": [
+                    "<p>Three sounds tend to surprise beginners:</p>",
+                    "<ul>"
+                    "<li><strong>gb</strong> — a unique sound, produced with both lips and the back of the tongue at the same time. There's no direct equivalent in English, and it needs to be demonstrated;</li>"
+                    "<li><strong>p</strong> — in Yoruba, the letter <em>p</em> on its own sounds like <strong>\"kp\"</strong>, not like the English \"p\";</li>"
+                    "<li><strong>ṣ</strong> (s with a subdot) — has the sound of <strong>\"sh\"</strong>, as in \"shoe\".</li>"
+                    "</ul>",
+                    "<p>These three sounds are a good example of why learning Yoruba from written word lists alone is risky: the letter doesn't correspond to the sound an English speaker would expect.</p>",
+                ],
+            },
+            {
+                "heading": "The three tones of Yoruba",
+                "body": [
+                    "<p>This is the feature that sets Yoruba apart the most from English: it's a <strong>tonal language</strong>, with three tones that change the meaning of a word. They are:</p>",
+                    "<ul>"
+                    "<li><strong>high tone</strong> — marked with an acute accent (´);</li>"
+                    "<li><strong>mid tone</strong> — unmarked;</li>"
+                    "<li><strong>low tone</strong> — marked with a grave accent (`).</li>"
+                    "</ul>",
+                    "<p>In practice, this means the same sequence of letters can carry completely different meanings depending on the tone. A classic example is the syllable <em>ọkọ</em>, which changes meaning depending on the tone pattern — it can refer to things as different as \"husband,\" \"hoe,\" or \"vehicle.\" That's why training tone from the very start, by listening and repeating, is essential.</p>",
+                    "<p>For an English speaker, who has never used tone to change a word's meaning, this is the newest concept in Yoruba — and also the most rewarding to master. The good news is that your ear adjusts with practice: after a few weeks of listening and repeating, your brain starts to notice differences that seemed invisible at first. When typing in Yoruba, remember to use the accents and subdots whenever you can, since they carry real information about the sound.</p>",
+                ],
+            },
+            {
+                "heading": "How to train your Yoruba pronunciation",
+                "body": [
+                    "<p>The Yoruba alphabet is entirely learnable by beginners — but the part that makes the real difference (tones, open and closed vowels, sounds like <em>gb</em> and <em>p</em>) depends on <strong>listening and being corrected</strong>. An app can show you the letter; it can't tell when you've produced the wrong tone. That's why the safest way to start is with audio and guided practice.</p>",
+                    "<p>At Vedium, Yoruba is taught in <a href=\"/en/learn-yoruba-online\">live classes, from scratch to advanced</a>, starting exactly with sounds and tones, with real-time correction. After the alphabet, the natural next steps are <a href=\"/blog/yoruba-greetings\">Yoruba greetings</a> and <a href=\"/blog/yoruba-numbers-1-to-20\">Yoruba numbers</a>.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "How many letters does the Yoruba alphabet have?", "a": "25 letters: a, b, d, e, ẹ, f, g, gb, h, i, j, k, l, m, n, o, ọ, p, r, s, ṣ, t, u, w, y. The letters c, q, v, x and z don't exist in Yoruba."},
+            {"q": "How many vowels does Yoruba have?", "a": "Seven oral vowels (a, e, ẹ, i, o, ọ, u) plus nasal vowels. The dotted versions (ẹ, ọ) have a more open sound."},
+            {"q": "Is Yoruba hard to pronounce?", "a": "The biggest challenge is the three-tone system (high, mid and low), which changes word meaning, plus sounds like gb and p (pronounced kp). With audio and live correction, the pronunciation is fully learnable."},
+            {"q": "Can I learn the Yoruba alphabet on my own?", "a": "You can memorize the letters, but the tones and special sounds need to be heard and practiced with a teacher so you don't lock in an incorrect pronunciation."},
+        ],
+        "cta_title": "Want to learn Yoruba with correct pronunciation from day one?",
+        "cta_text": "At Vedium, Yoruba is taught in live classes, from scratch to advanced, with a focus on tones and real conversation.",
+        "cta_label": "Learn about the Yoruba course",
+        "cta_url": "/en/learn-yoruba-online",
+    },
+    "yoruba-greetings": {
+        "lang": "en",
+        "alt": {"pt-BR": "saudacoes-em-ioruba", "en": "yoruba-greetings"},
+        "title": "Yoruba greetings: how to say good morning, thank you and more",
+        "meta_description": "Learn the essential Yoruba greetings: good morning, good afternoon, good evening, how are you, thank you and welcome — plus the respectful and informal forms.",
+        "h1": "Yoruba greetings: good morning, thank you and everyday courtesies",
+        "date": "2026-07-02",
+        "date_display": "July 2, 2026",
+        "hero_image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "People greeting each other — Yoruba greetings",
+        "tag": "Yoruba",
+        "lead": "In Yoruba culture, greeting someone well is more than politeness — it's a sign of respect, especially toward elders. This guide covers the essential greetings — good morning, good afternoon, good evening, how are you, thank you and welcome — and explains the difference between the respectful and informal forms, which changes how you speak.",
+        "sections": [
+            {
+                "heading": "Why greetings matter so much in Yoruba",
+                "body": [
+                    "<p>Among the Yoruba people, greeting holds a central place in daily life. There are specific greetings for almost every situation — for someone who is working, eating, returning from a trip, or carrying out a task. Greeting properly shows <strong>respect and good manners</strong>, and skipping it can come across as cold.</p>",
+                    "<p>One detail changes everything from the start: Yoruba distinguishes the <strong>respectful/plural</strong> form from the <strong>informal/singular</strong> one. Most greetings begin with <strong>\"Ẹ\"</strong> when you're speaking to someone older, to an authority figure, or to more than one person. With friends and peers, you use <strong>\"O\"</strong> or simply the short form.</p>",
+                ],
+            },
+            {
+                "heading": "Good morning, good afternoon and good evening in Yoruba",
+                "body": [
+                    "<p>The greetings tied to the time of day are the first ones every beginner learns:</p>",
+                    "<ul>"
+                    "<li><strong>Ẹ kàárọ̀</strong> — good morning;</li>"
+                    "<li><strong>Ẹ kàásàn</strong> — good afternoon;</li>"
+                    "<li><strong>Ẹ kúùrọ̀lẹ́</strong> — good (late) afternoon/early evening;</li>"
+                    "<li><strong>Ẹ kúalẹ́</strong> — good evening/good night.</li>"
+                    "</ul>",
+                    "<p>With friends, you can use the same expressions, swapping the respectful <em>Ẹ</em> for the informal form. To say goodnight in the sense of \"see you tomorrow,\" you use <strong>O dàárọ̀</strong>. Since Yoruba is a tonal language, the accent marks over the words indicate the tone — and getting the tone right is part of what makes a greeting sound natural.</p>",
+                ],
+            },
+            {
+                "heading": "How are you? Asking how someone is doing",
+                "body": [
+                    "<p>After the initial greeting comes the question about how the person is doing:</p>",
+                    "<ul>"
+                    "<li><strong>Báwo ni?</strong> — how's it going? / how are you?;</li>"
+                    "<li><strong>Ṣé àlàáfíà ni?</strong> — is everything at peace/well?;</li>"
+                    "<li><strong>Ṣé dáadáa ni?</strong> — is everything okay?</li>"
+                    "</ul>",
+                    "<p>A common, positive answer is <strong>Mo wà dáadáa</strong> (\"I'm well\") or simply <strong>Àlàáfíà</strong> (\"peace,\" in the sense of \"all is well\"). The word <em>àlàáfíà</em>, in fact, comes up often: it carries the idea of well-being and calm, and is used both to greet and to respond.</p>",
+                ],
+            },
+            {
+                "heading": "Thank you, welcome and goodbye",
+                "body": [
+                    "<p>These three expressions round out the basic courtesy kit:</p>",
+                    "<ul>"
+                    "<li><strong>Ẹ ṣé</strong> — thank you (respectful); with friends, <strong>O ṣé</strong>;</li>"
+                    "<li><strong>Ẹ káàbọ̀</strong> — welcome;</li>"
+                    "<li><strong>Ó dàbọ̀</strong> — goodbye / see you later.</li>"
+                    "</ul>",
+                    "<p>There are also widely used situational greetings, such as <strong>Ẹ kú iṣẹ́</strong>, said to someone who is working, with variations for someone carrying out other activities. This repertoire of \"a greeting for every occasion\" is one of the most beautiful traits of the language — and shows how closely Yoruba and its culture are intertwined.</p>",
+                ],
+            },
+            {
+                "heading": "Greeting elders: a gesture of respect",
+                "body": [
+                    "<p>In Yoruba culture, the way you greet elders goes beyond words. Traditionally, when greeting an elder, <strong>boys and men perform the <em>ìdọ̀bálẹ̀</em></strong> (a bow, prostrating or lying down slightly), while <strong>girls and women perform the <em>ìkúnlẹ̀</em></strong> (kneeling briefly). In urban, everyday contexts, this gesture is often symbolic — a slight bow of the body — but the intention of respect remains very much present.</p>",
+                    "<p>This is exactly why the respectful form with <strong>\"Ẹ\"</strong> matters so much: using the right greeting with the right person shows that you understand not just the language, but also Yoruba etiquette. Addressing an elder with the informal form can come across as impolite, even if the sentence is grammatically \"correct.\" This is one of the areas where learning with a teacher makes a real difference — they teach you not just what to say, but <strong>to whom and how</strong> to say it.</p>",
+                ],
+            },
+            {
+                "heading": "Practicing greetings with the right pronunciation",
+                "body": [
+                    "<p>You can memorize the list above today, but the part that makes a greeting sound natural — the <strong>tone</strong> and the difference between open and closed vowels — only comes from listening and repeating. Before greetings, it's worth understanding the <a href=\"/blog/yoruba-alphabet-guide\">Yoruba alphabet and its tones</a>; after that, a good next step is <a href=\"/blog/yoruba-numbers-1-to-20\">Yoruba numbers</a>.</p>",
+                    "<p>At Vedium, greetings come up right in the first classes of <a href=\"/en/learn-yoruba-online\">live Yoruba</a>, with the teacher correcting pronunciation and tone in real time — the way you actually learn to greet someone for real.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "How do you say good morning in Yoruba?", "a": "Good morning is \"Ẹ kàárọ̀\" in the respectful form (with elders or in a group). With friends, the informal form is used."},
+            {"q": "How do you say thank you in Yoruba?", "a": "\"Ẹ ṣé\" in the respectful form, and \"O ṣé\" in the informal form, with friends and peers."},
+            {"q": "What's the difference between Ẹ and O in greetings?", "a": "\"Ẹ\" is the respectful and plural form, used with elders, authority figures or more than one person. \"O\" is the informal form, used with friends and peers."},
+            {"q": "Do I need to get the tone right in greetings?", "a": "Yes. Yoruba is a tonal language, and tone is part of the word itself. It's worth practicing greetings with audio and live correction, not just from text."},
+        ],
+        "cta_title": "Want to learn how to greet (and chat) in Yoruba?",
+        "cta_text": "Vedium's live classes start with greetings and correct pronunciation, taught by a specialized teacher.",
+        "cta_label": "Learn about the Yoruba course",
+        "cta_url": "/en/learn-yoruba-online",
+    },
+    "yoruba-numbers-1-to-20": {
+        "lang": "en",
+        "alt": {"pt-BR": "numeros-em-ioruba", "en": "yoruba-numbers-1-to-20"},
+        "title": "Yoruba numbers 1 to 20: how to count (and the base-20 logic)",
+        "meta_description": "Learn Yoruba numbers from 1 to 20, with approximate pronunciation and the fascinating vigesimal (base-20) logic that uses subtraction to form 15 through 19.",
+        "h1": "Yoruba numbers 1 to 20",
+        "date": "2026-07-02",
+        "date_display": "July 2, 2026",
+        "hero_image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Learning to count — Yoruba numbers",
+        "tag": "Yoruba",
+        "lead": "Counting in Yoruba is more interesting than it sounds. The language uses a vigesimal system — base 20 — and, starting at 15, forms numbers through subtraction. In this guide, you'll learn the numbers from 1 to 20, understand that logic, and find out why the pronunciation takes practice.",
+        "sections": [
+            {
+                "heading": "Yoruba numbers 1 to 10",
+                "body": [
+                    "<p>The foundation for everything is the first ten numbers. They're the most straightforward part to learn:</p>",
+                    "<ul>"
+                    "<li>1 — <strong>ọ̀kan</strong></li>"
+                    "<li>2 — <strong>èjì</strong></li>"
+                    "<li>3 — <strong>ẹ̀ta</strong></li>"
+                    "<li>4 — <strong>ẹ̀rin</strong></li>"
+                    "<li>5 — <strong>àrún</strong></li>"
+                    "<li>6 — <strong>ẹ̀fà</strong></li>"
+                    "<li>7 — <strong>èje</strong></li>"
+                    "<li>8 — <strong>ẹ̀jọ</strong></li>"
+                    "<li>9 — <strong>ẹ̀sán</strong></li>"
+                    "<li>10 — <strong>ẹ̀wá</strong></li>"
+                    "</ul>",
+                    "<p>Worth repeating: the accent marks aren't decoration. Yoruba is tonal, and the accent marks the tone of each syllable. So the spelling above is a guide, but the pronunciation needs to be heard to come out naturally.</p>",
+                ],
+            },
+            {
+                "heading": "Numbers 11 to 14",
+                "body": [
+                    "<p>From 11 to 14, Yoruba adds onto ten, with a suffix meaning \"plus\" (related to <em>-lá</em>):</p>",
+                    "<ul>"
+                    "<li>11 — <strong>ọ̀kànlá</strong> (ten and one)</li>"
+                    "<li>12 — <strong>èjìlá</strong> (ten and two)</li>"
+                    "<li>13 — <strong>ẹ̀talá</strong> (ten and three)</li>"
+                    "<li>14 — <strong>ẹ̀rìnlá</strong> (ten and four)</li>"
+                    "</ul>",
+                    "<p>Notice that you can recognize the base number (èjì, ẹ̀ta, ẹ̀rin) inside the word. This logic of \"building\" numbers from their roots is what makes the Yoruba system organized, even though it's different from what English speakers are used to.</p>",
+                ],
+            },
+            {
+                "heading": "Numbers 15 to 20: the subtraction logic",
+                "body": [
+                    "<p>Here's the most fascinating part. Starting at 15, Yoruba tends to form numbers by <strong>subtracting from twenty</strong>, instead of adding onto ten. The word <em>dín</em> carries the idea of \"minus\":</p>",
+                    "<ul>"
+                    "<li>15 — <strong>ẹ̀ẹ́dógún</strong> (twenty minus five)</li>"
+                    "<li>16 — <strong>ẹ̀rìndínlógún</strong> (twenty minus four)</li>"
+                    "<li>17 — <strong>ẹ̀tàdínlógún</strong> (twenty minus three)</li>"
+                    "<li>18 — <strong>èjìdínlógún</strong> (twenty minus two)</li>"
+                    "<li>19 — <strong>ọ̀kàndínlógún</strong> (twenty minus one)</li>"
+                    "<li>20 — <strong>ogún</strong></li>"
+                    "</ul>",
+                    "<p>In other words, instead of saying \"ten and nine\" for 19, Yoruba says something like \"twenty minus one.\" That's the heart of the <strong>vigesimal (base-20) system</strong>, which organizes traditional Yoruba counting around multiples of twenty.</p>",
+                ],
+            },
+            {
+                "heading": "Why Yoruba counts in twenties",
+                "body": [
+                    "<p>Many cultures developed counting systems tied to the body and to trade. The Yoruba vigesimal system is one of the most elaborate in the world: larger numbers are built from twenty, through chained addition and subtraction. That's why learning to count in Yoruba is also a small lesson in <strong>logic and culture</strong>, not just vocabulary.</p>",
+                    "<p>For everyday use, the numbers from 1 to 20 already cover plenty of situations — age, quantities, times and simple prices. As you progress, a teacher will show you how multiples of ten and twenty combine to form larger numbers.</p>",
+                ],
+            },
+            {
+                "heading": "The multiples of ten: 10, 20, 30 and 40",
+                "body": [
+                    "<p>After 20, the base-20 logic becomes even clearer in the multiples of ten. Worth knowing the main ones:</p>",
+                    "<ul>"
+                    "<li>10 — <strong>ẹ̀wá</strong></li>"
+                    "<li>20 — <strong>ogún</strong></li>"
+                    "<li>30 — <strong>ọgbọ̀n</strong></li>"
+                    "<li>40 — <strong>ogójì</strong> (literally \"two twenties,\" i.e. 2 × 20)</li>"
+                    "</ul>",
+                    "<p>Notice something interesting: while 30 (<em>ọgbọ̀n</em>) has its own word, 40 is already built as <strong>\"two twenties.\"</strong> From there, the larger multiples keep revolving around twenty — 60 is \"three twenties,\" and so on. This chaining is what gives the Yoruba system its reputation for ingenuity: with just a few roots and two operations (adding and subtracting), the whole counting system is built.</p>",
+                    "<p>If you're just starting out, you don't need to master all of this at once. The numbers from 1 to 20 already handle most everyday situations, and the multiples of ten come naturally as you progress.</p>",
+                ],
+            },
+            {
+                "heading": "How to practice Yoruba numbers",
+                "body": [
+                    "<p>Memorizing the list is the first step; using the numbers in sentences (\"I am X years old,\" \"I want X\") is what really locks them in. And, as always in Yoruba, <strong>tone</strong> needs practice with audio. If you haven't already, start with the <a href=\"/blog/yoruba-alphabet-guide\">Yoruba alphabet</a> and <a href=\"/blog/yoruba-greetings\">Yoruba greetings</a>.</p>",
+                    "<p>At Vedium, numbers come up in the first classes of <a href=\"/en/learn-yoruba-online\">live Yoruba</a>, with pronunciation practice and use in real situations — the way you actually learn to count and to converse.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "How do you count from 1 to 5 in Yoruba?", "a": "1 is ọ̀kan, 2 is èjì, 3 is ẹ̀ta, 4 is ẹ̀rin and 5 is àrún. The accent marks indicate the tones, which are part of correct pronunciation."},
+            {"q": "Why does Yoruba use base 20?", "a": "Yoruba has a vigesimal (base-20) counting system, where larger numbers are formed from multiples of twenty, using addition and subtraction. That's why, from 15 to 19, counting is usually done by subtracting from twenty."},
+            {"q": "How do you say 20 in Yoruba?", "a": "Twenty is \"ogún\". Numbers like 19 are formed as \"twenty minus one\" (ọ̀kàndínlógún), which shows the base-20 logic."},
+            {"q": "Are Yoruba numbers hard to learn?", "a": "Numbers 1 through 14 follow a straightforward pattern. From 15 to 19, the subtraction logic needs a bit more attention. With practice and audio, they're all learnable by beginners."},
+        ],
+        "cta_title": "Want to learn to count and converse in Yoruba?",
+        "cta_text": "In Vedium's live classes, numbers and pronunciation are practiced from the very start, with a specialized teacher.",
+        "cta_label": "Learn about the Yoruba course",
+        "cta_url": "/en/learn-yoruba-online",
+    },
+    "yoruba-language-and-culture": {
+        "lang": "en",
+        "alt": {"pt-BR": "aprender-ioruba-lingua-e-cultura", "en": "yoruba-language-and-culture"},
+        "title": "Yoruba: get to know the language and why you should learn it",
+        "meta_description": "Yoruba is spoken by millions in West Africa and has a strong presence in Brazilian culture. Get to know the language.",
+        "h1": "Yoruba: get to know the language and why you should learn it",
+        "date": "2026-07-02",
+        "date_display": "July 2, 2026",
+        "hero_image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Yoruba class: language and culture at Vedium",
+        "tag": "Yoruba",
+        "lead": "Yoruba is one of the most widely spoken languages in West Africa, with millions of speakers in Nigeria, Benin and Togo, plus a large diaspora community around the world — including in Brazil. It's a living language, with tone, rhythm and an incredibly rich culture behind it.",
+        "sections": [
+            {
+                "heading": "A language connected to the diaspora",
+                "body": [
+                    "<p>Yoruba's presence runs deep in the culture and traditions of the African diaspora, especially in music, cuisine and Afro-diasporic spiritual traditions found across the Americas — most visibly in Brazil. Learning the language is also a way to reconnect with that heritage and understand it at the source.</p>",
+                ],
+            },
+            {
+                "heading": "Why study Yoruba",
+                "body": [
+                    "<ul>"
+                    "<li>Reconnection with cultural and religious roots;</li>"
+                    "<li>Access to music, proverbs and literature in the original language;</li>"
+                    "<li>Communication with speakers across Africa and the diaspora;</li>"
+                    "<li>A cultural and academic differentiator.</li>"
+                    "</ul>",
+                ],
+            },
+            {
+                "heading": "What the course is like at Vedium",
+                "body": [
+                    "<p>At Vedium, Yoruba is taught in <strong>live classes</strong>, from beginner to advanced, with teacher Busayo Frank Alonge. Classes bring the language and culture to life in an accessible way, with a focus on helping you actually speak.</p>",
+                ],
+            },
+        ],
+        "faqs": [],
+        "cta_title": "Want to learn Yoruba from scratch?",
+        "cta_text": "Discover Vedium's live Yoruba classes, focused on culture and real conversation.",
+        "cta_label": "Learn about the Yoruba course",
+        "cta_url": "/en/learn-yoruba-online",
     },
 }
 

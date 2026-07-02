@@ -24,6 +24,7 @@ API = ROOT / "vedium_core" / "vedium_core" / "api.py"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
+from vedium_core.blog_content import BLOG_POSTS, get_blog_post  # noqa: E402
 
 SEO_SLUGS = [
     "curso-de-ingles-online",
@@ -120,6 +121,147 @@ def test_english_pillar_page_is_rich_for_seo():
         assert len(landing["outcomes"]) >= 4
         assert len(landing["modules"]) >= 6
         assert len(landing["faqs"]) >= 4
+
+
+def test_pillar_pages_have_real_course_grid_for_campaigns():
+    """Páginas pilar reaproveitadas como destino de campanha por idioma
+    (decisão do usuário: reusar /curso-de-ingles-online, /curso-de-ioruba-online
+    e /portugues-para-estrangeiros em vez de criar novas URLs concorrentes)
+    precisam mostrar cursos reais (nível, preço, link) — não só um preço agregado.
+    """
+    courses_py = (ROOT / "vedium_core" / "vedium_core" / "courses.py").read_text(encoding="utf-8")
+    assert "def get_published_courses(category_prefix=None, category_exact=None)" in courses_py
+
+    landing_content = (ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py").read_text(
+        encoding="utf-8"
+    )
+    assert "LANDING_COURSE_FILTERS" in landing_content
+    assert '"curso-de-ingles-online": {"category_prefix": "Inglês"}' in landing_content
+    assert '"curso-de-ioruba-online": {"category_prefix": "Iorubá"}' in landing_content
+    assert (
+        '"portugues-para-estrangeiros": {"category_exact": "Português para Estrangeiros"}'
+        in landing_content
+    )
+
+    template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    assert "landing.course_grid" in template
+    assert "course.formatted_price" in template
+    assert "course.level_badge" in template
+    assert 'href="{{ course.url }}"' in template
+
+    # Armadilha real (achada em produção 2026-07-02): os www/*.html das páginas
+    # pilar chamam get_marketing_landing() DIRETO como global do Jinja
+    # ({% set landing = get_marketing_landing("slug") %}), ignorando o
+    # context.landing setado pelo controller .py via apply_landing_context().
+    # Qualquer dado novo em `landing` (como course_grid) só chega à página se
+    # for calculado DENTRO de get_marketing_landing() — não em
+    # apply_landing_context(). Trava essa posição pra não regredir.
+    for slug in ("curso-de-ingles-online", "curso-de-ioruba-online", "portugues-para-estrangeiros"):
+        html_path = WWW / f"{slug}.html"
+        assert html_path.read_text(encoding="utf-8").strip().splitlines()[0] == (
+            f'{{% set landing = get_marketing_landing("{slug}") %}}'
+        )
+    apply_ctx_start = landing_content.index("def apply_landing_context")
+    get_landing_start = landing_content.index("def get_marketing_landing")
+    course_filter_use = landing_content.index("course_filter = LANDING_COURSE_FILTERS.get(slug)")
+    assert get_landing_start < course_filter_use, (
+        "course_grid precisa ser calculado dentro de get_marketing_landing(), "
+        "não de apply_landing_context() — o .html ignora o context.landing do .py"
+    )
+    assert not (apply_ctx_start < course_filter_use < get_landing_start)
+
+
+def test_placement_test_cta_routes_to_the_right_language_and_subject():
+    """Bug real achado em produção (2026-07-02): o CTA "teste de nível" das
+    páginas pilar usava uma heurística (`slug.startswith("ingles-")`) que
+    tinha 2 furos: (1) o próprio pilar "curso-de-ingles-online" não começa
+    com "ingles-", então caía no teste de PORTUGUÊS por engano; (2) o
+    cluster Iorubá também caía no teste de português (não existe teste de
+    iorubá) e as páginas em inglês (learn-yoruba-online/learn-portuguese-brazil)
+    linkavam pra testes só em português. Trava os valores explícitos de
+    `test_url` que corrigem os dois problemas.
+    """
+    explicit_test_url = {
+        "curso-de-ingles-online": "/teste-de-nivel-ingles",
+        "curso-de-ioruba-online": None,
+        "ioruba-para-iniciantes": None,
+        "ioruba-cultura-e-ancestralidade": None,
+        "learn-yoruba-online": None,
+        "learn-portuguese-brazil": "/en/portuguese-placement-test",
+        "portugues-para-executivos": "/teste-de-nivel",
+        "preparatorio-celpe-bras": "/teste-de-nivel",
+    }
+    for slug, expected in explicit_test_url.items():
+        assert "test_url" in LANDINGS[slug], f"{slug} precisa de test_url explícito"
+        assert LANDINGS[slug]["test_url"] == expected
+
+    # Slugs que dependem da heurística antiga (slug.startswith("ingles-") /
+    # senão português) continuam sem override — a heurística já acerta pra eles.
+    for slug in (
+        "ingles-para-entrevista",
+        "ingles-para-programadores",
+        "ingles-executivo",
+        "ingles-para-viagens",
+        "ingles-para-atendimento-ao-cliente",
+        "portugues-para-estrangeiros",
+    ):
+        assert "test_url" not in LANDINGS[slug]
+
+    template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    assert 'landing.test_url if "test_url" in landing else' in template
+    # botão de teste só aparece se landing_test_url existir (Iorubá não tem teste)
+    assert "{% if landing_test_url %}" in template
+
+    # Página EN nova + reciprocidade de hreflang com a versão em português
+    en_html_path = WWW / "en" / "portuguese-placement-test.html"
+    en_py_path = WWW / "en" / "portuguese_placement_test.py"
+    pt_html = (WWW / "teste-de-nivel.html").read_text(encoding="utf-8")
+    assert en_html_path.exists()
+    assert en_py_path.exists()
+    en_html = en_html_path.read_text(encoding="utf-8")
+    assert 'lang="en"' in en_html
+    assert 'hreflang="pt-br" href="https://vediums.com/teste-de-nivel"' in en_html
+    assert 'hreflang="en" href="https://vediums.com/en/portuguese-placement-test"' in pt_html
+    assert "/en/portuguese-placement-test" in (
+        ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+    ).read_text(encoding="utf-8")
+
+
+def test_foreign_audience_clusters_have_english_pages_with_reciprocal_hreflang():
+    """Público de Iorubá e Português-para-estrangeiros (PLE) inclui gente que
+    não fala PT (diáspora, expats, executivos estrangeiros) — decisão do
+    usuário: traduzir esses 2 clusters pra inglês primeiro. Cada par PT/EN
+    precisa apontar um pro outro via `alt` (hreflang bidirecional).
+    """
+    pairs = [
+        ("ioruba-para-iniciantes", "yoruba-for-beginners", None),
+        ("ioruba-cultura-e-ancestralidade", "yoruba-culture-and-heritage", None),
+        ("portugues-para-executivos", "portuguese-for-executives", "/en/portuguese-placement-test"),
+        ("preparatorio-celpe-bras", "celpe-bras-exam-prep", "/en/portuguese-placement-test"),
+    ]
+    for pt_slug, en_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
+        assert LANDINGS[en_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
+        assert LANDINGS[en_slug]["lang"] == "en"
+        assert "test_url" in LANDINGS[en_slug], f"{en_slug} precisa de test_url explícito"
+        assert LANDINGS[en_slug]["test_url"] == expected_test_url
+
+        en_html = (WWW / "en" / f"{en_slug}.html").read_text(encoding="utf-8")
+        en_py = (WWW / "en" / f"{en_slug.replace('-', '_')}.py").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{en_slug}")' in en_html
+        assert en_slug in en_py
+
+        # conteúdo real, não placeholder (mesmo padrão de profundidade das outras landings)
+        landing = LANDINGS[en_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/en/{en_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
 
 
 def test_commercial_pages_exist_and_drive_to_public_ctas():
@@ -523,7 +665,7 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
 def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     index_html = (WWW / "index.html").read_text(encoding="utf-8")
     index_py = (WWW / "index.py").read_text(encoding="utf-8")
-    catalogo_py = (WWW / "catalogo.py").read_text(encoding="utf-8")
+    courses_py = (ROOT / "vedium_core" / "vedium_core" / "courses.py").read_text(encoding="utf-8")
     curso_py = (WWW / "curso.py").read_text(encoding="utf-8")
     static_index = (ROOT / "deploy" / "site" / "index.html").read_text(encoding="utf-8")
     nginx_primary = (ROOT / "deploy" / "nginx" / "vediums.com.conf").read_text(encoding="utf-8")
@@ -543,7 +685,7 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     for nginx in [nginx_primary, nginx_legacy]:
         assert "location = /" in nginx
         assert "return 302 /login;" in nginx
-    assert catalogo_py.index('"Upper Intermediário": "B2"') < catalogo_py.index('"Intermediário": "B1"')
+    assert courses_py.index('"Upper Intermediário": "B2"') < courses_py.index('"Intermediário": "B1"')
     assert index_py.index('"Upper Intermediário": "B2"') < index_py.index('"Intermediário": "B1"')
     assert "_dedupe_chapters" in curso_py
     assert "_dedupe_lessons" in curso_py
@@ -791,6 +933,106 @@ def test_blog_has_self_service_panel_and_dynamic_route():
     # Sitemap lista os posts dinamicamente (inclui os publicados pelo painel)
     assert "_blog_urls" in sitemap_py
     assert "list_blog_posts" in sitemap_py
+
+
+def test_yoruba_blog_cluster_has_english_translations():
+    """4 posts do cluster Iorubá traduzidos pro inglês (mesmo /blog/<slug>
+    flat, sem prefixo /en/ — blog_post.py é uma rota dinâmica única, não os
+    arquivos estáticos .py/.html das páginas pilar). Trava par PT/EN,
+    hreflang recíproco e paridade de profundidade de conteúdo.
+    """
+    pairs = [
+        ("alfabeto-ioruba", "yoruba-alphabet-guide"),
+        ("saudacoes-em-ioruba", "yoruba-greetings"),
+        ("numeros-em-ioruba", "yoruba-numbers-1-to-20"),
+        ("aprender-ioruba-lingua-e-cultura", "yoruba-language-and-culture"),
+    ]
+    for pt_slug, en_slug in pairs:
+        assert BLOG_POSTS[pt_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
+        assert BLOG_POSTS[en_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
+        assert BLOG_POSTS[en_slug]["lang"] == "en"
+
+        pt_post = get_blog_post(pt_slug)
+        en_post = get_blog_post(en_slug)
+        pt_words = len(re.sub(r"<[^>]+>", " ", " ".join(
+            b for sec in pt_post["sections"] for b in sec["body"]
+        )).split())
+        en_words = len(re.sub(r"<[^>]+>", " ", " ".join(
+            b for sec in en_post["sections"] for b in sec["body"]
+        )).split())
+        # tradução fiel, não resumo nem expansão — tamanho deve ficar próximo
+        assert abs(en_words - pt_words) / max(pt_words, 1) < 0.25, (
+            f"{en_slug}: {en_words} palavras vs {pt_slug}: {pt_words} — "
+            "desvio grande demais para uma tradução fiel"
+        )
+        assert len(en_post["sections"]) == len(pt_post["sections"])
+        assert len(en_post["faqs"]) == len(pt_post["faqs"])
+
+    template = (TPL / "blog_post.html").read_text(encoding="utf-8")
+    assert "post.lang or 'pt-BR'" in template
+    assert "post.alt" in template
+    assert '"Frequently asked questions" if vd_bp_en else' in template
+
+
+def test_individual_course_pages_have_english_translation():
+    """6 páginas de curso individuais (3 Iorubá + 3 PLE) ganham versão em
+    inglês via /en/curso/<slug>, reaproveitando o MESMO controller
+    dinâmico curso.py (preço/vagas/avaliações sempre ao vivo do banco) —
+    só title/short_introduction/description são sobrepostos por
+    course_translations.COURSE_TRANSLATIONS. Sem Custom Field, sem
+    migração: cursos sem tradução (cluster Inglês) continuam só em PT.
+    """
+    course_translations = (
+        ROOT / "vedium_core" / "vedium_core" / "course_translations.py"
+    ).read_text(encoding="utf-8")
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    curso_py = (WWW / "curso.py").read_text(encoding="utf-8")
+    curso_html = (WWW / "curso.html").read_text(encoding="utf-8")
+
+    translated_slugs = [
+        "iorub-b-sico",
+        "iorub-intermedi-rio",
+        "iorub-avan-ado",
+        "portugues-para-estrangeiros-basico",
+        "portugues-para-estrangeiros-intermediario",
+        "portugues-para-estrangeiros-avancado",
+    ]
+    for slug in translated_slugs:
+        assert f'"{slug}"' in course_translations
+
+    assert '{"from_route": "/en/curso/<course>", "to_route": "curso"}' in hooks
+
+    # sem tradução -> redireciona pra versão PT (não cria página fina/duplicada)
+    assert "from vedium_core.course_translations import COURSE_TRANSLATIONS" in curso_py
+    assert "has_translation = course_name in COURSE_TRANSLATIONS" in curso_py
+    assert 'frappe.local.flags.redirect_location = f"/curso/{course_name}"' in curso_py
+
+    # preço/vagas/avaliações continuam vindo do banco — só sobrepõe texto
+    assert "context.course = get_course_details(course_name)" in curso_py
+    assert 'context.course.title = translation["title"]' in curso_py
+
+    # chrome bilíngue + hreflang recíproco
+    assert 'lang="{{ lang or \'pt-BR\' }}"' in curso_html
+    assert "alt_lang_url" in curso_html
+    assert '"Enroll now" if vd_course_en else "Matricular agora"' in curso_html
+
+
+def test_english_pillar_course_grid_links_to_english_course_pages():
+    """As páginas pilar EN (learn-yoruba-online, learn-portuguese-brazil)
+    ganham o mesmo grid de cursos das PT (task #38), mas linkando pra
+    /en/curso/<slug> com título traduzido — não faz sentido levar quem
+    está lendo em inglês pra uma ficha de curso 100% em português.
+    """
+    landing_content = (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    assert '"learn-yoruba-online": {"category_prefix": "Iorubá"}' in landing_content
+    assert (
+        '"learn-portuguese-brazil": {"category_exact": "Português para Estrangeiros"}'
+        in landing_content
+    )
+    assert "LANDING_COURSE_GRID_USES_EN_COURSE_URL" in landing_content
+    assert 'course.url = f"/en/curso/{course.name}"' in landing_content
 
 
 def test_lesson_slot_doctype_is_not_world_writable():
