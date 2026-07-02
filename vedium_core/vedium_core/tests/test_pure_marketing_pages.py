@@ -25,6 +25,7 @@ API = ROOT / "vedium_core" / "vedium_core" / "api.py"
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
 from vedium_core.blog_content import BLOG_POSTS, get_blog_post  # noqa: E402
+from vedium_core import hooks as vedium_hooks  # noqa: E402
 
 SEO_SLUGS = [
     "curso-de-ingles-online",
@@ -781,6 +782,54 @@ def test_language_switcher_remembers_which_english_flag_was_clicked():
     # não reintroduz o padrão removido antes (localStorage) — usa querystring
     assert "localStorage." not in lang_js
     assert "vedium_preferred_locale" not in lang_js
+
+
+def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
+    """Terceiro bug achado pelo usuário na mesma sessão (2026-07-03),
+    screenshot em mãos: /en-us/contato (URL em inglês, conteúdo 100% em
+    português) e tentativa de /en-us/portuguese-for-executives (nem existe
+    nesse sistema antigo). Causa: LANGUAGE_ROUTE_RULES serve a MESMA
+    página em português sob QUALQUER prefixo de idioma — dependia do JS
+    (desligado) pra "traduzir" depois de carregar. Isso vale pros 12
+    prefixos × 30 páginas da lista PUBLIC_LANGUAGE_ROUTES, não é caso
+    isolado.
+
+    Fix: website_redirects intercepta essas URLs ANTES da resolução de
+    website_route_rules (frappe/website/path_resolver.py chama
+    resolve_redirect() antes de resolve_path()). Se existe tradução real
+    (LANDINGS[...]["alt"]["en"] ou o mapa manual de páginas fora do dict
+    LANDINGS), redireciona pra ela; senão, redireciona pro canônico em
+    português — nunca mais serve conteúdo desalinhado da URL.
+    """
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+
+    # Casos exatos reportados pelo usuário
+    assert by_source["/en-us/contato"] == "/contato"
+    assert by_source["/en-us"] == "/"
+
+    # Prefixo /en/ TAMBÉM precisa cair no redirect — a página pilar de
+    # Iorubá em PT (curso-de-ioruba-online) tem tradução real, mas sob um
+    # slug diferente (learn-yoruba-online); sem o redirect, /en/curso-de-
+    # ioruba-online serviria a MESMA página em português por baixo do
+    # mesmo bug, só que com o prefixo "correto".
+    assert by_source["/en/curso-de-ioruba-online"] == "/en/learn-yoruba-online"
+    assert by_source["/en-us/teste-de-nivel"] == "/en/portuguese-placement-test"
+    # Sem tradução real (cluster de Inglês, línguas sem conteúdo) -> PT
+    assert by_source["/en/curso-de-ingles-online"] == "/curso-de-ingles-online"
+    assert by_source["/es-ar/planos"] == "/planos"
+    assert by_source["/de/contato"] == "/contato"
+
+    # /en/curso/<slug> (com barra, curso individual) já tem rota + tradução
+    # de verdade (curso.py) — não pode ter redirect genérico atropelando.
+    assert not any(r["source"].startswith("/en/curso/") for r in redirects)
+    assert any(r["source"] == r"/en-us/curso/(.*)" for r in redirects)
+
+    hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    assert "*LANGUAGE_PREFIX_REDIRECTS," in hooks_src
+    assert hooks_src.index("website_redirects = [") > hooks_src.index(
+        "LANGUAGE_PREFIX_REDIRECTS = _build_language_prefix_redirects()"
+    )
 
 
 def test_public_language_selector_and_gtm_import_are_available():

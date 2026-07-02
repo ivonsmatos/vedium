@@ -70,6 +70,67 @@ LANGUAGE_ROUTE_RULES = (
     ]
 )
 
+
+def _build_language_prefix_redirects():
+    """As regras acima (LANGUAGE_ROUTE_RULES) servem a MESMA página em
+    português sob um prefixo de outro idioma — isso dependia do JS
+    vedium-language.js traduzir o texto na hora. Esse JS foi desligado
+    (localizePage() virou no-op, travava o navegador) e nunca teve suporte
+    pra espanhol/francês/alemão/russo/chinês. Resultado: /en-us/contato,
+    /en/curso-de-ioruba-online etc. prometiam outro idioma na URL e
+    entregavam português puro — achado pelo usuário em produção
+    (2026-07-03), com screenshot de /en-us/portuguese-for-executives (que
+    nem existe nesse sistema antigo) e /en-us/contato (que existe, mas em
+    português).
+
+    frappe.website.path_resolver.resolve_redirect() roda ANTES da
+    resolução de website_route_rules — então basta ADICIONAR redirects
+    aqui; não precisa remover LANGUAGE_ROUTE_RULES (essas rotas continuam
+    existindo pra quem não tiver o redirect correspondente, mas na prática
+    o redirect sempre intercepta primeiro pros casos abaixo).
+
+    Regra: se existe tradução REAL (LANDINGS[...]["alt"]["en"], ou a lista
+    manual abaixo pra páginas fora do dict LANDINGS), redireciona pra ela;
+    senão, redireciona pro canônico em português. Nunca mais serve
+    conteúdo desalinhado do idioma prometido pela URL.
+    """
+    from vedium_core.marketing_landing_content import LANDINGS
+
+    pt_to_en_slug = {
+        # Páginas com tradução real que não são entradas em LANDINGS
+        # (teste de nível é um controller próprio, não uma landing page).
+        "teste-de-nivel": "portuguese-placement-test",
+    }
+    for slug, landing in LANDINGS.items():
+        alt = landing.get("alt") or {}
+        if alt.get("pt-BR") == slug and alt.get("en"):
+            pt_to_en_slug[slug] = alt["en"]
+
+    english_prefixes = ("en", "en-us", "en-au")
+    redirects = []
+    for prefix in LANGUAGE_ROUTE_PREFIXES:
+        if prefix == "pt-br":
+            continue
+        # Home do idioma: ainda não existe home traduzida de verdade.
+        redirects.append({"source": f"/{prefix}", "target": "/"})
+        for route in PUBLIC_LANGUAGE_ROUTES:
+            if prefix in english_prefixes and route in pt_to_en_slug:
+                target = f"/en/{pt_to_en_slug[route]}"
+            else:
+                target = f"/{route}"
+            redirects.append({"source": f"/{prefix}/{route}", "target": target})
+        # /en/curso/<slug> já tem rota + tradução de verdade (curso.py) —
+        # só os OUTROS prefixos precisam cair de volta pro curso em PT.
+        if prefix != "en":
+            redirects.append({
+                "source": rf"/{prefix}/curso/(.*)",
+                "target": r"/curso/\1",
+            })
+    return redirects
+
+
+LANGUAGE_PREFIX_REDIRECTS = _build_language_prefix_redirects()
+
 website_route_rules = [
     *LANGUAGE_ROUTE_RULES,
     {"from_route": "/sw.js", "to_route": "sw"},
@@ -100,6 +161,7 @@ website_route_rules = [
 
 # Redirecionamentos 301 (SEO) — URLs antigas/removidas -> destino canônico
 website_redirects = [
+    *LANGUAGE_PREFIX_REDIRECTS,
     {"source": "/course-details", "target": "/catalogo"},
     {"source": "/course-details.html", "target": "/catalogo"},
     {"source": "/index.html", "target": "/"},
