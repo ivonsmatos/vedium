@@ -729,6 +729,34 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
     assert "test_pure_public_e2e_playwright.py" in e2e
 
 
+def test_language_switcher_uses_real_translated_urls_not_prefix_guessing():
+    """Bug real achado pelo usuário em produção (2026-07-03): o seletor de
+    idioma (bandeiras) fazia troca burra de PREFIXO na URL atual — em
+    /en/portuguese-for-executives, clicar na bandeira dos EUA gerava
+    /en-us/portuguese-for-executives (404), porque o slug em inglês só
+    existe sob /en/, nunca existiu sob /en-us/. site_navbar.html agora
+    calcula a URL real (landing/post/curso) e expõe via data-attribute no
+    <header>; vedium-language.js usa ela quando existe, em vez de adivinhar.
+    """
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
+
+    assert "data-vd-nav-en-url=" in navbar
+    assert "data-vd-nav-pt-url=" in navbar
+    assert "data-vd-nav-current=" in navbar
+    # landing (marketing_landing.html), post (blog_post.html) e curso
+    # (curso.html) — as 3 famílias de página com tradução de verdade
+    assert "landing is defined and landing" in navbar
+    assert "post is defined and post" in navbar
+    assert "lang is defined and canonical_url is defined" in navbar
+
+    assert "function getPageNavUrls()" in lang_js
+    assert "var realUrl = locale === \"pt-br\" ? pageNav.ptUrl : (pageNav.enUrl || pageNav.ptUrl);" in lang_js
+    # sem tradução real (a maioria das páginas), continua com o comportamento
+    # antigo (troca de prefixo) — não regride nada fora do escopo traduzido
+    assert "meta.prefix + cleanPath" in lang_js
+
+
 def test_public_language_selector_and_gtm_import_are_available():
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
@@ -766,7 +794,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/us.png" in navbar
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
-    assert "vedium-language.js?v=editorial-v8-notranslate" in footer
+    assert "vedium-language.js?v=v9-real-lang-urls" in footer
     assert "pwa-register.js?v=static-v4" in footer
     assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
     assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
@@ -782,7 +810,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "language_selected" in lang_js
     assert "vedium_preferred_locale" not in lang_js
     assert "window.location.assign" not in lang_js
-    assert 'var current = getLocaleFromPath() || "pt-br";' in lang_js
+    assert 'var current = (pageNav.current === "en" && "en") || getLocaleFromPath() || "pt-br";' in lang_js
     assert "localeCopy" in lang_js
     assert "editorialCopy" in lang_js
     assert "Verify certificate" in lang_js

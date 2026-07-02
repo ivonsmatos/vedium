@@ -564,12 +564,39 @@
     return "/" + parts.join("/");
   }
 
+  // Bug real achado em produção (2026-07-03): este seletor trocava só o
+  // PREFIXO da URL atual (ex.: /en/ -> /en-us/), sem saber se a página
+  // existe de verdade sob o prefixo novo. Em /en/portuguese-for-executives,
+  // clicar na bandeira dos EUA gerava /en-us/portuguese-for-executives —
+  // 404, porque esse slug só existe sob /en/, nunca existiu sob /en-us/.
+  // site_navbar.html agora calcula a URL REAL (se existir) da versão em
+  // inglês e em português da página atual e expõe via data-attribute no
+  // <header>. Quando existe, usamos ela — sem inglês/francês/alemão/etc.
+  // de verdade no site, qualquer idioma que não seja português cai no
+  // inglês real (melhor que link quebrado). Sem dado real (a maioria das
+  // páginas, que nunca foi traduzida), mantém o comportamento antigo.
+  function getPageNavUrls() {
+    var header = document.querySelector("header[data-vd-nav-en-url]");
+    if (!header) return { enUrl: "", ptUrl: "", current: "" };
+    return {
+      enUrl: header.getAttribute("data-vd-nav-en-url") || "",
+      ptUrl: header.getAttribute("data-vd-nav-pt-url") || "",
+      current: header.getAttribute("data-vd-nav-current") || ""
+    };
+  }
+
   function updateLocaleLinks() {
     var cleanPath = stripLocalePrefix(location.pathname);
+    var pageNav = getPageNavUrls();
     document.querySelectorAll("[data-vd-locale]").forEach(function (link) {
       var locale = link.getAttribute("data-vd-locale");
       var meta = localeMeta[locale];
       if (!meta || !link.setAttribute) return;
+      var realUrl = locale === "pt-br" ? pageNav.ptUrl : (pageNav.enUrl || pageNav.ptUrl);
+      if (realUrl) {
+        link.setAttribute("href", realUrl + location.search + location.hash);
+        return;
+      }
       var path = cleanPath === "/" ? meta.prefix : meta.prefix + cleanPath.replace(/^\//, "");
       link.setAttribute("href", path.replace(/\/{2,}/g, "/") + location.search + location.hash);
     });
@@ -714,7 +741,12 @@
       if (event.key === "Escape") setModalOpen(false);
     });
 
-    var current = getLocaleFromPath() || "pt-br";
+    // Página com tradução real (post de blog em inglês, por exemplo) não
+    // tem prefixo /en/ na URL — getLocaleFromPath() sozinho não percebe.
+    // data-vd-nav-current (calculado no servidor a partir do post/landing/
+    // curso de verdade) tem prioridade quando disponível.
+    var pageNav = getPageNavUrls();
+    var current = (pageNav.current === "en" && "en") || getLocaleFromPath() || "pt-br";
     markActive(current);
     localizePage(current);
   });

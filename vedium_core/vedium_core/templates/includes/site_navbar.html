@@ -1,4 +1,47 @@
-<header class="main-header main-header--one clearfix">
+{#- Seletor de idioma (modal com bandeiras) faz troca de prefixo na URL
+   sem saber se a página traduzida existe de verdade — bug real achado em
+   produção 2026-07-03: em /en/portuguese-for-executives, clicar na
+   bandeira dos EUA gerava /en-us/portuguese-for-executives (404), porque
+   o JS só troca o prefixo /en/ por /en-us/ no path atual, sem checar se
+   esse slug existe sob o prefixo novo. Aqui calculamos a URL REAL (se
+   existir) da versão em inglês e em português da página atual, pros 3
+   tipos de página que têm tradução de verdade (landing, post de blog,
+   curso). O JS (vedium-language.js) lê esses data-attributes e, quando
+   existem, usa a URL real em vez de adivinhar por troca de prefixo. #}
+{%- set vd_nav = namespace(en_url=None, pt_url=None, current="pt-br") %}
+{%- if landing is defined and landing %}
+  {%- if landing.lang == "en" %}
+    {%- set vd_nav.en_url = landing.url %}
+    {%- set vd_nav.current = "en" %}
+  {%- else %}
+    {%- set vd_nav.pt_url = landing.url %}
+  {%- endif %}
+  {%- for alt in (landing.alternates or []) %}
+    {%- if alt.hreflang == "en" %}{%- set vd_nav.en_url = alt.href %}{%- endif %}
+    {%- if alt.hreflang == "pt-br" %}{%- set vd_nav.pt_url = alt.href %}{%- endif %}
+  {%- endfor %}
+{%- elif post is defined and post %}
+  {%- if post.lang == "en" %}
+    {%- set vd_nav.current = "en" %}
+  {%- endif %}
+  {%- if post.alt %}
+    {%- if post.alt.get("en") %}{%- set vd_nav.en_url = "https://vediums.com/blog/" + post.alt.get("en") %}{%- endif %}
+    {%- if post.alt.get("pt-BR") %}{%- set vd_nav.pt_url = "https://vediums.com/blog/" + post.alt.get("pt-BR") %}{%- endif %}
+  {%- endif %}
+{%- elif lang is defined and canonical_url is defined %}
+  {%- if lang == "en" %}
+    {%- set vd_nav.en_url = canonical_url %}
+    {%- set vd_nav.pt_url = alt_lang_url %}
+    {%- set vd_nav.current = "en" %}
+  {%- else %}
+    {%- set vd_nav.pt_url = canonical_url %}
+    {%- set vd_nav.en_url = alt_lang_url %}
+  {%- endif %}
+{%- endif %}
+<header class="main-header main-header--one clearfix"
+    data-vd-nav-en-url="{{ vd_nav.en_url or '' }}"
+    data-vd-nav-pt-url="{{ vd_nav.pt_url or '' }}"
+    data-vd-nav-current="{{ vd_nav.current }}">
     <div class="main-header--one__top clearfix">
         <div class="container">
             <div class="main-header--one__top-inner clearfix">
