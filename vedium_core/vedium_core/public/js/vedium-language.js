@@ -13,16 +13,31 @@
     "zh-cn": { lang: "zh-CN", prefix: "/zh-cn/", flag: "https://flagcdn.com/w20/cn.png", flag2x: "https://flagcdn.com/w40/cn.png 2x", alt: "China", label: "CHINA | 中文" },
     "en-au": { lang: "en", prefix: "/en-au/", flag: "https://flagcdn.com/w20/au.png", flag2x: "https://flagcdn.com/w40/au.png 2x", alt: "Australia", label: "AUSTRALIA | ENGLISH" }
   };
-  // Global/United States/Australia têm o MESMO conteúdo real (só existe um
-  // /en/... por página) — a bandeira que a pessoa clica é só uma preferência
-  // regional, não um idioma diferente. Guardamos ela via ?locale= na própria
-  // URL (não localStorage — foi removido antes por decisão do time, ver
-  // commit "Use native locale links in language selector") pra não perder a
-  // bandeira escolhida quando as 3 caem na mesma página. Espanhol/francês/
-  // alemão/russo/chinês NÃO têm conteúdo de verdade, então não entram aqui:
-  // ao cair no inglês por falta de tradução, o indicador mostra "Global"
-  // (honesto) em vez de fingir que o conteúdo está naquele idioma.
-  var ENGLISH_LOCALES = { "en": true, "en-us": true, "en-au": true };
+  // Bandeira -> código de idioma "de família", igual ao usado em
+  // LANDINGS[...]["alt"] no Python (marketing_landing_content.LANG_HREFLANG)
+  // e no data-vd-nav-urls que site_navbar.html expõe. en/en-us/en-au são a
+  // mesma família "en" (mesmo conteúdo real); es/es-ar/es-co são "es";
+  // fr/fr-ca são "fr".
+  var LOCALE_LANG_FAMILY = {
+    "pt-br": "pt-br",
+    "en": "en", "en-us": "en", "en-au": "en",
+    "es-ar": "es", "es-co": "es", "es": "es",
+    "fr-ca": "fr", "fr": "fr",
+    "de": "de",
+    "ru": "ru",
+    "zh-cn": "zh-cn"
+  };
+  // Bandeiras regionais da MESMA família (2+ bandeiras, mesmo conteúdo
+  // real) — a bandeira que a pessoa clica é só uma preferência regional,
+  // não um idioma diferente. Guardamos ela via ?locale= na própria URL
+  // (não localStorage — foi removido antes por decisão do time, ver
+  // commit "Use native locale links in language selector") pra não perder
+  // a bandeira escolhida quando todas caem na mesma página.
+  var MULTI_REGION_LOCALES = {
+    "en": true, "en-us": true, "en-au": true,
+    "es": true, "es-ar": true, "es-co": true,
+    "fr": true, "fr-ca": true
+  };
   var localeCopy = {
     en: {
       "Início": "Home",
@@ -579,26 +594,27 @@
   // existe de verdade sob o prefixo novo. Em /en/portuguese-for-executives,
   // clicar na bandeira dos EUA gerava /en-us/portuguese-for-executives —
   // 404, porque esse slug só existe sob /en/, nunca existiu sob /en-us/.
-  // site_navbar.html agora calcula a URL REAL (se existir) da versão em
-  // inglês e em português da página atual e expõe via data-attribute no
-  // <header>. Quando existe, usamos ela — sem inglês/francês/alemão/etc.
-  // de verdade no site, qualquer idioma que não seja português cai no
-  // inglês real (melhor que link quebrado). Sem dado real (a maioria das
-  // páginas, que nunca foi traduzida), mantém o comportamento antigo.
+  // site_navbar.html agora calcula o mapa REAL {idioma: URL} da página
+  // atual e expõe via data-vd-nav-urls (JSON) no <header>. Genérico pra
+  // N idiomas — quando um idioma não tem tradução pra essa página
+  // específica, cai no inglês real (se existir) e por último no
+  // português, nunca em link quebrado nem em conteúdo no idioma errado.
   function getPageNavUrls() {
-    var header = document.querySelector("header[data-vd-nav-en-url]");
-    if (!header) return { enUrl: "", ptUrl: "", current: "" };
-    return {
-      enUrl: header.getAttribute("data-vd-nav-en-url") || "",
-      ptUrl: header.getAttribute("data-vd-nav-pt-url") || "",
-      current: header.getAttribute("data-vd-nav-current") || ""
-    };
+    var header = document.querySelector("header[data-vd-nav-urls]");
+    if (!header) return { urls: {}, current: "" };
+    var urls = {};
+    try {
+      urls = JSON.parse(header.getAttribute("data-vd-nav-urls") || "{}");
+    } catch (e) {
+      urls = {};
+    }
+    return { urls: urls, current: header.getAttribute("data-vd-nav-current") || "" };
   }
 
   function getPreferredLocaleFromQuery() {
     try {
       var value = new URLSearchParams(location.search).get("locale");
-      return ENGLISH_LOCALES[value] ? value : "";
+      return MULTI_REGION_LOCALES[value] ? value : "";
     } catch (e) {
       return "";
     }
@@ -611,13 +627,17 @@
       var locale = link.getAttribute("data-vd-locale");
       var meta = localeMeta[locale];
       if (!meta || !link.setAttribute) return;
-      var realUrl = locale === "pt-br" ? pageNav.ptUrl : (pageNav.enUrl || pageNav.ptUrl);
+      var family = LOCALE_LANG_FAMILY[locale] || locale;
+      // Sem tradução nesse idioma específico -> cai no inglês real (se
+      // existir) -> por último no português. Nunca finge estar num
+      // idioma que a página não tem.
+      var realUrl = pageNav.urls[family] || pageNav.urls.en || pageNav.urls["pt-br"];
       if (realUrl) {
-        // en/en-us/en-au caem todos na MESMA página real — sem isso, o
-        // indicador do cabeçalho esquece qual bandeira a pessoa escolheu
-        // e sempre volta pra "Global" depois de navegar. Achado pelo
-        // usuário em produção (2026-07-03).
-        var localeParam = ENGLISH_LOCALES[locale] ? "?locale=" + locale : "";
+        // en/en-us/en-au (e es/es-ar/es-co, fr/fr-ca) caem todos na MESMA
+        // página real — sem isso, o indicador do cabeçalho esquece qual
+        // bandeira a pessoa escolheu e sempre volta pra genérica depois
+        // de navegar. Achado pelo usuário em produção (2026-07-03).
+        var localeParam = MULTI_REGION_LOCALES[locale] ? "?locale=" + locale : "";
         link.setAttribute("href", realUrl + localeParam);
         return;
       }
@@ -769,11 +789,16 @@
     // tem prefixo /en/ na URL — getLocaleFromPath() sozinho não percebe.
     // data-vd-nav-current (calculado no servidor a partir do post/landing/
     // curso de verdade) tem prioridade quando disponível. ?locale=en-us
-    // (setado por updateLocaleLinks) mantém a bandeira específica que a
-    // pessoa clicou, já que en/en-us/en-au caem todos na mesma página.
+    // (setado por updateLocaleLinks) mantém a bandeira regional específica
+    // que a pessoa clicou, já que en/en-us/en-au (e es/es-ar/es-co,
+    // fr/fr-ca) caem todos na mesma página real dentro da família.
     var pageNav = getPageNavUrls();
     var preferredLocale = getPreferredLocaleFromQuery();
-    var current = (pageNav.current === "en" && (preferredLocale || "en")) || getLocaleFromPath() || "pt-br";
+    var preferredFamily = LOCALE_LANG_FAMILY[preferredLocale] || "";
+    var current = (pageNav.current && preferredFamily === pageNav.current && preferredLocale)
+      || pageNav.current
+      || getLocaleFromPath()
+      || "pt-br";
     markActive(current);
     localizePage(current);
   });

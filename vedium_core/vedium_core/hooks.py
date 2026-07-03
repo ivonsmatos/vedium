@@ -71,6 +71,20 @@ LANGUAGE_ROUTE_RULES = (
 )
 
 
+# Cada prefixo de rota mapeia pra um código de idioma "de família" —
+# en/en-us/en-au são todos "en" (mesmo conteúdo, só a bandeira regional
+# muda); es/es-ar/es-co são todos "es"; fr/fr-ca são todos "fr". Precisa
+# bater com o código usado em LANDINGS[...]["alt"] (ex.: "es", não "es-AR").
+LANGUAGE_PREFIX_FAMILY = {
+    "en": "en", "en-us": "en", "en-au": "en",
+    "es-ar": "es", "es-co": "es", "es": "es",
+    "fr-ca": "fr", "fr": "fr",
+    "de": "de",
+    "ru": "ru",
+    "zh-cn": "zh-cn",
+}
+
+
 def _build_language_prefix_redirects():
     """As regras acima (LANGUAGE_ROUTE_RULES) servem a MESMA página em
     português sob um prefixo de outro idioma — isso dependia do JS
@@ -89,38 +103,48 @@ def _build_language_prefix_redirects():
     existindo pra quem não tiver o redirect correspondente, mas na prática
     o redirect sempre intercepta primeiro pros casos abaixo).
 
-    Regra: se existe tradução REAL (LANDINGS[...]["alt"]["en"], ou a lista
-    manual abaixo pra páginas fora do dict LANDINGS), redireciona pra ela;
-    senão, redireciona pro canônico em português. Nunca mais serve
-    conteúdo desalinhado do idioma prometido pela URL.
+    Regra: se existe tradução REAL (LANDINGS[...]["alt"][<lang>], pra
+    QUALQUER idioma — não só inglês —, ou a lista manual abaixo pra
+    páginas fora do dict LANDINGS), redireciona pra ela; senão, redireciona
+    pro canônico em português. Nunca mais serve conteúdo desalinhado do
+    idioma prometido pela URL. 100% dirigido pelo conteúdo real que existe
+    — conforme agentes de tradução (.claude/agents/translator-*.md)
+    publicam páginas novas em es/fr/de/ru/zh, elas entram automaticamente
+    aqui sem precisar editar hooks.py de novo.
     """
     from vedium_core.marketing_landing_content import LANDINGS
 
-    pt_to_en_slug = {
-        # Páginas com tradução real que não são entradas em LANDINGS
-        # (teste de nível é um controller próprio, não uma landing page).
-        "teste-de-nivel": "portuguese-placement-test",
+    # {"teste-de-nivel": {"en": "portuguese-placement-test"}, ...} —
+    # páginas com tradução real que não são entradas em LANDINGS
+    # (controllers próprios, não landing pages).
+    pt_to_lang_slug = {
+        "teste-de-nivel": {"en": "portuguese-placement-test"},
     }
     for slug, landing in LANDINGS.items():
         alt = landing.get("alt") or {}
-        if alt.get("pt-BR") == slug and alt.get("en"):
-            pt_to_en_slug[slug] = alt["en"]
+        if alt.get("pt-BR") != slug:
+            continue
+        for lang, alt_slug in alt.items():
+            if lang == "pt-BR" or not alt_slug:
+                continue
+            pt_to_lang_slug.setdefault(slug, {})[lang] = alt_slug
 
-    english_prefixes = ("en", "en-us", "en-au")
     redirects = []
     for prefix in LANGUAGE_ROUTE_PREFIXES:
         if prefix == "pt-br":
             continue
+        family = LANGUAGE_PREFIX_FAMILY.get(prefix, prefix)
         # Home do idioma: ainda não existe home traduzida de verdade.
         redirects.append({"source": f"/{prefix}", "target": "/"})
         for route in PUBLIC_LANGUAGE_ROUTES:
-            if prefix in english_prefixes and route in pt_to_en_slug:
-                target = f"/en/{pt_to_en_slug[route]}"
-            else:
-                target = f"/{route}"
+            translated_slug = pt_to_lang_slug.get(route, {}).get(family)
+            target = f"/{family}/{translated_slug}" if translated_slug else f"/{route}"
             redirects.append({"source": f"/{prefix}/{route}", "target": target})
         # /en/curso/<slug> já tem rota + tradução de verdade (curso.py) —
         # só os OUTROS prefixos precisam cair de volta pro curso em PT.
+        # (Só inglês tem esse mecanismo hoje — se outro idioma ganhar
+        # páginas de curso individuais, replicar o padrão de curso.py
+        # antes de tirar esse prefixo daqui.)
         if prefix != "en":
             redirects.append({
                 "source": rf"/{prefix}/curso/(.*)",

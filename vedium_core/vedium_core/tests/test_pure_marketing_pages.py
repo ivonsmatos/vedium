@@ -736,48 +736,64 @@ def test_language_switcher_uses_real_translated_urls_not_prefix_guessing():
     /en/portuguese-for-executives, clicar na bandeira dos EUA gerava
     /en-us/portuguese-for-executives (404), porque o slug em inglês só
     existe sob /en/, nunca existiu sob /en-us/. site_navbar.html agora
-    calcula a URL real (landing/post/curso) e expõe via data-attribute no
-    <header>; vedium-language.js usa ela quando existe, em vez de adivinhar.
+    calcula o mapa REAL {idioma: URL} (landing/post/curso) e expõe via
+    data-vd-nav-urls (JSON) no <header>; vedium-language.js usa ele quando
+    existe, em vez de adivinhar. Generalizado (2026-07-03, mesma sessão)
+    pra N idiomas — não hardcoded só en/pt — depois do usuário pedir pra
+    rodar tradução em espanhol/francês/alemão/russo/chinês em paralelo:
+    sem isso, cada idioma novo bateria no MESMO bug que o inglês bateu.
     """
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
 
-    assert "data-vd-nav-en-url=" in navbar
-    assert "data-vd-nav-pt-url=" in navbar
+    assert "data-vd-nav-urls=" in navbar
     assert "data-vd-nav-current=" in navbar
+    assert "vd_nav.urls | tojson" in navbar
     # landing (marketing_landing.html), post (blog_post.html) e curso
     # (curso.html) — as 3 famílias de página com tradução de verdade
     assert "landing is defined and landing" in navbar
     assert "post is defined and post" in navbar
     assert "lang is defined and canonical_url is defined" in navbar
+    # landing.lang_code já é o hreflang normalizado (LANG_HREFLANG no
+    # Python) — não reimplementa a normalização em Jinja
+    assert "landing.lang_code" in navbar
 
     assert "function getPageNavUrls()" in lang_js
-    assert "var realUrl = locale === \"pt-br\" ? pageNav.ptUrl : (pageNav.enUrl || pageNav.ptUrl);" in lang_js
+    assert "var family = LOCALE_LANG_FAMILY[locale] || locale;" in lang_js
+    assert 'var realUrl = pageNav.urls[family] || pageNav.urls.en || pageNav.urls["pt-br"];' in lang_js
     # sem tradução real (a maioria das páginas), continua com o comportamento
     # antigo (troca de prefixo) — não regride nada fora do escopo traduzido
     assert "meta.prefix + cleanPath" in lang_js
 
 
-def test_language_switcher_remembers_which_english_flag_was_clicked():
+def test_language_switcher_remembers_which_regional_flag_was_clicked():
     """Segundo bug achado pelo usuário na mesma sessão (2026-07-03): Global,
     United States e Australia têm o MESMO conteúdo real (só existe um
     /en/... por página) — depois do fix anterior, clicar em "United States"
     levava pra essa única URL, mas o indicador do cabeçalho sempre voltava
     a mostrar "Global" (perdia qual bandeira a pessoa realmente escolheu).
     Corrigido com ?locale=en-us na própria URL (não localStorage — removido
-    antes por decisão do time, commit "Use native locale links"). Espanhol/
-    francês/alemão/russo/chinês NÃO entram nesse mecanismo: como não têm
-    conteúdo de verdade, cair no inglês deve mostrar "Global" (honesto),
-    não fingir estar naquele idioma.
+    antes por decisão do time, commit "Use native locale links"). Generalizado
+    pra QUALQUER família com mais de uma bandeira regional (en/en-us/en-au,
+    es/es-ar/es-co, fr/fr-ca) — não só inglês, já que espanhol e francês têm
+    o mesmo problema estrutural assim que ganharem conteúdo real. Idiomas
+    sem tradução pra uma página específica caem no inglês real (se existir)
+    e mostram o indicador correspondente (honesto — não finge estar naquele
+    idioma).
     """
     lang_js = (PUBLIC_JS / "vedium-language.js").read_text(encoding="utf-8")
 
-    assert 'var ENGLISH_LOCALES = { "en": true, "en-us": true, "en-au": true };' in lang_js
+    assert "var LOCALE_LANG_FAMILY = {" in lang_js
+    assert '"es-ar": "es", "es-co": "es", "es": "es",' in lang_js
+    assert "var MULTI_REGION_LOCALES = {" in lang_js
     assert "function getPreferredLocaleFromQuery()" in lang_js
-    assert 'var localeParam = ENGLISH_LOCALES[locale] ? "?locale=" + locale : "";' in lang_js
+    assert 'var localeParam = MULTI_REGION_LOCALES[locale] ? "?locale=" + locale : "";' in lang_js
+    assert "var preferredFamily = LOCALE_LANG_FAMILY[preferredLocale] || \"\";" in lang_js
     assert (
-        'var current = (pageNav.current === "en" && (preferredLocale || "en")) '
-        '|| getLocaleFromPath() || "pt-br";'
+        'var current = (pageNav.current && preferredFamily === pageNav.current && preferredLocale)\n'
+        '      || pageNav.current\n'
+        '      || getLocaleFromPath()\n'
+        '      || "pt-br";'
     ) in lang_js
     # não reintroduz o padrão removido antes (localStorage) — usa querystring
     assert "localStorage." not in lang_js
@@ -869,7 +885,7 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/us.png" in navbar
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
-    assert "vedium-language.js?v=v10-keep-flag-choice" in footer
+    assert "vedium-language.js?v=v11-n-languages" in footer
     assert "pwa-register.js?v=static-v4" in footer
     assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
     assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks

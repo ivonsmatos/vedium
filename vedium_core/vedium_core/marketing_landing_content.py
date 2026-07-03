@@ -1066,15 +1066,29 @@ LANDINGS = {
 
 
 # Prefixo de URL por idioma (pt-BR é a raiz; demais idiomas ganham /<lang>/).
+# Pré-cadastrado pros idiomas que os agentes de tradução (.claude/agents/
+# translator-*.md) vão publicar — mesmo sem nenhuma LANDINGS entry ainda,
+# pra get_marketing_landing()/site_navbar.html nunca cair errado em pt-BR
+# por default quando `lang` for "es"/"fr"/"de"/"ru"/"zh-cn".
 LANG_URL_PREFIX = {
     "pt-BR": "",
     "en": "en/",
+    "es": "es/",
+    "fr": "fr/",
+    "de": "de/",
+    "ru": "ru/",
+    "zh-cn": "zh-cn/",
 }
 
 # Código hreflang correspondente a cada idioma do conteúdo.
 LANG_HREFLANG = {
     "pt-BR": "pt-br",
     "en": "en",
+    "es": "es",
+    "fr": "fr",
+    "de": "de",
+    "ru": "ru",
+    "zh-cn": "zh-cn",
 }
 
 

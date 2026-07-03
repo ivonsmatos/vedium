@@ -3,44 +3,45 @@
    produção 2026-07-03: em /en/portuguese-for-executives, clicar na
    bandeira dos EUA gerava /en-us/portuguese-for-executives (404), porque
    o JS só troca o prefixo /en/ por /en-us/ no path atual, sem checar se
-   esse slug existe sob o prefixo novo. Aqui calculamos a URL REAL (se
-   existir) da versão em inglês e em português da página atual, pros 3
-   tipos de página que têm tradução de verdade (landing, post de blog,
-   curso). O JS (vedium-language.js) lê esses data-attributes e, quando
-   existem, usa a URL real em vez de adivinhar por troca de prefixo. #}
-{%- set vd_nav = namespace(en_url=None, pt_url=None, current="pt-br") %}
+   esse slug existe sob o prefixo novo. Aqui calculamos o mapa REAL
+   {idioma: URL} da página atual, pros 3 tipos de página que têm tradução
+   de verdade (landing, post de blog, curso). Genérico pra N idiomas —
+   não hardcoded só en/pt — assim páginas novas em es/fr/de/ru/zh
+   (.claude/agents/translator-*.md) funcionam no seletor sem precisar
+   editar este arquivo de novo. O JS (vedium-language.js) lê
+   data-vd-nav-urls (JSON) e usa a URL real em vez de adivinhar por troca
+   de prefixo, quando existe. #}
+{%- set vd_nav = namespace(urls={}, current="pt-br") %}
 {%- if landing is defined and landing %}
-  {%- if landing.lang == "en" %}
-    {%- set vd_nav.en_url = landing.url %}
-    {%- set vd_nav.current = "en" %}
-  {%- else %}
-    {%- set vd_nav.pt_url = landing.url %}
-  {%- endif %}
+  {%- set vd_nav.current = landing.lang_code or "pt-br" %}
+  {%- set _vd_nav_noop = vd_nav.urls.update({vd_nav.current: landing.url}) %}
   {%- for alt in (landing.alternates or []) %}
-    {%- if alt.hreflang == "en" %}{%- set vd_nav.en_url = alt.href %}{%- endif %}
-    {%- if alt.hreflang == "pt-br" %}{%- set vd_nav.pt_url = alt.href %}{%- endif %}
+    {%- if alt.hreflang and alt.hreflang != "x-default" %}
+      {%- set _vd_nav_noop = vd_nav.urls.update({alt.hreflang: alt.href}) %}
+    {%- endif %}
   {%- endfor %}
 {%- elif post is defined and post %}
-  {%- if post.lang == "en" %}
-    {%- set vd_nav.current = "en" %}
-  {%- endif %}
+  {%- set vd_nav.current = post.lang or "pt-br" %}
   {%- if post.alt %}
-    {%- if post.alt.get("en") %}{%- set vd_nav.en_url = "https://vediums.com/blog/" + post.alt.get("en") %}{%- endif %}
-    {%- if post.alt.get("pt-BR") %}{%- set vd_nav.pt_url = "https://vediums.com/blog/" + post.alt.get("pt-BR") %}{%- endif %}
+    {%- for alt_lang, alt_slug in post.alt.items() %}
+      {%- if alt_slug %}
+        {%- set _alt_key = "pt-br" if alt_lang == "pt-BR" else alt_lang %}
+        {%- set _vd_nav_noop = vd_nav.urls.update({_alt_key: "https://vediums.com/blog/" + alt_slug}) %}
+      {%- endif %}
+    {%- endfor %}
   {%- endif %}
 {%- elif lang is defined and canonical_url is defined %}
-  {%- if lang == "en" %}
-    {%- set vd_nav.en_url = canonical_url %}
-    {%- set vd_nav.pt_url = alt_lang_url %}
-    {%- set vd_nav.current = "en" %}
-  {%- else %}
-    {%- set vd_nav.pt_url = canonical_url %}
-    {%- set vd_nav.en_url = alt_lang_url %}
-  {%- endif %}
+  {#- curso.py hoje só sabe sobrepor tradução em inglês (course_translations.py)
+     — quando outro idioma ganhar páginas de curso individuais, generalizar
+     curso.py/curso.html do mesmo jeito que já foi feito aqui. #}
+  {%- set _self_key = "en" if lang == "en" else "pt-br" %}
+  {%- set _other_key = "pt-br" if lang == "en" else "en" %}
+  {%- set vd_nav.current = _self_key %}
+  {%- set _vd_nav_noop = vd_nav.urls.update({_self_key: canonical_url}) %}
+  {%- if alt_lang_url %}{%- set _vd_nav_noop = vd_nav.urls.update({_other_key: alt_lang_url}) %}{%- endif %}
 {%- endif %}
 <header class="main-header main-header--one clearfix"
-    data-vd-nav-en-url="{{ vd_nav.en_url or '' }}"
-    data-vd-nav-pt-url="{{ vd_nav.pt_url or '' }}"
+    data-vd-nav-urls='{{ vd_nav.urls | tojson }}'
     data-vd-nav-current="{{ vd_nav.current }}">
     <div class="main-header--one__top clearfix">
         <div class="container">
