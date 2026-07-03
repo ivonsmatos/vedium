@@ -2601,3 +2601,85 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
     for slug in ["certificado", "comunidade", "programa-de-indicacao", "empresas", "carreiras"]:
         assert f"/fr/{slug}" not in by_source
         assert by_source[f"/fr-ca/{slug}"] == f"/fr/{slug}"
+
+
+def test_german_home_page_exists_and_routes_correctly():
+    """Home (/) traduzida pro alemão (www/de/index.html) — 4º idioma do
+    rollout sequencial (en -> es -> fr -> de -> ru -> zh). Espelha
+    test_french_home_page_exists_and_routes_correctly: existência dos
+    arquivos, conteúdo real (não placeholder), roteamento (/de não pode
+    cair no redirect antigo pra PT) e reciprocidade de hreflang.
+    """
+    de_html_path = WWW / "de" / "index.html"
+    de_py_path = WWW / "de" / "index.py"
+    assert de_html_path.exists()
+    assert de_py_path.exists()
+
+    de_html = de_html_path.read_text(encoding="utf-8")
+    de_py = de_py_path.read_text(encoding="utf-8")
+    pt_html = (WWW / "index.html").read_text(encoding="utf-8")
+    en_html = (WWW / "en" / "index.html").read_text(encoding="utf-8")
+    es_html = (WWW / "es" / "index.html").read_text(encoding="utf-8")
+    fr_html = (WWW / "fr" / "index.html").read_text(encoding="utf-8")
+
+    assert 'lang="de"' in de_html
+    assert "Vedium - Live Online Sprachkurse" in de_html
+    assert 'hreflang="pt-br" href="https://vediums.com/"' in de_html
+    assert 'hreflang="de" href="https://vediums.com/de"' in de_html
+    assert 'link rel="canonical" href="https://vediums.com/de"' in de_html
+
+    # Hero traduzido (above-the-fold), CTAs apontam pro teste de inglês
+    # (único teste de nível formal que existe hoje -- mesmo padrão do EN/ES/FR)
+    assert "Bringen Sie Ihre" in de_html
+    assert "Kostenlosen Einstufungstest machen" in de_html
+    assert '/teste-de-nivel-ingles" class="thm-btn"' in de_html
+    assert "Schreiben Sie uns auf WhatsApp" in de_html
+    assert "wa.me/5511911293075" in de_html
+
+    # Preço em EUR, não R$ nem US$ (público germanofalante, mesma lógica
+    # editorial usada pelo agente de francês -- não é conversão cambial literal)
+    assert "110 €" in de_html
+    assert "R$" not in de_html
+    assert "US$" not in de_html
+
+    # Teasers do blog apontam pros posts em inglês existentes (ainda não há
+    # blog em alemão) -- não pros slugs em português, que o leitor de
+    # alemão não conseguiria ler.
+    assert "/blog/yoruba-language-and-culture" in de_html
+    assert "/blog/yoruba-greetings" in de_html
+    assert "/blog/yoruba-numbers-1-to-20" in de_html
+    assert "/blog/niveis-de-ingles-a1-c1" not in de_html
+
+    # Controller: contexto de idioma pro seletor (site_navbar.html) + mesma
+    # lógica de negócio da home em PT/EN/ES/FR (cursos ao vivo do banco,
+    # redirect app.vediums.com -> /login)
+    assert 'context.lang = "de"' in de_py
+    assert 'context.canonical_url = "https://vediums.com/de"' in de_py
+    assert 'context.alt_lang_url = "https://vediums.com/"' in de_py
+    assert "def get_courses()" in de_py
+    assert "app.vediums.com" in de_py
+    assert 'redirect_location = "/login"' in de_py
+
+    # PT, EN, ES e FR ganham o hreflang de volta (reciprocidade)
+    assert 'hreflang="de" href="https://vediums.com/de"' in pt_html
+    assert 'hreflang="de" href="https://vediums.com/de"' in en_html
+    assert 'hreflang="de" href="https://vediums.com/de"' in es_html
+    assert 'hreflang="de" href="https://vediums.com/de"' in fr_html
+
+    # Roteamento: /de não pode cair no redirect antigo pra PT (bug que
+    # existiria se a home nova não tivesse sido conectada em hooks.py)
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    assert "/de" not in by_source  # sem self-redirect /de -> /de
+    assert "LANGUAGES_WITH_OWN_HOME" in (
+        ROOT / "vedium_core" / "vedium_core" / "hooks.py"
+    ).read_text(encoding="utf-8")
+    assert "de" in vedium_hooks.LANGUAGES_WITH_OWN_HOME
+
+    # Menu principal traduzido (rótulos, ver site_navbar.html vd_menu_i18n)
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    assert '"de": {"home"' in navbar
+
+    # Sitemap lista a home em alemão
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    assert '{"loc": "/de", "priority"' in sitemap_py

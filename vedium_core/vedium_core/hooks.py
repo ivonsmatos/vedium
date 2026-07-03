@@ -78,7 +78,7 @@ LANGUAGE_PREFIX_FAMILY = {
 # (.claude/agents/translator-*.md) adiciona o código de família aqui ao
 # publicar www/<family>/index.html — ver LANGUAGE_ROUTE_RULES e
 # _build_language_prefix_redirects() logo abaixo, que já leem este set.
-LANGUAGES_WITH_OWN_HOME = {"en", "es", "fr"}
+LANGUAGES_WITH_OWN_HOME = {"en", "es", "fr", "de"}
 
 # Páginas de PUBLIC_LANGUAGE_ROUTES que ganharam tradução real MANTENDO O
 # MESMO slug (ex.: /en/catalogo -> www/en/catalogo.html, não um slug de SEO

@@ -131,6 +131,8 @@ STATIC_URLS = [
     {"loc": "/fr/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
     {"loc": "/fr/empresas", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/fr/carreiras", "priority": "0.4", "changefreq": "monthly"},
+    # Páginas em alemão (SEO internacional)
+    {"loc": "/de", "priority": "0.9", "changefreq": "weekly"},
 ]
 
 def _absolute_url(path):
