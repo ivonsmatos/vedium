@@ -120,6 +120,12 @@ STATIC_URLS = [
     {"loc": "/fr/portugais-pour-etrangers", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/fr/portugais-pour-cadres", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/fr/preparation-examen-celpe-bras", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/cours-anglais-en-ligne-en-direct", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/fr/anglais-entretien-embauche", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/anglais-developpeurs-informatique", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/anglais-des-affaires", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/anglais-pour-voyager", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/anglais-service-client", "priority": "0.6", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):

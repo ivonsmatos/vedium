@@ -499,11 +499,12 @@ def test_english_cluster_has_spanish_pages_with_reciprocal_hreflang():
     ]
     for pt_slug, es_slug, expected_test_url in pairs:
         assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
-        assert LANDINGS[es_slug]["alt"] == {
-            "pt-BR": pt_slug,
-            "en": LANDINGS[pt_slug]["alt"]["en"],
-            "es": es_slug,
-        }
+        # Checagem por subconjunto (não igualdade exata): o cluster de
+        # inglês ganhou francês depois (test_english_cluster_has_french_...),
+        # então esses "alt" legitimamente têm uma chave "fr" a mais agora.
+        assert LANDINGS[es_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[es_slug]["alt"]["en"] == LANDINGS[pt_slug]["alt"]["en"]
+        assert LANDINGS[es_slug]["alt"]["es"] == es_slug
         assert LANDINGS[es_slug]["lang"] == "es"
         if expected_test_url:
             assert "test_url" in LANDINGS[es_slug], f"{es_slug} precisa de test_url explícito"
@@ -2470,3 +2471,60 @@ def test_ple_cluster_has_french_pages_with_reciprocal_hreflang():
     assert '{"loc": "/fr/test-de-niveau-de-portugais"' in (
         ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
     ).read_text(encoding="utf-8")
+
+
+def test_english_cluster_has_french_pages_with_reciprocal_hreflang():
+    """Cluster de Inglês (pilar cours-anglais-en-ligne-en-direct + 5
+    sub-páginas) traduzido pro francês -- 5a prioridade do translator-fr
+    (mesma ordem usada em en/es): francófonos que querem aprender inglês
+    com a Vedium, adaptado pro público francofalante. Mesmo padrão de
+    test_english_cluster_has_spanish_pages_with_reciprocal_hreflang: slug
+    em francês pensado como um francófono buscaria (não tradução literal
+    do português nem do inglês), `alt` recíproco nos 4 idiomas, paridade
+    de profundidade de conteúdo.
+    """
+    pairs = [
+        ("curso-de-ingles-online", "cours-anglais-en-ligne-en-direct", "/teste-de-nivel-ingles"),
+        ("ingles-para-entrevista", "anglais-entretien-embauche", None),
+        ("ingles-para-programadores", "anglais-developpeurs-informatique", None),
+        ("ingles-executivo", "anglais-des-affaires", None),
+        ("ingles-para-viagens", "anglais-pour-voyager", None),
+        ("ingles-para-atendimento-ao-cliente", "anglais-service-client", None),
+    ]
+    for pt_slug, fr_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"]["fr"] == fr_slug
+        assert LANDINGS[fr_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[fr_slug]["alt"]["en"] == LANDINGS[pt_slug]["alt"]["en"]
+        assert LANDINGS[fr_slug]["alt"]["es"] == LANDINGS[pt_slug]["alt"]["es"]
+        assert LANDINGS[fr_slug]["alt"]["fr"] == fr_slug
+        assert LANDINGS[fr_slug]["lang"] == "fr"
+        if expected_test_url:
+            assert "test_url" in LANDINGS[fr_slug], f"{fr_slug} precisa de test_url explícito"
+            assert LANDINGS[fr_slug]["test_url"] == expected_test_url
+
+        fr_html = (WWW / "fr" / f"{fr_slug}.html").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{fr_slug}")' in fr_html
+
+        # conteúdo real, não placeholder (mesma paridade de profundidade
+        # exigida do cluster PT/EN/ES)
+        landing = LANDINGS[fr_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/fr/{fr_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # cours-anglais-en-ligne-en-direct é a landing pilar em FR: precisa do
+    # mesmo grid de cursos reais (preço, aulas, link) que os outros
+    # pilares já têm, e preço em EUR (não R$ nem US$).
+    assert '"cours-anglais-en-ligne-en-direct": {"category_prefix": "Inglês"}' in (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    pilar = LANDINGS["cours-anglais-en-ligne-en-direct"]
+    assert "€" in pilar["price_display"]
+    assert "R$" not in pilar["price_display"]
+    assert "US$" not in pilar["price_display"]
