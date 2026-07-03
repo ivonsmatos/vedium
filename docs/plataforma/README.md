@@ -44,7 +44,10 @@ não se repita.
 | 10 | [Matriz de Integrações](10-matriz-de-integracoes.md) | Google, Stripe, e-mail, Zoom, WhatsApp, GTM, IA | ✅ |
 | 11 | [Estado do Ambiente (checklist vivo)](11-estado-do-ambiente.md) | O que está ligado/desligado em produção hoje | ✅ |
 | 12 | [Runbook de Operação & Deploy](12-runbook-de-operacao.md) | Como deploya, footguns, logs, rollback | ✅ |
-| 13 | Catálogo de Produtos & Preços | Cursos publicados, slugs, níveis, preços, professor | ⏳ |
+| 13 | [Catálogo de Produtos & Preços](13-catalogo-de-produtos.md) | Cursos publicados, slugs, níveis, preços, professor | ✅ |
+
+Todos os documentos planejados desta pasta estão escritos (05-13 nesta
+sessão de 2026-07-03).
 
 Legenda: ✅ escrito · ⏳ a escrever
 
