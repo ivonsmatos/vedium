@@ -2143,3 +2143,83 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     for slug in ["certificado", "comunidade", "programa-de-indicacao", "empresas", "carreiras"]:
         assert f"/es/{slug}" not in by_source
         assert by_source[f"/es-ar/{slug}"] == f"/es/{slug}"
+
+
+def test_french_home_page_exists_and_routes_correctly():
+    """Home (/) traduzida pro francês (www/fr/index.html) — 3º idioma do
+    rollout sequencial (en -> es -> fr -> de -> ru -> zh). Espelha
+    test_spanish_home_page_exists_and_routes_correctly: existência dos
+    arquivos, conteúdo real (não placeholder), roteamento (/fr não pode
+    cair no redirect antigo pra PT) e reciprocidade de hreflang.
+    """
+    fr_html_path = WWW / "fr" / "index.html"
+    fr_py_path = WWW / "fr" / "index.py"
+    assert fr_html_path.exists()
+    assert fr_py_path.exists()
+
+    fr_html = fr_html_path.read_text(encoding="utf-8")
+    fr_py = fr_py_path.read_text(encoding="utf-8")
+    pt_html = (WWW / "index.html").read_text(encoding="utf-8")
+    en_html = (WWW / "en" / "index.html").read_text(encoding="utf-8")
+    es_html = (WWW / "es" / "index.html").read_text(encoding="utf-8")
+
+    assert 'lang="fr"' in fr_html
+    assert "Vedium - Cours de Langues en Ligne en Direct" in fr_html
+    assert 'hreflang="pt-br" href="https://vediums.com/"' in fr_html
+    assert 'hreflang="fr" href="https://vediums.com/fr"' in fr_html
+    assert 'link rel="canonical" href="https://vediums.com/fr"' in fr_html
+
+    # Hero traduzido (above-the-fold), CTAs apontam pro teste de inglês
+    # (único teste de nível formal que existe hoje -- mesmo padrão do EN/ES)
+    assert "Accélérez Votre" in fr_html
+    assert "Faites le test de niveau gratuit" in fr_html
+    assert '/teste-de-nivel-ingles" class="thm-btn"' in fr_html
+    assert "Écrivez-nous sur WhatsApp" in fr_html
+    assert "wa.me/5511911293075" in fr_html
+
+    # Preço em EUR, não R$ nem US$ (público francofalante, adaptação própria
+    # do agente de francês -- mesmo espírito do padrão EN/ES)
+    assert "110 €" in fr_html
+    assert "R$" not in fr_html
+    assert "US$" not in fr_html
+
+    # Teasers do blog apontam pros posts em inglês existentes (ainda não há
+    # blog em francês) -- não pros slugs em português, que o leitor de
+    # francês não conseguiria ler.
+    assert "/blog/yoruba-language-and-culture" in fr_html
+    assert "/blog/yoruba-greetings" in fr_html
+    assert "/blog/yoruba-numbers-1-to-20" in fr_html
+    assert "/blog/niveis-de-ingles-a1-c1" not in fr_html
+
+    # Controller: contexto de idioma pro seletor (site_navbar.html) + mesma
+    # lógica de negócio da home em PT/EN/ES (cursos ao vivo do banco,
+    # redirect app.vediums.com -> /login)
+    assert 'context.lang = "fr"' in fr_py
+    assert 'context.canonical_url = "https://vediums.com/fr"' in fr_py
+    assert 'context.alt_lang_url = "https://vediums.com/"' in fr_py
+    assert "def get_courses()" in fr_py
+    assert "app.vediums.com" in fr_py
+    assert 'redirect_location = "/login"' in fr_py
+
+    # PT, EN e ES ganham o hreflang de volta (reciprocidade)
+    assert 'hreflang="fr" href="https://vediums.com/fr"' in pt_html
+    assert 'hreflang="fr" href="https://vediums.com/fr"' in en_html
+    assert 'hreflang="fr" href="https://vediums.com/fr"' in es_html
+
+    # Roteamento: /fr não pode cair no redirect antigo pra PT (bug que
+    # existiria se a home nova não tivesse sido conectada em hooks.py)
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    assert by_source["/fr-ca"] == "/fr"
+    assert "/fr" not in by_source  # sem self-redirect /fr -> /fr
+    assert "LANGUAGES_WITH_OWN_HOME" in (
+        ROOT / "vedium_core" / "vedium_core" / "hooks.py"
+    ).read_text(encoding="utf-8")
+
+    # Menu principal traduzido (rótulos, ver site_navbar.html vd_menu_i18n)
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    assert '"fr": {"home"' in navbar
+
+    # Sitemap lista a home em francês
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    assert '{"loc": "/fr", "priority"' in sitemap_py
