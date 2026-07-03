@@ -85,6 +85,9 @@ SAME_SLUG_TRANSLATIONS = {
     "como-funciona": {"en"},
     "faq": {"en"},
     "contato": {"en"},
+    "planos": {"en"},
+    "matricula": {"en"},
+    "aula-diagnostica": {"en"},
 }
 
 

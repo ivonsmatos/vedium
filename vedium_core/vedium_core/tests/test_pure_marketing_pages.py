@@ -835,6 +835,87 @@ def test_english_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
     assert "Message sent!" in contato_en
 
 
+def test_english_cta_pages_exist_and_preserve_public_funnel_safety():
+    """Páginas de CTA/conversão (planos, matricula, aula-diagnostica) --
+    3a prioridade do agente translator-en. Mesmo slug sob /en/ (como as
+    páginas de menu). Preserva as garantias de segurança do funil público
+    já testadas em PT: sem alteração de checkout, CTAs corretos pro
+    público internacional (teste de nível em inglês, não o de português).
+    """
+    cta_slugs = ["planos", "matricula", "aula-diagnostica"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in cta_slugs:
+        en_html_path = WWW / "en" / f"{slug}.html"
+        en_py_path = WWW / "en" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert en_html_path.exists(), f"falta www/en/{slug}.html"
+        assert en_py_path.exists(), f"falta www/en/{slug.replace('-', '_')}.py"
+
+        en_html = en_html_path.read_text(encoding="utf-8")
+        en_py = en_py_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="en"' in en_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
+        assert f'"{slug}": {{"en"}}' in hooks
+        assert f'{{"loc": "/en/{slug}"' in sitemap_py
+
+        # Funil publico continua seguro: sem endpoint de checkout real (matricula
+        # MENCIONA "Stripe" como copy informativo -- "Stripe preserved" --
+        # igual a versao em PT, entao so exige ausencia nas outras 2 paginas)
+        if slug != "matricula":
+            assert "stripe" not in en_html.lower()
+        assert "create_checkout" not in en_html
+        assert 'context.lang = "en"' in en_py
+        assert f'context.canonical_url = "https://vediums.com/en/{slug}"' in en_py
+
+    # planos: CTA final aponta pro teste de nivel em ingles e pro
+    # matricula/catalogo em ingles, nao pros equivalentes em PT.
+    planos_en = (WWW / "en" / "planos.html").read_text(encoding="utf-8")
+    assert "/teste-de-nivel-ingles" in planos_en
+    assert "/en/matricula" in planos_en
+    assert "/en/catalogo" in planos_en
+    assert "Choose the light plan" in planos_en
+    assert "Choose the recommended plan" in planos_en
+    assert "Choose the intensive plan" in planos_en
+    assert "wa.me/5511911293075" in planos_en
+
+    # matricula: dropdown com valores de curso intactos (slugs de banco,
+    # nunca traduzidos), so os LABELS mudam pro ingles.
+    matricula_en = (WWW / "en" / "matricula.html").read_text(encoding="utf-8")
+    assert 'value="ingl-s-beginner"' in matricula_en
+    assert 'value="iorub-b-sico"' in matricula_en
+    assert "English Beginner (A1)" in matricula_en
+    assert "Continue on the platform" in matricula_en
+    assert "app.vediums.com/lms/courses/" in matricula_en
+    assert "source=public_funnel" in matricula_en
+    assert "enrollment_intent_click" in matricula_en
+    assert "/api/method" not in matricula_en
+
+    # aula-diagnostica: pre-agendamento nao cria reserva automatica,
+    # mesma garantia da versao em PT, com CTAs em ingles.
+    diagnostica_en = (WWW / "en" / "aula-diagnostica.html").read_text(encoding="utf-8")
+    assert "diagnostic_schedule_click" in diagnostica_en
+    assert "diagnostic_slot_click" in diagnostica_en
+    assert "get_available_diagnostic_slots" in diagnostica_en
+    assert 'data-vd-diagnostic="english"' in diagnostica_en
+    assert 'data-vd-diagnostic="portuguese_foreigners"' in diagnostica_en
+    assert 'data-vd-diagnostic="yoruba"' in diagnostica_en
+    assert "doesn't create an automatic booking, enrollment, charge or plan change" in diagnostica_en
+    assert "vedium_core.public_funnel.get_available_diagnostic_slots" in diagnostica_en
+
+    # Roteamento: sem self-redirect, en-us cai na traducao real
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in cta_slugs:
+        assert f"/en/{slug}" not in by_source
+        assert by_source[f"/en-us/{slug}"] == f"/en/{slug}"
+
+
 def test_english_home_page_exists_and_routes_correctly():
     """Home (/) traduzida pro inglês (www/en/index.html) — a página mais
     visitada do site, primeira prioridade do agente translator-en (ver
