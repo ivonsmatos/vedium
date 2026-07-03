@@ -36,15 +36,15 @@ não se repita.
 | 02 | [Dicionário de Doctypes & Modelo de Domínio](02-dicionario-doctypes.md) | O que cada doctype representa e como se relacionam | ✅ |
 | — | [Arquitetura i18n](03-arquitetura-i18n.md) | Como funciona a tradução do site por idioma | ✅ |
 | 04 | [Ecossistema Frappe Oficial](04-ecossistema-frappe-oficial.md) | Quais apps oficiais Frappe (instalados ou não) resolvem lacunas de operar a escola | ✅ |
-| 03 | Fluxo — Jornada do Aluno | Checkout → matrícula → aula → certificado | ⏳ |
-| 04 | Fluxo — Jornada do Professor | Instrutor → evaluator → slots → aula → certifica | ⏳ |
-| 05 | Fluxo — Agendamento de aulas | 1-a-1 (Evaluator/Meet) vs. grupo (Live Class/Zoom) | ⏳ |
-| 06 | Fluxo — Pagamento, Cupom e Indicação | Checkout custom → webhook → matrícula → recompensa | ⏳ |
-| 07 | Fluxo — Certificação | enable_certification → avaliação → certificado | ⏳ |
-| 08 | Matriz de Integrações | Google, Stripe, e-mail, Zoom, WhatsApp, GTM, IA | ⏳ |
-| 09 | Estado do Ambiente (checklist vivo) | O que está ligado/desligado em produção hoje | ⏳ |
-| 10 | Runbook de Operação & Deploy | Como deploya, footguns, logs, rollback | ⏳ |
-| 11 | Catálogo de Produtos & Preços | Cursos publicados, slugs, níveis, preços, professor | ⏳ |
+| 05 | [Fluxo — Jornada do Aluno](05-fluxo-jornada-do-aluno.md) | Checkout → matrícula → aula → certificado | ✅ |
+| 06 | Fluxo — Jornada do Professor | Instrutor → evaluator → slots → aula → certifica | ⏳ |
+| 07 | Fluxo — Agendamento de aulas | 1-a-1 (Evaluator/Meet) vs. grupo (Live Class/Meet) | ⏳ |
+| 08 | Fluxo — Pagamento, Cupom e Indicação | Checkout custom → webhook → matrícula → recompensa | ⏳ |
+| 09 | Fluxo — Certificação | enable_certification → avaliação → certificado | ⏳ |
+| 10 | Matriz de Integrações | Google, Stripe, e-mail, Zoom, WhatsApp, GTM, IA | ⏳ |
+| 11 | Estado do Ambiente (checklist vivo) | O que está ligado/desligado em produção hoje | ⏳ |
+| 12 | Runbook de Operação & Deploy | Como deploya, footguns, logs, rollback | ⏳ |
+| 13 | Catálogo de Produtos & Preços | Cursos publicados, slugs, níveis, preços, professor | ⏳ |
 
 Legenda: ✅ escrito · ⏳ a escrever
 
