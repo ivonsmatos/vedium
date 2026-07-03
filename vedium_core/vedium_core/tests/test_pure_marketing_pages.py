@@ -1825,45 +1825,39 @@ def test_lesson_slot_doctype_is_not_world_writable():
     assert perms_by_role["System Manager"]["write"] == 1
     assert perms_by_role["LMS Moderator"]["write"] == 1
 
-    # As páginas custom de agendamento full-page (o padrão antigo, inseguro,
-    # que lia o Lesson Slot) continuam removidas.
+    # As páginas custom de agendamento foram removidas em favor do fluxo nativo.
+    # 2026-07-03: uma tentativa de reintroduzir um scheduling.py (casca fina
+    # sobre o fluxo nativo) foi revertida — a solução final é 100% nativa:
+    # ligar LMS Course.paid_certificate + LMS Enrollment.purchased_certificate
+    # (ver test_enrollment_creation_unlocks_native_certification_button e
+    # scripts/migrations/oneshot/enable_native_scheduling_button.py).
     assert not (WWW / "agendar-aula.html").exists()
     assert not (WWW / "minha-agenda.html").exists()
+    assert not (ROOT / "vedium_core" / "vedium_core" / "scheduling.py").exists()
 
 
-def test_scheduling_module_wraps_native_flow_without_touching_lesson_slot_or_billing():
-    """2026-07-03: reintroduzido um scheduling.py — mas é uma coisa diferente
-    do que foi removido. Não lê/escreve Lesson Slot (doctype legado inseguro,
-    ver teste acima) nem cria página custom de agendamento de página inteira;
-    é só uma casca fina que chama o fluxo NATIVO (Course Evaluator +
-    Evaluator Schedule + LMS Certificate Request) depois de checar matrícula,
-    pra contornar o gate `LMS Course.paid_certificate` do LMS (que assume
-    certificado vendido separado — não é o modelo da Vedium, onde o
-    certificado já está incluso no preço pago no Stripe). Ver
-    docs/plataforma/01-mapa-nativo-vs-custom.md e vedium_core/scheduling.py.
-    """
-    scheduling_path = ROOT / "vedium_core" / "vedium_core" / "scheduling.py"
-    assert scheduling_path.exists()
-    code = scheduling_path.read_text(encoding="utf-8")
+def test_enrollment_creation_unlocks_native_certification_button():
+    """2026-07-03: o botão nativo do LMS "Get Certified" (que leva direto ao
+    agendamento de aula com o professor, via Course Evaluator) só aparece
+    quando LMS Course.paid_certificate=1 — e, se a matrícula não tiver
+    purchased_certificate=1, ele manda o aluno pra uma tela de cobrança
+    DENTRO do LMS antes de deixar agendar, cobrando de novo por algo já
+    pago no Stripe. Toda matrícula criada após pagamento precisa nascer com
+    purchased_certificate=1. Ver scripts/migrations/oneshot/
+    enable_native_scheduling_button.py pro backfill do histórico."""
+    api_code = (ROOT / "vedium_core" / "vedium_core" / "api.py").read_text(encoding="utf-8")
+    assert "def create_enrollment_if_paid" in api_code
+    section = api_code.split("def create_enrollment_if_paid", 1)[1].split("\ndef ", 1)[0]
+    assert '"purchased_certificate": 1' in section
 
-    # Não reintroduz o doctype legado inseguro.
-    assert "Lesson Slot" not in code
-    # Não mexe em cobrança/preço de verdade (o docstring do módulo PODE citar
-    # paid_certificate/purchased_certificate como explicação do que evita —
-    # o que checamos aqui é ausência de código que leia/grave preço ou
-    # dispare checkout).
-    for forbidden in ("course_price", "amount_usd", "create_checkout"):
-        assert forbidden not in code
-
-    # Sempre exige login e matrícula antes de deixar agendar.
-    assert 'frappe.session.user == "Guest"' in code
-    assert "LMS Enrollment" in code
-    # Cria o registro NATIVO (não um doctype custom novo).
-    assert '"doctype": "LMS Certificate Request"' in code
-    # Aluno consegue ver e cancelar o que já agendou (não só criar).
-    assert "def list_my_evaluations" in code
-    assert "def cancel_evaluation_slot" in code
-    assert "request.member != frappe.session.user" in code
+    oneshot_path = (
+        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
+        / "enable_native_scheduling_button.py"
+    )
+    assert oneshot_path.exists()
+    oneshot_code = oneshot_path.read_text(encoding="utf-8")
+    assert "paid_certificate" in oneshot_code
+    assert "purchased_certificate" in oneshot_code
 
 
 def test_support_ticket_doctype_is_not_world_writable():

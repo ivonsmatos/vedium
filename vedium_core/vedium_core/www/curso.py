@@ -48,13 +48,6 @@ def get_context(context):
 
     # Check if user is enrolled
     context.is_enrolled = check_enrollment(course_name)
-    # Agendamento de aula 1-a-1 (ver vedium_core/scheduling.py) — só aparece
-    # quando o curso já tem professor+certificação ligados (setup_native_scheduling.py)
-    context.can_schedule = bool(
-        context.is_enrolled
-        and context.course.get("evaluator")
-        and context.course.get("enable_certification")
-    )
 
     # Get related courses
     context.related_courses = get_related_courses(context.course.category, course_name)

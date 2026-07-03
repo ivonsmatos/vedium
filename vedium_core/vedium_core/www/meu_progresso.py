@@ -57,16 +57,8 @@ def get_context(context):
     )
 
     courses = []
-    schedulable_courses = []
     for enrollment in enrollments:
-        course_doc = frappe.db.get_value(
-            "LMS Course",
-            enrollment.course,
-            ["title", "evaluator", "enable_certification"],
-            as_dict=True,
-        ) or frappe._dict()
-        title = course_doc.title or enrollment.course
-        can_schedule = bool(course_doc.evaluator and course_doc.enable_certification)
+        title = frappe.db.get_value("LMS Course", enrollment.course, "title") or enrollment.course
         progress = enrollment.progress or 0
         status = "Concluído" if progress >= 100 else "Em andamento"
         courses.append(
@@ -77,11 +69,8 @@ def get_context(context):
                 "status": status,
                 "cefr": _cefr_from_title(title),
                 "date": frappe.utils.format_datetime(enrollment.creation, "dd/MM/yyyy"),
-                "can_schedule": can_schedule,
             }
         )
-        if can_schedule:
-            schedulable_courses.append({"course": enrollment.course, "title": title})
 
     flashcards = frappe.get_all(
         "LMS Flashcard",
@@ -106,7 +95,6 @@ def get_context(context):
     # docs/plataforma/01-mapa-nativo-vs-custom.md.
 
     context.courses = courses
-    context.schedulable_courses = schedulable_courses
     context.flashcards = flashcards
     context.badges = badges
     context.streak_hint = min(len(badges) + len(flashcards), 30)

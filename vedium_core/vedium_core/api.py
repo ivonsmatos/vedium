@@ -619,6 +619,11 @@ def create_enrollment_if_paid(
             "amount": amount,
             "currency": currency,
             "enrollment_date": frappe.utils.now_datetime(),
+            # O preço do Stripe ja inclui o certificado/avaliacao -- sem isso,
+            # o botao nativo "Get Certified" do LMS manda o aluno pra uma tela
+            # de cobranca separada do proprio LMS (paid_certificate), cobrando
+            # de novo por algo ja pago aqui. Ver docs/plataforma/04.
+            "purchased_certificate": 1,
         }
     )
     enrollment.insert(ignore_permissions=True)
