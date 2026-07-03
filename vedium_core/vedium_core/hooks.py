@@ -118,7 +118,10 @@ def _build_language_prefix_redirects():
     # páginas com tradução real que não são entradas em LANDINGS
     # (controllers próprios, não landing pages).
     pt_to_lang_slug = {
-        "teste-de-nivel": {"en": "portuguese-placement-test"},
+        "teste-de-nivel": {
+            "en": "portuguese-placement-test",
+            "es": "prueba-de-nivel-de-portugues",
+        },
     }
     for slug, landing in LANDINGS.items():
         alt = landing.get("alt") or {}

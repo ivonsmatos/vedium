@@ -228,6 +228,46 @@ def test_placement_test_cta_routes_to_the_right_language_and_subject():
     ).read_text(encoding="utf-8")
 
 
+def test_spanish_menu_and_placement_test_have_reciprocal_hreflang():
+    """Primeiro idioma novo (espanhol) publicado depois da infraestrutura de
+    i18n ter sido generalizada pra N idiomas (2026-07-03). Trava o rótulo
+    "es" no menu principal e o par PT<->ES do teste de nível de português
+    (slug pesquisado como um hispanofalante buscaria, não tradução literal
+    palavra-por-palavra de "teste-de-nivel").
+    """
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    assert '"es": {"home": "Inicio"' in navbar
+
+    es_html_path = WWW / "es" / "prueba-de-nivel-de-portugues.html"
+    es_py_path = WWW / "es" / "prueba_de_nivel_de_portugues.py"
+    pt_html = (WWW / "teste-de-nivel.html").read_text(encoding="utf-8")
+    en_html = (WWW / "en" / "portuguese-placement-test.html").read_text(encoding="utf-8")
+    assert es_html_path.exists()
+    assert es_py_path.exists()
+    es_html = es_html_path.read_text(encoding="utf-8")
+    assert 'lang="es"' in es_html
+    assert 'hreflang="pt-br" href="https://vediums.com/teste-de-nivel"' in es_html
+    assert 'hreflang="en" href="https://vediums.com/en/portuguese-placement-test"' in es_html
+    assert 'hreflang="es" href="https://vediums.com/es/prueba-de-nivel-de-portugues"' in es_html
+    assert 'hreflang="es" href="https://vediums.com/es/prueba-de-nivel-de-portugues"' in pt_html
+    assert 'hreflang="es" href="https://vediums.com/es/prueba-de-nivel-de-portugues"' in en_html
+
+    # Interface em espanhol, perguntas continuam em português (é o idioma avaliado)
+    assert "Gramática y vocabulario" in es_html
+    assert "Comprensión de lectura" in es_html
+    assert "Comprensión auditiva" in es_html
+    assert "Producción escrita" in es_html
+    assert "Producción oral" in es_html
+    assert "plataforma quatro às quinze horas" in es_html  # texto do áudio, em PT
+    assert es_html.count("data-correct=") == 15
+
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    assert '"es": "prueba-de-nivel-de-portugues"' in hooks
+    assert "/es/prueba-de-nivel-de-portugues" in (
+        ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+    ).read_text(encoding="utf-8")
+
+
 def test_foreign_audience_clusters_have_english_pages_with_reciprocal_hreflang():
     """Público de Iorubá e Português-para-estrangeiros (PLE) inclui gente que
     não fala PT (diáspora, expats, executivos estrangeiros) — decisão do
