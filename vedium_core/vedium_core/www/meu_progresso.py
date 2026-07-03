@@ -52,7 +52,7 @@ def get_context(context):
     enrollments = frappe.get_all(
         "LMS Enrollment",
         filters={"member": user},
-        fields=["name", "course", "status", "creation"],
+        fields=["name", "course", "progress", "creation"],
         order_by="creation desc",
     )
 
@@ -67,12 +67,14 @@ def get_context(context):
         ) or frappe._dict()
         title = course_doc.title or enrollment.course
         can_schedule = bool(course_doc.evaluator and course_doc.enable_certification)
+        progress = enrollment.progress or 0
+        status = "Concluído" if progress >= 100 else "Em andamento"
         courses.append(
             {
                 "name": enrollment.name,
                 "course": enrollment.course,
                 "title": title,
-                "status": enrollment.status,
+                "status": status,
                 "cefr": _cefr_from_title(title),
                 "date": frappe.utils.format_datetime(enrollment.creation, "dd/MM/yyyy"),
                 "can_schedule": can_schedule,
