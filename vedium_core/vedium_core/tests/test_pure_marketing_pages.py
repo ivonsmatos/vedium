@@ -478,6 +478,79 @@ def test_ple_cluster_has_spanish_pages_with_reciprocal_hreflang():
     ).read_text(encoding="utf-8")
 
 
+def test_english_cluster_has_spanish_pages_with_reciprocal_hreflang():
+    """Cluster de Inglês (pilar curso-de-ingles-online-en-vivo + 5
+    sub-páginas) traduzido pro espanhol -- último item da ordem de
+    prioridade corrigida (item 5): hispanohablantes que querem aprender
+    inglês com a Vedium. Mesmo padrão de
+    test_english_cluster_has_english_pages_with_reciprocal_hreflang: slug em
+    espanhol pensado como um hispanofalante buscaria (não tradução literal
+    do português nem do inglês), `alt` recíproco nos 3 idiomas, paridade de
+    profundidade de conteúdo.
+    """
+    pairs = [
+        ("curso-de-ingles-online", "curso-de-ingles-online-en-vivo", "/en/portuguese-placement-test"),
+        ("ingles-para-entrevista", "ingles-para-entrevistas-de-trabajo", None),
+        ("ingles-para-programadores", "ingles-para-programadores", None),
+        ("ingles-executivo", "ingles-de-negocios", None),
+        ("ingles-para-viagens", "ingles-para-viajar", None),
+        ("ingles-para-atendimento-ao-cliente", "ingles-para-atencion-al-cliente", None),
+    ]
+    for pt_slug, es_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
+        assert LANDINGS[es_slug]["alt"] == {
+            "pt-BR": pt_slug,
+            "en": LANDINGS[pt_slug]["alt"]["en"],
+            "es": es_slug,
+        }
+        assert LANDINGS[es_slug]["lang"] == "es"
+        if expected_test_url:
+            assert "test_url" in LANDINGS[es_slug], f"{es_slug} precisa de test_url explícito"
+            assert LANDINGS[es_slug]["test_url"] == expected_test_url
+
+        es_html = (WWW / "es" / f"{es_slug}.html").read_text(encoding="utf-8")
+        es_py_path = WWW / "es" / f"{es_slug.replace('-', '_')}.py"
+        assert es_py_path.exists(), f"falta www/es/{es_slug.replace('-', '_')}.py (underscore!)"
+        es_py = es_py_path.read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{es_slug}")' in es_html
+        assert es_slug in es_py
+
+        # conteúdo real, não placeholder (mesmo padrão de profundidade das outras landings)
+        landing = LANDINGS[es_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/es/{es_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # Pilar em espanhol: mesma riqueza de SEO/GEO que os pilares em PT/EN
+    # (prosa longa, preço em US$, grid de cursos ao vivo do banco filtrado
+    # por categoria "Inglês", link building interno pro cluster).
+    pillar = LANDINGS["curso-de-ingles-online-en-vivo"]
+    prose = " ".join(block for sec in pillar["seo_sections"] for block in sec["body"])
+    word_count = len(re.sub(r"<[^>]+>", " ", prose).split())
+    assert word_count >= 700, f"prosa muito curta: {word_count} palavras"
+    assert len(pillar["seo_sections"]) >= 4
+    assert pillar["price_from"] == "120"
+    assert "US$ 120" in pillar["price_display"]
+    assert "R$" not in pillar["price_display"]
+    assert "/es/ingles-para-entrevistas-de-trabajo" in prose
+
+    landing_content = (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    assert '"curso-de-ingles-online-en-vivo": {"category_prefix": "Inglês"}' in landing_content
+
+    pillar_html = (WWW / "es" / "curso-de-ingles-online-en-vivo.html").read_text(encoding="utf-8")
+    assert pillar_html.strip().splitlines()[0] == (
+        '{% set landing = get_marketing_landing("curso-de-ingles-online-en-vivo") %}'
+    )
+
+
 def test_commercial_pages_exist_and_drive_to_public_ctas():
     for slug in COMMERCIAL_SLUGS:
         html_path = WWW / f"{slug}.html"
