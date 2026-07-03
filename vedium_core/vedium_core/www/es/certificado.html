@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Verificar certificado — Vedium</title>
-<meta name="description" content="Verifique a autenticidade de certificados Vedium por código." />
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://vediums.com/certificado" />
+<link rel="canonical" href="https://vediums.com/es/certificado" />
 <link rel="alternate" hreflang="pt-br" href="https://vediums.com/certificado" />
 <link rel="alternate" hreflang="en" href="https://vediums.com/en/certificado" />
 <link rel="alternate" hreflang="es" href="https://vediums.com/es/certificado" />
@@ -23,14 +23,17 @@
 </head>
 <body><div class="page-wrapper">
 {% set vd_page = "certificado" %}
+{% set lang = "es" %}
+{% set canonical_url = "https://vediums.com/es/certificado" %}
+{% set alt_lang_url = "https://vediums.com/certificado" %}
 {% include "templates/includes/site_navbar.html" %}
-<section class="vd-section"><div class="container"><div class="vd-card"><h1 style="color:#111827;">Verificar certificado</h1><p>Digite o código de verificação impresso no certificado Vedium.</p><input id="code" class="vd-input" placeholder="Código de verificação"><button id="verify" class="thm-btn">Verificar</button><div id="result" class="vd-result"></div></div></div></section>
+<section class="vd-section"><div class="container"><div class="vd-card"><h1 style="color:#111827;">Verificar Certificado</h1><p>Ingresa el código de verificación impreso en tu certificado de Vedium.</p><input id="code" class="vd-input" placeholder="Código de verificación"><button id="verify" class="thm-btn">Verificar</button><div id="result" class="vd-result"></div></div></div></section>
 {% include "templates/includes/site_footer.html" %}</div>
 <script>
 document.getElementById('verify').addEventListener('click', function(){
   var code=document.getElementById('code').value.trim();
   var result=document.getElementById('result');
-  if(!code){result.textContent='Informe o código.';return;}
+  if(!code){result.textContent='Por favor, ingresa un código.';return;}
   result.textContent='Verificando...';
   fetch('/api/method/vedium_core.public_funnel.verify_certificate?code='+encodeURIComponent(code), {headers:{Accept:'application/json'}})
     .then(function(r){return r.json();})
@@ -39,10 +42,10 @@ document.getElementById('verify').addEventListener('click', function(){
       if(msg.valid){
         var verifyUrl=location.origin+location.pathname+'?code='+encodeURIComponent(code);
         var qrUrl='https://quickchart.io/qr?size=180&margin=1&text='+encodeURIComponent(verifyUrl);
-        result.innerHTML='<strong>Certificado válido.</strong><br>Aluno: '+msg.student+'<br>Curso: '+msg.course+'<br>Emissão: '+msg.issue_date+'<div class="vd-cert-qr"><img src="'+qrUrl+'" width="150" height="150" alt="QR Code de verificação do certificado"><div><strong>QR Code verificável</strong><br><a href="'+verifyUrl+'">'+verifyUrl+'</a></div></div>';
-      }else{result.textContent='Certificado não encontrado.';}
+        result.innerHTML='<strong>Certificado válido.</strong><br>Estudiante: '+msg.student+'<br>Curso: '+msg.course+'<br>Emitido: '+msg.issue_date+'<div class="vd-cert-qr"><img src="'+qrUrl+'" width="150" height="150" alt="Código QR de verificación del certificado"><div><strong>Código QR verificable</strong><br><a href="'+verifyUrl+'">'+verifyUrl+'</a></div></div>';
+      }else{result.textContent='Certificado no encontrado.';}
     })
-    .catch(function(){result.textContent='Não foi possível verificar agora.';});
+    .catch(function(){result.textContent='No se pudo verificar en este momento.';});
 });
 (function(){
   var params=new URLSearchParams(location.search);

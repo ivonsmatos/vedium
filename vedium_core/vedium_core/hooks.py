@@ -73,6 +73,13 @@ LANGUAGE_PREFIX_FAMILY = {
     "zh-cn": "zh-cn",
 }
 
+# Prefixos de idioma que já têm home PRÓPRIA traduzida (www/<family>/index.html),
+# não mais um placeholder que cai no controller PT. Cada agente de tradução
+# (.claude/agents/translator-*.md) adiciona o código de família aqui ao
+# publicar www/<family>/index.html — ver LANGUAGE_ROUTE_RULES e
+# _build_language_prefix_redirects() logo abaixo, que já leem este set.
+LANGUAGES_WITH_OWN_HOME = {"en", "es"}
+
 # Páginas de PUBLIC_LANGUAGE_ROUTES que ganharam tradução real MANTENDO O
 # MESMO slug (ex.: /en/catalogo -> www/en/catalogo.html, não um slug de SEO
 # diferente como as landings usam). {route: {family, ...}}. Quando uma
@@ -80,19 +87,19 @@ LANGUAGE_PREFIX_FAMILY = {
 # ingles-online), ela não entra aqui — isso é resolvido via LANDINGS[...]["alt"]
 # dentro de _build_language_prefix_redirects(), não aqui.
 SAME_SLUG_TRANSLATIONS = {
-    "catalogo": {"en"},
-    "sobre": {"en"},
-    "como-funciona": {"en"},
-    "faq": {"en"},
-    "contato": {"en"},
-    "planos": {"en"},
-    "matricula": {"en"},
-    "aula-diagnostica": {"en"},
-    "certificado": {"en"},
-    "comunidade": {"en"},
-    "empresas": {"en"},
-    "programa-de-indicacao": {"en"},
-    "carreiras": {"en"},
+    "catalogo": {"en", "es"},
+    "sobre": {"en", "es"},
+    "como-funciona": {"en", "es"},
+    "faq": {"en", "es"},
+    "contato": {"en", "es"},
+    "planos": {"en", "es"},
+    "matricula": {"en", "es"},
+    "aula-diagnostica": {"en", "es"},
+    "certificado": {"en", "es"},
+    "comunidade": {"en", "es"},
+    "empresas": {"en", "es"},
+    "programa-de-indicacao": {"en", "es"},
+    "carreiras": {"en", "es"},
 }
 
 
@@ -102,14 +109,15 @@ def _has_same_slug_translation(prefix, route):
 
 
 LANGUAGE_ROUTE_RULES = (
-    # "en" fica de fora: www/en/index.html é uma home real traduzida (não
-    # mais um placeholder) — deixa a resolução de pasta padrão do Frappe
-    # (www/en/index.html -> rota "en") servir, em vez de forçar pro
-    # controller index (PT) como os demais prefixos ainda sem home própria.
+    # Prefixos com home própria (ver LANGUAGES_WITH_OWN_HOME) ficam de fora:
+    # www/<family>/index.html é uma home real traduzida (não mais um
+    # placeholder) — deixa a resolução de pasta padrão do Frappe
+    # (www/<family>/index.html -> rota "<family>") servir, em vez de forçar
+    # pro controller index (PT) como os demais prefixos ainda sem home própria.
     [
         {"from_route": f"/{prefix}", "to_route": "index"}
         for prefix in LANGUAGE_ROUTE_PREFIXES
-        if prefix != "en"
+        if LANGUAGE_PREFIX_FAMILY.get(prefix, prefix) not in LANGUAGES_WITH_OWN_HOME
     ]
     + [
         {"from_route": f"/{prefix}/{route}", "to_route": route}
@@ -185,14 +193,16 @@ def _build_language_prefix_redirects():
         if prefix == "pt-br":
             continue
         family = LANGUAGE_PREFIX_FAMILY.get(prefix, prefix)
-        # Home do idioma: só "en" tem home traduzida de verdade hoje
-        # (www/en/index.html) — en-us/en-au (mesma família) também caem
-        # nela; os demais idiomas sem home própria ainda voltam pro PT.
-        home_target = "/en" if family == "en" else "/"
-        # Evita redirect /en -> /en (self-redirect): "en" já é servido
-        # direto por www/en/index.html via resolução de pasta do Frappe,
-        # não precisa de entrada aqui (só en-us/en-au, mesma família,
-        # precisam do redirect pra cair na home real).
+        # Home do idioma: só famílias em LANGUAGES_WITH_OWN_HOME têm home
+        # traduzida de verdade (www/<family>/index.html) — prefixos da mesma
+        # família (en-us/en-au, es-ar/es-co) também caem nela; os demais
+        # idiomas sem home própria ainda voltam pro PT.
+        home_target = f"/{family}" if family in LANGUAGES_WITH_OWN_HOME else "/"
+        # Evita redirect /en -> /en (self-redirect): "en"/"es" já são
+        # servidos direto por www/<family>/index.html via resolução de pasta
+        # do Frappe, não precisa de entrada aqui (só os prefixos regionais da
+        # mesma família, ex. en-us/en-au/es-ar/es-co, precisam do redirect
+        # pra cair na home real).
         if f"/{prefix}" != home_target:
             redirects.append({"source": f"/{prefix}", "target": home_target})
         for route in PUBLIC_LANGUAGE_ROUTES:

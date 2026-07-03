@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,19 +7,19 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://vediums.com/catalogo" />
+    <link rel="canonical" href="https://vediums.com/es/catalogo" />
     <link rel="alternate" hreflang="pt-br" href="https://vediums.com/catalogo" />
     <link rel="alternate" hreflang="en" href="https://vediums.com/en/catalogo" />
-<link rel="alternate" hreflang="es" href="https://vediums.com/es/catalogo" />
+    <link rel="alternate" hreflang="es" href="https://vediums.com/es/catalogo" />
     <link rel="alternate" hreflang="x-default" href="https://vediums.com/catalogo" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vediums.com/catalogo" />
+    <meta property="og:url" content="https://vediums.com/es/catalogo" />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Vedium" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
     <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 
-    <!-- Schema.org ItemList (catálogo de cursos) -->
+    <!-- Schema.org ItemList (course catalog) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -116,7 +116,7 @@
                         </div>
                         <div class="page-header__menu">
                             <ul class="page-header__menu-list list-unstyled clearfix">
-                                <li><a href="/">Início</a></li>
+                                <li><a href="/es">Inicio</a></li>
                                 <li class="active">Cursos</li>
                             </ul>
                         </div>
@@ -134,8 +134,8 @@
     <section class="courses-one courses-one--courses">
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">Inglês e Iorubá</span>
-                <h2 class="section-title__title">Explore os Cursos</h2>
+                <span class="section-title__tagline">Inglés y Yoruba</span>
+                <h2 class="section-title__title">Explora Nuestros Cursos</h2>
             </div>
 
             <!-- Filtro por idioma -->
@@ -145,9 +145,9 @@
                         <div class="courses-one--courses__menu-box">
                             <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
                                 <li data-filter=".filter-item" class="active"><span class="filter-text">Todos</span></li>
-                                <li data-filter=".ingles"><span class="filter-text">Inglês</span></li>
-                                <li data-filter=".ioruba"><span class="filter-text">Iorubá</span></li>
-                                <li data-filter=".portugues"><span class="filter-text">Português (PLE)</span></li>
+                                <li data-filter=".ingles"><span class="filter-text">Inglés</span></li>
+                                <li data-filter=".ioruba"><span class="filter-text">Yoruba</span></li>
+                                <li data-filter=".portugues"><span class="filter-text">Portugués (PLE)</span></li>
                             </ul>
                         </div>
                     </div>
@@ -179,8 +179,8 @@
                                 {% endif %}
                                 <p class="courses-one__single-content-price">{{ course.formatted_price }}</p>
                                 <ul class="courses-one__single-content-courses-info list-unstyled">
-                                    {% if course.lesson_count %}<li>{{ course.lesson_count }} Aulas</li>{% endif %}
-                                    {% if course.enrollment_count %}<li>{{ course.enrollment_count }} Alunos</li>{% endif %}
+                                    {% if course.lesson_count %}<li>{{ course.lesson_count }} Lecciones</li>{% endif %}
+                                    {% if course.enrollment_count %}<li>{{ course.enrollment_count }} Estudiantes</li>{% endif %}
                                     {% if course.level_badge %}<li>{{ course.level_badge }}</li>{% endif %}
                                 </ul>
                             </div>
@@ -190,7 +190,7 @@
                     {% endfor %}
                 {% else %}
                     <div class="col-12 text-center py-5">
-                        <p style="font-size:18px;color:#999;">Nenhum curso disponível no momento.</p>
+                        <p style="font-size:18px;color:#999;">No hay cursos disponibles en este momento.</p>
                     </div>
                 {% endif %}
             </div>
@@ -199,14 +199,6 @@
     <!--Courses One End-->
 
     {% include "templates/includes/site_footer.html" %}
-
-
-
-
-
-
-
-
 
     </div><!-- /.page-wrapper -->
 
@@ -219,7 +211,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="/assets/vedium_core/vedium_assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
+                <a href="/es" aria-label="logo image"><img src="/assets/vedium_core/vedium_assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>
@@ -254,7 +246,7 @@
         <!-- /.search-popup__overlay -->
         <div class="search-popup__content">
             <form action="#">
-                <label for="search" class="sr-only">buscar</label><!-- /.sr-only -->
+                <label for="search" class="sr-only">search</label><!-- /.sr-only -->
                 <input type="text" id="search" placeholder="Buscar..." />
                 <button type="submit" aria-label="search submit" class="thm-btn2">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -291,7 +283,6 @@
     <script defer src="/assets/vedium_core/vedium_assets/vendors/twentytwenty/jquery.event.move.js"></script>
 
 
-    
 
     <!-- template js -->
     <script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
@@ -301,5 +292,3 @@
 </body>
 
 </html>
-
-

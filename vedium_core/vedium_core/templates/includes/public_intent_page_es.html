@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{{ page_title }}</title>
 <meta name="description" content="{{ page_description }}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<link rel="canonical" href="https://vediums.com/en/{{ page_slug }}" />
+<link rel="canonical" href="https://vediums.com/es/{{ page_slug }}" />
 <link rel="alternate" hreflang="pt-br" href="https://vediums.com/{{ page_slug }}" />
 <link rel="alternate" hreflang="en" href="https://vediums.com/en/{{ page_slug }}" />
 <link rel="alternate" hreflang="es" href="https://vediums.com/es/{{ page_slug }}" />
@@ -23,13 +23,13 @@
 </head>
 <body><div class="page-wrapper">
 {% set vd_page = page_slug %}
-{% set lang = "en" %}
-{% set canonical_url = "https://vediums.com/en/" + page_slug %}
+{% set lang = "es" %}
+{% set canonical_url = "https://vediums.com/es/" + page_slug %}
 {% set alt_lang_url = "https://vediums.com/" + page_slug %}
 {% include "templates/includes/site_navbar.html" %}
 <section class="vd-section"><div class="container"><div class="row align-items-center" style="row-gap:28px;">
-  <div class="col-lg-6"><span class="vd-pill">{{ page_tagline }}</span><h1 style="color:#111827;">{{ page_h1 }}</h1><p class="vd-muted">{{ page_lead }}</p><ul class="vd-muted" style="padding-left:18px;">{% for item in page_items %}<li>{{ item }}</li>{% endfor %}</ul><div class="vd-cta-row"><a class="thm-btn" href="/teste-de-nivel-ingles">Take the free placement test</a><a class="thm-btn" style="background:#25D366;" href="https://wa.me/5511911293075?text=Hi%2C%20I%20came%20from%20the%20Vedium%20website." target="_blank" rel="noopener">Chat on WhatsApp</a></div></div>
-  <div class="col-lg-6"><div class="vd-card"><h3 style="color:#111827;">Register your interest</h3><input id="name" class="vd-input" placeholder="Name"><input id="email" class="vd-input" placeholder="Email"><input id="phone" class="vd-input" placeholder="WhatsApp"><textarea id="message" class="vd-input" rows="4" placeholder="Tell us a bit about your goal"></textarea><div class="vd-cta-row"><button id="send" class="thm-btn" type="button">Send</button><a class="thm-btn" style="background:#25D366;" href="https://wa.me/5511911293075?text=Hi%2C%20I%27d%20like%20to%20talk%20to%20Vedium." target="_blank" rel="noopener">WhatsApp</a></div><p id="result" class="vd-muted" style="margin-top:12px;"></p></div></div>
+  <div class="col-lg-6"><span class="vd-pill">{{ page_tagline }}</span><h1 style="color:#111827;">{{ page_h1 }}</h1><p class="vd-muted">{{ page_lead }}</p><ul class="vd-muted" style="padding-left:18px;">{% for item in page_items %}<li>{{ item }}</li>{% endfor %}</ul><div class="vd-cta-row"><a class="thm-btn" href="/teste-de-nivel-ingles">Haz la prueba de nivel gratis</a><a class="thm-btn" style="background:#25D366;" href="https://wa.me/5511911293075?text=Hola%2C%20vengo%20del%20sitio%20de%20Vedium." target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div></div>
+  <div class="col-lg-6"><div class="vd-card"><h3 style="color:#111827;">Registra tu interés</h3><input id="name" class="vd-input" placeholder="Nombre"><input id="email" class="vd-input" placeholder="Email"><input id="phone" class="vd-input" placeholder="WhatsApp"><textarea id="message" class="vd-input" rows="4" placeholder="Cuéntanos un poco sobre tu objetivo"></textarea><div class="vd-cta-row"><button id="send" class="thm-btn" type="button">Enviar</button><a class="thm-btn" style="background:#25D366;" href="https://wa.me/5511911293075?text=Hola%2C%20quiero%20hablar%20con%20Vedium." target="_blank" rel="noopener">WhatsApp</a></div><p id="result" class="vd-muted" style="margin-top:12px;"></p></div></div>
 </div></div></section>
 {% include "templates/includes/site_footer.html" %}</div>
 <script>
@@ -42,11 +42,11 @@
   });
   document.getElementById('send').addEventListener('click', function(){
     var result=document.getElementById('result');
-    result.textContent='Sending...';
+    result.textContent='Enviando...';
     var body={intent:'{{ page_intent }}',source:location.pathname,name:document.getElementById('name').value,email:document.getElementById('email').value,phone:document.getElementById('phone').value,message:document.getElementById('message').value};
     fetch('/api/method/vedium_core.public_funnel.submit_public_intent',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
-      .then(function(r){return r.json();}).then(function(){result.textContent='Received. The Vedium team will follow up on your interest.';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_intent_submit',intent:'{{ page_intent }}',location:location.pathname});})
-      .catch(function(){result.textContent='We could not send this right now. You can also reach us on WhatsApp.';});
+      .then(function(r){return r.json();}).then(function(){result.textContent='Recibido. El equipo de Vedium dará seguimiento a tu interés.';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_intent_submit',intent:'{{ page_intent }}',location:location.pathname});})
+      .catch(function(){result.textContent='No pudimos enviarlo en este momento. También puedes escribirnos por WhatsApp.';});
   });
 })();
 </script>

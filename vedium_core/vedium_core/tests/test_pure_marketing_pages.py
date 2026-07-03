@@ -914,6 +914,11 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     ainda não têm tradução, ex. futuras). carreiras usa templates/web.html
     (tema genérico do Frappe, sem controle de <head> customizado -- por
     isso não tem hreflang, mesma limitação da versão em PT).
+
+    Checagem de SAME_SLUG_TRANSLATIONS por subconjunto (não igualdade
+    exata): espanhol ganhou as mesmas páginas depois (ver
+    test_spanish_institutional_pages_exist_with_reciprocal_hreflang), então
+    esses sets legitimamente têm {"en", "es"} agora.
     """
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
@@ -931,7 +936,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
-        assert f'"{slug}": {{"en"}}' in hooks
+        assert f'"{slug}": {{"en", "es"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
     # comunidade + empresas: template compartilhado public_intent_page(_en).html
@@ -955,7 +960,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert 'public_intent_page_en.html' in en_html
         assert "page_has_en_translation = true" in pt_html
         assert "get_context" in en_py
-        assert f'"{slug}": {{"en"}}' in hooks
+        assert f'"{slug}": {{"en", "es"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT)
@@ -967,7 +972,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Submit application" in carreiras_en
     assert "vedium_core.careers.submit_candidatura" in carreiras_en
     assert 'context.canonical_url = "https://vediums.com/en/carreiras"' in carreiras_en_py
-    assert '"carreiras": {"en"}' in hooks
+    assert '"carreiras": {"en", "es"}' in hooks
     assert '{"loc": "/en/carreiras"' in sitemap_py
 
     # Roteamento: sem self-redirect, en-us cai na traducao real
@@ -1004,7 +1009,7 @@ def test_english_cta_pages_exist_and_preserve_public_funnel_safety():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
-        assert f'"{slug}": {{"en"}}' in hooks
+        assert f'"{slug}": {{"en", "es"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
         # Funil publico continua seguro: sem endpoint de checkout real (matricula
@@ -1329,8 +1334,11 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     # Cluster de Inglês ganhou tradução real depois (mesmo racional do Iorubá
     # acima: slug diferente, learn-english-online) -- redireciona pra ela.
     assert by_source["/en/curso-de-ingles-online"] == "/en/learn-english-online"
+    # Espanhol ganhou tradução real depois (mesmo slug, SAME_SLUG_TRANSLATIONS
+    # agora inclui "es") -- /es-ar/planos (família es) cai na página real em
+    # espanhol, não mais no canônico em PT.
+    assert by_source["/es-ar/planos"] == "/es/planos"
     # Sem tradução real (idiomas ainda sem conteúdo) -> PT
-    assert by_source["/es-ar/planos"] == "/planos"
     assert by_source["/de/contato"] == "/contato"
 
     # /en/curso/<slug> (com barra, curso individual) já tem rota + tradução
@@ -1725,3 +1733,291 @@ def test_pricing_value_page_has_real_prices_and_no_stale_redirect():
     # Sitemap e footer apontam pra ela.
     assert '"/quanto-custa-curso-de-idiomas"' in sitemap_py
     assert '<a href="/quanto-custa-curso-de-idiomas">' in footer
+
+
+def test_spanish_home_page_exists_and_routes_correctly():
+    """Home (/) traduzida pro espanhol (www/es/index.html) — retomando o
+    trabalho de tradução em ES na MESMA ordem de prioridade usada pelo
+    agente de inglês (home primeiro). Espelha
+    test_english_home_page_exists_and_routes_correctly: existência dos
+    arquivos, conteúdo real (não placeholder), roteamento (/es não pode
+    cair no redirect antigo pra PT) e reciprocidade de hreflang.
+    """
+    es_html_path = WWW / "es" / "index.html"
+    es_py_path = WWW / "es" / "index.py"
+    assert es_html_path.exists()
+    assert es_py_path.exists()
+
+    es_html = es_html_path.read_text(encoding="utf-8")
+    es_py = es_py_path.read_text(encoding="utf-8")
+    pt_html = (WWW / "index.html").read_text(encoding="utf-8")
+    en_html = (WWW / "en" / "index.html").read_text(encoding="utf-8")
+
+    assert 'lang="es"' in es_html
+    assert "Vedium - Cursos de Idiomas Online en Vivo" in es_html
+    assert 'hreflang="pt-br" href="https://vediums.com/"' in es_html
+    assert 'hreflang="es" href="https://vediums.com/es"' in es_html
+    assert 'link rel="canonical" href="https://vediums.com/es"' in es_html
+
+    # Hero traduzido (above-the-fold), CTAs apontam pro teste de inglês
+    # (único teste de nível formal que existe hoje -- mesmo padrão do EN)
+    assert "Acelera Tu" in es_html
+    assert "Haz la prueba de nivel gratis" in es_html
+    assert '/teste-de-nivel-ingles" class="thm-btn"' in es_html
+    assert "Escríbenos por WhatsApp" in es_html
+    assert "wa.me/5511911293075" in es_html
+
+    # Preço em US$, não R$ (público internacional, mesmo padrão do EN)
+    assert "US$ 120" in es_html
+    assert "R$" not in es_html
+
+    # Teasers do blog apontam pros posts em inglês existentes (ainda não há
+    # blog em espanhol) -- não pros slugs em português, que o leitor de
+    # espanhol não conseguiria ler.
+    assert "/blog/yoruba-language-and-culture" in es_html
+    assert "/blog/yoruba-greetings" in es_html
+    assert "/blog/yoruba-numbers-1-to-20" in es_html
+    assert "/blog/niveis-de-ingles-a1-c1" not in es_html
+
+    # Controller: contexto de idioma pro seletor (site_navbar.html) + mesma
+    # lógica de negócio da home em PT/EN (cursos ao vivo do banco, redirect
+    # app.vediums.com -> /login)
+    assert 'context.lang = "es"' in es_py
+    assert 'context.canonical_url = "https://vediums.com/es"' in es_py
+    assert 'context.alt_lang_url = "https://vediums.com/"' in es_py
+    assert "def get_courses()" in es_py
+    assert "app.vediums.com" in es_py
+    assert 'redirect_location = "/login"' in es_py
+
+    # PT e EN ganham o hreflang de volta (reciprocidade)
+    assert 'hreflang="es" href="https://vediums.com/es"' in pt_html
+    assert 'hreflang="es" href="https://vediums.com/es"' in en_html
+
+    # Roteamento: /es não pode cair no redirect antigo pra PT (bug que
+    # existiria se a home nova não tivesse sido conectada em hooks.py)
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    assert by_source["/es-ar"] == "/es"
+    assert by_source["/es-co"] == "/es"
+    assert "/es" not in by_source  # sem self-redirect /es -> /es
+    assert "LANGUAGES_WITH_OWN_HOME" in (
+        ROOT / "vedium_core" / "vedium_core" / "hooks.py"
+    ).read_text(encoding="utf-8")
+
+    # Sitemap lista a home em espanhol
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    assert '{"loc": "/es", "priority"' in sitemap_py
+
+
+def test_spanish_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
+    """Páginas do menu principal (catalogo, sobre, como-funciona, faq,
+    contato) traduzidas pro espanhol -- mesmo padrão de
+    test_english_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang:
+    mantêm o MESMO slug sob /es/ (ex. /es/catalogo), registrado em
+    SAME_SLUG_TRANSLATIONS.
+    """
+    menu_slugs = ["catalogo", "sobre", "como-funciona", "faq", "contato"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in menu_slugs:
+        es_html_path = WWW / "es" / f"{slug}.html"
+        pt_html_path = WWW / f"{slug}.html"
+        en_html_path = WWW / "en" / f"{slug}.html"
+        assert es_html_path.exists(), f"falta www/es/{slug}.html"
+        assert pt_html_path.exists()
+
+        es_html = es_html_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+        en_html = en_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="es"' in es_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in es_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in en_html
+
+        assert f'"{slug}": {{"en", "es"}}' in hooks
+        assert f'{{"loc": "/es/{slug}"' in sitemap_py
+
+    # catalogo/como-funciona/faq têm controller próprio; contato e sobre não
+    # têm .py em nenhum idioma (conteúdo estático) -- não regride o padrão.
+    for slug in ["catalogo", "como-funciona", "faq"]:
+        es_py_path = WWW / "es" / f"{slug.replace('-', '_')}.py"
+        assert es_py_path.exists(), f"falta www/es/{slug.replace('-', '_')}.py"
+    assert not (WWW / "es" / "contato.py").exists()
+    assert not (WWW / "es" / "sobre.py").exists()
+
+    # Roteamento: /es/catalogo não pode ser interceptado pelo controller PT
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in menu_slugs:
+        assert f"/es/{slug}" not in by_source  # sem self-redirect
+        assert by_source[f"/es-ar/{slug}"] == f"/es/{slug}"
+        assert by_source[f"/es-co/{slug}"] == f"/es/{slug}"
+
+    rules_by_from = {r["from_route"]: r["to_route"] for r in vedium_hooks.LANGUAGE_ROUTE_RULES}
+    for slug in menu_slugs:
+        assert rules_by_from.get(f"/es/{slug}") is None
+        assert rules_by_from.get(f"/es-ar/{slug}") is None
+
+    # Conteúdo real (adaptación editorial, não tradução literal) — CTAs
+    # apontam pro teste de nível de inglês (único formal) e pro catálogo em
+    # espanhol, não pro PT.
+    catalogo_es = (WWW / "es" / "catalogo.html").read_text(encoding="utf-8")
+    sobre_es = (WWW / "es" / "sobre.html").read_text(encoding="utf-8")
+    como_funciona_es = (WWW / "es" / "como-funciona.html").read_text(encoding="utf-8")
+    faq_es = (WWW / "es" / "faq.html").read_text(encoding="utf-8")
+    contato_es = (WWW / "es" / "contato.html").read_text(encoding="utf-8")
+
+    assert "/teste-de-nivel-ingles" in como_funciona_es
+    assert "/teste-de-nivel-ingles" in faq_es
+    assert "/es/catalogo" in sobre_es
+    assert "Explora Nuestros Cursos" in catalogo_es
+    assert "Enviar Mensaje" in contato_es
+    assert "¡Mensaje enviado!" in contato_es
+
+
+def test_spanish_cta_pages_exist_and_preserve_public_funnel_safety():
+    """Páginas de CTA/conversão (planos, matricula, aula-diagnostica)
+    traduzidas pro espanhol -- mesmo padrão de
+    test_english_cta_pages_exist_and_preserve_public_funnel_safety. Mesmo
+    slug sob /es/. Preserva as garantias de segurança do funil público já
+    testadas em PT/EN: sem alteração de checkout.
+    """
+    cta_slugs = ["planos", "matricula", "aula-diagnostica"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in cta_slugs:
+        es_html_path = WWW / "es" / f"{slug}.html"
+        es_py_path = WWW / "es" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert es_html_path.exists(), f"falta www/es/{slug}.html"
+        assert es_py_path.exists(), f"falta www/es/{slug.replace('-', '_')}.py"
+
+        es_html = es_html_path.read_text(encoding="utf-8")
+        es_py = es_py_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="es"' in es_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
+        assert f'"{slug}": {{"en", "es"}}' in hooks
+        assert f'{{"loc": "/es/{slug}"' in sitemap_py
+
+        if slug != "matricula":
+            assert "stripe" not in es_html.lower()
+        assert "create_checkout" not in es_html
+        assert 'context.lang = "es"' in es_py
+        assert f'context.canonical_url = "https://vediums.com/es/{slug}"' in es_py
+
+    # planos: CTA final aponta pro teste de nivel em ingles e pro
+    # matricula/catalogo em espanhol, nao pros equivalentes em PT.
+    planos_es = (WWW / "es" / "planos.html").read_text(encoding="utf-8")
+    assert "/teste-de-nivel-ingles" in planos_es
+    assert "/es/matricula" in planos_es
+    assert "/es/catalogo" in planos_es
+    assert "Elegir el plan ligero" in planos_es
+    assert "Elegir el plan recomendado" in planos_es
+    assert "Elegir el plan intensivo" in planos_es
+    assert "wa.me/5511911293075" in planos_es
+
+    # matricula: dropdown com valores de curso intactos (slugs de banco,
+    # nunca traduzidos), so os LABELS mudam pro espanhol.
+    matricula_es = (WWW / "es" / "matricula.html").read_text(encoding="utf-8")
+    assert 'value="ingl-s-beginner"' in matricula_es
+    assert 'value="iorub-b-sico"' in matricula_es
+    assert "Continuar en la plataforma" in matricula_es
+    assert "app.vediums.com/lms/courses/" in matricula_es
+    assert "source=public_funnel" in matricula_es
+    assert "enrollment_intent_click" in matricula_es
+    assert "/api/method" not in matricula_es
+
+    # aula-diagnostica: pre-agendamento nao cria reserva automatica.
+    diagnostica_es = (WWW / "es" / "aula-diagnostica.html").read_text(encoding="utf-8")
+    assert "diagnostic_schedule_click" in diagnostica_es
+    assert "diagnostic_slot_click" in diagnostica_es
+    assert "get_available_diagnostic_slots" in diagnostica_es
+    assert 'data-vd-diagnostic="english"' in diagnostica_es
+    assert 'data-vd-diagnostic="portuguese_foreigners"' in diagnostica_es
+    assert 'data-vd-diagnostic="yoruba"' in diagnostica_es
+    assert "no crea una reserva automática, matrícula, cargo o cambio de plan" in diagnostica_es
+    assert "vedium_core.public_funnel.get_available_diagnostic_slots" in diagnostica_es
+
+    # Roteamento: sem self-redirect, es-ar cai na traducao real
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in cta_slugs:
+        assert f"/es/{slug}" not in by_source
+        assert by_source[f"/es-ar/{slug}"] == f"/es/{slug}"
+
+
+def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
+    """Páginas institucionais restantes (certificado, comunidade,
+    programa-de-indicacao, empresas, carreiras) traduzidas pro espanhol --
+    mesmo padrão de test_english_institutional_pages_exist_with_reciprocal_hreflang.
+    """
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    # certificado + programa-de-indicacao: página própria, com hreflang direto
+    for slug in ["certificado", "programa-de-indicacao"]:
+        es_html_path = WWW / "es" / f"{slug}.html"
+        es_py_path = WWW / "es" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert es_html_path.exists(), f"falta www/es/{slug}.html"
+        assert es_py_path.exists(), f"falta www/es/{slug.replace('-', '_')}.py"
+        es_html = es_html_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+        assert 'lang="es"' in es_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
+        assert f'"{slug}": {{"en", "es"}}' in hooks
+        assert f'{{"loc": "/es/{slug}"' in sitemap_py
+
+    # comunidade + empresas: template compartilhado public_intent_page(_es).html
+    template_es = (TPL / "public_intent_page_es.html").read_text(encoding="utf-8")
+    template_pt = (TPL / "public_intent_page.html").read_text(encoding="utf-8")
+    assert "page_has_es_translation" in template_pt
+    assert 'hreflang="es" href="https://vediums.com/es/{{ page_slug }}"' in template_pt
+    assert "vedium_core.public_funnel.submit_public_intent" in template_es
+    assert "/teste-de-nivel-ingles" in template_es
+    assert "wa.me/5511911293075" in template_es
+    for slug, intent in {"comunidade": "community", "empresas": "b2b"}.items():
+        es_html_path = WWW / "es" / f"{slug}.html"
+        es_py_path = WWW / "es" / f"{slug.replace('-', '_')}.py"
+        pt_html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
+        assert es_html_path.exists()
+        assert es_py_path.exists()
+        es_html = es_html_path.read_text(encoding="utf-8")
+        es_py = es_py_path.read_text(encoding="utf-8")
+        assert f'page_slug = "{slug}"' in es_html
+        assert f'page_intent = "{intent}"' in es_html
+        assert 'public_intent_page_es.html' in es_html
+        assert "page_has_es_translation = true" in pt_html
+        assert "get_context" in es_py
+        assert f'"{slug}": {{"en", "es"}}' in hooks
+        assert f'{{"loc": "/es/{slug}"' in sitemap_py
+
+    # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN)
+    assert (WWW / "es" / "carreiras.html").exists()
+    assert (WWW / "es" / "carreiras.py").exists()
+    carreiras_es = (WWW / "es" / "carreiras.html").read_text(encoding="utf-8")
+    carreiras_es_py = (WWW / "es" / "carreiras.py").read_text(encoding="utf-8")
+    assert "Profesor de Inglés" in carreiras_es_py
+    assert "Enviar postulación" in carreiras_es
+    assert "vedium_core.careers.submit_candidatura" in carreiras_es
+    assert 'context.canonical_url = "https://vediums.com/es/carreiras"' in carreiras_es_py
+    assert '"carreiras": {"en", "es"}' in hooks
+    assert '{"loc": "/es/carreiras"' in sitemap_py
+
+    # Roteamento: sem self-redirect, es-ar cai na traducao real
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in ["certificado", "comunidade", "programa-de-indicacao", "empresas", "carreiras"]:
+        assert f"/es/{slug}" not in by_source
+        assert by_source[f"/es-ar/{slug}"] == f"/es/{slug}"

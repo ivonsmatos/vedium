@@ -79,10 +79,24 @@ STATIC_URLS = [
     {"loc": "/en/empresas", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/en/carreiras", "priority": "0.4", "changefreq": "monthly"},
     # Páginas em espanhol (SEO internacional)
+    {"loc": "/es", "priority": "0.9", "changefreq": "weekly"},
+    {"loc": "/es/catalogo", "priority": "0.8", "changefreq": "daily"},
+    {"loc": "/es/sobre", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/como-funciona", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/es/faq", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/contato", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/es/planos", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/es/matricula", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/es/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/es/prueba-de-nivel-de-portugues", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/curso-de-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/es/yoruba-para-principiantes", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/yoruba-cultura-y-ancestralidad", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/certificado", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/es/comunidade", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/es/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/es/empresas", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/es/carreiras", "priority": "0.4", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):
