@@ -87,11 +87,11 @@ LANGUAGES_WITH_OWN_HOME = {"en", "es", "fr", "de"}
 # ingles-online), ela não entra aqui — isso é resolvido via LANDINGS[...]["alt"]
 # dentro de _build_language_prefix_redirects(), não aqui.
 SAME_SLUG_TRANSLATIONS = {
-    "catalogo": {"en", "es", "fr"},
-    "sobre": {"en", "es", "fr"},
-    "como-funciona": {"en", "es", "fr"},
-    "faq": {"en", "es", "fr"},
-    "contato": {"en", "es", "fr"},
+    "catalogo": {"en", "es", "fr", "de"},
+    "sobre": {"en", "es", "fr", "de"},
+    "como-funciona": {"en", "es", "fr", "de"},
+    "faq": {"en", "es", "fr", "de"},
+    "contato": {"en", "es", "fr", "de"},
     "planos": {"en", "es", "fr"},
     "matricula": {"en", "es", "fr"},
     "aula-diagnostica": {"en", "es", "fr"},

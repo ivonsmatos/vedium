@@ -1466,8 +1466,11 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     # agora inclui "es") -- /es-ar/planos (família es) cai na página real em
     # espanhol, não mais no canônico em PT.
     assert by_source["/es-ar/planos"] == "/es/planos"
-    # Sem tradução real (idiomas ainda sem conteúdo) -> PT
-    assert by_source["/de/contato"] == "/contato"
+    # Sem tradução real (idiomas ainda sem conteúdo) -> PT. /de/contato
+    # ganhou tradução real depois (mesmo racional do es-ar/planos acima,
+    # SAME_SLUG_TRANSLATIONS agora inclui "de" pro menu principal) --
+    # usamos /de/planos aqui, que ainda não foi traduzido nesta fase.
+    assert by_source["/de/planos"] == "/planos"
 
     # /en/curso/<slug> (com barra, curso individual) já tem rota + tradução
     # de verdade (curso.py) — não pode ter redirect genérico atropelando.
@@ -1966,10 +1969,11 @@ def test_spanish_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in en_html
 
-        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_main_menu_pages_...)
-        # para os mesmos 5 slugs -- checa que "es" continua presente no set,
-        # sem travar o conjunto exato (que agora inclui mais idiomas).
-        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" e "de" (test_french_main_menu_
+        # pages_..., test_german_main_menu_pages_...) para os mesmos 5
+        # slugs -- checa via dict real que "es" continua presente no set,
+        # sem travar o conjunto exato de idiomas (que só cresce).
+        assert "es" in vedium_hooks.SAME_SLUG_TRANSLATIONS[slug]
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
     # catalogo/como-funciona/faq têm controller próprio; contato e sobre não
@@ -2271,7 +2275,10 @@ def test_french_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in en_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in es_html
 
-        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "de" (test_german_main_menu_pages_...)
+        # para os mesmos 5 slugs -- checa via dict real que "fr" continua
+        # presente no set, sem travar o conjunto exato de idiomas.
+        assert "fr" in vedium_hooks.SAME_SLUG_TRANSLATIONS[slug]
         assert f'{{"loc": "/fr/{slug}"' in sitemap_py
 
     # catalogo/como-funciona/faq têm controller próprio; contato e sobre não
@@ -2683,3 +2690,78 @@ def test_german_home_page_exists_and_routes_correctly():
     # Sitemap lista a home em alemão
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
     assert '{"loc": "/de", "priority"' in sitemap_py
+
+
+def test_german_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
+    """Páginas do menu principal (catalogo, sobre, como-funciona, faq,
+    contato) traduzidas pro alemão -- mesmo padrão de
+    test_french_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang:
+    mantêm o MESMO slug sob /de/ (ex. /de/catalogo), registrado em
+    SAME_SLUG_TRANSLATIONS.
+    """
+    menu_slugs = ["catalogo", "sobre", "como-funciona", "faq", "contato"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in menu_slugs:
+        de_html_path = WWW / "de" / f"{slug}.html"
+        pt_html_path = WWW / f"{slug}.html"
+        en_html_path = WWW / "en" / f"{slug}.html"
+        es_html_path = WWW / "es" / f"{slug}.html"
+        fr_html_path = WWW / "fr" / f"{slug}.html"
+        assert de_html_path.exists(), f"falta www/de/{slug}.html"
+        assert pt_html_path.exists()
+
+        de_html = de_html_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+        en_html = en_html_path.read_text(encoding="utf-8")
+        es_html = es_html_path.read_text(encoding="utf-8")
+        fr_html = fr_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="de"' in de_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in de_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in de_html
+        assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in de_html
+        assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in de_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in de_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in pt_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in en_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in es_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in fr_html
+
+        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'{{"loc": "/de/{slug}"' in sitemap_py
+
+    # catalogo/como-funciona/faq têm controller próprio; contato e sobre não
+    # têm .py em nenhum idioma (conteúdo estático) -- não regride o padrão.
+    for slug in ["catalogo", "como-funciona", "faq"]:
+        de_py_path = WWW / "de" / f"{slug.replace('-', '_')}.py"
+        assert de_py_path.exists(), f"falta www/de/{slug.replace('-', '_')}.py"
+    assert not (WWW / "de" / "contato.py").exists()
+    assert not (WWW / "de" / "sobre.py").exists()
+
+    # Roteamento: /de/catalogo não pode ser interceptado pelo controller PT
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in menu_slugs:
+        assert f"/de/{slug}" not in by_source  # sem self-redirect
+
+    rules_by_from = {r["from_route"]: r["to_route"] for r in vedium_hooks.LANGUAGE_ROUTE_RULES}
+    for slug in menu_slugs:
+        assert rules_by_from.get(f"/de/{slug}") is None
+
+    # Conteúdo real (adaptação editorial, não tradução literal) — CTAs
+    # apontam pro teste de nível de inglês (único formal) e pro catálogo em
+    # alemão, não pro PT.
+    catalogo_de = (WWW / "de" / "catalogo.html").read_text(encoding="utf-8")
+    sobre_de = (WWW / "de" / "sobre.html").read_text(encoding="utf-8")
+    como_funciona_de = (WWW / "de" / "como-funciona.html").read_text(encoding="utf-8")
+    faq_de = (WWW / "de" / "faq.html").read_text(encoding="utf-8")
+    contato_de = (WWW / "de" / "contato.html").read_text(encoding="utf-8")
+
+    assert "/teste-de-nivel-ingles" in como_funciona_de
+    assert "/teste-de-nivel-ingles" in faq_de
+    assert "/de/catalogo" in sobre_de
+    assert "Entdecken Sie Unsere Kurse" in catalogo_de
+    assert "Nachricht Senden" in contato_de
+    assert "Nachricht gesendet!" in contato_de

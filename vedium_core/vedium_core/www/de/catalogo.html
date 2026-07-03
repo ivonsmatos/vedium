@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,21 +7,21 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://vediums.com/catalogo" />
+    <link rel="canonical" href="https://vediums.com/de/catalogo" />
     <link rel="alternate" hreflang="pt-br" href="https://vediums.com/catalogo" />
     <link rel="alternate" hreflang="en" href="https://vediums.com/en/catalogo" />
-<link rel="alternate" hreflang="es" href="https://vediums.com/es/catalogo" />
-<link rel="alternate" hreflang="fr" href="https://vediums.com/fr/catalogo" />
+    <link rel="alternate" hreflang="es" href="https://vediums.com/es/catalogo" />
+    <link rel="alternate" hreflang="fr" href="https://vediums.com/fr/catalogo" />
     <link rel="alternate" hreflang="de" href="https://vediums.com/de/catalogo" />
     <link rel="alternate" hreflang="x-default" href="https://vediums.com/catalogo" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vediums.com/catalogo" />
+    <meta property="og:url" content="https://vediums.com/de/catalogo" />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="Vedium" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -29,7 +29,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
     <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 
-    <!-- Schema.org ItemList (catálogo de cursos) -->
+    <!-- Schema.org ItemList (course catalog) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -114,12 +114,12 @@
                 <div class="col-xl-12">
                     <div class="page-header__wrapper clearfix">
                         <div class="page-header__title">
-                            <h2>Cursos</h2>
+                            <h2>Kurse</h2>
                         </div>
                         <div class="page-header__menu">
                             <ul class="page-header__menu-list list-unstyled clearfix">
-                                <li><a href="/">Início</a></li>
-                                <li class="active">Cursos</li>
+                                <li><a href="/de">Startseite</a></li>
+                                <li class="active">Kurse</li>
                             </ul>
                         </div>
                     </div>
@@ -136,8 +136,8 @@
     <section class="courses-one courses-one--courses">
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">Inglês e Iorubá</span>
-                <h2 class="section-title__title">Explore os Cursos</h2>
+                <span class="section-title__tagline">Englisch und Yoruba</span>
+                <h2 class="section-title__title">Entdecken Sie Unsere Kurse</h2>
             </div>
 
             <!-- Filtro por idioma -->
@@ -146,10 +146,10 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="courses-one--courses__menu-box">
                             <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
-                                <li data-filter=".filter-item" class="active"><span class="filter-text">Todos</span></li>
-                                <li data-filter=".ingles"><span class="filter-text">Inglês</span></li>
-                                <li data-filter=".ioruba"><span class="filter-text">Iorubá</span></li>
-                                <li data-filter=".portugues"><span class="filter-text">Português (PLE)</span></li>
+                                <li data-filter=".filter-item" class="active"><span class="filter-text">Alle</span></li>
+                                <li data-filter=".ingles"><span class="filter-text">Englisch</span></li>
+                                <li data-filter=".ioruba"><span class="filter-text">Yoruba</span></li>
+                                <li data-filter=".portugues"><span class="filter-text">Portugiesisch (PLE)</span></li>
                             </ul>
                         </div>
                     </div>
@@ -181,8 +181,8 @@
                                 {% endif %}
                                 <p class="courses-one__single-content-price">{{ course.formatted_price }}</p>
                                 <ul class="courses-one__single-content-courses-info list-unstyled">
-                                    {% if course.lesson_count %}<li>{{ course.lesson_count }} Aulas</li>{% endif %}
-                                    {% if course.enrollment_count %}<li>{{ course.enrollment_count }} Alunos</li>{% endif %}
+                                    {% if course.lesson_count %}<li>{{ course.lesson_count }} Lektionen</li>{% endif %}
+                                    {% if course.enrollment_count %}<li>{{ course.enrollment_count }} Lernende</li>{% endif %}
                                     {% if course.level_badge %}<li>{{ course.level_badge }}</li>{% endif %}
                                 </ul>
                             </div>
@@ -192,7 +192,7 @@
                     {% endfor %}
                 {% else %}
                     <div class="col-12 text-center py-5">
-                        <p style="font-size:18px;color:#999;">Nenhum curso disponível no momento.</p>
+                        <p style="font-size:18px;color:#999;">Derzeit sind keine Kurse verfügbar.</p>
                     </div>
                 {% endif %}
             </div>
@@ -201,14 +201,6 @@
     <!--Courses One End-->
 
     {% include "templates/includes/site_footer.html" %}
-
-
-
-
-
-
-
-
 
     </div><!-- /.page-wrapper -->
 
@@ -221,7 +213,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="/assets/vedium_core/vedium_assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
+                <a href="/de" aria-label="logo image"><img src="/assets/vedium_core/vedium_assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>
@@ -256,8 +248,8 @@
         <!-- /.search-popup__overlay -->
         <div class="search-popup__content">
             <form action="#">
-                <label for="search" class="sr-only">buscar</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Buscar..." />
+                <label for="search" class="sr-only">search</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Suchen..." />
                 <button type="submit" aria-label="search submit" class="thm-btn2">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
@@ -293,7 +285,6 @@
     <script defer src="/assets/vedium_core/vedium_assets/vendors/twentytwenty/jquery.event.move.js"></script>
 
 
-    
 
     <!-- template js -->
     <script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
@@ -303,5 +294,3 @@
 </body>
 
 </html>
-
-
