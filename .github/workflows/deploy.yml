@@ -41,6 +41,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
           rsync -az --delete --omit-dir-times \
+            --include='vedium_core/vedium_core/public/legal/*.pdf' \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='__pycache__' \
