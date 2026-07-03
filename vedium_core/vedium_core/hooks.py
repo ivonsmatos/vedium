@@ -57,6 +57,42 @@ PUBLIC_LANGUAGE_ROUTES = (
     "preparatorio-celpe-bras",
 )
 
+# Cada prefixo de rota mapeia pra um código de idioma "de família" —
+# en/en-us/en-au são todos "en" (mesmo conteúdo, só a bandeira regional
+# muda); es/es-ar/es-co são todos "es"; fr/fr-ca são todos "fr". Precisa
+# bater com o código usado em LANDINGS[...]["alt"] (ex.: "es", não "es-AR").
+# Definido ANTES de LANGUAGE_ROUTE_RULES (que agora depende dela via
+# _has_same_slug_translation) — ver uso mais abaixo também em
+# _build_language_prefix_redirects().
+LANGUAGE_PREFIX_FAMILY = {
+    "en": "en", "en-us": "en", "en-au": "en",
+    "es-ar": "es", "es-co": "es", "es": "es",
+    "fr-ca": "fr", "fr": "fr",
+    "de": "de",
+    "ru": "ru",
+    "zh-cn": "zh-cn",
+}
+
+# Páginas de PUBLIC_LANGUAGE_ROUTES que ganharam tradução real MANTENDO O
+# MESMO slug (ex.: /en/catalogo -> www/en/catalogo.html, não um slug de SEO
+# diferente como as landings usam). {route: {family, ...}}. Quando uma
+# página ganha tradução com slug DIFERENTE (o caso comum, ex. curso-de-
+# ingles-online), ela não entra aqui — isso é resolvido via LANDINGS[...]["alt"]
+# dentro de _build_language_prefix_redirects(), não aqui.
+SAME_SLUG_TRANSLATIONS = {
+    "catalogo": {"en"},
+    "sobre": {"en"},
+    "como-funciona": {"en"},
+    "faq": {"en"},
+    "contato": {"en"},
+}
+
+
+def _has_same_slug_translation(prefix, route):
+    family = LANGUAGE_PREFIX_FAMILY.get(prefix, prefix)
+    return family in SAME_SLUG_TRANSLATIONS.get(route, set())
+
+
 LANGUAGE_ROUTE_RULES = (
     # "en" fica de fora: www/en/index.html é uma home real traduzida (não
     # mais um placeholder) — deixa a resolução de pasta padrão do Frappe
@@ -71,26 +107,16 @@ LANGUAGE_ROUTE_RULES = (
         {"from_route": f"/{prefix}/{route}", "to_route": route}
         for prefix in LANGUAGE_ROUTE_PREFIXES
         for route in PUBLIC_LANGUAGE_ROUTES
+        # Mesmo motivo do "en" acima: se existe página real sob o mesmo
+        # slug (www/<family>/<route>.html), não força pro controller PT —
+        # deixa a resolução de pasta do Frappe servir a tradução real.
+        if not _has_same_slug_translation(prefix, route)
     ]
     + [
         {"from_route": f"/{prefix}/curso/<course>", "to_route": "curso"}
         for prefix in LANGUAGE_ROUTE_PREFIXES
     ]
 )
-
-
-# Cada prefixo de rota mapeia pra um código de idioma "de família" —
-# en/en-us/en-au são todos "en" (mesmo conteúdo, só a bandeira regional
-# muda); es/es-ar/es-co são todos "es"; fr/fr-ca são todos "fr". Precisa
-# bater com o código usado em LANDINGS[...]["alt"] (ex.: "es", não "es-AR").
-LANGUAGE_PREFIX_FAMILY = {
-    "en": "en", "en-us": "en", "en-au": "en",
-    "es-ar": "es", "es-co": "es", "es": "es",
-    "fr-ca": "fr", "fr": "fr",
-    "de": "de",
-    "ru": "ru",
-    "zh-cn": "zh-cn",
-}
 
 
 def _build_language_prefix_redirects():
@@ -140,6 +166,12 @@ def _build_language_prefix_redirects():
                 continue
             pt_to_lang_slug.setdefault(slug, {})[lang] = alt_slug
 
+    # Páginas traduzidas mantendo o MESMO slug (ex.: /en/catalogo) —
+    # ver SAME_SLUG_TRANSLATIONS logo acima de LANGUAGE_ROUTE_RULES.
+    for route, families in SAME_SLUG_TRANSLATIONS.items():
+        for family in families:
+            pt_to_lang_slug.setdefault(route, {})[family] = route
+
     redirects = []
     for prefix in LANGUAGE_ROUTE_PREFIXES:
         if prefix == "pt-br":
@@ -158,7 +190,13 @@ def _build_language_prefix_redirects():
         for route in PUBLIC_LANGUAGE_ROUTES:
             translated_slug = pt_to_lang_slug.get(route, {}).get(family)
             target = f"/{family}/{translated_slug}" if translated_slug else f"/{route}"
-            redirects.append({"source": f"/{prefix}/{route}", "target": target})
+            source = f"/{prefix}/{route}"
+            # Evita self-redirect (ex.: /en/catalogo -> /en/catalogo quando
+            # a tradução mantém o mesmo slug) — nesse caso a página real já
+            # existe em www/<family>/<slug>.html e é servida direto.
+            if source == target:
+                continue
+            redirects.append({"source": source, "target": target})
         # /en/curso/<slug> já tem rota + tradução de verdade (curso.py) —
         # só os OUTROS prefixos precisam cair de volta pro curso em PT.
         # (Só inglês tem esse mecanismo hoje — se outro idioma ganhar

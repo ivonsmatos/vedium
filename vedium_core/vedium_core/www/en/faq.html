@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://vediums.com/en/faq" />
+<link rel="alternate" hreflang="pt-br" href="https://vediums.com/faq" />
+<link rel="alternate" hreflang="en" href="https://vediums.com/en/faq" />
+<link rel="alternate" hreflang="x-default" href="https://vediums.com/faq" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:description" content="Get answers about courses, live classes, plans, payments and certificates." />
+<meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" /><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" /><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css"><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" /><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>
+  img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.page-header__title h2{color:#fff}.vd-section{padding:76px 0;background:#fff}.vd-faq{border-bottom:1px solid #e5e7eb;padding:24px 0}.vd-faq h3{color:#111827;font-size:22px}.vd-faq p{color:#5f6b7a;line-height:1.75}.vd-card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:28px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are the classes live?","acceptedAnswer":{"@type":"Answer","text":"Yes. Vedium runs live online classes, with a teacher and real-time interaction."}},{"@type":"Question","name":"How do I find out my level?","acceptedAnswer":{"@type":"Answer","text":"You can start with the free placement test and confirm the diagnostic with our team."}},{"@type":"Question","name":"Is payment secure?","acceptedAnswer":{"@type":"Answer","text":"Online payments are processed by a third-party provider, such as Stripe, in accordance with our Terms of Use."}},{"@type":"Question","name":"Does Vedium issue a certificate?","acceptedAnswer":{"@type":"Answer","text":"Yes. A free-course completion certificate is issued once the course requirements are met."}}]}</script>
+</head>
+<body><div class="page-wrapper">
+{% set vd_page = "faq" %}
+{% set lang = "en" %}
+{% set canonical_url = "https://vediums.com/en/faq" %}
+{% set alt_lang_url = "https://vediums.com/faq" %}
+{% include "templates/includes/site_navbar.html" %}
+<section class="page-header clearfix" style="background-image:linear-gradient(rgba(15,23,42,.84),rgba(46,109,164,.80)),url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80);"><div class="container"><div class="page-header__wrapper clearfix"><div class="page-header__title"><h2>FAQ</h2></div></div></div></section>
+<section class="vd-section"><div class="container" style="max-width:920px;">
+  <div class="section-title text-center"><span class="section-title__tagline">Frequently asked questions</span><h1 class="section-title__title">Before you choose your course</h1></div>
+  <div class="vd-faq"><h3>Are classes live or pre-recorded?</h3><p>Our main classes are live and online, with a teacher. Support materials may be used between sessions.</p></div>
+  <div class="vd-faq"><h3>How do I know which level to choose?</h3><p>Start with the free placement test. Afterward, our team can guide you to the track that best fits your goal.</p></div>
+  <div class="vd-faq"><h3>Which languages does Vedium offer?</h3><p>Our public catalog features English, Yoruba and Portuguese for foreigners, with tracks by level and goal.</p></div>
+  <div class="vd-faq"><h3>Is there a long-term commitment?</h3><p>Plans are monthly. Cancellation and refund terms are detailed in our Terms of Use.</p></div>
+  <div class="vd-faq"><h3>Does paying change my access automatically?</h3><p>Checkout and the LMS platform live at app.vediums.com. This page is informational only and doesn't affect billing.</p></div>
+  <div class="vd-faq"><h3>Does Vedium issue a certificate?</h3><p>Yes, for courses completed according to their requirements. It's a free-course certificate.</p></div>
+  <div class="vd-card" style="margin-top:32px;text-align:center;"><h2 style="color:#111827;">Still have questions?</h2><p>Talk to our team before choosing your plan.</p><a href="/teste-de-nivel-ingles" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_cta_click',location:'faq',cta:'level_test'});">Take the free placement test</a> <a href="https://wa.me/5511911293075?text=Hi%2C%20I%20have%20a%20question%20about%20Vedium%20courses" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;margin-top:10px;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_cta_click',location:'faq',cta:'whatsapp'});">Chat on WhatsApp</a></div>
+</div></section>
+{% include "templates/includes/site_footer.html" %}</div>
+<script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script><script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script><script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script><script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+</body></html>

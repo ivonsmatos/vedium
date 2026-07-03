@@ -52,6 +52,11 @@ STATIC_URLS = [
     {"loc": "/blog", "priority": "0.7", "changefreq": "weekly"},
     # Páginas em inglês (SEO internacional)
     {"loc": "/en", "priority": "0.9", "changefreq": "weekly"},
+    {"loc": "/en/catalogo", "priority": "0.8", "changefreq": "daily"},
+    {"loc": "/en/sobre", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/como-funciona", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/en/faq", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/contato", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/en/learn-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/learn-portuguese-brazil", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/portuguese-placement-test", "priority": "0.6", "changefreq": "monthly"},

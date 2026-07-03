@@ -758,6 +758,83 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
     assert "https://vediums.com/mentores" not in llms
 
 
+def test_english_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
+    """Páginas do menu principal (catalogo, sobre, como-funciona, faq,
+    contato) traduzidas pro inglês -- 2a prioridade do agente translator-en
+    depois da home. Diferente das landings (LANDINGS) e do teste de nível
+    (slug diferente), essas páginas mantêm o MESMO slug sob /en/ (ex.
+    /en/catalogo) -- ver SAME_SLUG_TRANSLATIONS em hooks.py, que existe
+    justamente pra este caso: sem essa entrada, LANGUAGE_ROUTE_RULES força
+    o controller PT mesmo com www/en/<slug>.html existindo, e o redirect de
+    en-us/en-au cairia de volta pro PT em vez de usar a tradução real.
+    """
+    menu_slugs = ["catalogo", "sobre", "como-funciona", "faq", "contato"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in menu_slugs:
+        en_html_path = WWW / "en" / f"{slug}.html"
+        pt_html_path = WWW / f"{slug}.html"
+        assert en_html_path.exists(), f"falta www/en/{slug}.html"
+        assert pt_html_path.exists()
+
+        en_html = en_html_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="en"' in en_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
+
+        # SAME_SLUG_TRANSLATIONS registrado, senão o roteamento força PT
+        assert f'"{slug}": {{"en"}}' in hooks or f'"{slug}": {{"en"' in hooks
+
+        assert f'{{"loc": "/en/{slug}"' in sitemap_py
+
+    # catalogo/sobre/como-funciona/faq têm controller próprio (title/description
+    # dinâmicos ou lógica de cursos); contato não tem .py em nenhum idioma
+    # (conteúdo 100% estático no .html) -- não regride esse padrão.
+    for slug in ["catalogo", "como-funciona", "faq"]:
+        en_py_path = WWW / "en" / f"{slug.replace('-', '_')}.py"
+        assert en_py_path.exists(), f"falta www/en/{slug.replace('-', '_')}.py"
+    assert not (WWW / "en" / "contato.py").exists()
+    assert not (WWW / "contato.py").exists()
+
+    # sobre.py nunca existiu em nenhum idioma (conteúdo estático) — não
+    # inventa um controller que o PT também não tem.
+    assert not (WWW / "sobre.py").exists()
+    assert not (WWW / "en" / "sobre.py").exists()
+
+    # Roteamento: /en/catalogo não pode ser interceptado pelo controller PT
+    # (bug que existiria se SAME_SLUG_TRANSLATIONS não tivesse sido criado)
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in menu_slugs:
+        assert f"/en/{slug}" not in by_source  # sem self-redirect
+        assert by_source[f"/en-us/{slug}"] == f"/en/{slug}"
+
+    rules_by_from = {r["from_route"]: r["to_route"] for r in vedium_hooks.LANGUAGE_ROUTE_RULES}
+    for slug in menu_slugs:
+        assert rules_by_from.get(f"/en/{slug}") is None
+        assert rules_by_from.get(f"/en-us/{slug}") is None
+
+    # Conteúdo real (adaptação, não tradução literal) — CTAs apontam pro
+    # teste de nível de inglês e pro catálogo em inglês, não pro PT.
+    catalogo_en = (WWW / "en" / "catalogo.html").read_text(encoding="utf-8")
+    sobre_en = (WWW / "en" / "sobre.html").read_text(encoding="utf-8")
+    como_funciona_en = (WWW / "en" / "como-funciona.html").read_text(encoding="utf-8")
+    faq_en = (WWW / "en" / "faq.html").read_text(encoding="utf-8")
+    contato_en = (WWW / "en" / "contato.html").read_text(encoding="utf-8")
+
+    assert "/teste-de-nivel-ingles" in como_funciona_en
+    assert "/teste-de-nivel-ingles" in faq_en
+    assert "/en/catalogo" in sobre_en
+    assert "Study from anywhere in the world" in sobre_en
+    assert "Explore Our Courses" in catalogo_en
+    assert "Send Message" in contato_en
+    assert "Message sent!" in contato_en
+
+
 def test_english_home_page_exists_and_routes_correctly():
     """Home (/) traduzida pro inglês (www/en/index.html) — a página mais
     visitada do site, primeira prioridade do agente translator-en (ver
@@ -1009,8 +1086,10 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
     by_source = {r["source"]: r["target"] for r in redirects}
 
-    # Casos exatos reportados pelo usuário
-    assert by_source["/en-us/contato"] == "/contato"
+    # Casos exatos reportados pelo usuário — /contato ganhou tradução real
+    # depois (www/en/contato.html, SAME_SLUG_TRANSLATIONS), então o
+    # redirect hoje aponta pra ela em vez de cair no canônico em PT.
+    assert by_source["/en-us/contato"] == "/en/contato"
     # /en (e mesma família en-us/en-au) tem home real traduzida agora
     # (www/en/index.html) — não volta mais pro PT.
     assert by_source["/en-us"] == "/en"
