@@ -83,3 +83,50 @@ def book_evaluation_slot(course, date, start_time, end_time):
         "start_time": str(request.start_time),
         "end_time": str(request.end_time),
     }
+
+
+@frappe.whitelist()
+def list_my_evaluations():
+    """Aulas agendadas (futuras e passadas, exceto canceladas) do aluno
+    logado — sem isso o aluno agenda e nunca mais vê o que reservou."""
+    _require_login()
+    return frappe.get_all(
+        "LMS Certificate Request",
+        filters={"member": frappe.session.user, "status": ["!=", "Cancelled"]},
+        fields=[
+            "name",
+            "course",
+            "course_title",
+            "evaluator_name",
+            "date",
+            "start_time",
+            "end_time",
+            "status",
+            "google_meet_link",
+        ],
+        order_by="date asc, start_time asc",
+    )
+
+
+@frappe.whitelist()
+def cancel_evaluation_slot(name):
+    """Cancela um agendamento — só o próprio aluno pode cancelar o dele.
+    Usa frappe.db.set_value direto (mesmo padrão do `mark_eval_as_completed`
+    nativo) em vez de doc.save(), pra não disparar de novo as validações de
+    CRIAÇÃO (conflito de horário etc.) que não fazem sentido num cancelamento."""
+    _require_login()
+    request = frappe.db.get_value(
+        "LMS Certificate Request", name, ["member", "status"], as_dict=True
+    )
+    if not request:
+        frappe.throw(_("Agendamento não encontrado."))
+    if request.member != frappe.session.user:
+        frappe.throw(
+            _("Você não pode cancelar o agendamento de outra pessoa."),
+            frappe.PermissionError,
+        )
+    if request.status == "Cancelled":
+        return {"ok": True}
+
+    frappe.db.set_value("LMS Certificate Request", name, "status", "Cancelled")
+    return {"ok": True}

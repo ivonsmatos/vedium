@@ -26,7 +26,9 @@
     <div class="vd-card"><span class="vd-pill">Streak</span><div class="vd-kpi">{{ streak_hint }}</div><p class="vd-muted">Sinal inicial de consistência com base em revisões e conquistas registradas.</p></div>
     <div class="vd-card"><span class="vd-pill">Cursos</span><div class="vd-kpi">{{ courses|length }}</div><p class="vd-muted">Matrículas encontradas para seu usuário.</p></div>
     <div class="vd-card vd-full" id="vd-schedule-card">
-      <h2 style="color:#111827;">Agendar aula com o professor</h2>
+      <h2 style="color:#111827;">Minhas aulas agendadas</h2>
+      <div id="vd-my-evaluations"><p class="vd-muted">Carregando...</p></div>
+      <h2 style="color:#111827;margin-top:28px;">Agendar aula com o professor</h2>
       {% if schedulable_courses %}
       <p class="vd-muted">Escolha o curso e um horário livre do professor. A aula já está incluída na sua matrícula — não há nenhuma cobrança adicional aqui.</p>
       <div style="margin:14px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
@@ -56,20 +58,12 @@
 <script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
 <script>
 (function(){
-  var loadBtn = document.getElementById('vd-schedule-load');
-  if (!loadBtn) return;
-  var courseSel = document.getElementById('vd-schedule-course');
-  var slotsBox = document.getElementById('vd-schedule-slots');
-  var msgBox = document.getElementById('vd-schedule-msg');
+  var evalsBox = document.getElementById('vd-my-evaluations');
+  if (!evalsBox) return;
 
   function getCookie(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : '';
-  }
-
-  function showMsg(text, isError) {
-    msgBox.textContent = text;
-    msgBox.style.color = isError ? '#b91c1c' : '#166534';
   }
 
   function serverError(data) {
@@ -79,6 +73,81 @@
     } catch (e) {
       return '';
     }
+  }
+
+  function loadMyEvaluations() {
+    fetch('/api/method/vedium_core.scheduling.list_my_evaluations', {
+      headers: { Accept: 'application/json' },
+      credentials: 'same-origin'
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        renderMyEvaluations(data.message || []);
+      })
+      .catch(function () {
+        evalsBox.innerHTML = '<p class="vd-muted">Não foi possível carregar suas aulas agendadas agora.</p>';
+      });
+  }
+
+  function renderMyEvaluations(evaluations) {
+    evalsBox.innerHTML = '';
+    if (!evaluations.length) {
+      evalsBox.innerHTML = '<p class="vd-muted">Nenhuma aula agendada ainda.</p>';
+      return;
+    }
+    evaluations.forEach(function (ev) {
+      var row = document.createElement('div');
+      row.className = 'vd-row';
+      var isPast = ev.status === 'Completed';
+      row.innerHTML =
+        '<strong>' + (ev.course_title || ev.course) + '</strong><br>' +
+        '<span class="vd-muted">' + ev.date + ' · ' + String(ev.start_time).slice(0, 5) + '–' + String(ev.end_time).slice(0, 5) +
+        (ev.evaluator_name ? ' · ' + ev.evaluator_name : '') + ' · ' + ev.status + '</span>';
+      if (!isPast) {
+        var cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.textContent = 'Cancelar';
+        cancelBtn.style.cssText = 'margin-left:12px;border:1px solid #e5e7eb;background:#fff;color:#b91c1c;border-radius:8px;padding:4px 12px;font-size:12px;cursor:pointer;';
+        cancelBtn.addEventListener('click', function () { cancelEvaluation(ev.name); });
+        row.appendChild(cancelBtn);
+      }
+      evalsBox.appendChild(row);
+    });
+  }
+
+  function cancelEvaluation(name) {
+    if (!window.confirm('Cancelar essa aula agendada?')) return;
+    fetch('/api/method/vedium_core.scheduling.cancel_evaluation_slot', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Frappe-CSRF-Token': getCookie('csrf_token')
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({ name: name })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.exc) {
+          window.alert(serverError(data) || 'Não foi possível cancelar essa aula.');
+          return;
+        }
+        loadMyEvaluations();
+      })
+      .catch(function () { window.alert('Não foi possível cancelar essa aula.'); });
+  }
+
+  loadMyEvaluations();
+
+  var loadBtn = document.getElementById('vd-schedule-load');
+  if (!loadBtn) return;
+  var courseSel = document.getElementById('vd-schedule-course');
+  var slotsBox = document.getElementById('vd-schedule-slots');
+  var msgBox = document.getElementById('vd-schedule-msg');
+
+  function showMsg(text, isError) {
+    msgBox.textContent = text;
+    msgBox.style.color = isError ? '#b91c1c' : '#166534';
   }
 
   function renderSlots(days) {
@@ -150,6 +219,7 @@
         }
         showMsg('Aula agendada para ' + data.message.date + ' às ' + String(data.message.start_time).slice(0, 5) + '. Você vai receber um e-mail de confirmação.', false);
         slotsBox.innerHTML = '';
+        loadMyEvaluations();
       })
       .catch(function () { showMsg('Não foi possível agendar esse horário. Tente novamente.', true); });
   }
