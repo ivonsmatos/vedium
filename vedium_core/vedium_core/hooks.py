@@ -95,11 +95,11 @@ SAME_SLUG_TRANSLATIONS = {
     "planos": {"en", "es", "fr"},
     "matricula": {"en", "es", "fr"},
     "aula-diagnostica": {"en", "es", "fr"},
-    "certificado": {"en", "es"},
-    "comunidade": {"en", "es"},
-    "empresas": {"en", "es"},
-    "programa-de-indicacao": {"en", "es"},
-    "carreiras": {"en", "es"},
+    "certificado": {"en", "es", "fr"},
+    "comunidade": {"en", "es", "fr"},
+    "empresas": {"en", "es", "fr"},
+    "programa-de-indicacao": {"en", "es", "fr"},
+    "carreiras": {"en", "es", "fr"},
 }
 
 

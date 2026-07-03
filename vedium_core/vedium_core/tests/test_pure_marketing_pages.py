@@ -1060,7 +1060,9 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
-        assert f'"{slug}": {{"en", "es"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_institutional_pages_...)
+        # para os mesmos 5 slugs -- checa que "en" continua no set.
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
     # comunidade + empresas: template compartilhado public_intent_page(_en).html
@@ -1084,7 +1086,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert 'public_intent_page_en.html' in en_html
         assert "page_has_en_translation = true" in pt_html
         assert "get_context" in en_py
-        assert f'"{slug}": {{"en", "es"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT)
@@ -1096,7 +1098,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Submit application" in carreiras_en
     assert "vedium_core.careers.submit_candidatura" in carreiras_en
     assert 'context.canonical_url = "https://vediums.com/en/carreiras"' in carreiras_en_py
-    assert '"carreiras": {"en", "es"}' in hooks
+    assert '"carreiras": {"en", "es", "fr"}' in hooks
     assert '{"loc": "/en/carreiras"' in sitemap_py
 
     # Roteamento: sem self-redirect, en-us cai na traducao real
@@ -2107,7 +2109,9 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
-        assert f'"{slug}": {{"en", "es"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_institutional_pages_...)
+        # para os mesmos 5 slugs -- checa que "es" continua no set.
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
     # comunidade + empresas: template compartilhado public_intent_page(_es).html
@@ -2131,7 +2135,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
         assert 'public_intent_page_es.html' in es_html
         assert "page_has_es_translation = true" in pt_html
         assert "get_context" in es_py
-        assert f'"{slug}": {{"en", "es"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN)
@@ -2143,7 +2147,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Enviar postulación" in carreiras_es
     assert "vedium_core.careers.submit_candidatura" in carreiras_es
     assert 'context.canonical_url = "https://vediums.com/es/carreiras"' in carreiras_es_py
-    assert '"carreiras": {"en", "es"}' in hooks
+    assert '"carreiras": {"en", "es", "fr"}' in hooks
     assert '{"loc": "/es/carreiras"' in sitemap_py
 
     # Roteamento: sem self-redirect, es-ar cai na traducao real
@@ -2528,3 +2532,72 @@ def test_english_cluster_has_french_pages_with_reciprocal_hreflang():
     assert "€" in pilar["price_display"]
     assert "R$" not in pilar["price_display"]
     assert "US$" not in pilar["price_display"]
+
+
+def test_french_institutional_pages_exist_with_reciprocal_hreflang():
+    """Páginas institucionais restantes (certificado, comunidade,
+    programa-de-indicacao, empresas, carreiras) traduzidas pro francês --
+    6a prioridade do translator-fr, mesmo padrão de
+    test_spanish_institutional_pages_exist_with_reciprocal_hreflang.
+    """
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    # certificado + programa-de-indicacao: página própria, com hreflang direto
+    for slug in ["certificado", "programa-de-indicacao"]:
+        fr_html_path = WWW / "fr" / f"{slug}.html"
+        fr_py_path = WWW / "fr" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert fr_html_path.exists(), f"falta www/fr/{slug}.html"
+        assert fr_py_path.exists(), f"falta www/fr/{slug.replace('-', '_')}.py"
+        fr_html = fr_html_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+        assert 'lang="fr"' in fr_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in fr_html
+        assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in fr_html
+        assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in pt_html
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        assert f'{{"loc": "/fr/{slug}"' in sitemap_py
+
+    # comunidade + empresas: template compartilhado public_intent_page(_fr).html
+    template_fr = (TPL / "public_intent_page_fr.html").read_text(encoding="utf-8")
+    template_pt = (TPL / "public_intent_page.html").read_text(encoding="utf-8")
+    assert "page_has_fr_translation" in template_pt
+    assert 'hreflang="fr" href="https://vediums.com/fr/{{ page_slug }}"' in template_pt
+    assert "vedium_core.public_funnel.submit_public_intent" in template_fr
+    assert "/teste-de-nivel-ingles" in template_fr
+    assert "wa.me/5511911293075" in template_fr
+    for slug, intent in {"comunidade": "community", "empresas": "b2b"}.items():
+        fr_html_path = WWW / "fr" / f"{slug}.html"
+        fr_py_path = WWW / "fr" / f"{slug.replace('-', '_')}.py"
+        pt_html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
+        assert fr_html_path.exists()
+        assert fr_py_path.exists()
+        fr_html = fr_html_path.read_text(encoding="utf-8")
+        fr_py = fr_py_path.read_text(encoding="utf-8")
+        assert f'page_slug = "{slug}"' in fr_html
+        assert f'page_intent = "{intent}"' in fr_html
+        assert 'public_intent_page_fr.html' in fr_html
+        assert "page_has_fr_translation = true" in pt_html
+        assert "get_context" in fr_py
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        assert f'{{"loc": "/fr/{slug}"' in sitemap_py
+
+    # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN/ES)
+    assert (WWW / "fr" / "carreiras.html").exists()
+    assert (WWW / "fr" / "carreiras.py").exists()
+    carreiras_fr = (WWW / "fr" / "carreiras.html").read_text(encoding="utf-8")
+    carreiras_fr_py = (WWW / "fr" / "carreiras.py").read_text(encoding="utf-8")
+    assert "Professeur d'Anglais" in carreiras_fr_py
+    assert "Envoyer ma candidature" in carreiras_fr
+    assert "vedium_core.careers.submit_candidatura" in carreiras_fr
+    assert 'context.canonical_url = "https://vediums.com/fr/carreiras"' in carreiras_fr_py
+    assert '"carreiras": {"en", "es", "fr"}' in hooks
+    assert '{"loc": "/fr/carreiras"' in sitemap_py
+
+    # Roteamento: sem self-redirect, fr-ca cai na traducao real
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in ["certificado", "comunidade", "programa-de-indicacao", "empresas", "carreiras"]:
+        assert f"/fr/{slug}" not in by_source
+        assert by_source[f"/fr-ca/{slug}"] == f"/fr/{slug}"
