@@ -43,7 +43,7 @@ não se repita.
 | 09 | Fluxo — Certificação | enable_certification → avaliação → certificado | ⏳ |
 | 10 | [Matriz de Integrações](10-matriz-de-integracoes.md) | Google, Stripe, e-mail, Zoom, WhatsApp, GTM, IA | ✅ |
 | 11 | [Estado do Ambiente (checklist vivo)](11-estado-do-ambiente.md) | O que está ligado/desligado em produção hoje | ✅ |
-| 12 | Runbook de Operação & Deploy | Como deploya, footguns, logs, rollback | ⏳ |
+| 12 | [Runbook de Operação & Deploy](12-runbook-de-operacao.md) | Como deploya, footguns, logs, rollback | ✅ |
 | 13 | Catálogo de Produtos & Preços | Cursos publicados, slugs, níveis, preços, professor | ⏳ |
 
 Legenda: ✅ escrito · ⏳ a escrever
