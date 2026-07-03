@@ -23,7 +23,10 @@ não se repita.
 
 > **Antes de construir qualquer coisa, consulte o [Mapa Nativo vs. Custom](01-mapa-nativo-vs-custom.md).**
 > Se a plataforma já faz nativo, use o nativo. Só se escreve código custom quando
-> o mapa mostra que não existe nada nativo que atenda.
+> o mapa mostra que não existe nada nativo que atenda. Se a necessidade for maior
+> que o que `vedium_core`+LMS já cobrem (RH, CRM, suporte, BI, aula em grupo),
+> veja também o [Ecossistema Frappe Oficial](04-ecossistema-frappe-oficial.md)
+> antes de propor um app de terceiro ou construir do zero.
 
 ## Índice
 
@@ -31,6 +34,8 @@ não se repita.
 |---|-----------|----------------|--------|
 | 01 | [Mapa Nativo vs. Custom](01-mapa-nativo-vs-custom.md) | Cada necessidade já é nativa ou é custom? Onde? | ✅ |
 | 02 | [Dicionário de Doctypes & Modelo de Domínio](02-dicionario-doctypes.md) | O que cada doctype representa e como se relacionam | ✅ |
+| — | [Arquitetura i18n](03-arquitetura-i18n.md) | Como funciona a tradução do site por idioma | ✅ |
+| 04 | [Ecossistema Frappe Oficial](04-ecossistema-frappe-oficial.md) | Quais apps oficiais Frappe (instalados ou não) resolvem lacunas de operar a escola | ✅ |
 | 03 | Fluxo — Jornada do Aluno | Checkout → matrícula → aula → certificado | ⏳ |
 | 04 | Fluxo — Jornada do Professor | Instrutor → evaluator → slots → aula → certifica | ⏳ |
 | 05 | Fluxo — Agendamento de aulas | 1-a-1 (Evaluator/Meet) vs. grupo (Live Class/Zoom) | ⏳ |
