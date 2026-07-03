@@ -40,6 +40,19 @@
   {%- set _vd_nav_noop = vd_nav.urls.update({_self_key: canonical_url}) %}
   {%- if alt_lang_url %}{%- set _vd_nav_noop = vd_nav.urls.update({_other_key: alt_lang_url}) %}{%- endif %}
 {%- endif %}
+{#- Rótulos do menu principal por idioma. Cada agente de tradução
+   (.claude/agents/translator-*.md) deve adicionar sua entrada aqui ao
+   publicar a primeira página no idioma dele — mesmo padrão de dict usado
+   em marketing_landing.html (vd_i18n) e blog_post.html (vd_bp_en). Os
+   LINKS continuam apontando pro destino em português (catálogo, sobre,
+   como funciona, FAQ, contato ainda não têm tradução) — isso é conteúdo,
+   não infraestrutura; traduzir aqui só os RÓTULOS visíveis já resolve o
+   pedido do usuário de "menu correto" nas páginas que já têm tradução. #}
+{%- set vd_menu_i18n = {
+  "pt-br": {"home": "Início", "how": "Como funciona", "about": "Sobre", "courses": "Cursos", "blog": "Blog", "faq": "FAQ", "contact": "Contato", "login": "Entrar", "signup": "Registrar", "free_test": "Teste grátis"},
+  "en": {"home": "Home", "how": "How it works", "about": "About", "courses": "Courses", "blog": "Blog", "faq": "FAQ", "contact": "Contact", "login": "Log in", "signup": "Sign up", "free_test": "Free test"},
+} %}
+{%- set vd_menu_t = vd_menu_i18n.get(vd_nav.current, vd_menu_i18n["pt-br"]) %}
 <header class="main-header main-header--one clearfix"
     data-vd-nav-urls='{{ vd_nav.urls | tojson }}'
     data-vd-nav-current="{{ vd_nav.current }}">
@@ -88,26 +101,26 @@
                         <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                         <div class="left">
                             <ul class="main-menu__list">
-                                <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="/">Início</a></li>
-                                <li{% if vd_page == "como-funciona" %} class="current"{% endif %}><a href="/como-funciona">Como funciona</a></li>
-                                <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="/sobre">Sobre</a></li>
-                                <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="/catalogo">Cursos</a></li>
-                                <li{% if vd_page == "blog" %} class="current"{% endif %}><a href="/blog">Blog</a></li>
-                                <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="/faq">FAQ</a></li>
-                                <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="/contato">Contato</a></li>
+                                <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="/">{{ vd_menu_t.home }}</a></li>
+                                <li{% if vd_page == "como-funciona" %} class="current"{% endif %}><a href="/como-funciona">{{ vd_menu_t.how }}</a></li>
+                                <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="/sobre">{{ vd_menu_t.about }}</a></li>
+                                <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="/catalogo">{{ vd_menu_t.courses }}</a></li>
+                                <li{% if vd_page == "blog" %} class="current"{% endif %}><a href="/blog">{{ vd_menu_t.blog }}</a></li>
+                                <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="/faq">{{ vd_menu_t.faq }}</a></li>
+                                <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="/contato">{{ vd_menu_t.contact }}</a></li>
                             </ul>
                         </div>
                         <div class="right">
                             <div class="main-menu__right">
                                 <div class="main-menu__right-login-register">
                                     <ul class="list-unstyled">
-                                        <li><a href="https://app.vediums.com/login">Entrar</a></li>
-                                        <li><a href="https://app.vediums.com/login#signup">Registrar</a></li>
+                                        <li><a href="https://app.vediums.com/login">{{ vd_menu_t.login }}</a></li>
+                                        <li><a href="https://app.vediums.com/login#signup">{{ vd_menu_t.signup }}</a></li>
                                     </ul>
                                 </div>
                                 <div class="main-menu__right-cart-search">
                                     <div class="main-menu__right-search-box">
-                                        <a href="/teste-de-nivel" class="thm-btn">Teste grátis</a>
+                                        <a href="/teste-de-nivel" class="thm-btn">{{ vd_menu_t.free_test }}</a>
                                     </div>
                                 </div>
                             </div>

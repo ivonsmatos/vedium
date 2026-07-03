@@ -800,6 +800,28 @@ def test_language_switcher_remembers_which_regional_flag_was_clicked():
     assert "vedium_preferred_locale" not in lang_js
 
 
+def test_main_menu_labels_are_translated_per_language():
+    """Pedido explícito do usuário (2026-07-03): "linkado no menu correto"
+    — o menu principal do cabeçalho (Início, Cursos, Blog, FAQ, Contato)
+    estava sempre em português, mesmo nas páginas já traduzidas pra
+    inglês. vd_menu_t (dict por idioma, mesmo padrão de vd_i18n em
+    marketing_landing.html) traduz os RÓTULOS visíveis — os links
+    continuam apontando pro destino em português (catálogo/sobre/como-
+    funciona/FAQ/contato ainda não têm tradução; isso é conteúdo, não
+    infraestrutura, fica pros agentes de tradução). Cada agente novo
+    (.claude/agents/translator-*.md) deve adicionar sua entrada em
+    vd_menu_i18n ao publicar a primeira página no idioma dele.
+    """
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+
+    assert "vd_menu_i18n" in navbar
+    assert '"pt-br": {"home": "Início"' in navbar
+    assert '"en": {"home": "Home"' in navbar
+    assert "vd_menu_t = vd_menu_i18n.get(vd_nav.current, vd_menu_i18n[\"pt-br\"])" in navbar
+    for label in ("home", "how", "about", "courses", "blog", "faq", "contact", "login", "signup", "free_test"):
+        assert f"vd_menu_t.{label}" in navbar
+
+
 def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     """Terceiro bug achado pelo usuário na mesma sessão (2026-07-03),
     screenshot em mãos: /en-us/contato (URL em inglês, conteúdo 100% em
@@ -1018,8 +1040,9 @@ def test_blog_has_self_service_panel_and_dynamic_route():
     blog_post_html = (WWW / "blog_post.html").read_text(encoding="utf-8")
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
 
-    # Menu: link para o blog
-    assert '<a href="/blog">Blog</a>' in navbar
+    # Menu: link para o blog (rótulo agora vem de vd_menu_t, traduzido por
+    # idioma — ver test_main_menu_labels_are_translated_per_language)
+    assert '<a href="/blog">{{ vd_menu_t.blog }}</a>' in navbar
 
     # Rota dinâmica /blog/<slug> — substitui os arquivos www/blog/<slug>.html
     # individuais (removidos: route rules do Frappe têm prioridade sobre
