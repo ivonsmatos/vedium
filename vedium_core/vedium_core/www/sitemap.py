@@ -73,6 +73,11 @@ STATIC_URLS = [
     {"loc": "/en/business-english-online", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/en/english-for-travel", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/en/english-for-customer-service", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/certificado", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/en/comunidade", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/en/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/en/empresas", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/en/carreiras", "priority": "0.4", "changefreq": "monthly"},
     # Páginas em espanhol (SEO internacional)
     {"loc": "/es/prueba-de-nivel-de-portugues", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/curso-de-yoruba-online", "priority": "0.7", "changefreq": "monthly"},

@@ -88,6 +88,11 @@ SAME_SLUG_TRANSLATIONS = {
     "planos": {"en"},
     "matricula": {"en"},
     "aula-diagnostica": {"en"},
+    "certificado": {"en"},
+    "comunidade": {"en"},
+    "empresas": {"en"},
+    "programa-de-indicacao": {"en"},
+    "carreiras": {"en"},
 }
 
 

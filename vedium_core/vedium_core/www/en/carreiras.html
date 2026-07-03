@@ -1,0 +1,59 @@
+{% extends "templates/web.html" %}
+
+{% block title %}Careers - Vedium{% endblock %}
+
+{% block page_content %}
+<div style="max-width:720px;margin:30px auto;font-family:Arial,Helvetica,sans-serif;color:#1f2937;">
+  <h1 style="color:#2E6DA4;margin-bottom:6px;">Careers</h1>
+  <p style="font-size:16px;color:#374151;line-height:1.6;">Vedium is a language school with <strong>live</strong> classes. We're looking for people who are passionate about teaching and about technology. Fill out the form and join our team!</p>
+
+  <div id="cand-box" style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:26px;margin-top:22px;">
+    <div style="margin-bottom:15px;"><label style="font-weight:600;display:block;margin-bottom:5px;">Full name *</label><input id="f_name" style="width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;"></div>
+    <div style="margin-bottom:15px;"><label style="font-weight:600;display:block;margin-bottom:5px;">Email *</label><input id="f_email" type="email" style="width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;"></div>
+    <div style="margin-bottom:15px;"><label style="font-weight:600;display:block;margin-bottom:5px;">Phone / WhatsApp</label><input id="f_phone" style="width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;"></div>
+    <div style="margin-bottom:15px;"><label style="font-weight:600;display:block;margin-bottom:5px;">Position / area of interest</label><select id="f_position" style="width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;background:#fff;">{% for p in positions %}<option>{{ p }}</option>{% endfor %}</select></div>
+    <div style="margin-bottom:15px;"><label style="font-weight:600;display:block;margin-bottom:5px;">Resume link (LinkedIn, Google Drive...)</label><input id="f_resume" placeholder="https://..." style="width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;"></div>
+    <div style="margin-bottom:15px;"><label style="font-weight:600;display:block;margin-bottom:5px;">Message / introduction</label><textarea id="f_msg" rows="4" style="width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;"></textarea></div>
+    <button id="f_submit" style="width:100%;padding:14px;background:#2E6DA4;color:#fff;border:none;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer;">Submit application</button>
+    <p id="f_status" style="margin-top:12px;text-align:center;font-size:14px;"></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% raw %}
+<script>
+document.getElementById('f_submit').addEventListener('click', function () {
+  var btn = this, st = document.getElementById('f_status');
+  var name = (document.getElementById('f_name').value || '').trim();
+  var email = (document.getElementById('f_email').value || '').trim();
+  if (!name || !email) { st.style.color = '#dc2626'; st.textContent = 'Please fill in your name and email.'; return; }
+  btn.disabled = true; btn.textContent = 'Sending...';
+  frappe.call({
+    method: 'vedium_core.careers.submit_candidatura',
+    args: {
+      candidate_name: name,
+      email: email,
+      phone: document.getElementById('f_phone').value,
+      position: document.getElementById('f_position').value,
+      resume_url: document.getElementById('f_resume').value,
+      message: document.getElementById('f_msg').value
+    },
+    callback: function (r) {
+      if (r.message && r.message.ok) {
+        document.getElementById('cand-box').innerHTML =
+          '<div style="text-align:center;padding:34px 10px;"><h2 style="color:#2E6DA4;margin:0 0 10px;">Application submitted!</h2><p style="color:#374151;">Thanks for your interest! Our team will review it and get in touch.</p></div>';
+      } else {
+        st.style.color = '#dc2626'; st.textContent = 'Something went wrong. Please try again.';
+        btn.disabled = false; btn.textContent = 'Submit application';
+      }
+    },
+    error: function () {
+      st.style.color = '#dc2626'; st.textContent = 'Something went wrong. Please try again in a moment.';
+      btn.disabled = false; btn.textContent = 'Submit application';
+    }
+  });
+});
+</script>
+{% endraw %}
+{% endblock %}

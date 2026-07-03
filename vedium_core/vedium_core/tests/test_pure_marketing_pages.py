@@ -904,6 +904,80 @@ def test_english_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
     assert "Message sent!" in contato_en
 
 
+def test_english_institutional_pages_exist_with_reciprocal_hreflang():
+    """Restante das páginas institucionais (item 5 do translator-en):
+    certificado, comunidade, programa-de-indicacao, empresas, carreiras.
+    Mesmo padrão de slug das páginas de menu/CTA -- mesmo slug sob /en/.
+    comunidade e empresas reaproveitam o template compartilhado
+    public_intent_page.html (agora com hreflang condicional via
+    page_has_en_translation, pra não quebrar páginas desse template que
+    ainda não têm tradução, ex. futuras). carreiras usa templates/web.html
+    (tema genérico do Frappe, sem controle de <head> customizado -- por
+    isso não tem hreflang, mesma limitação da versão em PT).
+    """
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    # certificado + programa-de-indicacao: página própria, com hreflang direto
+    for slug in ["certificado", "programa-de-indicacao"]:
+        en_html_path = WWW / "en" / f"{slug}.html"
+        en_py_path = WWW / "en" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert en_html_path.exists(), f"falta www/en/{slug}.html"
+        assert en_py_path.exists(), f"falta www/en/{slug.replace('-', '_')}.py"
+        en_html = en_html_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+        assert 'lang="en"' in en_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
+        assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
+        assert f'"{slug}": {{"en"}}' in hooks
+        assert f'{{"loc": "/en/{slug}"' in sitemap_py
+
+    # comunidade + empresas: template compartilhado public_intent_page(_en).html
+    template_en = (TPL / "public_intent_page_en.html").read_text(encoding="utf-8")
+    template_pt = (TPL / "public_intent_page.html").read_text(encoding="utf-8")
+    assert "page_has_en_translation" in template_pt
+    assert 'hreflang="en" href="https://vediums.com/en/{{ page_slug }}"' in template_pt
+    assert "vedium_core.public_funnel.submit_public_intent" in template_en
+    assert "/teste-de-nivel-ingles" in template_en
+    assert "wa.me/5511911293075" in template_en
+    for slug, intent in {"comunidade": "community", "empresas": "b2b"}.items():
+        en_html_path = WWW / "en" / f"{slug}.html"
+        en_py_path = WWW / "en" / f"{slug.replace('-', '_')}.py"
+        pt_html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
+        assert en_html_path.exists()
+        assert en_py_path.exists()
+        en_html = en_html_path.read_text(encoding="utf-8")
+        en_py = en_py_path.read_text(encoding="utf-8")
+        assert f'page_slug = "{slug}"' in en_html
+        assert f'page_intent = "{intent}"' in en_html
+        assert 'public_intent_page_en.html' in en_html
+        assert "page_has_en_translation = true" in pt_html
+        assert "get_context" in en_py
+        assert f'"{slug}": {{"en"}}' in hooks
+        assert f'{{"loc": "/en/{slug}"' in sitemap_py
+
+    # carreiras: web.html generico, sem hreflang (mesma limitacao do PT)
+    assert (WWW / "en" / "carreiras.html").exists()
+    assert (WWW / "en" / "carreiras.py").exists()
+    carreiras_en = (WWW / "en" / "carreiras.html").read_text(encoding="utf-8")
+    carreiras_en_py = (WWW / "en" / "carreiras.py").read_text(encoding="utf-8")
+    assert "English Teacher" in carreiras_en_py
+    assert "Submit application" in carreiras_en
+    assert "vedium_core.careers.submit_candidatura" in carreiras_en
+    assert 'context.canonical_url = "https://vediums.com/en/carreiras"' in carreiras_en_py
+    assert '"carreiras": {"en"}' in hooks
+    assert '{"loc": "/en/carreiras"' in sitemap_py
+
+    # Roteamento: sem self-redirect, en-us cai na traducao real
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in ["certificado", "comunidade", "programa-de-indicacao", "empresas", "carreiras"]:
+        assert f"/en/{slug}" not in by_source
+        assert by_source[f"/en-us/{slug}"] == f"/en/{slug}"
+
+
 def test_english_cta_pages_exist_and_preserve_public_funnel_safety():
     """Páginas de CTA/conversão (planos, matricula, aula-diagnostica) --
     3a prioridade do agente translator-en. Mesmo slug sob /en/ (como as
