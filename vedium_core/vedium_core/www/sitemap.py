@@ -138,6 +138,9 @@ STATIC_URLS = [
     {"loc": "/de/como-funciona", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/de/faq", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/de/contato", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/de/planos", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/de/matricula", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/de/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):

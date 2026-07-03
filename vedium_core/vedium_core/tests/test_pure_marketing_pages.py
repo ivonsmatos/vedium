@@ -1135,9 +1135,10 @@ def test_english_cta_pages_exist_and_preserve_public_funnel_safety():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
-        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_cta_pages_...)
-        # para esses mesmos 3 slugs -- checa que "en" continua no set.
-        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" e "de" (test_french_cta_pages_...,
+        # test_german_cta_pages_...) para esses mesmos 3 slugs -- checa via
+        # dict real que "en" continua no set.
+        assert "en" in vedium_hooks.SAME_SLUG_TRANSLATIONS[slug]
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
         # Funil publico continua seguro: sem endpoint de checkout real (matricula
@@ -1466,11 +1467,12 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     # agora inclui "es") -- /es-ar/planos (família es) cai na página real em
     # espanhol, não mais no canônico em PT.
     assert by_source["/es-ar/planos"] == "/es/planos"
-    # Sem tradução real (idiomas ainda sem conteúdo) -> PT. /de/contato
-    # ganhou tradução real depois (mesmo racional do es-ar/planos acima,
-    # SAME_SLUG_TRANSLATIONS agora inclui "de" pro menu principal) --
-    # usamos /de/planos aqui, que ainda não foi traduzido nesta fase.
-    assert by_source["/de/planos"] == "/planos"
+    # Sem tradução real (idiomas ainda sem conteúdo) -> PT. /de/contato e
+    # /de/planos ganharam tradução real depois (mesmo racional do es-ar/
+    # planos acima, SAME_SLUG_TRANSLATIONS agora inclui "de" pro menu
+    # principal e pro CTA) -- usamos /de/certificado aqui, que ainda não
+    # foi traduzido nesta fase (institucionais restantes, prioridade 6).
+    assert by_source["/de/certificado"] == "/certificado"
 
     # /en/curso/<slug> (com barra, curso individual) já tem rota + tradução
     # de verdade (curso.py) — não pode ter redirect genérico atropelando.
@@ -1823,10 +1825,41 @@ def test_lesson_slot_doctype_is_not_world_writable():
     assert perms_by_role["System Manager"]["write"] == 1
     assert perms_by_role["LMS Moderator"]["write"] == 1
 
-    # As páginas custom de agendamento foram removidas em favor do fluxo nativo.
+    # As páginas custom de agendamento full-page (o padrão antigo, inseguro,
+    # que lia o Lesson Slot) continuam removidas.
     assert not (WWW / "agendar-aula.html").exists()
     assert not (WWW / "minha-agenda.html").exists()
-    assert not (ROOT / "vedium_core" / "vedium_core" / "scheduling.py").exists()
+
+
+def test_scheduling_module_wraps_native_flow_without_touching_lesson_slot_or_billing():
+    """2026-07-03: reintroduzido um scheduling.py — mas é uma coisa diferente
+    do que foi removido. Não lê/escreve Lesson Slot (doctype legado inseguro,
+    ver teste acima) nem cria página custom de agendamento de página inteira;
+    é só uma casca fina que chama o fluxo NATIVO (Course Evaluator +
+    Evaluator Schedule + LMS Certificate Request) depois de checar matrícula,
+    pra contornar o gate `LMS Course.paid_certificate` do LMS (que assume
+    certificado vendido separado — não é o modelo da Vedium, onde o
+    certificado já está incluso no preço pago no Stripe). Ver
+    docs/plataforma/01-mapa-nativo-vs-custom.md e vedium_core/scheduling.py.
+    """
+    scheduling_path = ROOT / "vedium_core" / "vedium_core" / "scheduling.py"
+    assert scheduling_path.exists()
+    code = scheduling_path.read_text(encoding="utf-8")
+
+    # Não reintroduz o doctype legado inseguro.
+    assert "Lesson Slot" not in code
+    # Não mexe em cobrança/preço de verdade (o docstring do módulo PODE citar
+    # paid_certificate/purchased_certificate como explicação do que evita —
+    # o que checamos aqui é ausência de código que leia/grave preço ou
+    # dispare checkout).
+    for forbidden in ("course_price", "amount_usd", "create_checkout"):
+        assert forbidden not in code
+
+    # Sempre exige login e matrícula antes de deixar agendar.
+    assert 'frappe.session.user == "Guest"' in code
+    assert "LMS Enrollment" in code
+    # Cria o registro NATIVO (não um doctype custom novo).
+    assert '"doctype": "LMS Certificate Request"' in code
 
 
 def test_pricing_value_page_has_real_prices_and_no_stale_redirect():
@@ -2040,9 +2073,10 @@ def test_spanish_cta_pages_exist_and_preserve_public_funnel_safety():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
-        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_cta_pages_...)
-        # para esses mesmos 3 slugs -- checa que "es" continua no set.
-        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" e "de" (test_french_cta_pages_...,
+        # test_german_cta_pages_...) para esses mesmos 3 slugs -- checa via
+        # dict real que "es" continua no set.
+        assert "es" in vedium_hooks.SAME_SLUG_TRANSLATIONS[slug]
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
         if slug != "matricula":
@@ -2344,7 +2378,10 @@ def test_french_cta_pages_exist_and_preserve_public_funnel_safety():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in fr_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in fr_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in pt_html
-        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "de" (test_german_cta_pages_...)
+        # para esses mesmos 3 slugs -- checa via dict real que "fr"
+        # continua presente no set.
+        assert "fr" in vedium_hooks.SAME_SLUG_TRANSLATIONS[slug]
         assert f'{{"loc": "/fr/{slug}"' in sitemap_py
 
         if slug != "matricula":
@@ -2765,3 +2802,78 @@ def test_german_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
     assert "Entdecken Sie Unsere Kurse" in catalogo_de
     assert "Nachricht Senden" in contato_de
     assert "Nachricht gesendet!" in contato_de
+
+
+def test_german_cta_pages_exist_and_preserve_public_funnel_safety():
+    """Páginas de CTA/conversão (planos, matricula, aula-diagnostica)
+    traduzidas pro alemão -- mesmo padrão de
+    test_french_cta_pages_exist_and_preserve_public_funnel_safety. Mesmo
+    slug sob /de/. Preserva as garantias de segurança do funil público já
+    testadas em PT/EN/ES/FR: sem alteração de checkout.
+    """
+    cta_slugs = ["planos", "matricula", "aula-diagnostica"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in cta_slugs:
+        de_html_path = WWW / "de" / f"{slug}.html"
+        de_py_path = WWW / "de" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert de_html_path.exists(), f"falta www/de/{slug}.html"
+        assert de_py_path.exists(), f"falta www/de/{slug.replace('-', '_')}.py"
+
+        de_html = de_html_path.read_text(encoding="utf-8")
+        de_py = de_py_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="de"' in de_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in de_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in de_html
+        assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in pt_html
+        assert "de" in vedium_hooks.SAME_SLUG_TRANSLATIONS[slug]
+        assert f'{{"loc": "/de/{slug}"' in sitemap_py
+
+        if slug != "matricula":
+            assert "stripe" not in de_html.lower()
+        assert "create_checkout" not in de_html
+        assert 'context.lang = "de"' in de_py
+        assert f'context.canonical_url = "https://vediums.com/de/{slug}"' in de_py
+
+    # planos: CTA final aponta pro teste de nivel em ingles e pro
+    # matricula/catalogo em alemão, nao pros equivalentes em PT.
+    planos_de = (WWW / "de" / "planos.html").read_text(encoding="utf-8")
+    assert "/teste-de-nivel-ingles" in planos_de
+    assert "/de/matricula" in planos_de
+    assert "/de/catalogo" in planos_de
+    assert "Leichtes Paket wählen" in planos_de
+    assert "Empfohlenes Paket wählen" in planos_de
+    assert "Intensives Paket wählen" in planos_de
+    assert "wa.me/5511911293075" in planos_de
+
+    # matricula: dropdown com valores de curso intactos (slugs de banco,
+    # nunca traduzidos), so os LABELS mudam pro alemão.
+    matricula_de = (WWW / "de" / "matricula.html").read_text(encoding="utf-8")
+    assert 'value="ingl-s-beginner"' in matricula_de
+    assert 'value="iorub-b-sico"' in matricula_de
+    assert "Weiter auf der Plattform" in matricula_de
+    assert "app.vediums.com/lms/courses/" in matricula_de
+    assert "source=public_funnel" in matricula_de
+    assert "enrollment_intent_click" in matricula_de
+    assert "/api/method" not in matricula_de
+
+    # aula-diagnostica: pre-agendamento nao cria reserva automatica.
+    diagnostica_de = (WWW / "de" / "aula-diagnostica.html").read_text(encoding="utf-8")
+    assert "diagnostic_schedule_click" in diagnostica_de
+    assert "diagnostic_slot_click" in diagnostica_de
+    assert "get_available_diagnostic_slots" in diagnostica_de
+    assert 'data-vd-diagnostic="english"' in diagnostica_de
+    assert 'data-vd-diagnostic="portuguese_foreigners"' in diagnostica_de
+    assert 'data-vd-diagnostic="yoruba"' in diagnostica_de
+    assert "erstellt keine automatische Reservierung" in diagnostica_de
+    assert "vedium_core.public_funnel.get_available_diagnostic_slots" in diagnostica_de
+
+    # Roteamento: sem self-redirect
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in cta_slugs:
+        assert f"/de/{slug}" not in by_source
