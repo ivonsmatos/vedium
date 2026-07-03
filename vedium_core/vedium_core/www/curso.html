@@ -255,6 +255,9 @@
                                 <div class="course-details__price-btn">
                                     {% if is_enrolled %}
                                     <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ "Access course" if vd_course_en else "Acessar curso" }}</a>
+                                    {% if can_schedule %}
+                                    <a href="https://app.vediums.com/meu-progresso#vd-schedule-card" class="thm-btn" style="margin-top:10px;">{{ "Schedule a class" if vd_course_en else "Agendar aula" }}</a>
+                                    {% endif %}
                                     {% else %}
                                     <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',location:'course_detail'});">{{ "Enroll now" if vd_course_en else "Matricular agora" }}</a>
                                     {% endif %}
