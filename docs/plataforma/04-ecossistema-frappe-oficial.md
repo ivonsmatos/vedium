@@ -20,23 +20,27 @@ lacuna real de operar uma escola de idiomas 100% online.
 Tudo isso já está no stack (`frappe`, `erpnext`, `lms`, `payments`) porque a
 Frappe LMS traz muito mais do que curso/aula/quiz.
 
-| Feature | Doctype/campo confirmado | Resolve o quê pra Vedium | Esforço |
-|---|---|---|---|
-| **Aula em grupo** | `LMS Batch` (turma com `start_date`/`end_date`, `instructors`, `seat_count`, `timetable`) + `LMS Live Class` (`conferencing_provider`: Zoom **ou** Google Meet) | Hoje só existe 1-a-1 (Course Evaluator). Turma fechada tipo "Inglês Iniciante — Turma Julho" é isso, sem inventar doctype. | Médio — 0 `LMS Batch` existe hoje; decidir se cobrança fica no `LMS Batch.paid_batch` nativo ou continua 100% Stripe (não fazer os dois pro mesmo produto). |
-| **Presença real de aula** | `LMS Live Class Participant` (`joined_at`, `left_at`, `duration`) | "O aluno realmente compareceu" via dado real do Zoom/Meet, não matrícula. | Baixo — já existe, é dado gerado quando há Live Class. |
-| **Aluno avalia professor** | `LMS Batch Feedback` (`instructors`, `content`, `value`) | Hoje não existe nenhum mecanismo disso. | Baixo — ativa junto com Batch. |
-| **Fórum de dúvida por curso/lição** | Componente `Discussions.vue` genérico (por doctype/docname), provável `Discussion Topic`/`Discussion Reply` do framework | Tira dúvida sem WhatsApp/e-mail. Provavelmente já visível no tema padrão do LMS. | Baixo — checar se está habilitado em `LMS Settings`. |
-| **Badges com motor de regra** | `LMS Badge` (`condition` = expressão Python avaliada em evento `New`/`Value Change`/`Manual`) + `LMS Badge Assignment` | Complementa (não substitui) a gamificação custom (`LMS Badge Log`, que tem "level"/pontos e o nativo não tem). | Médio — usar como complemento, não migração 1:1. |
+**Status em 2026-07-03** (revisitado nesta sessão):
+
+| Feature | Doctype/campo confirmado | Resolve o quê pra Vedium | Esforço | Status |
+|---|---|---|---|---|
+| **Aula em grupo** | `LMS Batch` (turma com `start_date`/`end_date`, `instructors`, `seat_count`, `timetable`) + `LMS Live Class` (`conferencing_provider`: Zoom **ou** Google Meet) | Hoje só existe 1-a-1 (Course Evaluator). Turma fechada tipo "Inglês Iniciante — Turma Julho" é isso, sem inventar doctype. | Médio — decidir se cobrança fica no `LMS Batch.paid_batch` nativo ou continua 100% Stripe. | 🟡 **Infra pronta, batch não criada**: decidido manter cobrança 100% Stripe (`paid_batch=0`); `LMS Google Meet Settings` configurado pros 3 professores. **Pendente**: curso+professor+dias/horário reais pra criar a primeira `LMS Batch` — não pode ser inventado, precisa de decisão de negócio. |
+| **Presença real de aula** | `LMS Live Class Participant` (`joined_at`, `left_at`, `duration`) | "O aluno realmente compareceu" via dado real do Zoom/Meet, não matrícula. | Baixo — já existe, é dado gerado quando há Live Class. | ⚪ Automático — só passa a gerar dado quando existir a primeira Live Class (depende do item acima). |
+| **Aluno avalia professor** | `LMS Batch Feedback` (`instructors`, `content`, `value`) | Hoje não existe nenhum mecanismo disso. | Baixo — ativa junto com Batch. | ⚪ Mesma dependência — só funciona por Batch. |
+| **Fórum de dúvida por curso/lição** | Componente `Discussions.vue` genérico (por doctype/docname) | Tira dúvida sem WhatsApp/e-mail. | Baixo | ✅ **Confirmado ligado** (`LMS Settings.show_discussions = 1`). Nada a fazer. |
+| **Badges com motor de regra** | `LMS Badge` (`condition` = expressão Python avaliada em evento `New`/`Value Change`/`Manual`) + `LMS Badge Assignment` | Complementa (não substitui) a gamificação custom (`LMS Badge Log`). | Médio | 🔴 **Bloqueado**: campo `image` é obrigatório no doctype (ícone/arte do emblema) — precisa de asset de design fornecido pelo time antes de criar o primeiro badge. Nenhum badge nativo criado ainda. |
 
 ---
 
 ## 2. Já instalado, quebrado ou ambíguo — decisão + esforço baixo/médio
 
-| App/Doctype | Situação confirmada | Ação recomendada |
-|---|---|---|
-| **`crm` (Frappe CRM)** | `ModuleNotFoundError` em produção. Causa raiz real: [issue frappe/crm#1594](https://github.com/frappe/crm/issues/1594) — import quebrado de `frappe.pulse.utils` (módulo que não existe) dentro de `crm/utils/__init__.py`, corrigido oficialmente trocando por `frappe.__version__`. **Não é falta do app** — é versão do app `crm` desalinhada/desatualizada. | Atualizar o app `crm` (bench update) e reverificar. Se resolver, o `CRM Lead`/`CRM Deal` (funil, SLA, telefonia nativa, web form público) é upgrade real sobre o `Support Ticket` custom que `public_funnel.py` cria hoje pra leads de matrícula/B2B. |
-| **`Support Ticket` (custom) vs `Helpdesk` (`HD Ticket`)** | Helpdesk instalado, 0 uso real. `HD Ticket` tem SLA por prioridade, KB pesquisável (`HD Article`), portal do cliente, templates por tipo. `Support Ticket` custom é raso (sem SLA, sem dono/atribuição). | Consolidar em UM: `CRM Lead` pros intents de venda (matrícula, B2B, aula-diagnóstica) do `public_funnel.py`, `HD Ticket` pra dúvida/problema (financeiro, técnico Zoom, pedagógico). Aposentar `Support Ticket` custom depois da migração — hoje a ambiguidade "qual eu uso" é pior que qualquer um dos dois isolados. |
-| **`LMS Certificate` nativo vs custom** | Colisão de NOME confirmada (mesmo doctype name), já sinalizada em [doc 02](02-dicionario-doctypes.md) mas sem detalhe de schema até agora. Nativo: `template` (Link → Print Format, obrigatório — motor de PDF do Frappe), sem `verification_code`. Custom (`vedium_core`): `verification_code` (usado por `/certificado?code=`), sem `template`. | Decisão de produto, não pesquisa: se o link público de verificação (`verification_code`) é importante pro marketing/confiança, ele não existe no nativo de fábrica — precisa virar Custom Field no doctype nativo, migrando o custom pra dentro dele (não manter os dois). |
+**Status em 2026-07-03:**
+
+| App/Doctype | Situação confirmada | Ação recomendada | Status |
+|---|---|---|---|
+| **`crm` (Frappe CRM)** | `ImportError` em produção: `crm/utils/__init__.py` chamava `get_frappe_version()` de `frappe.pulse.utils`, função que não existe na versão de `frappe` instalada (desalinhamento `crm` 1.72.0 × `frappe` do servidor — módulo existe, função não). | Corrigir o import. | ✅ **Corrigido** (patch manual de 2 linhas: `frappe.__version__` no lugar). ⚠️ Não é um commit git — um futuro `bench update` do app `crm` pode sobrescrever sem aviso (ver [doc 11](11-estado-do-ambiente.md)/[doc 12](12-runbook-de-operacao.md)). `/crm` responde normal agora. |
+| **`Support Ticket` (custom) vs `Helpdesk` (`HD Ticket`)** | Helpdesk instalado, 0 uso real. `Support Ticket` custom tinha permissão insegura (`role All` com CRUD completo, vazava dado de outro aluno). | Consolidar em UM: `CRM Lead` pra vendas, `HD Ticket` pra suporte. Aposentar `Support Ticket` custom depois. | 🟡 **Parcial**: `Support Ticket` teve a permissão corrigida (`if_owner`, sem mais vazamento — ver [doc 11](11-estado-do-ambiente.md)), mas **nenhuma migração de fluxo foi feita** ainda. `public_funnel.py` continua criando `Support Ticket`. Helpdesk (`HD Settings.default_priority`) ainda não confirmado configurado — migrar às cegas era risco de quebrar o suporte ao aluno. **Pendente**: decisão + configuração do Helpdesk antes de migrar. |
+| **`LMS Certificate` nativo vs custom** | Colisão de NOME (mesmo doctype name). | Reconciliar — manter nativo com extensões via Custom Field. | ✅ **Já estava resolvido** de sessão anterior (script `fix_certificate_collision.py`), confirmado nesta sessão via SSH: `module=LMS`, Custom Fields `verification_code`/`enrollment` presentes. Nada a fazer. |
 
 ---
 
