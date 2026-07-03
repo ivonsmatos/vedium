@@ -273,6 +273,12 @@ def test_foreign_audience_clusters_have_english_pages_with_reciprocal_hreflang()
     não fala PT (diáspora, expats, executivos estrangeiros) — decisão do
     usuário: traduzir esses 2 clusters pra inglês primeiro. Cada par PT/EN
     precisa apontar um pro outro via `alt` (hreflang bidirecional).
+
+    Checagem por subconjunto (não igualdade exata): o cluster Iorubá já
+    ganhou uma 3ª entrada "es" no mesmo `alt` (par PT/ES paralelo, ver
+    test_yoruba_cluster_has_spanish_pages_with_reciprocal_hreflang) — o
+    dict `alt` é compartilhado entre todos os idiomas daquele slug, então
+    exigir igualdade exata quebraria assim que qualquer 3º idioma chegasse.
     """
     pairs = [
         ("ioruba-para-iniciantes", "yoruba-for-beginners", None),
@@ -281,8 +287,9 @@ def test_foreign_audience_clusters_have_english_pages_with_reciprocal_hreflang()
         ("preparatorio-celpe-bras", "celpe-bras-exam-prep", "/en/portuguese-placement-test"),
     ]
     for pt_slug, en_slug, expected_test_url in pairs:
-        assert LANDINGS[pt_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
-        assert LANDINGS[en_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
+        expected_pair = {"pt-BR": pt_slug, "en": en_slug}
+        assert LANDINGS[pt_slug]["alt"].items() >= expected_pair.items()
+        assert LANDINGS[en_slug]["alt"].items() >= expected_pair.items()
         assert LANDINGS[en_slug]["lang"] == "en"
         assert "test_url" in LANDINGS[en_slug], f"{en_slug} precisa de test_url explícito"
         assert LANDINGS[en_slug]["test_url"] == expected_test_url
@@ -303,6 +310,54 @@ def test_foreign_audience_clusters_have_english_pages_with_reciprocal_hreflang()
         assert f"/en/{en_slug}" in (
             ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
         ).read_text(encoding="utf-8")
+
+
+def test_yoruba_cluster_has_spanish_pages_with_reciprocal_hreflang():
+    """Cluster Iorubá traduzido pro espanhol (2026-07-03, mesmo racional do
+    inglês: público inclui diáspora hispanofalante, não fala PT). Trava par
+    PT<->ES via `alt` (que agora carrega 3 idiomas nesses 3 slugs — pt-BR,
+    en, es — todos apontando um pro outro), slugs pesquisados como um
+    hispanofalante buscaria (não tradução literal palavra-por-palavra) e
+    paridade de profundidade de conteúdo com as versões PT/EN existentes.
+    """
+    pairs = [
+        ("curso-de-ioruba-online", "curso-de-yoruba-online", None),
+        ("ioruba-para-iniciantes", "yoruba-para-principiantes", None),
+        ("ioruba-cultura-e-ancestralidade", "yoruba-cultura-y-ancestralidad", None),
+    ]
+    for pt_slug, es_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
+        assert LANDINGS[es_slug]["alt"] == {
+            "pt-BR": pt_slug,
+            "en": LANDINGS[pt_slug]["alt"]["en"],
+            "es": es_slug,
+        }
+        assert LANDINGS[es_slug]["lang"] == "es"
+        assert "test_url" in LANDINGS[es_slug], f"{es_slug} precisa de test_url explícito"
+        assert LANDINGS[es_slug]["test_url"] == expected_test_url
+
+        es_html = (WWW / "es" / f"{es_slug}.html").read_text(encoding="utf-8")
+        es_py = (WWW / "es" / f"{es_slug.replace('-', '_')}.py").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{es_slug}")' in es_html
+        assert es_slug in es_py
+
+        # conteúdo real, não placeholder (mesmo padrão de profundidade das outras landings)
+        landing = LANDINGS[es_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/es/{es_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # Curso-de-yoruba-online é a landing pilar em ES: precisa do mesmo grid
+    # de cursos reais (preço, aulas, link) que os outros pilares já têm.
+    assert '"curso-de-yoruba-online": {"category_prefix": "Iorubá"}' in (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
 
 
 def test_commercial_pages_exist_and_drive_to_public_ctas():

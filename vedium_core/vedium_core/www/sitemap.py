@@ -60,6 +60,9 @@ STATIC_URLS = [
     {"loc": "/en/celpe-bras-exam-prep", "priority": "0.6", "changefreq": "monthly"},
     # Páginas em espanhol (SEO internacional)
     {"loc": "/es/prueba-de-nivel-de-portugues", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/curso-de-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/es/yoruba-para-principiantes", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/yoruba-cultura-y-ancestralidad", "priority": "0.6", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):

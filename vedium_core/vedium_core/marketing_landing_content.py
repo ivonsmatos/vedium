@@ -261,7 +261,7 @@ LANDINGS = {
     "curso-de-ioruba-online": {
         "title": "Curso de Iorubá Online — Vedium",
         "short_title": "Curso de Iorubá Online",
-        "alt": {"pt-BR": "curso-de-ioruba-online", "en": "learn-yoruba-online"},
+        "alt": {"pt-BR": "curso-de-ioruba-online", "en": "learn-yoruba-online", "es": "curso-de-yoruba-online"},
         "meta_description": "Curso de iorubá online com aulas ao vivo, pronúncia, vocabulário, cultura e trilha estruturada para iniciantes.",
         "tagline": "Idioma e cultura",
         "h1": "Aprenda iorubá online com estrutura, pronúncia e contexto cultural",
@@ -355,7 +355,7 @@ LANDINGS = {
         "test_url": None,
     },
     "ioruba-para-iniciantes": {
-        "alt": {"pt-BR": "ioruba-para-iniciantes", "en": "yoruba-for-beginners"},
+        "alt": {"pt-BR": "ioruba-para-iniciantes", "en": "yoruba-for-beginners", "es": "yoruba-para-principiantes"},
         "title": "Iorubá para Iniciantes — Vedium",
         "short_title": "Iorubá para Iniciantes",
         "meta_description": "Iorubá para iniciantes com aulas ao vivo: saudações, pronúncia, vocabulário básico, tons e contexto cultural.",
@@ -643,7 +643,7 @@ LANDINGS = {
         "whatsapp_text": "Olá, quero inglês para atendimento ao cliente na Vedium.",
     },
     "ioruba-cultura-e-ancestralidade": {
-        "alt": {"pt-BR": "ioruba-cultura-e-ancestralidade", "en": "yoruba-culture-and-heritage"},
+        "alt": {"pt-BR": "ioruba-cultura-e-ancestralidade", "en": "yoruba-culture-and-heritage", "es": "yoruba-cultura-y-ancestralidad"},
         "title": "Iorubá, Cultura e Ancestralidade — Vedium",
         "short_title": "Iorubá e Cultura",
         "meta_description": "Aprenda iorubá online com contexto cultural, ancestralidade, saudações, pronúncia e prática guiada ao vivo.",
@@ -1062,6 +1062,214 @@ LANDINGS = {
         "whatsapp_text": "Hello, I want Celpe-Bras exam prep with Vedium.",
         "test_url": "/en/portuguese-placement-test",
     },
+
+    # =========================================================================
+    # Spanish landing pages (real, server-rendered) — primeiro idioma novo
+    # publicado depois da infraestrutura de i18n ser generalizada pra N
+    # idiomas (2026-07-03). Cluster Iorubá primeiro: público inclui diáspora
+    # hispanofalante (não fala PT), mesmo racional já aplicado ao inglês.
+    # =========================================================================
+    "curso-de-yoruba-online": {
+        "lang": "es",
+        "alt": {"pt-BR": "curso-de-ioruba-online", "en": "learn-yoruba-online", "es": "curso-de-yoruba-online"},
+        "title": "Curso de Yoruba Online — Clases en Vivo con Profesores Reales | Vedium",
+        "short_title": "Curso de Yoruba Online",
+        "meta_description": "Aprende yoruba online con clases en vivo: pronunciación, tonos, saludos, vocabulario y contexto cultural. Un camino estructurado para principiantes y para quienes buscan reconectar con sus raíces.",
+        "tagline": "Idioma y cultura",
+        "h1": "Aprende yoruba online con estructura, pronunciación y contexto cultural real",
+        "lead": "En Vedium tratamos el yoruba como un viaje de idioma, cultura y pertenencia. Las clases en vivo combinan práctica oral, vocabulario esencial y contexto cultural tratado con respeto, guiadas por profesores reales, a tu propio ritmo.",
+        "hero_image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80",
+        "audience": "Personas de la diáspora afrodescendiente, estudiantes de cultura africana, y cualquiera que quiera empezar yoruba desde cero o reconectar con sus raíces.",
+        "level": "Principiante a intermedio",
+        "frequency": "1 o 2 clases en vivo por semana",
+        "duration": "Módulos progresivos",
+        "summary": "Aprendes sonidos, tonos, saludos, vocabulario cotidiano, frases esenciales y fundamentos culturales, para estudiar con respeto y continuidad.",
+        "pain_title": "El yoruba exige escucha, tono y guía",
+        "pain_intro": "Estudiar solo suele dejar dudas de pronunciación y significado. Las clases en vivo te ayudan a corregir sonidos, entender el contexto y practicar con confianza.",
+        "pain_points": [
+            "Dificultad para encontrar un camino de estudio organizado y confiable.",
+            "Inseguridad con los tonos, los acentos y la pronunciación.",
+            "Confusión entre vocabulario, cultura y uso real del idioma.",
+            "Falta de acompañamiento para avanzar más allá de listas de palabras.",
+        ],
+        "outcomes": [
+            "Pronunciar saludos y primeras palabras con más precisión.",
+            "Construir frases simples para presentarte y hablar de tu rutina.",
+            "Entender el vocabulario dentro de su contexto cultural.",
+            "Crear una base sólida para pasar a los módulos intermedios.",
+        ],
+        "modules": [
+            {"title": "Sonidos y tonos", "text": "Introducción a la pronunciación, la escucha y las diferencias tonales clave."},
+            {"title": "Saludos", "text": "Saludos, presentaciones y expresiones de respeto."},
+            {"title": "Vocabulario esencial", "text": "Familia, cuerpo, hogar, rutina, números y objetos comunes."},
+            {"title": "Primeras frases", "text": "Estructuras para preguntar, responder y formar frases simples."},
+            {"title": "Cultura en contexto", "text": "Uso social del idioma, significados y referencias culturales tratados con cuidado."},
+            {"title": "Práctica oral", "text": "Repetición guiada, diálogos cortos y retroalimentación del profesor."},
+        ],
+        "format_items": [
+            "Clases online en vivo con práctica de pronunciación.",
+            "Un camino gradual para quienes empiezan desde cero.",
+            "Contexto cultural sin promesas religiosas ni sensacionalismo.",
+            "Orientación para continuar por módulos progresivos.",
+        ],
+        "price_from": "320",
+        "price_display": "Desde R$ 320/mes",
+        "price_note": "Valor de referencia del plan ligero (1 clase en vivo por semana). El yoruba es un curso de nicho con profesor especializado; los planes con más clases tienen valores distintos — habla con el equipo.",
+        "workload": "PT1H30M",
+        "seo_title": "Todo sobre el curso de yoruba online de Vedium",
+        "seo_sections": [
+            {
+                "heading": "Qué es el yoruba y dónde se habla",
+                "body": [
+                    "<p>El <strong>yoruba</strong> (yorùbá) es uno de los idiomas más hablados de África Occidental, con decenas de millones de hablantes — principalmente en el <strong>suroeste de Nigeria</strong> y en países vecinos como <strong>Benín y Togo</strong>, además de una amplia comunidad en la diáspora. Es un idioma vivo, con literatura, proverbios, música y una riquísima tradición oral.</p>",
+                    "<p>Una característica marca el idioma desde la primera clase: el yoruba es una <strong>lengua tonal</strong>. Esto significa que la misma secuencia de letras puede tener significados distintos según el tono de voz. Por eso aprender yoruba con audio y corrección en vivo marca tanta diferencia — las listas de palabras por sí solas no enseñan a escuchar y producir los tonos correctamente.</p>",
+                ],
+            },
+            {
+                "heading": "El yoruba en la diáspora: una herencia viva",
+                "body": [
+                    "<p>Pocos idiomas africanos tienen una conexión tan profunda con las Américas como el yoruba. Su presencia es fuerte en la <strong>música, la gastronomía y las tradiciones espirituales de raíz africana</strong> que se encuentran en países como Brasil, Cuba y otros territorios de la diáspora. Para muchas personas, estudiar yoruba es también una forma de reconectar con esas raíces culturales y de entender esa herencia desde la fuente, en vez de a través de intermediarios.</p>",
+                    "<p>En Vedium, ese contexto cultural se trata con <strong>respeto y responsabilidad</strong>, desde un punto de vista educativo y lingüístico — sin promesas religiosas ni sensacionalismo. El objetivo es que comprendas el idioma, su lógica y su uso real, con la cultura como contexto que le da sentido a las palabras.</p>",
+                ],
+            },
+            {
+                "heading": "Cómo aprender los tonos del yoruba",
+                "body": [
+                    "<p>El yoruba tiene <strong>tres tonos básicos</strong> — alto, medio y bajo — marcados en la escritura con acentos. Entrenar esa diferencia es el paso más importante al principio, y es exactamente ahí donde la clase en vivo marca la diferencia: el profesor pronuncia, tú repites y recibes corrección inmediata, en vez de fijar un sonido incorrecto por tu cuenta.</p>",
+                    "<p>El camino de estudio empieza por los <strong>sonidos y tonos</strong>, sigue con saludos y expresiones de respeto, vocabulario cotidiano (familia, hogar, números, rutina) y llega a la formación de frases simples. Cada etapa combina escucha, repetición guiada y diálogos cortos, siempre con retroalimentación.</p>",
+                ],
+            },
+            {
+                "heading": "Cómo es el curso de yoruba en vivo en Vedium",
+                "body": [
+                    "<p>El yoruba en Vedium se enseña en <strong>clases en vivo, de principiante a avanzado</strong>, con un profesor especializado en el idioma y en la cultura. Las clases están pensadas para quienes empiezan desde cero, con un ritmo gradual y el foco puesto en que <strong>hables de verdad</strong> — no solo en memorizar listas. Para profundizar en la parte cultural, también existe el camino <a href=\"/es/yoruba-cultura-y-ancestralidad\">yoruba, cultura y ancestralidad</a>.</p>",
+                    "<p>Por ser un idioma de nicho, con poca oferta de cursos serios, encontrar un camino organizado y confiable ya es una ventaja. La propuesta de Vedium es justamente esa: estructura, pronunciación correcta y continuidad por módulos, con acompañamiento humano en cada etapa.</p>",
+                ],
+            },
+            {
+                "heading": "Cuánto cuesta y cómo empezar",
+                "body": [
+                    "<p>Los planes de yoruba comienzan <strong>desde R$ 320/mes</strong> en el formato ligero (una clase en vivo por semana). Al tratarse de un curso especializado, con un profesor dedicado al idioma, el valor refleja la profundidad del acompañamiento. Los planes con más clases por semana, para quienes quieren avanzar más rápido, tienen valores proporcionales.</p>",
+                    "<p>Para empezar, habla con el equipo de Vedium por WhatsApp o realiza la evaluación inicial. Sales de la primera conversación entendiendo tu punto de partida, la frecuencia recomendada y el camino hasta hablar yoruba con más confianza.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "¿Necesito conocimientos previos?", "a": "No. El camino puede empezar desde cero, con foco en pronunciación y vocabulario inicial."},
+            {"q": "¿El curso es religioso?", "a": "La propuesta es educativa y lingüística, con el contexto cultural tratado con respeto."},
+            {"q": "¿El yoruba tiene certificado?", "a": "Sí, según la finalización y los requisitos del curso libre."},
+            {"q": "¿Cómo sé por dónde empezar?", "a": "Puedes hablar con el equipo y hacer la evaluación inicial antes de matricularte."},
+        ],
+        "whatsapp_text": "Hola, quiero saber sobre el curso de yoruba online en Vedium.",
+        # Sin prueba de nivel formal para yoruba (no es un idioma MCER y el
+        # público mayoritariamente empieza desde cero) — el CTA se convierte
+        # en "hablar con el equipo" en vez de simular una prueba que no existe.
+        "test_url": None,
+    },
+    "yoruba-para-principiantes": {
+        "lang": "es",
+        "alt": {"pt-BR": "ioruba-para-iniciantes", "en": "yoruba-for-beginners", "es": "yoruba-para-principiantes"},
+        "title": "Yoruba para Principiantes — Vedium",
+        "short_title": "Yoruba para Principiantes",
+        "meta_description": "Yoruba para principiantes absolutos con clases en vivo: saludos, pronunciación, vocabulario básico, tonos y contexto cultural.",
+        "tagline": "Primeros pasos",
+        "h1": "Empieza yoruba de la forma correcta: sonidos, tonos, saludos y frases útiles",
+        "lead": "Una entrada guiada para quienes quieren aprender yoruba sin perderse. El camino organiza los primeros sonidos, palabras y estructuras para crear una base real de estudio.",
+        "hero_image": "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1920&q=80",
+        "audience": "Principiantes absolutos, estudiantes de cultura africana, personas de la diáspora y cualquiera que busque una primera experiencia real con el idioma.",
+        "level": "Principiante absoluto",
+        "frequency": "1 o 2 clases en vivo por semana",
+        "duration": "Primer módulo introductorio",
+        "summary": "Aprendes pronunciación, escucha inicial, saludos, números, frases de presentación y vocabulario cotidiano.",
+        "pain_title": "El comienzo define la base",
+        "pain_intro": "En yoruba, aprender sonidos y tonos desde el inicio evita vicios difíciles de corregir después.",
+        "pain_points": [
+            "No saber cómo pronunciar correctamente.",
+            "Estudiar palabras sueltas sin lograr formar frases.",
+            "Mezclar referencias culturales sin entender su uso lingüístico.",
+            "Perder la motivación por falta de una secuencia clara.",
+        ],
+        "outcomes": [
+            "Reconocer sonidos y tonos iniciales con más atención.",
+            "Usar saludos y presentaciones simples.",
+            "Construir frases cortas con vocabulario esencial.",
+            "Entender cómo continuar hacia el siguiente módulo.",
+        ],
+        "modules": [
+            {"title": "Alfabeto y sonidos", "text": "Introducción a los sonidos y a la escucha activa."},
+            {"title": "Tonos", "text": "Primera percepción de tono y significado."},
+            {"title": "Saludos", "text": "Formas de saludar y responder."},
+            {"title": "Presentación personal", "text": "Nombre, origen, familia y primeras frases."},
+            {"title": "Números y rutina", "text": "Vocabulario de uso práctico."},
+            {"title": "Diálogos guiados", "text": "Conversaciones cortas con retroalimentación."},
+        ],
+        "format_items": [
+            "Clases en vivo para corregir la pronunciación desde el inicio.",
+            "Ejercicios simples de repetición y escucha.",
+            "Material organizado por tema.",
+            "Próximos pasos sugeridos al final del módulo.",
+        ],
+        "faqs": [
+            {"q": "¿Es para quienes nunca estudiaron yoruba?", "a": "Sí. Esta página está pensada para principiantes absolutos."},
+            {"q": "¿Voy a aprender a hablar o solo vocabulario?", "a": "La propuesta es usar el vocabulario en frases y diálogos simples."},
+            {"q": "¿Necesito material antes de la clase?", "a": "No. La orientación inicial la da Vedium."},
+            {"q": "¿Puedo estudiar en grupo?", "a": "La disponibilidad depende de los grupos abiertos y los horarios."},
+        ],
+        "whatsapp_text": "Hola, quiero empezar yoruba para principiantes en Vedium.",
+        "test_url": None,
+    },
+    "yoruba-cultura-y-ancestralidad": {
+        "lang": "es",
+        "alt": {"pt-BR": "ioruba-cultura-e-ancestralidade", "en": "yoruba-culture-and-heritage", "es": "yoruba-cultura-y-ancestralidad"},
+        "title": "Yoruba, Cultura y Ancestralidad — Vedium",
+        "short_title": "Yoruba y Cultura",
+        "meta_description": "Aprende yoruba online con contexto cultural, ancestralidad, saludos, pronunciación y práctica guiada en vivo.",
+        "tagline": "Idioma con contexto",
+        "h1": "Yoruba para aprender idioma, memoria y cultura",
+        "lead": "Un camino para estudiar yoruba con respeto por el idioma, la cultura y la ancestralidad. Las clases conectan pronunciación, vocabulario y contexto sin convertir el aprendizaje en una promesa superficial.",
+        "hero_image": "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1920&q=80",
+        "audience": "Estudiantes de cultura afrodescendiente, principiantes en yoruba, investigadores, artistas, educadores y personas en busca de reconexión cultural.",
+        "level": "Principiante a básico",
+        "frequency": "1 o 2 clases en vivo por semana",
+        "duration": "Módulos por tema",
+        "summary": "Aprendes el idioma en uso, pronunciación, saludos, expresiones, vocabulario cultural y nociones de contexto histórico y social.",
+        "pain_title": "La cultura necesita cuidado",
+        "pain_intro": "Cuando el idioma se separa del contexto, el estudiante pierde profundidad. Cuando el contexto se trata sin método, el aprendizaje se vuelve confuso.",
+        "pain_points": [
+            "Querer aprender yoruba sin encontrar un camino serio.",
+            "Tener dudas sobre pronunciación, tonos y significados.",
+            "Mezclar referencias culturales sin entender sus límites y usos.",
+            "Necesitar un profesor para organizar el estudio y la práctica.",
+        ],
+        "outcomes": [
+            "Construir una base lingüística que respete el contexto.",
+            "Entender saludos, expresiones y vocabulario cultural.",
+            "Practicar pronunciación y escucha con guía.",
+            "Seguir un camino de continuidad sin superficialidad.",
+        ],
+        "modules": [
+            {"title": "Pronunciación y tonos", "text": "Escucha, repetición guiada y atención a los sonidos."},
+            {"title": "Saludos y respeto", "text": "Formas de saludar, responder y presentarte."},
+            {"title": "Familia y comunidad", "text": "Vocabulario de relaciones, pertenencia y vida cotidiana."},
+            {"title": "Expresiones culturales", "text": "Palabras y usos presentados con contexto educativo."},
+            {"title": "Historia y diáspora", "text": "Conexiones culturales presentadas con cuidado y responsabilidad."},
+            {"title": "Práctica viva", "text": "Diálogos, lectura corta, escucha y retroalimentación."},
+        ],
+        "format_items": [
+            "Clases en vivo con práctica y contextualización.",
+            "Enfoque educativo, cultural y lingüístico.",
+            "Contenido progresivo para principiantes.",
+            "Orientación de continuidad según tus objetivos.",
+        ],
+        "faqs": [
+            {"q": "¿El curso mezcla idioma y cultura?", "a": "Sí, pero con enfoque educativo y sin prometer experiencias fuera del alcance de un curso libre."},
+            {"q": "¿Necesito saber yoruba de antemano?", "a": "No. El camino puede empezar desde cero."},
+            {"q": "¿Es recomendable para educadores y artistas?", "a": "Sí, especialmente para quienes buscan repertorio lingüístico y cultural."},
+            {"q": "¿Incluye práctica oral?", "a": "Sí. Pronunciación, escucha y habla son parte central del recorrido."},
+        ],
+        "whatsapp_text": "Hola, quiero yoruba con cultura y ancestralidad en Vedium.",
+        "test_url": None,
+    },
 }
 
 
@@ -1106,11 +1314,14 @@ LANDING_COURSE_FILTERS = {
     "portugues-para-estrangeiros": {"category_exact": "Português para Estrangeiros"},
     "learn-yoruba-online": {"category_prefix": "Iorubá"},
     "learn-portuguese-brazil": {"category_exact": "Português para Estrangeiros"},
+    "curso-de-yoruba-online": {"category_prefix": "Iorubá"},
 }
 
 # Landings em inglês cujo grid de cursos deve linkar pra /en/curso/<slug>
 # (traduzido) em vez de /curso/<slug> — os 2 clusters aqui têm 100% dos
-# cursos cobertos por course_translations.COURSE_TRANSLATIONS.
+# cursos cobertos por course_translations.COURSE_TRANSLATIONS. curso-de-yoruba-online
+# (ES) ainda não tem tradução de curso individual em espanhol, então fica de
+# fora por ora — o grid cai de volta pro /curso/<slug> em português.
 LANDING_COURSE_GRID_USES_EN_COURSE_URL = {"learn-yoruba-online", "learn-portuguese-brazil"}
 
 
