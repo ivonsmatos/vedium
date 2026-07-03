@@ -46,6 +46,13 @@ Frappe LMS traz muito mais do que curso/aula/quiz.
 
 ## 3. Não instalado — candidatos com trade-offs reais
 
+> **Decisão (2026-07-03): nenhum item desta seção é prioridade agora.**
+> Revisitar quando o volume de alunos/professores justificar (HR quando
+> houver professor CLT real; Insights quando houver dado suficiente pra
+> BI valer a pena; WhatsApp quando o volume de aulas tornar lembrete
+> manual inviável). Mantido como mapa de referência, não como backlog
+> ativo.
+
 | App | Gratuito? | Resolveria | Ressalva |
 |---|---|---|---|
 | **Frappe HR (`hrms`)** | Sim, self-hosted (Frappe Cloud é só hosting gerenciado opcional) | Folha/férias/13º pra professor **CLT**. Pagamento por hora-aula é possível via `Salary Structure` + `Timesheet` (`hour_rate`), mas não liga sozinho a "deu aula" — precisa integração (ex.: Live Class Participant → Timesheet). | Modelo pressupõe vínculo formal (Employee/Employment Type). Pra maioria freelance, o encaixe é frágil sem essa integração custom. Payroll é genérico — localização CLT/INSS/FGTS não vem pronta, não confirmado se existe app BR separado. |
