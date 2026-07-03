@@ -37,7 +37,7 @@ não se repita.
 | — | [Arquitetura i18n](03-arquitetura-i18n.md) | Como funciona a tradução do site por idioma | ✅ |
 | 04 | [Ecossistema Frappe Oficial](04-ecossistema-frappe-oficial.md) | Quais apps oficiais Frappe (instalados ou não) resolvem lacunas de operar a escola | ✅ |
 | 05 | [Fluxo — Jornada do Aluno](05-fluxo-jornada-do-aluno.md) | Checkout → matrícula → aula → certificado | ✅ |
-| 06 | Fluxo — Jornada do Professor | Instrutor → evaluator → slots → aula → certifica | ⏳ |
+| 06 | [Fluxo — Jornada do Professor](06-fluxo-jornada-do-professor.md) | Instrutor → evaluator → slots → aula → certifica | ✅ |
 | 07 | Fluxo — Agendamento de aulas | 1-a-1 (Evaluator/Meet) vs. grupo (Live Class/Meet) | ⏳ |
 | 08 | Fluxo — Pagamento, Cupom e Indicação | Checkout custom → webhook → matrícula → recompensa | ⏳ |
 | 09 | Fluxo — Certificação | enable_certification → avaliação → certificado | ⏳ |
