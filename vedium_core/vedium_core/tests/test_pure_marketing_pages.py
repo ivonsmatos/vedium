@@ -1860,6 +1860,35 @@ def test_scheduling_module_wraps_native_flow_without_touching_lesson_slot_or_bil
     assert "LMS Enrollment" in code
     # Cria o registro NATIVO (não um doctype custom novo).
     assert '"doctype": "LMS Certificate Request"' in code
+    # Aluno consegue ver e cancelar o que já agendou (não só criar).
+    assert "def list_my_evaluations" in code
+    assert "def cancel_evaluation_slot" in code
+    assert "request.member != frappe.session.user" in code
+
+
+def test_support_ticket_doctype_is_not_world_writable():
+    """2026-07-03: achado durante revisão de RH/CRM/Suporte — o doctype
+    'Support Ticket' tinha role "All" com CRUD completo (create/write/delete),
+    igual o bug já corrigido no Lesson Slot: qualquer usuário logado podia
+    ler/editar/apagar o chamado de QUALQUER outra pessoa via API REST padrão
+    do Frappe, mesmo os wrappers em api.py/public_funnel.py já filtrando
+    corretamente por dono. Ambos usam `insert(ignore_permissions=True)` pra
+    criar, então apertar a permissão de doctype não quebra nenhum fluxo
+    existente (guest ou logado)."""
+    ticket_json = json.loads(
+        (
+            ROOT / "vedium_core" / "vedium_core" / "vedium_core" / "doctype"
+            / "support_ticket" / "support_ticket.json"
+        ).read_text(encoding="utf-8")
+    )
+    perms_by_role = {p["role"]: p for p in ticket_json["permissions"]}
+    assert perms_by_role["All"]["write"] == 0
+    assert perms_by_role["All"].get("delete", 0) == 0
+    assert perms_by_role["All"].get("share", 0) == 0
+    assert perms_by_role["All"]["if_owner"] == 1
+    assert perms_by_role["All"]["read"] == 1
+    assert perms_by_role["System Manager"]["write"] == 1
+    assert perms_by_role["System Manager"]["delete"] == 1
 
 
 def test_pricing_value_page_has_real_prices_and_no_stale_redirect():
@@ -2972,3 +3001,61 @@ def test_ple_cluster_has_german_pages_with_reciprocal_hreflang():
     assert '{"loc": "/de/portugiesisch-einstufungstest"' in (
         ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
     ).read_text(encoding="utf-8")
+
+
+def test_english_cluster_has_german_pages_with_reciprocal_hreflang():
+    """Cluster de Inglês (pilar englischkurs-online-live + 5 sub-páginas)
+    traduzido pro alemão -- 5a prioridade do rollout de alemão (mesma
+    ordem usada em en/es/fr): germanofalantes que querem aprender inglês
+    com a Vedium, adaptado pro público da região DACH. Mesmo padrão de
+    test_english_cluster_has_french_pages_with_reciprocal_hreflang: slug
+    em alemão pensado como um germanofalante buscaria (transliteração
+    ASCII de ü/ö/ä), `alt` recíproco nos 5 idiomas, paridade de
+    profundidade de conteúdo.
+    """
+    pairs = [
+        ("curso-de-ingles-online", "englischkurs-online-live", "/teste-de-nivel-ingles"),
+        ("ingles-para-entrevista", "englisch-fuer-vorstellungsgespraeche", None),
+        ("ingles-para-programadores", "englisch-fuer-entwickler", None),
+        ("ingles-executivo", "business-englisch-online", None),
+        ("ingles-para-viagens", "englisch-fuer-reisen", None),
+        ("ingles-para-atendimento-ao-cliente", "englisch-fuer-kundenservice", None),
+    ]
+    for pt_slug, de_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"]["de"] == de_slug
+        assert LANDINGS[de_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[de_slug]["alt"]["en"] == LANDINGS[pt_slug]["alt"]["en"]
+        assert LANDINGS[de_slug]["alt"]["es"] == LANDINGS[pt_slug]["alt"]["es"]
+        assert LANDINGS[de_slug]["alt"]["fr"] == LANDINGS[pt_slug]["alt"]["fr"]
+        assert LANDINGS[de_slug]["alt"]["de"] == de_slug
+        assert LANDINGS[de_slug]["lang"] == "de"
+        if expected_test_url:
+            assert "test_url" in LANDINGS[de_slug], f"{de_slug} precisa de test_url explícito"
+            assert LANDINGS[de_slug]["test_url"] == expected_test_url
+
+        de_html = (WWW / "de" / f"{de_slug}.html").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{de_slug}")' in de_html
+
+        # conteúdo real, não placeholder (mesma paridade de profundidade
+        # exigida do cluster PT/EN/ES/FR)
+        landing = LANDINGS[de_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/de/{de_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # englischkurs-online-live é a landing pilar em DE: precisa do mesmo
+    # grid de cursos reais (preço, aulas, link) que os outros pilares já
+    # têm, e preço em EUR (não R$ nem US$).
+    assert '"englischkurs-online-live": {"category_prefix": "Inglês"}' in (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    pilar = LANDINGS["englischkurs-online-live"]
+    assert "€" in pilar["price_display"]
+    assert "R$" not in pilar["price_display"]
+    assert "US$" not in pilar["price_display"]

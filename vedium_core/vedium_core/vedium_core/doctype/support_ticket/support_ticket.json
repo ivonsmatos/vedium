@@ -63,9 +63,21 @@
             "print": 1,
             "read": 1,
             "report": 1,
-            "role": "All",
+            "role": "System Manager",
             "share": 1,
             "write": 1
+        },
+        {
+            "create": 1,
+            "email": 0,
+            "export": 0,
+            "if_owner": 1,
+            "print": 0,
+            "read": 1,
+            "report": 0,
+            "role": "All",
+            "share": 0,
+            "write": 0
         }
     ],
     "sort_field": "modified",
