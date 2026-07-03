@@ -758,6 +758,78 @@ def test_llms_txt_has_current_course_level_and_objective_pages():
     assert "https://vediums.com/mentores" not in llms
 
 
+def test_english_home_page_exists_and_routes_correctly():
+    """Home (/) traduzida pro inglês (www/en/index.html) — a página mais
+    visitada do site, primeira prioridade do agente translator-en (ver
+    .claude/agents/translator-en.md). Diferente das landings do dict
+    LANDINGS, a home é página própria (hero com swiper, grid de cursos ao
+    vivo do banco, planos, depoimentos, blog) sem infraestrutura de
+    tradução prévia — por isso trava aqui: existência dos arquivos,
+    conteúdo real (não placeholder), roteamento (/en não pode mais cair no
+    redirect antigo pra PT) e reciprocidade de hreflang.
+    """
+    en_html_path = WWW / "en" / "index.html"
+    en_py_path = WWW / "en" / "index.py"
+    assert en_html_path.exists()
+    assert en_py_path.exists()
+
+    en_html = en_html_path.read_text(encoding="utf-8")
+    en_py = en_py_path.read_text(encoding="utf-8")
+    pt_html = (WWW / "index.html").read_text(encoding="utf-8")
+
+    assert 'lang="en"' in en_html
+    assert "Vedium - Live Online Language Courses" in en_html
+    assert 'hreflang="pt-br" href="https://vediums.com/"' in en_html
+    assert 'hreflang="en" href="https://vediums.com/en"' in en_html
+    assert 'link rel="canonical" href="https://vediums.com/en"' in en_html
+
+    # Hero traduzido (above-the-fold), CTAs apontam pro teste de inglês
+    assert "Accelerate Your" in en_html
+    assert "Take the free placement test" in en_html
+    assert '/teste-de-nivel-ingles" class="thm-btn"' in en_html
+    assert "Chat on WhatsApp" in en_html
+    assert "wa.me/5511911293075" in en_html
+
+    # Preço em US$, não R$ (público internacional)
+    assert "US$ 120" in en_html
+    assert "R$" not in en_html
+
+    # Teasers do blog apontam pros posts em inglês existentes (não pros
+    # slugs em português, que o leitor de inglês não conseguiria ler)
+    assert "/blog/yoruba-language-and-culture" in en_html
+    assert "/blog/yoruba-greetings" in en_html
+    assert "/blog/yoruba-numbers-1-to-20" in en_html
+    assert "/blog/niveis-de-ingles-a1-c1" not in en_html
+    assert "/blog/como-funcionam-as-aulas-ao-vivo" not in en_html
+
+    # Controller: contexto de idioma pro seletor (site_navbar.html) +
+    # mesma lógica de negócio da home em PT (cursos ao vivo do banco,
+    # redirect app.vediums.com -> /login)
+    assert 'context.lang = "en"' in en_py
+    assert 'context.canonical_url = "https://vediums.com/en"' in en_py
+    assert 'context.alt_lang_url = "https://vediums.com/"' in en_py
+    assert "def get_courses()" in en_py
+    assert "app.vediums.com" in en_py
+    assert 'redirect_location = "/login"' in en_py
+
+    # PT ganha o hreflang de volta (reciprocidade)
+    assert 'hreflang="en" href="https://vediums.com/en"' in pt_html
+
+    # Roteamento: /en não pode mais cair no redirect antigo pra PT (bug
+    # que existiria se a home nova não tivesse sido conectada em hooks.py)
+    hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    assert by_source["/en-us"] == "/en"
+    assert by_source["/en-au"] == "/en"
+    assert "/en" not in by_source  # sem self-redirect /en -> /en
+    assert 'if prefix != "en"' in hooks_src
+
+    # Sitemap lista a home em inglês
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    assert '{"loc": "/en", "priority"' in sitemap_py
+
+
 def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     index_html = (WWW / "index.html").read_text(encoding="utf-8")
     index_py = (WWW / "index.py").read_text(encoding="utf-8")
@@ -939,7 +1011,10 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
 
     # Casos exatos reportados pelo usuário
     assert by_source["/en-us/contato"] == "/contato"
-    assert by_source["/en-us"] == "/"
+    # /en (e mesma família en-us/en-au) tem home real traduzida agora
+    # (www/en/index.html) — não volta mais pro PT.
+    assert by_source["/en-us"] == "/en"
+    assert "/en" not in by_source
 
     # Prefixo /en/ TAMBÉM precisa cair no redirect — a página pilar de
     # Iorubá em PT (curso-de-ioruba-online) tem tradução real, mas sob um

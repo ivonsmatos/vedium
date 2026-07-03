@@ -51,6 +51,7 @@ STATIC_URLS = [
     # cobre tanto os de código quanto os publicados pelo painel)
     {"loc": "/blog", "priority": "0.7", "changefreq": "weekly"},
     # Páginas em inglês (SEO internacional)
+    {"loc": "/en", "priority": "0.9", "changefreq": "weekly"},
     {"loc": "/en/learn-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/learn-portuguese-brazil", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/portuguese-placement-test", "priority": "0.6", "changefreq": "monthly"},

@@ -58,7 +58,15 @@ PUBLIC_LANGUAGE_ROUTES = (
 )
 
 LANGUAGE_ROUTE_RULES = (
-    [{"from_route": f"/{prefix}", "to_route": "index"} for prefix in LANGUAGE_ROUTE_PREFIXES]
+    # "en" fica de fora: www/en/index.html é uma home real traduzida (não
+    # mais um placeholder) — deixa a resolução de pasta padrão do Frappe
+    # (www/en/index.html -> rota "en") servir, em vez de forçar pro
+    # controller index (PT) como os demais prefixos ainda sem home própria.
+    [
+        {"from_route": f"/{prefix}", "to_route": "index"}
+        for prefix in LANGUAGE_ROUTE_PREFIXES
+        if prefix != "en"
+    ]
     + [
         {"from_route": f"/{prefix}/{route}", "to_route": route}
         for prefix in LANGUAGE_ROUTE_PREFIXES
@@ -137,8 +145,16 @@ def _build_language_prefix_redirects():
         if prefix == "pt-br":
             continue
         family = LANGUAGE_PREFIX_FAMILY.get(prefix, prefix)
-        # Home do idioma: ainda não existe home traduzida de verdade.
-        redirects.append({"source": f"/{prefix}", "target": "/"})
+        # Home do idioma: só "en" tem home traduzida de verdade hoje
+        # (www/en/index.html) — en-us/en-au (mesma família) também caem
+        # nela; os demais idiomas sem home própria ainda voltam pro PT.
+        home_target = "/en" if family == "en" else "/"
+        # Evita redirect /en -> /en (self-redirect): "en" já é servido
+        # direto por www/en/index.html via resolução de pasta do Frappe,
+        # não precisa de entrada aqui (só en-us/en-au, mesma família,
+        # precisam do redirect pra cair na home real).
+        if f"/{prefix}" != home_target:
+            redirects.append({"source": f"/{prefix}", "target": home_target})
         for route in PUBLIC_LANGUAGE_ROUTES:
             translated_slug = pt_to_lang_slug.get(route, {}).get(family)
             target = f"/{family}/{translated_slug}" if translated_slug else f"/{route}"
