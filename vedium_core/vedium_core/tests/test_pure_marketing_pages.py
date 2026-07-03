@@ -312,6 +312,75 @@ def test_foreign_audience_clusters_have_english_pages_with_reciprocal_hreflang()
         ).read_text(encoding="utf-8")
 
 
+def test_english_cluster_has_english_pages_with_reciprocal_hreflang():
+    """Cluster de Inglês (pilar curso-de-ingles-online + 5 sub-páginas) --
+    item 4 de prioridade do agente translator-en, a única parte do cluster
+    de idiomas que ainda faltava (Iorubá e PLE já tinham inglês publicado
+    antes). Mesmo padrão dos outros clusters: slug em inglês pensado como
+    um falante nativo buscaria (não tradução literal), alt recíproco nos
+    dois idiomas, paridade de profundidade de conteúdo.
+    """
+    pairs = [
+        ("curso-de-ingles-online", "learn-english-online", "/teste-de-nivel-ingles"),
+        ("ingles-para-entrevista", "english-for-job-interviews", None),
+        ("ingles-para-programadores", "english-for-developers", None),
+        ("ingles-executivo", "business-english-online", None),
+        ("ingles-para-viagens", "english-for-travel", None),
+        ("ingles-para-atendimento-ao-cliente", "english-for-customer-service", None),
+    ]
+    for pt_slug, en_slug, expected_test_url in pairs:
+        expected_pair = {"pt-BR": pt_slug, "en": en_slug}
+        assert LANDINGS[pt_slug]["alt"].items() >= expected_pair.items()
+        assert LANDINGS[en_slug]["alt"].items() >= expected_pair.items()
+        assert LANDINGS[en_slug]["lang"] == "en"
+        if expected_test_url:
+            assert "test_url" in LANDINGS[en_slug], f"{en_slug} precisa de test_url explícito"
+            assert LANDINGS[en_slug]["test_url"] == expected_test_url
+
+        en_html = (WWW / "en" / f"{en_slug}.html").read_text(encoding="utf-8")
+        en_py_path = WWW / "en" / f"{en_slug.replace('-', '_')}.py"
+        assert en_py_path.exists(), f"falta www/en/{en_slug.replace('-', '_')}.py (underscore!)"
+        en_py = en_py_path.read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{en_slug}")' in en_html
+        assert en_slug in en_py
+
+        # conteúdo real, não placeholder (mesmo padrão de profundidade das outras landings)
+        landing = LANDINGS[en_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/en/{en_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # Pilar em inglês: mesma riqueza de SEO/GEO que o pilar em PT (prosa
+    # longa, preço em US$, grid de cursos ao vivo do banco filtrado por
+    # categoria "Inglês", link building interno pro cluster).
+    pillar = LANDINGS["learn-english-online"]
+    prose = " ".join(block for sec in pillar["seo_sections"] for block in sec["body"])
+    word_count = len(re.sub(r"<[^>]+>", " ", prose).split())
+    assert word_count >= 700, f"prosa muito curta: {word_count} palavras"
+    assert len(pillar["seo_sections"]) >= 4
+    assert pillar["price_from"] == "120"
+    assert "US$ 120" in pillar["price_display"]
+    assert "R$" not in pillar["price_display"]
+    assert "/ingles-para-entrevista" in prose
+    assert "/teste-de-nivel-ingles" in prose
+
+    landing_content = (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    assert '"learn-english-online": {"category_prefix": "Inglês"}' in landing_content
+
+    pillar_html = (WWW / "en" / "learn-english-online.html").read_text(encoding="utf-8")
+    assert pillar_html.strip().splitlines()[0] == (
+        '{% set landing = get_marketing_landing("learn-english-online") %}'
+    )
+
+
 def test_yoruba_cluster_has_spanish_pages_with_reciprocal_hreflang():
     """Cluster Iorubá traduzido pro espanhol (2026-07-03, mesmo racional do
     inglês: público inclui diáspora hispanofalante, não fala PT). Trava par
@@ -1183,8 +1252,10 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     # mesmo bug, só que com o prefixo "correto".
     assert by_source["/en/curso-de-ioruba-online"] == "/en/learn-yoruba-online"
     assert by_source["/en-us/teste-de-nivel"] == "/en/portuguese-placement-test"
-    # Sem tradução real (cluster de Inglês, línguas sem conteúdo) -> PT
-    assert by_source["/en/curso-de-ingles-online"] == "/curso-de-ingles-online"
+    # Cluster de Inglês ganhou tradução real depois (mesmo racional do Iorubá
+    # acima: slug diferente, learn-english-online) -- redireciona pra ela.
+    assert by_source["/en/curso-de-ingles-online"] == "/en/learn-english-online"
+    # Sem tradução real (idiomas ainda sem conteúdo) -> PT
     assert by_source["/es-ar/planos"] == "/planos"
     assert by_source["/de/contato"] == "/contato"
 

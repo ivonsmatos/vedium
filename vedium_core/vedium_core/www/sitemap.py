@@ -67,6 +67,12 @@ STATIC_URLS = [
     {"loc": "/en/yoruba-culture-and-heritage", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/en/portuguese-for-executives", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/en/celpe-bras-exam-prep", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/learn-english-online", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/en/english-for-job-interviews", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/english-for-developers", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/business-english-online", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/english-for-travel", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/en/english-for-customer-service", "priority": "0.6", "changefreq": "monthly"},
     # Páginas em espanhol (SEO internacional)
     {"loc": "/es/prueba-de-nivel-de-portugues", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/curso-de-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
