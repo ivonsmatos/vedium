@@ -1131,7 +1131,9 @@ def test_english_cta_pages_exist_and_preserve_public_funnel_safety():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
-        assert f'"{slug}": {{"en", "es"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_cta_pages_...)
+        # para esses mesmos 3 slugs -- checa que "en" continua no set.
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
         # Funil publico continua seguro: sem endpoint de checkout real (matricula
@@ -2030,7 +2032,9 @@ def test_spanish_cta_pages_exist_and_preserve_public_funnel_safety():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
-        assert f'"{slug}": {{"en", "es"}}' in hooks
+        # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_cta_pages_...)
+        # para esses mesmos 3 slugs -- checa que "es" continua no set.
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
         if slug != "matricula":
@@ -2299,3 +2303,79 @@ def test_french_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
     assert "Explorez Nos Cours" in catalogo_fr
     assert "Envoyer le Message" in contato_fr
     assert "Message envoyé !" in contato_fr
+
+
+def test_french_cta_pages_exist_and_preserve_public_funnel_safety():
+    """Páginas de CTA/conversão (planos, matricula, aula-diagnostica)
+    traduzidas pro francês -- mesmo padrão de
+    test_spanish_cta_pages_exist_and_preserve_public_funnel_safety. Mesmo
+    slug sob /fr/. Preserva as garantias de segurança do funil público já
+    testadas em PT/EN/ES: sem alteração de checkout.
+    """
+    cta_slugs = ["planos", "matricula", "aula-diagnostica"]
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+
+    for slug in cta_slugs:
+        fr_html_path = WWW / "fr" / f"{slug}.html"
+        fr_py_path = WWW / "fr" / f"{slug.replace('-', '_')}.py"
+        pt_html_path = WWW / f"{slug}.html"
+        assert fr_html_path.exists(), f"falta www/fr/{slug}.html"
+        assert fr_py_path.exists(), f"falta www/fr/{slug.replace('-', '_')}.py"
+
+        fr_html = fr_html_path.read_text(encoding="utf-8")
+        fr_py = fr_py_path.read_text(encoding="utf-8")
+        pt_html = pt_html_path.read_text(encoding="utf-8")
+
+        assert 'lang="fr"' in fr_html
+        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in fr_html
+        assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in fr_html
+        assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in pt_html
+        assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
+        assert f'{{"loc": "/fr/{slug}"' in sitemap_py
+
+        if slug != "matricula":
+            assert "stripe" not in fr_html.lower()
+        assert "create_checkout" not in fr_html
+        assert 'context.lang = "fr"' in fr_py
+        assert f'context.canonical_url = "https://vediums.com/fr/{slug}"' in fr_py
+
+    # planos: CTA final aponta pro teste de nivel em ingles e pro
+    # matricula/catalogo em frances, nao pros equivalentes em PT.
+    planos_fr = (WWW / "fr" / "planos.html").read_text(encoding="utf-8")
+    assert "/teste-de-nivel-ingles" in planos_fr
+    assert "/fr/matricula" in planos_fr
+    assert "/fr/catalogo" in planos_fr
+    assert "Choisir le forfait léger" in planos_fr
+    assert "Choisir le forfait recommandé" in planos_fr
+    assert "Choisir le forfait intensif" in planos_fr
+    assert "wa.me/5511911293075" in planos_fr
+
+    # matricula: dropdown com valores de curso intactos (slugs de banco,
+    # nunca traduzidos), so os LABELS mudam pro frances.
+    matricula_fr = (WWW / "fr" / "matricula.html").read_text(encoding="utf-8")
+    assert 'value="ingl-s-beginner"' in matricula_fr
+    assert 'value="iorub-b-sico"' in matricula_fr
+    assert "Continuer sur la plateforme" in matricula_fr
+    assert "app.vediums.com/lms/courses/" in matricula_fr
+    assert "source=public_funnel" in matricula_fr
+    assert "enrollment_intent_click" in matricula_fr
+    assert "/api/method" not in matricula_fr
+
+    # aula-diagnostica: pre-agendamento nao cria reserva automatica.
+    diagnostica_fr = (WWW / "fr" / "aula-diagnostica.html").read_text(encoding="utf-8")
+    assert "diagnostic_schedule_click" in diagnostica_fr
+    assert "diagnostic_slot_click" in diagnostica_fr
+    assert "get_available_diagnostic_slots" in diagnostica_fr
+    assert 'data-vd-diagnostic="english"' in diagnostica_fr
+    assert 'data-vd-diagnostic="portuguese_foreigners"' in diagnostica_fr
+    assert 'data-vd-diagnostic="yoruba"' in diagnostica_fr
+    assert "ne crée pas de réservation automatique" in diagnostica_fr
+    assert "vedium_core.public_funnel.get_available_diagnostic_slots" in diagnostica_fr
+
+    # Roteamento: sem self-redirect, fr-ca cai na traducao real
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    for slug in cta_slugs:
+        assert f"/fr/{slug}" not in by_source
+        assert by_source[f"/fr-ca/{slug}"] == f"/fr/{slug}"
