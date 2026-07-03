@@ -3053,3 +3053,43 @@ def test_english_cluster_has_german_pages_with_reciprocal_hreflang():
     assert "€" in pilar["price_display"]
     assert "R$" not in pilar["price_display"]
     assert "US$" not in pilar["price_display"]
+
+
+def test_legal_pages_publish_pdf_of_full_document_not_just_summary():
+    """2026-07-03: os 6 documentos legais externos (docx completos, escritos
+    fora do repo) são densos demais (100-270 linhas cada) pra transcrever
+    em HTML sem risco de erro jurídico. Cada página do site é um RESUMO
+    + link pro PDF completo (fidelidade total ao documento original),
+    não uma reescrita. PDFs ficam em public/legal/ (exceção ao *.pdf do
+    .gitignore, que existe pra bloquear material de aula com direito
+    autoral de terceiro — estes são documentos próprios da Vedium)."""
+    legal_dir = ROOT / "vedium_core" / "vedium_core" / "public" / "legal"
+    pages_and_pdfs = {
+        "termos.html": "termos-de-uso-e-contratacao.pdf",
+        "privacidade.html": "politica-de-privacidade.pdf",
+        "cookies.html": "politica-de-cookies.pdf",
+        "cancelamento-reembolso.html": "politica-de-cancelamento-reembolso.pdf",
+        "gravacao-imagem-voz.html": "termo-de-gravacao-imagem-voz.pdf",
+        "propriedade-intelectual.html": "politica-de-propriedade-intelectual.pdf",
+    }
+    for page, pdf in pages_and_pdfs.items():
+        page_path = WWW / page
+        assert page_path.exists(), f"{page} não existe"
+        html = page_path.read_text(encoding="utf-8")
+        assert f"/assets/vedium_core/legal/{pdf}" in html
+        assert '{% extends "templates/web.html" %}' not in html, (
+            f"{page} não pode usar o layout web.html (amador) — "
+            "precisa do tema unificado (site_navbar/site_footer)"
+        )
+        assert "site_navbar.html" in html
+        assert "site_footer.html" in html
+        pdf_path = legal_dir / pdf
+        assert pdf_path.exists(), f"PDF {pdf} não existe em public/legal/"
+        assert pdf_path.stat().st_size > 10_000, f"PDF {pdf} parece vazio/corrompido"
+
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    assert '<a href="/cookies">' in footer
+    assert '<a href="/cancelamento-reembolso">' in footer
+
+    gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "!vedium_core/vedium_core/public/legal/*.pdf" in gitignore

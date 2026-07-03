@@ -122,5 +122,10 @@ idiomas/
 *.epub
 *.mobi
 
+# Excecao: documentos legais proprios da Vedium (Termos, Privacidade etc.),
+# publicados de proposito em vedium_core/public/legal/ -- nao sao material
+# de aula com direito autoral de terceiro.
+!vedium_core/vedium_core/public/legal/*.pdf
+
 # Notas de trabalho locais (memoria de sessao) — nao versionar
 memory/
