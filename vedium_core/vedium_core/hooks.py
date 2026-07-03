@@ -172,6 +172,7 @@ def _build_language_prefix_redirects():
             "en": "portuguese-placement-test",
             "es": "prueba-de-nivel-de-portugues",
             "fr": "test-de-niveau-de-portugais",
+            "de": "portugiesisch-einstufungstest",
         },
     }
     for slug, landing in LANDINGS.items():

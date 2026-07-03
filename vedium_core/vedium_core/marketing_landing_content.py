@@ -412,7 +412,7 @@ LANDINGS = {
     "portugues-para-estrangeiros": {
         "title": "Português para Estrangeiros — Vedium",
         "short_title": "Português para Estrangeiros",
-        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers"},
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender"},
         "meta_description": "Português para estrangeiros com aulas ao vivo para morar, trabalhar, estudar e se comunicar melhor no Brasil.",
         "tagline": "Portuguese for foreigners",
         "h1": "Português para estrangeiros com foco em vida real no Brasil",
@@ -498,7 +498,7 @@ LANDINGS = {
         "whatsapp_text": "Hello, I want to learn Portuguese for foreigners with Vedium.",
     },
     "portugues-para-executivos": {
-        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres"},
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres", "de": "portugiesisch-fuer-fuehrungskraefte"},
         "title": "Português para Executivos — Vedium",
         "short_title": "Português para Executivos",
         "meta_description": "Português para executivos estrangeiros com aulas ao vivo para reuniões, negócios, apresentações e adaptação cultural no Brasil.",
@@ -700,7 +700,7 @@ LANDINGS = {
         "test_url": None,
     },
     "preparatorio-celpe-bras": {
-        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras"},
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras", "de": "celpe-bras-pruefungsvorbereitung"},
         "title": "Preparatório Celpe-Bras — Vedium",
         "short_title": "Preparatório Celpe-Bras",
         "meta_description": "Preparação para Celpe-Bras com português para estrangeiros, escrita, fala, compreensão e simulados orientados.",
@@ -1175,7 +1175,7 @@ LANDINGS = {
     },
     "learn-portuguese-brazil": {
         "lang": "en",
-        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers"},
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender"},
         "title": "Learn Brazilian Portuguese Online — Classes for Foreigners | Vedium",
         "short_title": "Brazilian Portuguese for Foreigners",
         "meta_description": "Learn Brazilian Portuguese online with live classes for foreigners: real conversation, pronunciation, everyday vocabulary and culture to live, work and study in Brazil.",
@@ -1331,7 +1331,7 @@ LANDINGS = {
     },
     "portuguese-for-executives": {
         "lang": "en",
-        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres"},
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres", "de": "portugiesisch-fuer-fuehrungskraefte"},
         "title": "Portuguese for Executives — Vedium",
         "short_title": "Portuguese for Executives",
         "meta_description": "Portuguese for foreign executives with live classes for meetings, business, presentations and cultural adaptation in Brazil.",
@@ -1383,7 +1383,7 @@ LANDINGS = {
     },
     "celpe-bras-exam-prep": {
         "lang": "en",
-        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras"},
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras", "de": "celpe-bras-pruefungsvorbereitung"},
         "title": "Celpe-Bras Exam Prep — Vedium",
         "short_title": "Celpe-Bras Prep",
         "meta_description": "Celpe-Bras exam preparation with Portuguese for foreigners: writing, speaking, listening and guided mock exams.",
@@ -1442,7 +1442,7 @@ LANDINGS = {
     # =========================================================================
     "portugues-para-extranjeros": {
         "lang": "es",
-        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers"},
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender"},
         "title": "Portugués para Extranjeros Online — Clases en Vivo | Vedium",
         "short_title": "Portugués para Extranjeros",
         "meta_description": "Aprende portugués de Brasil online con clases en vivo para extranjeros: conversación real, pronunciación, vocabulario cotidiano y cultura para vivir, trabajar y estudiar en Brasil.",
@@ -1532,7 +1532,7 @@ LANDINGS = {
     },
     "portugues-para-ejecutivos": {
         "lang": "es",
-        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres"},
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres", "de": "portugiesisch-fuer-fuehrungskraefte"},
         "title": "Portugués para Ejecutivos — Vedium",
         "short_title": "Portugués para Ejecutivos",
         "meta_description": "Portugués para ejecutivos extranjeros con clases en vivo para reuniones, negocios, presentaciones y adaptación cultural en Brasil.",
@@ -1584,7 +1584,7 @@ LANDINGS = {
     },
     "preparacion-examen-celpe-bras": {
         "lang": "es",
-        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras"},
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras", "de": "celpe-bras-pruefungsvorbereitung"},
         "title": "Preparación para el Examen Celpe-Bras — Vedium",
         "short_title": "Preparación Celpe-Bras",
         "meta_description": "Preparación para el examen Celpe-Bras con portugués para extranjeros: escritura, expresión oral, comprensión auditiva y simulacros guiados.",
@@ -1642,7 +1642,7 @@ LANDINGS = {
     # =========================================================================
     "portugais-pour-etrangers": {
         "lang": "fr",
-        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers"},
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender"},
         "title": "Portugais du Brésil pour Étrangers — Cours en Ligne en Direct | Vedium",
         "short_title": "Portugais pour Étrangers",
         "meta_description": "Apprenez le portugais du Brésil en ligne avec des cours en direct pour étrangers : conversation réelle, prononciation, vocabulaire quotidien et culture pour vivre, travailler et étudier au Brésil.",
@@ -1732,7 +1732,7 @@ LANDINGS = {
     },
     "portugais-pour-cadres": {
         "lang": "fr",
-        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres"},
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres", "de": "portugiesisch-fuer-fuehrungskraefte"},
         "title": "Portugais pour Cadres — Vedium",
         "short_title": "Portugais pour Cadres",
         "meta_description": "Portugais pour cadres étrangers avec des cours en direct pour réunions, affaires, présentations et adaptation culturelle au Brésil.",
@@ -1784,7 +1784,7 @@ LANDINGS = {
     },
     "preparation-examen-celpe-bras": {
         "lang": "fr",
-        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras"},
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras", "de": "celpe-bras-pruefungsvorbereitung"},
         "title": "Préparation à l'Examen Celpe-Bras — Vedium",
         "short_title": "Préparation Celpe-Bras",
         "meta_description": "Préparation à l'examen Celpe-Bras avec du portugais pour étrangers : écrit, expression orale, compréhension orale et examens blancs guidés.",
@@ -1833,6 +1833,206 @@ LANDINGS = {
         ],
         "whatsapp_text": "Bonjour, je voudrais une préparation au Celpe-Bras avec Vedium.",
         "test_url": "/fr/test-de-niveau-de-portugais",
+    },
+
+    # =========================================================================
+    # German PLE-cluster landing pages — Deutschsprachige (DACH-Region), die
+    # mit Brasilien leben/arbeiten (Auswanderer, Expats, Fachkräfte). Gleiche
+    # Logik wie beim französischen Cluster oben.
+    # =========================================================================
+    "portugiesisch-fuer-auslaender": {
+        "lang": "de",
+        "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender"},
+        "title": "Brasilianisches Portugiesisch für Ausländer — Live-Online-Kurs | Vedium",
+        "short_title": "Portugiesisch für Ausländer",
+        "meta_description": "Lernen Sie brasilianisches Portugiesisch online mit Live-Unterricht für Ausländer: echte Konversation, Aussprache, Alltagswortschatz und Kultur, um in Brasilien zu leben, zu arbeiten und zu studieren.",
+        "tagline": "Portugiesisch für Ausländer",
+        "h1": "Brasilianisches Portugiesisch für Ausländer, ausgerichtet auf das echte Leben in Brasilien",
+        "lead": "Live-Unterricht für Ausländer, die auf Portugiesisch bei der Arbeit, im Studium, bei Behördengängen, auf Reisen oder zur Eingewöhnung in Brasilien kommunizieren müssen. Unterstützung auf Deutsch oder Englisch steht bei Bedarf zur Verfügung.",
+        "hero_image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1920&q=80",
+        "audience": "Ausländer in Brasilien, Expats, internationale Studierende, Fachkräfte im Homeoffice und alle, die mit Brasilianern in Kontakt stehen.",
+        "level": "A1 bis B2",
+        "frequency": "1 oder 2 Live-Unterrichtseinheiten pro Woche",
+        "duration": "Plan nach Ihrem Eingewöhnungsziel",
+        "summary": "Sie üben echte Gespräche, Aussprache, Hörverständnis, brasilianischen Wortschatz und Alltagssituationen.",
+        "pain_title": "Portugiesisch zum Leben, nicht nur zum Auswendiglernen",
+        "pain_intro": "Brasilianisches Portugiesisch hat einen Rhythmus, Ausdrücke und kulturelle Zusammenhänge, die in keiner Vokabelliste auftauchen.",
+        "pain_points": [
+            "Schwierigkeiten, Brasilianer zu verstehen, wenn sie schnell sprechen.",
+            "Unsicherheit bei der Bank, beim Arzt, in Meetings oder bei Behördengängen.",
+            "Verwirrung mit Genus, Verben, Präpositionen und Aussprache.",
+            "Fehlender Wortschatz für Arbeit und Alltag.",
+        ],
+        "outcomes": [
+            "Echte Gespräche mit mehr Selbstständigkeit führen.",
+            "Anweisungen, Fragen und häufige Antworten verstehen.",
+            "Aussprache und Sprechrhythmus verbessern.",
+            "Wortschatz für Arbeit, Wohnen und Alltag gewinnen.",
+        ],
+        "modules": [
+            {"title": "Sich vorstellen", "text": "Vorstellung, Nationalität, Beruf, Familie und Interessen."},
+            {"title": "Der Alltag in Brasilien", "text": "Einkaufen, Verkehrsmittel, Essen, Öffnungszeiten und Behördengänge."},
+            {"title": "Portugiesisch bei der Arbeit", "text": "Meetings, Nachrichten, kurze Präsentationen und Abstimmung."},
+            {"title": "Praktische Grammatik", "text": "Verben, Genus, Numerus, Fragen und nützliche Sätze."},
+            {"title": "Kultur und Redewendungen", "text": "Natürlicher Sprachgebrauch, Informalität und brasilianischer Kontext."},
+            {"title": "Konversation", "text": "Rollenspiele und Echtzeit-Korrektur des mündlichen Ausdrucks."},
+        ],
+        "format_items": [
+            "Live-Online-Unterricht auf Portugiesisch mit schrittweiser Begleitung.",
+            "Erklärungen auf Deutsch oder Englisch bei Bedarf.",
+            "Ein Lernpfad nach Ihrem Ziel: Leben in Brasilien, Arbeit oder Prüfung.",
+            "Möglichkeit der Celpe-Bras-Vorbereitung in einem eigenen Kurs.",
+        ],
+        "workload": "PT1H30M",
+        "seo_title": "Alles über den Portugiesischkurs für Ausländer von Vedium",
+        "seo_sections": [
+            {
+                "heading": "Brasilianisches oder europäisches Portugiesisch: Was brauchen Sie?",
+                "body": [
+                    "<p>Wer in Brasilien leben, arbeiten oder studieren wird, braucht <strong>brasilianisches Portugiesisch</strong> — mit eigener Aussprache, eigenem Wortschatz und eigenen Ausdrücken, die sich vom europäischen Portugiesisch unterscheiden. Alltagssätze, umgangssprachliche Ausdrücke, die Art, Menschen anzusprechen, und sogar die Uhrzeitangabe unterscheiden sich. Wer bei einer brasilianischen Lehrkraft lernt, in echten Situationen aus Brasilien, vermeidet den Umweg, eine andere Variante zu lernen als die, die man später auf der Straße hört.</p>",
+                    "<p>Bei Vedium findet der Unterricht <strong>live statt und konzentriert sich auf das in Brasilien gesprochene Portugiesisch</strong>, mit Unterstützung auf Deutsch oder Englisch bei Bedarf, besonders am Anfang. Ziel ist, dass Sie Brasilianer verstehen, die in normalem Tempo sprechen, und sich selbstständig zurechtfinden — nicht nur korrekte Sätze auf dem Papier bilden.</p>",
+                ],
+            },
+            {
+                "heading": "Portugiesisch zum Leben, Arbeiten und Studieren in Brasilien",
+                "body": [
+                    "<p>Der Kurs geht von konkreten Situationen aus: <strong>sich vorstellen, Behördengänge erledigen, zur Bank und zum Arzt gehen, eine Wohnung mieten, öffentliche Verkehrsmittel nutzen und an Arbeitsbesprechungen teilnehmen</strong>. Für Berufstätige liegt der Schwerpunkt auf Unternehmensportugiesisch — Nachrichten, Abstimmung und kurze Präsentationen. Für alle, die mit Brasilianern in Kontakt stehen, liegt der Fokus auf natürlicher Konversation und Alltagsausdrücken.</p>",
+                    "<p>Dieser praktische Ansatz unterscheidet das Lernen von Portugiesisch „fürs echte Leben“ vom bloßen Auswendiglernen von Grammatik. In jeder Einheit üben Sie das, was Sie draußen anwenden werden, mit Echtzeit-Korrektur von Aussprache und Sprechrhythmus.</p>",
+                ],
+            },
+            {
+                "heading": "Wie lange braucht ein Ausländer, um Portugiesisch zu lernen?",
+                "body": [
+                    "<p>Das hängt von Ihrer Muttersprache und der Lernfrequenz ab, aber es gibt eine gute Nachricht: Für <strong>Deutschsprachige</strong> dauert es oft etwas länger als für Sprecher romanischer Sprachen, weil weniger direkte Wortverwandtschaften vorhanden sind — dafür ist die Grammatik mit klaren, regelmäßigen Mustern gut lernbar. Bei regelmäßigem Lernen ist ein funktionales Alltagsniveau (A2–B1) meist innerhalb weniger Monate erreichbar.</p>",
+                    "<p>Am meisten beschleunigt <strong>häufige mündliche Praxis</strong> und das Eintauchen in den brasilianischen Kontext den Prozess. Deshalb setzt der Live-Unterricht von Anfang an auf Konversation, und die Frequenz (1 oder 2 Einheiten pro Woche) richtet sich nach Ihrer Eingewöhnungsfrist.</p>",
+                ],
+            },
+            {
+                "heading": "Celpe-Bras: die offizielle Kompetenzprüfung",
+                "body": [
+                    "<p>Der <strong>Celpe-Bras</strong> ist die offizielle Prüfung für brasilianisches Portugiesisch, anerkannt für akademische und berufliche Zwecke in Brasilien. Wer das Zertifikat braucht — für die Universität, die berufliche Anerkennung oder Einwanderungsverfahren — findet bei Vedium einen <a href=\"/de/celpe-bras-pruefungsvorbereitung\">spezifischen Vorbereitungskurs für den Celpe-Bras</a>, der sich auf das Prüfungsformat, den mündlichen und den schriftlichen Teil konzentriert.</p>",
+                    "<p>Auch ohne die Prüfung abzulegen, bringt ein strukturierter Lernpfad nach Niveau echte Klarheit über den Fortschritt und organisiert das Lernen in Etappen mit einem klaren Ziel.</p>",
+                ],
+            },
+            {
+                "heading": "Wie Sie beginnen",
+                "body": [
+                    "<p>Sprechen Sie zum Einstieg mit dem Vedium-Team auf WhatsApp oder machen Sie den <a href=\"/de/portugiesisch-einstufungstest\">Portugiesisch-Einstufungstest für Ausländer</a>. Sie erhalten eine Niveaueinschätzung, eine Frequenzempfehlung und einen Plan, der auf Ihr Ziel abgestimmt ist — leben, arbeiten, studieren oder den Celpe-Bras ablegen.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "Kann der Unterricht Unterstützung auf Deutsch enthalten?", "a": "Ja. Die Lehrkraft kann bei Bedarf Unterstützung auf Deutsch oder Englisch geben, während die portugiesische Praxis schrittweise gesteigert wird."},
+            {"q": "Ist es brasilianisches Portugiesisch?", "a": "Ja. Der Ansatz ist das Portugiesisch, wie es in Brasilien verwendet wird."},
+            {"q": "Kann ich mich auf berufliche Situationen vorbereiten?", "a": "Ja. Wir können Meetings, E-Mails, Präsentationen und gängigen Berufswortschatz einbeziehen."},
+            {"q": "Muss ich einen Einstufungstest machen?", "a": "Der kostenlose Test hilft uns, Ihr Niveau einzuschätzen, bevor wir Ihnen einen Lernpfad empfehlen."},
+        ],
+        "whatsapp_text": "Hallo, ich möchte Portugiesisch für Ausländer bei Vedium lernen.",
+        "test_url": "/de/portugiesisch-einstufungstest",
+    },
+    "portugiesisch-fuer-fuehrungskraefte": {
+        "lang": "de",
+        "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres", "de": "portugiesisch-fuer-fuehrungskraefte"},
+        "title": "Portugiesisch für Führungskräfte — Vedium",
+        "short_title": "Portugiesisch für Führungskräfte",
+        "meta_description": "Portugiesisch für ausländische Führungskräfte mit Live-Unterricht für Meetings, Geschäfte, Präsentationen und kulturelle Anpassung in Brasilien.",
+        "tagline": "Geschäftsportugiesisch",
+        "h1": "Portugiesisch für Führungskräfte, die mit Brasilien arbeiten",
+        "lead": "Ein Lernpfad für ausländische Fachkräfte, die Meetings leiten, verhandeln, Ergebnisse präsentieren und mit brasilianischen Teams, Kunden oder Partnern kommunizieren müssen.",
+        "hero_image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920&q=80",
+        "audience": "Ausländische Führungskräfte, Expats, Regionalleiter, Investoren, Berater und internationale Fachkräfte, die in Brasilien tätig sind.",
+        "level": "A2 bis C1",
+        "frequency": "2 Live-Unterrichtseinheiten pro Woche",
+        "duration": "Plan nach Ihrem Führungskräfte-Terminkalender",
+        "summary": "Sie üben Geschäftsportugiesisch, brasilianische Unternehmenskultur, Meetings, Verhandlung, Präsentationen und professionelles Schreiben.",
+        "pain_title": "Geschäfte in Brasilien erfordern Sprache und Kontext",
+        "pain_intro": "Über die Grammatik hinaus müssen Führungskräfte Ton, Formalität, Meeting-Rhythmus und kulturelle Nuancen verstehen.",
+        "pain_points": [
+            "An Meetings auf Portugiesisch teilnehmen, ohne auf Übersetzung angewiesen zu sein.",
+            "Die Sprache an brasilianische Teams anpassen.",
+            "Klar und diplomatisch verhandeln.",
+            "Nachrichten und Präsentationen mit professionellem Ton verfassen.",
+        ],
+        "outcomes": [
+            "Geschäftsgespräche auf brasilianischem Portugiesisch leiten.",
+            "Daten, Entscheidungen und Empfehlungen präsentieren.",
+            "Fristen, Umfang und Vereinbarungen verhandeln.",
+            "Kulturelles Repertoire für den Umgang in Brasilien gewinnen.",
+        ],
+        "modules": [
+            {"title": "Meetings", "text": "Eröffnung, Tagesordnung, Abstimmung, Entscheidungen und Nachverfolgung."},
+            {"title": "Präsentationen", "text": "Ergebnisse, Kennzahlen, Pläne und Fragen."},
+            {"title": "Verhandlung", "text": "Zustimmen, widersprechen, vorschlagen, nachgeben und abschließen."},
+            {"title": "Professionelles Schreiben", "text": "E-Mails, Nachrichten, Einladungen und Protokolle."},
+            {"title": "Unternehmenskultur", "text": "Formalität, Nähe, Rhythmus und Beziehungen."},
+            {"title": "Aussprache", "text": "Klarheit, Rhythmus und Schlüssellaute des brasilianischen Portugiesisch."},
+        ],
+        "format_items": [
+            "Live-Unterricht mit Rollenspielen aus dem Führungskräftealltag.",
+            "Inhalte angepasst an Ihre Branche, Position und Terminkalender.",
+            "Unterstützung auf Deutsch oder Englisch bei Bedarf.",
+            "Möglichkeit eines B2B-Programms für Teams.",
+        ],
+        "faqs": [
+            {"q": "Ist dieser Kurs für Ausländer?", "a": "Ja. Er ist für Nicht-Muttersprachler des Portugiesischen konzipiert, die mit Brasilien arbeiten."},
+            {"q": "Kann sich der Unterricht auf den Kontext meines Unternehmens konzentrieren?", "a": "Ja. Meetings, Präsentationen und Wortschatz können an Ihre Position angepasst werden."},
+            {"q": "Lehren Sie die brasilianische Unternehmenskultur?", "a": "Ja. Der kulturelle Kontext ist Teil der Kommunikationsschulung."},
+            {"q": "Kann man das einem Team anbieten?", "a": "Ja, B2B-Formate können mit dem Vedium-Team besprochen werden."},
+        ],
+        "whatsapp_text": "Hallo, ich möchte Portugiesischunterricht für Führungskräfte bei Vedium.",
+        "test_url": "/de/portugiesisch-einstufungstest",
+    },
+    "celpe-bras-pruefungsvorbereitung": {
+        "lang": "de",
+        "alt": {"pt-BR": "preparatorio-celpe-bras", "en": "celpe-bras-exam-prep", "es": "preparacion-examen-celpe-bras", "fr": "preparation-examen-celpe-bras", "de": "celpe-bras-pruefungsvorbereitung"},
+        "title": "Celpe-Bras-Prüfungsvorbereitung — Vedium",
+        "short_title": "Celpe-Bras-Vorbereitung",
+        "meta_description": "Vorbereitung auf die Celpe-Bras-Prüfung mit Portugiesisch für Ausländer: Schreiben, mündlicher Ausdruck, Hörverständnis und begleitete Probeprüfungen.",
+        "tagline": "Portugiesisch für die Zertifizierung",
+        "h1": "Begleitete Vorbereitung auf die Celpe-Bras-Prüfung",
+        "lead": "Ein Lernpfad für Ausländer, die ihre Kompetenz in brasilianischem Portugiesisch nachweisen müssen. Der Schwerpunkt liegt auf echter Kommunikation, integrierten Aufgaben, schriftlicher Produktion, mündlichem Ausdruck und Textverständnis.",
+        "hero_image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1920&q=80",
+        "audience": "Ausländer, die den Celpe-Bras ablegen wollen, internationale Studierende, Fachkräfte und alle, die ihr Portugiesisch-Niveau nachweisen müssen.",
+        "level": "A2 bis C1",
+        "frequency": "2 Live-Unterrichtseinheiten pro Woche",
+        "duration": "Plan nach Ihrem Prüfungstermin",
+        "summary": "Sie üben Leseverständnis, Hörverständnis, Schreiben, mündlichen Ausdruck, thematisches Repertoire und Probeprüfungen mit gezieltem Feedback.",
+        "pain_title": "Der Celpe-Bras bewertet den echten Sprachgebrauch",
+        "pain_intro": "Es reicht nicht, Grammatik auswendig zu lernen. Die Prüfung verlangt, Texte zu verstehen, Ideen zu strukturieren und auf kommunikative Aufgaben zu reagieren.",
+        "pain_points": [
+            "Schwierigkeiten, Lese- und Hörverständnis in eine schriftliche Antwort umzusetzen.",
+            "Fehlendes Repertoire zu Themen rund um Brasilien und den Alltag.",
+            "Unsicherheit beim mündlichen Ausdruck.",
+            "Texte ohne Organisation, Kohärenz oder Anpassung an die geforderte Textsorte.",
+        ],
+        "outcomes": [
+            "Das Prüfungsformat und die Aufgaben besser verstehen.",
+            "Texte mit klarem Ziel, Struktur und angemessener Sprache produzieren.",
+            "Mündlich klarer und sicherer antworten.",
+            "Feedback zu den wichtigsten Punkten vor der Prüfung erhalten.",
+        ],
+        "modules": [
+            {"title": "Diagnose", "text": "Bewertung Ihres Niveaus, Schreibens, mündlichen Ausdrucks und der Frist bis zur Prüfung."},
+            {"title": "Integrierte Aufgaben", "text": "Lesen, Hören, Interpretation und kommunikative Antwort."},
+            {"title": "Schriftliche Produktion", "text": "E-Mail, Brief, Erzählung, Meinung, Anfrage und Zusammenfassung."},
+            {"title": "Mündliche Interaktion", "text": "Fragen, Antworten, Beschreibung, Meinung und Argumentation."},
+            {"title": "Brasilianisches Repertoire", "text": "Kultur, Arbeit, Bildung, Gesundheit, Technologie und Gesellschaft."},
+            {"title": "Probeprüfungen", "text": "Begleitete Übung mit Leistungsfeedback."},
+        ],
+        "format_items": [
+            "Live-Unterricht mit Fokus auf die Prüfung.",
+            "Plan angepasst an Ihr Niveau und Ihren Prüfungstermin.",
+            "Korrektur von Schreiben und mündlichem Ausdruck.",
+            "Lernbegleitung zwischen den Unterrichtseinheiten.",
+        ],
+        "faqs": [
+            {"q": "Nimmt Vedium die Celpe-Bras-Prüfung ab?", "a": "Nein. Vedium bietet die Vorbereitung an; Anmeldung und Prüfungsdurchführung folgen den offiziellen Kanälen der Prüfung."},
+            {"q": "Muss ich bereits Portugiesisch sprechen?", "a": "Eine Grundlage wird empfohlen. Die Diagnose zeigt den passenden Lernpfad."},
+            {"q": "Gibt es Probeprüfungen?", "a": "Ja, die Vorbereitung kann simulierte Aufgaben und Feedback beinhalten."},
+            {"q": "Kann der Unterricht Erklärungen auf Deutsch enthalten?", "a": "Ja, bei Bedarf, aber das Ziel ist, den Gebrauch des Portugiesischen schrittweise zu steigern."},
+        ],
+        "whatsapp_text": "Hallo, ich möchte eine Celpe-Bras-Vorbereitung bei Vedium.",
+        "test_url": "/de/portugiesisch-einstufungstest",
     },
 
     # =========================================================================
@@ -2818,6 +3018,7 @@ LANDING_COURSE_FILTERS = {
     "curso-de-ingles-online-en-vivo": {"category_prefix": "Inglês"},
     "portugais-pour-etrangers": {"category_exact": "Português para Estrangeiros"},
     "cours-anglais-en-ligne-en-direct": {"category_prefix": "Inglês"},
+    "portugiesisch-fuer-auslaender": {"category_exact": "Português para Estrangeiros"},
 }
 
 # Landings em inglês cujo grid de cursos deve linkar pra /en/curso/<slug>

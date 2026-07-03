@@ -2877,3 +2877,98 @@ def test_german_cta_pages_exist_and_preserve_public_funnel_safety():
     by_source = {r["source"]: r["target"] for r in redirects}
     for slug in cta_slugs:
         assert f"/de/{slug}" not in by_source
+
+
+def test_ple_cluster_has_german_pages_with_reciprocal_hreflang():
+    """Cluster PLE (Português para Estrangeiros) traduzido pro alemão --
+    público germanofalante pode ter interesse real (DACH: Alemanha,
+    Áustria, Suíça -- diáspora, expatriados, profissionais com operação no
+    Brasil), 4a prioridade do rollout de alemão (mesma ordem usada em
+    en/es/fr). Mesmo padrão do cluster PLE em francês: `alt` com 5 idiomas
+    agora (pt-BR, en, es, fr, de), slugs pensados como um germanofalante
+    buscaria (transliteração ASCII padrão de ü/ö/ä -> ue/oe/ae). O alemão
+    GANHOU sua própria página de teste de nível
+    (/de/portugiesisch-einstufungstest), então test_url aponta pra ela,
+    não pro teste em inglês.
+    """
+    pairs = [
+        ("portugues-para-estrangeiros", "portugiesisch-fuer-auslaender"),
+        ("portugues-para-executivos", "portugiesisch-fuer-fuehrungskraefte"),
+        ("preparatorio-celpe-bras", "celpe-bras-pruefungsvorbereitung"),
+    ]
+    expected_test_url = "/de/portugiesisch-einstufungstest"
+    for pt_slug, de_slug in pairs:
+        assert LANDINGS[pt_slug]["alt"]["de"] == de_slug
+        assert LANDINGS[de_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[de_slug]["alt"]["en"] == LANDINGS[pt_slug]["alt"]["en"]
+        assert LANDINGS[de_slug]["alt"]["es"] == LANDINGS[pt_slug]["alt"]["es"]
+        assert LANDINGS[de_slug]["alt"]["fr"] == LANDINGS[pt_slug]["alt"]["fr"]
+        assert LANDINGS[de_slug]["alt"]["de"] == de_slug
+        assert LANDINGS[de_slug]["lang"] == "de"
+        assert "test_url" in LANDINGS[de_slug], f"{de_slug} precisa de test_url explícito"
+        assert LANDINGS[de_slug]["test_url"] == expected_test_url
+
+        de_html = (WWW / "de" / f"{de_slug}.html").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{de_slug}")' in de_html
+
+        # conteúdo real, não placeholder (mesma paridade de profundidade
+        # exigida do cluster PT/EN/ES/FR)
+        landing = LANDINGS[de_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/de/{de_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # portugiesisch-fuer-auslaender é a landing pilar em DE: precisa do
+    # mesmo grid de cursos reais (preço, aulas, link) que os outros
+    # pilares já têm.
+    assert '"portugiesisch-fuer-auslaender": {"category_exact": "Português para Estrangeiros"}' in (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+
+    # Página de teste de nível em alemão: existência, roteamento (via
+    # hooks._build_language_prefix_redirects -> pt_to_lang_slug) e
+    # reciprocidade de hreflang com PT/EN/ES/FR.
+    test_html_path = WWW / "de" / "portugiesisch-einstufungstest.html"
+    test_py_path = WWW / "de" / "portugiesisch_einstufungstest.py"
+    assert test_html_path.exists()
+    assert test_py_path.exists()
+
+    test_html = test_html_path.read_text(encoding="utf-8")
+    assert 'lang="de"' in test_html
+    assert 'hreflang="pt-br" href="https://vediums.com/teste-de-nivel"' in test_html
+    assert 'hreflang="en" href="https://vediums.com/en/portuguese-placement-test"' in test_html
+    assert 'hreflang="es" href="https://vediums.com/es/prueba-de-nivel-de-portugues"' in test_html
+    assert 'hreflang="fr" href="https://vediums.com/fr/test-de-niveau-de-portugais"' in test_html
+    assert 'hreflang="de" href="https://vediums.com/de/portugiesisch-einstufungstest"' in test_html
+
+    # As perguntas de múltipla escolha continuam em português (o idioma
+    # avaliado nunca muda) -- só as instruções ao redor mudam pro alemão.
+    assert "O supermercado fica _ lado da farmácia." in test_html
+    assert "Erfahren Sie Ihr Niveau in brasilianischem Portugiesisch" in test_html
+    assert "Mein GER-Ergebnis ansehen" in test_html
+
+    # Reciprocidade nos 4 idiomas existentes
+    pt_test_html = (WWW / "teste-de-nivel.html").read_text(encoding="utf-8")
+    en_test_html = (WWW / "en" / "portuguese-placement-test.html").read_text(encoding="utf-8")
+    es_test_html = (WWW / "es" / "prueba-de-nivel-de-portugues.html").read_text(encoding="utf-8")
+    fr_test_html = (WWW / "fr" / "test-de-niveau-de-portugais.html").read_text(encoding="utf-8")
+    assert 'hreflang="de" href="https://vediums.com/de/portugiesisch-einstufungstest"' in pt_test_html
+    assert 'hreflang="de" href="https://vediums.com/de/portugiesisch-einstufungstest"' in en_test_html
+    assert 'hreflang="de" href="https://vediums.com/de/portugiesisch-einstufungstest"' in es_test_html
+    assert 'hreflang="de" href="https://vediums.com/de/portugiesisch-einstufungstest"' in fr_test_html
+
+    # Roteamento: /de/teste-de-nivel redireciona pra tradução real, sem
+    # self-redirect.
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    assert by_source["/de/teste-de-nivel"] == "/de/portugiesisch-einstufungstest"
+
+    assert '{"loc": "/de/portugiesisch-einstufungstest"' in (
+        ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+    ).read_text(encoding="utf-8")
