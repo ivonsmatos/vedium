@@ -116,6 +116,10 @@ STATIC_URLS = [
     {"loc": "/fr/planos", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/fr/matricula", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/fr/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/fr/test-de-niveau-de-portugais", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/portugais-pour-etrangers", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/fr/portugais-pour-cadres", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/preparation-examen-celpe-bras", "priority": "0.6", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):

@@ -445,11 +445,12 @@ def test_ple_cluster_has_spanish_pages_with_reciprocal_hreflang():
     ]
     for pt_slug, es_slug, expected_test_url in pairs:
         assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
-        assert LANDINGS[es_slug]["alt"] == {
-            "pt-BR": pt_slug,
-            "en": LANDINGS[pt_slug]["alt"]["en"],
-            "es": es_slug,
-        }
+        # Checagem por subconjunto (não igualdade exata): o cluster PLE
+        # ganhou francês depois (ver test_ple_cluster_has_french_pages_...),
+        # então esses "alt" legitimamente têm uma chave "fr" a mais agora.
+        assert LANDINGS[es_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[es_slug]["alt"]["en"] == LANDINGS[pt_slug]["alt"]["en"]
+        assert LANDINGS[es_slug]["alt"]["es"] == es_slug
         assert LANDINGS[es_slug]["lang"] == "es"
         assert "test_url" in LANDINGS[es_slug], f"{es_slug} precisa de test_url explícito"
         assert LANDINGS[es_slug]["test_url"] == expected_test_url
@@ -2379,3 +2380,93 @@ def test_french_cta_pages_exist_and_preserve_public_funnel_safety():
     for slug in cta_slugs:
         assert f"/fr/{slug}" not in by_source
         assert by_source[f"/fr-ca/{slug}"] == f"/fr/{slug}"
+
+
+def test_ple_cluster_has_french_pages_with_reciprocal_hreflang():
+    """Cluster PLE (Português para Estrangeiros) traduzido pro francês --
+    público francófono pode ter interesse real (diáspora, expatriados,
+    profissionais com operação no Brasil), 4a prioridade do
+    translator-fr (mesma ordem usada em en/es). Mesmo padrão do cluster
+    PLE em espanhol: `alt` com 4 idiomas agora (pt-BR, en, es, fr), slugs
+    pesquisados como um francófono buscaria. Diferente do padrão ES: o
+    francês GANHOU sua própria página de teste de nível
+    (/fr/test-de-niveau-de-portugais), então test_url aponta pra ela, não
+    pro teste em inglês.
+    """
+    pairs = [
+        ("portugues-para-estrangeiros", "portugais-pour-etrangers"),
+        ("portugues-para-executivos", "portugais-pour-cadres"),
+        ("preparatorio-celpe-bras", "preparation-examen-celpe-bras"),
+    ]
+    expected_test_url = "/fr/test-de-niveau-de-portugais"
+    for pt_slug, fr_slug in pairs:
+        assert LANDINGS[pt_slug]["alt"]["fr"] == fr_slug
+        assert LANDINGS[fr_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[fr_slug]["alt"]["en"] == LANDINGS[pt_slug]["alt"]["en"]
+        assert LANDINGS[fr_slug]["alt"]["es"] == LANDINGS[pt_slug]["alt"]["es"]
+        assert LANDINGS[fr_slug]["alt"]["fr"] == fr_slug
+        assert LANDINGS[fr_slug]["lang"] == "fr"
+        assert "test_url" in LANDINGS[fr_slug], f"{fr_slug} precisa de test_url explícito"
+        assert LANDINGS[fr_slug]["test_url"] == expected_test_url
+
+        fr_html = (WWW / "fr" / f"{fr_slug}.html").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{fr_slug}")' in fr_html
+
+        # conteúdo real, não placeholder (mesma paridade de profundidade
+        # exigida do cluster PT/EN/ES)
+        landing = LANDINGS[fr_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/fr/{fr_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # portugais-pour-etrangers é a landing pilar em FR: precisa do mesmo
+    # grid de cursos reais (preço, aulas, link) que os outros pilares já têm.
+    assert '"portugais-pour-etrangers": {"category_exact": "Português para Estrangeiros"}' in (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+
+    # Página de teste de nível em francês: existência, roteamento (via
+    # hooks._build_language_prefix_redirects -> pt_to_lang_slug) e
+    # reciprocidade de hreflang com PT/EN/ES.
+    test_html_path = WWW / "fr" / "test-de-niveau-de-portugais.html"
+    test_py_path = WWW / "fr" / "test_de_niveau_de_portugais.py"
+    assert test_html_path.exists()
+    assert test_py_path.exists()
+
+    test_html = test_html_path.read_text(encoding="utf-8")
+    assert 'lang="fr"' in test_html
+    assert 'hreflang="pt-br" href="https://vediums.com/teste-de-nivel"' in test_html
+    assert 'hreflang="en" href="https://vediums.com/en/portuguese-placement-test"' in test_html
+    assert 'hreflang="es" href="https://vediums.com/es/prueba-de-nivel-de-portugues"' in test_html
+    assert 'hreflang="fr" href="https://vediums.com/fr/test-de-niveau-de-portugais"' in test_html
+
+    # As perguntas de múltipla escolha continuam em português (o idioma
+    # avaliado nunca muda) -- só as instruções ao redor mudam pra francês.
+    assert "O supermercado fica _ lado da farmácia." in test_html
+    assert "Découvrez votre niveau de portugais du Brésil" in test_html
+    assert "Voir mon résultat CECR" in test_html
+
+    # Reciprocidade nos 3 idiomas existentes
+    pt_test_html = (WWW / "teste-de-nivel.html").read_text(encoding="utf-8")
+    en_test_html = (WWW / "en" / "portuguese-placement-test.html").read_text(encoding="utf-8")
+    es_test_html = (WWW / "es" / "prueba-de-nivel-de-portugues.html").read_text(encoding="utf-8")
+    assert 'hreflang="fr" href="https://vediums.com/fr/test-de-niveau-de-portugais"' in pt_test_html
+    assert 'hreflang="fr" href="https://vediums.com/fr/test-de-niveau-de-portugais"' in en_test_html
+    assert 'hreflang="fr" href="https://vediums.com/fr/test-de-niveau-de-portugais"' in es_test_html
+
+    # Roteamento: /fr/teste-de-nivel redireciona pra tradução real, sem
+    # self-redirect, fr-ca cai na tradução também.
+    redirects = vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    by_source = {r["source"]: r["target"] for r in redirects}
+    assert by_source["/fr/teste-de-nivel"] == "/fr/test-de-niveau-de-portugais"
+    assert by_source["/fr-ca/teste-de-nivel"] == "/fr/test-de-niveau-de-portugais"
+
+    assert '{"loc": "/fr/test-de-niveau-de-portugais"' in (
+        ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+    ).read_text(encoding="utf-8")

@@ -171,6 +171,7 @@ def _build_language_prefix_redirects():
         "teste-de-nivel": {
             "en": "portuguese-placement-test",
             "es": "prueba-de-nivel-de-portugues",
+            "fr": "test-de-niveau-de-portugais",
         },
     }
     for slug, landing in LANDINGS.items():
