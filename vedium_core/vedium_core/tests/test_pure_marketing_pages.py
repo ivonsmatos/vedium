@@ -429,6 +429,55 @@ def test_yoruba_cluster_has_spanish_pages_with_reciprocal_hreflang():
     ).read_text(encoding="utf-8")
 
 
+def test_ple_cluster_has_spanish_pages_with_reciprocal_hreflang():
+    """Cluster PLE (Português para Estrangeiros) traduzido pro espanhol --
+    público de PLE é 100% estrangeiro e inclui muitos hispanofalantes,
+    prioridade alta na retomada do trabalho em ES (mesma ordem de
+    prioridade que o inglês, item 4). Mesmo padrão do cluster Iorubá em
+    espanhol: `alt` com 3 idiomas, slugs pesquisados como um hispanofalante
+    buscaria. test_url aponta pro único teste de nível real que existe
+    (inglês) -- não inventa um teste de espanhol que não existe.
+    """
+    pairs = [
+        ("portugues-para-estrangeiros", "portugues-para-extranjeros", "/en/portuguese-placement-test"),
+        ("portugues-para-executivos", "portugues-para-ejecutivos", "/en/portuguese-placement-test"),
+        ("preparatorio-celpe-bras", "preparacion-examen-celpe-bras", "/en/portuguese-placement-test"),
+    ]
+    for pt_slug, es_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
+        assert LANDINGS[es_slug]["alt"] == {
+            "pt-BR": pt_slug,
+            "en": LANDINGS[pt_slug]["alt"]["en"],
+            "es": es_slug,
+        }
+        assert LANDINGS[es_slug]["lang"] == "es"
+        assert "test_url" in LANDINGS[es_slug], f"{es_slug} precisa de test_url explícito"
+        assert LANDINGS[es_slug]["test_url"] == expected_test_url
+
+        es_html = (WWW / "es" / f"{es_slug}.html").read_text(encoding="utf-8")
+        es_py = (WWW / "es" / f"{es_slug.replace('-', '_')}.py").read_text(encoding="utf-8")
+        assert f'get_marketing_landing("{es_slug}")' in es_html
+        assert es_slug in es_py
+
+        # conteúdo real, não placeholder (mesmo padrão de profundidade das outras landings)
+        landing = LANDINGS[es_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+        assert f"/es/{es_slug}" in (
+            ROOT / "vedium_core" / "vedium_core" / "www" / "sitemap.py"
+        ).read_text(encoding="utf-8")
+
+    # portugues-para-extranjeros é a landing pilar em ES: precisa do mesmo
+    # grid de cursos reais (preço, aulas, link) que os outros pilares já têm.
+    assert '"portugues-para-extranjeros": {"category_exact": "Português para Estrangeiros"}' in (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+
+
 def test_commercial_pages_exist_and_drive_to_public_ctas():
     for slug in COMMERCIAL_SLUGS:
         html_path = WWW / f"{slug}.html"
