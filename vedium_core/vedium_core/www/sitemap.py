@@ -108,6 +108,11 @@ STATIC_URLS = [
     {"loc": "/es/carreiras", "priority": "0.4", "changefreq": "monthly"},
     # Páginas em francês (SEO internacional)
     {"loc": "/fr", "priority": "0.9", "changefreq": "weekly"},
+    {"loc": "/fr/catalogo", "priority": "0.8", "changefreq": "daily"},
+    {"loc": "/fr/sobre", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/como-funciona", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/fr/faq", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/fr/contato", "priority": "0.5", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):
