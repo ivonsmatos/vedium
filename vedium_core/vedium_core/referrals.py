@@ -58,13 +58,13 @@ def get_my_referral():
             }
         )
         doc.insert(ignore_permissions=True)
-        referral = {
+        referral = frappe._dict({
             "referral_code": doc.referral_code,
             "active": 1,
             "discount_percent": doc.discount_percent,
             "reward_percent": doc.reward_percent,
             "total_conversions": 0,
-        }
+        })
 
     base_url = frappe.utils.get_url()
     share_link = f"{base_url}/catalogo?ref={referral.referral_code}"
