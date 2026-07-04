@@ -3356,3 +3356,23 @@ def test_candidatura_doctype_has_resume_attachment_field():
     careers_py = (ROOT / "vedium_core" / "vedium_core" / "careers.py").read_text(encoding="utf-8")
     assert '"resume_attachment"' in careers_py
     assert "resume_attachment" in careers_py.split("def submit_candidatura")[1].split("\n\n")[0]
+
+
+def test_referral_conversion_also_creates_crm_lead():
+    """2026-07-04: usuário perguntou pra onde vai o programa de indicação
+    e pediu visibilidade no CRM. O mecanismo de recompensa já sabia quem
+    indicou quem (o código de indicação, gerado só pra usuário logado,
+    carrega essa identidade -- não há "compartilhamento anônimo"). O que
+    faltava era o time de vendas ENXERGAR essa atividade no CRM. Agora
+    record_referral_conversion cria/atualiza um CRM Lead pro indicado
+    (referee) com nota de quem indicou, sem mudar o fluxo de recompensa
+    automática que já funcionava."""
+    referrals_py = (ROOT / "vedium_core" / "vedium_core" / "referrals.py").read_text(encoding="utf-8")
+    assert "_upsert_crm_lead_from_referral_conversion" in referrals_py
+    assert '"doctype": "CRM Lead"' not in referrals_py  # usa frappe.new_doc, nao dict cru
+    assert "lead.source = " in referrals_py
+    assert "Indicado por:" in referrals_py
+    # nunca pode derrubar a recompensa/cupom se o CRM falhar
+    body = referrals_py.split("def record_referral_conversion")[1]
+    assert "_upsert_crm_lead_from_referral_conversion" in body.split("def _upsert_crm_lead_from_referral_conversion")[0]
+    assert "except Exception" in body.split("_upsert_crm_lead_from_referral_conversion(")[1][:200]

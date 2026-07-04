@@ -86,6 +86,8 @@ STATIC_URLS = [
     {"loc": "/en/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
     {"loc": "/en/empresas", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/en/carreiras", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/en/diferenciais", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/en/metodologia", "priority": "0.5", "changefreq": "monthly"},
     # Páginas em espanhol (SEO internacional)
     {"loc": "/es", "priority": "0.9", "changefreq": "weekly"},
     {"loc": "/es/catalogo", "priority": "0.8", "changefreq": "daily"},
@@ -114,6 +116,8 @@ STATIC_URLS = [
     {"loc": "/es/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
     {"loc": "/es/empresas", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/es/carreiras", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/es/diferenciais", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/es/metodologia", "priority": "0.5", "changefreq": "monthly"},
     # Páginas em francês (SEO internacional)
     {"loc": "/fr", "priority": "0.9", "changefreq": "weekly"},
     {"loc": "/fr/catalogo", "priority": "0.8", "changefreq": "daily"},
@@ -139,6 +143,8 @@ STATIC_URLS = [
     {"loc": "/fr/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
     {"loc": "/fr/empresas", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/fr/carreiras", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/fr/diferenciais", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/fr/metodologia", "priority": "0.5", "changefreq": "monthly"},
     # Páginas em alemão (SEO internacional)
     {"loc": "/de", "priority": "0.9", "changefreq": "weekly"},
     {"loc": "/de/catalogo", "priority": "0.8", "changefreq": "daily"},
@@ -159,6 +165,8 @@ STATIC_URLS = [
     {"loc": "/de/business-englisch-online", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/de/englisch-fuer-reisen", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/de/englisch-fuer-kundenservice", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/de/diferenciais", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/de/metodologia", "priority": "0.5", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):

@@ -211,7 +211,62 @@ def record_referral_conversion(referral_code, referee, course_name, enrollment_n
             frappe.log_error(
                 frappe.get_traceback(), "Vedium.referrals.notify_referrer"
             )
+
+        # Visibilidade no CRM: o time de vendas ve "quem indicou quem" no
+        # funil, sem precisar abrir o doctype Referral Conversion.
+        try:
+            _upsert_crm_lead_from_referral_conversion(
+                referral.referrer, referee, course_name
+            )
+        except Exception:
+            frappe.log_error(
+                frappe.get_traceback(), "Vedium.referrals.crm_lead"
+            )
     except Exception:
         frappe.log_error(
             frappe.get_traceback(), "Vedium.referrals.record_referral_conversion"
         )
+
+
+def _upsert_crm_lead_from_referral_conversion(referrer, referee, course_name):
+    """Cria/atualiza um CRM Lead para quem se matriculou via indicacao
+    (referee), com nota indicando quem indicou -- assim o time de vendas
+    enxerga a atividade de indicacao no CRM, mesmo o programa em si sendo
+    100% automatico (recompensa ja sai sem intervencao manual)."""
+    if not frappe.db.exists("DocType", "CRM Lead"):
+        return
+
+    referee_email = frappe.db.get_value("User", referee, "email") or referee
+    referee_name = frappe.db.get_value("User", referee, "full_name") or referee
+    referrer_name = frappe.db.get_value("User", referrer, "full_name") or referrer
+    course_title = frappe.db.get_value("LMS Course", course_name, "title") or course_name
+
+    note = (
+        f"Matricula via programa de indicacao.\n"
+        f"Indicado por: {referrer_name} ({referrer})\n"
+        f"Curso: {course_title}"
+    )
+
+    from vedium_core.integrations import ensure_contact
+
+    parts = (referee_name or "").strip().split(" ", 1)
+    ensure_contact(
+        referee_email,
+        first_name=parts[0],
+        last_name=parts[1] if len(parts) > 1 else None,
+    )
+
+    existing = frappe.db.get_value("CRM Lead", {"email": referee_email}, "name")
+    if existing:
+        frappe.get_doc("CRM Lead", existing).add_comment("Comment", note)
+        return
+
+    lead = frappe.new_doc("CRM Lead")
+    lead.first_name = parts[0]
+    if len(parts) > 1:
+        lead.last_name = parts[1]
+    lead.lead_name = (referee_name or "").strip()
+    lead.email = referee_email
+    lead.source = "Indicação"
+    lead.insert(ignore_permissions=True)
+    lead.add_comment("Comment", note)

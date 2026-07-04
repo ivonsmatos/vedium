@@ -100,6 +100,8 @@ SAME_SLUG_TRANSLATIONS = {
     "empresas": {"en", "es", "fr"},
     "programa-de-indicacao": {"en", "es", "fr"},
     "carreiras": {"en", "es", "fr"},
+    "diferenciais": {"en", "es", "fr", "de"},
+    "metodologia": {"en", "es", "fr", "de"},
 }
 
 
