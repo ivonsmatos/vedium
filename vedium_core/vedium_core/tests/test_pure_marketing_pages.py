@@ -3144,3 +3144,61 @@ def test_blog_batch_2026_07_oneshot_is_well_formed():
             ), f"{post['slug']}: link interno para rota inexistente {base}"
         assert "vediums.com" not in post["content"].split("<a href")[0] or True
         assert "<a href=\"<a" not in post["content"], f"{post['slug']}: link aninhado quebrado"
+
+
+def test_diferenciais_and_metodologia_pages_exist():
+    """2026-07-04: novas páginas /diferenciais e /metodologia, inspiradas na
+    estrutura da WiseUp mas com claims reais da Vedium (sem estatística
+    inventada tipo '500+ horas' — só o que já está provado em outras
+    páginas: aulas ao vivo de 1h, sem fidelidade, certificado, teste de
+    nível grátis). PT-only por enquanto (tradução vem depois via agentes)."""
+    for slug in ["diferenciais", "metodologia"]:
+        py_path = WWW / f"{slug}.py"
+        html_path = WWW / f"{slug}.html"
+        assert py_path.exists(), f"falta www/{slug}.py"
+        assert html_path.exists(), f"falta www/{slug}.html"
+        html = html_path.read_text(encoding="utf-8")
+        assert 'lang="pt-BR"' in html
+        assert "site_navbar.html" in html
+        assert "site_footer.html" in html
+        assert f'<link rel="canonical" href="https://vediums.com/{slug}" />' in html
+
+    diferenciais = (WWW / "diferenciais.html").read_text(encoding="utf-8")
+    assert "Sem contrato de fidelidade" in diferenciais or "sem contrato de fidelidade" in diferenciais.lower()
+    assert "/teste-de-nivel" in diferenciais
+    assert "/metodologia" in diferenciais
+
+    metodologia = (WWW / "metodologia.html").read_text(encoding="utf-8")
+    assert "/teste-de-nivel" in metodologia
+    assert "/diferenciais" in metodologia
+    assert "HowTo" in metodologia
+
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    assert '{"loc": "/diferenciais"' in sitemap_py
+    assert '{"loc": "/metodologia"' in sitemap_py
+
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    assert '<a href="/diferenciais">Diferenciais</a>' in footer
+    assert '<a href="/metodologia">Metodologia</a>' in footer
+
+
+def test_faq_enriched_with_course_specific_questions():
+    """2026-07-04: /faq ganhou perguntas segmentadas por curso (inglês,
+    iorubá, português para estrangeiros) além das gerais — mantendo a
+    mesma página única (schema FAQPage + hreflang já existentes, decisão
+    consciente de não fragmentar em sub-páginas como a WiseUp faz)."""
+    faq_html = (WWW / "faq.html").read_text(encoding="utf-8")
+    assert "Ingles" in faq_html or "Inglês" in faq_html
+    assert "Ioruba" in faq_html or "Iorubá" in faq_html
+    assert "estrangeiros" in faq_html.lower()
+    assert faq_html.count('"@type":"Question"') >= 8
+
+
+def test_candidatura_doctype_has_resume_attachment_field():
+    """2026-07-04: campo de anexo de currículo, além do link, no doctype
+    que já capturava candidaturas de /carreiras (nome, e-mail, telefone,
+    vaga, currículo, mensagem, status) -- espelha o que um ATS/HR real
+    captura, sem precisar instalar o app hrms inteiro."""
+    careers_py = (ROOT / "vedium_core" / "vedium_core" / "careers.py").read_text(encoding="utf-8")
+    assert '"resume_attachment"' in careers_py
+    assert "resume_attachment" in careers_py.split("def submit_candidatura")[1].split("\n\n")[0]

@@ -7,10 +7,40 @@ import frappe
 CANDIDATURA = "Candidatura"
 
 
+CANDIDATURA_FIELDS = [
+    ("candidate_name", "Nome completo", "Data", {"reqd": 1, "in_list_view": 1}),
+    ("email", "E-mail", "Data", {"options": "Email", "reqd": 1, "in_list_view": 1}),
+    ("phone", "Telefone / WhatsApp", "Data", {}),
+    ("position", "Vaga / Area de interesse", "Data", {"in_list_view": 1}),
+    ("resume_url", "Link do curriculo (LinkedIn/Drive)", "Data", {}),
+    ("resume_attachment", "Curriculo (arquivo)", "Attach", {}),
+    ("message", "Mensagem / Apresentacao", "Text", {}),
+    ("status", "Status", "Select",
+     {"options": "Nova\nEm analise\nEntrevista\nAprovada\nReprovada", "default": "Nova", "in_list_view": 1}),
+    ("source", "Origem", "Data", {"default": "Site /carreiras", "read_only": 1}),
+]
+
+
 def ensure_candidatura_doctype():
-    """Cria o doctype custom 'Candidatura' (idempotente). Roda no contexto do servidor."""
+    """Cria o doctype custom 'Candidatura' (idempotente). Se ja existir, so
+    adiciona campos novos que ainda faltem (ex.: resume_attachment,
+    introduzido depois) sem tocar no que ja esta la. Roda no servidor."""
     if frappe.db.exists("DocType", CANDIDATURA):
+        dt = frappe.get_doc("DocType", CANDIDATURA)
+        existing = {f.fieldname for f in dt.fields}
+        changed = False
+        for fn, label, ft, extra in CANDIDATURA_FIELDS:
+            if fn in existing:
+                continue
+            row = {"fieldname": fn, "label": label, "fieldtype": ft}
+            row.update(extra)
+            dt.append("fields", row)
+            changed = True
+        if changed:
+            dt.save(ignore_permissions=True)
+            frappe.db.commit()
         return CANDIDATURA
+
     dt = frappe.new_doc("DocType")
     dt.name = CANDIDATURA
     dt.module = "Vedium Core"
@@ -20,18 +50,7 @@ def ensure_candidatura_doctype():
     dt.sort_field = "modified"
     dt.sort_order = "DESC"
     dt.title_field = "candidate_name"
-    fields = [
-        ("candidate_name", "Nome completo", "Data", {"reqd": 1, "in_list_view": 1}),
-        ("email", "E-mail", "Data", {"options": "Email", "reqd": 1, "in_list_view": 1}),
-        ("phone", "Telefone / WhatsApp", "Data", {}),
-        ("position", "Vaga / Area de interesse", "Data", {"in_list_view": 1}),
-        ("resume_url", "Link do curriculo (LinkedIn/Drive)", "Data", {}),
-        ("message", "Mensagem / Apresentacao", "Text", {}),
-        ("status", "Status", "Select",
-         {"options": "Nova\nEm analise\nEntrevista\nAprovada\nReprovada", "default": "Nova", "in_list_view": 1}),
-        ("source", "Origem", "Data", {"default": "Site /carreiras", "read_only": 1}),
-    ]
-    for fn, label, ft, extra in fields:
+    for fn, label, ft, extra in CANDIDATURA_FIELDS:
         row = {"fieldname": fn, "label": label, "fieldtype": ft}
         row.update(extra)
         dt.append("fields", row)
@@ -48,7 +67,10 @@ def ensure_candidatura_doctype():
 
 
 @frappe.whitelist(allow_guest=True)
-def submit_candidatura(candidate_name, email, position=None, phone=None, message=None, resume_url=None):
+def submit_candidatura(
+    candidate_name, email, position=None, phone=None, message=None,
+    resume_url=None, resume_attachment=None,
+):
     """Recebe a candidatura do formulario publico /carreiras e cria o registro."""
     from vedium_core.api import rate_limit_by_ip
 
@@ -68,6 +90,7 @@ def submit_candidatura(candidate_name, email, position=None, phone=None, message
     doc.phone = (phone or "").strip()
     doc.position = (position or "").strip()
     doc.resume_url = (resume_url or "").strip()
+    doc.resume_attachment = (resume_attachment or "").strip()
     doc.message = (message or "").strip()
     doc.status = "Nova"
     doc.source = "Site /carreiras"
