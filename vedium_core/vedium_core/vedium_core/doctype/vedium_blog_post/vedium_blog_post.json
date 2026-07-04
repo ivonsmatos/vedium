@@ -12,6 +12,7 @@
         "column_break_1",
         "tag",
         "date",
+        "lang",
         "section_break_1",
         "meta_description",
         "hero_image",
@@ -64,6 +65,15 @@
             "fieldname": "date",
             "fieldtype": "Date",
             "label": "Data de publicação"
+        },
+        {
+            "default": "pt-BR",
+            "description": "Idioma do artigo. Define <html lang>, texto de UI (breadcrumb, FAQ) e meta robots — sempre index,follow para o público-alvo daquele idioma.",
+            "fieldname": "lang",
+            "fieldtype": "Select",
+            "label": "Idioma",
+            "options": "pt-BR\nen\nes\nfr\nde",
+            "reqd": 1
         },
         {
             "fieldname": "section_break_1",

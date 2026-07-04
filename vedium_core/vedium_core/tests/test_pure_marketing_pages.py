@@ -928,7 +928,7 @@ def test_rich_footer_matches_public_site_structure():
     assert "/ingles-para-entrevista" in footer
     assert "/portugues-para-estrangeiros" in footer
     assert "/curso-de-ioruba-online" in footer
-    assert "/blog/niveis-de-ingles-a1-c1" in footer
+    assert "/blog" in footer
     assert "/teste-de-nivel-ingles" in footer
     assert "https://www.instagram.com/vediumsglobal/" in footer
     assert "https://www.linkedin.com/company/vediums" in footer
@@ -1229,11 +1229,10 @@ def test_english_home_page_exists_and_routes_correctly():
     assert "US$ 120" in en_html
     assert "R$" not in en_html
 
-    # Teasers do blog apontam pros posts em inglês existentes (não pros
-    # slugs em português, que o leitor de inglês não conseguiria ler)
-    assert "/blog/yoruba-language-and-culture" in en_html
-    assert "/blog/yoruba-greetings" in en_html
-    assert "/blog/yoruba-numbers-1-to-20" in en_html
+    # Teasers do blog apontam pro índice genérico /blog (2026-07-03: os
+    # posts de código específicos foram apagados a pedido do usuário, em
+    # favor do calendário editorial publicado via doctype nativo)
+    assert "/blog" in en_html
     assert "/blog/niveis-de-ingles-a1-c1" not in en_html
     assert "/blog/como-funcionam-as-aulas-ao-vivo" not in en_html
 
@@ -1692,45 +1691,6 @@ def test_blog_has_self_service_panel_and_dynamic_route():
     assert "list_blog_posts" in sitemap_py
 
 
-def test_yoruba_blog_cluster_has_english_translations():
-    """4 posts do cluster Iorubá traduzidos pro inglês (mesmo /blog/<slug>
-    flat, sem prefixo /en/ — blog_post.py é uma rota dinâmica única, não os
-    arquivos estáticos .py/.html das páginas pilar). Trava par PT/EN,
-    hreflang recíproco e paridade de profundidade de conteúdo.
-    """
-    pairs = [
-        ("alfabeto-ioruba", "yoruba-alphabet-guide"),
-        ("saudacoes-em-ioruba", "yoruba-greetings"),
-        ("numeros-em-ioruba", "yoruba-numbers-1-to-20"),
-        ("aprender-ioruba-lingua-e-cultura", "yoruba-language-and-culture"),
-    ]
-    for pt_slug, en_slug in pairs:
-        assert BLOG_POSTS[pt_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
-        assert BLOG_POSTS[en_slug]["alt"] == {"pt-BR": pt_slug, "en": en_slug}
-        assert BLOG_POSTS[en_slug]["lang"] == "en"
-
-        pt_post = get_blog_post(pt_slug)
-        en_post = get_blog_post(en_slug)
-        pt_words = len(re.sub(r"<[^>]+>", " ", " ".join(
-            b for sec in pt_post["sections"] for b in sec["body"]
-        )).split())
-        en_words = len(re.sub(r"<[^>]+>", " ", " ".join(
-            b for sec in en_post["sections"] for b in sec["body"]
-        )).split())
-        # tradução fiel, não resumo nem expansão — tamanho deve ficar próximo
-        assert abs(en_words - pt_words) / max(pt_words, 1) < 0.25, (
-            f"{en_slug}: {en_words} palavras vs {pt_slug}: {pt_words} — "
-            "desvio grande demais para uma tradução fiel"
-        )
-        assert len(en_post["sections"]) == len(pt_post["sections"])
-        assert len(en_post["faqs"]) == len(pt_post["faqs"])
-
-    template = (TPL / "blog_post.html").read_text(encoding="utf-8")
-    assert "post.lang or 'pt-BR'" in template
-    assert "post.alt" in template
-    assert '"Frequently asked questions" if vd_bp_en else' in template
-
-
 def test_individual_course_pages_have_english_translation():
     """6 páginas de curso individuais (3 Iorubá + 3 PLE) ganham versão em
     inglês via /en/curso/<slug>, reaproveitando o MESMO controller
@@ -1961,9 +1921,7 @@ def test_spanish_home_page_exists_and_routes_correctly():
     # Teasers do blog apontam pros posts em inglês existentes (ainda não há
     # blog em espanhol) -- não pros slugs em português, que o leitor de
     # espanhol não conseguiria ler.
-    assert "/blog/yoruba-language-and-culture" in es_html
-    assert "/blog/yoruba-greetings" in es_html
-    assert "/blog/yoruba-numbers-1-to-20" in es_html
+    assert "/blog" in es_html
     assert "/blog/niveis-de-ingles-a1-c1" not in es_html
 
     # Controller: contexto de idioma pro seletor (site_navbar.html) + mesma
@@ -2260,9 +2218,7 @@ def test_french_home_page_exists_and_routes_correctly():
     # Teasers do blog apontam pros posts em inglês existentes (ainda não há
     # blog em francês) -- não pros slugs em português, que o leitor de
     # francês não conseguiria ler.
-    assert "/blog/yoruba-language-and-culture" in fr_html
-    assert "/blog/yoruba-greetings" in fr_html
-    assert "/blog/yoruba-numbers-1-to-20" in fr_html
+    assert "/blog" in fr_html
     assert "/blog/niveis-de-ingles-a1-c1" not in fr_html
 
     # Controller: contexto de idioma pro seletor (site_navbar.html) + mesma
@@ -2712,9 +2668,7 @@ def test_german_home_page_exists_and_routes_correctly():
     # Teasers do blog apontam pros posts em inglês existentes (ainda não há
     # blog em alemão) -- não pros slugs em português, que o leitor de
     # alemão não conseguiria ler.
-    assert "/blog/yoruba-language-and-culture" in de_html
-    assert "/blog/yoruba-greetings" in de_html
-    assert "/blog/yoruba-numbers-1-to-20" in de_html
+    assert "/blog" in de_html
     assert "/blog/niveis-de-ingles-a1-c1" not in de_html
 
     # Controller: contexto de idioma pro seletor (site_navbar.html) + mesma
