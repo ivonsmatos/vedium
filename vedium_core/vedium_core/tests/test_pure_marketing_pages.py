@@ -668,7 +668,6 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
 
     expectations = {
         "comunidade": "community",
-        "empresas": "b2b",
     }
     for slug, intent in expectations.items():
         html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
@@ -1073,7 +1072,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert "vedium_core.public_funnel.submit_public_intent" in template_en
     assert "/teste-de-nivel-ingles" in template_en
     assert "wa.me/5511911293075" in template_en
-    for slug, intent in {"comunidade": "community", "empresas": "b2b"}.items():
+    for slug, intent in {"comunidade": "community"}.items():
         en_html_path = WWW / "en" / f"{slug}.html"
         en_py_path = WWW / "en" / f"{slug.replace('-', '_')}.py"
         pt_html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
@@ -1088,6 +1087,17 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert "get_context" in en_py
         assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
+
+    # empresas: 2026-07-04 virou pagina propria e rica em PT (ver
+    # test_empresas_page_is_rich_and_wired_to_crm), com hreflang direto
+    # proprio -- a versao EN ainda usa o template compartilhado (fila de
+    # traducao), so o page_slug/page_intent dela mudam de verificacao.
+    assert (WWW / "en" / "empresas.html").exists()
+    empresas_en = (WWW / "en" / "empresas.html").read_text(encoding="utf-8")
+    assert 'page_slug = "empresas"' in empresas_en
+    assert 'page_intent = "b2b"' in empresas_en
+    assert '"empresas": {"en", "es", "fr"}' in hooks
+    assert '{"loc": "/en/empresas"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT)
     assert (WWW / "en" / "carreiras.html").exists()
@@ -2184,7 +2194,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     assert "vedium_core.public_funnel.submit_public_intent" in template_es
     assert "/teste-de-nivel-ingles" in template_es
     assert "wa.me/5511911293075" in template_es
-    for slug, intent in {"comunidade": "community", "empresas": "b2b"}.items():
+    for slug, intent in {"comunidade": "community"}.items():
         es_html_path = WWW / "es" / f"{slug}.html"
         es_py_path = WWW / "es" / f"{slug.replace('-', '_')}.py"
         pt_html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
@@ -2199,6 +2209,16 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
         assert "get_context" in es_py
         assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
+
+    # empresas: pagina propria em PT agora (ver
+    # test_empresas_page_is_rich_and_wired_to_crm); ES ainda no template
+    # compartilhado, fila de traducao.
+    assert (WWW / "es" / "empresas.html").exists()
+    empresas_es = (WWW / "es" / "empresas.html").read_text(encoding="utf-8")
+    assert 'page_slug = "empresas"' in empresas_es
+    assert 'page_intent = "b2b"' in empresas_es
+    assert '"empresas": {"en", "es", "fr"}' in hooks
+    assert '{"loc": "/es/empresas"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN)
     assert (WWW / "es" / "carreiras.html").exists()
@@ -2635,7 +2655,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
     assert "vedium_core.public_funnel.submit_public_intent" in template_fr
     assert "/teste-de-nivel-ingles" in template_fr
     assert "wa.me/5511911293075" in template_fr
-    for slug, intent in {"comunidade": "community", "empresas": "b2b"}.items():
+    for slug, intent in {"comunidade": "community"}.items():
         fr_html_path = WWW / "fr" / f"{slug}.html"
         fr_py_path = WWW / "fr" / f"{slug.replace('-', '_')}.py"
         pt_html = (WWW / f"{slug}.html").read_text(encoding="utf-8")
@@ -2650,6 +2670,16 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
         assert "get_context" in fr_py
         assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/fr/{slug}"' in sitemap_py
+
+    # empresas: pagina propria em PT agora (ver
+    # test_empresas_page_is_rich_and_wired_to_crm); FR ainda no template
+    # compartilhado, fila de traducao.
+    assert (WWW / "fr" / "empresas.html").exists()
+    empresas_fr = (WWW / "fr" / "empresas.html").read_text(encoding="utf-8")
+    assert 'page_slug = "empresas"' in empresas_fr
+    assert 'page_intent = "b2b"' in empresas_fr
+    assert '"empresas": {"en", "es", "fr"}' in hooks
+    assert '{"loc": "/fr/empresas"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN/ES)
     assert (WWW / "fr" / "carreiras.html").exists()
@@ -3260,6 +3290,62 @@ def test_blog_batch_2026_07_hero_images_are_not_all_identical():
     )
     assert fix_script.exists()
     assert "def run()" in fix_script.read_text(encoding="utf-8")
+
+
+def test_empresas_page_is_rich_and_wired_to_crm():
+    """2026-07-04: /empresas era 12 linhas genéricas do template
+    public_intent_page.html; usuário pediu conteúdo mais rico (inspirado
+    na OpenEnglish para-empresas: ícones, "como funciona", fotos
+    humanizadas) e que o formulário caia direto no CRM (não só em Support
+    Ticket, que era o comportamento anterior de TODOS os formulários de
+    /public_funnel.submit_public_intent)."""
+    empresas_html = (WWW / "empresas.html").read_text(encoding="utf-8")
+    empresas_py = (WWW / "empresas.py").read_text(encoding="utf-8")
+
+    # conteudo rico: beneficios com icone, "como funciona" em etapas,
+    # fotos humanizadas (nao so texto)
+    assert empresas_html.count('<i class="fa') >= 6
+    assert "vd-steps" in empresas_html
+    assert empresas_html.count("<img") >= 3  # hero + 2 fotos humanizadas
+    assert "vd-photo-row" in empresas_html
+
+    # formulario com campos de empresa (o que o CRM Lead precisa pra B2B)
+    assert 'id="company"' in empresas_html
+    assert 'id="team_size"' in empresas_html
+    assert "intent:'b2b'" in empresas_html
+    # cai no mesmo endpoint que ja tinha, mas agora esse endpoint valida
+    # e cria CRM Lead pra intent b2b (ver testes de public_funnel abaixo)
+    assert "vedium_core.public_funnel.submit_public_intent" in empresas_html
+    # checa r.ok antes de considerar sucesso (bug corrigido nesta mudanca)
+    assert "if(!r.ok)" in empresas_html
+
+    # hreflang proprio (pagina deixou de depender do template compartilhado)
+    assert 'hreflang="en" href="https://vediums.com/en/empresas"' in empresas_html
+    assert 'hreflang="es" href="https://vediums.com/es/empresas"' in empresas_html
+    assert 'hreflang="fr" href="https://vediums.com/fr/empresas"' in empresas_html
+    assert "site_navbar.html" in empresas_html
+    assert "site_footer.html" in empresas_html
+    assert "get_context" in empresas_py
+
+
+def test_public_intent_validates_fields_and_creates_crm_lead_for_b2b():
+    """2026-07-04: submit_public_intent (usado por /empresas, /comunidade
+    etc.) não validava nada (nome/e-mail podiam vir vazios) nem tinha
+    rate-limit — diferente do formulário de contato, que já tinha os dois.
+    Também não criava CRM Lead, só Support Ticket. Agora: valida
+    nome+e-mail obrigatórios e formato de e-mail, tem rate-limit, e cria/
+    atualiza um CRM Lead quando intent == "b2b", com organization/
+    no_of_employees setados de forma defensiva (não quebra se o schema do
+    CRM Lead instalado não tiver esses campos)."""
+    funnel = (ROOT / "vedium_core" / "vedium_core" / "public_funnel.py").read_text(encoding="utf-8")
+    assert "rate_limit_by_ip(\"public_intent\"" in funnel
+    assert "Nome e e-mail são obrigatórios" in funnel
+    assert "EMAIL_RE" in funnel
+    assert "_upsert_crm_lead_from_b2b" in funnel
+    assert 'if intent == "b2b"' in funnel
+    assert "lead.organization" in funnel
+    assert "lead.no_of_employees" in funnel
+    assert "CRM Lead" in funnel
 
 
 def test_candidatura_doctype_has_resume_attachment_field():

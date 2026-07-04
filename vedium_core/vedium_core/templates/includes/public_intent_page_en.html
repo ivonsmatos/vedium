@@ -43,11 +43,15 @@
   });
   document.getElementById('send').addEventListener('click', function(){
     var result=document.getElementById('result');
-    result.textContent='Sending...';
-    var body={intent:'{{ page_intent }}',source:location.pathname,name:document.getElementById('name').value,email:document.getElementById('email').value,phone:document.getElementById('phone').value,message:document.getElementById('message').value};
+    var name=document.getElementById('name').value.trim();
+    var email=document.getElementById('email').value.trim();
+    if(!name||!email){result.style.color='#dc2626';result.textContent='Please fill in name and email.';return;}
+    result.style.color='';result.textContent='Sending...';
+    var body={intent:'{{ page_intent }}',source:location.pathname,name:name,email:email,phone:document.getElementById('phone').value,message:document.getElementById('message').value};
     fetch('/api/method/vedium_core.public_funnel.submit_public_intent',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
-      .then(function(r){return r.json();}).then(function(){result.textContent='Received. The Vedium team will follow up on your interest.';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_intent_submit',intent:'{{ page_intent }}',location:location.pathname});})
-      .catch(function(){result.textContent='We could not send this right now. You can also reach us on WhatsApp.';});
+      .then(function(r){if(!r.ok){return r.json().then(function(e){throw new Error((e.exception||e.message||'').toString());});}return r.json();})
+      .then(function(){result.style.color='';result.textContent='Received. The Vedium team will follow up on your interest.';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'public_intent_submit',intent:'{{ page_intent }}',location:location.pathname});})
+      .catch(function(){result.style.color='#dc2626';result.textContent='We could not send this right now. You can also reach us on WhatsApp.';});
   });
 })();
 </script>

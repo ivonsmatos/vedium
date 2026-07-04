@@ -40,6 +40,62 @@ def _payload():
     return data
 
 
+def _upsert_crm_lead_from_b2b(name, email, phone, company, team_size, message):
+    """Cria (ou comenta em) um CRM Lead a partir do formulario de /empresas.
+    Espelha _upsert_crm_lead_from_contact (api.py), com os campos extras de
+    B2B (organization/no_of_employees) setados de forma defensiva -- se o
+    schema do CRM Lead instalado nao tiver esses campos, a criacao do lead
+    ainda funciona, e a informacao vai pro comentario de qualquer forma."""
+    if not frappe.db.exists("DocType", "CRM Lead"):
+        return
+
+    note_lines = ["Interesse B2B via /empresas"]
+    if company:
+        note_lines.append(f"Empresa: {company}")
+    if team_size:
+        note_lines.append(f"Tamanho do time: {team_size}")
+    if message:
+        note_lines.append(f"Mensagem: {message}")
+    note = "\n".join(note_lines)
+
+    from vedium_core.integrations import ensure_contact
+
+    parts = (name or "").strip().split(" ", 1)
+    ensure_contact(
+        email,
+        first_name=parts[0],
+        last_name=parts[1] if len(parts) > 1 else None,
+        mobile=phone,
+    )
+
+    existing = frappe.db.get_value("CRM Lead", {"email": email}, "name")
+    if existing:
+        frappe.get_doc("CRM Lead", existing).add_comment("Comment", note)
+        return
+
+    lead = frappe.new_doc("CRM Lead")
+    lead.first_name = parts[0]
+    if len(parts) > 1:
+        lead.last_name = parts[1]
+    lead.lead_name = (name or "").strip()
+    lead.email = email
+    if phone:
+        lead.mobile_no = phone
+    lead.source = "Website B2B"
+    if company:
+        try:
+            lead.organization = company
+        except Exception:
+            pass
+    if team_size:
+        try:
+            lead.no_of_employees = team_size
+        except Exception:
+            pass
+    lead.insert(ignore_permissions=True)
+    lead.add_comment("Comment", note)
+
+
 def _create_ticket(intent, subject, details):
     category = ALLOWED_INTENTS.get(intent, "Lead")
     description = "\n".join(
@@ -90,8 +146,15 @@ def _create_ticket(intent, subject, details):
     return ticket
 
 
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+
 @frappe.whitelist(allow_guest=True)
 def submit_public_intent():
+    from vedium_core.api import rate_limit_by_ip
+
+    rate_limit_by_ip("public_intent", limit=8, window_sec=3600)
+
     data = _payload()
     intent = _clean(data.get("intent") or "lead", 40)
     if intent not in ALLOWED_INTENTS:
@@ -103,6 +166,8 @@ def submit_public_intent():
     course = _clean(data.get("course"), 180)
     plan = _clean(data.get("plan"), 80)
     goal = _clean(data.get("goal"), 180)
+    company = _clean(data.get("company"), 180)
+    team_size = _clean(data.get("team_size"), 40)
     referer = ""
     try:
         referer = frappe.request.headers.get("Referer", "")
@@ -111,9 +176,16 @@ def submit_public_intent():
     source = _clean(data.get("source") or referer, 300)
     message = _clean(data.get("message"), 1200)
 
+    if not name or not email:
+        frappe.throw(_("Nome e e-mail são obrigatórios."))
+    if not EMAIL_RE.match(email):
+        frappe.throw(_("E-mail inválido."))
+
     subject_parts = [ALLOWED_INTENTS[intent], name or email or phone or "site"]
     if course:
         subject_parts.append(course)
+    if company:
+        subject_parts.append(company)
     ticket = _create_ticket(
         intent,
         " | ".join(subject_parts),
@@ -124,10 +196,19 @@ def submit_public_intent():
             "course": course,
             "plan": plan,
             "goal": goal,
+            "company": company,
+            "team_size": team_size,
             "source": source,
             "message": message,
         },
     )
+
+    if intent == "b2b":
+        try:
+            _upsert_crm_lead_from_b2b(name, email, phone, company, team_size, message)
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar CRM Lead de /empresas")
+
     return {"ok": True, "ticket": ticket.name}
 
 
