@@ -55,6 +55,13 @@
   .vd-bp-cta h2 { color:#111827;font-size:23px;font-weight:700;margin:0 0 10px; }
   .vd-bp-cta p { color:#5f6b7a;margin:0 0 18px; }
   .vd-cta-btn { display:inline-block;background:#A12D1C;color:#fff;padding:14px 34px;border-radius:10px;font-weight:700;text-decoration:none; } .vd-cta-btn:hover { background:#871f10;color:#fff; }
+  .vd-bp-nav { max-width:780px;margin:44px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+  .vd-bp-nav-card { background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:20px;text-decoration:none;display:block; }
+  .vd-bp-nav-card:hover { border-color:#2E6DA4; }
+  .vd-bp-nav-card .vd-bp-nav-label { display:block;color:#5f6b7a;font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px; }
+  .vd-bp-nav-card .vd-bp-nav-title { color:#111827;font-weight:700;font-size:15.5px;line-height:1.4; }
+  .vd-bp-nav-card.vd-bp-nav-next { text-align:right; }
+  @media (max-width:640px) { .vd-bp-nav { grid-template-columns:1fr; } }
   @media (max-width:767px) { .vd-bp-head h1 { font-size:27px; } .vd-sec { padding:40px 0; } }
 </style>
 <script type="application/ld+json">
@@ -130,6 +137,17 @@
       <h2>{{ post.cta_title }}</h2>
       <p>{{ post.cta_text }}</p>
       <a href="{{ post.cta_url }}" class="vd-cta-btn">{{ post.cta_label }}</a>
+    </div>
+    {%- endif %}
+
+    {%- if newer_post or older_post %}
+    <div class="vd-bp-nav">
+      {%- if older_post %}
+      <a class="vd-bp-nav-card" href="{{ older_post.url }}"><span class="vd-bp-nav-label">&larr; {{ "Previous article" if vd_bp_en else "Artigo anterior" }}</span><span class="vd-bp-nav-title">{{ older_post.title }}</span></a>
+      {%- else %}<span></span>{%- endif %}
+      {%- if newer_post %}
+      <a class="vd-bp-nav-card vd-bp-nav-next" href="{{ newer_post.url }}"><span class="vd-bp-nav-label">{{ "Next article" if vd_bp_en else "Próximo artigo" }} &rarr;</span><span class="vd-bp-nav-title">{{ newer_post.title }}</span></a>
+      {%- endif %}
     </div>
     {%- endif %}
   </div>

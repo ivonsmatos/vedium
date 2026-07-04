@@ -774,10 +774,62 @@ def apply_blog_context(context, slug):
     context.post = post
 
 
+POSTS_PER_PAGE = 12
+
+
+def get_blog_categories():
+    """Categorias (tag) distintas entre todos os posts, para o filtro do /blog."""
+    return sorted({c["tag"] for c in list_blog_posts() if c.get("tag")})
+
+
+def get_adjacent_posts(slug):
+    """(anterior, próximo) na lista combinada ordenada por data (mais recente
+    primeiro) — "anterior" é o post mais recente que este, "próximo" o mais
+    antigo, espelhando a ordem em que aparecem no índice /blog."""
+    posts = list_blog_posts()
+    idx = next((i for i, p in enumerate(posts) if p["slug"] == slug), None)
+    if idx is None:
+        return None, None
+    newer = posts[idx - 1] if idx > 0 else None
+    older = posts[idx + 1] if idx + 1 < len(posts) else None
+    return newer, older
+
+
 def get_blog_index_context(context):
+    import frappe
+
+    page = frappe.utils.cint(frappe.form_dict.get("page") or 1) or 1
+    category = (frappe.form_dict.get("category") or "").strip()
+    query = (frappe.form_dict.get("q") or "").strip()
+
+    posts = list_blog_posts()
+    if category:
+        posts = [p for p in posts if p.get("tag") == category]
+    if query:
+        needle = query.lower()
+        posts = [
+            p for p in posts
+            if needle in p["title"].lower() or needle in p["meta_description"].lower()
+        ]
+
+    total = len(posts)
+    total_pages = max(1, (total + POSTS_PER_PAGE - 1) // POSTS_PER_PAGE)
+    page = min(max(page, 1), total_pages)
+    start = (page - 1) * POSTS_PER_PAGE
+    page_posts = posts[start:start + POSTS_PER_PAGE]
+
     context.title = "Blog da Vedium — idiomas, cultura e aprendizado"
     context.description = (
         "Conteúdos gratuitos sobre inglês, iorubá e português para estrangeiros: "
         "guias práticos, níveis, pronúncia e cultura, escritos pela equipe da Vedium."
     )
-    context.posts = list_blog_posts()
+    context.posts = page_posts
+    context.categories = get_blog_categories()
+    context.selected_category = category
+    context.search_query = query
+    context.page = page
+    context.total_pages = total_pages
+    context.total_posts = total
+    context.has_prev = page > 1
+    context.has_next = page < total_pages
+    context.is_filtered = bool(category or query)

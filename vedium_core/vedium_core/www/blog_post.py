@@ -1,6 +1,6 @@
 import frappe
 
-from vedium_core.blog_content import get_blog_post_any
+from vedium_core.blog_content import get_adjacent_posts, get_blog_post_any
 
 
 no_cache = 1
@@ -16,4 +16,5 @@ def get_context(context):
     context.title = post["title"]
     context.description = post["meta_description"]
     context.post = post
+    context.newer_post, context.older_post = get_adjacent_posts(slug)
     return context

@@ -3194,6 +3194,74 @@ def test_faq_enriched_with_course_specific_questions():
     assert faq_html.count('"@type":"Question"') >= 8
 
 
+def test_blog_index_has_pagination_search_and_category_filter():
+    """2026-07-04: usuário notou que o /blog carregava os 40+ posts de uma
+    vez e as imagens de capa se repetiam. Adiciona paginação (12/página,
+    ?page=N, rel=prev/next, canonical por página, noindex quando filtrado
+    por busca/categoria para não indexar combinações infinitas de query) +
+    busca por texto + filtro por categoria (reaproveitando o campo `tag`
+    que os posts já têm, sem inventar taxonomia nova)."""
+    import vedium_core.blog_content as bc
+
+    assert bc.POSTS_PER_PAGE == 12
+    assert hasattr(bc, "get_blog_categories")
+    assert hasattr(bc, "get_adjacent_posts")
+
+    blog_html = (WWW / "blog.html").read_text(encoding="utf-8")
+    assert 'name="q"' in blog_html
+    assert 'name="category"' in blog_html
+    assert "vd-bl-pager" in blog_html
+    assert 'rel="prev"' in blog_html and 'rel="next"' in blog_html
+    assert "noindex, follow" in blog_html  # páginas filtradas não indexam
+
+    blog_py = (WWW / "blog.py").read_text(encoding="utf-8")
+    assert "get_blog_index_context" in blog_py
+
+    blog_content_src = (ROOT / "vedium_core" / "vedium_core" / "blog_content.py").read_text(encoding="utf-8")
+    assert "frappe.form_dict.get(\"page\")" in blog_content_src
+    assert "frappe.form_dict.get(\"category\")" in blog_content_src
+    assert "frappe.form_dict.get(\"q\")" in blog_content_src
+
+
+def test_blog_post_has_prev_next_navigation():
+    """2026-07-04: ao ler um post, o usuário pode navegar pro artigo
+    anterior/próximo (ordem cronológica da lista combinada) sem voltar
+    pro índice."""
+    blog_post_py = (WWW / "blog_post.py").read_text(encoding="utf-8")
+    assert "get_adjacent_posts" in blog_post_py
+    assert "context.newer_post, context.older_post" in blog_post_py
+
+    template = (TPL / "blog_post.html").read_text(encoding="utf-8")
+    assert "vd-bp-nav" in template
+    assert "newer_post" in template and "older_post" in template
+
+
+def test_blog_batch_2026_07_hero_images_are_not_all_identical():
+    """2026-07-04: os 33 posts do lote usavam só 3 imagens de capa (17/9/7
+    repetições) -- usuário reportou como 'não legal'. Corrigido pra 27
+    imagens distintas entre os 33 posts (round-robin por data, sem duas
+    publicações adjacentes repetindo foto), com um oneshot de UPDATE
+    separado (fix_blog_batch_2026_07_hero_images.py) pros posts que já
+    tinham sido inseridos em produção antes da correção."""
+    data_file = (
+        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
+        / "data" / "blog_posts_batch_2026_07.json"
+    )
+    posts = json.loads(data_file.read_text(encoding="utf-8"))
+    images = [p["hero_image"] for p in posts]
+    from collections import Counter
+    counts = Counter(images)
+    assert len(counts) >= 20, f"só {len(counts)} imagens distintas entre {len(posts)} posts"
+    assert max(counts.values()) <= 3, f"imagem repetida {max(counts.values())}x — ainda concentrado demais"
+
+    fix_script = (
+        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
+        / "fix_blog_batch_2026_07_hero_images.py"
+    )
+    assert fix_script.exists()
+    assert "def run()" in fix_script.read_text(encoding="utf-8")
+
+
 def test_candidatura_doctype_has_resume_attachment_field():
     """2026-07-04: campo de anexo de currículo, além do link, no doctype
     que já capturava candidaturas de /carreiras (nome, e-mail, telefone,
