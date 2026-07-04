@@ -72,7 +72,7 @@
             "fieldname": "lang",
             "fieldtype": "Select",
             "label": "Idioma",
-            "options": "pt-BR\nen\nes\nfr\nde",
+            "options": "pt-BR\nen\nes\nfr\nde\nzh-CN\nru-RU",
             "reqd": 1
         },
         {

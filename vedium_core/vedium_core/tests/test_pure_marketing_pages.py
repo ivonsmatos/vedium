@@ -3097,11 +3097,11 @@ def test_legal_pages_publish_pdf_of_full_document_not_just_summary():
 
 
 def test_blog_batch_2026_07_oneshot_is_well_formed():
-    """2026-07-03: lote de 31 artigos de Cliente/Vedium/Artigos publicados via
+    """2026-07-04: lote de 33 artigos de Cliente/Vedium/Artigos publicados via
     doctype nativo (Vedium Blog Post), cruzados com o calendário editorial.
     Trava as regras de negócio: idioma suportado, data <= hoje, >=2 links
-    internos reais e >=3 FAQs por artigo. Os 2 artigos em zh-CN/ru-RU ficam
-    de fora (idioma sem suporte no campo lang) até decisão de produto."""
+    internos reais e >=3 FAQs por artigo. Inclui zh-CN/ru-RU (campo lang
+    ampliado a pedido do usuário)."""
     oneshot = (
         ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
         / "publish_blog_batch_2026_07.py"
@@ -3114,7 +3114,7 @@ def test_blog_batch_2026_07_oneshot_is_well_formed():
     assert data_file.exists()
 
     posts = json.loads(data_file.read_text(encoding="utf-8"))
-    assert len(posts) == 31
+    assert len(posts) == 33
 
     real_routes = set()
     for p in WWW.rglob("*.py"):
@@ -3129,7 +3129,7 @@ def test_blog_batch_2026_07_oneshot_is_well_formed():
     for post in posts:
         assert post["slug"] not in slugs_seen, f"slug duplicado: {post['slug']}"
         slugs_seen.add(post["slug"])
-        assert post["lang"] in ("pt-BR", "en", "es", "fr", "de"), post["slug"]
+        assert post["lang"] in ("pt-BR", "en", "es", "fr", "de", "zh-CN", "ru-RU"), post["slug"]
         assert post["date"] <= "2026-07-03", f"{post['slug']}: data futura"
         assert post["title"] and not post["title"].startswith("*")
         assert post["meta_description"]

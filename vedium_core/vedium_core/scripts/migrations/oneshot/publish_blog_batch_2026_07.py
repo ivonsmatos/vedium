@@ -1,15 +1,12 @@
-"""Publica o primeiro lote de artigos prontos de Cliente/Vedium/Artigos no
+"""Publica o lote de 33 artigos prontos de Cliente/Vedium/Artigos no
 doctype nativo "Vedium Blog Post", respeitando o calendário editorial
 (vedium_calendario_editorial_seo_geo_318_posts.xlsx).
 
-Escopo deste lote: 31 dos 33 .md encontrados na pasta de artigos, todos com
-`Data <= 2026-07-03` no calendário e em um idioma já suportado pelo campo
-`Vedium Blog Post.lang` (pt-BR, en, es, fr, de). Ficaram de fora, DE
-PROPÓSITO, 2 artigos:
-  - vedium_article_90_tian_jianli_baxi_putaoyayu_jichu_de_jihua.md (zh-CN)
-  - vedium_article_realistichnyy_plan_izucheniya_brazilskogo_portugalskogo_na_90_dney.md (ru-RU)
-O campo `lang` não tem opção zh-CN/ru-RU ainda -- adicionar suporte a chinês
-e russo é decisão de produto, não algo para o script decidir sozinho.
+Escopo deste lote: os 33 .md encontrados na pasta de artigos, todos com
+`Data <= 2026-07-03` no calendário. Inclui os 2 artigos em zh-CN e ru-RU
+(90-day / 90-дневный plano de português para estrangeiros) -- o campo
+`Vedium Blog Post.lang` foi ampliado (options pt-BR/en/es/fr/de/zh-CN/ru-RU)
+a pedido do usuário para acomodá-los.
 
 Cada post foi convertido de Markdown para HTML (título, meta description e
 corpo extraídos do próprio .md), com pelo menos 2 links internos reais para
@@ -77,7 +74,3 @@ def run():
     for slug in skipped:
         print("  -", slug)
     print(f"\nResumo: {len(created)} publicados, {len(skipped)} já existiam.")
-    print(
-        "\nFora do escopo (idioma sem suporte no campo lang, aguardando "
-        "decisão de produto): artigo em zh-CN e artigo em ru-RU."
-    )
