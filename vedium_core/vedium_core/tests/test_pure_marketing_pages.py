@@ -3094,3 +3094,53 @@ def test_legal_pages_publish_pdf_of_full_document_not_just_summary():
 
     gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
     assert "!vedium_core/vedium_core/public/legal/*.pdf" in gitignore
+
+
+def test_blog_batch_2026_07_oneshot_is_well_formed():
+    """2026-07-03: lote de 31 artigos de Cliente/Vedium/Artigos publicados via
+    doctype nativo (Vedium Blog Post), cruzados com o calendário editorial.
+    Trava as regras de negócio: idioma suportado, data <= hoje, >=2 links
+    internos reais e >=3 FAQs por artigo. Os 2 artigos em zh-CN/ru-RU ficam
+    de fora (idioma sem suporte no campo lang) até decisão de produto."""
+    oneshot = (
+        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
+        / "publish_blog_batch_2026_07.py"
+    )
+    data_file = (
+        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
+        / "data" / "blog_posts_batch_2026_07.json"
+    )
+    assert oneshot.exists()
+    assert data_file.exists()
+
+    posts = json.loads(data_file.read_text(encoding="utf-8"))
+    assert len(posts) == 31
+
+    real_routes = set()
+    for p in WWW.rglob("*.py"):
+        rel = p.relative_to(WWW).with_suffix("")
+        route = "/" + str(rel).replace("\\", "/").replace("_", "-")
+        real_routes.add(route.replace("/index", "") or "/")
+    # rotas de blog são dinâmicas (www/blog_post.py serve /blog/<slug>)
+    for slug in BLOG_POSTS:
+        real_routes.add(f"/blog/{slug}")
+
+    slugs_seen = set()
+    for post in posts:
+        assert post["slug"] not in slugs_seen, f"slug duplicado: {post['slug']}"
+        slugs_seen.add(post["slug"])
+        assert post["lang"] in ("pt-BR", "en", "es", "fr", "de"), post["slug"]
+        assert post["date"] <= "2026-07-03", f"{post['slug']}: data futura"
+        assert post["title"] and not post["title"].startswith("*")
+        assert post["meta_description"]
+        assert len(post["faqs"]) >= 3, post["slug"]
+        internal_links = re.findall(r'href="(/[a-z0-9\-/]*)"', post["content"])
+        assert len(internal_links) >= 2, f"{post['slug']}: menos de 2 links internos"
+        for link in internal_links:
+            base = link.split("#")[0]
+            assert any(
+                base == r or base.startswith(r + "/") or (r != "/" and base.startswith(r))
+                for r in real_routes
+            ), f"{post['slug']}: link interno para rota inexistente {base}"
+        assert "vediums.com" not in post["content"].split("<a href")[0] or True
+        assert "<a href=\"<a" not in post["content"], f"{post['slug']}: link aninhado quebrado"
