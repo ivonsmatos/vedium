@@ -1090,12 +1090,17 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
 
     # empresas: 2026-07-04 virou pagina propria e rica em PT (ver
     # test_empresas_page_is_rich_and_wired_to_crm), com hreflang direto
-    # proprio -- a versao EN ainda usa o template compartilhado (fila de
-    # traducao), so o page_slug/page_intent dela mudam de verificacao.
+    # proprio. A versao EN foi reescrita em 2026-07-04 espelhando a mesma
+    # estrutura rica (hero, beneficios, steps, fotos, form CRM) -- es/fr
+    # ainda usam o template compartilhado (fila de traducao).
     assert (WWW / "en" / "empresas.html").exists()
     empresas_en = (WWW / "en" / "empresas.html").read_text(encoding="utf-8")
-    assert 'page_slug = "empresas"' in empresas_en
-    assert 'page_intent = "b2b"' in empresas_en
+    assert "vd-emp-hero" in empresas_en
+    assert "vd-benefits" in empresas_en
+    assert "vd-steps" in empresas_en
+    assert "vd-form-card" in empresas_en
+    assert "vedium_core.public_funnel.submit_public_intent" in empresas_en
+    assert "intent:'b2b'" in empresas_en
     assert '"empresas": {"en", "es", "fr"}' in hooks
     assert '{"loc": "/en/empresas"' in sitemap_py
 
@@ -2671,13 +2676,18 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/fr/{slug}"' in sitemap_py
 
-    # empresas: pagina propria em PT agora (ver
-    # test_empresas_page_is_rich_and_wired_to_crm); FR ainda no template
-    # compartilhado, fila de traducao.
+    # empresas: pagina propria em PT (ver
+    # test_empresas_page_is_rich_and_wired_to_crm); versao FR foi reescrita
+    # em 2026-07-04 espelhando a mesma estrutura rica (hero, beneficios,
+    # steps, fotos, form CRM) -- mesmo padrao da versao EN.
     assert (WWW / "fr" / "empresas.html").exists()
     empresas_fr = (WWW / "fr" / "empresas.html").read_text(encoding="utf-8")
-    assert 'page_slug = "empresas"' in empresas_fr
-    assert 'page_intent = "b2b"' in empresas_fr
+    assert "vd-emp-hero" in empresas_fr
+    assert "vd-benefits" in empresas_fr
+    assert "vd-steps" in empresas_fr
+    assert "vd-form-card" in empresas_fr
+    assert "vedium_core.public_funnel.submit_public_intent" in empresas_fr
+    assert "intent:'b2b'" in empresas_fr
     assert '"empresas": {"en", "es", "fr"}' in hooks
     assert '{"loc": "/fr/empresas"' in sitemap_py
 
