@@ -141,8 +141,10 @@ def _upsert_crm_lead_from_contact(sender_name, sender_email, phone, subject, mes
 @frappe.whitelist()
 def open_support_ticket(subject, description, category=None):
     """
-    Abre um chamado de suporte para o usuário logado
+    Abre um chamado de suporte para o usuário logado.
+    Rate limit: 10 chamados/hora por IP.
     """
+    rate_limit_by_ip("support_ticket", limit=10, window_sec=3600)
     ticket = frappe.get_doc(
         {
             "doctype": "Support Ticket",
@@ -266,17 +268,18 @@ def get_user_badges():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_leaderboard(course_name):
+def get_leaderboard(course_name, limit=20, start=0):
     """
-    Retorna ranking de alunos do curso
+    Retorna ranking de alunos do curso. Suporta paginação via `start`.
     """
     leaderboard = frappe.db.sql(
         """
         SELECT member, score, completed_on FROM `tabLMS Enrollment`
         WHERE course=%s AND status='Completed'
-        ORDER BY score DESC, completed_on ASC LIMIT 20
+        ORDER BY score DESC, completed_on ASC
+        LIMIT %s OFFSET %s
     """,
-        (course_name,),
+        (course_name, int(limit), int(start)),
         as_dict=True,
     )
     return leaderboard
@@ -387,8 +390,11 @@ def submit_quiz_attempt(course_name, answers):
     """
     Recebe respostas do quiz de nivelamento e retorna feedback instantâneo.
     answers: dict {question_id: resposta} — Frappe envia como string JSON, parseado aqui.
+    Rate limit: 10 tentativas/hora por IP (anti-bruteforce).
     """
     import json
+
+    rate_limit_by_ip("quiz_attempt", limit=10, window_sec=3600)
 
     # M-07 fix: Frappe passes whitelisted dict params as JSON strings
     if isinstance(answers, str):
@@ -426,8 +432,10 @@ def submit_quiz_attempt(course_name, answers):
 @frappe.whitelist()
 def issue_certificate(enrollment_name):
     """
-    Emite certificado digital para uma inscrição concluída, com código de verificação público
+    Emite certificado digital para uma inscrição concluída, com código de verificação público.
+    Rate limit: 5 emissões/hora por IP (evita geração massiva).
     """
+    rate_limit_by_ip("issue_certificate", limit=5, window_sec=3600)
     enrollment = frappe.get_doc("LMS Enrollment", enrollment_name)
     if enrollment.status != "Completed":
         frappe.throw(_("Curso ainda não concluído"))
@@ -475,30 +483,29 @@ def verify_certificate(code):
 # Histórico de pagamentos/faturas do usuário
 # =====================
 @frappe.whitelist()
-def get_payment_history():
+def get_payment_history(limit=50, start=0):
     """
-    Retorna histórico de pagamentos/faturas do usuário logado
+    Retorna histórico de pagamentos/faturas do usuário logado. Suporta paginação.
     """
     if frappe.session.user == "Guest":
         frappe.throw(_("Faça login para ver seu histórico de pagamentos"))
-    # Exemplo: buscar inscrições pagas e dados de pagamento
-    enrollments = frappe.get_all(
-        "LMS Enrollment",
-        filters={"member": frappe.session.user},
-        fields=[
-            "name",
-            "course",
-            "creation",
-            "status",
-            "payment_gateway",
-            "payment_reference",
-            "amount",
-            "currency",
-        ],
+    # Busca matrículas + título do curso em um único JOIN (evita N+1)
+    enrollments = frappe.db.sql(
+        """
+        SELECT
+            e.name, e.course, e.creation, e.status,
+            e.payment_gateway, e.payment_reference,
+            e.amount, e.currency,
+            c.title AS course_title
+        FROM `tabLMS Enrollment` e
+        LEFT JOIN `tabLMS Course` c ON c.name = e.course
+        WHERE e.member = %s
+        ORDER BY e.creation DESC
+        LIMIT %s OFFSET %s
+        """,
+        (frappe.session.user, int(limit), int(start)),
+        as_dict=True,
     )
-    # Enriquecer com nome do curso
-    for e in enrollments:
-        e["course_title"] = frappe.db.get_value("LMS Course", e["course"], "title")
     return enrollments
 
 
@@ -508,8 +515,10 @@ def get_payment_history():
 @frappe.whitelist()
 def create_checkout(course_name, gateway, coupon_code=None):
     """
-    Cria checkout para o gateway selecionado pelo usuário, com suporte a cupons
+    Cria checkout para o gateway selecionado pelo usuário, com suporte a cupons.
+    Rate limit: 20 tentativas/hora por IP (anti-flooding de sessões de pagamento).
     """
+    rate_limit_by_ip("checkout", limit=20, window_sec=3600)
     if frappe.session.user == "Guest":
         frappe.throw(_("Por favor, faça login para comprar este curso"))
     course = frappe.get_doc("LMS Course", course_name)
@@ -670,62 +679,38 @@ def create_enrollment_if_paid(
 
 
 @frappe.whitelist(allow_guest=True)
-def get_published_courses(category=None, limit=10):
+def get_published_courses(category=None, limit=10, start=0):
     """
-    Get published courses for the public website
-    Returns courses from LMS with basic info for display
+    Retorna cursos publicados para o site público.
+    Suporta paginação via `start` (offset). Usa JOIN único para evitar N+1.
     """
-    filters = {"published": 1}
-    if category:
-        filters["category"] = category
-
-    courses = frappe.get_all(
-        "LMS Course",
-        filters=filters,
-        fields=[
-            "name",
-            "title",
-            "short_introduction",
-            "image",
-            "paid_course",
-            "course_price",
-            "currency",
-            "category",
-            "status",
-        ],
-        order_by="creation desc",
-        limit_page_length=limit,
+    category_filter = "AND c.category = %(category)s" if category else ""
+    courses = frappe.db.sql(
+        f"""
+        SELECT
+            c.name, c.title, c.short_introduction, c.image,
+            c.paid_course, c.course_price, c.currency,
+            c.category, c.status,
+            u.full_name AS instructor_name,
+            u.user_image AS instructor_image,
+            COUNT(DISTINCT cl.name) AS lesson_count,
+            COUNT(DISTINCT e.name)  AS enrollment_count
+        FROM `tabLMS Course` c
+        LEFT JOIN `tabCourse Instructor` ci ON ci.parent = c.name
+        LEFT JOIN `tabUser` u ON u.name = ci.instructor
+        LEFT JOIN `tabCourse Lesson` cl ON cl.course = c.name
+        LEFT JOIN `tabLMS Enrollment` e ON e.course  = c.name
+        WHERE c.published = 1
+        {category_filter}
+        GROUP BY c.name
+        ORDER BY c.creation DESC
+        LIMIT %(limit)s OFFSET %(start)s
+        """,
+        {"category": category, "limit": int(limit), "start": int(start)},
+        as_dict=True,
     )
-
-    # Enrich with additional data
     for course in courses:
-        # Get instructor info
-        instructors = frappe.get_all(
-            "Course Instructor",
-            filters={"parent": course.name},
-            fields=["instructor"],
-            limit=1,
-        )
-        if instructors:
-            instructor_user = frappe.get_value(
-                "User", instructors[0].instructor, ["full_name", "user_image"]
-            )
-            course["instructor_name"] = instructor_user[0] if instructor_user else None
-            course["instructor_image"] = instructor_user[1] if instructor_user else None
-
-        # Get lesson count
-        course["lesson_count"] = frappe.db.count(
-            "Course Lesson", {"course": course.name}
-        )
-
-        # Get enrollment count
-        course["enrollment_count"] = frappe.db.count(
-            "LMS Enrollment", {"course": course.name}
-        )
-
-        # Course URL
         course["url"] = f"/lms/courses/{course.name}"
-
     return courses
 
 
@@ -741,40 +726,31 @@ def get_course_categories():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_featured_courses(limit=6):
+def get_featured_courses(limit=6, start=0):
     """
-    Get featured/popular courses for homepage
+    Retorna cursos em destaque para a homepage.
+    Ordena por matrículas DESC. Suporta paginação via `start`.
     """
-    # Get courses with most enrollments
     courses = frappe.db.sql(
         """
-        SELECT 
-            c.name,
-            c.title,
-            c.short_introduction,
-            c.image,
-            c.paid_course,
-            c.course_price,
-            c.currency,
-            c.category,
-            COUNT(e.name) as enrollment_count
+        SELECT
+            c.name, c.title, c.short_introduction, c.image,
+            c.paid_course, c.course_price, c.currency, c.category,
+            COUNT(DISTINCT e.name) AS enrollment_count,
+            COUNT(DISTINCT cl.name) AS lesson_count
         FROM `tabLMS Course` c
-        LEFT JOIN `tabLMS Enrollment` e ON c.name = e.course
+        LEFT JOIN `tabLMS Enrollment` e  ON e.course = c.name
+        LEFT JOIN `tabCourse Lesson`   cl ON cl.course = c.name
         WHERE c.published = 1
         GROUP BY c.name
         ORDER BY enrollment_count DESC
-        LIMIT %s
-    """,
-        (limit,),
+        LIMIT %s OFFSET %s
+        """,
+        (int(limit), int(start)),
         as_dict=True,
     )
-
     for course in courses:
         course["url"] = f"/lms/courses/{course.name}"
-        course["lesson_count"] = frappe.db.count(
-            "Course Lesson", {"course": course.name}
-        )
-
     return courses
 
 
@@ -1013,10 +989,13 @@ def get_gateway(gateway_name):
         if not (
             frappe.conf.get("CRYPTO_ENABLED") and frappe.conf.get("CRYPTO_API_KEY")
         ):
-            raise Exception("Gateway não suportado")
+            frappe.throw(_("Gateway de pagamento não configurado"), frappe.ValidationError)
         return CryptoGateway()
     else:
-        raise Exception("Gateway não suportado")
+        frappe.throw(
+            _("Gateway de pagamento não suportado: {0}").format(gateway_name),
+            frappe.ValidationError,
+        )
 
 
 # =====================
@@ -1094,36 +1073,28 @@ def stripe_webhook():
 # =====================
 @frappe.whitelist()
 def create_mercadopago_checkout(course_name):
-    if frappe.session.user == "Guest":
-        frappe.throw(_("Por favor, faça login para comprar este curso"))
-    course = frappe.get_doc("LMS Course", course_name)
-    if not course.paid_course:
-        frappe.throw(_("Este curso é gratuito"))
-    existing = frappe.db.exists(
-        "LMS Enrollment", {"course": course_name, "member": frappe.session.user}
+    """
+    [DEPRECATED] Use `create_checkout(course_name, gateway='mercadopago')` em vez disto.
+    Mantido por compatibilidade com clientes antigos. Será removido na v2.
+    """
+    frappe.log_error(
+        f"create_mercadopago_checkout chamado para {course_name} — migrar para create_checkout",
+        "Vedium.api.deprecated",
     )
-    if existing:
-        frappe.throw(_("Você já está inscrito neste curso"))
-    gateway = get_gateway("mercadopago")
-    checkout_url = gateway.create_checkout(course, frappe.session.user)
-    return {"checkout_url": checkout_url}
+    return create_checkout(course_name, gateway="mercadopago")
 
 
 @frappe.whitelist()
 def create_basecommerce_checkout(course_name):
-    if frappe.session.user == "Guest":
-        frappe.throw(_("Por favor, faça login para comprar este curso"))
-    course = frappe.get_doc("LMS Course", course_name)
-    if not course.paid_course:
-        frappe.throw(_("Este curso é gratuito"))
-    existing = frappe.db.exists(
-        "LMS Enrollment", {"course": course_name, "member": frappe.session.user}
+    """
+    [DEPRECATED] Use `create_checkout(course_name, gateway='basecommerce')` em vez disto.
+    Mantido por compatibilidade com clientes antigos. Será removido na v2.
+    """
+    frappe.log_error(
+        f"create_basecommerce_checkout chamado para {course_name} — migrar para create_checkout",
+        "Vedium.api.deprecated",
     )
-    if existing:
-        frappe.throw(_("Você já está inscrito neste curso"))
-    gateway = get_gateway("basecommerce")
-    checkout_url = gateway.create_checkout(course, frappe.session.user)
-    return {"checkout_url": checkout_url}
+    return create_checkout(course_name, gateway="basecommerce")
 
 
 # =====================
