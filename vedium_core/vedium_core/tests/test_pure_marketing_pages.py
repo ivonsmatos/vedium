@@ -2215,13 +2215,17 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'"{slug}": {{"en", "es", "fr"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
-    # empresas: pagina propria em PT agora (ver
-    # test_empresas_page_is_rich_and_wired_to_crm); ES ainda no template
-    # compartilhado, fila de traducao.
+    # empresas: pagina propria em PT (ver
+    # test_empresas_page_is_rich_and_wired_to_crm); ES tambem reescrita como
+    # pagina rica propria (hero, beneficios, passos, fotos, formulario).
     assert (WWW / "es" / "empresas.html").exists()
     empresas_es = (WWW / "es" / "empresas.html").read_text(encoding="utf-8")
-    assert 'page_slug = "empresas"' in empresas_es
-    assert 'page_intent = "b2b"' in empresas_es
+    assert 'vd-emp-hero' in empresas_es
+    assert 'vd-benefits' in empresas_es
+    assert 'vd-steps' in empresas_es
+    assert 'vd-form-card' in empresas_es
+    assert "vedium_core.public_funnel.submit_public_intent" in empresas_es
+    assert "intent:'b2b'" in empresas_es
     assert '"empresas": {"en", "es", "fr"}' in hooks
     assert '{"loc": "/es/empresas"' in sitemap_py
 
