@@ -1,9 +1,9 @@
 # Vedium — Runbook de Operações
 
-> Versão: 1.0 — 2026-05-25  
-> Stack: Frappe v15 / ERPNext v15 / Python 3.11 / MariaDB 10.6 / Docker Compose  
-> Servidor: 45.151.122.234 (Ubuntu)  
-> Acesso: `ssh ubuntu@45.151.122.234`
+> Versão: 1.1 — 2026-07-05  
+> Stack: Frappe v16 / ERPNext v16 / Python 3.14 / Node 24 / MariaDB 10.6 / Docker Compose  
+> Servidor: definido em `DEPLOY_HOST` (GitHub Secret) — ver `deploy/.env.example`  
+> Acesso: `ssh ${DEPLOY_USER}@${DEPLOY_HOST}`
 
 ---
 
@@ -26,8 +26,8 @@
 ## 1. Comandos do dia a dia
 
 ```bash
-# Conectar ao servidor
-ssh ubuntu@45.151.122.234
+# Conectar ao servidor (substitua pelos valores do .env / GitHub Secrets)
+ssh ${DEPLOY_USER}@${DEPLOY_HOST}
 cd /opt/vedium
 
 # Status rápido
@@ -329,6 +329,31 @@ Execute semanalmente:
 - [ ] `docker ps --filter status=exited` → nenhum container parado inesperadamente
 - [ ] Verificar alertas no Telegram (se configurado)
 - [ ] Abrir `https://app.vediums.com` e fazer login manual
+
+---
+
+## 12. Configurações únicas de servidor (aplicar uma vez)
+
+### Frappe Caffeine (Frappe v16 — reduz latência 30-50%)
+
+```bash
+# Dentro do container
+docker exec vedium-frappe \
+    bench --site app.vediums.com set-config caffeine_enabled 1
+# Restartar para ativar
+docker restart vedium-frappe
+# Verificar
+docker exec vedium-frappe \
+    bench --site app.vediums.com get-config caffeine_enabled
+```
+
+### Slow Query Log (MariaDB — já habilitado no compose, confirmar)
+
+```bash
+docker exec vedium-mariadb mysql \
+    -u root -p"${MYSQL_ROOT_PASSWORD}" \
+    -e "SHOW VARIABLES LIKE 'slow_query_log';"
+```
 
 ---
 

@@ -6,7 +6,7 @@
 #   2. Senhas geradas com openssl rand -base64 32
 #   3. Frappe é exposto APENAS via nginx (nada externo aqui)
 #
-# Stack real: Frappe v15 / Python 3.11 / Node 20 / MariaDB 10.6
+# Stack real: Frappe v16 / Python 3.14 / Node 24 / MariaDB 10.6
 # =====================================================
 
 # Bloco de variáveis reutilizáveis (YAML anchors)
@@ -53,7 +53,7 @@ services:
       - -b
       - 0.0.0.0:8000
       - -w
-      - "4"
+      - "${GUNICORN_WORKERS:-4}"
       - -t
       - "120"
       - custom_wsgi:application
@@ -216,6 +216,12 @@ services:
       - --collation-server=utf8mb4_unicode_ci
       - --skip-character-set-client-handshake
       - --skip-innodb-read-only-compressed
+      # Performance
+      - --innodb-buffer-pool-size=512M
+      - --innodb-log-file-size=128M
+      - --innodb-flush-log-at-trx-commit=2
+      - --slow-query-log=ON
+      - --long-query-time=2
     volumes:
       - mariadb-data:/var/lib/mysql
     networks:
@@ -235,6 +241,7 @@ services:
     image: redis:7-alpine
     container_name: vedium-redis-cache
     restart: always
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
     volumes:
       - redis-cache-data:/data
     networks:
