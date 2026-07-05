@@ -16,11 +16,13 @@ x-frappe-env: &frappe-env
   FRAPPE_STREAM_LOGGING: "1"
   DB_HOST: vedium-mariadb
   DB_PORT: "3306"
+  # Redis com autenticação — REDIS_PASSWORD deve estar no .env
   REDIS_CACHE: vedium-redis-cache:6379
   REDIS_QUEUE: vedium-redis-queue:6379
   REDIS_SOCKETIO: vedium-redis-socketio:6379
-  FRAPPE_REDIS_QUEUE: redis://vedium-redis-queue:6379
-  FRAPPE_REDIS_CACHE: redis://vedium-redis-cache:6379
+  FRAPPE_REDIS_CACHE: redis://:${REDIS_PASSWORD}@vedium-redis-cache:6379
+  FRAPPE_REDIS_QUEUE: redis://:${REDIS_PASSWORD}@vedium-redis-queue:6379
+  FRAPPE_REDIS_SOCKETIO: redis://:${REDIS_PASSWORD}@vedium-redis-socketio:6379
 
 x-frappe-volumes: &frappe-volumes
   - frappe-bench-v16:/home/frappe/frappe-bench
