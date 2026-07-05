@@ -1,4 +1,10 @@
 name: Deploy to Production
+# Secrets necessários (Settings → Secrets → Actions):
+#   SSH_PRIVATE_KEY  — chave privada SSH
+#   SSH_KNOWN_HOSTS  — saída de: ssh-keyscan <DEPLOY_HOST>
+#   DEPLOY_USER      — usuário SSH
+#   DEPLOY_HOST      — IP/hostname do servidor
+#   ENV_FILE         — conteúdo completo do deploy/.env (copiar o arquivo local)
 
 on:
   push:
@@ -66,6 +72,20 @@ jobs:
         run: |
           rsync -az --delete --omit-dir-times \
             deploy/site/ "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/site/"
+
+      # O .env contém senhas reais (Redis, MariaDB, etc.) e NUNCA entra no git.
+      # Ele é guardado como GitHub Secret ENV_FILE e copiado para o servidor a
+      # cada deploy, garantindo que o servidor sempre tenha as senhas atualizadas.
+      # Para atualizar: Settings → Secrets → Actions → ENV_FILE → editar.
+      - name: Deploy .env to server
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          ENV_FILE: ${{ secrets.ENV_FILE }}
+        run: |
+          echo "$ENV_FILE" | ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'cat > /opt/vedium/deploy/.env && chmod 600 /opt/vedium/deploy/.env'
+          echo "✅ .env atualizado no servidor"
 
       - name: Run deploy commands
         env:
