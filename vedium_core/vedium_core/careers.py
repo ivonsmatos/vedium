@@ -104,4 +104,39 @@ def submit_candidatura(
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar contato da candidatura")
 
+    # Integracao: cria tambem o Job Applicant nativo do Frappe HR (hrms),
+    # se o app estiver instalado. Nunca quebra o fluxo acima (Candidatura
+    # ja foi salva) se o hrms nao estiver la ou o schema for diferente.
+    try:
+        _create_hrms_job_applicant(candidate_name, email, phone, position, message, resume_url, resume_attachment)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar Job Applicant (hrms)")
+
     return {"ok": True, "name": doc.name}
+
+
+def _create_hrms_job_applicant(candidate_name, email, phone, position, message, resume_url, resume_attachment):
+    """Espelha a candidatura no doctype nativo 'Job Applicant' do Frappe HR,
+    ligando a vaga (job_title) ao Job Opening correspondente se existir
+    (ver oneshot setup_hrms_job_openings.py)."""
+    if not frappe.db.exists("DocType", "Job Applicant"):
+        return  # hrms nao instalado
+
+    job_opening = None
+    if position:
+        job_opening = frappe.db.get_value("Job Opening", {"job_title": position}, "name")
+
+    applicant = frappe.new_doc("Job Applicant")
+    applicant.applicant_name = candidate_name
+    applicant.email_id = email
+    if phone:
+        applicant.phone_number = phone
+    if job_opening:
+        applicant.job_title = job_opening
+    if message:
+        applicant.cover_letter = message
+    if resume_url:
+        applicant.resume_link = resume_url
+    if resume_attachment:
+        applicant.resume_attachment = resume_attachment
+    applicant.insert(ignore_permissions=True)

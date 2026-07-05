@@ -3376,3 +3376,35 @@ def test_referral_conversion_also_creates_crm_lead():
     body = referrals_py.split("def record_referral_conversion")[1]
     assert "_upsert_crm_lead_from_referral_conversion" in body.split("def _upsert_crm_lead_from_referral_conversion")[0]
     assert "except Exception" in body.split("_upsert_crm_lead_from_referral_conversion(")[1][:200]
+
+
+def test_careers_form_also_creates_native_hrms_job_applicant():
+    """2026-07-04: usuário instalou o app hrms (Frappe HR) e pediu pra
+    /carreiras usar o módulo nativo. O formulário continua criando o
+    doctype custom Candidatura (histórico existente, não descartado), e
+    agora TAMBÉM cria um Job Applicant nativo, ligado a um Job Opening
+    real (não hardcoded) via job_title. Nunca quebra se o hrms não
+    estiver instalado (checagem defensiva) nem se o Job Opening
+    correspondente não existir ainda."""
+    careers_py = (ROOT / "vedium_core" / "vedium_core" / "careers.py").read_text(encoding="utf-8")
+    assert "_create_hrms_job_applicant" in careers_py
+    assert 'frappe.db.exists("DocType", "Job Applicant")' in careers_py
+    assert 'frappe.new_doc("Job Applicant")' in careers_py
+    assert "applicant.applicant_name" in careers_py
+    assert "applicant.email_id" in careers_py
+    assert "applicant.job_title" in careers_py
+    body = careers_py.split("def submit_candidatura")[1]
+    assert "_create_hrms_job_applicant" in body.split("def _create_hrms_job_applicant")[0]
+    assert "except Exception" in body.split("_create_hrms_job_applicant(")[1][:200]
+
+    oneshot = (
+        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
+        / "setup_hrms_job_openings.py"
+    )
+    assert oneshot.exists()
+    oneshot_src = oneshot.read_text(encoding="utf-8")
+    assert "Professor(a) de Ingles" in oneshot_src
+    assert "Professor(a) de Ioruba" in oneshot_src
+    assert '"doctype": "Job Opening"' in oneshot_src
+    assert '"doctype": "Designation"' in oneshot_src
+    assert 'COMPANY = "Vedium"' in oneshot_src
