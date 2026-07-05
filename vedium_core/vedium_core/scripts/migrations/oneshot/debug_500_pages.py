@@ -33,11 +33,17 @@ def run():
             # devolve so um 500 generico (nao chama frappe.log_error nem
             # propaga o traceback pro chamador).
             resolver = PathResolver(page)
-            renderer = resolver.resolve()
+            result = resolver.resolve()
+            # resolve() pode devolver so o renderer OU uma tupla
+            # (endpoint, renderer) dependendo da versao do frappe --
+            # cobre os dois casos.
+            renderer = result[-1] if isinstance(result, (tuple, list)) else result
+            print("tipo do resolve():", type(result).__name__, "-> renderer:", type(renderer).__name__)
             html = renderer.render()
-            print("render OK, tipo do renderer:", type(renderer).__name__)
             if hasattr(html, "status_code"):
                 print("status:", html.status_code)
+            else:
+                print("render retornou:", type(html).__name__, str(html)[:300])
         except Exception:
             print("EXCEPTION (traceback real, direto do renderer):")
             traceback.print_exc()
