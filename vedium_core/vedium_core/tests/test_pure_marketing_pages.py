@@ -3334,18 +3334,22 @@ def test_public_intent_validates_fields_and_creates_crm_lead_for_b2b():
     rate-limit — diferente do formulário de contato, que já tinha os dois.
     Também não criava CRM Lead, só Support Ticket. Agora: valida
     nome+e-mail obrigatórios e formato de e-mail, tem rate-limit, e cria/
-    atualiza um CRM Lead quando intent == "b2b", com organization/
+    atualiza um CRM Lead pra QUALQUER intent (não só b2b -- usuário pediu
+    pra garantir que os módulos se enxerguem), com organization/
     no_of_employees setados de forma defensiva (não quebra se o schema do
     CRM Lead instalado não tiver esses campos)."""
     funnel = (ROOT / "vedium_core" / "vedium_core" / "public_funnel.py").read_text(encoding="utf-8")
     assert "rate_limit_by_ip(\"public_intent\"" in funnel
     assert "Nome e e-mail são obrigatórios" in funnel
     assert "EMAIL_RE" in funnel
-    assert "_upsert_crm_lead_from_b2b" in funnel
-    assert 'if intent == "b2b"' in funnel
+    assert "_upsert_crm_lead_from_public_intent" in funnel
     assert "lead.organization" in funnel
     assert "lead.no_of_employees" in funnel
     assert "CRM Lead" in funnel
+    # nao fica restrito a b2b -- todo intent vira lead, so o texto de
+    # origem/nota que muda por intent_label
+    submit_body = funnel.split("def submit_public_intent")[1]
+    assert 'if intent == "b2b"' not in submit_body
 
 
 def test_candidatura_doctype_has_resume_attachment_field():

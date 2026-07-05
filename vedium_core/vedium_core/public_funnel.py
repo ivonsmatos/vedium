@@ -40,16 +40,26 @@ def _payload():
     return data
 
 
-def _upsert_crm_lead_from_b2b(name, email, phone, company, team_size, message):
-    """Cria (ou comenta em) um CRM Lead a partir do formulario de /empresas.
-    Espelha _upsert_crm_lead_from_contact (api.py), com os campos extras de
-    B2B (organization/no_of_employees) setados de forma defensiva -- se o
-    schema do CRM Lead instalado nao tiver esses campos, a criacao do lead
-    ainda funciona, e a informacao vai pro comentario de qualquer forma."""
+def _upsert_crm_lead_from_public_intent(intent, name, email, phone, company, team_size, message, course, goal):
+    """Cria (ou comenta em) um CRM Lead a partir de QUALQUER intent do
+    formulario publico (/empresas, /comunidade, aula diagnostica,
+    indicacao, depoimento, lead generico) -- antes so intent 'b2b' tinha
+    isso, o resto so virava Support Ticket. Agora todo mundo que preenche
+    um formulario publico fica visivel no CRM, alem do ticket humano.
+
+    Campos extras de B2B (organization/no_of_employees) setados de forma
+    defensiva -- se o schema do CRM Lead instalado nao tiver esses campos,
+    a criacao do lead ainda funciona, e a informacao vai pro comentario de
+    qualquer forma."""
     if not frappe.db.exists("DocType", "CRM Lead"):
         return
 
-    note_lines = ["Interesse B2B via /empresas"]
+    intent_label = ALLOWED_INTENTS.get(intent, intent)
+    note_lines = [f"Interesse via site -- {intent_label}"]
+    if course:
+        note_lines.append(f"Curso: {course}")
+    if goal:
+        note_lines.append(f"Objetivo: {goal}")
     if company:
         note_lines.append(f"Empresa: {company}")
     if team_size:
@@ -81,7 +91,7 @@ def _upsert_crm_lead_from_b2b(name, email, phone, company, team_size, message):
     lead.email = email
     if phone:
         lead.mobile_no = phone
-    lead.source = "Website B2B"
+    lead.source = f"Website {intent_label}"
     if company:
         try:
             lead.organization = company
@@ -203,11 +213,12 @@ def submit_public_intent():
         },
     )
 
-    if intent == "b2b":
-        try:
-            _upsert_crm_lead_from_b2b(name, email, phone, company, team_size, message)
-        except Exception:
-            frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar CRM Lead de /empresas")
+    try:
+        _upsert_crm_lead_from_public_intent(
+            intent, name, email, phone, company, team_size, message, course, goal
+        )
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar CRM Lead do funil publico")
 
     return {"ok": True, "ticket": ticket.name}
 
