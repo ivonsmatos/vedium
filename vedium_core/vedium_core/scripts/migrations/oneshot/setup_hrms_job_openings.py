@@ -29,7 +29,7 @@ POSITIONS = [
 def _ensure_designation(name):
     if frappe.db.exists("Designation", name):
         return name
-    doc = frappe.get_doc({"doctype": "Designation", "designation": name})
+    doc = frappe.get_doc({"doctype": "Designation", "designation_name": name})
     doc.insert(ignore_permissions=True)
     return doc.name
 
