@@ -1,6 +1,10 @@
 def get_context(context):
-    context.title = "Vedium pour les entreprises — B2B"
-    context.description = "Formation en langues pour les équipes, avec diagnostic, cours et accompagnement."
+    context.title = "Vedium pour les entreprises — formation linguistique en équipe"
+    context.description = (
+        "Cours en direct d'anglais, de yoruba et de portugais pour étrangers "
+        "destinés aux équipes : diagnostic par collaborateur, groupes par "
+        "niveau et objectif, et rapport de progression pour le manager."
+    )
     context.no_cache = 1
     context.lang = "fr"
     context.canonical_url = "https://vediums.com/fr/empresas"

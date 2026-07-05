@@ -1,9 +1,165 @@
-{% set page_slug = "empresas" %}
-{% set page_title = "Vedium pour les entreprises — B2B" %}
-{% set page_description = "Formation en langues pour les équipes, avec diagnostic, cours et accompagnement." %}
-{% set page_tagline = "B2B" %}
-{% set page_h1 = "Des langues pour les équipes et les entreprises" %}
-{% set page_lead = "Vedium peut organiser un diagnostic, des cours, des objectifs et un accompagnement pour les équipes ayant besoin d'anglais, de portugais pour étrangers ou de yoruba." %}
-{% set page_items = ["Diagnostic par collaborateur.", "Cours par objectif : service client, technologie, affaires ou mobilité.", "Un rapport au niveau de l'équipe pour l'entreprise.", "Offre sur mesure sur demande, sans changement au paiement public."] %}
-{% set page_intent = "b2b" %}
-{% include "templates/includes/public_intent_page_fr.html" %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://vediums.com/fr/empresas" />
+<link rel="alternate" hreflang="pt-br" href="https://vediums.com/empresas" />
+<link rel="alternate" hreflang="en" href="https://vediums.com/en/empresas" />
+<link rel="alternate" hreflang="es" href="https://vediums.com/es/empresas" />
+<link rel="alternate" hreflang="fr" href="https://vediums.com/fr/empresas" />
+<link rel="alternate" hreflang="x-default" href="https://vediums.com/empresas" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:description" content="{{ description }}" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=630&fit=crop&q=80" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" /><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" /><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css"><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" /><link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+<style>
+  img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}
+  .vd-emp-hero{background:linear-gradient(135deg,#234E70 0%,#2E6DA4 100%);color:#fff;padding:70px 0}
+  .vd-emp-hero .vd-pill{display:inline-block;border-radius:999px;padding:6px 14px;background:rgba(255,255,255,.16);font-size:12px;font-weight:800;margin-bottom:16px;letter-spacing:.04em}
+  .vd-emp-hero h1{font-size:38px;font-weight:700;margin:0 0 14px;max-width:680px}
+  .vd-emp-hero p{font-size:17.5px;opacity:.95;max-width:620px;margin:0 0 26px}
+  .vd-emp-hero img{border-radius:18px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+  .vd-sec{padding:74px 0}
+  .vd-sec.alt{background:#f8fafc}
+  .vd-benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+  .vd-b-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 14px 34px rgba(15,23,42,.06)}
+  .vd-b-card i{width:48px;height:48px;border-radius:12px;background:#eaf2ff;color:#2E6DA4;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+  .vd-b-card h3{color:#111827;font-size:18px;margin:0 0 8px}
+  .vd-b-card p{color:#5f6b7a;line-height:1.7;margin:0;font-size:14.5px}
+  .vd-steps{counter-reset:step;margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .vd-step{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:26px;position:relative}
+  .vd-step .vd-step-num{width:38px;height:38px;border-radius:50%;background:#A12D1C;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:14px}
+  .vd-step h3{color:#111827;font-size:16.5px;margin:0 0 8px}
+  .vd-step p{color:#5f6b7a;font-size:14px;line-height:1.65;margin:0}
+  .vd-photo-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;margin-top:10px}
+  .vd-photo-row img{border-radius:16px;width:100%;height:340px;object-fit:cover}
+  .vd-form-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:34px;box-shadow:0 20px 50px rgba(15,23,42,.08)}
+  .vd-form-card h2{color:#111827;margin:0 0 6px;font-size:24px}
+  .vd-form-card > p{color:#5f6b7a;margin:0 0 22px}
+  .vd-input,.vd-select{width:100%;border:1.5px solid #cbd5e1;border-radius:10px;padding:13px 14px;margin:0 0 14px;font-size:14.5px;font-family:inherit}
+  .vd-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .vd-cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  @media(max-width:991px){.vd-benefits{grid-template-columns:1fr 1fr}.vd-steps{grid-template-columns:1fr 1fr}.vd-photo-row{grid-template-columns:1fr}}
+  @media(max-width:640px){.vd-benefits{grid-template-columns:1fr}.vd-steps{grid-template-columns:1fr}.vd-form-row{grid-template-columns:1fr}.vd-emp-hero h1{font-size:28px}.vd-sec{padding:50px 0}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Vedium pour les entreprises","serviceType":"Formation linguistique en entreprise","provider":{"@type":"Organization","name":"Vedium","url":"https://vediums.com"},"areaServed":"FR","description":"Cours en direct d'anglais, de yoruba et de portugais pour étrangers destinés aux équipes, avec diagnostic individuel et rapport de progression."}</script>
+</head>
+<body><div class="page-wrapper">
+{% set vd_page = "empresas" %}
+{% set lang = "fr" %}
+{% set canonical_url = "https://vediums.com/fr/empresas" %}
+{% set alt_lang_url = "https://vediums.com/empresas" %}
+{% include "templates/includes/site_navbar.html" %}
+
+<section class="vd-emp-hero">
+  <div class="container"><div class="row align-items-center" style="row-gap:28px;">
+    <div class="col-lg-6">
+      <span class="vd-pill">VEDIUM POUR LES ENTREPRISES</span>
+      <h1>Une équipe bilingue grâce à des cours 100 % en direct</h1>
+      <p>Diagnostic par collaborateur, groupes organisés par niveau et objectif, et rapport de progression pour que les RH suivent réellement les résultats — sans engagement qui bride votre équipe.</p>
+      <div class="vd-cta-row"><a href="#form-empresas" class="thm-btn">Manifester mon intérêt</a> <a href="https://wa.me/5511911293075?text=Bonjour%2C%20je%20souhaite%20parler%20de%20formation%20linguistique%20pour%20mon%20entreprise" target="_blank" rel="noopener" class="thm-btn" style="background:#25D366;">Nous écrire sur WhatsApp</a></div>
+    </div>
+    <div class="col-lg-6"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&h=650&fit=crop&q=80" alt="Équipe en réunion de travail" loading="lazy" /></div>
+  </div></div>
+</section>
+
+<section class="vd-sec">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">Pourquoi former votre équipe avec Vedium</span><h2 class="section-title__title">Conçu pour de vraies équipes, pas des classes génériques</h2></div>
+    <div class="vd-benefits">
+      <div class="vd-b-card"><i class="fa fa-clipboard-check"></i><h3>Diagnostic par collaborateur</h3><p>Chaque membre de l'équipe passe le test de niveau avant de commencer — personne ne se retrouve dans un groupe inadapté à son niveau.</p></div>
+      <div class="vd-b-card"><i class="fa fa-video"></i><h3>Cours 100 % en direct</h3><p>Un vrai professeur, en temps réel, qui corrige la prononciation et la construction des phrases — pas de vidéos préenregistrées génériques.</p></div>
+      <div class="vd-b-card"><i class="fa fa-route"></i><h3>Parcours par objectif</h3><p>Service client, technologie, affaires, mobilité internationale — le contenu s'adapte à ce que votre équipe utilise réellement au travail.</p></div>
+      <div class="vd-b-card"><i class="fa fa-chart-line"></i><h3>Rapport pour le manager</h3><p>Suivez l'évolution de votre équipe sans vous fier aux impressions — des données réelles de progression par collaborateur.</p></div>
+      <div class="vd-b-card"><i class="fa fa-unlock"></i><h3>Aucun engagement rigide</h3><p>Des forfaits mensuels. L'équipe continue parce qu'elle progresse, pas parce qu'elle est liée par un contrat long.</p></div>
+      <div class="vd-b-card"><i class="fa fa-comments"></i><h3>Accompagnement direct</h3><p>Un canal direct sur WhatsApp avec l'équipe Vedium, sans lourdeur administrative pour ajuster quoi que ce soit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="vd-sec alt">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">Comment ça marche</span><h2 class="section-title__title">Du premier contact au groupe qui démarre</h2></div>
+    <div class="vd-steps">
+      <div class="vd-step"><div class="vd-step-num">1</div><h3>Diagnostic de l'équipe</h3><p>Chaque collaborateur passe le test de niveau gratuit pour savoir précisément d'où il part.</p></div>
+      <div class="vd-step"><div class="vd-step-num">2</div><h3>Constitution des groupes</h3><p>Vedium organise les groupes par niveau et par objectif, en évitant de mélanger des personnes à des stades trop différents.</p></div>
+      <div class="vd-step"><div class="vd-step-num">3</div><h3>Cours en direct avec suivi</h3><p>Des cours d'1 heure, avec un professeur qualifié qui corrige en temps réel, semaine après semaine.</p></div>
+      <div class="vd-step"><div class="vd-step-num">4</div><h3>Rapport de progression</h3><p>Le manager suit l'évolution de l'équipe grâce à des données réelles de participation et de progression de niveau.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="vd-sec">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">De vraies équipes, un vrai apprentissage</span><h2 class="section-title__title">Des cours en direct pensés pour les professionnels</h2></div>
+    <div class="vd-photo-row">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=680&fit=crop&q=80" alt="Professionnels collaborant lors d'un cours en direct" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&h=680&fit=crop&q=80" alt="Équipe diversifiée en formation professionnelle" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section class="vd-sec alt" id="form-empresas">
+  <div class="container" style="max-width:760px;">
+    <div class="vd-form-card">
+      <h2>Manifester mon intérêt</h2>
+      <p>Parlez-nous un peu de votre équipe, Vedium vous contactera pour préparer une proposition sur mesure.</p>
+      <div class="vd-form-row"><input id="name" class="vd-input" placeholder="Votre nom *"><input id="email" class="vd-input" type="email" placeholder="E-mail professionnel *"></div>
+      <div class="vd-form-row"><input id="phone" class="vd-input" placeholder="WhatsApp"><input id="company" class="vd-input" placeholder="Nom de l'entreprise"></div>
+      <select id="team_size" class="vd-select">
+        <option value="">Taille de l'équipe (facultatif)</option>
+        <option value="1-10">1 à 10 personnes</option>
+        <option value="11-50">11 à 50 personnes</option>
+        <option value="51-200">51 à 200 personnes</option>
+        <option value="200+">Plus de 200 personnes</option>
+      </select>
+      <textarea id="message" class="vd-input" rows="4" placeholder="Décrivez l'objectif de votre équipe (ex. : service client international, voyages, technologie...)"></textarea>
+      <div class="vd-cta-row"><button id="send" class="thm-btn" type="button">Envoyer ma demande</button> <a class="thm-btn" style="background:#25D366;" href="https://wa.me/5511911293075?text=Bonjour%2C%20je%20souhaite%20parler%20de%20formation%20linguistique%20pour%20mon%20entreprise" target="_blank" rel="noopener">WhatsApp</a></div>
+      <p id="result" style="margin-top:14px;font-size:14.5px;"></p>
+    </div>
+  </div>
+</section>
+
+{% include "templates/includes/site_footer.html" %}</div>
+<script>
+(function(){
+  document.addEventListener('click', function(event){
+    var link=event.target.closest('a[href*="wa.me"],a[href="#form-empresas"]');
+    if(!link){return;}
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'public_cta_click',cta:link.textContent.trim(),location:location.pathname});
+  });
+  document.getElementById('send').addEventListener('click', function(){
+    var result=document.getElementById('result');
+    var name=document.getElementById('name').value.trim();
+    var email=document.getElementById('email').value.trim();
+    if(!name||!email){result.style.color='#dc2626';result.textContent='Merci de renseigner votre nom et votre e-mail professionnel.';return;}
+    result.style.color='';result.textContent='Envoi en cours...';
+    var body={
+      intent:'b2b', source:location.pathname, name:name, email:email,
+      phone:document.getElementById('phone').value,
+      company:document.getElementById('company').value,
+      team_size:document.getElementById('team_size').value,
+      message:document.getElementById('message').value
+    };
+    fetch('/api/method/vedium_core.public_funnel.submit_public_intent',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){if(!r.ok){return r.json().then(function(e){throw new Error((e.exception||e.message||'').toString());});}return r.json();})
+      .then(function(){
+        result.style.color='';
+        result.textContent="Reçu ! L'équipe Vedium vous contactera très bientôt.";
+        window.dataLayer=window.dataLayer||[];
+        window.dataLayer.push({event:'public_intent_submit',intent:'b2b',location:location.pathname});
+      })
+      .catch(function(){result.style.color='#dc2626';result.textContent="Impossible d'envoyer votre demande pour le moment. Vous pouvez aussi nous contacter sur WhatsApp.";});
+  });
+})();
+</script>
+<script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script><script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script><script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script><script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+</body></html>
