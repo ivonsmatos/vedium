@@ -15,49 +15,134 @@
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
-<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-legal{padding:64px 0;max-width:820px;margin:0 auto}.vd-legal h1{color:#2E6DA4;margin-bottom:6px}.vd-legal .vd-muted{color:#5f6b7a}.vd-legal .vd-card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:28px;margin:28px 0}.vd-legal ul{padding-left:20px;line-height:1.9}.vd-legal .vd-btn{display:inline-flex;align-items:center;gap:8px;background:#2E6DA4;color:#fff;border-radius:10px;padding:14px 24px;font-weight:700;text-decoration:none}.vd-legal .vd-btn:hover{background:#245686;color:#fff}.vd-legal .vd-crosslinks{margin-top:36px;padding-top:24px;border-top:1px solid #e5e7eb}.vd-legal .vd-crosslinks a{color:#2E6DA4;font-weight:600;margin-right:18px}</style>
+<style>
+img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}
+.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}
+.stricky-header,.stricky-header.stricked-menu{display:none!important}
+.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}
+.vd-legal{padding:64px 0;max-width:860px;margin:0 auto}
+.vd-legal h1{color:#2E6DA4;margin-bottom:6px;font-size:2rem}
+.vd-legal h2{color:#1a3a5c;font-size:1.2rem;margin-top:2rem;margin-bottom:.5rem;padding-bottom:.4rem;border-bottom:2px solid #e5e7eb}
+.vd-legal h3{color:#2E6DA4;font-size:1rem;margin-top:1.4rem}
+.vd-legal .vd-muted{color:#5f6b7a}
+.vd-legal .vd-alert{background:#eaf3fb;border-left:4px solid #2E6DA4;border-radius:8px;padding:16px 20px;margin:24px 0;font-size:.97rem}
+.vd-legal .vd-alert.warning{background:#fff8e6;border-color:#f59e0b}
+.vd-legal ul,ol{padding-left:22px;line-height:2}
+.vd-legal .vd-btn{display:inline-flex;align-items:center;gap:8px;background:#2E6DA4;color:#fff;border-radius:10px;padding:14px 24px;font-weight:700;text-decoration:none;margin:8px 0}
+.vd-legal .vd-btn:hover{background:#245686;color:#fff}
+.vd-legal .vd-crosslinks{margin-top:36px;padding-top:24px;border-top:1px solid #e5e7eb}
+.vd-legal .vd-crosslinks a{color:#2E6DA4;font-weight:600;margin-right:18px}
+.vd-legal .vd-stamp{font-size:.82rem;color:#9ca3af;margin-top:48px;padding-top:16px;border-top:1px solid #f1f5f9}
+</style>
 </head>
 <body><div class="page-wrapper">
 {% set vd_page = "termos" %}
 {% include "templates/includes/site_navbar.html" %}
 <section class="vd-legal"><div class="container">
+
   <h1>Termos de Uso e Contratação</h1>
-  <p class="vd-muted">Documento completo publicado em PDF — versão vigente sempre disponível abaixo. Última atualização: 3 de julho de 2026.</p>
+  <p class="vd-muted">Última atualização: 5 de julho de 2026.</p>
 
-  <p>Estes Termos regem o cadastro, a contratação de planos, o acesso às aulas ao vivo e o uso da plataforma Vedium. Ao criar conta, contratar um plano ou acessar as aulas, você concorda com estas regras.</p>
-  <p><strong>Razão social:</strong> VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA — <strong>CNPJ:</strong> 58.434.869/0001-24. <strong>Endereço:</strong> Av. Eng. Luiz Carlos Berrini, 1681, Conj. Salas 111 e 112, Anexo 1940, Cidade Monções, São Paulo/SP, CEP 04571-011.</p>
-
-  <p><strong>Direito de arrependimento:</strong> para contratações realizadas online, você pode solicitar cancelamento com reembolso integral em até <strong>7 (sete) dias corridos</strong> contados da contratação, conforme o Código de Defesa do Consumidor. Esta página não altera o checkout, o processamento Stripe ou as regras legais obrigatórias — ver detalhes completos na <a href="/cancelamento-reembolso">Política de Cancelamento e Reembolso</a>.</p>
-
-  <div class="vd-card">
-    <strong>O documento completo cobre, entre outros pontos:</strong>
-    <ul>
-      <li>Identificação da Vedium, aceite dos Termos e definições</li>
-      <li>Elegibilidade e regras para menores de idade</li>
-      <li>Conta, senha e uso pessoal e intransferível</li>
-      <li>Planos, assinatura, preço e pagamento (Stripe)</li>
-      <li>Cancelamento e reembolso (ver também a <a href="/cancelamento-reembolso">Política de Cancelamento e Reembolso</a>)</li>
-      <li>Aulas ao vivo, presença, remarcação e gravação</li>
-      <li>Conduta nas aulas e na comunidade</li>
-      <li>Recursos de Inteligência Artificial</li>
-      <li>Propriedade intelectual (ver também a <a href="/propriedade-intelectual">Política de Propriedade Intelectual</a>)</li>
-      <li>Privacidade e proteção de dados (ver <a href="/privacidade">Política de Privacidade</a>)</li>
-      <li>Disponibilidade, suspensão, responsabilidade e foro</li>
-    </ul>
+  <div class="vd-alert">
+    <strong>Controladora:</strong> VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA — CNPJ 58.434.869/0001-24<br>
+    <strong>Endereço:</strong> Av. Eng. Luiz Carlos Berrini, 1681, Conj. Salas 111 e 112, Cidade Monções, São Paulo/SP, CEP 04571-011<br>
+    <strong>Contato:</strong> <a href="mailto:contato@vediums.com">contato@vediums.com</a>
   </div>
 
-  <a class="vd-btn" href="/assets/vedium_core/legal/termos-de-uso-e-contratacao.pdf" target="_blank" rel="noopener">
-    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Ler Termos de Uso completos (PDF)
-  </a>
+  <div class="vd-alert warning">
+    <strong>⏱ Direito de arrependimento:</strong> contratações online podem ser canceladas com reembolso integral em até <strong>7 (sete) dias corridos</strong> da contratação, conforme o Código de Defesa do Consumidor. Ver <a href="/cancelamento-reembolso">Política de Cancelamento e Reembolso</a>.
+  </div>
 
-  <p style="margin-top:28px;">Dúvidas: <a href="mailto:contato@vediums.com" style="color:#2E6DA4;">contato@vediums.com</a>.</p>
+  <h2>1. Aceitação</h2>
+  <p>Ao criar conta, contratar um plano ou acessar as aulas, você concorda com estes Termos e com todos os documentos legais da Vedium referenciados aqui. Leia antes de contratar.</p>
+
+  <h2>2. Elegibilidade</h2>
+  <ol>
+    <li>A Vedium é voltada a maiores de 18 anos ou emancipados legalmente.</li>
+    <li>Menores poderão ser aceitos em momento futuro mediante fluxo específico de responsável legal.</li>
+    <li>Até a implementação desse fluxo, não é permitido cadastro autônomo de menor sem responsável legal.</li>
+    <li>O responsável legal responde pela veracidade das informações, pagamento e uso adequado da plataforma.</li>
+  </ol>
+
+  <h2>3. Conta, senha e uso pessoal</h2>
+  <ol>
+    <li>A conta é pessoal, individual e intransferível.</li>
+    <li>É proibido compartilhar login, senha, links, gravações ou materiais com terceiros.</li>
+    <li>Forneça dados verdadeiros, completos e atualizados.</li>
+    <li>A Vedium pode bloquear contas com uso fraudulento, compartilhamento indevido, violação de direitos autorais, assédio ou descumprimento destes Termos.</li>
+  </ol>
+
+  <h2>4. Planos, assinatura, preço e pagamento</h2>
+  <ol>
+    <li>Valores, periodicidade, moeda e benefícios são exibidos no checkout ou proposta comercial.</li>
+    <li>Pagamentos online são processados pela <strong>Stripe</strong> ou provedor informado pela Vedium. A Vedium não armazena número completo de cartão.</li>
+    <li>Planos recorrentes são cobrados conforme periodicidade contratada, até cancelamento.</li>
+    <li>Tributos, IOF, variação cambial e tarifas bancárias podem incidir conforme meio de pagamento e país.</li>
+    <li>A Vedium pode reajustar preços mediante aviso prévio razoável, sem afetar valores já pagos no ciclo vigente.</li>
+  </ol>
+
+  <h2>5. Cancelamento e reembolso</h2>
+  <p>Planos mensais B2C não têm fidelidade nem multa. O cancelamento impede cobranças futuras, mas não gera reembolso automático do ciclo vigente após os 7 dias. Detalhamento completo: <a href="/cancelamento-reembolso">Política de Cancelamento e Reembolso</a>.</p>
+
+  <h2>6. Aulas ao vivo, presença e gravação</h2>
+  <ol>
+    <li>Aulas são online e ao vivo, com interação em tempo real.</li>
+    <li>Aulas podem ser gravadas pela Vedium para reposição, qualidade, segurança e cumprimento de contrato. O aluno é informado previamente.</li>
+    <li>Uso público de imagem, voz ou depoimento para marketing exige autorização específica — ver <a href="/gravacao-imagem-voz">Termo de Gravação, Imagem, Voz e Depoimento</a>.</li>
+    <li>É proibido ao aluno gravar, transmitir ou compartilhar aulas ou materiais sem autorização prévia.</li>
+    <li>Regras de falta, reposição e remarcação são informadas no plano ou regulamento da turma.</li>
+  </ol>
+
+  <h2>7. Conduta nas aulas e na comunidade</h2>
+  <ul>
+    <li>Tratar professores, alunos, equipe e parceiros com respeito.</li>
+    <li>Não praticar assédio, discriminação, intolerância religiosa, racismo, xenofobia ou discurso de ódio.</li>
+    <li>Não usar aula ou comunidade para spam, venda, propaganda política ou captação de alunos.</li>
+    <li>Respeitar conteúdos culturais e tradicionais (especialmente Iorubá) sem apropriação ou exotização indevida.</li>
+  </ul>
+
+  <h2>8. Inteligência Artificial</h2>
+  <ul>
+    <li>A Vedium pode oferecer IA como apoio pedagógico — não substitui professor nem avaliação humana.</li>
+    <li>Não insira senhas, documentos sensíveis, dados de terceiros ou segredos em ferramentas de IA.</li>
+    <li>Saídas de IA podem conter erros; revise decisões relevantes com professor ou equipe.</li>
+  </ul>
+
+  <h2>9. Propriedade intelectual</h2>
+  <p>Marca, plataforma, método, aulas, materiais, exercícios, vídeos e certificados são protegidos por direitos autorais. A contratação concede licença limitada, pessoal, revogável e intransferível. É proibido copiar, vender, licenciar, distribuir ou treinar IA com materiais da Vedium sem autorização. Ver <a href="/propriedade-intelectual">Política de Propriedade Intelectual</a>.</p>
+
+  <h2>10. Privacidade</h2>
+  <p>Tratamento de dados conforme a <a href="/privacidade">Política de Privacidade</a>. Canal do DPO: <a href="mailto:dpo@vediums.com">dpo@vediums.com</a>.</p>
+
+  <h2>11. Disponibilidade e limitações técnicas</h2>
+  <p>A Vedium envidará esforços para manter a plataforma disponível e segura. Interrupções podem ocorrer por manutenção, falhas de terceiros ou força maior. O aluno é responsável por equipamento, câmera, microfone e conexão.</p>
+
+  <h2>12. Suspensão e encerramento</h2>
+  <p>A Vedium pode suspender acesso por inadimplência, fraude, risco de segurança, violação de direitos autorais, comportamento abusivo ou ordem legal. Quando possível, o aluno será notificado com oportunidade de regularização.</p>
+
+  <h2>13. Lei aplicável e foro</h2>
+  <p>Aplica-se a lei brasileira. Para relações de consumo, o aluno pode exercer os direitos do Código de Defesa do Consumidor. Fica eleito o foro da Comarca de São Paulo/SP, sem prejuízo de foro legal obrigatório em favor do consumidor.</p>
+
+  <h2>14. Alterações</h2>
+  <p>Estes Termos podem ser atualizados para refletir mudanças legais, operacionais ou tecnológicas. Alterações relevantes serão comunicadas e não prejudicarão direitos adquiridos no ciclo já pago.</p>
+
+  <div style="margin-top:32px;">
+    <a class="vd-btn" href="/assets/vedium_core/legal/termos-de-uso-e-contratacao.pdf" target="_blank" rel="noopener">
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Versão PDF oficial
+    </a>
+  </div>
 
   <div class="vd-crosslinks">
     <a href="/privacidade">Política de Privacidade</a>
     <a href="/cookies">Política de Cookies</a>
     <a href="/cancelamento-reembolso">Cancelamento e Reembolso</a>
     <a href="/propriedade-intelectual">Propriedade Intelectual</a>
+    <a href="/gravacao-imagem-voz">Gravação, Imagem e Voz</a>
+    <a href="/privacidade/meus-dados">Meus Dados (LGPD)</a>
   </div>
+
+  <p class="vd-stamp">Base legal: LGPD (Lei 13.709/2018) · CDC (Lei 8.078/1990) · Código Civil (Lei 10.406/2002) · Marco Civil da Internet (Lei 12.965/2014)</p>
+
 </div></section>
 {% include "templates/includes/site_footer.html" %}</div>
 <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
