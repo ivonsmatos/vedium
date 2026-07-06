@@ -7,7 +7,7 @@
 <meta name="description" content="{{ page_description }}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://vediums.com/{{ page_slug }}" />
-{% if page_has_en_translation or page_has_es_translation or page_has_fr_translation %}
+{% if page_has_en_translation or page_has_es_translation or page_has_fr_translation or page_has_de_translation %}
 <link rel="alternate" hreflang="pt-br" href="https://vediums.com/{{ page_slug }}" />
 {% if page_has_en_translation %}
 <link rel="alternate" hreflang="en" href="https://vediums.com/en/{{ page_slug }}" />
@@ -17,6 +17,9 @@
 {% endif %}
 {% if page_has_fr_translation %}
 <link rel="alternate" hreflang="fr" href="https://vediums.com/fr/{{ page_slug }}" />
+{% endif %}
+{% if page_has_de_translation %}
+<link rel="alternate" hreflang="de" href="https://vediums.com/de/{{ page_slug }}" />
 {% endif %}
 <link rel="alternate" hreflang="x-default" href="https://vediums.com/{{ page_slug }}" />
 {% endif %}
