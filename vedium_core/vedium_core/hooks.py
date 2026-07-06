@@ -388,6 +388,21 @@ scheduler_events = {
 # Document Events
 # =============================================================================
 
+# =============================================================================
+# Scheduler Events
+# =============================================================================
+
+scheduler_events = {
+    # Trial de 7 dias: expira matrículas Trial vencidas
+    "daily": [
+        "vedium_core.vedium_core.trial.expire_trials",
+    ],
+    # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
+    "weekly": [
+        "vedium_core.vedium_core.lgpd._audit_pending_requests",
+    ],
+}
+
 doc_events = {
     "LMS Course Progress": {
         "on_update": "vedium_core.gamification.Gamification.handle_lesson_completion"

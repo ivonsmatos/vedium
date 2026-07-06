@@ -20,7 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mariadb:
-        image: mariadb:10.6
+        # 10.11 LTS (EOL fev 2028) — EOL do 10.6 foi julho 2026
+        image: mariadb:10.11
         env:
           MYSQL_ROOT_PASSWORD: drill
           MYSQL_DATABASE: drill_db
@@ -62,7 +63,7 @@ jobs:
           echo "DUMP=$DUMP" >> "$GITHUB_ENV"
           ls -lh "$DUMP"
 
-      - name: Restore into disposable MariaDB
+      - name: Restore into disposable MariaDB 10.11
         run: |
           # utf8mb4 + desativa checks para velocidade (banco descartável)
           ( echo "SET FOREIGN_KEY_CHECKS=0; SET UNIQUE_CHECKS=0;";
@@ -78,11 +79,23 @@ jobs:
           USERS=$(q "SELECT COUNT(*) FROM tabUser")
           COURSES=$(q "SELECT COUNT(*) FROM \`tabLMS Course\`")
           ENROLLMENTS=$(q "SELECT COUNT(*) FROM \`tabLMS Enrollment\`")
+          CERTS=$(q "SELECT COUNT(*) FROM \`tabLMS Certificate\` LIMIT 1" 2>/dev/null || echo "0")
 
-          echo "Tabelas: $TABLES | Users: $USERS | Cursos: $COURSES | Matrículas: $ENROLLMENTS"
+          echo "Tabelas: $TABLES | Users: $USERS | Cursos: $COURSES | Matrículas: $ENROLLMENTS | Certs: $CERTS"
 
           [ "$TABLES" -gt 300 ] || { echo "::error::Só $TABLES tabelas — dump incompleto?"; exit 1; }
           [ "$USERS" -gt 0 ]    || { echo "::error::tabUser vazia"; exit 1; }
           [ "$COURSES" -gt 0 ]  || { echo "::error::tabLMS Course vazia"; exit 1; }
 
           echo "✅ Drill aprovado: o backup é restaurável e contém os dados críticos."
+          echo "## 📊 Restore Drill Report — $(date -u '+%Y-%m-%d')" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Métrica | Valor |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Tabelas restauradas | $TABLES |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Usuários | $USERS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Cursos | $COURSES |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Matrículas | $ENROLLMENTS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Certificados | $CERTS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| MariaDB | 10.11 LTS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "✅ Backup validado e restaurável." >> "$GITHUB_STEP_SUMMARY"

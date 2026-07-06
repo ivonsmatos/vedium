@@ -31,9 +31,62 @@ from vedium_core.vedium_core.exceptions import LGPDError
 _CONSENT_DOCTYPE = "Vedium Consent Record"
 _REQUEST_DOCTYPE = "Vedium Data Request"
 
+# Prazo legal máximo: 15 dias úteis (Art. 18 §3 LGPD) = ~21 dias corridos
+_MAX_PENDING_CALENDAR_DAYS = 21
+
 
 def _safe_doctype_exists(doctype: str) -> bool:
     return bool(frappe.db.exists("DocType", doctype))
+
+
+# ─────────────────────────────────────────────
+# Scheduler semanal — auditoria de requisições pendentes
+# ─────────────────────────────────────────────
+
+def _audit_pending_requests():
+    """
+    Roda semanalmente via scheduler_events.
+    Verifica requisições LGPD pendentes há mais de _MAX_PENDING_CALENDAR_DAYS
+    e notifica o time de compliance.
+    """
+    if not _safe_doctype_exists(_REQUEST_DOCTYPE):
+        return
+
+    cutoff = datetime.now().replace(hour=0, minute=0, second=0) - \
+             __import__("datetime").timedelta(days=_MAX_PENDING_CALENDAR_DAYS)
+
+    overdue = frappe.get_all(
+        _REQUEST_DOCTYPE,
+        filters={"status": "Pending", "creation": ("<", cutoff)},
+        fields=["name", "user", "request_type", "creation"],
+    )
+
+    if not overdue:
+        return
+
+    rows = "".join(
+        f"<tr><td>{r.name}</td><td>{r.user}</td><td>{r.request_type}</td>"
+        f"<td>{r.creation.strftime('%d/%m/%Y') if r.creation else '-'}</td></tr>"
+        for r in overdue
+    )
+
+    _notify_compliance_team(
+        user="sistema",
+        ticket=f"{len(overdue)} requisições",
+        request_type="Auditoria Semanal — Prazo Vencido",
+        extra_html=(
+            f"<p><strong>{len(overdue)} requisição(ões)</strong> LGPD pendentes "
+            f"há mais de {_MAX_PENDING_CALENDAR_DAYS} dias:</p>"
+            f"<table border='1' cellpadding='6' style='border-collapse:collapse'>"
+            f"<tr><th>Ticket</th><th>Usuário</th><th>Tipo</th><th>Data</th></tr>"
+            f"{rows}</table>"
+        ),
+    )
+
+    frappe.log_error(
+        f"LGPD audit: {len(overdue)} requisições vencidas notificadas ao compliance",
+        "Vedium.LGPD.audit",
+    )
 
 
 # ─────────────────────────────────────────────
@@ -304,7 +357,7 @@ def _update_request_status(ticket: str, status: str):
         frappe.db.commit()
 
 
-def _notify_compliance_team(user: str, ticket: str, request_type: str):
+def _notify_compliance_team(user: str, ticket: str, request_type: str, extra_html: str = ""):
     """Envia e-mail ao time de compliance sobre uma nova requisição."""
     try:
         compliance_email = frappe.db.get_single_value(
@@ -312,16 +365,20 @@ def _notify_compliance_team(user: str, ticket: str, request_type: str):
         ) or frappe.db.get_single_value("Email Account", "email_id")
 
         if compliance_email:
+            body = (
+                f"<p>Um usuário solicitou <strong>{request_type}</strong> dos seus dados.</p>"
+                f"<p><strong>Usuário:</strong> {frappe.utils.escape_html(user)}</p>"
+                f"<p><strong>Ticket:</strong> {ticket}</p>"
+                f"<p><strong>Data:</strong> {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>"
+                f"<p>Prazo legal: 15 dias úteis (LGPD Art. 18 §3).</p>"
+            )
+            if extra_html:
+                body += extra_html
+
             frappe.sendmail(
                 recipients=[compliance_email],
-                subject=f"[LGPD] Nova solicitação de {request_type} — {user}",
-                message=(
-                    f"<p>Um usuário solicitou <strong>{request_type}</strong> dos seus dados.</p>"
-                    f"<p><strong>Usuário:</strong> {frappe.utils.escape_html(user)}</p>"
-                    f"<p><strong>Ticket:</strong> {ticket}</p>"
-                    f"<p><strong>Data:</strong> {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>"
-                    f"<p>Prazo legal: 15 dias úteis (LGPD Art. 18 §3).</p>"
-                ),
+                subject=f"[LGPD] {request_type} — {user}",
+                message=body,
                 now=True,
             )
     except Exception as e:
