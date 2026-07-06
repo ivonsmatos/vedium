@@ -907,7 +907,7 @@ def test_company_legal_data_is_visible_without_touching_checkout():
     assert "Stripe" in privacy
     assert "Direito de arrependimento" in terms
     assert "7 (sete) dias corridos" in terms
-    assert "não altera o checkout" in terms
+    assert "exibidos no checkout" in terms
 
 
 def test_rich_footer_matches_public_site_structure():
@@ -3426,3 +3426,73 @@ def test_careers_form_also_creates_native_hrms_job_applicant():
     assert '"doctype": "Job Opening"' in oneshot_src
     assert '"doctype": "Designation"' in oneshot_src
     assert 'COMPANY = "Vedium"' in oneshot_src
+
+
+def test_certificate_pdf_push_and_onboarding_are_wired_correctly():
+    """2026-07-06: certificate_pdf.py, push_notifications.py e onboarding.py
+    ficaram órfãos (nunca commitados/wireados) depois do outage de
+    2026-07-05. Ao finalizá-los, achamos dois bugs reais:
+
+    1. Todo `frappe.call`/URL que chamava esses 3 módulos usava
+       "vedium_core.vedium_core.<modulo>.<metodo>" (3 segmentos) quando o
+       caminho de import correto é "vedium_core.<modulo>.<metodo>" (2
+       segmentos) -- os arquivos estão em vedium_core/vedium_core/*.py,
+       não dentro do subpacote vedium_core/vedium_core/vedium_core/.
+       Isso derrubaria QUALQUER chamada com 404 "method not found".
+    2. hooks.py tinha `scheduler_events` definido DUAS vezes -- a segunda
+       atribuição sobrescrevia a primeira, silenciosamente cancelando o
+       cron do resumo semanal. Os jobs de trial.expire_trials e
+       lgpd._audit_pending_requests também usavam o path de 3 segmentos
+       errado (mesma classe de bug do item 1), então nunca rodavam.
+    """
+    hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    certificado_html = (WWW / "certificado.html").read_text(encoding="utf-8")
+    onboarding_html = (WWW / "onboarding.html").read_text(encoding="utf-8")
+    push_js = (PUBLIC_JS / "push-notifications.js").read_text(encoding="utf-8")
+
+    # Nenhum caminho de 3 segmentos sobrando pros módulos de nível superior.
+    for bad in [
+        "vedium_core.vedium_core.certificate_pdf.",
+        "vedium_core.vedium_core.push_notifications.",
+        "vedium_core.vedium_core.onboarding.",
+        "vedium_core.vedium_core.trial.",
+        "vedium_core.vedium_core.lgpd.",
+    ]:
+        assert bad not in certificado_html
+        assert bad not in onboarding_html
+        assert bad not in push_js
+        assert bad not in hooks_src
+
+    assert "vedium_core.certificate_pdf.generate_pdf" in certificado_html
+    assert "vedium_core.onboarding.save_onboarding" in onboarding_html
+    assert "vedium_core.push_notifications.save_subscription" in push_js
+    assert "vedium_core.push_notifications.remove_subscription" in push_js
+    assert "vedium_core.push_notifications.get_vapid_public_key" in push_js
+
+    # scheduler_events aparece só 1 vez como atribuição (não duplicado).
+    assert hooks_src.count("scheduler_events = {") == 1
+    assert "vedium_core.trial.expire_trials" in vedium_hooks.scheduler_events["daily"]
+    assert "vedium_core.lgpd._audit_pending_requests" in vedium_hooks.scheduler_events["weekly"]
+    assert "vedium_core.reports.send_weekly_digest" in vedium_hooks.scheduler_events["cron"]["0 11 * * 1"]
+
+    # DocType custom de push subscription precisa existir e estar plugado
+    # no install.py (mesmo padrão de ensure_candidatura_doctype).
+    push_py = (ROOT / "vedium_core" / "vedium_core" / "push_notifications.py").read_text(encoding="utf-8")
+    install_py = (ROOT / "vedium_core" / "vedium_core" / "install.py").read_text(encoding="utf-8")
+    assert "def ensure_push_subscription_doctype" in push_py
+    assert "ensure_push_subscription_doctype" in install_py
+
+    # Custom fields de onboarding e VAPID precisam estar no setup idempotente.
+    custom_setup_py = (ROOT / "vedium_core" / "vedium_core" / "custom_setup.py").read_text(encoding="utf-8")
+    for fieldname in [
+        "custom_preferred_language",
+        "custom_learning_goal",
+        "custom_study_frequency",
+        "custom_onboarding_done",
+        "custom_vedium_vapid_public_key",
+        "custom_vedium_vapid_private_key",
+    ]:
+        assert fieldname in custom_setup_py
+
+    # push-notifications.js precisa estar carregado no site inteiro.
+    assert "js/push-notifications.js" in hooks_src

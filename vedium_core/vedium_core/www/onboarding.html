@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bem-vindo à Vedium! 🎉</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f172a;--surface:#1e293b;--surface2:#273349;
+  --gold:#D4AF37;--gold-dim:rgba(212,175,55,.15);
+  --text:#f1f5f9;--muted:#94a3b8;--accent:#2E6DA4;
+  --radius:16px;
+}
+html,body{height:100%;font-family:'Kumbh Sans',sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
+/* ── Wizard shell ── */
+.vd-wiz{display:flex;flex-direction:column;height:100vh;max-width:680px;margin:0 auto;padding:24px 20px}
+/* Progress bar */
+.vd-progress{display:flex;align-items:center;gap:8px;margin-bottom:32px}
+.vd-prog-step{flex:1;height:4px;background:var(--surface2);border-radius:4px;transition:background .4s}
+.vd-prog-step.done{background:var(--gold)}
+.vd-prog-step.active{background:linear-gradient(90deg,var(--gold),var(--accent))}
+/* Slides */
+.vd-slides{flex:1;position:relative;overflow:hidden}
+.vd-slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 12px;
+  opacity:0;transform:translateX(60px);transition:all .4s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.vd-slide.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.vd-slide.exit{opacity:0;transform:translateX(-60px)}
+.vd-emoji{font-size:4rem;margin-bottom:16px;animation:pop .5s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop{from{transform:scale(.3) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.vd-slide h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--text);margin-bottom:12px}
+.vd-slide p{color:var(--muted);font-size:1rem;line-height:1.7;max-width:480px}
+/* Cards de opção (slide escolha de idioma) */
+.vd-lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;width:100%;max-width:480px;margin:20px auto 0}
+.vd-lang-card{
+  background:var(--surface);border:2px solid var(--surface2);border-radius:12px;
+  padding:16px 12px;cursor:pointer;transition:border-color .2s,transform .15s;
+  display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.88rem;font-weight:600;
+}
+.vd-lang-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.vd-lang-card.selected{border-color:var(--gold);background:var(--gold-dim)}
+.vd-lang-card .flag{font-size:2rem}
+/* Preference toggles */
+.vd-pref-list{display:flex;flex-direction:column;gap:12px;width:100%;max-width:420px;margin:20px auto 0}
+.vd-pref-item{
+  background:var(--surface);border:1px solid var(--surface2);border-radius:12px;
+  padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;
+  transition:border-color .2s;
+}
+.vd-pref-item:hover{border-color:var(--accent)}
+.vd-pref-item.selected{border-color:var(--gold);background:var(--gold-dim)}
+.vd-pref-item .icon{font-size:1.6rem;flex-shrink:0}
+.vd-pref-item-text h4{font-size:.95rem;font-weight:700;color:var(--text)}
+.vd-pref-item-text p{font-size:.8rem;color:var(--muted);margin-top:2px}
+/* CTA / Nav */
+.vd-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:24px}
+.vd-btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:14px 26px;font-size:.95rem;font-weight:700;cursor:pointer;border:none;transition:all .2s;font-family:inherit;text-decoration:none}
+.vd-btn-primary{background:var(--gold);color:#0f172a}
+.vd-btn-primary:hover{background:#e4c840;transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,175,55,.3)}
+.vd-btn-ghost{background:transparent;color:var(--muted);padding:14px 12px}
+.vd-btn-ghost:hover{color:var(--text)}
+.vd-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+/* Step counter */
+.vd-step-count{color:var(--muted);font-size:.82rem}
+/* Confetti (slide final) */
+.vd-confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99}
+.vd-confetti span{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall var(--dur,3s) var(--delay,0s) ease-in forwards}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+/* Goal input */
+.vd-goal-input{width:100%;max-width:400px;background:var(--surface);border:2px solid var(--surface2);border-radius:12px;padding:14px 16px;color:var(--text);font-size:1rem;font-family:inherit;margin-top:16px;transition:border-color .2s;outline:none}
+.vd-goal-input:focus{border-color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="vd-wiz">
+  <!-- Progress -->
+  <div class="vd-progress" id="vd-progress"></div>
+
+  <!-- Slides container -->
+  <div class="vd-slides" id="vd-slides">
+
+    <!-- Slide 0: Boas-vindas -->
+    <div class="vd-slide active" id="slide-0">
+      <div class="vd-emoji">🎉</div>
+      <h2>Você chegou ao lugar certo!</h2>
+      <p>Bem-vindo à <strong style="color:var(--gold)">Vedium</strong> — a plataforma de idiomas que respeita sua história e acelera o seu futuro. Em 3 passos vamos personalizar sua experiência.</p>
+    </div>
+
+    <!-- Slide 1: Escolha de idioma -->
+    <div class="vd-slide" id="slide-1">
+      <div class="vd-emoji">🌍</div>
+      <h2>Qual idioma você vai estudar?</h2>
+      <p>Escolha um para começar. Você pode adicionar outros depois.</p>
+      <div class="vd-lang-grid" id="lang-grid">
+        <div class="vd-lang-card" data-lang="en" onclick="selectLang(this)"><span class="flag">🇺🇸</span>Inglês</div>
+        <div class="vd-lang-card" data-lang="es" onclick="selectLang(this)"><span class="flag">🇪🇸</span>Espanhol</div>
+        <div class="vd-lang-card" data-lang="fr" onclick="selectLang(this)"><span class="flag">🇫🇷</span>Francês</div>
+        <div class="vd-lang-card" data-lang="de" onclick="selectLang(this)"><span class="flag">🇩🇪</span>Alemão</div>
+        <div class="vd-lang-card" data-lang="yo" onclick="selectLang(this)"><span class="flag">🌍</span>Iorubá</div>
+        <div class="vd-lang-card" data-lang="pt" onclick="selectLang(this)"><span class="flag">🇧🇷</span>Português</div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Objetivo -->
+    <div class="vd-slide" id="slide-2">
+      <div class="vd-emoji">🎯</div>
+      <h2>Qual é o seu objetivo?</h2>
+      <p>Isso nos ajuda a recomendar o plano e turma ideal.</p>
+      <div class="vd-pref-list" id="goal-list">
+        <div class="vd-pref-item" data-goal="work" onclick="selectGoal(this)">
+          <span class="icon">💼</span>
+          <div class="vd-pref-item-text"><h4>Mercado de trabalho</h4><p>Entrevistas, promoção, trabalho no exterior</p></div>
+        </div>
+        <div class="vd-pref-item" data-goal="travel" onclick="selectGoal(this)">
+          <span class="icon">✈️</span>
+          <div class="vd-pref-item-text"><h4>Viagem e turismo</h4><p>Comunicar melhor no exterior</p></div>
+        </div>
+        <div class="vd-pref-item" data-goal="culture" onclick="selectGoal(this)">
+          <span class="icon">📚</span>
+          <div class="vd-pref-item-text"><h4>Cultura e identidade</h4><p>Conexão com raízes, ancestralidade, literatura</p></div>
+        </div>
+        <div class="vd-pref-item" data-goal="tech" onclick="selectGoal(this)">
+          <span class="icon">💻</span>
+          <div class="vd-pref-item-text"><h4>Tecnologia</h4><p>Documentação, reuniões internacionais, código</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Frequência -->
+    <div class="vd-slide" id="slide-3">
+      <div class="vd-emoji">⏰</div>
+      <h2>Quantas vezes por semana?</h2>
+      <p>Comprometimento realista é melhor que promessas quebradas. Escolha o que cabe na sua rotina.</p>
+      <div class="vd-pref-list" id="freq-list">
+        <div class="vd-pref-item" data-freq="1" onclick="selectFreq(this)">
+          <span class="icon">🌱</span>
+          <div class="vd-pref-item-text"><h4>1× por semana</h4><p>Ritmo suave — ideal para manter</p></div>
+        </div>
+        <div class="vd-pref-item" data-freq="2" onclick="selectFreq(this)">
+          <span class="icon">📈</span>
+          <div class="vd-pref-item-text"><h4>2–3× por semana</h4><p>Progresso consistente e acelerado</p></div>
+        </div>
+        <div class="vd-pref-item" data-freq="5" onclick="selectFreq(this)">
+          <span class="icon">🚀</span>
+          <div class="vd-pref-item-text"><h4>5× ou mais</h4><p>Imersão — resultados em meses</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Tudo pronto -->
+    <div class="vd-slide" id="slide-4">
+      <div class="vd-emoji">🏆</div>
+      <h2>Tudo pronto, <span id="user-first-name">aluno</span>!</h2>
+      <p>Sua jornada personalizada está configurada. Acesse o catálogo, escolha sua turma e comece hoje.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;width:100%;max-width:360px">
+        <a id="btn-catalog" href="/catalogo" class="vd-btn vd-btn-primary" style="justify-content:center">
+          🎓 Ver catálogo de cursos
+        </a>
+        <a id="btn-aula" href="/aula-diagnostica" class="vd-btn" style="background:var(--surface);color:var(--text);justify-content:center">
+          🎯 Fazer aula diagnóstica
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /vd-slides -->
+
+  <!-- Navigation -->
+  <div class="vd-nav">
+    <button class="vd-btn vd-btn-ghost" id="btn-back" onclick="prevSlide()" disabled>← Voltar</button>
+    <span class="vd-step-count" id="step-count">Passo 1 de 5</span>
+    <button class="vd-btn vd-btn-primary" id="btn-next" onclick="nextSlide()">Próximo →</button>
+  </div>
+</div>
+
+<!-- Confetti container (slide final) -->
+<div class="vd-confetti" id="vd-confetti" style="display:none"></div>
+
+<script>
+(function(){
+  const TOTAL = 5;
+  let current = 0;
+
+  // Estado
+  const state = { lang: null, goal: null, freq: null };
+
+  // Setup progress dots
+  const prog = document.getElementById('vd-progress');
+  for(let i=0;i<TOTAL;i++){
+    const s=document.createElement('div');
+    s.className='vd-prog-step'+(i===0?' active':'');
+    s.id='prog-'+i;
+    prog.appendChild(s);
+  }
+
+  function updateProgress(){
+    for(let i=0;i<TOTAL;i++){
+      const el=document.getElementById('prog-'+i);
+      el.className='vd-prog-step'+(i<current?' done':(i===current?' active':''));
+    }
+    document.getElementById('step-count').textContent=`Passo ${current+1} de ${TOTAL}`;
+    document.getElementById('btn-back').disabled=current===0;
+    const isLast=current===TOTAL-1;
+    const btnNext=document.getElementById('btn-next');
+    btnNext.textContent=isLast?'✅ Ir para o catálogo →':'Próximo →';
+    if(isLast){
+      btnNext.onclick=()=>{window.location.href='/catalogo';};
+    }else{
+      btnNext.onclick=nextSlide;
+    }
+  }
+
+  function goTo(idx){
+    const slides=document.querySelectorAll('.vd-slide');
+    slides[current].classList.add('exit');
+    slides[current].classList.remove('active');
+    setTimeout(()=>slides[current].classList.remove('exit'), 400);
+    current=idx;
+    slides[current].classList.add('active');
+    updateProgress();
+    if(current===TOTAL-1){ launchConfetti(); saveOnboarding(); }
+  }
+
+  window.nextSlide=function(){
+    if(current<TOTAL-1) goTo(current+1);
+  };
+  window.prevSlide=function(){
+    if(current>0) goTo(current-1);
+  };
+
+  window.selectLang=function(el){
+    document.querySelectorAll('#lang-grid .vd-lang-card').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    state.lang=el.dataset.lang;
+  };
+  window.selectGoal=function(el){
+    document.querySelectorAll('#goal-list .vd-pref-item').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    state.goal=el.dataset.goal;
+  };
+  window.selectFreq=function(el){
+    document.querySelectorAll('#freq-list .vd-pref-item').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    state.freq=el.dataset.freq;
+  };
+
+  function launchConfetti(){
+    const container=document.getElementById('vd-confetti');
+    container.style.display='block';
+    const colors=['#D4AF37','#2E6DA4','#ffffff','#f59e0b','#10b981'];
+    for(let i=0;i<80;i++){
+      const span=document.createElement('span');
+      span.style.cssText=[
+        `left:${Math.random()*100}%`,
+        `--dur:${2+Math.random()*2}s`,
+        `--delay:${Math.random()*.8}s`,
+        `background:${colors[Math.floor(Math.random()*colors.length)]}`,
+        `width:${6+Math.random()*8}px`,
+        `height:${6+Math.random()*8}px`,
+        `border-radius:${Math.random()>0.5?'50%':'2px'}`,
+      ].join(';');
+      container.appendChild(span);
+    }
+    setTimeout(()=>{ container.style.display='none'; container.innerHTML=''; }, 4000);
+  }
+
+  function saveOnboarding(){
+    // Salva preferências via frappe.call (silencioso — não bloquear UX)
+    if(typeof frappe === 'undefined') return;
+    frappe.call({
+      method: 'vedium_core.onboarding.save_onboarding',
+      args: { lang: state.lang, goal: state.goal, freq: state.freq },
+    }).catch(()=>{/* noop */});
+
+    // Preenche o nome do usuário
+    frappe.call({
+      method: 'frappe.client.get_value',
+      args: { doctype: 'User', filters: frappe.session.user, fieldname: 'first_name' },
+      callback(r){
+        if(r.message && r.message.first_name){
+          document.getElementById('user-first-name').textContent=r.message.first_name;
+        }
+      }
+    });
+  }
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>

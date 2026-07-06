@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Verificar certificado — Vedium</title>
-<meta name="description" content="Verifique a autenticidade de certificados Vedium por código." />
+<meta name="description" content="Verifique a autenticidade de certificados Vedium por código. Cada certificado tem QR code e link de verificação único." />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://vediums.com/certificado" />
 <link rel="alternate" hreflang="pt-br" href="https://vediums.com/certificado" />
@@ -14,41 +14,203 @@
 <link rel="alternate" hreflang="x-default" href="https://vediums.com/certificado" />
 <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
-<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-section{padding:76px 0}.vd-card{max-width:720px;margin:auto;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-input{width:100%;border:1px solid #dbe4ff;border-radius:10px;padding:13px 14px;margin:10px 0}.vd-result{margin-top:16px;color:#475569;line-height:1.7}.vd-cert-qr{margin-top:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.vd-cert-qr img{width:150px;height:150px;border:1px solid #e5e7eb;border-radius:10px;padding:8px;background:#fff}.vd-cert-qr a{color:#2563eb;word-break:break-all}@media(max-width:767px){.vd-section{padding:52px 0}.vd-card{padding:22px}}</style>
+<style>
+img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}
+.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}
+.stricky-header,.stricky-header.stricked-menu{display:none!important}
+.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}
+.vd-cert-section{padding:80px 0;min-height:70vh}
+.vd-cert-card{
+  max-width:680px;margin:0 auto;background:#fff;
+  border-radius:20px;padding:40px;box-shadow:0 20px 60px rgba(15,23,42,.08);
+}
+.vd-cert-card h1{font-family:'Playfair Display',serif;color:#0f172a;font-size:1.9rem;margin-bottom:8px}
+.vd-cert-card .vd-lead{color:#64748b;margin-bottom:28px;line-height:1.6}
+.vd-input-row{display:flex;gap:10px;flex-wrap:wrap}
+.vd-code-input{
+  flex:1;min-width:200px;
+  border:2px solid #e5e7eb;border-radius:12px;
+  padding:14px 16px;font-size:1rem;font-family:inherit;
+  color:#0f172a;transition:border-color .2s;outline:none;
+}
+.vd-code-input:focus{border-color:#2E6DA4}
+.vd-code-input::placeholder{color:#94a3b8}
+.vd-verify-btn{
+  background:#2E6DA4;color:#fff;border:none;
+  border-radius:12px;padding:14px 24px;font-size:1rem;
+  font-weight:700;cursor:pointer;font-family:inherit;
+  transition:background .2s,transform .15s;white-space:nowrap;
+}
+.vd-verify-btn:hover{background:#245686;transform:translateY(-1px)}
+.vd-verify-btn:disabled{opacity:.6;cursor:wait;transform:none}
+/* Result states */
+.vd-result{margin-top:24px;display:none}
+.vd-result.show{display:block}
+.vd-result-valid{background:#f0fdf4;border:2px solid #bbf7d0;border-radius:16px;padding:24px}
+.vd-result-invalid{background:#fef2f2;border:2px solid #fecaca;border-radius:16px;padding:24px}
+.vd-result-valid h3{color:#15803d;margin-bottom:4px;font-size:1.1rem}
+.vd-result-invalid h3{color:#dc2626;margin-bottom:4px}
+.vd-cert-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.vd-cert-info-item label{display:block;font-size:.75rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.vd-cert-info-item span{font-weight:700;color:#0f172a;font-size:.95rem}
+.vd-qr-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid #d1fae5}
+.vd-qr-row img{width:120px;height:120px;border:2px solid #bbf7d0;border-radius:12px;padding:4px;background:#fff}
+.vd-qr-row-text{flex:1}
+.vd-qr-row-text p{font-size:.85rem;color:#4b5563;margin-bottom:8px}
+.vd-qr-row-text a{font-size:.8rem;color:#2E6DA4;word-break:break-all}
+/* PDF button */
+.vd-pdf-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#0f172a,#1e293b);color:#D4AF37;
+  border-radius:10px;padding:11px 20px;font-weight:700;font-size:.88rem;
+  text-decoration:none;border:1.5px solid rgba(212,175,55,.3);
+  transition:all .2s;margin-top:10px;cursor:pointer;border:none;font-family:inherit;
+}
+.vd-pdf-btn:hover{background:linear-gradient(135deg,#1e293b,#273349);color:#D4AF37;transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.2);text-decoration:none}
+/* Loading spinner */
+.vd-spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
 </head>
 <body><div class="page-wrapper">
 {% set vd_page = "certificado" %}
 {% include "templates/includes/site_navbar.html" %}
-<section class="vd-section"><div class="container"><div class="vd-card"><h1 style="color:#111827;">Verificar certificado</h1><p>Digite o código de verificação impresso no certificado Vedium.</p><input id="code" class="vd-input" placeholder="Código de verificação"><button id="verify" class="thm-btn">Verificar</button><div id="result" class="vd-result"></div></div></div></section>
+
+<section class="vd-cert-section"><div class="container">
+  <div class="vd-cert-card">
+    <h1>🏆 Verificar Certificado</h1>
+    <p class="vd-lead">Digite o código impresso no certificado Vedium para confirmar sua autenticidade. Cada certificado tem um QR code único e verificável.</p>
+
+    <div class="vd-input-row">
+      <input id="cert-code" class="vd-code-input" placeholder="Código de verificação (ex: CERT-A1B2C3D4)" autocomplete="off" spellcheck="false" />
+      <button id="verify-btn" class="vd-verify-btn" onclick="verifyCert()">
+        <span id="btn-text">Verificar</span>
+      </button>
+    </div>
+
+    <!-- Resultado -->
+    <div id="cert-result" class="vd-result">
+
+      <!-- Válido -->
+      <div id="result-valid" class="vd-result-valid" style="display:none">
+        <h3>✅ Certificado Autêntico</h3>
+        <p style="color:#4b5563;font-size:.9rem;margin-top:4px">Este certificado foi emitido pela Vedium Global Education e é válido.</p>
+        <div class="vd-cert-info" id="cert-info-grid"></div>
+        <div class="vd-qr-row">
+          <img id="cert-qr-img" src="" alt="QR Code de verificação" width="120" height="120" />
+          <div class="vd-qr-row-text">
+            <p><strong>QR Code verificável</strong><br>Qualquer pessoa pode escanear e confirmar a autenticidade.</p>
+            <a id="cert-verify-link" href="#"></a>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:10px">
+          <button id="btn-download-pdf" class="vd-pdf-btn" onclick="downloadPDF()">
+            🎓 Baixar PDF Premium
+          </button>
+          <button class="vd-pdf-btn" onclick="navigator.clipboard.writeText(document.getElementById('cert-verify-link').href)" style="background:transparent;border:1.5px solid #2E6DA4;color:#2E6DA4">
+            📋 Copiar link
+          </button>
+        </div>
+      </div>
+
+      <!-- Inválido -->
+      <div id="result-invalid" class="vd-result-invalid" style="display:none">
+        <h3>❌ Certificado não encontrado</h3>
+        <p style="color:#6b7280;font-size:.9rem;margin-top:4px">Verifique se o código foi digitado corretamente. Dúvidas? <a href="mailto:contato@vediums.com" style="color:#dc2626">contato@vediums.com</a></p>
+      </div>
+
+    </div><!-- /cert-result -->
+  </div>
+</div></section>
+
 {% include "templates/includes/site_footer.html" %}</div>
 <script>
-document.getElementById('verify').addEventListener('click', function(){
-  var code=document.getElementById('code').value.trim();
-  var result=document.getElementById('result');
-  if(!code){result.textContent='Informe o código.';return;}
-  result.textContent='Verificando...';
-  fetch('/api/method/vedium_core.public_funnel.verify_certificate?code='+encodeURIComponent(code), {headers:{Accept:'application/json'}})
-    .then(function(r){return r.json();})
+var _currentCode = '';
+
+function verifyCert() {
+  var code = document.getElementById('cert-code').value.trim();
+  if (!code) { document.getElementById('cert-code').focus(); return; }
+  _currentCode = code;
+
+  var btn = document.getElementById('verify-btn');
+  var btnText = document.getElementById('btn-text');
+  btn.disabled = true;
+  btnText.innerHTML = '<span class="vd-spinner"></span>';
+
+  var resultDiv = document.getElementById('cert-result');
+  var validDiv  = document.getElementById('result-valid');
+  var invalidDiv= document.getElementById('result-invalid');
+  resultDiv.classList.remove('show');
+  validDiv.style.display = 'none';
+  invalidDiv.style.display = 'none';
+
+  fetch('/api/method/vedium_core.public_funnel.verify_certificate?code=' + encodeURIComponent(code), {
+    headers: { Accept: 'application/json' }
+  })
+    .then(function(r){ return r.json(); })
     .then(function(data){
-      var msg=data.message||data;
-      if(msg.valid){
-        var verifyUrl=location.origin+location.pathname+'?code='+encodeURIComponent(code);
-        var qrUrl='https://quickchart.io/qr?size=180&margin=1&text='+encodeURIComponent(verifyUrl);
-        result.innerHTML='<strong>Certificado válido.</strong><br>Aluno: '+msg.student+'<br>Curso: '+msg.course+'<br>Emissão: '+msg.issue_date+'<div class="vd-cert-qr"><img src="'+qrUrl+'" width="150" height="150" alt="QR Code de verificação do certificado"><div><strong>QR Code verificável</strong><br><a href="'+verifyUrl+'">'+verifyUrl+'</a></div></div>';
-      }else{result.textContent='Certificado não encontrado.';}
+      var msg = data.message || data;
+      resultDiv.classList.add('show');
+
+      if (msg.valid) {
+        var verifyUrl = location.origin + '/certificado?code=' + encodeURIComponent(code);
+        var qrUrl = 'https://quickchart.io/qr?size=240&margin=1&text=' + encodeURIComponent(verifyUrl);
+
+        document.getElementById('cert-qr-img').src = qrUrl;
+        document.getElementById('cert-verify-link').href = verifyUrl;
+        document.getElementById('cert-verify-link').textContent = verifyUrl;
+
+        var grid = document.getElementById('cert-info-grid');
+        grid.innerHTML =
+          item('Aluno', msg.student || '—') +
+          item('Curso', msg.course || '—') +
+          item('Data de Emissão', msg.issue_date || '—') +
+          item('Código', '<code style="font-size:.8rem;color:#2E6DA4">' + code + '</code>');
+
+        validDiv.style.display = 'block';
+      } else {
+        invalidDiv.style.display = 'block';
+      }
     })
-    .catch(function(){result.textContent='Não foi possível verificar agora.';});
-});
+    .catch(function(){
+      resultDiv.classList.add('show');
+      invalidDiv.style.display = 'block';
+      invalidDiv.querySelector('h3').textContent = '⚠️ Não foi possível verificar agora';
+    })
+    .finally(function(){
+      btn.disabled = false;
+      btnText.textContent = 'Verificar';
+    });
+}
+
+function item(label, val){
+  return '<div class="vd-cert-info-item"><label>' + label + '</label><span>' + val + '</span></div>';
+}
+
+function downloadPDF(){
+  if (!_currentCode) return;
+  var url = '/api/method/vedium_core.certificate_pdf.generate_pdf?code=' + encodeURIComponent(_currentCode);
+  window.open(url, '_blank');
+}
+
+// Auto-verificar se ?code= na URL
 (function(){
-  var params=new URLSearchParams(location.search);
-  var code=params.get('code');
-  if(code){document.getElementById('code').value=code;document.getElementById('verify').click();}
+  var params = new URLSearchParams(location.search);
+  var code = params.get('code');
+  if (code) {
+    document.getElementById('cert-code').value = code;
+    verifyCert();
+  }
+  // Enter para verificar
+  document.getElementById('cert-code').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') verifyCert();
+  });
 })();
 </script>
 <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>

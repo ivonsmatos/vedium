@@ -28,6 +28,15 @@ def _ensure_custom_doctypes():
             frappe.get_traceback(), "Vedium.install.ensure_custom_doctypes"
         )
 
+    try:
+        from vedium_core.push_notifications import ensure_push_subscription_doctype
+
+        ensure_push_subscription_doctype()
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(), "Vedium.install.ensure_push_subscription_doctype"
+        )
+
     # User.vedium_points etc. — gamification depende destes campos
     try:
         from vedium_core.custom_setup import setup_custom_fields

@@ -322,6 +322,7 @@ web_include_js = [
     "/assets/vedium_core/js/pwa-register.js?v=static-v4",
     "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix",
     "/assets/vedium_core/js/meta-pixel.js?v=consent-lgpd",
+    "/assets/vedium_core/js/push-notifications.js?v=1",
 ]
 
 # =============================================================================
@@ -381,27 +382,20 @@ scheduler_events = {
     "cron": {
         # Segunda-feira 11:00 UTC = 08:00 BRT — resumo semanal de operação
         "0 11 * * 1": ["vedium_core.reports.send_weekly_digest"],
-    }
+    },
+    # Trial de 7 dias: expira matrículas Trial vencidas
+    "daily": [
+        "vedium_core.trial.expire_trials",
+    ],
+    # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
+    "weekly": [
+        "vedium_core.lgpd._audit_pending_requests",
+    ],
 }
 
 # =============================================================================
 # Document Events
 # =============================================================================
-
-# =============================================================================
-# Scheduler Events
-# =============================================================================
-
-scheduler_events = {
-    # Trial de 7 dias: expira matrículas Trial vencidas
-    "daily": [
-        "vedium_core.vedium_core.trial.expire_trials",
-    ],
-    # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
-    "weekly": [
-        "vedium_core.vedium_core.lgpd._audit_pending_requests",
-    ],
-}
 
 doc_events = {
     "LMS Course Progress": {

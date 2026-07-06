@@ -22,6 +22,51 @@ CUSTOM_FIELDS = {
             "options": "Language",
             "insert_after": "vedium_points",
         },
+        # Onboarding wizard (/onboarding) — ver vedium_core/onboarding.py
+        {
+            "fieldname": "custom_preferred_language",
+            "label": "Idioma de Interesse (Onboarding)",
+            "fieldtype": "Data",
+            "insert_after": "preferred_language",
+        },
+        {
+            "fieldname": "custom_learning_goal",
+            "label": "Objetivo de Aprendizado",
+            "fieldtype": "Data",
+            "insert_after": "custom_preferred_language",
+        },
+        {
+            "fieldname": "custom_study_frequency",
+            "label": "Frequência de Estudo",
+            "fieldtype": "Data",
+            "insert_after": "custom_learning_goal",
+        },
+        {
+            "fieldname": "custom_onboarding_done",
+            "label": "Onboarding Concluído",
+            "fieldtype": "Check",
+            "insert_after": "custom_study_frequency",
+        },
+    ],
+    # Chaves VAPID pra Web Push — ver vedium_core/push_notifications.py
+    "System Settings": [
+        {
+            "fieldname": "custom_vedium_vapid_public_key",
+            "label": "Vedium VAPID Public Key",
+            "fieldtype": "Data",
+        },
+        {
+            "fieldname": "custom_vedium_vapid_private_key",
+            "label": "Vedium VAPID Private Key",
+            "fieldtype": "Password",
+            "insert_after": "custom_vedium_vapid_public_key",
+        },
+        {
+            "fieldname": "custom_vedium_vapid_email",
+            "label": "Vedium VAPID Contact E-mail",
+            "fieldtype": "Data",
+            "insert_after": "custom_vedium_vapid_private_key",
+        },
     ],
     # Extensões Vedium ao certificado NATIVO do LMS (LMS Certificate).
     # Antes existia um doctype custom homônimo que sequestrava o nativo; foi
