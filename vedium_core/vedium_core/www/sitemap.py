@@ -167,6 +167,11 @@ STATIC_URLS = [
     {"loc": "/de/englisch-fuer-kundenservice", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/de/diferenciais", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/de/metodologia", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/de/certificado", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/de/comunidade", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/de/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/de/empresas", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/de/carreiras", "priority": "0.4", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):
