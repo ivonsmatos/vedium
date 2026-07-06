@@ -31,14 +31,19 @@
     {%- endfor %}
   {%- endif %}
 {%- elif lang is defined and canonical_url is defined %}
-  {#- curso.py hoje só sabe sobrepor tradução em inglês (course_translations.py)
-     — quando outro idioma ganhar páginas de curso individuais, generalizar
-     curso.py/curso.html do mesmo jeito que já foi feito aqui. #}
-  {%- set _self_key = "en" if lang == "en" else "pt-br" %}
-  {%- set _other_key = "pt-br" if lang == "en" else "en" %}
+  {#- Páginas de curso (curso.py) já mandam um dict alt_langs com todos os
+     idiomas que têm tradução real desse curso especifico. Páginas
+     institucionais (catalogo/sobre/faq/contato/empresas/etc., mesmo slug
+     em en/es/fr/de) só reciprocam com o canônico em PT via alt_lang_url
+     singular -- cobrimos os dois formatos aqui. #}
+  {%- set _self_key = lang if lang in ("en", "es", "fr", "de") else "pt-br" %}
   {%- set vd_nav.current = _self_key %}
   {%- set _vd_nav_noop = vd_nav.urls.update({_self_key: canonical_url}) %}
-  {%- if alt_lang_url %}{%- set _vd_nav_noop = vd_nav.urls.update({_other_key: alt_lang_url}) %}{%- endif %}
+  {%- if alt_langs %}
+    {%- for hl, url in alt_langs.items() %}{%- set _vd_nav_noop = vd_nav.urls.update({hl: url}) %}{%- endfor %}
+  {%- elif alt_lang_url %}
+    {%- set _vd_nav_noop = vd_nav.urls.update({"pt-br": alt_lang_url}) %}
+  {%- endif %}
 {%- endif %}
 {#- Rótulos do menu principal por idioma. Cada agente de tradução
    (.claude/agents/translator-*.md) deve adicionar sua entrada aqui ao
@@ -56,6 +61,23 @@
   "de": {"home": "Startseite", "how": "So funktioniert's", "about": "Über uns", "courses": "Kurse", "blog": "Blog", "faq": "FAQ", "contact": "Kontakt", "login": "Anmelden", "signup": "Registrieren", "free_test": "Kostenloser Test"},
 } %}
 {%- set vd_menu_t = vd_menu_i18n.get(vd_nav.current, vd_menu_i18n["pt-br"]) %}
+{#- Bug real achado em produção (2026-07-03): os links do menu (Início,
+   Como funciona, Sobre, Cursos, FAQ, Contato) sempre apontavam pro slug em
+   PT, mesmo em páginas já traduzidas -- ao navegar a partir de /en/sobre
+   pra "FAQ", o usuário caía em /faq (PT) em vez de /en/faq, perdendo o
+   idioma selecionado. Home/como-funciona/sobre/catalogo/faq/contato têm
+   tradução real de mesmo slug em en/es/fr/de (SAME_SLUG_TRANSLATIONS em
+   hooks.py); blog não tem tradução ainda, então fica sempre em PT; o CTA
+   de teste grátis usa um slug DIFERENTE por idioma (ver pt_to_lang_slug
+   em hooks.py). #}
+{%- set vd_menu_links = {
+  "pt-br": {"home": "/", "how": "/como-funciona", "about": "/sobre", "courses": "/catalogo", "blog": "/blog", "faq": "/faq", "contact": "/contato", "free_test": "/teste-de-nivel"},
+  "en": {"home": "/en/", "how": "/en/como-funciona", "about": "/en/sobre", "courses": "/en/catalogo", "blog": "/blog", "faq": "/en/faq", "contact": "/en/contato", "free_test": "/en/portuguese-placement-test"},
+  "es": {"home": "/es/", "how": "/es/como-funciona", "about": "/es/sobre", "courses": "/es/catalogo", "blog": "/blog", "faq": "/es/faq", "contact": "/es/contato", "free_test": "/es/prueba-de-nivel-de-portugues"},
+  "fr": {"home": "/fr/", "how": "/fr/como-funciona", "about": "/fr/sobre", "courses": "/fr/catalogo", "blog": "/blog", "faq": "/fr/faq", "contact": "/fr/contato", "free_test": "/fr/test-de-niveau-de-portugais"},
+  "de": {"home": "/de/", "how": "/de/como-funciona", "about": "/de/sobre", "courses": "/de/catalogo", "blog": "/blog", "faq": "/de/faq", "contact": "/de/contato", "free_test": "/de/portugiesisch-einstufungstest"},
+} %}
+{%- set vd_menu_u = vd_menu_links.get(vd_nav.current, vd_menu_links["pt-br"]) %}
 <header class="main-header main-header--one clearfix"
     data-vd-nav-urls='{{ vd_nav.urls | tojson }}'
     data-vd-nav-current="{{ vd_nav.current }}">
@@ -104,13 +126,13 @@
                         <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                         <div class="left">
                             <ul class="main-menu__list">
-                                <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="/">{{ vd_menu_t.home }}</a></li>
-                                <li{% if vd_page == "como-funciona" %} class="current"{% endif %}><a href="/como-funciona">{{ vd_menu_t.how }}</a></li>
-                                <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="/sobre">{{ vd_menu_t.about }}</a></li>
-                                <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="/catalogo">{{ vd_menu_t.courses }}</a></li>
-                                <li{% if vd_page == "blog" %} class="current"{% endif %}><a href="/blog">{{ vd_menu_t.blog }}</a></li>
-                                <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="/faq">{{ vd_menu_t.faq }}</a></li>
-                                <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="/contato">{{ vd_menu_t.contact }}</a></li>
+                                <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="{{ vd_menu_u.home }}">{{ vd_menu_t.home }}</a></li>
+                                <li{% if vd_page == "como-funciona" %} class="current"{% endif %}><a href="{{ vd_menu_u.how }}">{{ vd_menu_t.how }}</a></li>
+                                <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="{{ vd_menu_u.about }}">{{ vd_menu_t.about }}</a></li>
+                                <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="{{ vd_menu_u.courses }}">{{ vd_menu_t.courses }}</a></li>
+                                <li{% if vd_page == "blog" %} class="current"{% endif %}><a href="{{ vd_menu_u.blog }}">{{ vd_menu_t.blog }}</a></li>
+                                <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="{{ vd_menu_u.faq }}">{{ vd_menu_t.faq }}</a></li>
+                                <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="{{ vd_menu_u.contact }}">{{ vd_menu_t.contact }}</a></li>
                             </ul>
                         </div>
                         <div class="right">
@@ -123,7 +145,7 @@
                                 </div>
                                 <div class="main-menu__right-cart-search">
                                     <div class="main-menu__right-search-box">
-                                        <a href="/teste-de-nivel" class="thm-btn">{{ vd_menu_t.free_test }}</a>
+                                        <a href="{{ vd_menu_u.free_test }}" class="thm-btn">{{ vd_menu_t.free_test }}</a>
                                     </div>
                                 </div>
                             </div>

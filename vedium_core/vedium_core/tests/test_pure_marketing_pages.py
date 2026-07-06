@@ -1674,9 +1674,13 @@ def test_blog_has_self_service_panel_and_dynamic_route():
     blog_post_html = (WWW / "blog_post.html").read_text(encoding="utf-8")
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
 
-    # Menu: link para o blog (rótulo agora vem de vd_menu_t, traduzido por
-    # idioma — ver test_main_menu_labels_are_translated_per_language)
-    assert '<a href="/blog">{{ vd_menu_t.blog }}</a>' in navbar
+    # Menu: link para o blog (rótulo vem de vd_menu_t, href de vd_menu_u --
+    # blog não tem tradução em nenhum idioma ainda, então o href fica
+    # sempre "/blog" pra todos os idiomas -- ver
+    # test_main_menu_labels_are_translated_per_language e
+    # test_language_switcher_uses_real_translated_urls_not_prefix_guessing)
+    assert '<a href="{{ vd_menu_u.blog }}">{{ vd_menu_t.blog }}</a>' in navbar
+    assert '"blog": "/blog"' in navbar
 
     # Rota dinâmica /blog/<slug> — substitui os arquivos www/blog/<slug>.html
     # individuais (removidos: route rules do Frappe têm prioridade sobre
@@ -3514,3 +3518,46 @@ def test_certificate_pdf_push_and_onboarding_are_wired_correctly():
 
     # push-notifications.js precisa estar carregado no site inteiro.
     assert "js/push-notifications.js" in hooks_src
+
+
+def test_menu_links_respect_current_language_not_just_labels():
+    """Bug real reportado pelo usuário (2026-07-03, ver memória
+    project_i18n_language_switcher_reset_bug): em /en/sobre (ou qualquer
+    página traduzida), clicar em um link do menu (ex. FAQ) voltava pra
+    versão em português (href="/faq") em vez de ir pra /en/faq -- só o
+    RÓTULO do menu era traduzido (vd_menu_t), o HREF continuava
+    hardcoded em PT. Corrigido em 2026-07-06 com um segundo dict
+    (vd_menu_u) que resolve o href certo por idioma, e generalizando a
+    detecção de vd_nav.current pra além do binário en/pt-br (agora
+    também es/fr/de, e aceita tanto o alt_langs dict de curso.py quanto
+    o alt_lang_url singular das páginas institucionais).
+    """
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+
+    # vd_nav.current generalizado -- não mais só "en"/"pt-br"
+    assert 'lang if lang in ("en", "es", "fr", "de") else "pt-br"' in navbar
+    assert "alt_langs" in navbar
+
+    # Cada link do menu usa vd_menu_u (href por idioma), não mais um
+    # caminho PT fixo -- e o rótulo continua vindo de vd_menu_t.
+    for key in ("home", "how", "about", "courses", "blog", "faq", "contact"):
+        assert f'href="{{{{ vd_menu_u.{key} }}}}"' in navbar
+
+    assert 'href="{{ vd_menu_u.free_test }}"' in navbar
+
+    # Dict de URLs por idioma cobre as 5 famílias e cada uma resolve pro
+    # slug certo (mesmo slug em en/es/fr/de para as páginas institucionais
+    # com tradução real; blog fica sempre em PT, teste de nível usa um
+    # slug DIFERENTE por idioma).
+    links_dict = navbar.split("vd_menu_links = {")[1].split("\n} %}")[0]
+    for lang, home, faq_path, free_test in [
+        ("pt-br", "/", "/faq", "/teste-de-nivel"),
+        ("en", "/en/", "/en/faq", "/en/portuguese-placement-test"),
+        ("es", "/es/", "/es/faq", "/es/prueba-de-nivel-de-portugues"),
+        ("fr", "/fr/", "/fr/faq", "/fr/test-de-niveau-de-portugais"),
+        ("de", "/de/", "/de/faq", "/de/portugiesisch-einstufungstest"),
+    ]:
+        block = links_dict.split(f'"{lang}": {{')[1].split("},\n")[0]
+        assert f'"home": "{home}"' in block
+        assert f'"faq": "{faq_path}"' in block
+        assert f'"free_test": "{free_test}"' in block
