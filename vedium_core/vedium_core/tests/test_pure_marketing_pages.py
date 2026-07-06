@@ -1273,7 +1273,7 @@ def test_english_home_page_exists_and_routes_correctly():
     assert by_source["/en-us"] == "/en"
     assert by_source["/en-au"] == "/en"
     assert "/en" not in by_source  # sem self-redirect /en -> /en
-    assert 'if prefix != "en"' in hooks_src
+    assert 'if family not in ("en", "es", "fr", "de")' in hooks_src
 
     # Sitemap lista a home em inglês
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
@@ -1488,10 +1488,14 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     # não sobra mais como redirect pro canônico em PT.
     assert "/de/certificado" not in by_source
 
-    # /en/curso/<slug> (com barra, curso individual) já tem rota + tradução
-    # de verdade (curso.py) — não pode ter redirect genérico atropelando.
-    assert not any(r["source"].startswith("/en/curso/") for r in redirects)
-    assert any(r["source"] == r"/en-us/curso/(.*)" for r in redirects)
+    # /en|es|fr|de/curso/<slug> (com barra, curso individual) já tem rota +
+    # tradução de verdade (curso.py) — não pode ter redirect genérico
+    # atropelando, nem para as variantes regionais (en-us, en-au, es-ar,
+    # es-co, fr-ca), que também são resolvidas pelo mesmo controller.
+    for prefix in ("en", "en-us", "en-au", "es", "es-ar", "es-co", "fr", "fr-ca", "de"):
+        assert not any(r["source"].startswith(f"/{prefix}/curso/") for r in redirects)
+    # Idiomas sem course_translations (ru, zh-cn) ainda caem no fallback pro PT.
+    assert any(r["source"] == r"/ru/curso/(.*)" for r in redirects)
 
     hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
     assert "*LANGUAGE_PREFIX_REDIRECTS," in hooks_src
@@ -1748,11 +1752,17 @@ def test_yoruba_blog_cluster_has_english_translations():
 
 def test_individual_course_pages_have_english_translation():
     """6 páginas de curso individuais (3 Iorubá + 3 PLE) ganham versão em
-    inglês via /en/curso/<slug>, reaproveitando o MESMO controller
+    en/es/fr/de via /<lang>/curso/<slug>, reaproveitando o MESMO controller
     dinâmico curso.py (preço/vagas/avaliações sempre ao vivo do banco) —
     só title/short_introduction/description são sobrepostos por
-    course_translations.COURSE_TRANSLATIONS. Sem Custom Field, sem
-    migração: cursos sem tradução (cluster Inglês) continuam só em PT.
+    course_translations.COURSE_TRANSLATIONS[slug][lang]. Sem Custom Field,
+    sem migração: cursos sem tradução (cluster Inglês) continuam só em PT.
+
+    2026-07-06: generalizado de "só inglês" pra en/es/fr/de (mesmo padrão
+    das 5 páginas institucionais) -- COURSE_TRANSLATIONS passou de
+    {slug: {...}} pra {slug: {lang: {...}}}, e o chrome do curso.html
+    (antes um binário vd_course_en/pt-BR com ~25 strings hardcoded) virou
+    um dict UI por idioma.
     """
     course_translations = (
         ROOT / "vedium_core" / "vedium_core" / "course_translations.py"
@@ -1771,34 +1781,43 @@ def test_individual_course_pages_have_english_translation():
     ]
     for slug in translated_slugs:
         assert f'"{slug}"' in course_translations
+        for lang in ("en", "es", "fr", "de"):
+            assert f'"{lang}"' in course_translations.split(f'"{slug}"')[1].split("},\n    \"")[0]
 
     assert '{"from_route": "/en/curso/<course>", "to_route": "curso"}' in hooks
 
-    # sem tradução -> redireciona pra versão PT (não cria página fina/duplicada)
+    # sem tradução no idioma pedido -> redireciona pra versão PT (não cria
+    # página fina/duplicada)
     assert "from vedium_core.course_translations import COURSE_TRANSLATIONS" in curso_py
-    assert "has_translation = course_name in COURSE_TRANSLATIONS" in curso_py
+    assert "translations_for_course = COURSE_TRANSLATIONS.get(course_name, {})" in curso_py
     assert 'frappe.local.flags.redirect_location = f"/curso/{course_name}"' in curso_py
+    for lang in ("en", "es", "fr", "de"):
+        assert f'"{lang}"' in curso_py.split('for candidate in (')[1].split(")")[0]
 
     # preço/vagas/avaliações continuam vindo do banco — só sobrepõe texto
     assert "context.course = get_course_details(course_name)" in curso_py
     assert 'context.course.title = translation["title"]' in curso_py
 
-    # chrome bilíngue + hreflang recíproco
-    assert 'lang="{{ lang or \'pt-BR\' }}"' in curso_html
-    assert "alt_lang_url" in curso_html
-    assert '"Enroll now" if vd_course_en else "Matricular agora"' in curso_html
+    # chrome multi-idioma (dict UI) + hreflang recíproco pra todos os
+    # idiomas que tiverem tradução real desse curso
+    assert 'vd_lang = lang or "pt-BR"' in curso_html
+    assert "alt_langs" in curso_html
+    assert '"ui.enroll"' not in curso_html  # não pode sobrar string literal em vez do lookup
+    assert "{{ ui.enroll }}" in curso_html
 
     # Bug real achado em produção (2026-07-02, pós-deploy): frappe.local.path
     # NUNCA tem barra inicial — PathResolver.__init__ faz path.strip("/ ")
     # antes de setar frappe.local.path (frappe/website/path_resolver.py).
     # startswith("/en/curso/") com barra na frente nunca batia, então
     # /en/curso/<slug> sempre renderizava em português. Trava a versão
-    # corrigida (lstrip antes do startswith).
+    # corrigida (lstrip antes do startswith), agora generalizada pra
+    # qualquer um dos 4 idiomas.
     assert '.startswith("/en/curso/")' not in curso_py, (
         "startswith com barra inicial nunca bate — frappe.local.path não tem "
         "barra na frente (path_resolver.py faz .strip('/ '))"
     )
-    assert '.lstrip("/").startswith("en/curso/")' in curso_py
+    assert 'path = (frappe.local.path or "").lstrip("/")' in curso_py
+    assert 'path.startswith(f"{candidate}/curso/")' in curso_py
 
 
 def test_english_pillar_course_grid_links_to_english_course_pages():

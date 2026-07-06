@@ -200,9 +200,9 @@ def _course_urls():
             "changefreq": "weekly",
             "lastmod": lastmod,
         })
-        if course.name in COURSE_TRANSLATIONS:
+        for lang_code in COURSE_TRANSLATIONS.get(course.name, {}):
             urls.append({
-                "loc": f"/en/curso/{course.name}",
+                "loc": f"/{lang_code}/curso/{course.name}",
                 "priority": "0.6",
                 "changefreq": "weekly",
                 "lastmod": lastmod,

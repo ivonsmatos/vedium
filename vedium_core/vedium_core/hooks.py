@@ -219,12 +219,14 @@ def _build_language_prefix_redirects():
             if source == target:
                 continue
             redirects.append({"source": source, "target": target})
-        # /en/curso/<slug> já tem rota + tradução de verdade (curso.py) —
-        # só os OUTROS prefixos precisam cair de volta pro curso em PT.
-        # (Só inglês tem esse mecanismo hoje — se outro idioma ganhar
-        # páginas de curso individuais, replicar o padrão de curso.py
-        # antes de tirar esse prefixo daqui.)
-        if prefix != "en":
+        # en/es/fr/de/curso/<slug> já tem rota + tradução de verdade
+        # (curso.py, via course_translations.COURSE_TRANSLATIONS) — só os
+        # OUTROS prefixos (ru, zh-cn etc.) precisam cair de volta pro curso
+        # em PT. curso.py já trata, por curso individual, o caso de um
+        # desses 4 idiomas pedir um slug sem tradução (redireciona pro PT
+        # dentro do próprio controller — ver "req_lang not in
+        # translations_for_course" em www/curso.py).
+        if family not in ("en", "es", "fr", "de"):
             redirects.append({
                 "source": rf"/{prefix}/curso/(.*)",
                 "target": r"/curso/\1",

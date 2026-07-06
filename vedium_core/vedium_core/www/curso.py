@@ -21,21 +21,28 @@ def get_context(context):
         frappe.local.flags.redirect_location = "/catalogo"
         raise frappe.Redirect
 
-    # Versão em inglês: só existe pra cursos com tradução (Iorubá e PLE —
-    # público que não fala PT). Sem tradução, manda pra versão em português
-    # em vez de criar uma página fina/duplicada.
+    # Versão traduzida: só existe pra cursos com tradução (Iorubá e PLE —
+    # público que não fala PT). Sem tradução no idioma pedido, manda pra
+    # versão em português em vez de criar uma página fina/duplicada.
     # OBS: frappe.local.path NUNCA tem barra inicial — PathResolver.__init__
     # faz path.strip("/ ") antes de setar frappe.local.path (ver
     # frappe/website/path_resolver.py). Checar com "/en/curso/" (barra na
     # frente) nunca bate — bug real que só apareceu em produção, pego via
     # verificação pós-deploy (curl mostrou title/canonical em PT mesmo em
     # /en/curso/<slug>). lstrip("/") deixa a checagem à prova disso.
-    is_en = (frappe.local.path or "").lstrip("/").startswith("en/curso/")
-    has_translation = course_name in COURSE_TRANSLATIONS
-    if is_en and not has_translation:
+    path = (frappe.local.path or "").lstrip("/")
+    req_lang = None
+    for candidate in ("en", "es", "fr", "de"):
+        if path.startswith(f"{candidate}/curso/"):
+            req_lang = candidate
+            break
+
+    translations_for_course = COURSE_TRANSLATIONS.get(course_name, {})
+    has_translation = bool(translations_for_course)
+    if req_lang and req_lang not in translations_for_course:
         frappe.local.flags.redirect_location = f"/curso/{course_name}"
         raise frappe.Redirect
-    translation = COURSE_TRANSLATIONS[course_name] if is_en else None
+    translation = translations_for_course.get(req_lang) if req_lang else None
 
     # Get course details (preço, vagas, avaliações etc. sempre ao vivo do banco)
     context.course = get_course_details(course_name)
@@ -44,7 +51,7 @@ def get_context(context):
         context.course.short_introduction = translation["short_introduction"]
         context.course.description = translation["description"]
 
-    context.lang = "en" if translation else "pt-BR"
+    context.lang = req_lang or "pt-BR"
 
     # Check if user is enrolled
     context.is_enrolled = check_enrollment(course_name)
@@ -56,29 +63,41 @@ def get_context(context):
     context.cart_count = get_cart_count()
 
     # Page metadata (SEO) — título com nome do curso, descrição e canonical
+    _title_suffix = {
+        "en": "Live Online Language Course",
+        "es": "Curso de Idiomas Online en Vivo",
+        "fr": "Cours de Langue en Ligne en Direct",
+        "de": "Live-Online-Sprachkurs",
+    }
+    _fallback_desc = {
+        "en": "{title}: live classes, real teachers and a certificate. Enroll at Vedium.",
+        "es": "{title}: clases en vivo, profesores reales y certificado. Inscríbete en Vedium.",
+        "fr": "{title} : cours en direct, vrais professeurs et certificat. Inscrivez-vous chez Vedium.",
+        "de": "{title}: Live-Unterricht, echte Lehrkräfte und Zertifikat. Jetzt bei Vedium anmelden.",
+    }
     if translation:
-        context.title = f"{context.course.title} — Live Online Language Course | Vedium"
+        context.title = f"{context.course.title} — {_title_suffix[req_lang]} | Vedium"
     else:
         context.title = f"{context.course.title} — Curso de Idiomas Online ao Vivo | Vedium"
     desc = (context.course.get("short_introduction") or "").strip()
     if translation:
         context.description = (desc[:155] if desc else
-                               f"{context.course.title}: live classes, real teachers and a certificate. Enroll at Vedium.")
+                               _fallback_desc[req_lang].format(title=context.course.title))
     else:
         context.description = (desc[:155] if desc else
                                f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
     context.canonical_url = (
-        f"https://vediums.com/en/curso/{course_name}" if translation
+        f"https://vediums.com/{req_lang}/curso/{course_name}" if translation
         else f"https://vediums.com/curso/{course_name}"
     )
-    # hreflang recíproco — só quando existe tradução pra esse curso
+    # hreflang recíproco — um link por idioma que realmente tem tradução
+    # pra esse curso, mais o canônico em pt-BR.
     if has_translation:
-        context.alt_lang_url = (
-            f"https://vediums.com/curso/{course_name}" if translation
-            else f"https://vediums.com/en/curso/{course_name}"
-        )
+        context.alt_langs = {"pt-br": f"https://vediums.com/curso/{course_name}"}
+        for lang_code in translations_for_course:
+            context.alt_langs[lang_code] = f"https://vediums.com/{lang_code}/curso/{course_name}"
     else:
-        context.alt_lang_url = None
+        context.alt_langs = None
     context.og_image = (context.course.image if context.course.image and context.course.image.startswith("http")
                         else f"https://vediums.com{context.course.image}") if context.course.image else "https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
     context.lms_url = (
