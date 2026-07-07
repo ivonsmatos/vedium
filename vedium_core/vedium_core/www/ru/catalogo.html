@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://vediums.com/ru/catalogo" />
+    <link rel="alternate" hreflang="pt-br" href="https://vediums.com/catalogo" />
+    <link rel="alternate" hreflang="en" href="https://vediums.com/en/catalogo" />
+    <link rel="alternate" hreflang="es" href="https://vediums.com/es/catalogo" />
+    <link rel="alternate" hreflang="fr" href="https://vediums.com/fr/catalogo" />
+    <link rel="alternate" hreflang="de" href="https://vediums.com/de/catalogo" />
+    <link rel="alternate" hreflang="ru" href="https://vediums.com/ru/catalogo" />
+    <link rel="alternate" hreflang="x-default" href="https://vediums.com/catalogo" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vediums.com/ru/catalogo" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Vedium" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+    <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+
+    <!-- Schema.org ItemList (course catalog) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Курсы Vedium",
+        "itemListElement": [
+            {% for course in courses %}{
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "url": "https://vediums.com{{ course.url }}",
+                "name": {{ course.title | tojson }}
+            }{% if not loop.last %},{% endif %}{% endfor %}
+        ]
+    }
+    </script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/animate.min.css"/>
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/custom-animate.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/nouislider/nouislider.pips.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/odometer/odometer.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/swiper/swiper.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/tiny-slider/tiny-slider.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/reey-font/stylesheet.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/owl-carousel/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/twentytwenty/twentytwenty.css" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+
+    <style>
+      img[src*="logo-color-reta"] { max-height: 46px !important; width: auto !important; }
+      .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
+      .stricky-header, .stricky-header.stricked-menu { display: none !important; }
+      .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <img class="preloader__image" width="60" src="/assets/vedium_core/vedium_assets/images/loader.png" alt="" />
+    </div>
+
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+
+        {% set vd_page = "cursos" %}
+        {% include "templates/includes/site_navbar.html" %}
+
+
+        <div class="stricky-header stricked-menu main-menu">
+            <div class="sticky-header__content">
+
+            </div><!-- /.sticky-header__content -->
+        </div><!-- /.stricky-header -->
+
+
+        <div class="stricky-header stricked-menu main-menu">
+            <div class="sticky-header__content">
+
+            </div><!-- /.sticky-header__content -->
+        </div><!-- /.stricky-header -->
+
+
+
+    <!--Page Header Start-->
+    <section class="page-header clearfix" style="background-image: linear-gradient(rgba(35,78,112,0.82), rgba(46,109,164,0.82)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-header__wrapper clearfix">
+                        <div class="page-header__title">
+                            <h2>Курсы</h2>
+                        </div>
+                        <div class="page-header__menu">
+                            <ul class="page-header__menu-list list-unstyled clearfix">
+                                <li><a href="/ru">Главная</a></li>
+                                <li class="active">Курсы</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--Page Header End-->
+
+
+
+    <!--Courses One Start-->
+    <section class="courses-one courses-one--courses">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="section-title__tagline">Английский и йоруба</span>
+                <h2 class="section-title__title">Откройте для себя наши курсы</h2>
+            </div>
+
+            <!-- Filtro por idioma -->
+            <div class="row">
+                <div class="courses-one--courses__top">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="courses-one--courses__menu-box">
+                            <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
+                                <li data-filter=".filter-item" class="active"><span class="filter-text">Все</span></li>
+                                <li data-filter=".ingles"><span class="filter-text">Английский</span></li>
+                                <li data-filter=".ioruba"><span class="filter-text">Йоруба</span></li>
+                                <li data-filter=".portugues"><span class="filter-text">Португальский (PLE)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards dinâmicos dos cursos -->
+            <div class="row filter-layout" style="display:flex;flex-wrap:wrap;">
+                {% if courses %}
+                    {% for course in courses %}
+                    {% set lang_class = "ingles" if "Inglês" in (course.category or "") else ("ioruba" if "Iorubá" in (course.category or "") else ("portugues" if "Português" in (course.category or "") else "outros")) %}
+                    <!--Start Single Courses One-->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 filter-item {{ lang_class }}" style="display:flex;margin-bottom:30px;">
+                        <div class="courses-one__single wow fadeInUp" data-wow-delay="{{ loop.index0 * 100 }}ms" data-wow-duration="1000ms" style="width:100%;display:flex;flex-direction:column;">
+                            <div class="courses-one__single-img" style="flex-shrink:0;height:220px;overflow:hidden;position:relative;">
+                                <img src="{{ course.image }}" alt="{{ course.title }}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
+                                {% if course.level_badge %}
+                                <div class="overlay-text">
+                                    <p>{{ course.level_badge }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="courses-one__single-content" style="flex:1;display:flex;flex-direction:column;padding-top:28px;">
+                                <h4 class="courses-one__single-content-title">
+                                    <a href="{{ course.url }}">{{ course.title }}</a>
+                                </h4>
+                                {% if course.short_introduction %}
+                                <p style="font-size:13px;color:#777;margin-bottom:8px;flex:1;">{{ course.short_introduction[:80] }}...</p>
+                                {% endif %}
+                                <p class="courses-one__single-content-price">{{ course.formatted_price }}</p>
+                                <ul class="courses-one__single-content-courses-info list-unstyled">
+                                    {% if course.lesson_count %}<li>{{ course.lesson_count }} уроков</li>{% endif %}
+                                    {% if course.enrollment_count %}<li>{{ course.enrollment_count }} учащихся</li>{% endif %}
+                                    {% if course.level_badge %}<li>{{ course.level_badge }}</li>{% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Courses One-->
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center py-5">
+                        <p style="font-size:18px;color:#999;">В настоящее время курсы недоступны.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!--Courses One End-->
+
+    {% include "templates/includes/site_footer.html" %}
+
+    </div><!-- /.page-wrapper -->
+
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="/ru" aria-label="logo image"><img src="/assets/vedium_core/vedium_assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="icon-phone-call"></i>
+                    <a href="mailto:contato@vediums.com">contato@vediums.com</a>
+                </li>
+                <li>
+                    <i class="icon-letter"></i>
+                    <a href="tel:+5511911293075">+55 (11) 91129-3075</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                    <a href="https://www.instagram.com/vediumsglobal/" target="_blank" rel="noopener" class="fab fa-instagram" aria-label="Instagram"></a>
+                    <a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" class="fab fa-linkedin-in" aria-label="LinkedIn"></a>
+                    <a href="https://wa.me/5511911293075" target="_blank" rel="noopener" class="fab fa-whatsapp" aria-label="WhatsApp"></a>
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Поиск..." />
+                <button type="submit" aria-label="search submit" class="thm-btn2">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jarallax/jarallax.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/nouislider/nouislider.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/odometer/odometer.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/swiper/swiper.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/tiny-slider/tiny-slider.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/wnumb/wNumb.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/isotope/isotope.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/countdown/countdown.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/twentytwenty/twentytwenty.js"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/vendors/twentytwenty/jquery.event.move.js"></script>
+
+
+
+    <!-- template js -->
+    <script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
+    <script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+
+
+</body>
+
+</html>
