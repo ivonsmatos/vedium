@@ -3,7 +3,7 @@
 Hierarquia de exceções do Vedium.
 
 Uso:
-    from vedium_core.vedium_core.exceptions import PaymentError, EnrollmentError
+    from vedium_core.exceptions import PaymentError, EnrollmentError
 
     raise PaymentError("Falha ao processar pagamento", gateway="stripe")
     frappe.throw(_("Erro"), PaymentError)

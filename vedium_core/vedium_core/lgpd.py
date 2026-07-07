@@ -25,7 +25,7 @@ from datetime import datetime
 import frappe
 from frappe import _
 
-from vedium_core.vedium_core.exceptions import LGPDError
+from vedium_core.exceptions import LGPDError
 
 # DocTypes gerenciados por este módulo
 _CONSENT_DOCTYPE = "Vedium Consent Record"

@@ -26,7 +26,7 @@ from datetime import datetime, timedelta
 import frappe
 from frappe import _
 
-from vedium_core.vedium_core.exceptions import EnrollmentError, PaymentError
+from vedium_core.exceptions import EnrollmentError, PaymentError
 
 TRIAL_DAYS = 7
 TRIAL_STATUS = "Trial"
