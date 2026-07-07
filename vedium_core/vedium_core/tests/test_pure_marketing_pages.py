@@ -497,7 +497,7 @@ def test_english_cluster_has_spanish_pages_with_reciprocal_hreflang():
     pairs = [
         ("curso-de-ingles-online", "curso-de-ingles-online-en-vivo", "/en/portuguese-placement-test"),
         ("ingles-para-entrevista", "ingles-para-entrevistas-de-trabajo", None),
-        ("ingles-para-programadores", "ingles-para-programadores", None),
+        ("ingles-para-programadores", "ingles-para-desarrolladores", None),
         ("ingles-executivo", "ingles-de-negocios", None),
         ("ingles-para-viagens", "ingles-para-viajar", None),
         ("ingles-para-atendimento-ao-cliente", "ingles-para-atencion-al-cliente", None),

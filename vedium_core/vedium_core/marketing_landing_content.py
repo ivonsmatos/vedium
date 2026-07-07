@@ -163,7 +163,7 @@ LANDINGS = {
         "whatsapp_text": "Olá, quero me preparar para entrevista em inglês na Vedium.",
     },
     "ingles-para-programadores": {
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-desarrolladores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "Inglês para Programadores — Vedium",
         "short_title": "Inglês para Programadores",
         "meta_description": "Inglês para programadores com aulas ao vivo: entrevistas técnicas, documentação, reuniões, pair programming e comunicação global.",
@@ -919,7 +919,7 @@ LANDINGS = {
     },
     "english-for-developers": {
         "lang": "en",
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-desarrolladores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "English for Developers — Vedium",
         "short_title": "English for Developers",
         "meta_description": "English for developers with live classes: technical interviews, documentation, meetings, pair programming and global communication.",
@@ -2122,7 +2122,7 @@ LANDINGS = {
             {
                 "heading": "Inglés para conversación, trabajo, viajes y exámenes",
                 "body": [
-                    "<p>El mismo curso se adapta a distintos objetivos. Si tu meta es la <strong>conversación</strong>, la práctica oral guiada está en el centro de cada clase. Si es tu <strong>carrera</strong>, hay caminos específicos como <a href=\"/es/ingles-para-entrevistas-de-trabajo\">inglés para entrevistas de trabajo</a>, <a href=\"/es/ingles-de-negocios\">inglés de negocios</a> y <a href=\"/es/ingles-para-programadores\">inglés para programadores</a>. Si vas a viajar, <a href=\"/es/ingles-para-viajar\">inglés para viajar</a> prioriza situaciones reales de aeropuerto, hotel y restaurante.</p>",
+                    "<p>El mismo curso se adapta a distintos objetivos. Si tu meta es la <strong>conversación</strong>, la práctica oral guiada está en el centro de cada clase. Si es tu <strong>carrera</strong>, hay caminos específicos como <a href=\"/es/ingles-para-entrevistas-de-trabajo\">inglés para entrevistas de trabajo</a>, <a href=\"/es/ingles-de-negocios\">inglés de negocios</a> y <a href=\"/es/ingles-para-desarrolladores\">inglés para programadores</a>. Si vas a viajar, <a href=\"/es/ingles-para-viajar\">inglés para viajar</a> prioriza situaciones reales de aeropuerto, hotel y restaurante.</p>",
                     "<p>Quien necesita demostrar proficiencia cuenta con apoyo para <strong>TOEFL e IELTS</strong> y otros exámenes, enfocado en el formato del examen y las habilidades evaluadas. En todos los casos, el punto de partida es el mismo: descubrir tu nivel y armar un plan que te lleve de donde estás hasta tu objetivo, sin contenido genérico.</p>",
                 ],
             },
@@ -2196,9 +2196,9 @@ LANDINGS = {
         ],
         "whatsapp_text": "Hola, quiero prepararme para una entrevista en inglés con Vedium.",
     },
-    "ingles-para-programadores": {
+    "ingles-para-desarrolladores": {
         "lang": "es",
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-desarrolladores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "Inglés para Programadores — Vedium",
         "short_title": "Inglés para Programadores",
         "meta_description": "Inglés para programadores con clases en vivo: entrevistas técnicas, documentación, reuniones, pair programming y comunicación global.",
@@ -2564,7 +2564,7 @@ LANDINGS = {
     },
     "anglais-developpeurs-informatique": {
         "lang": "fr",
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-desarrolladores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "Anglais pour Développeurs — Vedium",
         "short_title": "Anglais pour Développeurs",
         "meta_description": "Anglais pour développeurs avec des cours en direct : entretiens techniques, documentation, réunions, pair programming et communication internationale.",
@@ -2930,7 +2930,7 @@ LANDINGS = {
     },
     "englisch-fuer-entwickler": {
         "lang": "de",
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-desarrolladores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "Englisch für Entwickler — Vedium",
         "short_title": "Englisch für Entwickler",
         "meta_description": "Englisch für Entwickler mit Live-Unterricht: technische Vorstellungsgespräche, Dokumentation, Meetings, Pair Programming und internationale Kommunikation.",
@@ -3492,7 +3492,7 @@ LANDINGS = {
     },
     "angliyskiy-dlya-programmistov": {
         "lang": "ru",
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-desarrolladores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "Английский для разработчиков — Vedium",
         "short_title": "Английский для разработчиков",
         "meta_description": "Английский для разработчиков с живыми занятиями: технические собеседования, документация, встречи, парное программирование и международное общение.",
