@@ -3610,8 +3610,32 @@ def test_footer_links_and_labels_respect_current_language():
         assert f'"faq": "{faq_path}"' in block
         assert f'"empresas": "{empresas_path}"' in block
 
-    # Links de conteúdo de nicho (sem tradução real) continuam apontando
-    # pro PT em qualquer idioma -- comportamento intencional, não bug.
+    # 2026-07-06 (2ª rodada): links de nicho (páginas pilar SEO tipo
+    # curso-de-ingles-online) TAMBÉM têm tradução real, só que com um
+    # slug DIFERENTE por idioma (LANDINGS[...]["alt"], não
+    # SAME_SLUG_TRANSLATIONS) -- resolvidos via vd_footer_u.get(chave,
+    # fallback pt) pra não quebrar quando a tradução não existir
+    # (ex.: ioruba-cultura-e-ancestralidade não tem fr/de ainda).
+    cluster_urls = footer.split("vd_footer_urls = {")[1].split("\n} %}")[0]
+    for lang, english_online, yoruba_online in [
+        ("pt-br", "/curso-de-ingles-online", "/curso-de-ioruba-online"),
+        ("en", "/en/learn-english-online", "/en/learn-yoruba-online"),
+        ("es", "/es/curso-de-ingles-online-en-vivo", "/es/curso-de-yoruba-online"),
+        ("fr", "/fr/cours-anglais-en-ligne-en-direct", None),
+        ("de", "/de/englischkurs-online-live", None),
+    ]:
+        block = cluster_urls.split(f'"{lang}": {{')[1].split("},\n")[0]
+        assert f'"cluster-english-online": "{english_online}"' in block
+        if yoruba_online:
+            assert f'"cluster-yoruba-online": "{yoruba_online}"' in block
+        else:
+            # fr/de não têm tradução real desse cluster ainda -- a chave
+            # não deve existir (o .get() no template cai pro PT sozinho).
+            assert '"cluster-yoruba-online"' not in block
+
+    # Blog index e termos/privacidade/cookies continuam sem tradução real
+    # em nenhum idioma -- ficam sempre em PT, comportamento intencional.
     assert '<a href="/blog">' in footer
-    assert '<a href="/curso-de-ingles-online">' in footer
     assert '<a href="/termos">' in footer
+    assert '<a href="/quanto-custa-curso-de-idiomas">' in footer
+    assert '<a href="/teste-de-nivel-ingles">' in footer
