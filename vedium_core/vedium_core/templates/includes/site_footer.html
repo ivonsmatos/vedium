@@ -1,3 +1,47 @@
+{#- Bug real reportado pelo usuário (2026-07-03): o rodapé inteiro
+   (títulos, rótulos de link e hrefs) sempre ficava em português, mesmo em
+   páginas já traduzidas -- ao contrário do menu (site_navbar.html, já
+   corrigido), o rodapé nunca teve NENHUMA lógica de idioma. Corrigido em
+   2026-07-06: (1) título/rótulos de link traduzidos por idioma via
+   vd_footer_i18n; (2) hrefs corrigidos SÓ pras rotas que têm tradução
+   real de mesmo slug (SAME_SLUG_TRANSLATIONS em hooks.py) via
+   vd_footer_urls -- páginas de nicho (clusters SEO, posts de blog,
+   termos/privacidade/cookies) continuam apontando pro PT porque não
+   existe tradução real pra apontar (mesmo racional já aplicado no menu
+   pro link do Blog). vd_footer_lang é recalculado aqui (não reaproveita
+   vd_nav do navbar -- variáveis "set" num include Jinja não vazam pra
+   outro include irmão) usando os MESMOS context vars (landing/post/lang)
+   que o navbar usa. #}
+{%- set vd_footer_lang = "pt-br" %}
+{%- if landing is defined and landing %}
+  {%- set vd_footer_lang = landing.lang_code or "pt-br" %}
+{%- elif post is defined and post %}
+  {%- set _pl = post.lang or "pt-BR" %}
+  {%- set vd_footer_lang = "pt-br" if _pl == "pt-BR" else _pl %}
+{%- elif lang is defined and lang in ("en", "es", "fr", "de") %}
+  {%- set vd_footer_lang = lang %}
+{%- endif %}
+{%- set vd_footer_i18n = {
+  "pt-br": {"tagline": "Escola de idiomas 100% online, com aulas ao vivo, professores qualificados e foco real na fluência.", "courses_title": "Cursos de Idiomas", "catalog": "Catálogo de cursos", "en_course": "Curso de inglês online", "yo_course": "Curso de iorubá online", "ple_course": "Português para estrangeiros", "en_interview": "Inglês para entrevista", "en_exec": "Inglês executivo", "goals_title": "Objetivos", "en_travel": "Inglês para viagens", "en_support_goal": "Inglês para atendimento", "ple_exec": "Português para executivos", "celpe": "Preparatório Celpe-Bras", "yo_culture": "Iorubá, cultura e ancestralidade", "level_test": "Teste de nível grátis", "vedium_title": "Vedium", "how": "Como funciona", "methodology": "Metodologia", "differentiators": "Diferenciais", "about": "Nossa história", "plans": "Planos", "diagnostic": "Aula diagnóstica", "referral": "Programa de indicação", "companies": "Vedium para empresas", "support_title": "Suporte", "faq": "FAQ & Suporte", "contact": "Contato", "terms": "Termos de Uso", "privacy": "Privacidade", "cookies": "Cookies", "cancellation": "Cancelamento e Reembolso", "certificate": "Verificar certificado", "login": "Entrar na plataforma", "online_for_you": "Vedium online para você", "free_content": "Conteúdos gratuitos", "blog": "Blog da Vedium", "yo_blog_post": "Aprender iorubá: língua e cultura", "cost_worth": "Quanto custa e vale a pena", "en_test": "Teste de inglês", "opportunities": "Conteúdos e oportunidades", "refer": "Indique a Vedium", "careers": "Trabalhe conosco", "corporate": "Treinamento para empresas", "community": "Comunidade por idioma", "enrollment": "Matrícula", "service_online": "Atendimento 100% Online", "copyright": "Copyright", "developed_by": "Desenvolvido por"},
+  "en": {"tagline": "100% online language school, with live classes, qualified teachers and a real focus on fluency.", "courses_title": "Language Courses", "catalog": "Course catalog", "en_course": "Online English course", "yo_course": "Online Yoruba course", "ple_course": "Portuguese for foreigners", "en_interview": "English for interviews", "en_exec": "Executive English", "goals_title": "Goals", "en_travel": "English for travel", "en_support_goal": "English for customer service", "ple_exec": "Portuguese for executives", "celpe": "Celpe-Bras prep", "yo_culture": "Yoruba, culture and ancestry", "level_test": "Free placement test", "vedium_title": "Vedium", "how": "How it works", "methodology": "Methodology", "differentiators": "Why Vedium", "about": "Our story", "plans": "Plans", "diagnostic": "Diagnostic class", "referral": "Referral program", "companies": "Vedium for companies", "support_title": "Support", "faq": "FAQ & Support", "contact": "Contact", "terms": "Terms of Use", "privacy": "Privacy", "cookies": "Cookies", "cancellation": "Cancellation & Refund", "certificate": "Verify certificate", "login": "Log in to the platform", "online_for_you": "Vedium online for you", "free_content": "Free content", "blog": "Vedium Blog", "yo_blog_post": "Learn Yoruba: language and culture", "cost_worth": "How much it costs & is it worth it", "en_test": "English test", "opportunities": "Content & opportunities", "refer": "Refer Vedium", "careers": "Careers", "corporate": "Corporate training", "community": "Community by language", "enrollment": "Enrollment", "service_online": "100% Online Support", "copyright": "Copyright", "developed_by": "Developed by"},
+  "es": {"tagline": "Escuela de idiomas 100% online, con clases en vivo, profesores calificados y enfoque real en la fluidez.", "courses_title": "Cursos de Idiomas", "catalog": "Catálogo de cursos", "en_course": "Curso de inglés online", "yo_course": "Curso de yoruba online", "ple_course": "Portugués para extranjeros", "en_interview": "Inglés para entrevistas", "en_exec": "Inglés ejecutivo", "goals_title": "Objetivos", "en_travel": "Inglés para viajes", "en_support_goal": "Inglés para atención al cliente", "ple_exec": "Portugués para ejecutivos", "celpe": "Preparación Celpe-Bras", "yo_culture": "Yoruba, cultura y ancestralidad", "level_test": "Prueba de nivel gratis", "vedium_title": "Vedium", "how": "Cómo funciona", "methodology": "Metodología", "differentiators": "Por qué Vedium", "about": "Nuestra historia", "plans": "Planes", "diagnostic": "Clase diagnóstica", "referral": "Programa de referidos", "companies": "Vedium para empresas", "support_title": "Soporte", "faq": "Preguntas frecuentes y soporte", "contact": "Contacto", "terms": "Términos de Uso", "privacy": "Privacidad", "cookies": "Cookies", "cancellation": "Cancelación y Reembolso", "certificate": "Verificar certificado", "login": "Ingresar a la plataforma", "online_for_you": "Vedium online para ti", "free_content": "Contenidos gratuitos", "blog": "Blog de Vedium", "yo_blog_post": "Aprender yoruba: idioma y cultura", "cost_worth": "Cuánto cuesta y si vale la pena", "en_test": "Prueba de inglés", "opportunities": "Contenidos y oportunidades", "refer": "Recomienda Vedium", "careers": "Trabaja con nosotros", "corporate": "Capacitación para empresas", "community": "Comunidad por idioma", "enrollment": "Matrícula", "service_online": "Atención 100% Online", "copyright": "Copyright", "developed_by": "Desarrollado por"},
+  "fr": {"tagline": "École de langues 100% en ligne, avec des cours en direct, des professeurs qualifiés et un vrai focus sur la fluidité.", "courses_title": "Cours de Langues", "catalog": "Catalogue de cours", "en_course": "Cours d'anglais en ligne", "yo_course": "Cours de yoruba en ligne", "ple_course": "Portugais pour étrangers", "en_interview": "Anglais pour les entretiens", "en_exec": "Anglais des affaires", "goals_title": "Objectifs", "en_travel": "Anglais pour voyager", "en_support_goal": "Anglais pour le service client", "ple_exec": "Portugais pour cadres", "celpe": "Préparation Celpe-Bras", "yo_culture": "Yoruba, culture et ascendance", "level_test": "Test de niveau gratuit", "vedium_title": "Vedium", "how": "Comment ça marche", "methodology": "Méthodologie", "differentiators": "Pourquoi Vedium", "about": "Notre histoire", "plans": "Formules", "diagnostic": "Cours diagnostic", "referral": "Programme de parrainage", "companies": "Vedium pour les entreprises", "support_title": "Assistance", "faq": "FAQ et assistance", "contact": "Contact", "terms": "Conditions d'utilisation", "privacy": "Confidentialité", "cookies": "Cookies", "cancellation": "Annulation et remboursement", "certificate": "Vérifier un certificat", "login": "Se connecter à la plateforme", "online_for_you": "Vedium en ligne pour vous", "free_content": "Contenus gratuits", "blog": "Blog Vedium", "yo_blog_post": "Apprendre le yoruba : langue et culture", "cost_worth": "Combien ça coûte et est-ce que ça en vaut la peine", "en_test": "Test d'anglais", "opportunities": "Contenus et opportunités", "refer": "Parrainez Vedium", "careers": "Carrières", "corporate": "Formation pour entreprises", "community": "Communauté par langue", "enrollment": "Inscription", "service_online": "Service 100% en ligne", "copyright": "Copyright", "developed_by": "Développé par"},
+  "de": {"tagline": "100 % Online-Sprachschule mit Live-Unterricht, qualifizierten Lehrkräften und echtem Fokus auf Sprachgewandtheit.", "courses_title": "Sprachkurse", "catalog": "Kurskatalog", "en_course": "Online-Englischkurs", "yo_course": "Online-Yorubakurs", "ple_course": "Portugiesisch für Ausländer", "en_interview": "Englisch für Vorstellungsgespräche", "en_exec": "Business-Englisch", "goals_title": "Ziele", "en_travel": "Englisch für Reisen", "en_support_goal": "Englisch für Kundenservice", "ple_exec": "Portugiesisch für Führungskräfte", "celpe": "Celpe-Bras-Vorbereitung", "yo_culture": "Yoruba, Kultur und Ahnenerbe", "level_test": "Kostenloser Einstufungstest", "vedium_title": "Vedium", "how": "So funktioniert's", "methodology": "Methodik", "differentiators": "Warum Vedium", "about": "Unsere Geschichte", "plans": "Pakete", "diagnostic": "Diagnose-Unterrichtsstunde", "referral": "Empfehlungsprogramm", "companies": "Vedium für Unternehmen", "support_title": "Support", "faq": "FAQ & Support", "contact": "Kontakt", "terms": "Nutzungsbedingungen", "privacy": "Datenschutz", "cookies": "Cookies", "cancellation": "Stornierung und Rückerstattung", "certificate": "Zertifikat prüfen", "login": "Zur Plattform anmelden", "online_for_you": "Vedium online für Sie", "free_content": "Kostenlose Inhalte", "blog": "Vedium-Blog", "yo_blog_post": "Yoruba lernen: Sprache und Kultur", "cost_worth": "Was es kostet und ob es sich lohnt", "en_test": "Englischtest", "opportunities": "Inhalte und Möglichkeiten", "refer": "Vedium empfehlen", "careers": "Karriere", "corporate": "Firmenschulung", "community": "Community nach Sprache", "enrollment": "Einschreibung", "service_online": "100 % Online-Betreuung", "copyright": "Copyright", "developed_by": "Entwickelt von"},
+} %}
+{%- set vd_footer_t = vd_footer_i18n.get(vd_footer_lang, vd_footer_i18n["pt-br"]) %}
+{#- Só as rotas com tradução REAL de mesmo slug (SAME_SLUG_TRANSLATIONS)
+   ganham href por idioma; teste-de-nivel usa slug DIFERENTE por idioma
+   (mesmo mapa usado em site_navbar.html). O resto (clusters SEO, blog,
+   termos/privacidade/cookies) fica sempre em PT -- não existe tradução
+   real pra apontar. #}
+{%- set vd_footer_urls = {
+  "pt-br": {"home": "/", "catalogo": "/catalogo", "como-funciona": "/como-funciona", "sobre": "/sobre", "faq": "/faq", "contato": "/contato", "planos": "/planos", "matricula": "/matricula", "aula-diagnostica": "/aula-diagnostica", "certificado": "/certificado", "comunidade": "/comunidade", "empresas": "/empresas", "programa-de-indicacao": "/programa-de-indicacao", "carreiras": "/carreiras", "diferenciais": "/diferenciais", "metodologia": "/metodologia", "teste-de-nivel": "/teste-de-nivel"},
+  "en": {"home": "/en/", "catalogo": "/en/catalogo", "como-funciona": "/en/como-funciona", "sobre": "/en/sobre", "faq": "/en/faq", "contato": "/en/contato", "planos": "/en/planos", "matricula": "/en/matricula", "aula-diagnostica": "/en/aula-diagnostica", "certificado": "/en/certificado", "comunidade": "/en/comunidade", "empresas": "/en/empresas", "programa-de-indicacao": "/en/programa-de-indicacao", "carreiras": "/en/carreiras", "diferenciais": "/en/diferenciais", "metodologia": "/en/metodologia", "teste-de-nivel": "/en/portuguese-placement-test"},
+  "es": {"home": "/es/", "catalogo": "/es/catalogo", "como-funciona": "/es/como-funciona", "sobre": "/es/sobre", "faq": "/es/faq", "contato": "/es/contato", "planos": "/es/planos", "matricula": "/es/matricula", "aula-diagnostica": "/es/aula-diagnostica", "certificado": "/es/certificado", "comunidade": "/es/comunidade", "empresas": "/es/empresas", "programa-de-indicacao": "/es/programa-de-indicacao", "carreiras": "/es/carreiras", "diferenciais": "/es/diferenciais", "metodologia": "/es/metodologia", "teste-de-nivel": "/es/prueba-de-nivel-de-portugues"},
+  "fr": {"home": "/fr/", "catalogo": "/fr/catalogo", "como-funciona": "/fr/como-funciona", "sobre": "/fr/sobre", "faq": "/fr/faq", "contato": "/fr/contato", "planos": "/fr/planos", "matricula": "/fr/matricula", "aula-diagnostica": "/fr/aula-diagnostica", "certificado": "/fr/certificado", "comunidade": "/fr/comunidade", "empresas": "/fr/empresas", "programa-de-indicacao": "/fr/programa-de-indicacao", "carreiras": "/fr/carreiras", "diferenciais": "/fr/diferenciais", "metodologia": "/fr/metodologia", "teste-de-nivel": "/fr/test-de-niveau-de-portugais"},
+  "de": {"home": "/de/", "catalogo": "/de/catalogo", "como-funciona": "/de/como-funciona", "sobre": "/de/sobre", "faq": "/de/faq", "contato": "/de/contato", "planos": "/de/planos", "matricula": "/de/matricula", "aula-diagnostica": "/de/aula-diagnostica", "certificado": "/de/certificado", "comunidade": "/de/comunidade", "empresas": "/de/empresas", "programa-de-indicacao": "/de/programa-de-indicacao", "carreiras": "/de/carreiras", "diferenciais": "/de/diferenciais", "metodologia": "/de/metodologia", "teste-de-nivel": "/de/portugiesisch-einstufungstest"},
+} %}
+{%- set vd_footer_u = vd_footer_urls.get(vd_footer_lang, vd_footer_urls["pt-br"]) %}
 <footer class="footer-one vd-rich-footer">
     <style>
       .vd-rich-footer {
@@ -107,9 +151,9 @@
             <div class="vd-rich-footer__grid">
                 <div>
                     <div class="vd-rich-footer__logo">
-                        <a href="/"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a>
+                        <a href="{{ vd_footer_u.home }}"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium"></a>
                     </div>
-                    <p>Escola de idiomas 100% online, com aulas ao vivo, professores qualificados e foco real na fluência.</p>
+                    <p>{{ vd_footer_t.tagline }}</p>
                     <div class="vd-rich-footer__social">
                         <a href="https://www.instagram.com/vediumsglobal/" target="_blank" rel="noopener">Instagram</a>
                         <a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener">LinkedIn</a>
@@ -117,94 +161,94 @@
                     </div>
                 </div>
                 <div>
-                    <h3>Cursos de Idiomas</h3>
+                    <h3>{{ vd_footer_t.courses_title }}</h3>
                     <ul>
-                        <li><a href="/catalogo">Catálogo de cursos</a></li>
-                        <li><a href="/curso-de-ingles-online">Curso de inglês online</a></li>
-                        <li><a href="/curso-de-ioruba-online">Curso de iorubá online</a></li>
-                        <li><a href="/portugues-para-estrangeiros">Português para estrangeiros</a></li>
-                        <li><a href="/ingles-para-entrevista">Inglês para entrevista</a></li>
-                        <li><a href="/ingles-executivo">Inglês executivo</a></li>
+                        <li><a href="{{ vd_footer_u.catalogo }}">{{ vd_footer_t.catalog }}</a></li>
+                        <li><a href="/curso-de-ingles-online">{{ vd_footer_t.en_course }}</a></li>
+                        <li><a href="/curso-de-ioruba-online">{{ vd_footer_t.yo_course }}</a></li>
+                        <li><a href="/portugues-para-estrangeiros">{{ vd_footer_t.ple_course }}</a></li>
+                        <li><a href="/ingles-para-entrevista">{{ vd_footer_t.en_interview }}</a></li>
+                        <li><a href="/ingles-executivo">{{ vd_footer_t.en_exec }}</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Objetivos</h3>
+                    <h3>{{ vd_footer_t.goals_title }}</h3>
                     <ul>
-                        <li><a href="/ingles-para-viagens">Inglês para viagens</a></li>
-                        <li><a href="/ingles-para-atendimento-ao-cliente">Inglês para atendimento</a></li>
-                        <li><a href="/portugues-para-executivos">Português para executivos</a></li>
-                        <li><a href="/preparatorio-celpe-bras">Preparatório Celpe-Bras</a></li>
-                        <li><a href="/ioruba-cultura-e-ancestralidade">Iorubá, cultura e ancestralidade</a></li>
-                        <li><a href="/teste-de-nivel">Teste de nível grátis</a></li>
+                        <li><a href="/ingles-para-viagens">{{ vd_footer_t.en_travel }}</a></li>
+                        <li><a href="/ingles-para-atendimento-ao-cliente">{{ vd_footer_t.en_support_goal }}</a></li>
+                        <li><a href="/portugues-para-executivos">{{ vd_footer_t.ple_exec }}</a></li>
+                        <li><a href="/preparatorio-celpe-bras">{{ vd_footer_t.celpe }}</a></li>
+                        <li><a href="/ioruba-cultura-e-ancestralidade">{{ vd_footer_t.yo_culture }}</a></li>
+                        <li><a href="{{ vd_footer_u['teste-de-nivel'] }}">{{ vd_footer_t.level_test }}</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Vedium</h3>
+                    <h3>{{ vd_footer_t.vedium_title }}</h3>
                     <ul>
-                        <li><a href="/como-funciona">Como funciona</a></li>
-                        <li><a href="/metodologia">Metodologia</a></li>
-                        <li><a href="/diferenciais">Diferenciais</a></li>
-                        <li><a href="/sobre">Nossa história</a></li>
-                        <li><a href="/planos">Planos</a></li>
-                        <li><a href="/aula-diagnostica">Aula diagnóstica</a></li>
-                        <li><a href="/programa-de-indicacao">Programa de indicação</a></li>
-                        <li><a href="/empresas">Vedium para empresas</a></li>
+                        <li><a href="{{ vd_footer_u['como-funciona'] }}">{{ vd_footer_t.how }}</a></li>
+                        <li><a href="{{ vd_footer_u.metodologia }}">{{ vd_footer_t.methodology }}</a></li>
+                        <li><a href="{{ vd_footer_u.diferenciais }}">{{ vd_footer_t.differentiators }}</a></li>
+                        <li><a href="{{ vd_footer_u.sobre }}">{{ vd_footer_t.about }}</a></li>
+                        <li><a href="{{ vd_footer_u.planos }}">{{ vd_footer_t.plans }}</a></li>
+                        <li><a href="{{ vd_footer_u['aula-diagnostica'] }}">{{ vd_footer_t.diagnostic }}</a></li>
+                        <li><a href="{{ vd_footer_u['programa-de-indicacao'] }}">{{ vd_footer_t.referral }}</a></li>
+                        <li><a href="{{ vd_footer_u.empresas }}">{{ vd_footer_t.companies }}</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Suporte</h3>
+                    <h3>{{ vd_footer_t.support_title }}</h3>
                     <ul>
-                        <li><a href="/faq">FAQ & Suporte</a></li>
-                        <li><a href="/contato">Contato</a></li>
-                        <li><a href="/termos">Termos de Uso</a></li>
-                        <li><a href="/privacidade">Privacidade</a></li>
-                        <li><a href="/cookies">Cookies</a></li>
-                        <li><a href="/cancelamento-reembolso">Cancelamento e Reembolso</a></li>
-                        <li><a href="/certificado">Verificar certificado</a></li>
-                        <li><a href="https://app.vediums.com/login">Entrar na plataforma</a></li>
+                        <li><a href="{{ vd_footer_u.faq }}">{{ vd_footer_t.faq }}</a></li>
+                        <li><a href="{{ vd_footer_u.contato }}">{{ vd_footer_t.contact }}</a></li>
+                        <li><a href="/termos">{{ vd_footer_t.terms }}</a></li>
+                        <li><a href="/privacidade">{{ vd_footer_t.privacy }}</a></li>
+                        <li><a href="/cookies">{{ vd_footer_t.cookies }}</a></li>
+                        <li><a href="/cancelamento-reembolso">{{ vd_footer_t.cancellation }}</a></li>
+                        <li><a href="{{ vd_footer_u.certificado }}">{{ vd_footer_t.certificate }}</a></li>
+                        <li><a href="https://app.vediums.com/login">{{ vd_footer_t.login }}</a></li>
                     </ul>
                     <a class="vd-rich-footer__whatsapp" href="https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" target="_blank" rel="noopener" data-vd-location="footer_support_whatsapp"><i class="fab fa-whatsapp"></i> +55 (11) 91129-3075</a>
                 </div>
             </div>
 
             <div class="vd-rich-footer__section">
-                <h3>Vedium online para você</h3>
+                <h3>{{ vd_footer_t.online_for_you }}</h3>
                 <div class="vd-rich-footer__links">
-                    <a href="/curso-de-ingles-online">Curso de inglês online</a>
-                    <a href="/ingles-para-entrevista">Inglês para carreira</a>
+                    <a href="/curso-de-ingles-online">{{ vd_footer_t.en_course }}</a>
+                    <a href="/ingles-para-entrevista">{{ vd_footer_t.en_interview }}</a>
                     <a href="/ingles-para-programadores">Inglês para tecnologia</a>
-                    <a href="/ingles-executivo">Inglês para negócios</a>
-                    <a href="/ingles-para-viagens">Inglês para viagens</a>
-                    <a href="/portugues-para-estrangeiros">Português para estrangeiros</a>
-                    <a href="/curso-de-ioruba-online">Iorubá online</a>
-                    <a href="/preparatorio-celpe-bras">Celpe-Bras</a>
+                    <a href="/ingles-executivo">{{ vd_footer_t.en_exec }}</a>
+                    <a href="/ingles-para-viagens">{{ vd_footer_t.en_travel }}</a>
+                    <a href="/portugues-para-estrangeiros">{{ vd_footer_t.ple_course }}</a>
+                    <a href="/curso-de-ioruba-online">{{ vd_footer_t.yo_course }}</a>
+                    <a href="/preparatorio-celpe-bras">{{ vd_footer_t.celpe }}</a>
                 </div>
             </div>
 
             <div class="vd-rich-footer__section">
-                <h3>Conteúdos gratuitos</h3>
+                <h3>{{ vd_footer_t.free_content }}</h3>
                 <div class="vd-rich-footer__links">
-                    <a href="/blog">Blog da Vedium</a>
-                    <a href="/blog/aprender-ioruba-lingua-e-cultura">Aprender iorubá: língua e cultura</a>
-                    <a href="/quanto-custa-curso-de-idiomas">Quanto custa e vale a pena</a>
-                    <a href="/teste-de-nivel-ingles">Teste de inglês</a>
+                    <a href="/blog">{{ vd_footer_t.blog }}</a>
+                    <a href="/blog/aprender-ioruba-lingua-e-cultura">{{ vd_footer_t.yo_blog_post }}</a>
+                    <a href="/quanto-custa-curso-de-idiomas">{{ vd_footer_t.cost_worth }}</a>
+                    <a href="/teste-de-nivel-ingles">{{ vd_footer_t.en_test }}</a>
                 </div>
             </div>
 
             <div class="vd-rich-footer__section">
-                <h3>Conteúdos e oportunidades</h3>
+                <h3>{{ vd_footer_t.opportunities }}</h3>
                 <div class="vd-rich-footer__links">
-                    <a href="/programa-de-indicacao">Indique a Vedium</a>
-                    <a href="/carreiras">Trabalhe conosco</a>
-                    <a href="/empresas">Treinamento para empresas</a>
-                    <a href="/comunidade">Comunidade por idioma</a>
-                    <a href="/matricula">Matrícula</a>
+                    <a href="{{ vd_footer_u['programa-de-indicacao'] }}">{{ vd_footer_t.refer }}</a>
+                    <a href="{{ vd_footer_u.carreiras }}">{{ vd_footer_t.careers }}</a>
+                    <a href="{{ vd_footer_u.empresas }}">{{ vd_footer_t.corporate }}</a>
+                    <a href="{{ vd_footer_u.comunidade }}">{{ vd_footer_t.community }}</a>
+                    <a href="{{ vd_footer_u.matricula }}">{{ vd_footer_t.enrollment }}</a>
                 </div>
             </div>
 
             <div class="vd-rich-footer__legal">
-                <p>VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA · CNPJ 58.434.869/0001-24 · Brasil — Atendimento 100% Online</p>
-                <p>&copy; Copyright 2026 Vedium · Desenvolvido por <a href="https://scaledata.com.br" target="_blank" rel="noopener">Scaledata</a></p>
+                <p>VEDIUM GLOBAL EDUCACAO E TECNOLOGIA LTDA · CNPJ 58.434.869/0001-24 · Brasil — {{ vd_footer_t.service_online }}</p>
+                <p>&copy; {{ vd_footer_t.copyright }} 2026 Vedium · {{ vd_footer_t.developed_by }} <a href="https://scaledata.com.br" target="_blank" rel="noopener">Scaledata</a></p>
             </div>
         </div>
     </div>

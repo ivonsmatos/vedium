@@ -3244,8 +3244,8 @@ def test_diferenciais_and_metodologia_pages_exist():
     assert '{"loc": "/metodologia"' in sitemap_py
 
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
-    assert '<a href="/diferenciais">Diferenciais</a>' in footer
-    assert '<a href="/metodologia">Metodologia</a>' in footer
+    assert "vd_footer_u.diferenciais" in footer
+    assert "vd_footer_u.metodologia" in footer
 
 
 def test_faq_enriched_with_course_specific_questions():
@@ -3561,3 +3561,57 @@ def test_menu_links_respect_current_language_not_just_labels():
         assert f'"home": "{home}"' in block
         assert f'"faq": "{faq_path}"' in block
         assert f'"free_test": "{free_test}"' in block
+
+
+def test_footer_links_and_labels_respect_current_language():
+    """Mesma classe de bug do menu (ver
+    test_menu_links_respect_current_language_not_just_labels), mas no
+    rodapé (site_footer.html): título, rótulos de link e hrefs eram
+    100% hardcoded em português, mesmo em páginas já traduzidas -- o
+    menu tinha sido corrigido primeiro (2026-07-06) e o rodapé nunca
+    tinha NENHUMA lógica de idioma, nem pros rótulos.
+
+    Corrigido: vd_footer_i18n traduz título/rótulos por idioma;
+    vd_footer_urls corrige o href SÓ pras rotas com tradução real de
+    mesmo slug (mesmo racional do menu) -- páginas de nicho (clusters
+    SEO, blog, termos/privacidade/cookies) continuam apontando pro PT
+    de propósito, porque não existe tradução real pra apontar.
+    """
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+
+    # vd_footer_lang recalculado de forma independente (não reaproveita
+    # vd_nav do navbar -- includes Jinja não compartilham "set" entre si).
+    assert "vd_footer_lang" in footer
+    assert 'lang in ("en", "es", "fr", "de")' in footer
+
+    # Rótulos traduzidos pras 5 famílias, incluindo o título de cada coluna.
+    i18n_dict = footer.split("vd_footer_i18n = {")[1].split("\n} %}")[0]
+    for lang, courses_title, support_title in [
+        ("pt-br", "Cursos de Idiomas", "Suporte"),
+        ("en", "Language Courses", "Support"),
+        ("es", "Cursos de Idiomas", "Soporte"),
+        ("fr", "Cours de Langues", "Assistance"),
+        ("de", "Sprachkurse", "Support"),
+    ]:
+        block = i18n_dict.split(f'"{lang}": {{')[1].split("},\n")[0]
+        assert f'"courses_title": "{courses_title}"' in block
+        assert f'"support_title": "{support_title}"' in block
+
+    # Hrefs corrigidos por idioma pras rotas com tradução real.
+    urls_dict = footer.split("vd_footer_urls = {")[1].split("\n} %}")[0]
+    for lang, faq_path, empresas_path in [
+        ("pt-br", "/faq", "/empresas"),
+        ("en", "/en/faq", "/en/empresas"),
+        ("es", "/es/faq", "/es/empresas"),
+        ("fr", "/fr/faq", "/fr/empresas"),
+        ("de", "/de/faq", "/de/empresas"),
+    ]:
+        block = urls_dict.split(f'"{lang}": {{')[1].split("},\n")[0]
+        assert f'"faq": "{faq_path}"' in block
+        assert f'"empresas": "{empresas_path}"' in block
+
+    # Links de conteúdo de nicho (sem tradução real) continuam apontando
+    # pro PT em qualquer idioma -- comportamento intencional, não bug.
+    assert '<a href="/blog">' in footer
+    assert '<a href="/curso-de-ingles-online">' in footer
+    assert '<a href="/termos">' in footer
