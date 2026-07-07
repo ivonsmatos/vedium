@@ -32,7 +32,7 @@ def get_context(context):
     # /en/curso/<slug>). lstrip("/") deixa a checagem à prova disso.
     path = (frappe.local.path or "").lstrip("/")
     req_lang = None
-    for candidate in ("en", "es", "fr", "de"):
+    for candidate in ("en", "es", "fr", "de", "ru"):
         if path.startswith(f"{candidate}/curso/"):
             req_lang = candidate
             break
@@ -68,12 +68,14 @@ def get_context(context):
         "es": "Curso de Idiomas Online en Vivo",
         "fr": "Cours de Langue en Ligne en Direct",
         "de": "Live-Online-Sprachkurs",
+        "ru": "Живой онлайн-курс языка",
     }
     _fallback_desc = {
         "en": "{title}: live classes, real teachers and a certificate. Enroll at Vedium.",
         "es": "{title}: clases en vivo, profesores reales y certificado. Inscríbete en Vedium.",
         "fr": "{title} : cours en direct, vrais professeurs et certificat. Inscrivez-vous chez Vedium.",
         "de": "{title}: Live-Unterricht, echte Lehrkräfte und Zertifikat. Jetzt bei Vedium anmelden.",
+        "ru": "{title}: живые занятия, настоящие преподаватели и сертификат. Регистрируйтесь в Vedium.",
     }
     if translation:
         context.title = f"{context.course.title} — {_title_suffix[req_lang]} | Vedium"

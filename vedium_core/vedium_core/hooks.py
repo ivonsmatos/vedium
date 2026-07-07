@@ -78,7 +78,7 @@ LANGUAGE_PREFIX_FAMILY = {
 # (.claude/agents/translator-*.md) adiciona o código de família aqui ao
 # publicar www/<family>/index.html — ver LANGUAGE_ROUTE_RULES e
 # _build_language_prefix_redirects() logo abaixo, que já leem este set.
-LANGUAGES_WITH_OWN_HOME = {"en", "es", "fr", "de"}
+LANGUAGES_WITH_OWN_HOME = {"en", "es", "fr", "de", "ru"}
 
 # Páginas de PUBLIC_LANGUAGE_ROUTES que ganharam tradução real MANTENDO O
 # MESMO slug (ex.: /en/catalogo -> www/en/catalogo.html, não um slug de SEO
@@ -87,21 +87,21 @@ LANGUAGES_WITH_OWN_HOME = {"en", "es", "fr", "de"}
 # ingles-online), ela não entra aqui — isso é resolvido via LANDINGS[...]["alt"]
 # dentro de _build_language_prefix_redirects(), não aqui.
 SAME_SLUG_TRANSLATIONS = {
-    "catalogo": {"en", "es", "fr", "de"},
-    "sobre": {"en", "es", "fr", "de"},
-    "como-funciona": {"en", "es", "fr", "de"},
-    "faq": {"en", "es", "fr", "de"},
-    "contato": {"en", "es", "fr", "de"},
-    "planos": {"en", "es", "fr", "de"},
-    "matricula": {"en", "es", "fr", "de"},
-    "aula-diagnostica": {"en", "es", "fr", "de"},
-    "certificado": {"en", "es", "fr", "de"},
-    "comunidade": {"en", "es", "fr", "de"},
-    "empresas": {"en", "es", "fr", "de"},
-    "programa-de-indicacao": {"en", "es", "fr", "de"},
-    "carreiras": {"en", "es", "fr", "de"},
-    "diferenciais": {"en", "es", "fr", "de"},
-    "metodologia": {"en", "es", "fr", "de"},
+    "catalogo": {"en", "es", "fr", "de", "ru"},
+    "sobre": {"en", "es", "fr", "de", "ru"},
+    "como-funciona": {"en", "es", "fr", "de", "ru"},
+    "faq": {"en", "es", "fr", "de", "ru"},
+    "contato": {"en", "es", "fr", "de", "ru"},
+    "planos": {"en", "es", "fr", "de", "ru"},
+    "matricula": {"en", "es", "fr", "de", "ru"},
+    "aula-diagnostica": {"en", "es", "fr", "de", "ru"},
+    "certificado": {"en", "es", "fr", "de", "ru"},
+    "comunidade": {"en", "es", "fr", "de", "ru"},
+    "empresas": {"en", "es", "fr", "de", "ru"},
+    "programa-de-indicacao": {"en", "es", "fr", "de", "ru"},
+    "carreiras": {"en", "es", "fr", "de", "ru"},
+    "diferenciais": {"en", "es", "fr", "de", "ru"},
+    "metodologia": {"en", "es", "fr", "de", "ru"},
 }
 
 
@@ -219,14 +219,14 @@ def _build_language_prefix_redirects():
             if source == target:
                 continue
             redirects.append({"source": source, "target": target})
-        # en/es/fr/de/curso/<slug> já tem rota + tradução de verdade
+        # en/es/fr/de/ru/curso/<slug> já tem rota + tradução de verdade
         # (curso.py, via course_translations.COURSE_TRANSLATIONS) — só os
-        # OUTROS prefixos (ru, zh-cn etc.) precisam cair de volta pro curso
+        # OUTROS prefixos (zh-cn etc.) precisam cair de volta pro curso
         # em PT. curso.py já trata, por curso individual, o caso de um
-        # desses 4 idiomas pedir um slug sem tradução (redireciona pro PT
+        # desses 5 idiomas pedir um slug sem tradução (redireciona pro PT
         # dentro do próprio controller — ver "req_lang not in
         # translations_for_course" em www/curso.py).
-        if family not in ("en", "es", "fr", "de"):
+        if family not in ("en", "es", "fr", "de", "ru"):
             redirects.append({
                 "source": rf"/{prefix}/curso/(.*)",
                 "target": r"/curso/\1",
@@ -256,6 +256,9 @@ website_route_rules = [
     # que têm público que não fala PT). Sem isso, /en/curso/<slug> 404 antes
     # de chegar no controller.
     {"from_route": "/en/curso/<course>", "to_route": "curso"},
+    # Mesmo padrão acima, agora para russo (COURSE_TRANSLATIONS ganhou
+    # entradas "ru" pros cursos de Iorubá e PLE no rollout de tradução ru).
+    {"from_route": "/ru/curso/<course>", "to_route": "curso"},
     # Post de blog dinâmico — busca no doctype Vedium Blog Post (painel) e,
     # se não achar, no dict de código (blog_content.BLOG_POSTS). Route rules
     # do Frappe têm prioridade sobre arquivos www/ estáticos, então TODOS os
