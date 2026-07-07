@@ -396,11 +396,16 @@ def test_yoruba_cluster_has_spanish_pages_with_reciprocal_hreflang():
     ]
     for pt_slug, es_slug, expected_test_url in pairs:
         assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
-        assert LANDINGS[es_slug]["alt"] == {
+        expected_alt = {
             "pt-BR": pt_slug,
             "en": LANDINGS[pt_slug]["alt"]["en"],
             "es": es_slug,
         }
+        # "ru" ganhou tradução real depois (rollout russo, 2026-07-06) — se
+        # o par pt/es já apontar pra um slug ru, o alt recíproco também entra.
+        if "ru" in LANDINGS[pt_slug]["alt"]:
+            expected_alt["ru"] = LANDINGS[pt_slug]["alt"]["ru"]
+        assert LANDINGS[es_slug]["alt"] == expected_alt
         assert LANDINGS[es_slug]["lang"] == "es"
         assert "test_url" in LANDINGS[es_slug], f"{es_slug} precisa de test_url explícito"
         assert LANDINGS[es_slug]["test_url"] == expected_test_url
@@ -1061,7 +1066,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
         # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_institutional_pages_...)
         # para os mesmos 5 slugs -- checa que "en" continua no set.
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
     # comunidade + empresas: template compartilhado public_intent_page(_en).html
@@ -1085,7 +1090,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
         assert 'public_intent_page_en.html' in en_html
         assert "page_has_en_translation = true" in pt_html
         assert "get_context" in en_py
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/en/{slug}"' in sitemap_py
 
     # empresas: 2026-07-04 virou pagina propria e rica em PT (ver
@@ -1101,7 +1106,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert "vd-form-card" in empresas_en
     assert "vedium_core.public_funnel.submit_public_intent" in empresas_en
     assert "intent:'b2b'" in empresas_en
-    assert '"empresas": {"en", "es", "fr", "de"}' in hooks
+    assert '"empresas": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/en/empresas"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT)
@@ -1113,7 +1118,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Submit application" in carreiras_en
     assert "vedium_core.careers.submit_candidatura" in carreiras_en
     assert 'context.canonical_url = "https://vediums.com/en/carreiras"' in carreiras_en_py
-    assert '"carreiras": {"en", "es", "fr", "de"}' in hooks
+    assert '"carreiras": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/en/carreiras"' in sitemap_py
 
     # Roteamento: sem self-redirect, en-us cai na traducao real
@@ -1273,7 +1278,7 @@ def test_english_home_page_exists_and_routes_correctly():
     assert by_source["/en-us"] == "/en"
     assert by_source["/en-au"] == "/en"
     assert "/en" not in by_source  # sem self-redirect /en -> /en
-    assert 'if family not in ("en", "es", "fr", "de")' in hooks_src
+    assert 'if family not in ("en", "es", "fr", "de", "ru")' in hooks_src
 
     # Sitemap lista a home em inglês
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
@@ -1488,14 +1493,16 @@ def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
     # não sobra mais como redirect pro canônico em PT.
     assert "/de/certificado" not in by_source
 
-    # /en|es|fr|de/curso/<slug> (com barra, curso individual) já tem rota +
+    # /en|es|fr|de|ru/curso/<slug> (com barra, curso individual) já tem rota +
     # tradução de verdade (curso.py) — não pode ter redirect genérico
     # atropelando, nem para as variantes regionais (en-us, en-au, es-ar,
     # es-co, fr-ca), que também são resolvidas pelo mesmo controller.
-    for prefix in ("en", "en-us", "en-au", "es", "es-ar", "es-co", "fr", "fr-ca", "de"):
+    # "ru" ganhou course_translations reais no rollout russo (2026-07-06),
+    # então saiu do fallback genérico pro PT (mesmo racional do /de acima).
+    for prefix in ("en", "en-us", "en-au", "es", "es-ar", "es-co", "fr", "fr-ca", "de", "ru"):
         assert not any(r["source"].startswith(f"/{prefix}/curso/") for r in redirects)
-    # Idiomas sem course_translations (ru, zh-cn) ainda caem no fallback pro PT.
-    assert any(r["source"] == r"/ru/curso/(.*)" for r in redirects)
+    # Idiomas ainda sem course_translations (zh-cn) continuam no fallback pro PT.
+    assert any(r["source"] == r"/zh-cn/curso/(.*)" for r in redirects)
 
     hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
     assert "*LANGUAGE_PREFIX_REDIRECTS," in hooks_src
@@ -2210,7 +2217,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
         # SAME_SLUG_TRANSLATIONS ganhou "fr" (test_french_institutional_pages_...)
         # para os mesmos 5 slugs -- checa que "es" continua no set.
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
     # comunidade + empresas: template compartilhado public_intent_page(_es).html
@@ -2234,7 +2241,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
         assert 'public_intent_page_es.html' in es_html
         assert "page_has_es_translation = true" in pt_html
         assert "get_context" in es_py
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/es/{slug}"' in sitemap_py
 
     # empresas: pagina propria em PT (ver
@@ -2248,7 +2255,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     assert 'vd-form-card' in empresas_es
     assert "vedium_core.public_funnel.submit_public_intent" in empresas_es
     assert "intent:'b2b'" in empresas_es
-    assert '"empresas": {"en", "es", "fr", "de"}' in hooks
+    assert '"empresas": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/es/empresas"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN)
@@ -2260,7 +2267,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Enviar postulación" in carreiras_es
     assert "vedium_core.careers.submit_candidatura" in carreiras_es
     assert 'context.canonical_url = "https://vediums.com/es/carreiras"' in carreiras_es_py
-    assert '"carreiras": {"en", "es", "fr", "de"}' in hooks
+    assert '"carreiras": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/es/carreiras"' in sitemap_py
 
     # Roteamento: sem self-redirect, es-ar cai na traducao real
@@ -2675,7 +2682,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
         assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in fr_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in fr_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in pt_html
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/fr/{slug}"' in sitemap_py
 
     # comunidade + empresas: template compartilhado public_intent_page(_fr).html
@@ -2699,7 +2706,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
         assert 'public_intent_page_fr.html' in fr_html
         assert "page_has_fr_translation = true" in pt_html
         assert "get_context" in fr_py
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/fr/{slug}"' in sitemap_py
 
     # empresas: pagina propria em PT (ver
@@ -2714,7 +2721,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
     assert "vd-form-card" in empresas_fr
     assert "vedium_core.public_funnel.submit_public_intent" in empresas_fr
     assert "intent:'b2b'" in empresas_fr
-    assert '"empresas": {"en", "es", "fr", "de"}' in hooks
+    assert '"empresas": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/fr/empresas"' in sitemap_py
 
     # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN/ES)
@@ -2726,7 +2733,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Envoyer ma candidature" in carreiras_fr
     assert "vedium_core.careers.submit_candidatura" in carreiras_fr
     assert 'context.canonical_url = "https://vediums.com/fr/carreiras"' in carreiras_fr_py
-    assert '"carreiras": {"en", "es", "fr", "de"}' in hooks
+    assert '"carreiras": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/fr/carreiras"' in sitemap_py
 
     # Roteamento: sem self-redirect, fr-ca cai na traducao real
@@ -2856,7 +2863,7 @@ def test_german_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in es_html
         assert f'hreflang="de" href="https://vediums.com/de/{slug}"' in fr_html
 
-        assert f'"{slug}": {{"en", "es", "fr", "de"}}' in hooks
+        assert f'"{slug}": {{"en", "es", "fr", "de", "ru"}}' in hooks
         assert f'{{"loc": "/de/{slug}"' in sitemap_py
 
     # catalogo/como-funciona/faq têm controller próprio; contato e sobre não
@@ -3639,3 +3646,94 @@ def test_footer_links_and_labels_respect_current_language():
     assert '<a href="/termos">' in footer
     assert '<a href="/quanto-custa-curso-de-idiomas">' in footer
     assert '<a href="/teste-de-nivel-ingles">' in footer
+
+
+def test_russian_cluster_has_reciprocal_hreflang_and_real_pages():
+    """Rollout russo (5º idioma da sequência en->es->fr->de->ru->zh,
+    2026-07-06): 12 landings novas cobrindo os 3 clusters (Inglês, Iorubá,
+    Português para Estrangeiros). Trava par PT<->RU via `alt` (que agora
+    também carrega "ru" nas entradas pt-BR/en/es/fr/de correspondentes),
+    slugs em transliteração/inglês (não em cirílico, por suporte de
+    ferramentas), test_url coerente com a convenção (só Inglês/PLE têm
+    teste formal; Iorubá usa None) e paridade de profundidade de conteúdo.
+    """
+    # Só as landings principais (curso "guarda-chuva" de cada cluster e as
+    # que citam explicitamente teste-de-nivel/portugiesisch-einstufungstest
+    # no PT/DE de origem) setam "test_url" explícito; as landings de nicho
+    # (entrevista, programadores, executivo, viagens, atendimento) herdam o
+    # fallback do template `marketing_landing.html`, sem chave própria —
+    # mesmo padrão já usado no cluster alemão de origem.
+    pairs_with_explicit_test_url = [
+        ("curso-de-ingles-online", "kurs-angliyskogo-online", "/teste-de-nivel-ingles"),
+        ("curso-de-ioruba-online", "kurs-yoruba-online", None),
+        ("ioruba-para-iniciantes", "yoruba-dlya-nachinayushchikh", None),
+        ("ioruba-cultura-e-ancestralidade", "yoruba-kultura-i-nasledie", None),
+        ("portugues-para-estrangeiros", "portugalskiy-dlya-inostrantsev", "/ru/portugiesisch-einstufungstest"),
+        ("portugues-para-executivos", "portugalskiy-dlya-rukovoditeley", "/ru/portugiesisch-einstufungstest"),
+    ]
+    pairs_without_explicit_test_url = [
+        ("ingles-para-entrevista", "angliyskiy-dlya-sobesedovaniy"),
+        ("ingles-para-programadores", "angliyskiy-dlya-programmistov"),
+        ("ingles-executivo", "biznes-angliyskiy-online"),
+        ("ingles-para-viagens", "angliyskiy-dlya-puteshestviy"),
+        ("ingles-para-atendimento-ao-cliente", "angliyskiy-dlya-podderzhki-klientov"),
+        ("preparatorio-celpe-bras", "podgotovka-k-celpe-bras"),
+    ]
+    pairs = [(pt, ru, url) for pt, ru, url in pairs_with_explicit_test_url]
+    for pt_slug, ru_slug, expected_test_url in pairs:
+        assert LANDINGS[pt_slug]["alt"]["ru"] == ru_slug
+        assert LANDINGS[ru_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[ru_slug]["alt"]["ru"] == ru_slug
+        assert LANDINGS[ru_slug]["lang"] == "ru"
+        assert "test_url" in LANDINGS[ru_slug], f"{ru_slug} precisa de test_url explícito"
+        assert LANDINGS[ru_slug]["test_url"] == expected_test_url
+
+    for pt_slug, ru_slug in pairs_without_explicit_test_url:
+        assert LANDINGS[pt_slug]["alt"]["ru"] == ru_slug
+        assert LANDINGS[ru_slug]["alt"]["pt-BR"] == pt_slug
+        assert LANDINGS[ru_slug]["alt"]["ru"] == ru_slug
+        assert LANDINGS[ru_slug]["lang"] == "ru"
+        pairs.append((pt_slug, ru_slug, None))
+
+        ru_html = (WWW / "ru" / f"{ru_slug}.html").read_text(encoding="utf-8")
+        assert ru_html.strip().splitlines()[0] == (
+            f'{{% set landing = get_marketing_landing("{ru_slug}") %}}'
+        )
+        assert '{% include "templates/includes/marketing_landing.html" %}' in ru_html
+
+        # conteúdo real, não placeholder (mesmo padrão de profundidade das outras landings)
+        landing = LANDINGS[ru_slug]
+        assert len(landing["pain_points"]) >= 4
+        assert len(landing["outcomes"]) >= 4
+        assert len(landing["modules"]) >= 6
+        assert len(landing["faqs"]) >= 4
+        assert len(landing["lead"]) > 100
+
+
+def test_russian_course_translations_exist_for_yoruba_and_ple():
+    """Cursos individuais de Iorubá e PLE (público não-lusófono) ganharam
+    bloco "ru" em COURSE_TRANSLATIONS no rollout russo. www/curso.py precisa
+    reconhecer o prefixo /ru/curso/<slug> e ter a rota registrada em
+    hooks.py (mesmo padrão de en/es/fr/de)."""
+    from vedium_core.course_translations import COURSE_TRANSLATIONS
+
+    course_slugs = [
+        "iorub-b-sico",
+        "iorub-intermedi-rio",
+        "iorub-avan-ado",
+        "portugues-para-estrangeiros-basico",
+        "portugues-para-estrangeiros-intermediario",
+        "portugues-para-estrangeiros-avancado",
+    ]
+    for slug in course_slugs:
+        assert "ru" in COURSE_TRANSLATIONS[slug], f"{slug} precisa de tradução ru"
+        entry = COURSE_TRANSLATIONS[slug]["ru"]
+        assert entry["title"]
+        assert entry["short_introduction"]
+        assert entry["description"]
+
+    curso_py = (WWW / "curso.py").read_text(encoding="utf-8")
+    assert '"en", "es", "fr", "de", "ru"' in curso_py
+
+    hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
+    assert '{"from_route": "/ru/curso/<course>", "to_route": "curso"}' in hooks_src

@@ -2198,7 +2198,7 @@ LANDINGS = {
     },
     "ingles-para-programadores": {
         "lang": "es",
-        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler"},
+        "alt": {"pt-BR": "ingles-para-programadores", "en": "english-for-developers", "es": "ingles-para-programadores", "fr": "anglais-developpeurs-informatique", "de": "englisch-fuer-entwickler", "ru": "angliyskiy-dlya-programmistov"},
         "title": "Inglés para Programadores — Vedium",
         "short_title": "Inglés para Programadores",
         "meta_description": "Inglés para programadores con clases en vivo: entrevistas técnicas, documentación, reuniones, pair programming y comunicación global.",
