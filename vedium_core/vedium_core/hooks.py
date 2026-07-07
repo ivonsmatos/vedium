@@ -416,7 +416,11 @@ doc_events = {
 # =============================================================================
 
 has_permission = {
-    # "DocType": "vedium_core.permissions.has_permission"
+    # Gate entre níveis do curso PLE (Básico -> Intermediário -> Avançado) —
+    # ver vedium_core/ple_gating.py
+    "LMS Course": "vedium_core.ple_gating.has_permission",
+    "Course Chapter": "vedium_core.ple_gating.has_permission",
+    "Course Lesson": "vedium_core.ple_gating.has_permission",
 }
 
 # =============================================================================

@@ -437,10 +437,17 @@ def issue_certificate(enrollment_name):
     """
     rate_limit_by_ip("issue_certificate", limit=5, window_sec=3600)
     enrollment = frappe.get_doc("LMS Enrollment", enrollment_name)
-    if enrollment.status != "Completed":
+    # Bug real encontrado em 2026-07-07: esta função checava
+    # `enrollment.status != "Completed"`, mas LMS Enrollment não tem (e nunca
+    # teve) um campo "status" -- nada no código jamais setava esse valor, e a
+    # emissão de certificado sempre falhava silenciosamente antes de chegar
+    # aqui (Frappe retorna None num atributo inexistente, então a comparação
+    # nunca batia). `progress` é o campo real e nativo (Float 0-100),
+    # mantido pelo próprio LMS conforme o aluno completa as lições.
+    if (enrollment.progress or 0) < 100:
         frappe.throw(_("Curso ainda não concluído"))
     # Gera código único baseado em dados do aluno, curso e data
-    base = f"{enrollment.member}-{enrollment.course}-{enrollment.completion_date or datetime.now()}"
+    base = f"{enrollment.member}-{enrollment.course}-{datetime.now()}"
     code = hashlib.sha256(base.encode()).hexdigest()[:12].upper()
     # Cria registro de certificado (ou atualiza)
     cert = frappe.get_doc(

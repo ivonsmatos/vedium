@@ -89,6 +89,18 @@ CUSTOM_FIELDS = {
             "insert_after": "verification_code",
         },
     ],
+    # Gate entre níveis do curso PLE (Básico -> Intermediário -> Avançado):
+    # se setado, o aluno só enxerga o conteúdo deste curso depois de ter um
+    # LMS Certificate emitido pro curso pré-requisito. Ver vedium_core/ple_gating.py.
+    "LMS Course": [
+        {
+            "fieldname": "custom_prerequisite_course",
+            "label": "Curso pré-requisito (gate de nível)",
+            "fieldtype": "Link",
+            "options": "LMS Course",
+            "insert_after": "category",
+        },
+    ],
 }
 
 
