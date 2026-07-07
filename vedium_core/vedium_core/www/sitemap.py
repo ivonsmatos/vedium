@@ -101,7 +101,7 @@ STATIC_URLS = [
     {"loc": "/es/prueba-de-nivel-de-portugues", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/curso-de-ingles-online-en-vivo", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/es/ingles-para-entrevistas-de-trabajo", "priority": "0.6", "changefreq": "monthly"},
-    {"loc": "/es/ingles-para-programadores", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/ingles-para-desarrolladores", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/ingles-de-negocios", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/ingles-para-viajar", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/ingles-para-atencion-al-cliente", "priority": "0.6", "changefreq": "monthly"},
