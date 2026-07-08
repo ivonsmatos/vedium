@@ -4,7 +4,12 @@ Vedium — Atividades, exercícios de fixação e prova final do PLE Avançado
 
 Conteúdo 100% original. Ver seed_ple_basico_activities.py pro mesmo padrão
 e docstring completa (banco de 80 questões, sorteia 40, 70% pra passar,
-3 tentativas, embaralha ordem; fixação por módulo sem gate).
+3 tentativas, embaralha ordem; fixação com 10 questões por módulo, sem gate).
+
+Fonte pedagógica: Nota 10 — Português do Brasil, nível elementar A1/A2.
+Como este livro cobre as unidades 0 a 14, o curso avançado usa revisão
+e aprofundamento das unidades finais do próprio livro, sem introduzir
+conteúdos externos ao material.
 
 Rodar:
     bench --site app.vediums.com execute \
@@ -12,6 +17,10 @@ Rodar:
 """
 import frappe
 
+from vedium_core.scripts.migrations.oneshot.seed_ple_intermediario_activities import (
+    EXAM_QUESTIONS as NOTA10_FINAL_UNITS_EXAM,
+    MODULE_FIXATION as NOTA10_FINAL_UNITS_FIXATION,
+)
 from vedium_core.scripts.migrations.oneshot.seed_ple_basico_activities import (
     _make_quiz,
 )
@@ -141,6 +150,24 @@ MODULE_FIXATION = {
         ("Complete: \"Assistimos ___ um documentário interessante.\"", ["a", "o", "para", "por"], 0),
         ("\"Adaptar a linguagem ao contexto\" é chamado de:", ["registro linguístico", "sotaque", "conjugação verbal", "ortografia"], 0),
         ("Complete: \"Aspiro ___ um cargo de liderança.\"", ["a", "para", "com", "de"], 0),
+    ],
+}
+
+# O PDF fornecido (Nota 10 — Português do Brasil 2) é A1/A2 e termina na
+# Unidade 14. Para garantir que o "Avançado" não use conteúdo fora do livro,
+# substituímos o banco antigo por uma revisão/profundamento das unidades
+# finais do próprio Nota 10 (férias, moradia, esportes, saúde, trabalho e
+# lusofonia/português europeu vs português do Brasil).
+EXAM_QUESTIONS = list(NOTA10_FINAL_UNITS_EXAM)
+MODULE_FIXATION = {
+    "Módulo 1 — Opinião, Hipótese e Argumentação": NOTA10_FINAL_UNITS_FIXATION[
+        "Módulo 1 — Narrativa e Experiências Passadas"
+    ],
+    "Módulo 2 — Cultura, Sociedade e Mídia": NOTA10_FINAL_UNITS_FIXATION[
+        "Módulo 2 — Saúde, Trabalho e Vida Social"
+    ],
+    "Módulo 3 — Contextos Profissionais e Acadêmicos": NOTA10_FINAL_UNITS_FIXATION[
+        "Módulo 3 — Cultura, Opinião e Variação Linguística"
     ],
 }
 

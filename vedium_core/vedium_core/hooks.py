@@ -421,6 +421,7 @@ has_permission = {
     "LMS Course": "vedium_core.ple_gating.has_permission",
     "Course Chapter": "vedium_core.ple_gating.has_permission",
     "Course Lesson": "vedium_core.ple_gating.has_permission",
+    "LMS Quiz": "vedium_core.ple_gating.has_permission",
 }
 
 # =============================================================================

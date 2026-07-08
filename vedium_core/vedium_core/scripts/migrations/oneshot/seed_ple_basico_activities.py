@@ -9,7 +9,7 @@ compras, clima e direções -- os mesmos temas já usados nos títulos de
 lição de create_ple_courses.py.
 
 Cria, de forma idempotente:
-    - 3 quizzes de fixação (1 por módulo), ~10 questões cada, sem gate
+    - 3 quizzes de fixação (1 por módulo), 10 questões cada, sem gate
       (max_attempts=0 = ilimitado, é treino, não avaliação).
     - 1 prova final (LMS Quiz do curso), banco de 80 questões,
       limit_questions_to=40, shuffle_questions=1, max_attempts=3,
@@ -118,7 +118,7 @@ EXAM_QUESTIONS = [
 ]
 
 # ---------------------------------------------------------------------------
-# Exercícios de FIXAÇÃO por módulo (~10 questões cada, sem gate, prática livre)
+# Exercícios de FIXAÇÃO por módulo (10 questões cada, sem gate, prática livre)
 # ---------------------------------------------------------------------------
 
 MODULE_FIXATION = {
@@ -168,46 +168,65 @@ MODULE_FIXATION = {
 def _make_question(question_text, options, correct_idx):
     """Cria (ou reaproveita) uma LMS Question de múltipla escolha, 4
     alternativas, uma correta. Idempotente por texto da pergunta."""
+    if len(options) != 4:
+        frappe.throw(f"Pergunta precisa ter exatamente 4 opções: {question_text}")
+    if correct_idx not in range(4):
+        frappe.throw(f"Índice da resposta correta inválido: {question_text}")
+
     existing = frappe.db.get_value("LMS Question", {"question": question_text})
     if existing:
-        return existing
+        doc = frappe.get_doc("LMS Question", existing)
+    else:
+        doc = frappe.get_doc({
+            "doctype": "LMS Question",
+            "question": question_text,
+        })
 
-    doc = frappe.get_doc({
-        "doctype": "LMS Question",
-        "question": question_text,
-        "type": "Choices",
-        "multiple": 0,
-    })
+    doc.type = "Choices"
+    doc.multiple = 0
     for i, option_text in enumerate(options, start=1):
         doc.set(f"option_{i}", option_text)
         doc.set(f"is_correct_{i}", 1 if i - 1 == correct_idx else 0)
-    doc.insert(ignore_permissions=True)
+
+    if doc.is_new():
+        doc.insert(ignore_permissions=True)
+    else:
+        doc.save(ignore_permissions=True)
     return doc.name
 
 
 def _make_quiz(title, course, lesson, questions, *, max_attempts, passing_percentage,
                shuffle_questions, limit_questions_to, total_marks):
-    if frappe.db.exists("LMS Quiz", {"title": title}):
-        print(f"  — Quiz '{title}' já existe, pulando.")
-        return
+    if not questions:
+        frappe.throw(f"Quiz '{title}' precisa ter perguntas.")
 
-    quiz = frappe.get_doc({
-        "doctype": "LMS Quiz",
-        "title": title,
-        "course": course,
-        "lesson": lesson,
-        "max_attempts": max_attempts,
-        "passing_percentage": passing_percentage,
-        "shuffle_questions": 1 if shuffle_questions else 0,
-        "limit_questions_to": limit_questions_to,
-        "total_marks": total_marks,
-    })
+    existing = frappe.db.get_value("LMS Quiz", {"title": title})
+    if existing:
+        quiz = frappe.get_doc("LMS Quiz", existing)
+        action = "atualizado"
+    else:
+        quiz = frappe.get_doc({"doctype": "LMS Quiz", "title": title})
+        action = "criado"
+
+    quiz.course = course
+    if not quiz.lesson:
+        quiz.lesson = lesson
+    quiz.max_attempts = max_attempts
+    quiz.passing_percentage = passing_percentage
+    quiz.shuffle_questions = 1 if shuffle_questions else 0
+    quiz.limit_questions_to = limit_questions_to
+    quiz.total_marks = total_marks
+    quiz.set("questions", [])
     for question_text, options, correct_idx in questions:
         q_name = _make_question(question_text, options, correct_idx)
         quiz.append("questions", {"question": q_name, "marks": 1})
-    quiz.insert(ignore_permissions=True)
+
+    if quiz.is_new():
+        quiz.insert(ignore_permissions=True)
+    else:
+        quiz.save(ignore_permissions=True)
     frappe.db.commit()
-    print(f"  ✓ Quiz '{title}' criado ({len(questions)} questões no banco).")
+    print(f"  ✓ Quiz '{title}' {action} ({len(questions)} questões no banco).")
 
 
 def run():

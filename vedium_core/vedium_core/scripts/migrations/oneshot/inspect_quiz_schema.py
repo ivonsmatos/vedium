@@ -13,6 +13,7 @@ import frappe
 DOCTYPES = [
     "LMS Quiz",
     "LMS Quiz Question",
+    "LMS Quiz Submission",
     "LMS Question",
     "LMS Certificate",
     "LMS Enrollment",

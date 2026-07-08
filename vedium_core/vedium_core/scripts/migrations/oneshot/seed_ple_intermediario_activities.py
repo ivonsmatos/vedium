@@ -4,7 +4,7 @@ Vedium — Atividades, exercícios de fixação e prova final do PLE Intermediá
 
 Conteúdo 100% original. Ver seed_ple_basico_activities.py pro mesmo padrão
 e docstring completa (banco de 80 questões, sorteia 40, 70% pra passar,
-3 tentativas, embaralha ordem; fixação por módulo sem gate).
+3 tentativas, embaralha ordem; fixação com 10 questões por módulo, sem gate).
 
 Rodar:
     bench --site app.vediums.com execute \

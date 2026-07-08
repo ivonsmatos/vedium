@@ -47,8 +47,8 @@ vedium/
 │       ├── hooks.py            # Rotas, CSS, eventos
 │       ├── api.py              # API pública whitelisted
 │       ├── gamification.py     # Pontos / badges
-│       ├── controllers/        # AI Tutor (Groq)
-│       ├── services/           # Áudio AI, crypto
+│       ├── controllers/        # Tutor IA parcial (Groq)
+│       ├── services/           # Áudio IA em mock, crypto
 │       ├── www/                # Páginas server-rendered (SEO)
 │       └── vedium_core/doctype/# DocTypes customizados
 ├── deploy/                     # Configuração de produção

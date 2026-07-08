@@ -35,6 +35,15 @@ Checkout → matrícula → aula → certificado, com o "onde vive cada peça"
   lições, quiz) é 100% nativo do Frappe LMS.
 - Progresso é rastreado nativamente (`LMS Course Progress`,
   `LMS Enrollment.progress`).
+- **PLE (Português para Estrangeiros):** cada nível tem 3 quizzes de
+  exercícios de fixação (10 questões por módulo) e 1 prova final (banco de
+  80 questões, sorteia 40, nota mínima 70%, até 3 tentativas). O rollout é
+  idempotente pelo comando:
+  `bench --site app.vediums.com execute vedium_core.scripts.migrations.oneshot.setup_ple_quizzes.run`.
+- **Gate pedagógico dentro do PLE:** Módulo 2 exige aprovação no exercício do
+  Módulo 1; Módulo 3 exige aprovação no exercício do Módulo 2; Avaliação Final
+  exige aprovação no exercício do Módulo 3. O gate entre níveis continua por
+  certificado do curso anterior, sem liberar curso pago de graça.
 - ⚠️ **Pegadinha real**: `LMS Enrollment` **não tem campo `status`** (só
   `progress`) — código que assume esse campo quebra com
   `Unknown column 'status'` (achado e corrigido em `www/meu_progresso.py`

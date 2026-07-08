@@ -33,13 +33,22 @@ def run():
         total_lessons = 0
         for ch in chapters:
             lessons = frappe.get_all(
-                "Course Lesson", filters={"chapter": ch.name}, fields=["name", "title", "idx"],
+                "Course Lesson",
+                filters={"chapter": ch.name},
+                fields=["name", "title", "idx", "content", "body", "quiz_id"],
                 order_by="idx",
             )
             total_lessons += len(lessons)
             print(f"    {ch.title} ({len(lessons)} licoes)")
             for lesson in lessons:
-                print(f"      - {lesson.title}")
+                render_state = ""
+                if lesson.quiz_id or lesson.title.startswith("Quiz —") or "Prova Final" in lesson.title:
+                    render_state = (
+                        f" | quiz_id={lesson.quiz_id!r}"
+                        f" content_empty={not bool(lesson.content)}"
+                        f" body_empty={not bool(lesson.body)}"
+                    )
+                print(f"      - {lesson.title}{render_state}")
         print(f"  total de licoes: {total_lessons}")
 
         quizzes = frappe.get_all(

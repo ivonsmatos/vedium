@@ -19,13 +19,22 @@ Mecânica:
       curso precisa ter certificado emitido antes deste liberar conteúdo.
       Setado só em Intermediário (-> Básico) e Avançado (-> Intermediário).
     - has_permission (hooks.py) barra leitura de LMS Course/Course Chapter/
-      Course Lesson quando o pré-requisito existe e o aluno NÃO tem
+      Course Lesson/LMS Quiz quando o pré-requisito existe e o aluno NÃO tem
       LMS Certificate emitido pro curso pré-requisito -- mesmo que ele já
       tenha uma LMS Enrollment paga pro curso atual (o pagamento continua
       valendo, só o conteúdo fica retido até o pré-requisito ser cumprido).
+    - Dentro de cada curso PLE, Módulo 2 exige aprovação >= 70% na atividade
+      do Módulo 1, Módulo 3 exige aprovação na atividade do Módulo 2, e
+      Avaliação Final exige aprovação na atividade do Módulo 3.
 """
 
 import frappe
+
+PLE_COURSES = {
+    "portugues-para-estrangeiros-basico",
+    "portugues-para-estrangeiros-intermediario",
+    "portugues-para-estrangeiros-avancado",
+}
 
 
 def _prerequisite_course(course_name):
@@ -44,12 +53,85 @@ def _course_name_for(doctype, docname):
         return frappe.db.get_value("Course Chapter", docname, "course")
     if doctype == "Course Lesson":
         return frappe.db.get_value("Course Lesson", docname, "course")
+    if doctype == "LMS Quiz":
+        return frappe.db.get_value("LMS Quiz", docname, "course")
     return None
+
+
+def _chapter_for(doctype, docname):
+    if doctype == "Course Chapter":
+        return docname
+    if doctype == "Course Lesson":
+        return frappe.db.get_value("Course Lesson", docname, "chapter")
+    if doctype == "LMS Quiz":
+        lesson = frappe.db.get_value("LMS Quiz", docname, "lesson")
+        if lesson:
+            return frappe.db.get_value("Course Lesson", lesson, "chapter")
+    return None
+
+
+def _required_module_activity(course_name, doctype, docname):
+    """Return the quiz title that must be passed before reading this doc."""
+    if course_name not in PLE_COURSES:
+        return None
+
+    chapter_name = _chapter_for(doctype, docname)
+    if not chapter_name:
+        return None
+
+    chapter_title = frappe.db.get_value("Course Chapter", chapter_name, "title") or ""
+
+    if chapter_title.startswith("Módulo 2"):
+        return _activity_title_for_module(course_name, 1)
+    if chapter_title.startswith("Módulo 3"):
+        return _activity_title_for_module(course_name, 2)
+    if chapter_title == "Avaliação Final":
+        return _activity_title_for_module(course_name, 3)
+
+    return None
+
+
+def _activity_title_for_module(course_name, module_number):
+    chapters = frappe.get_all(
+        "Course Chapter",
+        filters={"course": course_name},
+        fields=["title"],
+        order_by="idx asc, creation asc, name asc",
+    )
+    for row in chapters:
+        title = row.title or ""
+        if title.startswith(f"Módulo {module_number}"):
+            return f"Exercícios de Fixação — {title}"
+    return None
+
+
+def _has_passed_quiz(member, course_name, quiz_title):
+    if not quiz_title:
+        return False
+
+    quiz = frappe.db.get_value(
+        "LMS Quiz",
+        {"course": course_name, "title": quiz_title},
+        ["name", "passing_percentage"],
+        as_dict=True,
+    )
+    if not quiz:
+        return False
+
+    passing = quiz.passing_percentage or 70
+    return bool(frappe.db.exists(
+        "LMS Quiz Submission",
+        {
+            "member": member,
+            "quiz": quiz.name,
+            "percentage": [">=", passing],
+        },
+    ))
 
 
 def has_permission(doc, ptype, user):
     """Hook genérico (hooks.py -> has_permission) pra LMS Course/Course
-    Chapter/Course Lesson. Só atua em leitura; nunca bloqueia
+    Chapter/Course Lesson/LMS Quiz. Só atua em leitura; nunca bloqueia
     System Manager/Administrator (gestão do curso não pode travar).
     """
     if ptype != "read" or user in ("Administrator", None):
@@ -63,10 +145,11 @@ def has_permission(doc, ptype, user):
         return None
 
     prereq = _prerequisite_course(course_name)
-    if not prereq:
-        return None
+    if prereq and not has_passed_course(user, prereq):
+        return False
 
-    if has_passed_course(user, prereq):
-        return None
+    required_quiz = _required_module_activity(course_name, doc.doctype, docname)
+    if required_quiz and not _has_passed_quiz(user, course_name, required_quiz):
+        return False
 
-    return False
+    return None

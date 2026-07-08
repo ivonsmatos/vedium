@@ -520,10 +520,14 @@ def get_payment_history(limit=50, start=0):
 # Endpoint central para seleção de gateway no checkout
 # =====================
 @frappe.whitelist()
-def create_checkout(course_name, gateway, coupon_code=None):
+def create_checkout(course_name, gateway, coupon_code=None, display_currency=None):
     """
     Cria checkout para o gateway selecionado pelo usuário, com suporte a cupons.
     Rate limit: 20 tentativas/hora por IP (anti-flooding de sessões de pagamento).
+
+    display_currency (opcional): moeda escolhida no seletor do site (ver
+    vedium_core/currency.py) -- cobra o valor convertido em tempo real
+    nessa moeda em vez da moeda nativa do curso.
     """
     rate_limit_by_ip("checkout", limit=20, window_sec=3600)
     if frappe.session.user == "Guest":
@@ -597,6 +601,7 @@ def create_checkout(course_name, gateway, coupon_code=None):
         course,
         frappe.session.user,
         coupon_code=coupon_code if coupon_valid else None,
+        display_currency=display_currency,
     )
     return {
         "checkout_url": checkout_url,
@@ -762,10 +767,16 @@ def get_featured_courses(limit=6, start=0):
 
 
 @frappe.whitelist()
-def create_checkout_session(course_name):
+def create_checkout_session(course_name, display_currency=None):
     """
     Create a Stripe checkout session for course purchase.
     Requires logged-in user. Uses the gateway factory pattern.
+
+    display_currency (opcional): moeda escolhida pelo aluno no seletor do
+    site (ver vedium_core/currency.py) -- se informada e diferente da
+    moeda nativa do curso, o valor é convertido em tempo real e cobrado
+    nessa moeda. Sem isso, cobra na moeda nativa do curso (comportamento
+    de sempre).
     """
     if frappe.session.user == "Guest":
         frappe.throw(_("Por favor, faça login para comprar este curso"))
@@ -784,7 +795,9 @@ def create_checkout_session(course_name):
 
     # C-01 fix: use the gateway factory instead of the non-existent create_stripe_checkout()
     gateway_obj = get_gateway("stripe")
-    checkout_url = gateway_obj.create_checkout(course, frappe.session.user)
+    checkout_url = gateway_obj.create_checkout(
+        course, frappe.session.user, display_currency=display_currency
+    )
 
     return {"checkout_url": checkout_url}
 
@@ -793,7 +806,7 @@ def create_checkout_session(course_name):
 # Payment Gateway Abstraction
 # =====================
 class PaymentGateway:
-    def create_checkout(self, course, user, coupon_code=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
         raise NotImplementedError
 
     def handle_webhook(self, data):
@@ -809,15 +822,32 @@ class StripeGateway(PaymentGateway):
             )
         return key
 
-    def create_checkout(self, course, user, coupon_code=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
         import stripe
+
+        from vedium_core.currency import SUPPORTED_CURRENCIES, convert_amount
 
         stripe.api_key = self._get_api_key()
 
         user_email = frappe.get_value("User", user, "email") or user
         base_url = frappe.utils.get_url()
-        currency = (getattr(course, "currency", None) or "BRL").lower()
-        unit_amount = int(float(course.course_price or 0) * 100)  # centavos/cents
+        native_currency = (getattr(course, "currency", None) or "BRL").upper()
+        native_price = float(course.course_price or 0)
+
+        # Se o aluno escolheu uma moeda diferente da nativa do curso no
+        # seletor do site (ver vedium_core/currency.py), converte o valor
+        # em tempo real e cobra nessa moeda. Sem escolha, mantém o
+        # comportamento de sempre (moeda nativa do curso).
+        display_currency = (display_currency or "").upper() or None
+        if display_currency and display_currency in SUPPORTED_CURRENCIES:
+            charge_currency = display_currency
+            charge_price = convert_amount(native_price, native_currency, display_currency)
+        else:
+            charge_currency = native_currency
+            charge_price = native_price
+
+        currency = charge_currency.lower()
+        unit_amount = int(round(charge_price * 100))  # centavos/cents
 
         session = stripe.checkout.Session.create(
             payment_method_types=["card"],
@@ -844,6 +874,9 @@ class StripeGateway(PaymentGateway):
                 "user": user,
                 "site": frappe.local.site,
                 "coupon_code": coupon_code or "",
+                "native_currency": native_currency,
+                "native_price": native_price,
+                "charge_currency": charge_currency,
             },
         )
         return session.url
@@ -879,7 +912,7 @@ class MercadoPagoGateway(PaymentGateway):
             frappe.throw(_("MERCADOPAGO_ACCESS_TOKEN não configurado"))
         return mercadopago.SDK(access_token)
 
-    def create_checkout(self, course, user, coupon_code=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
         sdk = self.get_sdk()
 
         preference_data = {
@@ -949,7 +982,7 @@ class MercadoPagoGateway(PaymentGateway):
 
 
 class BasecommerceGateway(PaymentGateway):
-    def create_checkout(self, course, user, coupon_code=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
         # TODO: Integrar com Basecommerce API
         return f"/lms/courses/{course.name}/enroll-basecommerce"
 
@@ -959,7 +992,7 @@ class BasecommerceGateway(PaymentGateway):
 
 
 class CryptoGateway(PaymentGateway):
-    def create_checkout(self, course, user, coupon_code=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
         from vedium_core.services.crypto_service import CryptoService
 
         service = CryptoService()

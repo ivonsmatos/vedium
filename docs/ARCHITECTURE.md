@@ -44,7 +44,7 @@ Iorubá Ancestral, Português para Estrangeiros) construída sobre o
 | CDN/edge | Cloudflare | proxy ativo |
 | Monitoramento | Uptime Kuma | container `vedium-uptime-kuma` |
 | Pagamentos | Stripe + Mercado Pago | + Basecommerce (stub) |
-| IA | Groq (Llama 3 70B) | via SDK oficial |
+| IA | Groq (Llama 3 70B) | código parcial; tutor ainda não é produto pronto |
 
 ⚠️ `bench list-apps` mostra frappe/erpnext como `UNVERSIONED` porque eles
 vêm **baked na imagem** `frappe/erpnext:v16` (sem `.git` — verificado no
@@ -101,9 +101,9 @@ vedium_core/
 │   ├── analytics_events.py         # GTM / GA4 server-side
 │   ├── careers.py                  # Página de carreiras
 │   ├── controllers/
-│   │   └── ai_controller.py        # Groq AI Tutor + rate limit
+│   │   └── ai_controller.py        # Tutor IA Groq parcial + rate limit
 │   ├── services/
-│   │   ├── ai_service.py           # Análise de áudio (speaking/listening)
+│   │   ├── ai_service.py           # Áudio speaking/listening em mock
 │   │   └── crypto_service.py       # Coinbase Commerce
 │   ├── www/                        # Páginas server-rendered
 │   │   ├── index.py                # Home

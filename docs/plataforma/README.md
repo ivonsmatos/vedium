@@ -45,9 +45,9 @@ não se repita.
 | 11 | [Estado do Ambiente (checklist vivo)](11-estado-do-ambiente.md) | O que está ligado/desligado em produção hoje | ✅ |
 | 12 | [Runbook de Operação & Deploy](12-runbook-de-operacao.md) | Como deploya, footguns, logs, rollback | ✅ |
 | 13 | [Catálogo de Produtos & Preços](13-catalogo-de-produtos.md) | Cursos publicados, slugs, níveis, preços, professor | ✅ |
+| 14 | [Atendimento ao Aluno e Tutor IA](14-atendimento-e-tutor-ia.md) | Dúvidas humanas, Helpdesk/WhatsApp e fronteira do tutor IA custom | ✅ |
 
-Todos os documentos planejados desta pasta estão escritos (05-13 nesta
-sessão de 2026-07-03).
+Todos os documentos planejados desta pasta estão escritos (05-14).
 
 Legenda: ✅ escrito · ⏳ a escrever
 

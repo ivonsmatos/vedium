@@ -66,7 +66,23 @@ Frappe LMS traz muito mais do que curso/aula/quiz.
 
 ---
 
-## 4. Não pesquisado nesta rodada (fora do escopo do pedido original)
+## 4. Decisão específica: atendimento e tutor IA
+
+Atualizado em 2026-07-08 no [doc 14](14-atendimento-e-tutor-ia.md):
+
+- **Dúvidas humanas:** usar primeiro discussões nativas do LMS, assignments e
+  batches/live classes.
+- **Suporte operacional:** Helpdesk é o destino natural quando houver volume,
+  SLAs ou mais de uma pessoa atendendo; no volume atual, manter simples.
+- **WhatsApp:** útil para comercial/suporte administrativo, não como tutor
+  pedagógico.
+- **Tutor IA:** não há recurso nativo pronto no Frappe Learning. A Vedium tem
+  código parcial em `vedium_core`, mas transformar isso em produto exige
+  DocTypes, widget autenticado, base de conhecimento, logs e fallback humano.
+
+---
+
+## 5. Não pesquisado nesta rodada (fora do escopo do pedido original)
 
 - Gateway de SMS nativo do framework (`SMS Settings`) — mencionado de passagem, não aprofundado.
 - `frappe/gameplan` (gestão de projeto interno) — não pesquisado, baixa prioridade presumida pra escola pequena/média.

@@ -23,7 +23,9 @@
 - [ ] Certificado PDF com QR code de verificação.
 - [ ] Trial 7 dias para curso pago (`status="Trial"` + scheduler de expiração).
 - [ ] Cupons regionais auto-aplicados via geolocalização.
-- [ ] AI Tutor com voz (TTS via ElevenLabs ou Coqui).
+- [ ] Tutor IA Vedium text-first, depois voz (ver `docs/plataforma/14-atendimento-e-tutor-ia.md`):
+  DocTypes, widget autenticado, base de conhecimento, logs, fallback humano e
+  só então TTS/voz.
 - [ ] B2B: pacote corporativo (10+ licenças) com dashboard por colaborador.
 - [ ] Funil completo no Grafana (homepage → catálogo → curso → pagamento → 1ª aula).
 
