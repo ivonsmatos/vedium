@@ -112,6 +112,15 @@ def submit_candidatura(
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar Job Applicant (hrms)")
 
+    # Notificacao operacional: candidatura precisa chegar para a equipe
+    # imediatamente, sem depender do digest semanal.
+    try:
+        from vedium_core.notifications import notify_teacher_application
+
+        notify_teacher_application(doc)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium: erro ao notificar candidatura")
+
     return {"ok": True, "name": doc.name}
 
 
