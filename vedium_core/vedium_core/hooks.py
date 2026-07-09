@@ -409,6 +409,22 @@ doc_events = {
     "LMS Enrollment": {
         "after_insert": "vedium_core.integrations.on_enrollment"
     },
+    "LMS Certificate Request": {
+        "after_insert": "vedium_core.notifications.notify_lms_certificate_request"
+    },
+    "Lesson Slot": {
+        "after_insert": "vedium_core.notifications.notify_lesson_slot_booked",
+        "on_update": "vedium_core.notifications.notify_lesson_slot_booked",
+    },
+    # Gamificação: quiz aprovado (+25 / prova final +100, só na 1ª aprovação)
+    "LMS Quiz Submission": {
+        "after_insert": "vedium_core.gamification.Gamification.handle_quiz_submission"
+    },
+    # Gamificação: certificado emitido (+200 + cupom de desconto pro próximo
+    # nível PLE — ver MILESTONE_NEXT_COURSE em gamification.py)
+    "LMS Certificate": {
+        "after_insert": "vedium_core.gamification.Gamification.handle_certificate_issued"
+    },
 }
 
 # =============================================================================

@@ -87,6 +87,38 @@ def get_context(context):
         limit_page_length=8,
     )
 
+    # Badges automáticos NATIVOS do LMS (LMS Badge Assignment — criados
+    # sozinhos pelo LMS quando a condição do LMS Badge bate; ver
+    # scripts/migrations/oneshot/setup_lms_badges.py). Mesclados na mesma
+    # lista de conquistas do template.
+    if frappe.db.exists("DocType", "LMS Badge Assignment"):
+        for assignment in frappe.get_all(
+            "LMS Badge Assignment",
+            filters={"member": user},
+            fields=["badge", "issued_on"],
+            order_by="issued_on desc",
+            limit_page_length=8,
+        ):
+            badges.append(
+                frappe._dict(
+                    badge=frappe.db.get_value("LMS Badge", assignment.badge, "title")
+                    or assignment.badge,
+                    level=None,
+                    awarded_on=assignment.issued_on,
+                )
+            )
+
+    # Pontos e nível de gamificação (User.vedium_points — lição +10,
+    # quiz aprovado +25, prova final +100, certificado +200).
+    from vedium_core.gamification import get_level, get_next_level
+
+    points = frappe.db.get_value("User", user, "vedium_points") or 0
+    context.points = points
+    context.level = get_level(points)
+    next_level, points_to_next = get_next_level(points)
+    context.next_level = next_level
+    context.points_to_next = points_to_next
+
     # Removido 2026-07-01: a seção "Aulas e tarefas" lia o doctype legado
     # Lesson Slot, substituído pelo agendamento NATIVO do Frappe LMS (Course
     # Evaluator + Google Meet). Lesson Slot está permanentemente vazio em
