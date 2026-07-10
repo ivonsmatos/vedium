@@ -81,6 +81,14 @@ def get_level_badge(title):
             if label in title:
                 return label
     if "Hebraico" in title:
+        if "A0" in title or "Alfabetiza" in title:
+            return "A0"
+        if "A2" in title or "B1" in title:
+            return "A2/B1"
+        if "Bíblico" in title or "Biblico" in title:
+            return "Bíblico"
+        if "Particular" in title:
+            return "1:1"
         return "A1"
     # Cursos CEFR (Inglês)
     cefr = {
