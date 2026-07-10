@@ -49,10 +49,22 @@ e erros do sistema. Checklist ao receber:
    conferir spam/bounce se aluno reclamar)
 4. Erros recorrentes no Error Log? (`/app/error-log`)
 
-## 4. Suporte (Helpdesk) — configuração pendente
+## 4. Suporte (Helpdesk)
 
-O Helpdesk está instalado mas sem entrada automática de e-mail. Para
-transformar e-mails em tickets:
+O Helpdesk nativo está configurado para operação inicial:
+
+- Agente: `ivonmatos@vediums.com`
+- Papéis: `Agent` e `Agent Manager`
+- Time: `Vedium Support`
+- Status padrão: `Open`
+- Prioridade padrão: `Medium`
+- Formulários/fluxos públicos da Vedium agora criam `HD Ticket` nativo,
+  com fallback para o `Support Ticket` legado só se o app Helpdesk não
+  estiver disponível.
+
+O que ainda falta é a entrada automática por e-mail.
+
+Para transformar e-mails em tickets:
 
 1. Criar a caixa `suporte@vediums.com` num provedor com IMAP
    (Zoho Mail free / Google Workspace — o Resend só envia, não recebe).

@@ -639,11 +639,12 @@ def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
     assert "verify_certificate" in funnel
     for intent in ["lead", "diagnostic", "community", "referral", "b2b", "review"]:
         assert f'"{intent}"' in funnel
-    assert '"doctype": "Support Ticket"' in funnel
+    assert "vedium_core.helpdesk import create_ticket" in funnel
+    assert '"HD Ticket"' in (ROOT / "vedium_core" / "vedium_core" / "helpdesk.py").read_text(encoding="utf-8")
     assert "frappe.sendmail" in funnel
     assert "Recebemos seu contato | Vedium" in funnel
     assert "Public funnel lead confirmation failed" in funnel
-    assert '"opened_by"' in funnel
+    assert "raised_by" in (ROOT / "vedium_core" / "vedium_core" / "helpdesk.py").read_text(encoding="utf-8")
     assert "LMS Certificate" in funnel
     assert "Lesson Slot" in funnel
     assert "create_checkout" not in funnel
@@ -3375,7 +3376,7 @@ def test_public_intent_validates_fields_and_creates_crm_lead_for_b2b():
     """2026-07-04: submit_public_intent (usado por /empresas, /comunidade
     etc.) não validava nada (nome/e-mail podiam vir vazios) nem tinha
     rate-limit — diferente do formulário de contato, que já tinha os dois.
-    Também não criava CRM Lead, só Support Ticket. Agora: valida
+    Também não criava CRM Lead, só ticket. Agora: valida
     nome+e-mail obrigatórios e formato de e-mail, tem rate-limit, e cria/
     atualiza um CRM Lead pra QUALQUER intent (não só b2b -- usuário pediu
     pra garantir que os módulos se enxerguem), com organization/

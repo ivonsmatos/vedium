@@ -1,6 +1,6 @@
 """Public funnel endpoints for marketing and sales handoff.
 
-These endpoints intentionally create human-reviewable Support Tickets instead
+These endpoints intentionally create human-reviewable Helpdesk tickets instead
 of mutating checkout, enrollments, payment sessions, or LMS progress directly.
 """
 
@@ -44,7 +44,7 @@ def _upsert_crm_lead_from_public_intent(intent, name, email, phone, company, tea
     """Cria (ou comenta em) um CRM Lead a partir de QUALQUER intent do
     formulario publico (/empresas, /comunidade, aula diagnostica,
     indicacao, depoimento, lead generico) -- antes so intent 'b2b' tinha
-    isso, o resto so virava Support Ticket. Agora todo mundo que preenche
+    isso, o resto so virava ticket. Agora todo mundo que preenche
     um formulario publico fica visivel no CRM, alem do ticket humano.
 
     Campos extras de B2B (organization/no_of_employees) setados de forma
@@ -107,23 +107,22 @@ def _upsert_crm_lead_from_public_intent(intent, name, email, phone, company, tea
 
 
 def _create_ticket(intent, subject, details):
+    from vedium_core.helpdesk import create_ticket
+
     category = ALLOWED_INTENTS.get(intent, "Lead")
     description = "\n".join(
         f"{key}: {_clean(value, 1000)}"
         for key, value in details.items()
         if _clean(value, 1000)
     )
-    ticket_data = {
-        "doctype": "Support Ticket",
-        "subject": _clean(subject, 140) or category,
-        "description": description,
-        "category": category,
-        "status": "Open",
-    }
-    if frappe.session.user and frappe.session.user != "Guest":
-        ticket_data["opened_by"] = frappe.session.user
-    ticket = frappe.get_doc(ticket_data)
-    ticket.insert(ignore_permissions=True)
+    ticket = create_ticket(
+        subject=_clean(subject, 140) or category,
+        description=description,
+        category=category,
+        raised_by=_clean(details.get("email"), 180) or None,
+        requester_name=_clean(details.get("name"), 180) or None,
+        phone=_clean(details.get("phone"), 40) or None,
+    )
     try:
         frappe.sendmail(
             recipients=["contato@vediums.com"],

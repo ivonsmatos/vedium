@@ -146,17 +146,14 @@ def open_support_ticket(subject, description, category=None):
     Rate limit: 10 chamados/hora por IP.
     """
     rate_limit_by_ip("support_ticket", limit=10, window_sec=3600)
-    ticket = frappe.get_doc(
-        {
-            "doctype": "Support Ticket",
-            "subject": subject,
-            "description": description,
-            "category": category or "Geral",
-            "opened_by": frappe.session.user,
-        }
+    from vedium_core.helpdesk import create_ticket
+
+    ticket = create_ticket(
+        subject=subject,
+        description=description,
+        category=category or "Geral",
     )
-    ticket.insert(ignore_permissions=True)
-    return {"ticket_id": ticket.name}
+    return {"ticket_id": ticket.name, "doctype": ticket.doctype}
 
 
 @frappe.whitelist()
@@ -164,12 +161,9 @@ def get_my_tickets():
     """
     Lista chamados abertos pelo usuário logado
     """
-    tickets = frappe.get_all(
-        "Support Ticket",
-        filters={"opened_by": frappe.session.user},
-        fields=["name", "subject", "status", "creation", "category"],
-    )
-    return tickets
+    from vedium_core.helpdesk import list_tickets_for_user
+
+    return list_tickets_for_user()
 
 
 @frappe.whitelist()
