@@ -46,3 +46,12 @@ def _ensure_custom_doctypes():
         frappe.log_error(
             frappe.get_traceback(), "Vedium.install.setup_custom_fields"
         )
+
+    try:
+        from vedium_core.ai_tutor import ensure_ai_tutor_doctypes
+
+        ensure_ai_tutor_doctypes()
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(), "Vedium.install.ensure_ai_tutor_doctypes"
+        )

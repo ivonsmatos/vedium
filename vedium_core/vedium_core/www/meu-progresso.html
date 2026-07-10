@@ -14,7 +14,29 @@
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css" />
 <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
-<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-section{padding:72px 0}.vd-alt{background:#f8fafc}.vd-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.vd-card{grid-column:span 4;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-wide{grid-column:span 8}.vd-full{grid-column:1/-1}.vd-pill{display:inline-block;border-radius:999px;padding:6px 12px;background:#eaf2ff;color:#2563eb;font-size:12px;font-weight:800;margin-bottom:12px}.vd-muted{color:#5f6b7a;line-height:1.7}.vd-list{padding-left:18px;margin:0}.vd-kpi{font-size:40px;line-height:1;color:#111827;font-weight:800}.vd-row{padding:12px 0;border-top:1px solid #edf2f7}.vd-row:first-child{border-top:0}@media(max-width:991px){.vd-card,.vd-wide{grid-column:1/-1}}</style>
+<style>img[src*="logo-color-reta"]{max-height:46px!important;width:auto!important}.footer-one img[src*="logo-branca-reta"]{max-width:145px!important;height:auto!important}.stricky-header,.stricky-header.stricked-menu{display:none!important}.main-header-one__bottom{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07)}.vd-section{padding:72px 0}.vd-alt{background:#f8fafc}.vd-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.vd-card{grid-column:span 4;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.vd-wide{grid-column:span 8}.vd-full{grid-column:1/-1}.vd-pill{display:inline-block;border-radius:999px;padding:6px 12px;background:#eaf2ff;color:#2563eb;font-size:12px;font-weight:800;margin-bottom:12px}.vd-muted{color:#5f6b7a;line-height:1.7}.vd-list{padding-left:18px;margin:0}.vd-kpi{font-size:40px;line-height:1;color:#111827;font-weight:800}.vd-row{padding:12px 0;border-top:1px solid #edf2f7}.vd-row:first-child{border-top:0}@media(max-width:991px){.vd-card,.vd-wide{grid-column:1/-1}}
+/* Tutor IA — widget flutuante */
+.vd-tutor-fab{position:fixed;right:24px;bottom:24px;z-index:9998;width:60px;height:60px;border-radius:50%;background:#2E6DA4;color:#fff;border:none;box-shadow:0 10px 30px rgba(15,23,42,.28);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.vd-tutor-fab:hover{background:#245686}
+.vd-tutor-panel{position:fixed;right:24px;bottom:96px;z-index:9999;width:360px;max-width:calc(100vw - 32px);height:480px;max-height:calc(100vh - 140px);background:#fff;border-radius:16px;box-shadow:0 24px 60px rgba(15,23,42,.28);display:none;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb}
+.vd-tutor-panel.vd-open{display:flex}
+.vd-tutor-head{background:#2E6DA4;color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.vd-tutor-head strong{font-size:14.5px}
+.vd-tutor-head span{font-size:11.5px;opacity:.85;display:block}
+.vd-tutor-close{background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1}
+.vd-tutor-body{flex:1;overflow-y:auto;padding:14px;background:#f8fafc}
+.vd-tutor-msg{max-width:85%;padding:9px 12px;border-radius:12px;margin-bottom:10px;font-size:13.5px;line-height:1.5;white-space:pre-wrap}
+.vd-tutor-msg.user{background:#2E6DA4;color:#fff;margin-left:auto;border-bottom-right-radius:3px}
+.vd-tutor-msg.assistant{background:#fff;color:#1f2937;border:1px solid #e5e7eb;border-bottom-left-radius:3px}
+.vd-tutor-msg.system{background:transparent;color:#94a3b8;font-size:11.5px;text-align:center;max-width:100%}
+.vd-tutor-foot{border-top:1px solid #e5e7eb;padding:10px;flex-shrink:0;background:#fff}
+.vd-tutor-row{display:flex;gap:8px}
+.vd-tutor-input{flex:1;border:1.5px solid #dbe4ff;border-radius:10px;padding:9px 11px;font-size:13.5px;font-family:inherit;resize:none}
+.vd-tutor-send{background:#2E6DA4;color:#fff;border:none;border-radius:10px;padding:0 14px;font-weight:700;cursor:pointer}
+.vd-tutor-send:disabled{opacity:.5;cursor:wait}
+.vd-tutor-human{background:transparent;border:none;color:#64748b;font-size:11.5px;text-decoration:underline;cursor:pointer;margin-top:6px;padding:0}
+@media(max-width:480px){.vd-tutor-panel{right:16px;left:16px;width:auto;bottom:88px}.vd-tutor-fab{right:16px;bottom:16px}}
+</style>
 </head>
 <body><div class="page-wrapper">
 {% set vd_page = "meu-progresso" %}
@@ -33,6 +55,105 @@
   </div>
 </div></section>
 {% include "templates/includes/site_footer.html" %}</div>
+
+<!-- Tutor IA -->
+<button type="button" class="vd-tutor-fab" id="vd-tutor-fab" aria-label="Abrir Tutor IA">💬</button>
+<div class="vd-tutor-panel" id="vd-tutor-panel" data-course="{{ courses[0].course if courses else '' }}">
+  <div class="vd-tutor-head">
+    <div><strong>Tutor IA Vedium</strong><span>Dúvidas de idioma e da plataforma</span></div>
+    <button type="button" class="vd-tutor-close" id="vd-tutor-close" aria-label="Fechar">✕</button>
+  </div>
+  <div class="vd-tutor-body" id="vd-tutor-body">
+    <div class="vd-tutor-msg system">Oi! Pergunte sobre seu curso, progresso, certificado ou qualquer dúvida da plataforma.</div>
+  </div>
+  <div class="vd-tutor-foot">
+    <div class="vd-tutor-row">
+      <textarea id="vd-tutor-input" class="vd-tutor-input" rows="1" placeholder="Digite sua pergunta..." maxlength="2000"></textarea>
+      <button type="button" id="vd-tutor-send" class="vd-tutor-send">Enviar</button>
+    </div>
+    <button type="button" class="vd-tutor-human" id="vd-tutor-human">Falar com um humano</button>
+  </div>
+</div>
+<script>
+(function(){
+  var fab = document.getElementById('vd-tutor-fab');
+  var panel = document.getElementById('vd-tutor-panel');
+  var closeBtn = document.getElementById('vd-tutor-close');
+  var body = document.getElementById('vd-tutor-body');
+  var input = document.getElementById('vd-tutor-input');
+  var send = document.getElementById('vd-tutor-send');
+  var humanBtn = document.getElementById('vd-tutor-human');
+  var course = panel.getAttribute('data-course') || null;
+  var sessionName = null;
+  var sending = false;
+
+  function addMessage(role, text){
+    var div = document.createElement('div');
+    div.className = 'vd-tutor-msg ' + role;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  fab.addEventListener('click', function(){
+    panel.classList.toggle('vd-open');
+    if (panel.classList.contains('vd-open')) input.focus();
+  });
+  closeBtn.addEventListener('click', function(){ panel.classList.remove('vd-open'); });
+
+  function doSend(){
+    var message = input.value.trim();
+    if (!message || sending) return;
+    sending = true;
+    send.disabled = true;
+    addMessage('user', message);
+    input.value = '';
+
+    frappe.call({
+      method: 'vedium_core.ai_tutor.chat',
+      args: { message: message, course: course, session_name: sessionName },
+      callback: function(r){
+        sending = false;
+        send.disabled = false;
+        if (r.message) {
+          sessionName = r.message.session_name;
+          addMessage('assistant', r.message.reply);
+        }
+      },
+      error: function(){
+        sending = false;
+        send.disabled = false;
+        addMessage('system', 'Não consegui responder agora. Tente de novo ou fale com um humano.');
+      }
+    });
+  }
+
+  send.addEventListener('click', doSend);
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); }
+  });
+
+  humanBtn.addEventListener('click', function(){
+    if (!sessionName) {
+      addMessage('system', 'Envie uma mensagem antes de chamar o suporte, para levarmos o contexto junto.');
+      return;
+    }
+    humanBtn.disabled = true;
+    frappe.call({
+      method: 'vedium_core.ai_tutor.escalate_to_human',
+      args: { session_name: sessionName, reason: 'Aluno pediu suporte humano' },
+      callback: function(r){
+        humanBtn.disabled = false;
+        if (r.message) addMessage('system', 'Chamado aberto (' + r.message.ticket + '). Nossa equipe vai te responder por e-mail.');
+      },
+      error: function(){
+        humanBtn.disabled = false;
+        addMessage('system', 'Não consegui abrir o chamado agora. Tente de novo em instantes.');
+      }
+    });
+  });
+})();
+</script>
 <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
 <script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>

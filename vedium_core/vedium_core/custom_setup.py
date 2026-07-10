@@ -67,6 +67,15 @@ CUSTOM_FIELDS = {
             "fieldtype": "Data",
             "insert_after": "custom_vedium_vapid_private_key",
         },
+        # Fallback de configuração do Tutor IA (ver vedium_core/ai_tutor.py)
+        # -- preferir site_config.json (frappe.conf.groq_api_key); este
+        # campo existe pra quem preferir configurar pela UI.
+        {
+            "fieldname": "custom_groq_api_key",
+            "label": "Vedium AI Tutor — Groq API Key",
+            "fieldtype": "Password",
+            "insert_after": "custom_vedium_vapid_email",
+        },
     ],
     # Extensões Vedium ao certificado NATIVO do LMS (LMS Certificate).
     # Antes existia um doctype custom homônimo que sequestrava o nativo; foi
