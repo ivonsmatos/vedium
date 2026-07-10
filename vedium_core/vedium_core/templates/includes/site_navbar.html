@@ -78,20 +78,19 @@
   "de": {"home": "/de/", "how": "/de/como-funciona", "about": "/de/sobre", "courses": "/de/catalogo", "blog": "/blog", "faq": "/de/faq", "contact": "/de/contato", "free_test": "/de/portugiesisch-einstufungstest"},
 } %}
 {%- set vd_menu_u = vd_menu_links.get(vd_nav.current, vd_menu_links["pt-br"]) %}
-{#- Submenu "Cursos" com os 5 idiomas. Espanhol/Hebraico ainda não têm
-   página pilar de SEO própria (só Inglês/Iorubá/PLE têm, ver
-   marketing_landing_content.py LANDINGS) -- por isso caem no /catalogo
-   local, que já filtra por idioma (ver catalogo.html). Os links de
-   Inglês/Iorubá/PLE por idioma são os slugs reais já publicados (alt
-   dict de marketing_landing_content.py); onde não existe tradução real
-   (ex.: Iorubá em fr/de), cai no catálogo daquele idioma em vez de
-   inventar uma URL. #}
+{#- Submenu "Cursos" com os 5 idiomas. Cada idioma aponta pra sua página
+   pilar de SEO real (ver marketing_landing_content.py LANDINGS). Espanhol/
+   Hebraico só têm a versão pt-BR publicada até agora -- outras línguas
+   caem no /catalogo daquele idioma em vez de inventar uma URL. Os links de
+   Inglês/Iorubá/PLE por idioma são os slugs reais já publicados (alt dict
+   de marketing_landing_content.py); onde não existe tradução real (ex.:
+   Iorubá em fr/de), mesma regra: cai no catálogo daquele idioma. #}
 {%- set vd_courses_links = {
   "english": {"pt-br": "/curso-de-ingles-online", "en": "/learn-english-online", "es": "/curso-de-ingles-online-en-vivo", "fr": "/cours-anglais-en-ligne-en-direct", "de": "/englischkurs-online-live"},
   "yoruba": {"pt-br": "/curso-de-ioruba-online", "en": "/learn-yoruba-online", "es": "/curso-de-yoruba-online"},
   "ple": {"pt-br": "/portugues-para-estrangeiros", "en": "/learn-portuguese-brazil", "es": "/portugues-para-extranjeros", "fr": "/portugais-pour-etrangers", "de": "/portugiesisch-fuer-auslaender"},
-  "spanish": {},
-  "hebrew": {},
+  "spanish": {"pt-br": "/curso-de-espanhol-online"},
+  "hebrew": {"pt-br": "/curso-de-hebraico-online"},
 } %}
 {%- set vd_courses_labels = {
   "pt-br": {"english": "Inglês", "yoruba": "Iorubá", "ple": "Português (PLE)", "spanish": "Espanhol", "hebrew": "Hebraico"},

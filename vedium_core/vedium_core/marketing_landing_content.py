@@ -4090,6 +4090,192 @@ LANDINGS = {
         ],
         "whatsapp_text": "Здравствуйте, хочу подготовиться к экзамену Celpe-Bras в Vedium.",
     },
+    "curso-de-espanhol-online": {
+        "alt": {"pt-BR": "curso-de-espanhol-online"},
+        "title": "Curso de Espanhol Online ao Vivo (Básico ao Avançado) — Vedium",
+        "short_title": "Curso de Espanhol Online",
+        "meta_description": "Curso de espanhol online ao vivo da Vedium: aulas com professor em tempo real, do Básico ao Avançado, foco em conversação e correção de portunhol. A partir de R$ 297/mês.",
+        "tagline": "Espanhol para sair do portunhol",
+        "h1": "Curso de espanhol online ao vivo, com professor de verdade",
+        "lead": "A Vedium ensina espanhol em aulas ao vivo, não em vídeos gravados. Você aprende a falar de verdade, com correção do professor em tempo real, turmas pequenas e foco em conversação para sair do portunhol desde a primeira aula.",
+        "hero_image": "https://images.unsplash.com/photo-1652954884281-8fb97179c4f9?w=1920&q=80",
+        "audience": "Brasileiros que querem sair do portunhol, viajar ou trabalhar com países de língua espanhola, e quem busca conversação real com correção de professor.",
+        "level": "Básico ao Avançado (A1 a C1)",
+        "frequency": "2 aulas ao vivo por semana",
+        "duration": "24 semanas por nível, 48 aulas ao vivo",
+        "summary": "Você evolui em turmas pequenas, com aulas ao vivo, prática oral guiada, correção de pronúncia e portunhol, tarefas curtas entre aulas e projeto final por nível.",
+        "pain_title": "Por que tanta gente 'entende mas não fala' espanhol",
+        "pain_intro": "Quem cresce ouvindo espanhol acha que já sabe, mas trava na hora de falar — e sem correção ao vivo, o portunhol vira hábito difícil de largar.",
+        "pain_points": [
+            "Entende espanhol ouvindo e lendo, mas mistura com português na hora de falar (o clássico portunhol).",
+            "Já tentou aplicativo ou curso gravado e não teve quem corrigisse a fala em tempo real.",
+            "Não sabe seu nível real nem por onde recomeçar entre Básico, Intermediário e Avançado.",
+            "Precisa de espanhol para viagem, trabalho ou intercâmbio e tem prazo apertado.",
+        ],
+        "outcomes": [
+            "Falar espanhol com segurança, sem depender de tradução palavra por palavra.",
+            "Corrigir de vez os vícios do portunhol (falsos cognatos, pronúncia, tempos verbais).",
+            "Sustentar conversas reais sobre rotina, viagem, trabalho e opinião.",
+            "Evoluir por nível certificado, do Básico ao Avançado.",
+        ],
+        "modules": [
+            {"title": "Diagnóstico e primeiros passos", "text": "Apresentação, saudações e estruturas essenciais para começar a falar desde a primeira aula."},
+            {"title": "Conversação guiada", "text": "Prática oral constante, com correção de pronúncia, portunhol e vocabulário do dia a dia."},
+            {"title": "Gramática em uso real", "text": "Presente, passado e subjuntivo explicados a partir de situações concretas, não de regras soltas."},
+            {"title": "Cultura hispânica em contexto", "text": "América Latina e Espanha, variedades do idioma e uso social da língua."},
+            {"title": "Espanhol para viagem e trabalho", "text": "Situações reais de viagem, negociação, reuniões e atendimento."},
+            {"title": "Projeto final por nível", "text": "Avaliação comunicativa com prova, apresentação oral e autoavaliação ao final de cada nível."},
+        ],
+        "format_items": [
+            "Aulas online ao vivo, com professor e prática oral — não é vídeo gravado.",
+            "Turmas pequenas (4 a 8 alunos no Básico/Intermediário, 3 a 6 no Avançado).",
+            "Tarefas curtas entre as aulas para fixar o conteúdo.",
+            "Prova final e projeto por nível, com certificado de conclusão.",
+        ],
+        "price_from": "297",
+        "price_display": "A partir de R$ 297/mês",
+        "price_note": "Valor de referência do nível Básico (A1-A2). Intermediário (R$ 397/mês) e Avançado (R$ 497/mês) têm valores diferentes — veja os 3 níveis abaixo ou fale com a equipe.",
+        "workload": "PT1H",
+        "seo_title": "Tudo sobre o curso de espanhol online ao vivo da Vedium",
+        "seo_sections": [
+            {
+                "heading": "Como funciona um curso de espanhol online ao vivo",
+                "body": [
+                    "<p>No curso de espanhol da Vedium, cada aula acontece <strong>ao vivo, com um professor em tempo real</strong> — diferente de plataformas que entregam apenas vídeos gravados e exercícios automáticos. Essa diferença importa ainda mais pra quem já ouve espanhol no dia a dia: sem alguém corrigindo a fala na hora, o portunhol vira hábito, não erro pontual.</p>",
+                    "<p>As turmas são <strong>pequenas</strong>, o que garante tempo de fala real para cada aluno. Você entra por nível (Básico, Intermediário ou Avançado), pratica desde a primeira aula e recebe tarefas curtas entre os encontros para fixar o conteúdo, sempre com acompanhamento humano do professor.</p>",
+                ],
+            },
+            {
+                "heading": "Do Básico ao Avançado: os 3 níveis do espanhol na Vedium",
+                "body": [
+                    "<p>O curso é organizado em três trilhas progressivas, cada uma com 12 módulos, 48 aulas ao vivo e um projeto final:</p>",
+                    "<ul><li><strong>Básico (A1-A2):</strong> do primeiro \"hola\" às conversas essenciais — apresentação, rotina, compras, restaurante e viagens simples.</li><li><strong>Intermediário (B1-B2.1):</strong> da sobrevivência comunicativa à conversa com opinião, narrativa no passado e negociação.</li><li><strong>Avançado (B2.2-C1):</strong> fluência argumentativa, registro profissional, mediação entre português e espanhol e apresentações públicas.</li></ul>",
+                    "<p>Cada nível termina com uma prova e um projeto que comprovam evolução real, não apenas memorização.</p>",
+                ],
+            },
+            {
+                "heading": "Por que o portunhol trava tanta gente",
+                "body": [
+                    "<p>O espanhol parece fácil pra quem fala português — e é exatamente essa proximidade que cria os maiores vícios. <strong>Falsos cognatos</strong> (como \"embarazada\" ou \"oficina\"), pronúncia próxima demais do português e tempos verbais parecidos, mas com uso diferente, fazem o aluno misturar os dois idiomas sem perceber.</p>",
+                    "<p>É aí que a aula ao vivo faz diferença: o professor ouve o erro específico de cada aluno brasileiro e corrige na hora, em vez de deixar o portunhol virar hábito por meses.</p>",
+                ],
+            },
+            {
+                "heading": "Espanhol para viagem, trabalho e intercâmbio",
+                "body": [
+                    "<p>O mesmo curso serve a objetivos diferentes. Para quem vai <strong>viajar</strong>, a trilha cobre situações reais de aeroporto, hotel e restaurante já no nível Básico. Para <strong>trabalho e negócios</strong>, o Intermediário e o Avançado trazem reuniões, e-mails profissionais e negociação. Quem busca <strong>intercâmbio ou vida no exterior</strong> ganha repertório cultural sobre América Latina e Espanha ao longo de todos os níveis.</p>",
+                ],
+            },
+            {
+                "heading": "Quanto custa e como começar",
+                "body": [
+                    "<p>Os níveis começam <strong>a partir de R$ 297/mês</strong> no Básico, R$ 397/mês no Intermediário e R$ 497/mês no Avançado. Para começar, fale com a equipe da Vedium pelo WhatsApp — você conta seu nível atual e objetivo, e a equipe indica o ponto de entrada certo entre os três níveis.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "As aulas são ao vivo ou gravadas?", "a": "Ao vivo, com professor em tempo real e turmas pequenas. Você pratica a fala e é corrigido na hora — não é videoaula gravada."},
+            {"q": "Preciso já saber espanhol?", "a": "Não. O curso Básico (A1-A2) começa do zero; se você já tem alguma base, pode entrar direto no Intermediário ou Avançado."},
+            {"q": "Quanto custa o curso de espanhol?", "a": "Os níveis começam a partir de R$ 297/mês (Básico), R$ 397/mês (Intermediário) e R$ 497/mês (Avançado)."},
+            {"q": "O curso ajuda a corrigir o portunhol?", "a": "Sim — a correção do professor em tempo real é focada exatamente nas interferências mais comuns do português: falsos cognatos, pronúncia e tempos verbais."},
+            {"q": "Tem certificado?", "a": "Sim, ao concluir cada nível com presença mínima, projeto final e avaliação."},
+        ],
+        "whatsapp_text": "Olá, quero saber sobre o curso de espanhol online ao vivo da Vedium.",
+        # Sem teste de nível formal pro Espanhol ainda (mesmo padrão do Iorubá) —
+        # CTA vira "falar com a equipe" em vez de simular um teste que não existe.
+        "test_url": None,
+    },
+    "curso-de-hebraico-online": {
+        "alt": {"pt-BR": "curso-de-hebraico-online"},
+        "title": "Curso de Hebraico Online ao Vivo (com Alfabetização) — Vedium",
+        "short_title": "Curso de Hebraico Online",
+        "meta_description": "Curso de hebraico moderno online ao vivo da Vedium: alfabetização incluída, turma pequena, professor especialista. A partir de R$ 397/mês.",
+        "tagline": "Hebraico Moderno, do zero",
+        "h1": "Aprenda hebraico moderno online, com alfabetização e professor ao vivo",
+        "lead": "A Vedium trata o hebraico como língua e cultura viva. O curso piloto começa pela alfabetização (leitura do alef-bet) e segue para o Hebraico Moderno A1, em turma pequena e aulas 100% ao vivo.",
+        "hero_image": "https://images.unsplash.com/photo-1547483036-24bc77c79804?w=1920&q=80",
+        "audience": "Quem nunca teve contato com o hebraico, quer ler o alfabeto, viajar, se conectar com a cultura israelense ou ter uma base real do idioma moderno.",
+        "level": "Alfabetização + A1 (iniciante)",
+        "frequency": "2 aulas ao vivo por semana",
+        "duration": "Turma-piloto, com alfabetização incluída",
+        "summary": "Você aprende a ler as letras do alfabeto hebraico, reconhece sons, forma as primeiras frases e ganha vocabulário do dia a dia, sempre com professor ao vivo.",
+        "pain_title": "Hebraico exige leitura, som e orientação desde o início",
+        "pain_intro": "O alfabeto hebraico é o primeiro obstáculo de quem quer aprender sozinho. Sem alguém pra corrigir leitura e pronúncia, é fácil travar antes mesmo de começar a falar.",
+        "pain_points": [
+            "Não sabe ler as letras do alfabeto hebraico e não encontra uma trilha estruturada.",
+            "Insegurança com pronúncia e sons que não existem em português.",
+            "Dificuldade de achar curso ao vivo — a maioria do mercado é conteúdo gravado.",
+            "Confusão entre hebraico moderno e hebraico bíblico, sem saber por onde começar.",
+        ],
+        "outcomes": [
+            "Ler e reconhecer as letras do alfabeto hebraico com confiança.",
+            "Pronunciar sons e palavras iniciais com correção de professor.",
+            "Formar frases simples de apresentação e do dia a dia.",
+            "Ganhar base real para continuar em módulos seguintes.",
+        ],
+        "modules": [
+            {"title": "Alfabeto e leitura", "text": "Alef-bet completo, reconhecimento de letras e primeiras leituras guiadas."},
+            {"title": "Sons e pronúncia", "text": "Fonética do hebraico moderno, com correção ao vivo do professor."},
+            {"title": "Saudações e apresentação", "text": "Cumprimentos, nome, origem e primeiras frases do dia a dia."},
+            {"title": "Vocabulário essencial", "text": "Família, números, rotina e objetos comuns em hebraico moderno."},
+            {"title": "Cultura em contexto", "text": "Língua e cultura israelense modernas, com respeito e sem viés religioso."},
+            {"title": "Prática oral guiada", "text": "Repetição, diálogos curtos e feedback constante do professor."},
+        ],
+        "format_items": [
+            "Aulas online ao vivo, com professor especialista — não é conteúdo gravado.",
+            "Alfabetização incluída para quem nunca leu o alfabeto hebraico.",
+            "Turma pequena na turma-piloto de Hebraico Moderno A1.",
+            "Trilha e continuidade por módulos, sem prometer fluência instantânea.",
+        ],
+        "price_from": "397",
+        "price_display": "A partir de R$ 397/mês",
+        "price_note": "Valor de referência do piloto Hebraico Moderno A1 (com alfabetização incluída). Alfabetização avulsa e turmas de continuidade (A2/B1) têm valores próprios — fale com a equipe.",
+        "workload": "PT1H",
+        "seo_title": "Tudo sobre o curso de hebraico online da Vedium",
+        "seo_sections": [
+            {
+                "heading": "O hebraico moderno e onde é falado",
+                "body": [
+                    "<p>O <strong>hebraico moderno</strong> é a língua oficial de Israel, falada por cerca de 9 milhões de pessoas. É uma língua reconstruída na vida cotidiana a partir do hebraico clássico, usada hoje em conversas do dia a dia, mídia, negócios e educação — diferente do hebraico litúrgico/bíblico, usado principalmente em contextos religiosos e de estudo de textos antigos.</p>",
+                ],
+            },
+            {
+                "heading": "Alfabeto hebraico: o primeiro passo",
+                "body": [
+                    "<p>O hebraico se escreve com um <strong>alfabeto próprio (alef-bet)</strong>, da direita para a esquerda, sem vogais na escrita corrente. Para o aluno brasileiro, ler e reconhecer essas letras é o primeiro obstáculo real — e é por isso que a Vedium inclui a <strong>alfabetização</strong> já na turma-piloto, com leitura guiada e correção ao vivo, em vez de deixar você decorar formas de letra sozinho.</p>",
+                ],
+            },
+            {
+                "heading": "Hebraico moderno x hebraico bíblico",
+                "body": [
+                    "<p>É comum confundir os dois. O <strong>hebraico moderno</strong> é a língua falada em Israel hoje, com gramática e vocabulário vivos. O <strong>hebraico bíblico</strong> é usado para ler textos religiosos antigos e tem uma abordagem diferente, mais próxima da leitura acadêmica. A Vedium começa pelo <strong>Hebraico Moderno</strong>, como língua e cultura contemporâneas — sem promessas religiosas. Uma trilha de Hebraico Bíblico pode abrir separadamente, conforme demanda.</p>",
+                ],
+            },
+            {
+                "heading": "Como é a turma-piloto de Hebraico Moderno A1",
+                "body": [
+                    "<p>O piloto reúne <strong>alfabetização + Hebraico Moderno A1</strong> em turma pequena, com aulas ao vivo duas vezes por semana. A proposta é validar essa primeira turma com cuidado: acompanhamento próximo, professor especialista e evolução real na leitura, pronúncia e primeiras frases — antes de abrir níveis seguintes (A2/B1) ou uma trilha de Hebraico Bíblico.</p>",
+                ],
+            },
+            {
+                "heading": "Quanto custa e como começar",
+                "body": [
+                    "<p>O piloto de Hebraico Moderno A1 (com alfabetização incluída) começa <strong>a partir de R$ 397/mês</strong>. Para começar, fale com a equipe da Vedium pelo WhatsApp — conte seu objetivo (viagem, cultura, curiosidade ou estudo) e a equipe confirma a próxima turma disponível.</p>",
+                ],
+            },
+        ],
+        "faqs": [
+            {"q": "Preciso saber o alfabeto antes de começar?", "a": "Não. A alfabetização (leitura do alef-bet) está incluída na turma de Hebraico Moderno A1."},
+            {"q": "O curso é religioso?", "a": "Não. A proposta é linguística e cultural — hebraico moderno como língua viva, sem viés religioso ou político."},
+            {"q": "Quanto custa o curso de hebraico?", "a": "A partir de R$ 397/mês na turma-piloto de Hebraico Moderno A1, com alfabetização incluída."},
+            {"q": "Existe hebraico bíblico na Vedium?", "a": "Ainda não — o piloto atual é só Hebraico Moderno A1. Uma trilha de Hebraico Bíblico pode abrir depois, conforme demanda."},
+            {"q": "As aulas são ao vivo?", "a": "Sim, sempre com professor em tempo real e turma pequena."},
+        ],
+        "whatsapp_text": "Olá, quero saber sobre o curso de hebraico online da Vedium.",
+        # Idioma-piloto, sem teste de nível formal (mesmo padrão do Iorubá) —
+        # CTA vira "falar com a equipe" em vez de simular um teste que não existe.
+        "test_url": None,
+    },
 }
 
 
@@ -4132,6 +4318,8 @@ LANDING_COURSE_FILTERS = {
     "curso-de-ingles-online": {"category_prefix": "Inglês"},
     "curso-de-ioruba-online": {"category_prefix": "Iorubá"},
     "portugues-para-estrangeiros": {"category_exact": "Português para Estrangeiros"},
+    "curso-de-espanhol-online": {"category_prefix": "Espanhol"},
+    "curso-de-hebraico-online": {"category_prefix": "Hebraico"},
     "learn-yoruba-online": {"category_prefix": "Iorubá"},
     "learn-portuguese-brazil": {"category_exact": "Português para Estrangeiros"},
     "curso-de-yoruba-online": {"category_prefix": "Iorubá"},

@@ -54,6 +54,8 @@ PUBLIC_LANGUAGE_ROUTES = (
     "ioruba-cultura-e-ancestralidade",
     "portugues-para-estrangeiros",
     "portugues-para-executivos",
+    "curso-de-espanhol-online",
+    "curso-de-hebraico-online",
     "preparatorio-celpe-bras",
 )
 

@@ -55,6 +55,8 @@ STATIC_URLS = [
     {"loc": "/portugues-para-estrangeiros", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/portugues-para-executivos", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/preparatorio-celpe-bras", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/curso-de-espanhol-online", "priority": "0.9", "changefreq": "monthly"},
+    {"loc": "/curso-de-hebraico-online", "priority": "0.7", "changefreq": "monthly"},
     # Blog (índice; os posts individuais vêm de _blog_urls(), dinâmico —
     # cobre tanto os de código quanto os publicados pelo painel)
     {"loc": "/blog", "priority": "0.7", "changefreq": "weekly"},
