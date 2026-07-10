@@ -106,6 +106,13 @@ def get_context(context):
         f"https://app.vediums.com/lms/courses/{course_name}"
         "?source=public_course&intent=enrollment"
     )
+    # Botão "Matricular": vai direto pro Stripe Checkout hospedado
+    # (vedium_core.api.start_course_checkout → checkout.stripe.com, em BRL),
+    # em vez do formulário embutido do LMS nativo.
+    context.checkout_url = (
+        "https://app.vediums.com/api/method/vedium_core.api.start_course_checkout"
+        f"?course_name={course_name}"
+    )
 
     # GTM Event - view_course
     context.gtm_event = {

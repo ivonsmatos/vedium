@@ -266,7 +266,7 @@
                                     {% if is_enrolled %}
                                     <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.access }}</a>
                                     {% else %}
-                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.enroll }}</a>
+                                    <a href="{{ checkout_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.enroll }}</a>
                                     {% endif %}
                                 </div>
                             </div>

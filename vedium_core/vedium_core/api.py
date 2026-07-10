@@ -6,6 +6,7 @@
 
 import hashlib
 from datetime import datetime
+from urllib.parse import quote
 
 import frappe
 from frappe import _
@@ -800,6 +801,36 @@ def create_checkout_session(course_name, display_currency=None):
     )
 
     return {"checkout_url": checkout_url}
+
+
+@frappe.whitelist(allow_guest=True)
+def start_course_checkout(course_name, display_currency=None):
+    """Entrada de navegador para as páginas públicas de curso.
+
+    Mantém o botão "Matricular" como um link normal: visitante sem login passa
+    primeiro pelo login do LMS; usuário logado é enviado direto para o Stripe
+    Checkout hospedado (checkout.stripe.com), cobrando na moeda do curso (BRL).
+    A matrícula é criada pelo webhook (stripe_webhook) no checkout.session.completed.
+    """
+    if frappe.session.user == "Guest":
+        next_url = (
+            "/api/method/vedium_core.api.start_course_checkout"
+            f"?course_name={quote(str(course_name))}"
+        )
+        if display_currency:
+            next_url += f"&display_currency={quote(str(display_currency))}"
+
+        frappe.local.response["type"] = "redirect"
+        frappe.local.response["location"] = f"/login?redirect-to={quote(next_url, safe='')}"
+        return
+
+    response = create_checkout_session(course_name, display_currency=display_currency)
+    checkout_url = (response or {}).get("checkout_url")
+    if not checkout_url:
+        frappe.throw(_("Não foi possível criar o checkout do Stripe"))
+
+    frappe.local.response["type"] = "redirect"
+    frappe.local.response["location"] = checkout_url
 
 
 # =====================
