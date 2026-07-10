@@ -78,6 +78,29 @@
   "de": {"home": "/de/", "how": "/de/como-funciona", "about": "/de/sobre", "courses": "/de/catalogo", "blog": "/blog", "faq": "/de/faq", "contact": "/de/contato", "free_test": "/de/portugiesisch-einstufungstest"},
 } %}
 {%- set vd_menu_u = vd_menu_links.get(vd_nav.current, vd_menu_links["pt-br"]) %}
+{#- Submenu "Cursos" com os 5 idiomas. Espanhol/Hebraico ainda não têm
+   página pilar de SEO própria (só Inglês/Iorubá/PLE têm, ver
+   marketing_landing_content.py LANDINGS) -- por isso caem no /catalogo
+   local, que já filtra por idioma (ver catalogo.html). Os links de
+   Inglês/Iorubá/PLE por idioma são os slugs reais já publicados (alt
+   dict de marketing_landing_content.py); onde não existe tradução real
+   (ex.: Iorubá em fr/de), cai no catálogo daquele idioma em vez de
+   inventar uma URL. #}
+{%- set vd_courses_links = {
+  "english": {"pt-br": "/curso-de-ingles-online", "en": "/learn-english-online", "es": "/curso-de-ingles-online-en-vivo", "fr": "/cours-anglais-en-ligne-en-direct", "de": "/englischkurs-online-live"},
+  "yoruba": {"pt-br": "/curso-de-ioruba-online", "en": "/learn-yoruba-online", "es": "/curso-de-yoruba-online"},
+  "ple": {"pt-br": "/portugues-para-estrangeiros", "en": "/learn-portuguese-brazil", "es": "/portugues-para-extranjeros", "fr": "/portugais-pour-etrangers", "de": "/portugiesisch-fuer-auslaender"},
+  "spanish": {},
+  "hebrew": {},
+} %}
+{%- set vd_courses_labels = {
+  "pt-br": {"english": "Inglês", "yoruba": "Iorubá", "ple": "Português (PLE)", "spanish": "Espanhol", "hebrew": "Hebraico"},
+  "en": {"english": "English", "yoruba": "Yoruba", "ple": "Portuguese (PLE)", "spanish": "Spanish", "hebrew": "Hebrew"},
+  "es": {"english": "Inglés", "yoruba": "Yoruba", "ple": "Portugués (PLE)", "spanish": "Español", "hebrew": "Hebreo"},
+  "fr": {"english": "Anglais", "yoruba": "Yorouba", "ple": "Portugais (PLE)", "spanish": "Espagnol", "hebrew": "Hébreu"},
+  "de": {"english": "Englisch", "yoruba": "Yoruba", "ple": "Portugiesisch (PLE)", "spanish": "Spanisch", "hebrew": "Hebräisch"},
+} %}
+{%- set vd_courses_t = vd_courses_labels.get(vd_nav.current, vd_courses_labels["pt-br"]) %}
 <header class="main-header main-header--one clearfix"
     data-vd-nav-urls='{{ vd_nav.urls | tojson }}'
     data-vd-nav-current="{{ vd_nav.current }}">
@@ -129,7 +152,16 @@
                                 <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="{{ vd_menu_u.home }}">{{ vd_menu_t.home }}</a></li>
                                 <li{% if vd_page == "como-funciona" %} class="current"{% endif %}><a href="{{ vd_menu_u.how }}">{{ vd_menu_t.how }}</a></li>
                                 <li{% if vd_page == "sobre" %} class="current"{% endif %}><a href="{{ vd_menu_u.about }}">{{ vd_menu_t.about }}</a></li>
-                                <li{% if vd_page == "cursos" %} class="current"{% endif %}><a href="{{ vd_menu_u.courses }}">{{ vd_menu_t.courses }}</a></li>
+                                <li class="dropdown{% if vd_page == "cursos" %} current{% endif %}">
+                                    <a href="{{ vd_menu_u.courses }}">{{ vd_menu_t.courses }}</a>
+                                    <ul>
+                                        <li><a href="{{ vd_courses_links.english.get(vd_nav.current, vd_menu_u.courses) }}">{{ vd_courses_t.english }}</a></li>
+                                        <li><a href="{{ vd_courses_links.yoruba.get(vd_nav.current, vd_menu_u.courses) }}">{{ vd_courses_t.yoruba }}</a></li>
+                                        <li><a href="{{ vd_courses_links.ple.get(vd_nav.current, vd_menu_u.courses) }}">{{ vd_courses_t.ple }}</a></li>
+                                        <li><a href="{{ vd_courses_links.spanish.get(vd_nav.current, vd_menu_u.courses) }}">{{ vd_courses_t.spanish }}</a></li>
+                                        <li><a href="{{ vd_courses_links.hebrew.get(vd_nav.current, vd_menu_u.courses) }}">{{ vd_courses_t.hebrew }}</a></li>
+                                    </ul>
+                                </li>
                                 <li{% if vd_page == "blog" %} class="current"{% endif %}><a href="{{ vd_menu_u.blog }}">{{ vd_menu_t.blog }}</a></li>
                                 <li{% if vd_page == "faq" %} class="current"{% endif %}><a href="{{ vd_menu_u.faq }}">{{ vd_menu_t.faq }}</a></li>
                                 <li{% if vd_page == "contato" %} class="current"{% endif %}><a href="{{ vd_menu_u.contact }}">{{ vd_menu_t.contact }}</a></li>

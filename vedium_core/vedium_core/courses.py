@@ -76,10 +76,12 @@ def get_level_badge(title):
     são cursos CEFR, ainda que o título de Inglês também contenha "Avançado"
     (nesse caso mapeado para C1 mais abaixo).
     """
-    if "PLE" in title or "Estrangeiros" in title or "Iorubá" in title:
+    if "PLE" in title or "Estrangeiros" in title or "Iorubá" in title or "Espanhol" in title:
         for label in ("Básico", "Intermediário", "Avançado"):
             if label in title:
                 return label
+    if "Hebraico" in title:
+        return "A1"
     # Cursos CEFR (Inglês)
     cefr = {
         "Beginner": "A1",
