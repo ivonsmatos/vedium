@@ -16,6 +16,7 @@ def after_migrate():
     # Garante DocTypes criados dinamicamente (fora de doctype/*.json).
     # Mantém a mutação de schema no caminho de migração, não no de request.
     _ensure_custom_doctypes()
+    _clear_module_cache()
 
 
 def _ensure_custom_doctypes():
@@ -63,4 +64,15 @@ def _ensure_custom_doctypes():
     except Exception:
         frappe.log_error(
             frappe.get_traceback(), "Vedium.install.ensure_pedagogical_setup"
+        )
+
+
+def _clear_module_cache():
+    try:
+        from frappe.utils.modules import get_modules_from_app
+
+        get_modules_from_app.clear_cache()
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(), "Vedium.install.clear_module_cache"
         )

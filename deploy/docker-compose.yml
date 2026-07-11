@@ -265,10 +265,11 @@ services:
   # REDIS — 3 instâncias lógicas separadas
   # --------------------------------------------------
   vedium-redis-cache:
-    image: redis:7-alpine
+    image: redis/redis-stack-server:latest
     container_name: vedium-redis-cache
     restart: always
-    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru --requirepass ${REDIS_PASSWORD}
+    environment:
+      REDIS_ARGS: "--maxmemory 256mb --maxmemory-policy allkeys-lru --requirepass ${REDIS_PASSWORD}"
     volumes:
       - redis-cache-data:/data
     networks:
@@ -330,6 +331,7 @@ services:
 volumes:
   frappe-bench-v16:
     external: true
+    name: vedium_frappe-bench-v16
   vedium-sites:
   mariadb-data:
   redis-cache-data:
