@@ -122,7 +122,11 @@ _AVANCADO_QUIZ_10 = [
 
 _AVANCADO_EXAM_40 = [
     ("Complete: Hola, me llamo Ana y _____ de Colombia.", ["soy", "estoy", "tengo", "hay"], 0),
-    ("Qual pergunta pede a profissão de alguém?", ["¿A qué te dedicas?", "¿De dónde eres?", "¿Cuánto cuesta?", "¿Qué hora es?"], 0),
+    # Texto único ("Em espanhol, ...") de propósito: existia uma pergunta com
+    # texto IDÊNTICO no seed do PLE Básico e o _make_question busca LMS Question
+    # por texto — o seed que rodasse por último sobrescrevia as alternativas do
+    # outro idioma nos DOIS quizzes (achado do QA 2026-07-10).
+    ("Em espanhol, qual pergunta pede a profissão de alguém?", ["¿A qué te dedicas?", "¿De dónde eres?", "¿Cuánto cuesta?", "¿Qué hora es?"], 0),
     ("Complete: A mí _____ gusta estudiar por la mañana.", ["yo", "me", "mi", "soy"], 1),
     ("Escolha a frase correta.", ["Hay tres restaurantes en la calle.", "Tiene tres restaurantes en la calle.", "Son tres restaurantes en la calle.", "Está tres restaurantes en la calle."], 0),
     ("Em uma loja, \"talla\" significa:", ["preço", "tamanho", "rua", "horário"], 1),

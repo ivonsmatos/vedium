@@ -818,6 +818,20 @@ def start_course_checkout(course_name, display_currency=None):
         frappe.local.response["location"] = f"/login?redirect-to={quote(next_url, safe='')}"
         return
 
+    # Já matriculado ou curso gratuito: não há o que cobrar. Um frappe.throw
+    # aqui viraria JSON cru na tela (GET de navegador em /api/method) — em vez
+    # disso, manda o aluno direto pra página do curso no LMS (achado do QA
+    # 2026-07-10: páginas públicas em vediums.com veem todo mundo como Guest,
+    # então até aluno matriculado vê o botão "Matricular" e clica).
+    already_enrolled = frappe.db.exists(
+        "LMS Enrollment", {"course": course_name, "member": frappe.session.user}
+    )
+    is_paid = frappe.db.get_value("LMS Course", course_name, "paid_course")
+    if already_enrolled or not is_paid:
+        frappe.local.response["type"] = "redirect"
+        frappe.local.response["location"] = f"/lms/courses/{quote(str(course_name))}"
+        return
+
     response = create_checkout_session(course_name, display_currency=display_currency)
     checkout_url = (response or {}).get("checkout_url")
     if not checkout_url:

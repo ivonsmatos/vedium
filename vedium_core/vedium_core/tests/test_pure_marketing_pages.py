@@ -1815,7 +1815,11 @@ def test_individual_course_pages_have_english_translation():
     assert 'vd_lang = lang or "pt-BR"' in curso_html
     assert "alt_langs" in curso_html
     assert '"ui.enroll"' not in curso_html  # não pode sobrar string literal em vez do lookup
-    assert "{{ ui.enroll }}" in curso_html
+    # Desde o QA de 2026-07-10 o rótulo é condicional: cursos consultivos
+    # (CONSULTATIVE_COURSES em curso.py, ex. hebraico-particular) mostram
+    # "Falar com a equipe" (ui.talk) e apontam pro WhatsApp em vez do
+    # checkout Stripe de valor fixo — ui.enroll segue sendo o caminho padrão.
+    assert "{{ ui.talk if is_consultative else ui.enroll }}" in curso_html
 
     # Bug real achado em produção (2026-07-02, pós-deploy): frappe.local.path
     # NUNCA tem barra inicial — PathResolver.__init__ faz path.strip("/ ")
