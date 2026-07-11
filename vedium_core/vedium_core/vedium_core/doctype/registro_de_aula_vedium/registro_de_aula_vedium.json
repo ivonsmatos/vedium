@@ -1,0 +1,250 @@
+{
+    "actions": [],
+    "allow_rename": 0,
+    "autoname": "format:RAV-.YYYY.-.#####",
+    "creation": "2026-07-11 10:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "identificacao_section",
+        "curso",
+        "turma",
+        "professor",
+        "data_aula",
+        "horario_inicio",
+        "horario_termino",
+        "link_google_meet",
+        "conteudo_section",
+        "tema_aula",
+        "objetivo_aula",
+        "conteudo_aplicado",
+        "atividade_realizada",
+        "material_utilizado",
+        "tarefa_indicada",
+        "resumo_aula",
+        "problemas_tecnicos",
+        "observacoes_gerais",
+        "status_section",
+        "status_registro",
+        "tem_alerta_coordenacao",
+        "total_alunos",
+        "total_presentes",
+        "total_ausentes",
+        "alunos_section",
+        "alunos"
+    ],
+    "fields": [
+        {
+            "fieldname": "identificacao_section",
+            "fieldtype": "Section Break",
+            "label": "Identificação da aula"
+        },
+        {
+            "fieldname": "curso",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Curso",
+            "options": "LMS Course",
+            "reqd": 1
+        },
+        {
+            "fieldname": "turma",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Turma",
+            "options": "LMS Batch",
+            "reqd": 1
+        },
+        {
+            "fieldname": "professor",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Professor",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "data_aula",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Data da aula",
+            "reqd": 1
+        },
+        {
+            "fieldname": "horario_inicio",
+            "fieldtype": "Time",
+            "label": "Horário de início",
+            "reqd": 1
+        },
+        {
+            "fieldname": "horario_termino",
+            "fieldtype": "Time",
+            "label": "Horário de término",
+            "reqd": 1
+        },
+        {
+            "fieldname": "link_google_meet",
+            "fieldtype": "Data",
+            "label": "Link do Google Meet",
+            "options": "URL"
+        },
+        {
+            "fieldname": "conteudo_section",
+            "fieldtype": "Section Break",
+            "label": "Conteúdo pedagógico"
+        },
+        {
+            "fieldname": "tema_aula",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Tema da aula",
+            "reqd": 1
+        },
+        {
+            "fieldname": "objetivo_aula",
+            "fieldtype": "Small Text",
+            "label": "Objetivo da aula",
+            "reqd": 1
+        },
+        {
+            "fieldname": "conteudo_aplicado",
+            "fieldtype": "Text Editor",
+            "label": "Conteúdo aplicado",
+            "reqd": 1
+        },
+        {
+            "fieldname": "atividade_realizada",
+            "fieldtype": "Text Editor",
+            "label": "Atividade realizada"
+        },
+        {
+            "fieldname": "material_utilizado",
+            "fieldtype": "Small Text",
+            "label": "Material utilizado"
+        },
+        {
+            "fieldname": "tarefa_indicada",
+            "fieldtype": "Small Text",
+            "label": "Tarefa indicada"
+        },
+        {
+            "fieldname": "resumo_aula",
+            "fieldtype": "Text Editor",
+            "label": "Resumo da aula",
+            "reqd": 1
+        },
+        {
+            "fieldname": "problemas_tecnicos",
+            "fieldtype": "Small Text",
+            "label": "Problemas técnicos"
+        },
+        {
+            "fieldname": "observacoes_gerais",
+            "fieldtype": "Text Editor",
+            "label": "Observações gerais"
+        },
+        {
+            "fieldname": "status_section",
+            "fieldtype": "Section Break",
+            "label": "Revisão"
+        },
+        {
+            "default": "Rascunho",
+            "fieldname": "status_registro",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status do registro",
+            "options": "Rascunho\nEnviado\nRevisado pela coordenação\nPendente de ajuste\nConcluído",
+            "reqd": 1
+        },
+        {
+            "fieldname": "tem_alerta_coordenacao",
+            "fieldtype": "Check",
+            "label": "Tem alerta para coordenação?",
+            "read_only": 1
+        },
+        {
+            "fieldname": "total_alunos",
+            "fieldtype": "Int",
+            "label": "Total de alunos",
+            "read_only": 1
+        },
+        {
+            "fieldname": "total_presentes",
+            "fieldtype": "Int",
+            "label": "Total de presentes",
+            "read_only": 1
+        },
+        {
+            "fieldname": "total_ausentes",
+            "fieldtype": "Int",
+            "label": "Total de ausentes",
+            "read_only": 1
+        },
+        {
+            "fieldname": "alunos_section",
+            "fieldtype": "Section Break",
+            "label": "Chamada e observações individuais"
+        },
+        {
+            "fieldname": "alunos",
+            "fieldtype": "Table",
+            "label": "Alunos da aula",
+            "options": "Aluno da Aula Vedium",
+            "reqd": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-07-11 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Registro de Aula Vedium",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Vedium Coordenacao Pedagogica",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "email": 1,
+            "if_owner": 1,
+            "print": 1,
+            "read": 1,
+            "role": "Vedium Professor",
+            "write": 1
+        }
+    ],
+    "search_fields": "curso,turma,professor,data_aula,tema_aula,status_registro",
+    "sort_field": "data_aula",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "track_seen": 1
+}

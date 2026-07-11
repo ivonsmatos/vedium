@@ -55,3 +55,12 @@ def _ensure_custom_doctypes():
         frappe.log_error(
             frappe.get_traceback(), "Vedium.install.ensure_ai_tutor_doctypes"
         )
+
+    try:
+        from vedium_core.pedagogical_setup import ensure_pedagogical_setup
+
+        ensure_pedagogical_setup()
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(), "Vedium.install.ensure_pedagogical_setup"
+        )

@@ -1,0 +1,178 @@
+{
+    "actions": [],
+    "allow_rename": 0,
+    "creation": "2026-07-11 10:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "aluno",
+        "status_presenca",
+        "horario_entrada",
+        "horario_saida",
+        "justificativa",
+        "avaliacao_section",
+        "participacao",
+        "compreensao",
+        "producao_oral",
+        "producao_escrita",
+        "pronuncia",
+        "acompanhamento_section",
+        "dificuldade_observada",
+        "evolucao_observada",
+        "observacao_individual",
+        "precisa_reforco",
+        "recomenda_mudanca_nivel",
+        "alerta_section",
+        "criar_alerta_coordenacao",
+        "tipo_alerta",
+        "prioridade",
+        "encaminhar_para_coordenacao"
+    ],
+    "fields": [
+        {
+            "fieldname": "aluno",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Aluno",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status_presenca",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Status de presença",
+            "options": "Presente\nAusente\nAtrasado\nSaida antecipada\nFalta justificada\nFalta nao justificada",
+            "reqd": 1
+        },
+        {
+            "fieldname": "horario_entrada",
+            "fieldtype": "Time",
+            "in_list_view": 1,
+            "label": "Horário de entrada"
+        },
+        {
+            "fieldname": "horario_saida",
+            "fieldtype": "Time",
+            "label": "Horário de saída"
+        },
+        {
+            "fieldname": "justificativa",
+            "fieldtype": "Small Text",
+            "label": "Justificativa"
+        },
+        {
+            "fieldname": "avaliacao_section",
+            "fieldtype": "Section Break",
+            "label": "Avaliação da aula"
+        },
+        {
+            "default": "Não avaliado nesta aula",
+            "fieldname": "participacao",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Participação",
+            "options": "Não avaliado nesta aula\nBaixa\nMédia\nAlta"
+        },
+        {
+            "default": "Não avaliado nesta aula",
+            "fieldname": "compreensao",
+            "fieldtype": "Select",
+            "label": "Compreensão",
+            "options": "Não avaliado nesta aula\nBaixa\nMédia\nAlta"
+        },
+        {
+            "default": "Não avaliado nesta aula",
+            "fieldname": "producao_oral",
+            "fieldtype": "Select",
+            "label": "Produção oral",
+            "options": "Não avaliado nesta aula\nBaixa\nMédia\nAlta"
+        },
+        {
+            "default": "Não avaliado nesta aula",
+            "fieldname": "producao_escrita",
+            "fieldtype": "Select",
+            "label": "Produção escrita",
+            "options": "Não avaliado nesta aula\nBaixa\nMédia\nAlta"
+        },
+        {
+            "default": "Não avaliado nesta aula",
+            "fieldname": "pronuncia",
+            "fieldtype": "Select",
+            "label": "Pronúncia",
+            "options": "Não avaliado nesta aula\nBaixa\nMédia\nAlta"
+        },
+        {
+            "fieldname": "acompanhamento_section",
+            "fieldtype": "Section Break",
+            "label": "Acompanhamento pedagógico"
+        },
+        {
+            "fieldname": "dificuldade_observada",
+            "fieldtype": "Small Text",
+            "label": "Dificuldade observada"
+        },
+        {
+            "fieldname": "evolucao_observada",
+            "fieldtype": "Small Text",
+            "label": "Evolução observada"
+        },
+        {
+            "fieldname": "observacao_individual",
+            "fieldtype": "Text Editor",
+            "label": "Observação individual"
+        },
+        {
+            "fieldname": "precisa_reforco",
+            "fieldtype": "Check",
+            "label": "Precisa de reforço?"
+        },
+        {
+            "fieldname": "recomenda_mudanca_nivel",
+            "fieldtype": "Check",
+            "label": "Recomenda mudança de nível?"
+        },
+        {
+            "fieldname": "alerta_section",
+            "fieldtype": "Section Break",
+            "label": "Alertas"
+        },
+        {
+            "fieldname": "criar_alerta_coordenacao",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Criar alerta para coordenação?"
+        },
+        {
+            "depends_on": "eval:doc.criar_alerta_coordenacao || doc.encaminhar_para_coordenacao",
+            "fieldname": "tipo_alerta",
+            "fieldtype": "Select",
+            "label": "Tipo de alerta",
+            "options": "\nPedagógico\nFrequência\nComportamento\nTécnico\nSuporte\nFinanceiro\nComercial\nMenor de idade\nPrivacidade e dados\nUrgente"
+        },
+        {
+            "depends_on": "eval:doc.criar_alerta_coordenacao || doc.encaminhar_para_coordenacao",
+            "fieldname": "prioridade",
+            "fieldtype": "Select",
+            "label": "Prioridade",
+            "options": "\nBaixa\nMédia\nAlta\nUrgente"
+        },
+        {
+            "fieldname": "encaminhar_para_coordenacao",
+            "fieldtype": "Check",
+            "label": "Encaminhar para coordenação?"
+        }
+    ],
+    "istable": 1,
+    "links": [],
+    "modified": "2026-07-11 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Vedium Core",
+    "name": "Aluno da Aula Vedium",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

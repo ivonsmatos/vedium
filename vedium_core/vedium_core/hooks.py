@@ -393,6 +393,7 @@ scheduler_events = {
     # Trial de 7 dias: expira matrículas Trial vencidas
     "daily": [
         "vedium_core.trial.expire_trials",
+        "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
     "weekly": [
@@ -440,6 +441,7 @@ has_permission = {
     "Course Chapter": "vedium_core.ple_gating.has_permission",
     "Course Lesson": "vedium_core.ple_gating.has_permission",
     "LMS Quiz": "vedium_core.ple_gating.has_permission",
+    "Registro de Aula Vedium": "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.has_permission",
 }
 
 # =============================================================================
