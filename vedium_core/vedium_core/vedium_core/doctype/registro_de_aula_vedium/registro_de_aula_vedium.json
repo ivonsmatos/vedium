@@ -7,6 +7,7 @@
     "editable_grid": 1,
     "engine": "InnoDB",
     "field_order": [
+        "titulo_registro",
         "identificacao_section",
         "curso",
         "turma",
@@ -35,6 +36,14 @@
         "alunos"
     ],
     "fields": [
+        {
+            "fieldname": "titulo_registro",
+            "fieldtype": "Data",
+            "hidden": 1,
+            "label": "Título",
+            "no_copy": 1,
+            "read_only": 1
+        },
         {
             "fieldname": "identificacao_section",
             "fieldtype": "Section Break",
@@ -245,6 +254,7 @@
     "sort_field": "data_aula",
     "sort_order": "DESC",
     "states": [],
+    "title_field": "titulo_registro",
     "track_changes": 1,
     "track_seen": 1
 }

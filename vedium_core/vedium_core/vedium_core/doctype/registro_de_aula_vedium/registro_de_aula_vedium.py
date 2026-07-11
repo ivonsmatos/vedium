@@ -5,12 +5,19 @@ from frappe.model.document import Document
 
 class RegistrodeAulaVedium(Document):
     def validate(self):
+        self._set_titulo_registro()
+
         if self.horario_inicio and self.horario_termino:
             if str(self.horario_termino) <= str(self.horario_inicio):
                 frappe.throw(_("Horario de termino deve ser posterior ao horario de inicio."))
 
         if not self.professor:
             self.professor = frappe.session.user
+
+    def _set_titulo_registro(self):
+        data_fmt = frappe.utils.formatdate(self.data_aula, "dd/MM/yyyy") if self.data_aula else None
+        partes = [p for p in (data_fmt, self.tema_aula, self.turma) if p]
+        self.titulo_registro = " — ".join(partes) or self.name
 
     def before_save(self):
         self._set_alert_flags()
