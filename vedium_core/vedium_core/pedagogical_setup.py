@@ -123,7 +123,7 @@ def ensure_reports():
             INNER JOIN `tabRegistro de Aula Vedium` r ON r.name = a.parent
             WHERE r.status_registro != 'Rascunho'
             GROUP BY a.aluno
-            ORDER BY Faltas DESC, Aulas DESC
+            ORDER BY 4 DESC, 2 DESC
         """,
         "Vedium - Frequencia por turma": """
             SELECT
@@ -135,7 +135,7 @@ def ensure_reports():
             LEFT JOIN `tabAluno da Aula Vedium` a ON a.parent = r.name
             WHERE r.status_registro != 'Rascunho'
             GROUP BY r.turma
-            ORDER BY Faltas DESC
+            ORDER BY 4 DESC
         """,
         "Vedium - Aulas por professor": """
             SELECT
@@ -145,7 +145,7 @@ def ensure_reports():
                 SUM(CASE WHEN status_registro = 'Concluído' THEN 1 ELSE 0 END) AS "Concluidas:Int:100"
             FROM `tabRegistro de Aula Vedium`
             GROUP BY professor
-            ORDER BY `Aulas registradas` DESC
+            ORDER BY 2 DESC
         """,
         "Vedium - Alertas de coordenacao": """
             SELECT
@@ -174,7 +174,7 @@ def ensure_reports():
             INNER JOIN `tabRegistro de Aula Vedium` r ON r.name = a.parent
             WHERE a.precisa_reforco = 1
             GROUP BY a.aluno, r.curso, r.turma
-            ORDER BY Ocorrencias DESC
+            ORDER BY 4 DESC
         """,
         "Vedium - Registros pendentes de revisao": """
             SELECT
