@@ -4,13 +4,6 @@ import frappe
 from frappe import _
 
 from vedium_core.course_translations import COURSE_TRANSLATIONS
-from vedium_core.marketing_landing_content import WHATSAPP_PHONE
-
-# Cursos consultivos (1:1, preço por HORA em pacotes de 8/12/24 encontros
-# negociados individualmente): não podem fechar num checkout Stripe de valor
-# fixo — cobrar "R$ 140" únicos por um serviço por hora geraria cobrança
-# errada e reembolso. O CTA vira conversa no WhatsApp (achado do QA 2026-07-10).
-CONSULTATIVE_COURSES = {"hebraico-particular"}
 
 
 def get_context(context):
@@ -131,20 +124,6 @@ def get_context(context):
             float(context.course.course_price or 0) * 10,
             context.course.currency,
         )
-
-    # Curso consultivo: sem checkout de valor fixo — CTA vira WhatsApp e o
-    # preço exibido vira a faixa por hora real da oferta.
-    context.is_consultative = course_name in CONSULTATIVE_COURSES
-    if context.is_consultative:
-        wa_text = (
-            f"Olá! Tenho interesse em aulas particulares ({context.course.title}). "
-            "Pode me passar os detalhes de pacotes e horários?"
-        )
-        context.checkout_url = f"https://wa.me/{WHATSAPP_PHONE}?text={quote(wa_text)}"
-        context.monthly_checkout_url = context.checkout_url
-        context.annual_checkout_url = None
-        context.annual_price = None
-        context.course.formatted_price = "R$ 140–220"
 
     # GTM Event - view_course
     context.gtm_event = {

@@ -261,12 +261,12 @@
                     <div class="col-xl-4 col-lg-4">
                         <div class="course-details__sidebar">
                             <div class="course-details__price wow fadeInUp animated" data-wow-delay="0.1s">
-                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ ui.per_hour if is_consultative else ui.per_month }}</span>{% endif %}</h2>
+                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ ui.per_month }}</span>{% endif %}</h2>
                                 <div class="course-details__price-btn">
                                     {% if is_enrolled %}
                                     <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.access }}</a>
                                     {% else %}
-                                    <a href="{{ checkout_url }}" class="thm-btn"{% if is_consultative %} target="_blank" rel="noopener"{% endif %} onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'monthly',location:'course_detail'});">{{ ui.talk if is_consultative else ui.enroll }}</a>
+                                    <a href="{{ checkout_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'monthly',location:'course_detail'});">{{ ui.enroll }}</a>
                                     {% if course.paid_course and annual_checkout_url and annual_price %}
                                     <p class="course-details__annual-note">{{ ui.annual_note.replace("{price}", annual_price) }}</p>
                                     <a href="{{ annual_checkout_url }}" class="course-details__annual-link" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'annual',location:'course_detail'});">{{ ui.enroll_annual }}</a>
