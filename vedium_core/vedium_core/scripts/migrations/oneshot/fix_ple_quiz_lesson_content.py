@@ -119,7 +119,7 @@ def _ensure_fixation_lesson(course, chapter_title, module_number):
         lesson.save(ignore_permissions=True)
         print(f"  ✓ atualizada lição '{lesson_title}'")
 
-    _move_lesson_to_start(chapter_name, lesson_name)
+    _move_lesson_to_end(chapter_name, lesson_name)
     frappe.db.set_value("LMS Quiz", quiz_name, {"course": course, "lesson": lesson_name})
 
 
@@ -197,7 +197,7 @@ def _sync_chapter_order(course, module_titles):
         frappe.db.set_value("Course Chapter", final_chapter, "idx", len(module_titles) + 1)
 
 
-def _move_lesson_to_start(chapter_name, lesson_name):
+def _move_lesson_to_end(chapter_name, lesson_name):
     rows = frappe.get_all(
         "Course Lesson",
         filters={"chapter": chapter_name},
@@ -205,7 +205,7 @@ def _move_lesson_to_start(chapter_name, lesson_name):
         order_by="idx asc, creation asc, name asc",
     )
     ordered = [row.name for row in rows if row.name != lesson_name]
-    ordered.insert(0, lesson_name)
+    ordered.append(lesson_name)
     for idx, name in enumerate(ordered, start=1):
         frappe.db.set_value("Course Lesson", name, "idx", idx)
 

@@ -1,0 +1,18 @@
+{
+  "title": "PLE Básico - Turma Agosto/2026",
+  "course": "portugues-para-estrangeiros-basico",
+  "instructor": "almirseller@yahoo.com",
+  "start_date": "2026-08-03",
+  "end_date": "2026-09-28",
+  "start_time": "19:00:00",
+  "end_time": "20:00:00",
+  "timezone": "America/Sao_Paulo",
+  "seat_count": 8,
+  "description": "Turma ao vivo de Português para Estrangeiros - Nível Básico, com encontros semanais pelo Google Meet.",
+  "batch_details": "<p>Turma piloto de Português para Estrangeiros - Nível Básico. Encontros semanais ao vivo pelo Google Meet, com apoio do curso gravado, quizzes, discussões e acompanhamento do professor.</p><p><strong>Professor:</strong> Almir Soares da Silva</p><p><strong>Horário:</strong> segundas-feiras, das 19h às 20h, horário de Brasília.</p>",
+  "published": false,
+  "allow_self_enrollment": false,
+  "paid_batch": false,
+  "show_live_class": true,
+  "allow_future": true
+}

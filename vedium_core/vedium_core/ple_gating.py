@@ -58,6 +58,29 @@ def _course_name_for(doctype, docname):
     return None
 
 
+def _has_enrollment(member, course_name):
+    if not member or member == "Guest":
+        return False
+    return bool(frappe.db.exists("LMS Enrollment", {"member": member, "course": course_name}))
+
+
+def _is_course_staff(member, course_name):
+    if not member or member == "Guest":
+        return False
+
+    roles = set(frappe.get_roles(member))
+    if roles.intersection({"Course Creator", "Moderator", "Batch Evaluator", "System Manager"}):
+        return True
+
+    return bool(frappe.db.exists(
+        "Course Instructor",
+        {
+            "parent": course_name,
+            "instructor": member,
+        },
+    ))
+
+
 def _chapter_for(doctype, docname):
     if doctype == "Course Chapter":
         return docname
@@ -144,9 +167,15 @@ def has_permission(doc, ptype, user):
     if not course_name:
         return None
 
+    if course_name in PLE_COURSES and _is_course_staff(user, course_name):
+        return True if doc.doctype == "LMS Quiz" else None
+
     prereq = _prerequisite_course(course_name)
     if prereq and not has_passed_course(user, prereq):
         return False
+
+    if doc.doctype == "LMS Quiz" and course_name in PLE_COURSES and _has_enrollment(user, course_name):
+        return True
 
     required_quiz = _required_module_activity(course_name, doc.doctype, docname)
     if required_quiz and not _has_passed_quiz(user, course_name, required_quiz):
