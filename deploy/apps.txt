@@ -2,3 +2,10 @@ frappe
 payments
 erpnext
 lms
+vedium_core
+telephony
+helpdesk
+crm
+hrms
+insights
+wiki

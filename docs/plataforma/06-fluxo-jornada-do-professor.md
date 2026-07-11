@@ -1,8 +1,9 @@
 # 06 — Fluxo: Jornada do Professor
 
-**Verificado em produção:** 2026-07-03. Instrutor → evaluator → slots →
-aula → certifica. Tudo 🟢 Nativo (Frappe LMS) — nenhuma peça custom nesta
-jornada.
+**Verificado em produção:** 2026-07-08. Instrutor → evaluator → slots →
+aula → certifica. Agendamento é nativo do Frappe LMS; notificação ganhou
+fallback custom da Vedium porque a entrega nativa não notificou professor
+de forma confiável.
 
 ## 1. Vínculo instrutor ↔ curso — 🟢 Nativo
 
@@ -20,7 +21,8 @@ jornada.
 - `LMS Course.evaluator` — vínculo curso → professor específico. Sem isso
   E sem `enable_certification=1`, o agendamento não aparece pro aluno (ver
   [doc 05](05-fluxo-jornada-do-aluno.md#4-agendamento-de-aula-com-o-professor--nativo-destravado-nesta-sessão)).
-  Hoje: todos os 12 cursos publicados têm os dois campos ligados.
+  Hoje: cursos publicados de assinatura/nível usam esse vínculo; oferta
+  consultiva 1:1 pode exigir tratamento comercial antes do checkout.
 
 ## 3. Cadastrar disponibilidade — 🟢 Nativo
 
@@ -49,18 +51,21 @@ jornada.
   ao Vivo" (não depende de cada professor autorizar o próprio Google
   Calendar pessoal pra isso).
 - `LMS Batch` — turma/cohorte com data de início/fim, professor(es),
-  cronograma. Nenhuma criada ainda; é ação de admin (`Batches → New
-  Batch` no LMS), não precisa de código. Decisão de produto: cobrança
-  fica 100% no Stripe (`paid_batch=0`), não usa a cobrança nativa do
-  Batch.
+  cronograma. Piloto criado: `PLE Básico - Turma Agosto/2026`, 8 vagas,
+  segundas 19:00-20:00 BRT, ainda rascunho/privado. Decisão de produto:
+  cobrança fica 100% no Stripe (`paid_batch=0`), não usa a cobrança nativa
+  do Batch.
 - `LMS Live Class` — sessão específica dentro de uma Batch, com
   `conferencing_provider: Google Meet`.
 
-## 5. Aluno agenda, professor é notificado — 🟢 Nativo
+## 5. Aluno agenda, professor é notificado — 🟢 Nativo + fallback Vedium
 
 - Aluno cria `LMS Certificate Request` (ver [doc 05](05-fluxo-jornada-do-aluno.md)).
-- `LMSCertificateRequest.after_insert` → `send_notification()` — e-mail
-  pro aluno com CC pro professor (`self.evaluator`).
+- `LMSCertificateRequest.after_insert` nativo pode enviar e-mail, mas não
+  foi confiável em produção. Desde 2026-07-08, `hooks.py` também chama
+  `vedium_core.notifications.notify_lms_certificate_request`, que envia
+  e-mail enfileirado para o professor (`evaluator`) e para a operação
+  (`contato@vediums.com`) e cria `Notification Log` no Desk quando possível.
 - Google Meet é gerado automaticamente pelo job periódico `schedule_evals`
   (`LMS Settings.send_calendar_invite_for_evaluations` precisa estar
   ligado) — não é instantâneo, roda em lote.
@@ -83,10 +88,9 @@ jornada.
   `Timesheet` (`hour_rate`), mas exigiria integração custom ligando
   presença real (`LMS Live Class Participant`/`LMS Certificate Request`
   completado) ao lançamento do Timesheet — nada disso existe hoje. Ver
-  [doc 04](04-ecossistema-frappe-oficial.md#3-não-instalado--candidatos-com-trade-offs-reais).
+  [doc 04](04-ecossistema-frappe-oficial.md#3-instalado-nesta-sessão-ainda-subutilizado).
   Hoje o pagamento aos professores presumivelmente é feito fora da
   plataforma (não verificado nesta sessão).
 - **Avaliação de desempenho do professor pelo aluno**: existe nativo
-  (`LMS Batch Feedback`), mas só funciona por Batch — como não há
-  nenhuma Batch criada ainda, não há como um aluno avaliar o professor do
-  1-a-1 hoje.
+  (`LMS Batch Feedback`), mas só funciona por Batch — o piloto PLE ainda
+  está privado, então isso ainda não gera dado real.

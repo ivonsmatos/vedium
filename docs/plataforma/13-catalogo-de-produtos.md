@@ -1,6 +1,6 @@
 # 13 — Catálogo de Produtos & Preços
 
-**Verificado em produção:** 2026-07-03. Fonte única de verdade do que a
+**Verificado em produção:** 2026-07-10. Fonte única de verdade do que a
 Vedium vende hoje — se este doc divergir do site, o site é que está
 desatualizado (preço vem sempre ao vivo do banco em `curso.py`, nunca
 hardcoded na página).
@@ -36,6 +36,20 @@ hardcoded na página).
 público internacional/diáspora que não fala português. Não confundir com
 os outros dois clusters ao fazer conta de receita consolidada.
 
+## Hebraico — 5 ofertas
+
+| Slug | Oferta | Preço |
+|---|---|---|
+| `hebraico-a0-alfabetizacao` | Hebraico A0 — Alfabetização | R$ 197 |
+| `hebraico-moderno-a1` | Hebraico Moderno — Nível A1 | R$ 397 |
+| `hebraico-moderno-a2-b1` | Hebraico Moderno — Nível A2/B1 | R$ 447 |
+| `hebraico-biblico-leitura-guiada` | Hebraico Bíblico — Leitura Guiada | R$ 497 |
+| `hebraico-particular` | Hebraico Particular 1:1 | R$ 140-220/hora, consultivo |
+
+`hebraico-particular` **não deve ir para checkout Stripe de valor fixo**:
+o CTA público abre conversa com a equipe para definir pacote, horário e
+valor final.
+
 ## Regras de preço observadas
 
 - Preço é **por curso/nível**, não varia dentro do mesmo idioma+nível —
@@ -44,15 +58,15 @@ os outros dois clusters ao fazer conta de receita consolidada.
 - Certificado/avaliação **já incluso** no preço — não é cobrado à parte
   (ver [doc 05](05-fluxo-jornada-do-aluno.md), é exatamente essa premissa
   que motivou o fix de `purchased_certificate` nesta sessão).
-- 12 cursos publicados no total, todos com `evaluator` + `enable_certification`
-  + `paid_certificate` ligados — agendamento de aula disponível em 100%
-  do catálogo ativo.
+- Catálogo publicado atual: 17 cursos/ofertas (6 Inglês, 3 Iorubá, 3 PLE,
+  5 Hebraico). Cursos com cobrança mensal/por nível usam checkout; oferta
+  consultiva 1:1 usa conversa comercial antes da cobrança.
 
 ## O que NÃO está no catálogo hoje
 
-- Nenhuma turma em grupo (`LMS Batch`) — só aula 1-a-1 disponível pra
-  compra atualmente. Ver [doc 06](06-fluxo-jornada-do-professor.md#4-aula-em-grupo-turma--nativo-configurado-nesta-sessão)
-  pro que falta pra abrir uma.
-- Nenhum outro idioma além de Inglês/Iorubá/PLE tem curso publicado
-  (mesmo havendo cluster de marketing/SEO pra outros idiomas em
-  desenvolvimento — ver [[project_i18n_n_language_rollout]]).
+- A primeira turma em grupo PLE já existe como infraestrutura/piloto:
+  `PLE Básico - Turma Agosto/2026`, ainda rascunho/privada. Não é venda
+  pública aberta enquanto `published=0` e `allow_self_enrollment=0`.
+- Nenhum outro idioma além de Inglês/Iorubá/PLE/Hebraico tem curso
+  publicado (mesmo havendo cluster de marketing/SEO para outros idiomas em
+  desenvolvimento).

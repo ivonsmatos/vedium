@@ -20,11 +20,11 @@ lacuna real de operar uma escola de idiomas 100% online.
 Tudo isso já está no stack (`frappe`, `erpnext`, `lms`, `payments`) porque a
 Frappe LMS traz muito mais do que curso/aula/quiz.
 
-**Status em 2026-07-03** (revisitado nesta sessão):
+**Status em 2026-07-10** (revisitado nesta sessão):
 
 | Feature | Doctype/campo confirmado | Resolve o quê pra Vedium | Esforço | Status |
 |---|---|---|---|---|
-| **Aula em grupo** | `LMS Batch` (turma com `start_date`/`end_date`, `instructors`, `seat_count`, `timetable`) + `LMS Live Class` (`conferencing_provider`: Zoom **ou** Google Meet) | Hoje só existe 1-a-1 (Course Evaluator). Turma fechada tipo "Inglês Iniciante — Turma Julho" é isso, sem inventar doctype. | Médio — decidir se cobrança fica no `LMS Batch.paid_batch` nativo ou continua 100% Stripe. | 🟡 **Infra pronta, batch não criada**: decidido manter cobrança 100% Stripe (`paid_batch=0`); `LMS Google Meet Settings` configurado pros 3 professores. **Pendente**: curso+professor+dias/horário reais pra criar a primeira `LMS Batch` — não pode ser inventado, precisa de decisão de negócio. |
+| **Aula em grupo** | `LMS Batch` (turma com `start_date`/`end_date`, `instructors`, `seat_count`, `timetable`) + `LMS Live Class` (`conferencing_provider`: Zoom **ou** Google Meet) | Turma fechada tipo "PLE Básico — Turma Agosto" é isso, sem inventar doctype. | Médio — cobrança continua 100% Stripe (`paid_batch=0`) para não duplicar sistemas. | ✅ **Piloto criado**: `PLE Básico - Turma Agosto/2026`, 8 vagas, segundas 19:00-20:00 BRT, 9 `LMS Live Class` com Google Meet. Ainda rascunho/privada até decisão de abertura comercial. |
 | **Presença real de aula** | `LMS Live Class Participant` (`joined_at`, `left_at`, `duration`) | "O aluno realmente compareceu" via dado real do Zoom/Meet, não matrícula. | Baixo — já existe, é dado gerado quando há Live Class. | ⚪ Automático — só passa a gerar dado quando existir a primeira Live Class (depende do item acima). |
 | **Aluno avalia professor** | `LMS Batch Feedback` (`instructors`, `content`, `value`) | Hoje não existe nenhum mecanismo disso. | Baixo — ativa junto com Batch. | ⚪ Mesma dependência — só funciona por Batch. |
 | **Fórum de dúvida por curso/lição** | Componente `Discussions.vue` genérico (por doctype/docname) | Tira dúvida sem WhatsApp/e-mail. | Baixo | ✅ **Confirmado ligado** (`LMS Settings.show_discussions = 1`). Nada a fazer. |
@@ -44,21 +44,19 @@ Frappe LMS traz muito mais do que curso/aula/quiz.
 
 ---
 
-## 3. Não instalado — candidatos com trade-offs reais
+## 3. Instalado nesta sessão, ainda subutilizado
 
-> **Decisão (2026-07-03): nenhum item desta seção é prioridade agora.**
-> Revisitar quando o volume de alunos/professores justificar (HR quando
-> houver professor CLT real; Insights quando houver dado suficiente pra
-> BI valer a pena; WhatsApp quando o volume de aulas tornar lembrete
-> manual inviável). Mantido como mapa de referência, não como backlog
-> ativo.
+| App | Estado atual | Próximo uso real |
+|---|---|---|
+| **Frappe HR (`hrms`)** | Instalado. Ainda sem integração operacional com aulas dadas ou Timesheet. | Só vira produto útil quando houver modelo formal de pagamento/contrato de professor. |
+| **Frappe Insights** | Instalado e acessível. | Criar dashboards quando houver volume; hoje é infraestrutura pronta com pouco dado. |
+| **Frappe Wiki** | Instalado e acessível. Espaços `Manual dos Professores` e `Central de Ajuda para Alunos` publicados. | Usar como base interna/FAQ, com cuidado para mergear Draft Changes antes de considerar conteúdo publicado. |
+
+## 4. Não instalado — candidatos com trade-offs reais
 
 | App | Gratuito? | Resolveria | Ressalva |
 |---|---|---|---|
-| **Frappe HR (`hrms`)** | Sim, self-hosted (Frappe Cloud é só hosting gerenciado opcional) | Folha/férias/13º pra professor **CLT**. Pagamento por hora-aula é possível via `Salary Structure` + `Timesheet` (`hour_rate`), mas não liga sozinho a "deu aula" — precisa integração (ex.: Live Class Participant → Timesheet). | Modelo pressupõe vínculo formal (Employee/Employment Type). Pra maioria freelance, o encaixe é frágil sem essa integração custom. Payroll é genérico — localização CLT/INSS/FGTS não vem pronta, não confirmado se existe app BR separado. |
 | **Frappe Education** | App separado ativo (release v16.1.0, 2026-06-29), licença a confirmar manualmente no repo | `fee_schedule`/`fee_structure` = cobrança recorrente formal com contas a receber; `student_attendance` = frequência formal desacoplada de "assistiu o Zoom". | **Overlap real e não-integrado com a LMS** (dois cadastros de aluno/curso, um em Student/Program, outro em LMS Member/Course). Só vale a pena SE o objetivo for mover a cobrança pra dentro do ERPNext (contas a receber, boleto/NF) — não como camada extra ao Stripe, que já funciona. |
-| **Frappe Insights** | Sim, self-hosted | Dashboard de matrícula/churn/receita/engajamento direto em cima dos doctypes nativos do LMS, sem escrever report Python. Conecta MySQL/Postgres/DuckDB/BigQuery, não só o próprio site. | Esforço baixo — instalar + apontar pro banco atual + montar dashboard via UI. Sem mudança de schema. |
-| **Frappe Wiki** | Sim, self-hosted | Base de conhecimento interna (material de apoio pro professor, FAQ interno, políticas) separada do conteúdo de curso publicado. | Baixo esforço, sem dev. |
 | **`frappe_whatsapp`** | Sim (terceiro, mas é a MESMA dependência que o CRM oficial usa pra aba de WhatsApp) | Lembrete de aula automático, confirmação de agendamento — hoje só e-mail (Resend) + botão manual. Usa WhatsApp Cloud API da Meta direto, sem middleman pago. | Gargalo é burocracia de aprovação de template pela Meta, não código. Resolve junto com o CRM se os dois forem adotados juntos. |
 | **Frappe Builder** | Sim, self-hosted | Landing page de campanha pontual sem depender de deploy de código. | Redundante com o site Jinja atual pras páginas institucionais já resolvidas; risco de fugir do design system da marca (azul `#2E6DA4`/vermelho `#A12D1C`) se não recriar um template-base. |
 | **Frappe Drive** | Sim, self-hosted | Professor compartilhar material solto fora da estrutura de curso (handout extra, gravação de aula 1-a-1) com permissão granular — diferente do anexo de lição do LMS (atrelado à publicação do curso). | Precisa definir fronteira de uso clara, senão vira duplicação de "onde o aluno procura material". |
@@ -66,7 +64,7 @@ Frappe LMS traz muito mais do que curso/aula/quiz.
 
 ---
 
-## 4. Decisão específica: atendimento e tutor IA
+## 5. Decisão específica: atendimento e tutor IA
 
 Atualizado em 2026-07-08 no [doc 14](14-atendimento-e-tutor-ia.md):
 
@@ -82,7 +80,7 @@ Atualizado em 2026-07-08 no [doc 14](14-atendimento-e-tutor-ia.md):
 
 ---
 
-## 5. Não pesquisado nesta rodada (fora do escopo do pedido original)
+## 6. Não pesquisado nesta rodada (fora do escopo do pedido original)
 
 - Gateway de SMS nativo do framework (`SMS Settings`) — mencionado de passagem, não aprofundado.
 - `frappe/gameplan` (gestão de projeto interno) — não pesquisado, baixa prioridade presumida pra escola pequena/média.

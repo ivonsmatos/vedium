@@ -1,20 +1,25 @@
 # 11 — Estado do Ambiente (checklist vivo)
 
-**Verificado em produção (`app.vediums.com`) em:** 2026-07-03. Este doc
+**Verificado em produção (`app.vediums.com`) em:** 2026-07-10. Este doc
 **envelhece rápido** — reconfirme no servidor antes de confiar num item
 com mais de poucas semanas.
 
 ## Apps instalados
 
 `frappe`, `erpnext`, `payments`, `lms`, `vedium_core`, `telephony`,
-`helpdesk`, `crm`. Nenhum outro (ver [doc 04](04-ecossistema-frappe-oficial.md)
-pros candidatos não instalados: `hrms`, `education`, `insights`, `wiki`,
-`builder`, `drive`, `frappe_whatsapp`).
+`helpdesk`, `crm`, `hrms`, `insights`, `wiki`.
+
+Não instalados/fora do stack atual: `education`, `builder`, `drive`,
+`frappe_whatsapp`, `raven`. Ver [doc 04](04-ecossistema-frappe-oficial.md)
+para trade-offs e critérios de adoção.
 
 ## Cursos e certificação
 
-- **12 cursos publicados**: 3 Iorubá, 3 PLE, 6 Inglês.
-- Todos os 12 com `evaluator` vinculado, `enable_certification=1` **e**
+- **Catálogo publicado atual:** 6 Inglês, 3 Iorubá, 3 PLE e 5 Hebraico
+  (17 cursos no total, incluindo `hebraico-particular`, que é oferta
+  consultiva 1:1 e não deve fechar checkout de valor fixo).
+- Cursos de assinatura/nível têm `evaluator` vinculado,
+  `enable_certification=1` **e**
   `paid_certificate=1` (ligado nesta sessão — ver [doc 05](05-fluxo-jornada-do-aluno.md)).
 - `LMS Settings.send_calendar_invite_for_evaluations = 1` (ligado — o job
   `schedule_evals` gera Google Meet automaticamente pros agendamentos).
@@ -30,9 +35,13 @@ pros candidatos não instalados: `hrms`, `education`, `insights`, `wiki`,
   nesta sessão), todos apontando pro calendário compartilhado.
 - `LMS Zoom Settings`: **não confirmado nesta rodada** (SSH instável no
   momento da checagem) — reconfirmar antes de assumir.
-- `LMS Batch`: **0 criadas**. Nenhuma turma em grupo ativa ainda; a
-  infraestrutura está pronta (Meet configurado pros 3 professores), falta
-  só a decisão de negócio de abrir uma turma de verdade.
+- `LMS Batch`: **1 criada** — `ple-b-sico-turma-agosto-2026`
+  (`PLE Básico - Turma Agosto/2026`), curso
+  `portugues-para-estrangeiros-basico`, professor/evaluator
+  `almirseller@yahoo.com`, 8 vagas, segundas 19:00-20:00 BRT.
+  Ainda está em rascunho (`published=0`, `allow_self_enrollment=0`).
+- `LMS Live Class`: **9 criadas** para essa turma, de 2026-08-03 a
+  2026-09-28, todas com `Google Meet` via `Vedium Meet` e links gerados.
 
 ## Permissões (correções de segurança desta sessão)
 
@@ -80,10 +89,34 @@ pros candidatos não instalados: `hrms`, `education`, `insights`, `wiki`,
 
 - Instalado com fixtures básicas: 2 `HD Team`, 4 `HD Ticket Status`, 4
   `HD Ticket Priority`.
-- `HD Settings.default_priority`: **não confirmado** nesta rodada (SSH
-  instável).
-- **1 `HD Ticket` só** (o seed da instalação) — nunca usado de verdade em
-  produção.
+- Configurado em 2026-07-08 para operação inicial:
+  - `HD Agent`: `ivonmatos@vediums.com`
+  - papéis do usuário: `Agent`, `Agent Manager`, `System Manager`
+  - `HD Team`: `Vedium Support`
+  - `HD Settings.default_priority`: `Medium`
+  - `HD Settings.default_ticket_status`: `Open`
+  - `HD Settings.ticket_reopen_status`: `Open`
+- Fluxos públicos e `open_support_ticket()` agora criam `HD Ticket`
+  nativo via `vedium_core.helpdesk.create_ticket`, com fallback para
+  `Support Ticket` legado só se Helpdesk não estiver disponível.
+- **1 `HD Ticket` real no banco ainda é o seed da instalação**; smoke test
+  criou e removeu um ticket temporário `0799` validando `Vedium Support`,
+  `Open` e `Medium`.
+- Atendimento por e-mail recebido: `suporte@vediums.com` foi configurado
+  via Microsoft 365 OAuth em `Email Account` (`append_to = HD Ticket`).
+  Testes IMAP/SMTP passaram; manter OAuth/Connected App documentados no
+  runbook operacional.
+
+## BI e Wiki
+
+- `insights` instalado e acessível em `/insights`. Com baixo volume de
+  matrículas, dashboards ainda valem mais como infraestrutura pronta do
+  que como BI útil.
+- `wiki` instalado e acessível em `/wiki`. Espaços publicados:
+  `Manual dos Professores` (`professores`, 14 documentos) e
+  `Central de Ajuda para Alunos` (`ajuda`, 47 documentos). Em 2026-07-10,
+  drafts bons foram mergeados e drafts vazios/ruins do Administrator foram
+  arquivados para evitar novo sumiço visual das páginas.
 
 ## Rollout de i18n (tradução do site)
 

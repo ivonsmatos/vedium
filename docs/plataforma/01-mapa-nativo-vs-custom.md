@@ -7,9 +7,9 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 > **Regra de ouro:** consulte este mapa **antes** de construir. Se há solução
 > nativa, use-a. Custom só quando o nativo comprovadamente não atende.
 
-**Verificado em produção:** 2026-07-01 (`app.vediums.com`).
+**Verificado em produção:** 2026-07-10 (`app.vediums.com`).
 **Apps instalados:** `frappe`, `erpnext`, `payments`, `lms`, `vedium_core`,
-`telephony`, `helpdesk`, `crm`.
+`telephony`, `helpdesk`, `crm`, `hrms`, `insights`, `wiki`.
 
 ## Legenda
 
@@ -39,7 +39,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 | Necessidade | Status | Onde vive | Observações |
 |---|---|---|---|
 | Matrícula no curso | 🟢 Nativo | `LMS Enrollment` | Criada por `api.create_enrollment_if_paid` após pagamento. |
-| Turmas / cohortes | 🟢 Nativo | `LMS Batch`, `LMS Batch Timetable` | Base para aula em grupo (Live Class). Hoje sem batches criados. |
+| Turmas / cohortes | 🟢 Nativo | `LMS Batch`, `LMS Batch Timetable` | Base para aula em grupo (Live Class). Piloto PLE Básico Agosto/2026 criado e privado. |
 | Painel do aluno | 🟡 Híbrido | Nativo `/lms`; custom `www/meu-progresso.html` | O custom é um resumo CEFR/streak; o oficial é o `/lms`. |
 
 ## Agendamento de aulas ⭐
@@ -79,15 +79,15 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 |---|---|---|---|
 | Gamificação (pontos, emblemas) | 🔵 Custom | `gamification.py`, campo `User.vedium_points`, doctype `LMS Badge Log` | `add_points` usa UPDATE atômico. |
 | Comunidade / fórum | 🟢 Nativo | Discussões do LMS | Custom só a landing `www/comunidade`. É o canal recomendado para dúvidas pedagógicas humanas; ver [doc 14](14-atendimento-e-tutor-ia.md). |
-| Suporte / chamados | 🟡 Híbrido ⚠️ | Nativo `HD Ticket` (helpdesk); **também** custom `Support Ticket` (`vedium_core`) | ⚠️ Investigado 2026-07-01: **ambos vazios de uso real** (Support Ticket = 0 registros; HD Ticket = 1, e é o ticket-seed da instalação, não um chamado real). Ninguém da equipe tem role de agente do Helpdesk. Sem evidência de qual tela é "a usada" — migração NÃO feita por falta de dado. Ver [doc 02](02-dicionario-doctypes.md). |
-| CRM / leads | 🟢 Nativo | `CRM Lead` (app `crm`) | 🔴 **Módulo `crm` está quebrado em produção** (`ModuleNotFoundError: No module named 'crm'`) — derruba overrides de Contact/Email. Ver [doc 08]. |
+| Suporte / chamados | 🟡 Híbrido | Nativo `HD Ticket` (helpdesk); fallback técnico `Support Ticket` (`vedium_core`) | Consolidado em 2026-07-08: fluxos públicos e `open_support_ticket()` criam `HD Ticket` via `vedium_core.helpdesk.create_ticket`; `Support Ticket` fica só como fallback se Helpdesk não existir. |
+| CRM / leads | 🟢 Nativo | `CRM Lead` (app `crm`) | App destravado por patch manual de compatibilidade; funil público ainda não foi migrado para CRM Lead. |
 | Sincronizar aluno → CRM | 🔵 Custom | `integrations.py` (`sync_student_to_crm`) | Enfileirado no `after_insert` da matrícula. |
 
 ## Comunicação e e-mail
 
 | Necessidade | Status | Onde vive | Observações |
 |---|---|---|---|
-| Envio de e-mail | 🟢 Nativo | `Email Account` "Vedium Resend" (outgoing ligado, padrão) | Conta ativa. ⚠️ E-mails podem não chegar por causa do `crm` quebrado e/ou verificação de domínio no Resend. Ver [doc 08]. |
+| Envio/recebimento de e-mail | 🟢 Nativo | `Email Account` configuradas no Frappe | Contas transacionais e `suporte@vediums.com` via Microsoft 365 OAuth; suporte recebido pode virar `HD Ticket`. |
 | E-mail transacional (matrícula, indicação, agendamento) | 🔵 Custom | `frappe.sendmail` em `api.py`, `referrals.py` | Nativo LMS também manda convite de avaliação/aula. |
 | Notificações in-app | 🟢 Nativo | Notificações do Frappe/LMS | — |
 
@@ -135,6 +135,6 @@ configuração, não código.
 
 - ⚠️ **Certificado:** doctype custom `LMS Certificate` vs. nativo — confirmar qual é a fonte da verdade.
 - ✅ **Flashcards:** resolvido 2026-07-01 — `Flashcard` era órfão (0 uso no código, 0 registros), removido do repo. `LMS Flashcard` é o canônico.
-- ⚠️ **Suporte:** `Support Ticket` custom vs. `HD Ticket` nativo — investigado 2026-07-01, permanece ambíguo (ambos sem uso real em produção); não migrado por falta de evidência. Ver [doc 02](02-dicionario-doctypes.md).
-- 🔴 **CRM quebrado:** app `crm` com `ModuleNotFoundError` — impacta Contato e e-mail. Prioridade em [doc 08].
+- ✅ **Suporte:** consolidado em `HD Ticket`; `Support Ticket` é fallback técnico.
+- ⚠️ **CRM:** app acessível após patch manual no servidor; risco de `bench update` desfazer o patch até haver correção upstream/commit próprio.
 - 🔴 **Lesson Slot legado:** ✅ leituras mortas removidas 2026-07-01 (`meu_progresso.py`). Doctype mantido só porque `public_funnel.get_available_diagnostic_slots` ainda o consulta (sempre vazio); garantir que nada novo o referencie além disso.

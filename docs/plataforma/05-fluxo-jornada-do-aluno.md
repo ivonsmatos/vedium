@@ -1,6 +1,6 @@
 # 05 — Fluxo: Jornada do Aluno
 
-**Verificado em produção:** 2026-07-03 (`app.vediums.com`), inclui a correção
+**Verificado em produção:** 2026-07-10 (`app.vediums.com`), inclui a correção
 do fluxo nativo de agendamento feita nesta mesma data.
 
 Checkout → matrícula → aula → certificado, com o "onde vive cada peça"
@@ -65,7 +65,7 @@ nenhum**, em produção, desde sempre.
 **A correção (2026-07-03), 100% configuração nativa, sem página custom**:
 
 1. `LMS Course.paid_certificate = 1` em todo curso publicado com
-   `evaluator` vinculado (12 cursos).
+   `evaluator` vinculado.
 2. `LMS Enrollment.purchased_certificate = 1` em toda matrícula (histórico
    + automático em toda matrícula nova via `create_enrollment_if_paid`) —
    sem isso, o botão levaria à cobrança nativa em vez do agendamento.
@@ -100,12 +100,11 @@ automaticamente (job `schedule_evals`, roda a cada poucas horas).
 
 **Aula em grupo (turma/batch)**: mesmo mecanismo de Google Meet, via
 `LMS Google Meet Settings` — configurado para os 3 professores (Almir,
-Kayode, Busayo) nesta sessão, todos apontando pro calendário compartilhado
-"Vedium Aulas ao Vivo". Criar uma `LMS Batch` de verdade (turma com
-data/horário fixo) é tarefa de admin no próprio LMS
-(`Batches → New Batch`), sem código. Decisão de produto: turmas ficam com
-`paid_batch = 0` — cobrança continua 100% no Stripe, não duplica sistema
-de pagamento.
+Kayode, Busayo), todos apontando pro calendário compartilhado
+"Vedium Aulas ao Vivo". O piloto `PLE Básico - Turma Agosto/2026` já foi
+criado com 9 `LMS Live Class`, ainda privado/rascunho. Decisão de produto:
+turmas ficam com `paid_batch = 0` — cobrança continua 100% no Stripe, não
+duplica sistema de pagamento.
 
 ## 5. Certificação — 🟢 Nativo
 

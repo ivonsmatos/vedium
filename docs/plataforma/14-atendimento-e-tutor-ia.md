@@ -25,11 +25,11 @@ no fim deste documento.
 | Necessidade | Caminho recomendado | Status Vedium | Observação |
 |---|---|---|---|
 | Dúvida sobre aula, lição ou exercício | Discussões nativas do LMS | 🟢 Ligado | `LMS Settings.show_discussions = 1`, ver [doc 04](04-ecossistema-frappe-oficial.md). |
-| Dúvida dentro de uma turma | `LMS Batch` + aba de discussões | ⚪ Infra pronta, sem batch real | Requer turma real decidida pelo negócio. |
-| Aula ao vivo em turma | `LMS Live Class` via Google Meet/Zoom | ⚪ Infra Meet pronta | Google Meet configurado pros professores, ver [doc 10](10-matriz-de-integracoes.md). |
+| Dúvida dentro de uma turma | `LMS Batch` + aba de discussões | 🟡 Piloto criado | `PLE Básico - Turma Agosto/2026`, ainda em rascunho. |
+| Aula ao vivo em turma | `LMS Live Class` via Google Meet/Zoom | 🟡 Piloto criado | 9 aulas ao vivo criadas para a turma PLE Básico, com links Google Meet. |
 | Tarefa com feedback do professor | Assignments nativos do LMS | 🟢 Nativo | Usar quando o curso tiver atividades corrigidas. |
 | Progresso do aluno | Progresso nativo do LMS | 🟢 Nativo | Custom só para vitrine/resumo, ver [doc 05](05-fluxo-jornada-do-aluno.md). |
-| Acesso, pagamento, certificado, remarcação | Suporte operacional | 🟡 Simples agora | Volume atual não justifica Helpdesk completo; reavaliar com equipe/SLAs. |
+| Acesso, pagamento, certificado, remarcação | Frappe Helpdesk (`HD Ticket`) | 🟢 Configurado | `Vedium Support` + agente Ivon; falta só IMAP `suporte@` para entrada por e-mail. |
 | WhatsApp comercial/admin | Link manual hoje; CRM WhatsApp no futuro | 🔴 Não integrado | `frappe_whatsapp` não instalado, ver [doc 04](04-ecossistema-frappe-oficial.md). |
 | Tutor IA pedagógico | Produto custom | ⚪ Previsto/parcial | Existe código parcial, mas faltam DocTypes, UX, base de conhecimento e validação. |
 
