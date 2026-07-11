@@ -4,7 +4,7 @@ Vedium — Trial de 7 dias para cursos pagos
 
 Como funciona:
     1. Aluno solicita trial via API (start_trial):
-       - Cria LMS Enrollment com status="Trial"
+       - Cria LMS Enrollment com custom_vedium_status="Trial"
        - Registra data de início em Vedium Trial (se DocType existir) ou
          via User Permission custom
        - Trial expira automaticamente via scheduler diário
@@ -13,7 +13,7 @@ Como funciona:
        - Busca enrollments Trial com mais de 7 dias
        - Move para "Expired" ou remove acesso
 
-    3. Conversão: aluno faz checkout → enrollment vira "Enrolled"
+    3. Conversão: aluno faz checkout → enrollment vira "Active"
 
 Integração no hooks.py:
     scheduler_events = {
@@ -30,8 +30,9 @@ from vedium_core.exceptions import EnrollmentError, PaymentError
 
 TRIAL_DAYS = 7
 TRIAL_STATUS = "Trial"
-ENROLLED_STATUS = "Enrolled"
+ENROLLED_STATUS = "Active"
 EXPIRED_STATUS = "Expired"
+STATUS_FIELD = "custom_vedium_status"
 
 
 # ──────────────────────────────────────────────
@@ -61,16 +62,17 @@ def start_trial(course: str):
     existing = frappe.db.get_value(
         "LMS Enrollment",
         {"member": user, "course": course},
-        ["name", "status"],
+        ["name", STATUS_FIELD],
         as_dict=True,
     )
     if existing:
-        if existing.status in (ENROLLED_STATUS, TRIAL_STATUS):
+        existing_status = existing.get(STATUS_FIELD) or ENROLLED_STATUS
+        if existing_status in (ENROLLED_STATUS, TRIAL_STATUS):
             frappe.throw(
                 _("Você já possui acesso ativo a este curso"),
                 EnrollmentError,
             )
-        if existing.status == EXPIRED_STATUS:
+        if existing_status == EXPIRED_STATUS:
             frappe.throw(
                 _("Seu período de avaliação deste curso já foi utilizado"),
                 EnrollmentError,
@@ -89,7 +91,9 @@ def start_trial(course: str):
         "doctype": "LMS Enrollment",
         "member": user,
         "course": course,
-        "status": TRIAL_STATUS,
+        STATUS_FIELD: TRIAL_STATUS,
+        "custom_vedium_status_changed_on": trial_start,
+        "custom_vedium_status_reason": "Trial iniciado pelo aluno",
         "custom_trial_start": trial_start,
         "custom_trial_end": trial_end,
         "member_type": "Student",
@@ -122,7 +126,7 @@ def get_trial_status(course: str):
     enrollment = frappe.db.get_value(
         "LMS Enrollment",
         {"member": user, "course": course},
-        ["name", "status", "custom_trial_start", "custom_trial_end"],
+        ["name", STATUS_FIELD, "custom_trial_start", "custom_trial_end"],
         as_dict=True,
     )
 
@@ -130,7 +134,7 @@ def get_trial_status(course: str):
         # Verifica quantos trials o usuário já usou (limite: 1 trial ativo por vez)
         active_trials = frappe.db.count(
             "LMS Enrollment",
-            {"member": user, "status": TRIAL_STATUS},
+            {"member": user, STATUS_FIELD: TRIAL_STATUS},
         )
         return {
             "has_trial": False,
@@ -144,8 +148,8 @@ def get_trial_status(course: str):
         days_left = max(0, delta.days)
 
     return {
-        "has_trial": enrollment.status == TRIAL_STATUS,
-        "status": enrollment.status,
+        "has_trial": enrollment.get(STATUS_FIELD) == TRIAL_STATUS,
+        "status": enrollment.get(STATUS_FIELD) or ENROLLED_STATUS,
         "enrollment": enrollment.name,
         "days_left": days_left,
         "trial_end": enrollment.custom_trial_end.strftime("%d/%m/%Y") if enrollment.custom_trial_end else None,
@@ -173,7 +177,7 @@ def expire_trials():
     # Busca trials vencidos (usa campo custom_trial_start ou fallback em creation)
     expired = frappe.get_all(
         "LMS Enrollment",
-        filters={"status": TRIAL_STATUS},
+        filters={STATUS_FIELD: TRIAL_STATUS},
         fields=["name", "member", "course", "custom_trial_start", "creation"],
     )
 
@@ -192,7 +196,15 @@ def expire_trials():
 
         if trial_start <= expired_cutoff:
             try:
-                frappe.db.set_value("LMS Enrollment", e.name, "status", EXPIRED_STATUS)
+                frappe.db.set_value(
+                    "LMS Enrollment",
+                    e.name,
+                    {
+                        STATUS_FIELD: EXPIRED_STATUS,
+                        "custom_vedium_status_changed_on": now,
+                        "custom_vedium_status_reason": "Trial expirado automaticamente",
+                    },
+                )
                 count += 1
                 _send_trial_expiry_notice(e.member, e.course)
             except Exception as ex:

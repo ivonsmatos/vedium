@@ -27,9 +27,10 @@ de RAM, ver memória do projeto):
     2. Persona: prompt de sistema com guardrails, por curso/família de
        curso (não precisa de doctype -- mesmo padrão de
        course_translations.py: dict em código, sem Custom Field).
-    3. Groq (openai/gpt-oss-120b -- substituto oficial recomendado após a
-       depreciação do llama-3.3-70b-versatile em 2026-06-17, ver
-       console.groq.com/docs/deprecations).
+    3. Groq com modelo configurável. O padrão histórico era
+       openai/gpt-oss-120b, mas algumas organizações bloqueiam modelos por
+       política interna; por isso o runtime tenta fallbacks disponíveis antes
+       de desistir.
     4. Log: Vedium AI Chat Session + Vedium AI Chat Message (doctypes
        custom, criados em install.py -- ensure_ai_tutor_doctypes()).
     5. Fallback humano: escalate_to_human() cria HD Ticket via
@@ -46,6 +47,12 @@ CHAT_SESSION = "Vedium AI Chat Session"
 CHAT_MESSAGE = "Vedium AI Chat Message"
 
 GROQ_MODEL = "openai/gpt-oss-120b"
+GROQ_FALLBACK_MODELS = (
+    "llama-3.3-70b-versatile",
+    "llama-3.1-8b-instant",
+    "qwen/qwen3-32b",
+    "openai/gpt-oss-20b",
+)
 RATE_LIMIT_QUOTA = 30
 RATE_LIMIT_WINDOW = 3600
 MAX_HISTORY_MESSAGES = 12  # últimas N mensagens mandadas de volta pro modelo como contexto
@@ -243,6 +250,57 @@ def _get_groq_client():
     return Groq(api_key=api_key)
 
 
+def _configured_groq_model():
+    return (
+        frappe.conf.get("vedium_ai_tutor_model")
+        or frappe.db.get_single_value("System Settings", "custom_vedium_ai_tutor_model")
+        or GROQ_MODEL
+    )
+
+
+def _groq_model_candidates():
+    seen = set()
+    for model in (_configured_groq_model(), *GROQ_FALLBACK_MODELS):
+        if model and model not in seen:
+            seen.add(model)
+            yield model
+
+
+def _create_groq_completion(client, messages):
+    last_error = None
+    for model in _groq_model_candidates():
+        try:
+            completion = client.chat.completions.create(
+                messages=messages,
+                model=model,
+                temperature=0.6,
+                max_tokens=500,
+            )
+            return completion, model
+        except Exception as exc:
+            last_error = exc
+            message = str(exc).lower()
+            # Só tenta fallback quando o problema é claramente o modelo.
+            # Erros de rede, chave inválida, rate limit etc. devem falhar
+            # rápido para não mascarar configuração real.
+            if not any(
+                marker in message
+                for marker in (
+                    "model",
+                    "permission",
+                    "blocked",
+                    "deprecat",
+                    "not found",
+                    "does not exist",
+                )
+            ):
+                raise
+            frappe.logger("vedium.ai_tutor").warning(
+                f"Groq model {model!r} failed, trying fallback: {exc}"
+            )
+    raise last_error
+
+
 def _get_or_create_session(session_name, user, course_name):
     if session_name and frappe.db.exists(CHAT_SESSION, session_name):
         session = frappe.get_doc(CHAT_SESSION, session_name)
@@ -338,12 +396,7 @@ def chat(message, course=None, session_name=None):
     client = _get_groq_client()
     start = time.time()
     try:
-        completion = client.chat.completions.create(
-            messages=messages,
-            model=GROQ_MODEL,
-            temperature=0.6,
-            max_tokens=500,
-        )
+        completion, model_used = _create_groq_completion(client, messages)
         reply = completion.choices[0].message.content
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Vedium.ai_tutor.chat")
@@ -354,7 +407,7 @@ def chat(message, course=None, session_name=None):
 
     duration_ms = int((time.time() - start) * 1000)
     frappe.logger("vedium.ai_tutor").info(
-        f"user={user} session={session.name} duration_ms={duration_ms} "
+        f"user={user} session={session.name} model={model_used} duration_ms={duration_ms} "
         f"lesson_hits={len(lesson_hits)} faq_hits={len(faq_hits)}"
     )
 

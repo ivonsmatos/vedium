@@ -76,6 +76,13 @@ CUSTOM_FIELDS = {
             "fieldtype": "Password",
             "insert_after": "custom_vedium_vapid_email",
         },
+        {
+            "fieldname": "custom_vedium_ai_tutor_model",
+            "label": "Vedium AI Tutor — Groq Model",
+            "fieldtype": "Data",
+            "insert_after": "custom_groq_api_key",
+            "description": "Opcional. Se vazio, usa o padrão do código e fallbacks automáticos.",
+        },
     ],
     # Extensões Vedium ao certificado NATIVO do LMS (LMS Certificate).
     # Antes existia um doctype custom homônimo que sequestrava o nativo; foi
@@ -108,6 +115,48 @@ CUSTOM_FIELDS = {
             "fieldtype": "Link",
             "options": "LMS Course",
             "insert_after": "category",
+        },
+    ],
+    # Fonte da verdade Vedium para acesso do aluno.
+    # O DocType nativo "LMS Enrollment" do LMS não possui um campo status
+    # canônico. Estes campos são usados por trial, cancelamento e pela futura
+    # sincronização de membros em canais de comunicação (Raven/Vedium).
+    "LMS Enrollment": [
+        {
+            "fieldname": "custom_vedium_status",
+            "label": "Status Vedium",
+            "fieldtype": "Select",
+            "options": "Active\nTrial\nSuspended\nCancelled\nEnded\nExpired",
+            "default": "Active",
+            "insert_after": "role",
+            "in_list_view": 1,
+        },
+        {
+            "fieldname": "custom_vedium_status_changed_on",
+            "label": "Status alterado em",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_vedium_status",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "custom_vedium_status_reason",
+            "label": "Motivo do status",
+            "fieldtype": "Small Text",
+            "insert_after": "custom_vedium_status_changed_on",
+        },
+        {
+            "fieldname": "custom_trial_start",
+            "label": "Início do trial",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_vedium_status_reason",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "custom_trial_end",
+            "label": "Fim do trial",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_trial_start",
+            "read_only": 1,
         },
     ],
 }

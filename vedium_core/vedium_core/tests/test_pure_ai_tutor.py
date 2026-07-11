@@ -25,13 +25,14 @@ def test_old_dead_ai_controller_was_removed():
 
 
 def test_groq_model_is_not_a_known_stale_name():
-    """O modelo REAL usado (GROQ_MODEL) não pode ser um nome descontinuado
-    -- llama3-70b-8192 (formato antigo, usado no controller morto) e
-    llama-3.3-70b-versatile (descontinuado em 2026-06-17, confirmado em
-    console.groq.com/docs/deprecations). A menção ao nome antigo no
-    docstring (explicando a troca) é esperada e não conta como uso real."""
+    """O modelo legado do controller morto não pode voltar. O tutor atual
+    mantém um padrão configurável e fallbacks porque a Groq pode bloquear
+    modelos por organização."""
     model_line = [l for l in AI_TUTOR.splitlines() if l.strip().startswith("GROQ_MODEL = ")][0]
     assert model_line.strip() == 'GROQ_MODEL = "openai/gpt-oss-120b"'
+    assert "GROQ_FALLBACK_MODELS" in AI_TUTOR
+    assert "custom_vedium_ai_tutor_model" in AI_TUTOR
+    assert "_create_groq_completion" in AI_TUTOR
 
 
 def test_chat_endpoint_requires_login_and_rate_limits():
@@ -79,6 +80,7 @@ def test_doctypes_are_wired_into_install_and_no_orphan_reference():
 
 def test_groq_key_fallback_field_exists_in_custom_setup():
     assert '"custom_groq_api_key"' in CUSTOM_SETUP
+    assert '"custom_vedium_ai_tutor_model"' in CUSTOM_SETUP
     assert "System Settings" in CUSTOM_SETUP.split('"custom_groq_api_key"')[0].split('"LMS Course"')[-1] \
         or '"custom_groq_api_key"' in CUSTOM_SETUP
 

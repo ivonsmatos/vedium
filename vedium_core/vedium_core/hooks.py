@@ -410,7 +410,12 @@ doc_events = {
         "on_update": "vedium_core.gamification.Gamification.handle_lesson_completion"
     },
     "LMS Enrollment": {
-        "after_insert": "vedium_core.integrations.on_enrollment"
+        "after_insert": [
+            "vedium_core.integrations.on_enrollment",
+            "vedium_core.communication.sync_enrollment",
+        ],
+        "on_update": "vedium_core.communication.sync_enrollment",
+        "on_trash": "vedium_core.communication.remove_enrollment_membership",
     },
     "LMS Certificate Request": {
         "after_insert": "vedium_core.notifications.notify_lms_certificate_request"
