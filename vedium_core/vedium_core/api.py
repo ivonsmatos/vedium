@@ -923,9 +923,12 @@ class StripeGateway(PaymentGateway):
         currency = charge_currency.lower()
         unit_amount = int(round(charge_price * 100))  # centavos/cents
         payment_method_types = ["card"]
+        if currency == "brl":
+            payment_method_types.append("boleto")
 
         session = stripe.checkout.Session.create(
             payment_method_types=payment_method_types,
+            tax_id_collection={"enabled": currency == "brl"},
             line_items=[
                 {
                     "price_data": {
