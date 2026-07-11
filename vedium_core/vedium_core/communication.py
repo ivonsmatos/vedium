@@ -123,6 +123,13 @@ def ensure_raven_user(user: str) -> str | None:
     if not _user_has_role(user_doc, "Raven User"):
         user_doc.append("roles", {"role": "Raven User"})
         user_doc.save(ignore_permissions=True)
+        # O próprio Raven escuta User.on_update e pode criar o Raven User
+        # imediatamente quando a role é adicionada.
+        existing = frappe.db.get_value("Raven User", {"user": user}, "name") or frappe.db.exists(
+            "Raven User", user
+        )
+        if existing:
+            return existing
 
     if existing:
         frappe.db.set_value(
@@ -146,8 +153,13 @@ def ensure_raven_user(user: str) -> str | None:
             "first_name": user_doc.first_name,
         }
     )
-    raven_user.insert(ignore_permissions=True)
-    return raven_user.name
+    try:
+        raven_user.insert(ignore_permissions=True)
+        return raven_user.name
+    except frappe.DuplicateEntryError:
+        return frappe.db.get_value("Raven User", {"user": user}, "name") or frappe.db.exists(
+            "Raven User", user
+        )
 
 
 def ensure_workspace() -> str:

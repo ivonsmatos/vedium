@@ -24,6 +24,12 @@ x-frappe-env: &frappe-env
   FRAPPE_REDIS_QUEUE: redis://:${REDIS_PASSWORD}@vedium-redis-queue:6379
   FRAPPE_REDIS_SOCKETIO: redis://:${REDIS_PASSWORD}@vedium-redis-socketio:6379
 
+x-frappe-image: &frappe-image
+  image: vedium-frappe-raven:v16
+  build:
+    context: ..
+    dockerfile: deploy/Dockerfile
+
 x-frappe-volumes: &frappe-volumes
   - frappe-bench-v16:/home/frappe/frappe-bench
   - vedium-sites:/home/frappe/frappe-bench/sites
@@ -46,7 +52,7 @@ services:
   # APP: Gunicorn — serve requests HTTP
   # --------------------------------------------------
   vedium-frappe:
-    image: frappe/erpnext:v16
+    <<: *frappe-image
     container_name: vedium-frappe
     restart: always
     working_dir: /home/frappe/frappe-bench
@@ -71,7 +77,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 4G
           cpus: "1.5"
     healthcheck:
       test: ["CMD", "curl", "-f", "-H", "Host: app.vediums.com", "http://localhost:8000/api/method/ping"]
@@ -84,7 +90,7 @@ services:
   # SOCKETIO — realtime (chat, progresso ao vivo)
   # --------------------------------------------------
   vedium-socketio:
-    image: frappe/erpnext:v16
+    <<: *frappe-image
     container_name: vedium-socketio
     restart: always
     working_dir: /home/frappe/frappe-bench
@@ -116,7 +122,7 @@ services:
   # (emails, certificados, webhooks, relatórios pesados)
   # --------------------------------------------------
   vedium-worker-default:
-    image: frappe/erpnext:v16
+    <<: *frappe-image
     container_name: vedium-worker-default
     restart: always
     working_dir: /home/frappe/frappe-bench
@@ -143,7 +149,7 @@ services:
       start_period: 30s
 
   vedium-worker-short:
-    image: frappe/erpnext:v16
+    <<: *frappe-image
     container_name: vedium-worker-short
     restart: always
     working_dir: /home/frappe/frappe-bench
@@ -170,7 +176,7 @@ services:
       start_period: 30s
 
   vedium-worker-long:
-    image: frappe/erpnext:v16
+    <<: *frappe-image
     container_name: vedium-worker-long
     restart: always
     working_dir: /home/frappe/frappe-bench
@@ -201,7 +207,7 @@ services:
   # (backups internos, limpeza de sessões, métricas)
   # --------------------------------------------------
   vedium-scheduler:
-    image: frappe/erpnext:v16
+    <<: *frappe-image
     container_name: vedium-scheduler
     restart: always
     working_dir: /home/frappe/frappe-bench
