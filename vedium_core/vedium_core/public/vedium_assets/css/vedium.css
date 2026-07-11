@@ -7327,6 +7327,26 @@ ul {
     margin-top: 19px;
 }
 
+.course-details__annual-note {
+    color: var(--thm-gray);
+    font-size: 14px;
+    line-height: 22px;
+    margin: 14px 24px 8px;
+}
+
+.course-details__annual-link {
+    color: var(--thm-base);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    text-decoration: underline;
+}
+
+.course-details__annual-link:hover {
+    color: var(--thm-black);
+}
+
 .course-details__sidebar-meta {
     position: relative;
     display: block;

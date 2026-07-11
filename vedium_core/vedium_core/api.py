@@ -514,8 +514,15 @@ def get_payment_history(limit=50, start=0):
 # =====================
 # Endpoint central para seleção de gateway no checkout
 # =====================
+def _normalize_billing_period(billing_period=None):
+    billing_period = (billing_period or "monthly").strip().lower()
+    if billing_period in {"annual", "yearly"}:
+        return "annual"
+    return "monthly"
+
+
 @frappe.whitelist()
-def create_checkout(course_name, gateway, coupon_code=None, display_currency=None):
+def create_checkout(course_name, gateway, coupon_code=None, display_currency=None, billing_period=None):
     """
     Cria checkout para o gateway selecionado pelo usuário, com suporte a cupons.
     Rate limit: 20 tentativas/hora por IP (anti-flooding de sessões de pagamento).
@@ -525,6 +532,7 @@ def create_checkout(course_name, gateway, coupon_code=None, display_currency=Non
     nessa moeda em vez da moeda nativa do curso.
     """
     rate_limit_by_ip("checkout", limit=20, window_sec=3600)
+    billing_period = _normalize_billing_period(billing_period)
     if frappe.session.user == "Guest":
         frappe.throw(_("Por favor, faça login para comprar este curso"))
     course = frappe.get_doc("LMS Course", course_name)
@@ -597,6 +605,7 @@ def create_checkout(course_name, gateway, coupon_code=None, display_currency=Non
         frappe.session.user,
         coupon_code=coupon_code if coupon_valid else None,
         display_currency=display_currency,
+        billing_period=billing_period,
     )
     return {
         "checkout_url": checkout_url,
@@ -604,6 +613,7 @@ def create_checkout(course_name, gateway, coupon_code=None, display_currency=Non
         "final_price": final_price,
         "coupon_valid": coupon_valid,
         "coupon_msg": coupon_msg,
+        "billing_period": billing_period,
     }
 
 
@@ -762,7 +772,7 @@ def get_featured_courses(limit=6, start=0):
 
 
 @frappe.whitelist()
-def create_checkout_session(course_name, display_currency=None):
+def create_checkout_session(course_name, display_currency=None, billing_period=None):
     """
     Create a Stripe checkout session for course purchase.
     Requires logged-in user. Uses the gateway factory pattern.
@@ -773,6 +783,9 @@ def create_checkout_session(course_name, display_currency=None):
     nessa moeda. Sem isso, cobra na moeda nativa do curso (comportamento
     de sempre).
     """
+    rate_limit_by_ip("checkout_session", limit=20, window_sec=3600)
+    billing_period = _normalize_billing_period(billing_period)
+
     if frappe.session.user == "Guest":
         frappe.throw(_("Por favor, faça login para comprar este curso"))
 
@@ -791,14 +804,17 @@ def create_checkout_session(course_name, display_currency=None):
     # C-01 fix: use the gateway factory instead of the non-existent create_stripe_checkout()
     gateway_obj = get_gateway("stripe")
     checkout_url = gateway_obj.create_checkout(
-        course, frappe.session.user, display_currency=display_currency
+        course,
+        frappe.session.user,
+        display_currency=display_currency,
+        billing_period=billing_period,
     )
 
     return {"checkout_url": checkout_url}
 
 
 @frappe.whitelist(allow_guest=True)
-def start_course_checkout(course_name, display_currency=None):
+def start_course_checkout(course_name, display_currency=None, billing_period=None):
     """Entrada de navegador para as páginas públicas de curso.
 
     Mantém o botão "Matricular" como um link normal: visitante sem login passa
@@ -806,10 +822,12 @@ def start_course_checkout(course_name, display_currency=None):
     Checkout hospedado (checkout.stripe.com), cobrando na moeda do curso (BRL).
     A matrícula é criada pelo webhook (stripe_webhook) no checkout.session.completed.
     """
+    billing_period = _normalize_billing_period(billing_period)
+
     if frappe.session.user == "Guest":
         next_url = (
             "/api/method/vedium_core.api.start_course_checkout"
-            f"?course_name={quote(str(course_name))}"
+            f"?course_name={quote(str(course_name))}&billing_period={billing_period}"
         )
         if display_currency:
             next_url += f"&display_currency={quote(str(display_currency))}"
@@ -832,7 +850,11 @@ def start_course_checkout(course_name, display_currency=None):
         frappe.local.response["location"] = f"/lms/courses/{quote(str(course_name))}"
         return
 
-    response = create_checkout_session(course_name, display_currency=display_currency)
+    response = create_checkout_session(
+        course_name,
+        display_currency=display_currency,
+        billing_period=billing_period,
+    )
     checkout_url = (response or {}).get("checkout_url")
     if not checkout_url:
         frappe.throw(_("Não foi possível criar o checkout do Stripe"))
@@ -845,7 +867,7 @@ def start_course_checkout(course_name, display_currency=None):
 # Payment Gateway Abstraction
 # =====================
 class PaymentGateway:
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         raise NotImplementedError
 
     def handle_webhook(self, data):
@@ -861,7 +883,7 @@ class StripeGateway(PaymentGateway):
             )
         return key
 
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         import stripe
 
         from vedium_core.currency import SUPPORTED_CURRENCIES, convert_amount
@@ -885,16 +907,30 @@ class StripeGateway(PaymentGateway):
             charge_currency = native_currency
             charge_price = native_price
 
+        billing_period = _normalize_billing_period(billing_period)
+        monthly_charge_price = charge_price
+        monthly_native_price = native_price
+        billing_months_charged = 1
+        billing_months_access = 1
+        product_suffix = _("Plano mensal")
+
+        if billing_period == "annual":
+            billing_months_charged = 10
+            billing_months_access = 12
+            charge_price = round(monthly_charge_price * billing_months_charged, 2)
+            product_suffix = _("Plano anual - 2 meses gratis")
+
         currency = charge_currency.lower()
         unit_amount = int(round(charge_price * 100))  # centavos/cents
+        payment_method_types = ["card"]
 
         session = stripe.checkout.Session.create(
-            payment_method_types=["card"],
+            payment_method_types=payment_method_types,
             line_items=[
                 {
                     "price_data": {
                         "currency": currency,
-                        "product_data": {"name": course.title},
+                        "product_data": {"name": f"{course.title} - {product_suffix}"},
                         "unit_amount": unit_amount,
                     },
                     "quantity": 1,
@@ -909,13 +945,19 @@ class StripeGateway(PaymentGateway):
             ),
             cancel_url=f"{base_url}/lms/courses/{course.name}?payment=cancelled",
             metadata={
-                "course_name": course.name,
-                "user": user,
-                "site": frappe.local.site,
+                "course_name": str(course.name),
+                "user": str(user),
+                "site": str(frappe.local.site),
                 "coupon_code": coupon_code or "",
                 "native_currency": native_currency,
-                "native_price": native_price,
+                "native_monthly_price": str(round(monthly_native_price, 2)),
+                "native_price": str(round(monthly_native_price * billing_months_charged, 2)),
                 "charge_currency": charge_currency,
+                "charge_monthly_price": str(round(monthly_charge_price, 2)),
+                "charge_amount": str(unit_amount),
+                "billing_period": billing_period,
+                "billing_months_charged": str(billing_months_charged),
+                "billing_months_access": str(billing_months_access),
             },
         )
         return session.url
@@ -924,14 +966,35 @@ class StripeGateway(PaymentGateway):
         if event.get("type") == "checkout.session.completed":
             session = event.get("data", {}).get("object", {})
             ref = session.get("client_reference_id", "")
-            coupon_code = (session.get("metadata") or {}).get("coupon_code") or None
+            metadata = session.get("metadata") or {}
+            coupon_code = metadata.get("coupon_code") or None
             try:
                 course_name, user = ref.split("|", 1)
+                if session.get("payment_status") != "paid":
+                    frappe.log_error(
+                        f"Stripe webhook ignorado: payment_status={session.get('payment_status')} session={session.get('id')}",
+                        "Vedium.payments.stripe_webhook",
+                    )
+                    return
+                if session.get("mode") != "payment":
+                    frappe.throw(_("Stripe session mode inválido"), frappe.AuthenticationError)
+                if metadata.get("site") and metadata.get("site") != frappe.local.site:
+                    frappe.throw(_("Stripe session site inválido"), frappe.AuthenticationError)
+                if metadata.get("course_name") and metadata.get("course_name") != course_name:
+                    frappe.throw(_("Stripe session course inválido"), frappe.AuthenticationError)
+
+                expected_amount = int(metadata.get("charge_amount") or 0)
+                expected_currency = (metadata.get("charge_currency") or "").lower()
+                if expected_amount and int(session.get("amount_total") or 0) != expected_amount:
+                    frappe.throw(_("Stripe session amount inválido"), frappe.AuthenticationError)
+                if expected_currency and (session.get("currency") or "").lower() != expected_currency:
+                    frappe.throw(_("Stripe session currency inválida"), frappe.AuthenticationError)
+
                 create_enrollment_if_paid(
                     course_name,
                     user,
                     "stripe",
-                    session.get("payment_intent", ""),
+                    session.get("payment_intent") or session.get("id") or "",
                     amount=(session.get("amount_total") or 0) / 100,
                     currency=(session.get("currency") or "brl").upper(),
                     coupon_code=coupon_code,
@@ -951,7 +1014,7 @@ class MercadoPagoGateway(PaymentGateway):
             frappe.throw(_("MERCADOPAGO_ACCESS_TOKEN não configurado"))
         return mercadopago.SDK(access_token)
 
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         sdk = self.get_sdk()
 
         preference_data = {
@@ -1021,7 +1084,7 @@ class MercadoPagoGateway(PaymentGateway):
 
 
 class BasecommerceGateway(PaymentGateway):
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         # TODO: Integrar com Basecommerce API
         return f"/lms/courses/{course.name}/enroll-basecommerce"
 
@@ -1031,7 +1094,7 @@ class BasecommerceGateway(PaymentGateway):
 
 
 class CryptoGateway(PaymentGateway):
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None):
+    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         from vedium_core.services.crypto_service import CryptoService
 
         service = CryptoService()
@@ -1096,7 +1159,7 @@ def stripe_webhook():
     stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY", "")
     payload = frappe.request.get_data(as_text=True)
     sig_header = frappe.request.headers.get("Stripe-Signature")
-    webhook_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET")
+    webhook_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET") or frappe.conf.get("stripe_webhook_secret")
     is_dev = bool(frappe.conf.get("developer_mode") or frappe.conf.get("DEVELOPER_MODE"))
 
     if not webhook_secret:

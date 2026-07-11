@@ -118,10 +118,19 @@ def get_context(context):
     # Botão "Matricular": vai direto pro Stripe Checkout hospedado
     # (vedium_core.api.start_course_checkout → checkout.stripe.com, em BRL),
     # em vez do formulário embutido do LMS nativo.
-    context.checkout_url = (
+    checkout_base_url = (
         "https://app.vediums.com/api/method/vedium_core.api.start_course_checkout"
         f"?course_name={quote(str(course_name))}"
     )
+    context.monthly_checkout_url = f"{checkout_base_url}&billing_period=monthly"
+    context.annual_checkout_url = f"{checkout_base_url}&billing_period=annual"
+    context.checkout_url = context.monthly_checkout_url
+    context.annual_price = None
+    if context.course.paid_course and context.course.course_price:
+        context.annual_price = _format_price(
+            float(context.course.course_price or 0) * 10,
+            context.course.currency,
+        )
 
     # Curso consultivo: sem checkout de valor fixo — CTA vira WhatsApp e o
     # preço exibido vira a faixa por hora real da oferta.
@@ -132,6 +141,9 @@ def get_context(context):
             "Pode me passar os detalhes de pacotes e horários?"
         )
         context.checkout_url = f"https://wa.me/{WHATSAPP_PHONE}?text={quote(wa_text)}"
+        context.monthly_checkout_url = context.checkout_url
+        context.annual_checkout_url = None
+        context.annual_price = None
         context.course.formatted_price = "R$ 140–220"
 
     # GTM Event - view_course
