@@ -1,15 +1,19 @@
+import json
+
 import frappe
 
 
 PROFESSOR_ROLE = "Vedium Professor"
 COORDINATION_ROLE = "Vedium Coordenacao Pedagogica"
 DOCTYPE = "Registro de Aula Vedium"
+WORKSPACE_TITLE = "Pedagogia"
 
 
 def ensure_pedagogical_setup():
     ensure_roles()
     ensure_workflow()
     ensure_reports()
+    ensure_workspace()
 
 
 def ensure_roles():
@@ -210,6 +214,79 @@ def ensure_reports():
                 ],
             })
         report.save(ignore_permissions=True)
+
+
+def ensure_workspace():
+    if not frappe.db.exists("DocType", DOCTYPE) or not frappe.db.exists("DocType", "Workspace"):
+        return
+
+    report_names = [
+        "Vedium - Frequencia por aluno",
+        "Vedium - Frequencia por turma",
+        "Vedium - Aulas por professor",
+        "Vedium - Alertas de coordenacao",
+        "Vedium - Alunos que precisam de reforco",
+        "Vedium - Registros pendentes de revisao",
+    ]
+    reports_card = "Relatórios pedagógicos"
+
+    content = [
+        {"id": "header-pedagogia", "type": "header",
+         "data": {"text": "<span class=\"h4\"><b>Pedagogia</b></span>", "col": 12}},
+        {"id": "shortcut-novo-registro", "type": "shortcut",
+         "data": {"shortcut_name": "Novo Registro de Aula", "col": 3}},
+        {"id": "shortcut-lista-registros", "type": "shortcut",
+         "data": {"shortcut_name": "Registros de Aula", "col": 3}},
+        {"id": "card-relatorios", "type": "card",
+         "data": {"card_name": reports_card, "col": 4}},
+    ]
+
+    if frappe.db.exists("Workspace", WORKSPACE_TITLE):
+        workspace = frappe.get_doc("Workspace", WORKSPACE_TITLE)
+    else:
+        workspace = frappe.new_doc("Workspace")
+        workspace.title = WORKSPACE_TITLE
+        workspace.label = WORKSPACE_TITLE
+
+    workspace.icon = "education"
+    workspace.module = "Vedium Core"
+    workspace.public = 1
+    workspace.is_hidden = 0
+    workspace.content = json.dumps(content)
+
+    workspace.shortcuts = []
+    for shortcut in (
+        {
+            "label": "Novo Registro de Aula",
+            "type": "DocType",
+            "link_to": DOCTYPE,
+            "doc_view": "New",
+            "icon": "small-file",
+            "color": "Green",
+        },
+        {
+            "label": "Registros de Aula",
+            "type": "DocType",
+            "link_to": DOCTYPE,
+            "doc_view": "List",
+            "icon": "list",
+            "color": "Blue",
+        },
+    ):
+        workspace.append("shortcuts", shortcut)
+
+    workspace.links = []
+    workspace.append("links", {"label": reports_card, "type": "Card Break"})
+    for report_name in report_names:
+        workspace.append("links", {
+            "label": report_name,
+            "type": "Link",
+            "link_type": "Report",
+            "link_to": report_name,
+            "is_query_report": 1,
+        })
+
+    workspace.save(ignore_permissions=True)
 
 
 def _clean_query(query):
