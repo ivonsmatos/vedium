@@ -124,6 +124,58 @@ def submit_candidatura(
     return {"ok": True, "name": doc.name}
 
 
+FUNCAO_ROLES = {
+    "Inglês": "Vedium Professor",
+    "Espanhol": "Vedium Professor",
+    "Português para Estrangeiros (PLE)": "Vedium Professor",
+    "Hebraico": "Vedium Professor",
+    "Iorubá": "Vedium Professor",
+    "Coordenação Pedagógica": "Vedium Coordenacao Pedagogica",
+}
+
+
+@frappe.whitelist()
+def approve_candidatura_as_professor(candidatura_name, funcao):
+    """Aprova uma Candidatura e transforma o candidato em professor real:
+    cria o User (se ainda nao existir, convidando por e-mail) e concede a
+    role certa pra funcao escolhida. Conceder "Vedium Professor" ja
+    dispara sozinho a entrada automatica no Raven (communication.
+    sync_new_professor, hook em User.on_update) -- nao precisa repetir
+    isso aqui. Nao adiciona a nenhum canal especifico (continua manual,
+    o admin escolhe o grupo depois). Idempotente."""
+    if funcao not in FUNCAO_ROLES:
+        frappe.throw(f"Função desconhecida: {funcao!r}. Opções: {', '.join(FUNCAO_ROLES)}")
+
+    doc = frappe.get_doc(CANDIDATURA, candidatura_name)
+    role = FUNCAO_ROLES[funcao]
+
+    user = frappe.db.exists("User", doc.email)
+    if not user:
+        user_doc = frappe.get_doc({
+            "doctype": "User",
+            "email": doc.email,
+            "first_name": doc.candidate_name.split(" ")[0] if doc.candidate_name else doc.email,
+            "full_name": doc.candidate_name,
+            "send_welcome_email": 1,
+            "user_type": "System User",
+        })
+        user_doc.append("roles", {"role": role})
+        user_doc.insert(ignore_permissions=True)
+        user = user_doc.name
+    else:
+        user_doc = frappe.get_doc("User", user)
+        if role not in {r.role for r in user_doc.roles}:
+            user_doc.append("roles", {"role": role})
+            user_doc.save(ignore_permissions=True)
+
+    doc.status = "Aprovada"
+    doc.position = funcao
+    doc.save(ignore_permissions=True)
+    frappe.db.commit()
+
+    return {"ok": True, "user": user, "funcao": funcao, "role": role}
+
+
 def _create_hrms_job_applicant(candidate_name, email, phone, position, message, resume_url, resume_attachment):
     """Espelha a candidatura no doctype nativo 'Job Applicant' do Frappe HR,
     ligando a vaga (job_title) ao Job Opening correspondente se existir
