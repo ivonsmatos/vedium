@@ -29,7 +29,7 @@ def test_groq_model_is_not_a_known_stale_name():
     mantém um padrão configurável e fallbacks porque a Groq pode bloquear
     modelos por organização."""
     model_line = [l for l in AI_TUTOR.splitlines() if l.strip().startswith("GROQ_MODEL = ")][0]
-    assert model_line.strip() == 'GROQ_MODEL = "openai/gpt-oss-120b"'
+    assert model_line.strip() == 'GROQ_MODEL = "llama-3.3-70b-versatile"'
     assert "GROQ_FALLBACK_MODELS" in AI_TUTOR
     assert "custom_vedium_ai_tutor_model" in AI_TUTOR
     assert "_create_groq_completion" in AI_TUTOR

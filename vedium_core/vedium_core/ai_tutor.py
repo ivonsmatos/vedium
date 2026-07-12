@@ -46,12 +46,16 @@ from frappe import _
 CHAT_SESSION = "Vedium AI Chat Session"
 CHAT_MESSAGE = "Vedium AI Chat Message"
 
-GROQ_MODEL = "openai/gpt-oss-120b"
+# openai/gpt-oss-120b esta bloqueado a nivel de organizacao nesta conta Groq
+# (confirmado 2026-07-11 via inspect_ai_tutor.py: 403 PermissionDeniedError).
+# Mantido como ultimo fallback -- se o admin da org liberar o modelo, volta a
+# ser tentado, so que sem custar a latencia dele em toda mensagem.
+GROQ_MODEL = "llama-3.3-70b-versatile"
 GROQ_FALLBACK_MODELS = (
-    "llama-3.3-70b-versatile",
     "llama-3.1-8b-instant",
     "qwen/qwen3-32b",
     "openai/gpt-oss-20b",
+    "openai/gpt-oss-120b",
 )
 RATE_LIMIT_QUOTA = 30
 RATE_LIMIT_WINDOW = 3600
