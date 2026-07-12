@@ -15,7 +15,7 @@ Iorubá Ancestral, Português para Estrangeiros) construída sobre o
 - **Site institucional** (vediums.com): páginas SEO server-rendered pelo
   Frappe (`vedium_core/www/`), tema "Raízes de Luxo".
 - **Plataforma de aprendizagem** (app.vediums.com): Frappe LMS oficial +
-  customizações em `vedium_core` (pagamentos, gamificação, IA).
+  customizações em `vedium_core` (pagamentos, gamificação e comunicação).
 - **ERP/CRM** (app.vediums.com/app): ERPNext, CRM, HRMS, Helpdesk.
 
 ---
@@ -44,7 +44,7 @@ Iorubá Ancestral, Português para Estrangeiros) construída sobre o
 | CDN/edge | Cloudflare | proxy ativo |
 | Monitoramento | Uptime Kuma | container `vedium-uptime-kuma` |
 | Pagamentos | Stripe + Mercado Pago | + Basecommerce (stub) |
-| IA | Groq (Llama 3 70B) | código parcial; tutor ainda não é produto pronto |
+| IA | — | Tutor IA removido em 2026-07-12; não há chat LLM em produção |
 
 ⚠️ `bench list-apps` mostra frappe/erpnext como `UNVERSIONED` porque eles
 vêm **baked na imagem** `frappe/erpnext:v16` (sem `.git` — verificado no
@@ -100,10 +100,7 @@ vedium_core/
 │   ├── geo_endpoints.py            # GEO/AI optimization endpoints
 │   ├── analytics_events.py         # GTM / GA4 server-side
 │   ├── careers.py                  # Página de carreiras
-│   ├── controllers/
-│   │   └── ai_controller.py        # Tutor IA Groq parcial + rate limit
 │   ├── services/
-│   │   ├── ai_service.py           # Áudio speaking/listening em mock
 │   │   └── crypto_service.py       # Coinbase Commerce
 │   ├── www/                        # Páginas server-rendered
 │   │   ├── index.py                # Home

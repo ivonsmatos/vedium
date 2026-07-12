@@ -64,9 +64,9 @@ Frappe LMS traz muito mais do que curso/aula/quiz.
 
 ---
 
-## 5. Decisão específica: atendimento e tutor IA
+## 5. Decisão específica: atendimento e canais de suporte
 
-Atualizado em 2026-07-08 no [doc 14](14-atendimento-e-tutor-ia.md):
+Atualizado em 2026-07-12 no [doc 14](14-atendimento-e-tutor-ia.md):
 
 - **Dúvidas humanas:** usar primeiro discussões nativas do LMS, assignments e
   batches/live classes.
@@ -74,9 +74,8 @@ Atualizado em 2026-07-08 no [doc 14](14-atendimento-e-tutor-ia.md):
   SLAs ou mais de uma pessoa atendendo; no volume atual, manter simples.
 - **WhatsApp:** útil para comercial/suporte administrativo, não como tutor
   pedagógico.
-- **Tutor IA:** não há recurso nativo pronto no Frappe Learning. A Vedium tem
-  código parcial em `vedium_core`, mas transformar isso em produto exige
-  DocTypes, widget autenticado, base de conhecimento, logs e fallback humano.
+- **Tutor IA:** removido/descontinuado. Não há endpoint LLM ativo no
+  `vedium_core`; dúvidas devem ir para LMS/Raven/Helpdesk.
 
 ---
 

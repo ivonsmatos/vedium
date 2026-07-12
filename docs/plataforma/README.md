@@ -41,11 +41,11 @@ não se repita.
 | 07 | Fluxo — Agendamento de aulas | 1-a-1 (Evaluator/Meet) vs. grupo (Live Class/Meet) | ⏳ |
 | 08 | Fluxo — Pagamento, Cupom e Indicação | Checkout custom → webhook → matrícula → recompensa | ⏳ |
 | 09 | Fluxo — Certificação | enable_certification → avaliação → certificado | ⏳ |
-| 10 | [Matriz de Integrações](10-matriz-de-integracoes.md) | Google, Stripe, e-mail, Zoom, WhatsApp, GTM, IA | ✅ |
+| 10 | [Matriz de Integrações](10-matriz-de-integracoes.md) | Google, Stripe, e-mail, Zoom, WhatsApp, GTM, Raven | ✅ |
 | 11 | [Estado do Ambiente (checklist vivo)](11-estado-do-ambiente.md) | O que está ligado/desligado em produção hoje | ✅ |
 | 12 | [Runbook de Operação & Deploy](12-runbook-de-operacao.md) | Como deploya, footguns, logs, rollback | ✅ |
 | 13 | [Catálogo de Produtos & Preços](13-catalogo-de-produtos.md) | Cursos publicados, slugs, níveis, preços, professor | ✅ |
-| 14 | [Atendimento ao Aluno e Tutor IA](14-atendimento-e-tutor-ia.md) | Dúvidas humanas, Helpdesk/WhatsApp e fronteira do tutor IA custom | ✅ |
+| 14 | [Atendimento ao Aluno e Canais de Suporte](14-atendimento-e-tutor-ia.md) | Dúvidas humanas, LMS/Raven/Helpdesk e decisão de não usar tutor IA | ✅ |
 
 Todos os documentos planejados desta pasta estão escritos (05-14).
 

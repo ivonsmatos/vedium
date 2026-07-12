@@ -1,6 +1,6 @@
 # 14 — Atendimento ao Aluno e Tutor IA
 
-**Atualizado em:** 2026-07-08.  
+**Atualizado em:** 2026-07-12.  
 **Base:** texto de decisão do anexo + documentação oficial Frappe revisada nesta
 sessão + código local (`ai_controller.py`, `ai_service.py`).
 
@@ -13,12 +13,9 @@ ecossistema Frappe. A fronteira importante:
   Learning primeiro.
 - **Suporte operacional:** usar fluxo de chamados, hoje simples; Helpdesk
   nativo quando houver volume/equipe.
-- **Tutor IA tipo professor particular:** não é recurso nativo pronto do
-  Frappe Learning. Precisa ser produto custom em `vedium_core`, integrado aos
-  cursos e com fallback humano.
-
-Não vender "Tutor Vedium 24h" como pronto até ele cumprir a definição de pronto
-no fim deste documento.
+- **Tutor IA tipo professor particular:** removido/descontinuado no `vedium_core`.
+  Não vender "Tutor Vedium 24h" e não reativar widget LLM sem uma nova decisão
+  explícita de produto, base de conhecimento, política LGPD e validação real.
 
 ## Camadas de atendimento
 
@@ -31,7 +28,7 @@ no fim deste documento.
 | Progresso do aluno | Progresso nativo do LMS | 🟢 Nativo | Custom só para vitrine/resumo, ver [doc 05](05-fluxo-jornada-do-aluno.md). |
 | Acesso, pagamento, certificado, remarcação | Frappe Helpdesk (`HD Ticket`) | 🟢 Configurado | `Vedium Support` + agente Ivon; falta só IMAP `suporte@` para entrada por e-mail. |
 | WhatsApp comercial/admin | Link manual hoje; CRM WhatsApp no futuro | 🔴 Não integrado | `frappe_whatsapp` não instalado, ver [doc 04](04-ecossistema-frappe-oficial.md). |
-| Tutor IA pedagógico | Produto custom | ⚪ Previsto/parcial | Existe código parcial, mas faltam DocTypes, UX, base de conhecimento e validação. |
+| Tutor IA pedagógico | — | 🔴 Removido | Removido em 2026-07-12 porque travava a área do aluno e não havia produto estável. |
 
 ## Como usar o que já existe
 
@@ -57,74 +54,32 @@ Exemplo de produto:
 
 ## Tutor IA Vedium
 
-O tutor IA deve ser tratado como uma camada custom de produto, não como
-configuração nativa do LMS.
+O Tutor IA foi removido do `vedium_core` em 2026-07-12:
 
-### Estado atual do código
+- o widget foi removido de `/meu-progresso`;
+- o backend `ai_tutor.py` foi removido;
+- a dependência Groq foi removida do app;
+- o `after_migrate` limpa campos/DocTypes antigos (`AI Tutor Session`,
+  `AI Tutor Message`, chave/modelo Groq em `System Settings`) quando existirem.
 
-| Peça | Arquivo | Estado |
-|---|---|---|
-| Chat Groq/Llama | `vedium_core/controllers/ai_controller.py` | Endpoint existe, exige login, rate limit de 50 mensagens/hora e `persona_id`. |
-| Persona e log | `AI Persona`, `AI Interaction Log`, `Vedium Settings` | Citados no código/roadmap, mas não existem em `vedium_core/doctype/`. |
-| Áudio/speaking | `vedium_core/services/ai_service.py` | Retorna mock enquanto `OPENAI_API_KEY`/pacote/implementação real não estiverem prontos. |
-| Portal do aluno | — | Não há widget/chat de aluno documentado como pronto. |
-| Base de conhecimento | — | Não há pipeline documentado para aulas, PDFs, transcrições ou políticas. |
-
-Conclusão: há uma semente técnica, mas ainda não há um tutor IA de produção.
-
-### Arquitetura recomendada
-
-1. **DocTypes custom**
-   - `Vedium AI Chat Session`: aluno, curso, lição, idioma, nível CEFR, status.
-   - `Vedium AI Chat Message`: sessão, autor, conteúdo, metadados, tokens.
-   - `AI Persona`: prompt, idioma, escopo pedagógico, guardrails.
-   - `AI Interaction Log`: custo, duração, tokens, erro, versão de modelo.
-
-2. **Widget no portal do aluno**
-   - botão "Falar com tutor" dentro da área autenticada;
-   - contexto automático de curso/lição;
-   - opção "chamar professor" quando a IA não resolver.
-
-3. **Base de conhecimento**
-   - aulas, PDFs, transcrições, exercícios e políticas da escola;
-   - respostas limitadas ao material do curso quando a pergunta for pedagógica;
-   - versionamento por curso para evitar resposta baseada em conteúdo antigo.
-
-4. **Fallback humano**
-   - perguntas sensíveis, confusas, fora do escopo ou com baixa confiança viram
-     discussão no LMS ou chamado para professor/equipe.
-
-5. **Dados pedagógicos**
-   - dúvidas frequentes por curso;
-   - tópicos com maior erro;
-   - dificuldade recorrente por aluno;
-   - recomendação de revisão ou próxima atividade.
+A decisão atual é não implementar tutor LLM. Para dúvidas pedagógicas e
+operacionais, usar LMS/Raven/Helpdesk e atendimento humano.
 
 ## O que não construir agora
 
 - Fórum custom se as discussões nativas do LMS resolvem a dúvida.
 - Chat pedagógico em WhatsApp como fonte principal de ensino.
-- Tutor IA na home pública; ele pertence à área autenticada do aluno.
-- Tutor IA sem log, limite, fallback humano e política de privacidade/LGPD.
+- Tutor IA na home pública ou na área autenticada.
+- Tutor IA sem base de conhecimento, validação pedagógica, fallback humano e
+  política de privacidade/LGPD.
 - Áudio/speaking como promessa pública enquanto `AIService` ainda retorna mock.
 
-## Definição de pronto para vender "Tutor Vedium 24h"
+## Mensagem comercial correta
 
-Antes de usar isso como diferencial comercial, precisa existir:
-
-1. DocTypes criados/migrados e cobertos por teste mínimo.
-2. Persona pedagógica por idioma/curso, com guardrails revisados.
-3. Widget no portal do aluno com contexto de curso/lição.
-4. Histórico por sessão e logs de erro/tokens.
-5. Fallback humano para professor/Helpdesk/discussão.
-6. Política clara de privacidade e retenção de conversa.
-7. Teste com alunos reais em pelo menos um curso piloto.
-
-Até lá, a mensagem correta é:
+Não vender "Tutor Vedium 24h". A mensagem correta é:
 
 > A Vedium usa Frappe Learning para aulas, discussões, tarefas, turmas e
-> acompanhamento. O Tutor IA Vedium é uma camada custom planejada para evoluir
-> o suporte pedagógico 24h com base nos materiais dos cursos.
+> acompanhamento, com suporte humano por canais oficiais.
 
 ## Fontes externas revisadas
 

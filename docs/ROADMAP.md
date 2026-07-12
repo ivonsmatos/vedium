@@ -7,8 +7,7 @@
 
 - [ ] Criar DocTypes faltantes (ou remover endpoints):
   - `LMS Forum Topic`, `LMS Community Link`, `LMS Course Language`,
-    `LMS Accessibility Feature`, `LMS Session`, `LMS Quiz Question`,
-    `AI Persona`, `AI Interaction Log`, `Vedium Settings`.
+    `LMS Accessibility Feature`, `LMS Session`, `LMS Quiz Question`.
 - [ ] Suite de testes integração (`bench --site test_site run-tests`)
   - 60% cov em `api.py` (pagamentos, cupons, webhooks).
 - [ ] Padronizar tratamento de erro:
@@ -23,9 +22,6 @@
 - [ ] Certificado PDF com QR code de verificação.
 - [ ] Trial 7 dias para curso pago (`status="Trial"` + scheduler de expiração).
 - [ ] Cupons regionais auto-aplicados via geolocalização.
-- [ ] Tutor IA Vedium text-first, depois voz (ver `docs/plataforma/14-atendimento-e-tutor-ia.md`):
-  DocTypes, widget autenticado, base de conhecimento, logs, fallback humano e
-  só então TTS/voz.
 - [ ] B2B: pacote corporativo (10+ licenças) com dashboard por colaborador.
 - [ ] Funil completo no Grafana (homepage → catálogo → curso → pagamento → 1ª aula).
 

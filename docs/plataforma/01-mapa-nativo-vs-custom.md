@@ -32,7 +32,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 | Quiz / prova dentro do curso | 🟢 Nativo | `LMS Quiz`, `LMS Question` | — |
 | Teste de nível público (pré-matrícula) | 🔵 Custom | Doctypes `Placement Test`, `Placement Test Question`; páginas `www/teste-de-nivel*.html` | Separado do quiz nativo por ser público e sem login. |
 | Flashcards / revisão | 🔵 Custom | Doctype `LMS Flashcard`; `www/pratica-diaria.html` | Doctype duplicado `Flashcard` (SRS/SM-2, órfão, 0 uso) removido 2026-07-01 — ver [doc 02](02-dicionario-doctypes.md). |
-| Tutor de IA pedagógico | 🔵 Custom previsto | `controllers/ai_controller.py`, `services/ai_service.py` | Não é recurso nativo pronto do Frappe Learning. Código local é parcial: chat Groq depende de DocTypes ainda ausentes; áudio retorna mock. Ver [doc 14](14-atendimento-e-tutor-ia.md). |
+| Tutor de IA pedagógico | 🔴 Removido / não usar | — | Removido em 2026-07-12 porque travava a área do aluno e não havia produto estável. Dúvidas pedagógicas devem ir para LMS/Raven/Helpdesk; ver [doc 14](14-atendimento-e-tutor-ia.md). |
 
 ## Matrícula e acesso
 

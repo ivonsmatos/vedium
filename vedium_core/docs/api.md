@@ -64,28 +64,7 @@ Inicia uma sessão de pagamento para um curso.
 - **Resposta**:
   - `checkout_url`: URL para redirecionar o usuário para pagamento.
 
-### 5. Chat com Tutor IA
-
-Interage com a persona de Tutor IA (Llama 3 via Groq).
-
-> Estado atual: endpoint parcial. Antes de tratar como API de produção, criar
-> e migrar os DocTypes `AI Persona`, `AI Interaction Log` e `Vedium Settings`,
-> além do fluxo de sessão descrito em
-> `docs/plataforma/14-atendimento-e-tutor-ia.md`.
-
-- **Endpoint**: `vedium_core.vedium_core.controllers.ai_controller.chat_with_tutor`
-- **Método**: `POST`
-- **Acesso**: Apenas Usuários Autenticados
-- **Parâmetros**:
-  - `message`: A pergunta do usuário.
-  - `persona_id`: ID da `AI Persona`.
-  - `context` (opcional): Contexto adicional para a pergunta.
-- **Resposta**: String contendo a resposta da IA.
-- **Limite de Taxa**: 50 mensagens/hora por usuário.
-- **Erros**:
-  - `PermissionError`: Se o usuário for Convidado ou o limite for excedido.
-
-### 6. Suporte e Observabilidade
+### 5. Suporte e Observabilidade
 
 - **Abrir chamado de suporte**
   - **Endpoint**: `vedium_core.vedium_core.api.open_support_ticket`
@@ -106,7 +85,7 @@ Interage com a persona de Tutor IA (Llama 3 via Groq).
   - **Acesso**: Usuário autenticado
   - **Resposta**: Status de containers, disco, memória, alertas
 
-### 7. Gamificação, Comunidade e Internacionalização
+### 6. Gamificação, Comunidade e Internacionalização
 
 - **Emblemas do usuário**
   - **Endpoint**: `vedium_core.vedium_core.api.get_user_badges`
