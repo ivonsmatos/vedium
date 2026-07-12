@@ -56,7 +56,7 @@ Exemplo de produto:
 
 O Tutor IA foi removido do `vedium_core` em 2026-07-12:
 
-- o widget foi removido de `/meu-progresso`;
+- a página custom de progresso foi removida junto com o widget;
 - o backend `ai_tutor.py` foi removido;
 - a dependência Groq foi removida do app;
 - o `after_migrate` limpa campos/DocTypes antigos (`AI Tutor Session`,

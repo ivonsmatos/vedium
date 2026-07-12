@@ -58,7 +58,6 @@ PUBLIC_INTENT_SLUGS = [
 ]
 
 PLATFORM_SLUGS = [
-    "meu-progresso",
     "pratica-diaria",
 ]
 
@@ -715,11 +714,9 @@ def test_referral_dashboard_requires_login_and_uses_referrals_module():
     assert "stripe" not in html.lower()
 
 
-def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
+def test_daily_practice_tool_is_safe_and_custom_progress_page_is_removed():
     practice = (WWW / "pratica-diaria.html").read_text(encoding="utf-8")
     practice_py = (WWW / "pratica_diaria.py").read_text(encoding="utf-8")
-    progress_html = (WWW / "meu-progresso.html").read_text(encoding="utf-8")
-    progress_py = (WWW / "meu_progresso.py").read_text(encoding="utf-8")
     hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
         encoding="utf-8"
     )
@@ -731,38 +728,19 @@ def test_daily_practice_tool_and_student_progress_dashboard_are_safe():
     assert "similarity" in practice
     assert "yo-NG" in practice
     assert 'location.replace("https://app.vediums.com/pratica-diaria"' in practice
-    assert 'location.replace("https://app.vediums.com/meu-progresso"' in progress_html
     assert "noindex, nofollow" in practice
-    assert "https://app.vediums.com/meu-progresso" in practice
-    assert "https://app.vediums.com/pratica-diaria" in progress_html
+    assert "https://app.vediums.com/lms" in practice
+    assert "https://app.vediums.com/meu-progresso" not in practice
     assert 'APP_URL = "https://app.vediums.com"' in practice_py
-    assert 'APP_URL = "https://app.vediums.com"' in progress_py
     assert '_redirect_public_host("/pratica-diaria")' in practice_py
-    assert '_redirect_public_host("/meu-progresso")' in progress_py
     assert "PUBLIC_HOSTS" in practice_py
-    assert "PUBLIC_HOSTS" in progress_py
     assert "_redirect_public_host" in practice_py
-    assert "_redirect_public_host" in progress_py
     assert "/api/method" not in practice
     assert "stripe" not in practice.lower()
 
-    assert "Meu progresso Vedium" in progress_html
-    assert "noindex, nofollow" in progress_html
-    assert "Streak" in progress_html
-    assert "CEFR" in progress_html
-    assert "LMS Enrollment" in progress_py
-    assert "LMS Flashcard" in progress_py
-    assert "LMS Badge Log" in progress_py
-    # Lesson Slot é doctype legado (0 registros para sempre em produção) —
-    # a leitura morta foi removida 2026-07-01; só resta o comentário
-    # explicando a remoção, não uma query real.
-    assert 'frappe.get_all(\n        "Lesson Slot"' not in progress_py
-    assert "context.slots" not in progress_py
-    assert "Aulas e tarefas" not in progress_html
-    assert "redirect-to=/meu-progresso" in progress_py
-    assert '"meu-progresso"' in hooks
-    assert "create_checkout" not in progress_py
-    assert "stripe" not in progress_py.lower()
+    assert not (WWW / "meu-progresso.html").exists()
+    assert not (WWW / "meu_progresso.py").exists()
+    assert '"meu-progresso"' not in hooks
 
 
 def test_verified_reviews_process_exists_without_fake_public_reviews():
@@ -1333,7 +1311,6 @@ def test_dynamic_sitemap_lists_public_marketing_pages():
         # seo_utils.generate_sitemap() foi removido (órfão); checar www/sitemap.py
         assert f'"loc": "/{slug}"' in sitemap_context
         assert f'"{slug}"' in hooks
-    assert '"meu-progresso"' in hooks
     assert '"pratica-diaria"' in hooks
     assert '"loc": "/meu-progresso"' not in sitemap_context
     assert '"loc": "/pratica-diaria"' not in sitemap_context

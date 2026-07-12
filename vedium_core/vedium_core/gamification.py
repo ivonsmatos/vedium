@@ -1,7 +1,7 @@
 import frappe
 
 # Faixas de nível por pontos acumulados (User.vedium_points).
-# Exibido em /meu-progresso; os pontos vêm de lição concluída (+10),
+# Usado para pontos/badges do aluno; os pontos vêm de lição concluída (+10),
 # quiz aprovado (+25), prova final aprovada (+100) e certificado (+200).
 LEVELS = [
     (0, "Bronze"),

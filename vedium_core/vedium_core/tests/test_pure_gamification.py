@@ -11,8 +11,6 @@ CORE = ROOT / "vedium_core" / "vedium_core"
 
 GAMIFICATION = (CORE / "gamification.py").read_text(encoding="utf-8")
 HOOKS = (CORE / "hooks.py").read_text(encoding="utf-8")
-PROGRESSO_PY = (CORE / "www" / "meu_progresso.py").read_text(encoding="utf-8")
-PROGRESSO_HTML = (CORE / "www" / "meu-progresso.html").read_text(encoding="utf-8")
 BADGES_SEED = (
     CORE / "scripts" / "migrations" / "oneshot" / "setup_lms_badges.py"
 ).read_text(encoding="utf-8")
@@ -71,13 +69,12 @@ def test_levels_are_monotonic_and_start_at_zero():
     assert thresholds == sorted(thresholds), "faixas de nível precisam ser crescentes"
 
 
-def test_progress_page_shows_points_level_and_native_badges():
-    assert "vedium_points" in PROGRESSO_PY
-    assert "get_level" in PROGRESSO_PY and "get_next_level" in PROGRESSO_PY
-    assert 'frappe.db.exists("DocType", "LMS Badge Assignment")' in PROGRESSO_PY
-    assert "{{ points }}" in PROGRESSO_HTML
-    assert "{{ level }}" in PROGRESSO_HTML
-    assert "points_to_next" in PROGRESSO_HTML
+def test_custom_progress_page_was_removed_but_gamification_core_remains():
+    assert not (CORE / "www" / "meu_progresso.py").exists()
+    assert not (CORE / "www" / "meu-progresso.html").exists()
+    assert "def get_level" in GAMIFICATION
+    assert "def get_next_level" in GAMIFICATION
+    assert "vedium_points" in GAMIFICATION
 
 
 def test_badge_seed_matches_native_lms_badge_semantics():

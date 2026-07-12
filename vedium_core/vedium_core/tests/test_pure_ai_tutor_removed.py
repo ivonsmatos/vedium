@@ -12,7 +12,7 @@ CORE = ROOT / "vedium_core" / "vedium_core"
 
 INSTALL = (CORE / "install.py").read_text(encoding="utf-8")
 CUSTOM_SETUP = (CORE / "custom_setup.py").read_text(encoding="utf-8")
-PROGRESSO_HTML = (CORE / "www" / "meu-progresso.html").read_text(encoding="utf-8")
+WWW = CORE / "www"
 PYPROJECT = (ROOT / "vedium_core" / "pyproject.toml").read_text(encoding="utf-8")
 
 
@@ -23,6 +23,13 @@ def test_ai_tutor_backend_was_removed():
 
 
 def test_ai_tutor_widget_was_removed_from_student_progress_page():
+    assert not (WWW / "meu-progresso.html").exists()
+    assert not (WWW / "meu_progresso.py").exists()
+    html_sources = "\n".join(
+        p.read_text(encoding="utf-8")
+        for p in WWW.rglob("*.html")
+        if p.exists()
+    )
     forbidden = [
         "vd-tutor",
         "Tutor IA",
@@ -30,7 +37,7 @@ def test_ai_tutor_widget_was_removed_from_student_progress_page():
         "vedium_core.ai_tutor.escalate_to_human",
     ]
     for token in forbidden:
-        assert token not in PROGRESSO_HTML
+        assert token not in html_sources
 
 
 def test_groq_config_and_dependency_were_removed():

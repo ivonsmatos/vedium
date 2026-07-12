@@ -40,7 +40,7 @@ ou por código **custom** do `vedium_core` — e onde exatamente ela vive.
 |---|---|---|---|
 | Matrícula no curso | 🟢 Nativo | `LMS Enrollment` | Criada por `api.create_enrollment_if_paid` após pagamento. |
 | Turmas / cohortes | 🟢 Nativo | `LMS Batch`, `LMS Batch Timetable` | Base para aula em grupo (Live Class). Piloto PLE Básico Agosto/2026 criado e privado. |
-| Painel do aluno | 🟡 Híbrido | Nativo `/lms`; custom `www/meu-progresso.html` | O custom é um resumo CEFR/streak; o oficial é o `/lms`. |
+| Painel do aluno | 🟢 Nativo | `/lms` | A página custom `www/meu-progresso.html` foi removida em 2026-07-12. O painel oficial é o LMS. |
 
 ## Agendamento de aulas ⭐
 
