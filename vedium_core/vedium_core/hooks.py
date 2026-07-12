@@ -432,6 +432,12 @@ doc_events = {
     "LMS Certificate": {
         "after_insert": "vedium_core.gamification.Gamification.handle_certificate_issued"
     },
+    # Professor novo (ganhou a role "Vedium Professor") entra automaticamente
+    # no Raven (usuário + membro do workspace) -- ver comunication.sync_new_professor.
+    # Não adiciona a nenhum canal específico, isso é manual (admin escolhe).
+    "User": {
+        "on_update": "vedium_core.communication.sync_new_professor",
+    },
 }
 
 # =============================================================================

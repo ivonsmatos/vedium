@@ -59,6 +59,32 @@ def sync_enrollment(doc, method=None):
         frappe.log_error(frappe.get_traceback(), "Vedium.communication.sync_enrollment")
 
 
+def sync_new_professor(doc, method=None):
+    """Hook de User (on_update).
+
+    Quando um usuário ganha a role "Vedium Professor", garante acesso
+    automático ao Raven (Raven User + membro do workspace "Vedium") --
+    sem adicionar a nenhum canal específico, isso continua manual (o admin
+    decide em qual grupo de idioma/coordenação a pessoa entra). Não lança
+    exceção para nunca quebrar salvar um usuário.
+    """
+    if not raven_available():
+        return
+    if doc.name in ("Administrator", "Guest"):
+        return
+    if not _user_has_role(doc, "Vedium Professor"):
+        return
+
+    try:
+        raven_user = ensure_raven_user(doc.name)
+        if raven_user:
+            workspace = ensure_workspace()
+            ensure_workspace_member(workspace, raven_user)
+        frappe.db.commit()
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.communication.sync_new_professor")
+
+
 def remove_enrollment_membership(doc, method=None):
     if not raven_available():
         return
