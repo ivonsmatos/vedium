@@ -237,6 +237,8 @@ def _build_language_prefix_redirects():
 
 LANGUAGE_PREFIX_REDIRECTS = _build_language_prefix_redirects()
 
+from vedium_core.course_urls import legacy_course_redirects
+
 website_route_rules = [
     *LANGUAGE_ROUTE_RULES,
     {"from_route": "/sw.js", "to_route": "sw"},
@@ -247,8 +249,9 @@ website_route_rules = [
     # para o que ainda falta corrigir na config do nginx, fora deste repo).
     {"from_route": "/manifest.json", "to_route": "manifest"},
     # /courses é interceptado pelo LMS app — garante que /catalogo seja a rota do site
-    {"from_route": "/trilhas", "to_route": "/catalogo"},
-    {"from_route": "/cursos", "to_route": "/catalogo"},
+    {"from_route": "/trilhas", "to_route": "catalogo"},
+    {"from_route": "/cursos", "to_route": "catalogo"},
+    {"from_route": "/cursos-de-idiomas-online", "to_route": "catalogo"},
     # Páginas de curso server-rendered (SEO + Schema) — /curso/<slug>
     {"from_route": "/curso/<course>", "to_route": "curso"},
     # Mesma página de curso, versão em inglês (mesmo controller: curso.py
@@ -257,6 +260,9 @@ website_route_rules = [
     # que têm público que não fala PT). Sem isso, /en/curso/<slug> 404 antes
     # de chegar no controller.
     {"from_route": "/en/curso/<course>", "to_route": "curso"},
+    {"from_route": "/es/curso/<course>", "to_route": "curso"},
+    {"from_route": "/fr/curso/<course>", "to_route": "curso"},
+    {"from_route": "/de/curso/<course>", "to_route": "curso"},
     # Mesmo padrão acima, agora para russo (COURSE_TRANSLATIONS ganhou
     # entradas "ru" pros cursos de Iorubá e PLE no rollout de tradução ru).
     {"from_route": "/ru/curso/<course>", "to_route": "curso"},
@@ -271,12 +277,14 @@ website_route_rules = [
 # Redirecionamentos 301 (SEO) — URLs antigas/removidas -> destino canônico
 website_redirects = [
     *LANGUAGE_PREFIX_REDIRECTS,
-    {"source": "/course-details", "target": "/catalogo"},
-    {"source": "/course-details.html", "target": "/catalogo"},
+    *legacy_course_redirects(),
+    {"source": "/course-details", "target": "/cursos-de-idiomas-online"},
+    {"source": "/course-details.html", "target": "/cursos-de-idiomas-online"},
+    {"source": "/catalogo", "target": "/cursos-de-idiomas-online"},
     {"source": "/index.html", "target": "/"},
-    {"source": "/news", "target": "/catalogo"},
-    {"source": "/news-details", "target": "/catalogo"},
-    {"source": "/news.html", "target": "/catalogo"},
+    {"source": "/news", "target": "/cursos-de-idiomas-online"},
+    {"source": "/news-details", "target": "/cursos-de-idiomas-online"},
+    {"source": "/news.html", "target": "/cursos-de-idiomas-online"},
     # URLs em portugues (paginas renomeadas)
     {"source": "/about", "target": "/sobre"},
     {"source": "/sobre.html", "target": "/sobre"},

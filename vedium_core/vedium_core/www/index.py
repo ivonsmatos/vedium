@@ -1,11 +1,15 @@
 import frappe
 
+from vedium_core.course_urls import get_course_url
+
 # Ordem de exibição dos idiomas no site
-LANGUAGE_ORDER = ["Inglês", "Iorubá", "Português para Estrangeiros"]
+LANGUAGE_ORDER = ["Inglês", "Espanhol", "Hebraico", "Iorubá", "Português para Estrangeiros"]
 
 # Fallback images por idioma (Unsplash free)
 LANGUAGE_FALLBACK_IMAGES = {
     "Inglês": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
+    "Espanhol": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
+    "Hebraico": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
     "Iorubá": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img2.jpg",
     "Português para Estrangeiros": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
 }
@@ -132,6 +136,7 @@ def _enrich(course) -> dict:
 
     # Nível CEFR a partir do título (ex: "Inglês - Beginner" → "A1")
     course["level_badge"] = _level_badge(course.get("title", ""))
+    course["url"] = get_course_url(course["name"])
 
     return course
 

@@ -1,26 +1,26 @@
 # Vedium
 
-> A Vedium é uma escola de idiomas 100% online com **aulas ao vivo** e professores qualificados. Ensinamos inglês (níveis A1 a C1, do iniciante ao avançado), com iorubá e português para estrangeiros em expansão. Cada curso inclui certificado de conclusão e suporte ao aluno. Atendimento em todo o Brasil, online.
+> A Vedium é uma escola de idiomas 100% online com **aulas ao vivo** e professores qualificados. Oferecemos inglês, espanhol, hebraico, iorubá e português para estrangeiros, em trilhas do nível inicial ao avançado conforme cada idioma. Os cursos incluem certificado de conclusão e suporte ao aluno.
 
 ## Sobre
 - Modelo: aulas ao vivo (não são videoaulas gravadas), com turmas e professores reais.
-- Idiomas: Inglês (disponível, A1–C1); Iorubá e Português para Estrangeiros como trilhas de nicho em expansão.
+- Idiomas: Inglês, Espanhol, Hebraico, Iorubá e Português para Estrangeiros.
 - Diferenciais: aulas ao vivo, professores qualificados, certificado, suporte, pagamento online.
 - Público: profissionais, estudantes e empresas que querem fluência real.
 - País: Brasil. Idioma de atendimento: Português e Inglês.
 
 ## Cursos
-- [Catálogo de cursos](https://vediums.com/catalogo): lista completa e atualizada dos cursos disponíveis, com níveis (A1 a C1), preços e matrícula.
-- [Inglês — Beginner (A1)](https://vediums.com/curso/ingl-s-beginner)
-- [Inglês — Elementary (A2)](https://vediums.com/curso/ingl-s-elementary)
-- [Inglês — Pré-Intermediário (B1-)](https://vediums.com/curso/ingl-s-pr-intermedi-rio)
-- [Inglês — Intermediário (B1)](https://vediums.com/curso/ingl-s-intermedi-rio)
-- [Inglês — Upper Intermediário (B2)](https://vediums.com/curso/ingl-s-upper-intermedi-rio)
-- [Inglês — Avançado (C1)](https://vediums.com/curso/ingl-s-avan-ado)
+- [Catálogo de cursos](https://vediums.com/cursos-de-idiomas-online): lista completa e atualizada, com níveis, preços e matrícula.
+- Inglês: [Beginner (A1)](https://vediums.com/curso/ingles-basico-a1), [Elementary (A2)](https://vediums.com/curso/ingles-elementar-a2), [Pré-Intermediário](https://vediums.com/curso/ingles-pre-intermediario), [Intermediário (B1)](https://vediums.com/curso/ingles-intermediario-b1), [Upper Intermediário (B2)](https://vediums.com/curso/ingles-intermediario-superior-b2) e [Avançado (C1)](https://vediums.com/curso/ingles-avancado-c1).
+- Espanhol: [básico](https://vediums.com/curso/espanhol-basico), [intermediário](https://vediums.com/curso/espanhol-intermediario) e [avançado](https://vediums.com/curso/espanhol-avancado).
+- Hebraico: [alfabetização](https://vediums.com/curso/hebraico-a0-alfabetizacao), [moderno A1](https://vediums.com/curso/hebraico-moderno-a1), [moderno A2-B1](https://vediums.com/curso/hebraico-moderno-a2-b1), [bíblico](https://vediums.com/curso/hebraico-biblico-leitura-guiada) e [particular](https://vediums.com/curso/hebraico-particular).
+- Iorubá: [básico](https://vediums.com/curso/ioruba-basico), [intermediário](https://vediums.com/curso/ioruba-intermediario) e [avançado](https://vediums.com/curso/ioruba-avancado).
+- Português para estrangeiros: [básico](https://vediums.com/curso/portugues-para-estrangeiros-basico), [intermediário](https://vediums.com/curso/portugues-para-estrangeiros-intermediario) e [avançado](https://vediums.com/curso/portugues-para-estrangeiros-avancado).
 
 ## Páginas principais
 - [Início](https://vediums.com/): apresentação da Vedium, metodologia e planos.
 - [Sobre](https://vediums.com/sobre): história, missão e proposta da escola.
+- [Imprensa](https://vediums.com/imprensa): informações institucionais, fatos verificáveis e contato para imprensa e parcerias.
 - [Como funciona](https://vediums.com/como-funciona): teste de nível, diagnóstico e aulas ao vivo em 3 passos.
 - [Aula diagnóstica](https://vediums.com/aula-diagnostica): orientação humana para confirmar nível, objetivo, frequência e plano antes da matrícula.
 - [Planos](https://vediums.com/planos): comparação de frequências de aulas ao vivo e indicação de plano por objetivo.

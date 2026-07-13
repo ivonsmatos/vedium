@@ -4,6 +4,7 @@ import frappe
 from frappe import _
 
 from vedium_core.course_translations import COURSE_TRANSLATIONS
+from vedium_core.course_urls import get_course_url, get_internal_course_name
 
 
 def get_context(context):
@@ -13,15 +14,17 @@ def get_context(context):
     """
     # Resolve course slug from /curso/<slug> ou /en/curso/<slug> (form_dict)
     # ou path fallback
-    course_name = frappe.form_dict.get("course")
-    if not course_name:
+    requested_slug = frappe.form_dict.get("course")
+    if not requested_slug:
         parts = [p for p in (frappe.local.path or "").split("/") if p and p not in ("en", "curso", "course-details")]
-        course_name = parts[-1] if parts else None
+        requested_slug = parts[-1] if parts else None
 
-    if not course_name:
+    if not requested_slug:
         # Acesso sem curso (ex.: /curso) -> redireciona ao catálogo
-        frappe.local.flags.redirect_location = "/catalogo"
+        frappe.local.flags.redirect_location = "/cursos-de-idiomas-online"
         raise frappe.Redirect
+
+    course_name = get_internal_course_name(requested_slug)
 
     # Versão traduzida: só existe pra cursos com tradução (Iorubá e PLE —
     # público que não fala PT). Sem tradução no idioma pedido, manda pra
@@ -42,7 +45,7 @@ def get_context(context):
     translations_for_course = COURSE_TRANSLATIONS.get(course_name, {})
     has_translation = bool(translations_for_course)
     if req_lang and req_lang not in translations_for_course:
-        frappe.local.flags.redirect_location = f"/curso/{course_name}"
+        frappe.local.flags.redirect_location = get_course_url(course_name)
         raise frappe.Redirect
     translation = translations_for_course.get(req_lang) if req_lang else None
 
@@ -91,15 +94,15 @@ def get_context(context):
         context.description = (desc[:155] if desc else
                                f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
     context.canonical_url = (
-        f"https://vediums.com/{req_lang}/curso/{course_name}" if translation
-        else f"https://vediums.com/curso/{course_name}"
+        f"https://vediums.com{get_course_url(course_name, req_lang)}" if translation
+        else f"https://vediums.com{get_course_url(course_name)}"
     )
     # hreflang recíproco — um link por idioma que realmente tem tradução
     # pra esse curso, mais o canônico em pt-BR.
     if has_translation:
-        context.alt_langs = {"pt-br": f"https://vediums.com/curso/{course_name}"}
+        context.alt_langs = {"pt-br": f"https://vediums.com{get_course_url(course_name)}"}
         for lang_code in translations_for_course:
-            context.alt_langs[lang_code] = f"https://vediums.com/{lang_code}/curso/{course_name}"
+            context.alt_langs[lang_code] = f"https://vediums.com{get_course_url(course_name, lang_code)}"
     else:
         context.alt_langs = None
     context.og_image = (context.course.image if context.course.image and context.course.image.startswith("http")
@@ -257,7 +260,7 @@ def get_related_courses(category, exclude_course, limit=3):
         for course in courses:
             if not course.image:
                 course.image = "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
-            course.url = f"/curso/{course.name}"
+            course.url = get_course_url(course.name)
             
             if course.paid_course and course.course_price:
                 course.formatted_price = _format_price(course.course_price, course.currency)

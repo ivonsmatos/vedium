@@ -1,4 +1,5 @@
 import frappe
+from vedium_core.course_urls import get_course_url
 
 # Mesma lógica de vedium_core.www.index (duplicada, não importada): não há
 # __init__.py em www/, então import cruzado entre controllers www/*.py não é
@@ -6,10 +7,12 @@ import frappe
 # controller isoladamente). Mantém os arquivos em sincronia manualmente
 # se a lógica de cursos mudar. Duplicado também em www/en/index.py e
 # www/es/index.py.
-LANGUAGE_ORDER = ["Inglês", "Iorubá", "Português para Estrangeiros"]
+LANGUAGE_ORDER = ["Inglês", "Espanhol", "Hebraico", "Iorubá", "Português para Estrangeiros"]
 
 LANGUAGE_FALLBACK_IMAGES = {
     "Inglês": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
+    "Espanhol": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
+    "Hebraico": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
     "Iorubá": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img2.jpg",
     "Português para Estrangeiros": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
 }
@@ -28,10 +31,10 @@ def get_context(context):
     context.language_programs = LANGUAGE_ORDER
     context.cart_count = get_cart_count()
 
-    context.title = "Vedium - Cours de Langues en Ligne en Direct : Anglais et Yoruba"
+    context.title = "Vedium - Cours en Ligne et en Direct en Cinq Langues"
     context.description = (
-        "Apprenez l'anglais (niveaux A1 à C1) et le yoruba avec Vedium : cours en direct "
-        "avec des professeurs qualifiés, certificat de fin de formation et suivi réel. "
+        "Apprenez l'anglais, l'espagnol, l'hébreu, le yoruba ou le portugais brésilien "
+        "avec Vedium : cours en direct, professeurs, certificat et suivi réel. "
         "Commencez votre chemin vers l'aisance dès aujourd'hui."
     )
     context.lang = "fr"
@@ -134,6 +137,7 @@ def _enrich(course) -> dict:
         course["formatted_price"] = "Gratuit"
 
     course["level_badge"] = _level_badge(course.get("title", ""))
+    course["url"] = get_course_url(course["name"])
 
     return course
 

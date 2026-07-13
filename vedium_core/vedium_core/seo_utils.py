@@ -1,6 +1,8 @@
 import frappe
 from frappe import _
 
+from vedium_core.course_urls import get_course_url
+
 
 SITE_URL = "https://vediums.com"
 
@@ -27,7 +29,7 @@ def get_course_schema(course_name):
             "@type": "Offer",
             "price": str(course.course_price),
             "priceCurrency": course.currency or "BRL",
-            "url": f"{SITE_URL}/curso/{course.name}",
+            "url": f"{SITE_URL}{get_course_url(course.name)}",
         }
 
     # Instrutor — Course Instructor é child table; pegar o primeiro
@@ -71,8 +73,8 @@ def get_organization_schema():
         "url": SITE_URL,
         "logo": f"{SITE_URL}/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png",
         "description": (
-            "Plataforma de cursos online de idiomas: Inglês Executivo, "
-            "Iorubá Ancestral e Português para Estrangeiros."
+            "Escola de idiomas online com aulas ao vivo de inglês, espanhol, "
+            "hebraico, iorubá e português para estrangeiros."
         ),
         "address": {
             "@type": "PostalAddress",

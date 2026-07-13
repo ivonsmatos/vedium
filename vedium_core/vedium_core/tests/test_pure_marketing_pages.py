@@ -958,7 +958,8 @@ def test_english_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         pt_html = pt_html_path.read_text(encoding="utf-8")
 
         assert 'lang="en"' in en_html
-        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in en_html
+        pt_slug = "cursos-de-idiomas-online" if slug == "catalogo" else slug
+        assert f'hreflang="pt-br" href="https://vediums.com/{pt_slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in en_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in pt_html
 
@@ -1779,7 +1780,7 @@ def test_individual_course_pages_have_english_translation():
     # página fina/duplicada)
     assert "from vedium_core.course_translations import COURSE_TRANSLATIONS" in curso_py
     assert "translations_for_course = COURSE_TRANSLATIONS.get(course_name, {})" in curso_py
-    assert 'frappe.local.flags.redirect_location = f"/curso/{course_name}"' in curso_py
+    assert "frappe.local.flags.redirect_location = get_course_url(course_name)" in curso_py
     for lang in ("en", "es", "fr", "de"):
         assert f'"{lang}"' in curso_py.split('for candidate in (')[1].split(")")[0]
 
@@ -1828,7 +1829,7 @@ def test_english_pillar_course_grid_links_to_english_course_pages():
         in landing_content
     )
     assert "LANDING_COURSE_GRID_USES_EN_COURSE_URL" in landing_content
-    assert 'course.url = f"/en/curso/{course.name}"' in landing_content
+    assert 'course.url = get_course_url(course.name, "en")' in landing_content
 
 
 def test_lesson_slot_doctype_is_not_world_writable():
@@ -2046,7 +2047,8 @@ def test_spanish_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         en_html = en_html_path.read_text(encoding="utf-8")
 
         assert 'lang="es"' in es_html
-        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in es_html
+        pt_slug = "cursos-de-idiomas-online" if slug == "catalogo" else slug
+        assert f'hreflang="pt-br" href="https://vediums.com/{pt_slug}"' in es_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in es_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in pt_html
@@ -2365,7 +2367,8 @@ def test_french_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         es_html = es_html_path.read_text(encoding="utf-8")
 
         assert 'lang="fr"' in fr_html
-        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in fr_html
+        pt_slug = "cursos-de-idiomas-online" if slug == "catalogo" else slug
+        assert f'hreflang="pt-br" href="https://vediums.com/{pt_slug}"' in fr_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in fr_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in fr_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in fr_html
@@ -2835,7 +2838,8 @@ def test_german_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         fr_html = fr_html_path.read_text(encoding="utf-8")
 
         assert 'lang="de"' in de_html
-        assert f'hreflang="pt-br" href="https://vediums.com/{slug}"' in de_html
+        pt_slug = "cursos-de-idiomas-online" if slug == "catalogo" else slug
+        assert f'hreflang="pt-br" href="https://vediums.com/{pt_slug}"' in de_html
         assert f'hreflang="en" href="https://vediums.com/en/{slug}"' in de_html
         assert f'hreflang="es" href="https://vediums.com/es/{slug}"' in de_html
         assert f'hreflang="fr" href="https://vediums.com/fr/{slug}"' in de_html

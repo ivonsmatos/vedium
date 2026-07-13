@@ -21,11 +21,12 @@ def get_context(context):
     # (Inglês, Iorubá, PLE), não só Inglês (bug achado no QA 2026-07-02: o
     # título antigo mencionava só "Inglês... A1 a C1", enganando quem chegava
     # via busca/redes procurando iorubá ou português para estrangeiros).
-    context.title = "Catálogo de Cursos de Idiomas Online ao Vivo | Vedium"
+    context.title = "Cursos de Idiomas Online ao Vivo | Todos os Níveis | Vedium"
     context.description = (
-        "Catálogo de cursos online ao vivo da Vedium: Inglês (A1 ao C1), Iorubá e "
-        "Português para Estrangeiros (PLE). Professores qualificados e certificado."
+        "Cursos online ao vivo de inglês, espanhol, hebraico, iorubá e português "
+        "para estrangeiros. Do iniciante ao avançado, com professores qualificados."
     )
+    context.canonical_url = "https://vediums.com/cursos-de-idiomas-online"
 
 
 def get_cart_count():

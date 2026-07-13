@@ -138,7 +138,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": {{ ui.home | tojson }}, "item": "https://vediums.com/"},
-            {"@type": "ListItem", "position": 2, "name": {{ ui.courses | tojson }}, "item": "https://vediums.com/catalogo"},
+            {"@type": "ListItem", "position": 2, "name": {{ ui.courses | tojson }}, "item": "https://vediums.com/cursos-de-idiomas-online"},
             {"@type": "ListItem", "position": 3, "name": {{ course.title | tojson }}, "item": {{ canonical_url | tojson }}}
         ]
     }
@@ -166,7 +166,7 @@
                             <div class="page-header__menu">
                                 <ul class="page-header__menu-list list-unstyled clearfix">
                                     <li><a href="/">{{ ui.home }}</a></li>
-                                    <li><a href="/catalogo">{{ ui.courses }}</a></li>
+                                    <li><a href="/cursos-de-idiomas-online">{{ ui.courses }}</a></li>
                                     <li class="active">{{ course.title }}</li>
                                 </ul>
                             </div>

@@ -1,5 +1,7 @@
 import frappe
 
+from vedium_core.course_urls import get_course_url
+
 
 def get_published_courses(category_prefix=None, category_exact=None):
     """Busca cursos publicados da LMS, com dados enriquecidos para exibição.
@@ -37,7 +39,7 @@ def get_published_courses(category_prefix=None, category_exact=None):
 
             course.lesson_count = frappe.db.count("Course Lesson", {"course": course.name})
             course.enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
-            course.url = f"/curso/{course.name}"
+            course.url = get_course_url(course.name)
 
             if course.paid_course and course.course_price:
                 course.formatted_price = format_price(course.course_price, course.currency)
@@ -45,6 +47,8 @@ def get_published_courses(category_prefix=None, category_exact=None):
                 course.formatted_price = "Gratuito"
 
             course.level_badge = get_level_badge(course.title or "")
+            schema_text = (course.short_introduction or course.title or "").strip()
+            course.schema_description = schema_text[:60].rstrip()
 
             if course.category:
                 course.category_name = frappe.db.get_value(

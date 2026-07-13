@@ -105,7 +105,7 @@ def get_ai_faq():
                 "answer": (
                     f"Atualmente a Vedium oferece cursos de {lang_label}. "
                     f"O catálogo completo e atualizado está em "
-                    f"{SITE_URL}/catalogo."
+                    f"{SITE_URL}/cursos-de-idiomas-online."
                 ),
             },
             {
@@ -132,7 +132,7 @@ def get_ai_faq():
             {
                 "question": "Como faço para me matricular?",
                 "answer": (
-                    f"Escolha um curso em {SITE_URL}/catalogo, acesse a "
+                    f"Escolha um curso em {SITE_URL}/cursos-de-idiomas-online, acesse a "
                     f"página do curso e clique em Matricular. A matrícula e "
                     f"as aulas acontecem na plataforma {APP_URL}."
                 ),
@@ -164,7 +164,7 @@ def get_ai_service():
             {
                 "name": "Catálogo de cursos",
                 "description": "Lista de cursos publicados com preços",
-                "endpoint": f"{SITE_URL}/catalogo",
+                "endpoint": f"{SITE_URL}/cursos-de-idiomas-online",
                 "methods": ["GET"],
             },
             {
@@ -223,12 +223,15 @@ def get_llm_sitemap():
     urls = [
         {"loc": f"{SITE_URL}/", "lastmod": today, "changefreq": "weekly",
          "priority": "1.0", "description": "Homepage Vedium"},
-        {"loc": f"{SITE_URL}/catalogo", "lastmod": today,
+        {"loc": f"{SITE_URL}/cursos-de-idiomas-online", "lastmod": today,
          "changefreq": "daily", "priority": "0.9",
          "description": "Catálogo de cursos de idiomas"},
         {"loc": f"{SITE_URL}/sobre", "lastmod": today,
          "changefreq": "monthly", "priority": "0.7",
          "description": "Sobre a Vedium"},
+        {"loc": f"{SITE_URL}/imprensa", "lastmod": today,
+         "changefreq": "monthly", "priority": "0.6",
+         "description": "Informações institucionais e imprensa"},
         {"loc": f"{SITE_URL}/contato", "lastmod": today,
          "changefreq": "monthly", "priority": "0.6",
          "description": "Contato"},
@@ -237,9 +240,11 @@ def get_llm_sitemap():
          "description": "Trabalhe conosco"},
     ]
 
+    from vedium_core.course_urls import get_course_url
+
     for course in _published_courses(limit=20):
         urls.append({
-            "loc": f"{SITE_URL}/curso/{course.name}",
+            "loc": f"{SITE_URL}{get_course_url(course.name)}",
             "lastmod": course.modified.strftime("%Y-%m-%d"),
             "changefreq": "weekly",
             "priority": "0.8",

@@ -67,7 +67,7 @@ def get_my_referral():
         })
 
     base_url = frappe.utils.get_url()
-    share_link = f"{base_url}/catalogo?ref={referral.referral_code}"
+    share_link = f"{base_url}/cursos-de-idiomas-online?ref={referral.referral_code}"
     whatsapp_text = quote(
         f"Oi! Quero te indicar a Vedium pra aprender idiomas. "
         f"Use meu código {referral.referral_code} e ganhe "

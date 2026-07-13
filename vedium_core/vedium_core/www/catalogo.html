@@ -7,17 +7,17 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://vediums.com/catalogo" />
-    <link rel="alternate" hreflang="pt-br" href="https://vediums.com/catalogo" />
+    <link rel="canonical" href="{{ canonical_url }}" />
+    <link rel="alternate" hreflang="pt-br" href="{{ canonical_url }}" />
     <link rel="alternate" hreflang="en" href="https://vediums.com/en/catalogo" />
 <link rel="alternate" hreflang="es" href="https://vediums.com/es/catalogo" />
 <link rel="alternate" hreflang="fr" href="https://vediums.com/fr/catalogo" />
     <link rel="alternate" hreflang="de" href="https://vediums.com/de/catalogo" />
-    <link rel="alternate" hreflang="x-default" href="https://vediums.com/catalogo" />
+    <link rel="alternate" hreflang="x-default" href="{{ canonical_url }}" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vediums.com/catalogo" />
+    <meta property="og:url" content="{{ canonical_url }}" />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
@@ -40,7 +40,17 @@
                 "@type": "ListItem",
                 "position": {{ loop.index }},
                 "url": "https://vediums.com{{ course.url }}",
-                "name": {{ course.title | tojson }}
+                "item": {
+                    "@type": "Course",
+                    "url": "https://vediums.com{{ course.url }}",
+                    "name": {{ course.title | tojson }},
+                    "description": {{ course.schema_description | tojson }},
+                    "provider": {
+                        "@type": "EducationalOrganization",
+                        "name": "Vedium",
+                        "url": "https://vediums.com"
+                    }
+                }
             }{% if not loop.last %},{% endif %}{% endfor %}
         ]
     }
@@ -114,12 +124,12 @@
                 <div class="col-xl-12">
                     <div class="page-header__wrapper clearfix">
                         <div class="page-header__title">
-                            <h2>Cursos</h2>
+                            <h2>Cursos de idiomas online ao vivo</h2>
                         </div>
                         <div class="page-header__menu">
                             <ul class="page-header__menu-list list-unstyled clearfix">
                                 <li><a href="/">Início</a></li>
-                                <li class="active">Cursos</li>
+                                <li class="active">Cursos de idiomas online</li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +147,8 @@
         <div class="container">
             <div class="section-title text-center">
                 <span class="section-title__tagline">Inglês, Iorubá, Português, Espanhol e Hebraico</span>
-                <h2 class="section-title__title">Explore os Cursos</h2>
+                <h2 class="section-title__title">Inglês, espanhol, hebraico, iorubá e português para estrangeiros</h2>
+                <p>Escolha uma trilha do iniciante ao avançado. Todos os cursos abaixo são oferecidos pela Vedium em formato online, com aulas ao vivo, acompanhamento e certificado conforme os critérios de conclusão.</p>
             </div>
 
             <!-- Filtro por idioma -->

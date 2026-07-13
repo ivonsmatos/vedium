@@ -1,14 +1,17 @@
 import frappe
+from vedium_core.course_urls import get_course_url
 
 # Mesma lógica de vedium_core.www.index (duplicada, não importada): não há
 # __init__.py em www/, então import cruzado entre controllers www/*.py não é
 # um padrão testado no Frappe (template_page.set_pymodule importa cada
 # controller isoladamente). Mantém os dois arquivos em sincronia manualmente
 # se a lógica de cursos mudar.
-LANGUAGE_ORDER = ["Inglês", "Iorubá", "Português para Estrangeiros"]
+LANGUAGE_ORDER = ["Inglês", "Espanhol", "Hebraico", "Iorubá", "Português para Estrangeiros"]
 
 LANGUAGE_FALLBACK_IMAGES = {
     "Inglês": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
+    "Espanhol": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
+    "Hebraico": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
     "Iorubá": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img2.jpg",
     "Português para Estrangeiros": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
 }
@@ -27,10 +30,10 @@ def get_context(context):
     context.language_programs = LANGUAGE_ORDER
     context.cart_count = get_cart_count()
 
-    context.title = "Vedium - Live Online Language Courses: English and Yoruba"
+    context.title = "Vedium - Live Online Courses in Five Languages"
     context.description = (
-        "Learn English (levels A1 to C1) and Yoruba with Vedium: live classes with "
-        "qualified teachers, a completion certificate, and real student support. "
+        "Learn English, Spanish, Hebrew, Yoruba or Brazilian Portuguese with Vedium: "
+        "live classes, qualified teachers, a completion certificate and real support. "
         "Start your fluency journey today."
     )
     context.lang = "en"
@@ -133,6 +136,7 @@ def _enrich(course) -> dict:
         course["formatted_price"] = "Free"
 
     course["level_badge"] = _level_badge(course.get("title", ""))
+    course["url"] = get_course_url(course["name"])
 
     return course
 

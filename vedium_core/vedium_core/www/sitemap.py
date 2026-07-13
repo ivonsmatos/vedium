@@ -11,8 +11,9 @@ SITE_URL = "https://vediums.com"
 
 STATIC_URLS = [
     {"loc": "/", "priority": "1.0", "changefreq": "weekly"},
-    {"loc": "/catalogo", "priority": "0.9", "changefreq": "daily"},
+    {"loc": "/cursos-de-idiomas-online", "priority": "0.9", "changefreq": "daily"},
     {"loc": "/sobre", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/imprensa", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/como-funciona", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/planos", "priority": "0.8", "changefreq": "monthly"},
@@ -192,19 +193,20 @@ def _course_urls():
         return []
 
     from vedium_core.course_translations import COURSE_TRANSLATIONS
+    from vedium_core.course_urls import get_course_url
 
     urls = []
     for course in courses:
         lastmod = course.modified.strftime("%Y-%m-%d") if course.modified else nowdate()
         urls.append({
-            "loc": f"/curso/{course.name}",
+            "loc": get_course_url(course.name),
             "priority": "0.8",
             "changefreq": "weekly",
             "lastmod": lastmod,
         })
         for lang_code in COURSE_TRANSLATIONS.get(course.name, {}):
             urls.append({
-                "loc": f"/{lang_code}/curso/{course.name}",
+                "loc": get_course_url(course.name, lang_code),
                 "priority": "0.6",
                 "changefreq": "weekly",
                 "lastmod": lastmod,

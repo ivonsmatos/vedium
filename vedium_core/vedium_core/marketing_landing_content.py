@@ -4380,7 +4380,8 @@ def get_marketing_landing(slug):
                 if translation:
                     course.title = translation["title"]
                     course.short_introduction = translation["short_introduction"]
-                    course.url = f"/en/curso/{course.name}"
+                    from vedium_core.course_urls import get_course_url
+                    course.url = get_course_url(course.name, "en")
         landing["course_grid"] = course_grid
 
     # Versões alternativas em outros idiomas (hreflang). "alt" mapeia idioma -> slug.

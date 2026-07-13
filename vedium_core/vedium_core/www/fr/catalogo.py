@@ -16,7 +16,7 @@ def get_context(context):
     )
     context.lang = "fr"
     context.canonical_url = "https://vediums.com/fr/catalogo"
-    context.alt_lang_url = "https://vediums.com/catalogo"
+    context.alt_lang_url = "https://vediums.com/cursos-de-idiomas-online"
 
 
 def get_cart_count():
