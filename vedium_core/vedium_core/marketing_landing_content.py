@@ -4376,9 +4376,10 @@ def get_marketing_landing(slug):
             from vedium_core.course_translations import COURSE_TRANSLATIONS
 
             for course in course_grid:
-                if course.name in COURSE_TRANSLATIONS:
-                    course.title = COURSE_TRANSLATIONS[course.name]["title"]
-                    course.short_introduction = COURSE_TRANSLATIONS[course.name]["short_introduction"]
+                translation = COURSE_TRANSLATIONS.get(course.name, {}).get("en")
+                if translation:
+                    course.title = translation["title"]
+                    course.short_introduction = translation["short_introduction"]
                     course.url = f"/en/curso/{course.name}"
         landing["course_grid"] = course_grid
 
