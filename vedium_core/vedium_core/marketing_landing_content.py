@@ -864,7 +864,7 @@ LANDINGS = {
             {"q": "Does the course come with a certificate?", "a": "Yes, there's a completion certificate according to the free-course requirements."},
         ],
         "whatsapp_text": "Hello, I'd like to know more about Vedium's live online English course.",
-        "test_url": "/teste-de-nivel-ingles",
+        "test_url": None,
     },
     "english-for-job-interviews": {
         "lang": "en",
@@ -1517,7 +1517,7 @@ LANDINGS = {
             {
                 "heading": "Cómo empezar",
                 "body": [
-                    "<p>Para empezar, habla con el equipo de Vedium por WhatsApp o haz el <a href=\"/en/portuguese-placement-test\">test de nivel de portugués para extranjeros</a> (disponible en inglés). Recibirás una estimación de tu nivel, una recomendación de frecuencia y un plan alineado a tu objetivo — vivir, trabajar, estudiar o presentar el Celpe-Bras.</p>",
+                    "<p>Para empezar, habla con el equipo de Vedium por WhatsApp o haz la <a href=\"/es/prueba-de-nivel-de-portugues\">prueba de nivel de portugués para extranjeros</a>. Recibirás una estimación de tu nivel, una recomendación de frecuencia y un plan alineado a tu objetivo — vivir, trabajar, estudiar o presentar el Celpe-Bras.</p>",
                 ],
             },
         ],
@@ -1528,7 +1528,7 @@ LANDINGS = {
             {"q": "¿Necesito hacer un test de nivel?", "a": "El test gratuito nos ayuda a estimar tu nivel antes de recomendarte un camino."},
         ],
         "whatsapp_text": "Hola, quiero aprender portugués para extranjeros con Vedium.",
-        "test_url": "/en/portuguese-placement-test",
+        "test_url": "/es/prueba-de-nivel-de-portugues",
     },
     "portugues-para-ejecutivos": {
         "lang": "es",
@@ -1580,7 +1580,7 @@ LANDINGS = {
             {"q": "¿Puede ofrecerse a un equipo?", "a": "Sí, los formatos B2B pueden conversarse con el equipo de Vedium."},
         ],
         "whatsapp_text": "Hola, quiero clases de portugués para ejecutivos con Vedium.",
-        "test_url": "/en/portuguese-placement-test",
+        "test_url": "/es/prueba-de-nivel-de-portugues",
     },
     "preparacion-examen-celpe-bras": {
         "lang": "es",
@@ -1632,7 +1632,7 @@ LANDINGS = {
             {"q": "¿Las clases pueden incluir explicaciones en español?", "a": "Sí, cuando sea necesario, pero el objetivo es aumentar el uso del portugués progresivamente."},
         ],
         "whatsapp_text": "Hola, quiero preparación para el Celpe-Bras con Vedium.",
-        "test_url": "/en/portuguese-placement-test",
+        "test_url": "/es/prueba-de-nivel-de-portugues",
     },
 
     # =========================================================================
@@ -2143,7 +2143,7 @@ LANDINGS = {
             {"q": "¿El curso tiene certificado?", "a": "Sí, hay certificado de finalización según los requisitos del curso libre."},
         ],
         "whatsapp_text": "Hola, quiero saber más sobre el curso de inglés online en vivo de Vedium.",
-        "test_url": "/en/portuguese-placement-test",
+        "test_url": None,
     },
     "ingles-para-entrevistas-de-trabajo": {
         "lang": "es",
@@ -2509,7 +2509,7 @@ LANDINGS = {
             {"q": "Le cours donne-t-il un certificat ?", "a": "Oui, il y a un certificat de fin de formation selon les conditions du cours libre."},
         ],
         "whatsapp_text": "Bonjour, je voudrais en savoir plus sur le cours d'anglais en ligne en direct de Vedium.",
-        "test_url": "/teste-de-nivel-ingles",
+        "test_url": None,
     },
     "anglais-entretien-embauche": {
         "lang": "fr",
@@ -2875,7 +2875,7 @@ LANDINGS = {
             {"q": "Gibt es ein Zertifikat für den Kurs?", "a": "Ja, es gibt ein Abschlusszertifikat gemäß den Bedingungen des freien Kurses."},
         ],
         "whatsapp_text": "Hallo, ich möchte mehr über den Live-Online-Englischkurs von Vedium erfahren.",
-        "test_url": "/teste-de-nivel-ingles",
+        "test_url": None,
     },
     "englisch-fuer-vorstellungsgespraeche": {
         "lang": "de",
@@ -3437,7 +3437,7 @@ LANDINGS = {
             {"q": "Есть ли сертификат по курсу?", "a": "Да, выдаётся сертификат об окончании согласно условиям бесплатного курса."},
         ],
         "whatsapp_text": "Здравствуйте, хочу узнать больше о живом онлайн-курсе английского в Vedium.",
-        "test_url": "/teste-de-nivel-ingles",
+        "test_url": None,
     },
     "angliyskiy-dlya-sobesedovaniy": {
         "lang": "ru",
@@ -3985,7 +3985,7 @@ LANDINGS = {
             {"q": "Нужно ли мне проходить тест уровня?", "a": "Бесплатный тест помогает нам оценить ваш уровень перед рекомендацией образовательной траектории."},
         ],
         "whatsapp_text": "Здравствуйте, хочу изучать португальский для иностранцев в Vedium.",
-        "test_url": "/ru/portugiesisch-einstufungstest",
+        "test_url": None,
     },
     "portugalskiy-dlya-rukovoditeley": {
         "lang": "ru",
@@ -4037,7 +4037,7 @@ LANDINGS = {
             {"q": "Можно ли предложить это команде?", "a": "Да, форматы B2B можно обсудить с командой Vedium."},
         ],
         "whatsapp_text": "Здравствуйте, хочу занятия португальским для руководителей в Vedium.",
-        "test_url": "/ru/portugiesisch-einstufungstest",
+        "test_url": None,
     },
     "podgotovka-k-celpe-bras": {
         "lang": "ru",

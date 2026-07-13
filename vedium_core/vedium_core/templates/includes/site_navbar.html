@@ -36,7 +36,7 @@
      institucionais (catalogo/sobre/faq/contato/empresas/etc., mesmo slug
      em en/es/fr/de) só reciprocam com o canônico em PT via alt_lang_url
      singular -- cobrimos os dois formatos aqui. #}
-  {%- set _self_key = lang if lang in ("en", "es", "fr", "de") else "pt-br" %}
+  {%- set _self_key = lang if lang in ("en", "es", "fr", "de", "ru") else "pt-br" %}
   {%- set vd_nav.current = _self_key %}
   {%- set _vd_nav_noop = vd_nav.urls.update({_self_key: canonical_url}) %}
   {%- if alt_langs %}
@@ -59,6 +59,7 @@
   "es": {"home": "Inicio", "how": "Cómo funciona", "about": "Sobre nosotros", "courses": "Cursos", "blog": "Blog", "faq": "Preguntas frecuentes", "contact": "Contacto", "login": "Iniciar sesión", "signup": "Registrarse", "free_test": "Prueba gratis"},
   "fr": {"home": "Accueil", "how": "Comment ça marche", "about": "À propos", "courses": "Cours", "blog": "Blog", "faq": "FAQ", "contact": "Contact", "login": "Connexion", "signup": "S'inscrire", "free_test": "Test gratuit"},
   "de": {"home": "Startseite", "how": "So funktioniert's", "about": "Über uns", "courses": "Kurse", "blog": "Blog", "faq": "FAQ", "contact": "Kontakt", "login": "Anmelden", "signup": "Registrieren", "free_test": "Kostenloser Test"},
+  "ru": {"home": "Главная", "how": "Как это работает", "about": "О нас", "courses": "Курсы", "blog": "Блог", "faq": "Вопросы", "contact": "Контакты", "login": "Войти", "signup": "Регистрация", "free_test": "Бесплатный тест"},
 } %}
 {%- set vd_menu_t = vd_menu_i18n.get(vd_nav.current, vd_menu_i18n["pt-br"]) %}
 {#- Bug real achado em produção (2026-07-03): os links do menu (Início,
@@ -76,6 +77,7 @@
   "es": {"home": "/es/", "how": "/es/como-funciona", "about": "/es/sobre", "courses": "/es/catalogo", "blog": "/blog", "faq": "/es/faq", "contact": "/es/contato", "free_test": "/es/prueba-de-nivel-de-portugues"},
   "fr": {"home": "/fr/", "how": "/fr/como-funciona", "about": "/fr/sobre", "courses": "/fr/catalogo", "blog": "/blog", "faq": "/fr/faq", "contact": "/fr/contato", "free_test": "/fr/test-de-niveau-de-portugais"},
   "de": {"home": "/de/", "how": "/de/como-funciona", "about": "/de/sobre", "courses": "/de/catalogo", "blog": "/blog", "faq": "/de/faq", "contact": "/de/contato", "free_test": "/de/portugiesisch-einstufungstest"},
+  "ru": {"home": "/ru/", "how": "/ru/como-funciona", "about": "/ru/sobre", "courses": "/ru/catalogo", "blog": "/blog", "faq": "/ru/faq", "contact": "/ru/contato", "free_test": "/ru/contato"},
 } %}
 {%- set vd_menu_u = vd_menu_links.get(vd_nav.current, vd_menu_links["pt-br"]) %}
 {#- Submenu "Cursos" com os 5 idiomas. Cada idioma aponta pra sua página
@@ -86,9 +88,9 @@
    de marketing_landing_content.py); onde não existe tradução real (ex.:
    Iorubá em fr/de), mesma regra: cai no catálogo daquele idioma. #}
 {%- set vd_courses_links = {
-  "english": {"pt-br": "/curso-de-ingles-online", "en": "/learn-english-online", "es": "/curso-de-ingles-online-en-vivo", "fr": "/cours-anglais-en-ligne-en-direct", "de": "/englischkurs-online-live"},
-  "yoruba": {"pt-br": "/curso-de-ioruba-online", "en": "/learn-yoruba-online", "es": "/curso-de-yoruba-online"},
-  "ple": {"pt-br": "/portugues-para-estrangeiros", "en": "/learn-portuguese-brazil", "es": "/portugues-para-extranjeros", "fr": "/portugais-pour-etrangers", "de": "/portugiesisch-fuer-auslaender"},
+  "english": {"pt-br": "/curso-de-ingles-online", "en": "/learn-english-online", "es": "/curso-de-ingles-online-en-vivo", "fr": "/cours-anglais-en-ligne-en-direct", "de": "/englischkurs-online-live", "ru": "/ru/kurs-angliyskogo-online"},
+  "yoruba": {"pt-br": "/curso-de-ioruba-online", "en": "/learn-yoruba-online", "es": "/curso-de-yoruba-online", "ru": "/ru/kurs-yoruba-online"},
+  "ple": {"pt-br": "/portugues-para-estrangeiros", "en": "/learn-portuguese-brazil", "es": "/portugues-para-extranjeros", "fr": "/portugais-pour-etrangers", "de": "/portugiesisch-fuer-auslaender", "ru": "/ru/portugalskiy-dlya-inostrantsev"},
   "spanish": {"pt-br": "/curso-de-espanhol-online"},
   "hebrew": {"pt-br": "/curso-de-hebraico-online"},
 } %}
@@ -98,8 +100,18 @@
   "es": {"english": "Inglés", "yoruba": "Yoruba", "ple": "Portugués (PLE)", "spanish": "Español", "hebrew": "Hebreo"},
   "fr": {"english": "Anglais", "yoruba": "Yorouba", "ple": "Portugais (PLE)", "spanish": "Espagnol", "hebrew": "Hébreu"},
   "de": {"english": "Englisch", "yoruba": "Yoruba", "ple": "Portugiesisch (PLE)", "spanish": "Spanisch", "hebrew": "Hebräisch"},
+  "ru": {"english": "Английский", "yoruba": "Йоруба", "ple": "Португальский (PLE)", "spanish": "Испанский", "hebrew": "Иврит"},
 } %}
 {%- set vd_courses_t = vd_courses_labels.get(vd_nav.current, vd_courses_labels["pt-br"]) %}
+{%- set vd_chrome_i18n = {
+  "pt-br": {"talk": "Fale conosco", "select": "Selecionar região e idioma", "dialog": "Selecione sua região e idioma", "close": "Fechar", "global": "Global", "americas": "América do Norte e Latina", "emea": "Europa, Oriente Médio e África", "asia": "Ásia e Austrália"},
+  "en": {"talk": "Contact us", "select": "Select region and language", "dialog": "Select your region and language", "close": "Close", "global": "Global", "americas": "North & Latin America", "emea": "Europe, Middle East & Africa", "asia": "Asia & Australia"},
+  "es": {"talk": "Hable con nosotros", "select": "Seleccionar región e idioma", "dialog": "Seleccione su región e idioma", "close": "Cerrar", "global": "Global", "americas": "Norteamérica y Latinoamérica", "emea": "Europa, Oriente Medio y África", "asia": "Asia y Australia"},
+  "fr": {"talk": "Contactez-nous", "select": "Choisir la région et la langue", "dialog": "Choisissez votre région et votre langue", "close": "Fermer", "global": "Monde", "americas": "Amérique du Nord et latine", "emea": "Europe, Moyen-Orient et Afrique", "asia": "Asie et Australie"},
+  "de": {"talk": "Kontakt", "select": "Region und Sprache wählen", "dialog": "Wählen Sie Ihre Region und Sprache", "close": "Schließen", "global": "Global", "americas": "Nord- und Lateinamerika", "emea": "Europa, Nahost und Afrika", "asia": "Asien und Australien"},
+  "ru": {"talk": "Свяжитесь с нами", "select": "Выбрать регион и язык", "dialog": "Выберите регион и язык", "close": "Закрыть", "global": "Весь мир", "americas": "Северная и Латинская Америка", "emea": "Европа, Ближний Восток и Африка", "asia": "Азия и Австралия"}
+} %}
+{%- set vd_chrome_t = vd_chrome_i18n.get(vd_nav.current, vd_chrome_i18n["pt-br"]) %}
 <header class="main-header main-header--one clearfix"
     data-vd-nav-urls='{{ vd_nav.urls | tojson }}'
     data-vd-nav-current="{{ vd_nav.current }}">
@@ -117,7 +129,7 @@
                         <li><a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                         <li><a href="https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" target="_blank" rel="noopener" aria-label="WhatsApp" data-vd-location="header_social"><i class="fab fa-whatsapp"></i></a></li>
                     </ul>
-                    <div class="vedium-language-switcher" aria-label="Selecionar região e idioma">
+                    <div class="vedium-language-switcher" aria-label="{{ vd_chrome_t.select }}">
                         <button type="button" class="vedium-language-current" data-vd-language-open aria-haspopup="dialog" aria-expanded="false" aria-controls="vedium-language-modal">
                             <img class="vedium-language-current__flag" data-vd-current-flag src="https://flagcdn.com/w20/br.png" srcset="https://flagcdn.com/w40/br.png 2x" width="20" height="15" alt="Brazil">
                             <span class="vedium-language-current__label" data-vd-current-label>BRASIL | PORTUGUÊS</span>
@@ -128,11 +140,11 @@
                         <ul class="main-header--one__top-contact-info-list list-unstyled">
                             <li class="main-header--one__top-contact-info-list-item">
                                 <div class="icon"><span class="icon-phone-call-1"></span></div>
-                                <div class="text"><h6>Fale conosco</h6><p><a href="tel:+5511911293075">+55 (11) 91129-3075</a></p></div>
+                                <div class="text"><h6>{{ vd_chrome_t.talk }}</h6><p><a href="tel:+5511911293075">+55 (11) 91129-3075</a></p></div>
                             </li>
                             <li class="main-header--one__top-contact-info-list-item">
                                 <div class="icon"><span class="icon-message"></span></div>
-                                <div class="text"><h6>Fale conosco</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
+                                <div class="text"><h6>{{ vd_chrome_t.talk }}</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
                             </li>
                         </ul>
                     </div>
@@ -191,16 +203,16 @@
   <div class="vedium-language-modal__backdrop" data-vd-language-close></div>
   <section class="vedium-language-modal__panel" role="dialog" aria-modal="true" aria-labelledby="vedium-language-title">
     <div class="vedium-language-modal__head">
-      <h2 id="vedium-language-title">Select your region and language</h2>
-      <button type="button" class="vedium-language-modal__close" data-vd-language-close aria-label="Close">Close ×</button>
+      <h2 id="vedium-language-title">{{ vd_chrome_t.dialog }}</h2>
+      <button type="button" class="vedium-language-modal__close" data-vd-language-close aria-label="{{ vd_chrome_t.close }}">{{ vd_chrome_t.close }} ×</button>
     </div>
     <div class="vedium-language-modal__grid">
       <div class="vedium-language-modal__group">
-        <h3>Global</h3>
+        <h3>{{ vd_chrome_t.global }}</h3>
         <a href="/en/" data-vd-locale="en"><span class="vd-lang-globe" aria-hidden="true">🌐</span><strong>Global</strong><small>English</small></a>
       </div>
       <div class="vedium-language-modal__group">
-        <h3>North & Latin America</h3>
+        <h3>{{ vd_chrome_t.americas }}</h3>
         <a href="/pt-br/" data-vd-locale="pt-br"><img class="vd-lang-flag" src="https://flagcdn.com/w20/br.png" srcset="https://flagcdn.com/w40/br.png 2x" width="20" height="15" alt="Brazil"><strong>Brazil</strong><small>Português</small></a>
         <a href="/en-us/" data-vd-locale="en-us"><img class="vd-lang-flag" src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="United States"><strong>United States</strong><small>English</small></a>
         <a href="/es-ar/" data-vd-locale="es-ar"><img class="vd-lang-flag" src="https://flagcdn.com/w20/ar.png" srcset="https://flagcdn.com/w40/ar.png 2x" width="20" height="15" alt="Argentina"><strong>Argentina</strong><small>Español</small></a>
@@ -208,14 +220,14 @@
         <a href="/es-co/" data-vd-locale="es-co"><img class="vd-lang-flag" src="https://flagcdn.com/w20/co.png" srcset="https://flagcdn.com/w40/co.png 2x" width="20" height="15" alt="Colombia"><strong>Colombia</strong><small>Español</small></a>
       </div>
       <div class="vedium-language-modal__group">
-        <h3>Europe, Middle East, & Africa</h3>
+        <h3>{{ vd_chrome_t.emea }}</h3>
         <a href="/fr/" data-vd-locale="fr"><img class="vd-lang-flag" src="https://flagcdn.com/w20/fr.png" srcset="https://flagcdn.com/w40/fr.png 2x" width="20" height="15" alt="France"><strong>France</strong><small>Français</small></a>
         <a href="/de/" data-vd-locale="de"><img class="vd-lang-flag" src="https://flagcdn.com/w20/de.png" srcset="https://flagcdn.com/w40/de.png 2x" width="20" height="15" alt="Germany"><strong>DACH Region</strong><small>Deutsch</small></a>
         <a href="/es/" data-vd-locale="es"><img class="vd-lang-flag" src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="20" height="15" alt="Spain"><strong>Spain</strong><small>Español</small></a>
         <a href="/ru/" data-vd-locale="ru"><img class="vd-lang-flag" src="https://flagcdn.com/w20/ru.png" srcset="https://flagcdn.com/w40/ru.png 2x" width="20" height="15" alt="Russia"><strong>Russia</strong><small>Русский</small></a>
       </div>
       <div class="vedium-language-modal__group">
-        <h3>Asia & Australia</h3>
+        <h3>{{ vd_chrome_t.asia }}</h3>
         <a href="/zh-cn/" data-vd-locale="zh-cn"><img class="vd-lang-flag" src="https://flagcdn.com/w20/cn.png" srcset="https://flagcdn.com/w40/cn.png 2x" width="20" height="15" alt="China"><strong>China</strong><small>中文版</small></a>
         <a href="/en-au/" data-vd-locale="en-au"><img class="vd-lang-flag" src="https://flagcdn.com/w20/au.png" srcset="https://flagcdn.com/w40/au.png 2x" width="20" height="15" alt="Australia"><strong>Australia</strong><small>English</small></a>
       </div>
@@ -387,6 +399,17 @@
   body > .skiptranslate { display: none !important; }
   body.vedium-language-modal-open { overflow: hidden; }
   body { top: 0 !important; }
+  @media (min-width: 1200px) {
+    .main-menu__inner { flex-wrap: nowrap; gap: 16px; }
+    .main-menu__inner .left { min-width: 0; }
+    .main-header-one__bottom .right { flex: 0 0 auto; }
+    .main-menu .main-menu__list > li + li { margin-left: clamp(16px, 1.55vw, 30px); }
+    .main-menu .main-menu__list > li > a { white-space: nowrap; }
+    .main-menu__right-login-register { margin-right: 12px; white-space: nowrap; }
+    .main-menu__right-cart-search { padding-left: 12px; }
+    .main-menu__right-search-box { margin-left: 0; }
+    .main-menu__right-search-box .thm-btn { padding-left: 20px; padding-right: 20px; white-space: nowrap; }
+  }
   @media (max-width: 991px) {
     .main-header--one__top-right { justify-content: center; }
     .vedium-language-switcher { margin: 10px 0 0; }

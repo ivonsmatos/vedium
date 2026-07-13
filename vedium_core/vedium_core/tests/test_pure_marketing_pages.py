@@ -320,7 +320,7 @@ def test_english_cluster_has_english_pages_with_reciprocal_hreflang():
     dois idiomas, paridade de profundidade de conteúdo.
     """
     pairs = [
-        ("curso-de-ingles-online", "learn-english-online", "/teste-de-nivel-ingles"),
+            ("curso-de-ingles-online", "learn-english-online", None),
         ("ingles-para-entrevista", "english-for-job-interviews", None),
         ("ingles-para-programadores", "english-for-developers", None),
         ("ingles-executivo", "business-english-online", None),
@@ -443,9 +443,9 @@ def test_ple_cluster_has_spanish_pages_with_reciprocal_hreflang():
     (inglês) -- não inventa um teste de espanhol que não existe.
     """
     pairs = [
-        ("portugues-para-estrangeiros", "portugues-para-extranjeros", "/en/portuguese-placement-test"),
-        ("portugues-para-executivos", "portugues-para-ejecutivos", "/en/portuguese-placement-test"),
-        ("preparatorio-celpe-bras", "preparacion-examen-celpe-bras", "/en/portuguese-placement-test"),
+        ("portugues-para-estrangeiros", "portugues-para-extranjeros", "/es/prueba-de-nivel-de-portugues"),
+        ("portugues-para-executivos", "portugues-para-ejecutivos", "/es/prueba-de-nivel-de-portugues"),
+        ("preparatorio-celpe-bras", "preparacion-examen-celpe-bras", "/es/prueba-de-nivel-de-portugues"),
     ]
     for pt_slug, es_slug, expected_test_url in pairs:
         assert LANDINGS[pt_slug]["alt"]["es"] == es_slug
@@ -494,7 +494,7 @@ def test_english_cluster_has_spanish_pages_with_reciprocal_hreflang():
     profundidade de conteúdo.
     """
     pairs = [
-        ("curso-de-ingles-online", "curso-de-ingles-online-en-vivo", "/en/portuguese-placement-test"),
+        ("curso-de-ingles-online", "curso-de-ingles-online-en-vivo", None),
         ("ingles-para-entrevista", "ingles-para-entrevistas-de-trabajo", None),
         ("ingles-para-programadores", "ingles-para-desarrolladores", None),
         ("ingles-executivo", "ingles-de-negocios", None),
@@ -2600,7 +2600,7 @@ def test_english_cluster_has_french_pages_with_reciprocal_hreflang():
     de profundidade de conteúdo.
     """
     pairs = [
-        ("curso-de-ingles-online", "cours-anglais-en-ligne-en-direct", "/teste-de-nivel-ingles"),
+            ("curso-de-ingles-online", "cours-anglais-en-ligne-en-direct", None),
         ("ingles-para-entrevista", "anglais-entretien-embauche", None),
         ("ingles-para-programadores", "anglais-developpeurs-informatique", None),
         ("ingles-executivo", "anglais-des-affaires", None),
@@ -3069,7 +3069,7 @@ def test_english_cluster_has_german_pages_with_reciprocal_hreflang():
     profundidade de conteúdo.
     """
     pairs = [
-        ("curso-de-ingles-online", "englischkurs-online-live", "/teste-de-nivel-ingles"),
+            ("curso-de-ingles-online", "englischkurs-online-live", None),
         ("ingles-para-entrevista", "englisch-fuer-vorstellungsgespraeche", None),
         ("ingles-para-programadores", "englisch-fuer-entwickler", None),
         ("ingles-executivo", "business-englisch-online", None),
@@ -3529,7 +3529,7 @@ def test_menu_links_respect_current_language_not_just_labels():
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
 
     # vd_nav.current generalizado -- não mais só "en"/"pt-br"
-    assert 'lang if lang in ("en", "es", "fr", "de") else "pt-br"' in navbar
+    assert 'lang if lang in ("en", "es", "fr", "de", "ru") else "pt-br"' in navbar
     assert "alt_langs" in navbar
 
     # Cada link do menu usa vd_menu_u (href por idioma), não mais um
@@ -3576,7 +3576,7 @@ def test_footer_links_and_labels_respect_current_language():
     # vd_footer_lang recalculado de forma independente (não reaproveita
     # vd_nav do navbar -- includes Jinja não compartilham "set" entre si).
     assert "vd_footer_lang" in footer
-    assert 'lang in ("en", "es", "fr", "de")' in footer
+    assert 'lang in ("en", "es", "fr", "de", "ru")' in footer
 
     # Rótulos traduzidos pras 5 famílias, incluindo o título de cada coluna.
     i18n_dict = footer.split("vd_footer_i18n = {")[1].split("\n} %}")[0]
@@ -3633,6 +3633,35 @@ def test_footer_links_and_labels_respect_current_language():
     assert '<a href="/termos">' in footer
     assert '<a href="/quanto-custa-curso-de-idiomas">' in footer
     assert '<a href="/teste-de-nivel-ingles">' in footer
+    assert '"courses_title": "Языковые курсы"' in footer
+    assert '"cluster-ple": "/ru/portugalskiy-dlya-inostrantsev"' in footer
+
+
+def test_translated_landings_translate_shared_chrome_and_keep_header_on_one_row():
+    landing_tpl = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+
+    for lang in ("en", "es", "fr", "de", "ru"):
+        assert f'"{lang}": {{' in landing_tpl
+
+    # Rótulos que antes apareciam em português nas páginas ES/FR/DE/RU.
+    for translated_label in (
+        '"summary": "Resumen del programa"',
+        '"summary": "Résumé du parcours"',
+        '"summary": "Kursübersicht"',
+        '"summary": "Кратко о программе"',
+    ):
+        assert translated_label in landing_tpl
+
+    # Uma landing estrangeira sem teste traduzido não pode cair no teste PT.
+    assert '(landing.lang or "pt-BR") == "pt-BR"' in landing_tpl
+    assert '"es": {"home": "/es/", "courses": "/es/catalogo"}' in landing_tpl
+    assert '"ru": {"home": "/ru/", "courses": "/ru/catalogo"}' in landing_tpl
+
+    # Evita o CTA espanhol cair na segunda linha do cabeçalho desktop.
+    assert ".main-menu__inner { flex-wrap: nowrap; gap: 16px; }" in navbar
+    assert "margin-left: clamp(16px, 1.55vw, 30px)" in navbar
+    assert '"ru": {"home": "Главная"' in navbar
 
 
 def test_russian_cluster_has_reciprocal_hreflang_and_real_pages():
@@ -3651,12 +3680,12 @@ def test_russian_cluster_has_reciprocal_hreflang_and_real_pages():
     # fallback do template `marketing_landing.html`, sem chave própria —
     # mesmo padrão já usado no cluster alemão de origem.
     pairs_with_explicit_test_url = [
-        ("curso-de-ingles-online", "kurs-angliyskogo-online", "/teste-de-nivel-ingles"),
+        ("curso-de-ingles-online", "kurs-angliyskogo-online", None),
         ("curso-de-ioruba-online", "kurs-yoruba-online", None),
         ("ioruba-para-iniciantes", "yoruba-dlya-nachinayushchikh", None),
         ("ioruba-cultura-e-ancestralidade", "yoruba-kultura-i-nasledie", None),
-        ("portugues-para-estrangeiros", "portugalskiy-dlya-inostrantsev", "/ru/portugiesisch-einstufungstest"),
-        ("portugues-para-executivos", "portugalskiy-dlya-rukovoditeley", "/ru/portugiesisch-einstufungstest"),
+        ("portugues-para-estrangeiros", "portugalskiy-dlya-inostrantsev", None),
+        ("portugues-para-executivos", "portugalskiy-dlya-rukovoditeley", None),
     ]
     pairs_without_explicit_test_url = [
         ("ingles-para-entrevista", "angliyskiy-dlya-sobesedovaniy"),

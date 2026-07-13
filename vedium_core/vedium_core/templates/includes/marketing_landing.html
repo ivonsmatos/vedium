@@ -105,7 +105,10 @@
 <div class="page-wrapper">
 {% set vd_page = "cursos" %}
 {% include "templates/includes/site_navbar.html" %}
-{%- set landing_test_url = landing.test_url if "test_url" in landing else ("/teste-de-nivel-ingles" if landing.slug.startswith("ingles-") else "/teste-de-nivel") %}
+{# Só exibe teste quando a landing declara uma página realmente disponível
+   naquele idioma. Isso evita que páginas traduzidas enviem o visitante para
+   um teste em português ou, pior, para o teste do idioma errado. #}
+{%- set landing_test_url = landing.test_url if "test_url" in landing else ("/teste-de-nivel-ingles" if (landing.lang or "pt-BR") == "pt-BR" and landing.slug.startswith("ingles-") else ("/teste-de-nivel" if (landing.lang or "pt-BR") == "pt-BR" else none)) %}
 {%- set vd_lang = landing.lang or "pt-BR" %}
 {%- set vd_i18n = {
   "pt-BR": {
@@ -151,13 +154,106 @@
     "no_test_p": "Tell us your goal and current level — the Vedium team will point you to the right module to begin.",
     "levels_available": "Levels available", "choose_level": "Choose your level and start now",
     "see_course": "See course", "lessons_count": "lessons"
+  },
+  "es": {
+    "home": "Inicio", "courses": "Cursos",
+    "cta_test": "Hacer la prueba de nivel gratis", "cta_whats": "Hablar por WhatsApp",
+    "summary": "Resumen del programa", "for_whom": "Para quién", "level": "Nivel",
+    "frequency": "Frecuencia", "duration": "Duración",
+    "need_diag": "Diagnóstico de necesidades", "pain_point": "Punto clave",
+    "track_content": "Contenido del programa", "what_learn": "Lo que aprenderás",
+    "method": "Método Vedium", "how_works": "Cómo funciona en la práctica",
+    "step1_t": "Prueba y diagnóstico", "step1_p": "Haces la prueba gratuita, nos cuentas tu objetivo y recibes una primera estimación de nivel antes de hablar con el equipo.",
+    "step2_t": "Plan de estudio", "step2_p": "Vedium recomienda un programa, una frecuencia y prioridades de contenido según tu nivel, plazo y objetivo.",
+    "step3_t": "Clases en vivo", "step3_p": "Las clases combinan práctica oral, corrección, tareas y seguimiento, siempre con un profesor y foco en el progreso real.",
+    "format": "Formato", "what_expect": "Qué esperar de las clases",
+    "format_p": "La propuesta es clara: curso online, clases en vivo, acompañamiento humano y un plan orientado a objetivos. No es contenido grabado genérico.",
+    "common_q": "Dudas comunes", "faq": "Preguntas frecuentes",
+    "price": "Inversión", "see_plans": "Ver planes y frecuencias", "understand": "Conoce más",
+    "no_commit": "Empieza sin compromiso", "find_level": "Descubre tu nivel antes de elegir un plan",
+    "find_level_p": "La prueba gratuita orienta tu conversación con Vedium y evita que empieces en un programa que no corresponde a tu nivel.",
+    "no_test_title": "Habla con el equipo antes de empezar", "no_test_p": "Cuéntanos tu objetivo y nivel actual; el equipo de Vedium te indicará el módulo adecuado.",
+    "levels_available": "Niveles disponibles", "choose_level": "Elige tu nivel y empieza ahora",
+    "see_course": "Ver curso", "lessons_count": "clases"
+  },
+  "fr": {
+    "home": "Accueil", "courses": "Cours",
+    "cta_test": "Faire le test de niveau gratuit", "cta_whats": "Contacter sur WhatsApp",
+    "summary": "Résumé du parcours", "for_whom": "Pour qui", "level": "Niveau",
+    "frequency": "Fréquence", "duration": "Durée",
+    "need_diag": "Diagnostic des besoins", "pain_point": "Point clé",
+    "track_content": "Contenu du parcours", "what_learn": "Ce que vous apprendrez",
+    "method": "Méthode Vedium", "how_works": "Comment cela fonctionne en pratique",
+    "step1_t": "Test et diagnostic", "step1_p": "Vous passez le test gratuit, indiquez votre objectif et recevez une première estimation de niveau avant de parler à l'équipe.",
+    "step2_t": "Plan d'étude", "step2_p": "Vedium recommande un parcours, une fréquence et des priorités selon votre niveau, votre délai et votre objectif.",
+    "step3_t": "Cours en direct", "step3_p": "Les cours associent pratique orale, correction, exercices et suivi, toujours avec un professeur et un objectif de progression réelle.",
+    "format": "Format", "what_expect": "À quoi s'attendre pendant les cours",
+    "format_p": "La proposition est claire : cours en ligne, séances en direct, accompagnement humain et plan axé sur vos objectifs. Pas de contenu enregistré générique.",
+    "common_q": "Questions courantes", "faq": "Questions fréquentes",
+    "price": "Tarif", "see_plans": "Voir les formules et fréquences", "understand": "En savoir plus",
+    "no_commit": "Commencez sans engagement", "find_level": "Découvrez votre niveau avant de choisir une formule",
+    "find_level_p": "Le test gratuit guide votre échange avec Vedium et évite de commencer un parcours inadapté à votre niveau.",
+    "no_test_title": "Parlez à l'équipe avant de commencer", "no_test_p": "Indiquez votre objectif et votre niveau actuel ; l'équipe Vedium vous orientera vers le bon module.",
+    "levels_available": "Niveaux disponibles", "choose_level": "Choisissez votre niveau et commencez",
+    "see_course": "Voir le cours", "lessons_count": "cours"
+  },
+  "de": {
+    "home": "Startseite", "courses": "Kurse",
+    "cta_test": "Kostenlosen Einstufungstest machen", "cta_whats": "Über WhatsApp sprechen",
+    "summary": "Kursübersicht", "for_whom": "Für wen", "level": "Niveau",
+    "frequency": "Häufigkeit", "duration": "Dauer",
+    "need_diag": "Bedarfsanalyse", "pain_point": "Kernpunkt",
+    "track_content": "Kursinhalt", "what_learn": "Was Sie lernen",
+    "method": "Vedium-Methode", "how_works": "So funktioniert es in der Praxis",
+    "step1_t": "Test und Diagnose", "step1_p": "Sie machen den kostenlosen Test, nennen Ihr Ziel und erhalten eine erste Niveaueinschätzung, bevor Sie mit dem Team sprechen.",
+    "step2_t": "Lernplan", "step2_p": "Vedium empfiehlt Kursweg, Häufigkeit und Schwerpunkte passend zu Niveau, Zeitrahmen und Ziel.",
+    "step3_t": "Live-Unterricht", "step3_p": "Der Unterricht verbindet Sprechpraxis, Korrektur, Aufgaben und Begleitung – immer mit einer Lehrkraft und echtem Fortschritt.",
+    "format": "Format", "what_expect": "Was Sie im Unterricht erwartet",
+    "format_p": "Das Konzept ist klar: Onlinekurs, Live-Unterricht, persönliche Begleitung und ein zielorientierter Plan. Keine allgemeinen Aufzeichnungen.",
+    "common_q": "Häufige Fragen", "faq": "Häufig gestellte Fragen",
+    "price": "Investition", "see_plans": "Pakete und Häufigkeit ansehen", "understand": "Mehr erfahren",
+    "no_commit": "Unverbindlich starten", "find_level": "Niveau bestimmen, bevor Sie ein Paket wählen",
+    "find_level_p": "Der kostenlose Test unterstützt das Gespräch mit Vedium und verhindert den Einstieg in einen unpassenden Kursweg.",
+    "no_test_title": "Sprechen Sie vor dem Start mit unserem Team", "no_test_p": "Nennen Sie Ziel und aktuelles Niveau; das Vedium-Team empfiehlt Ihnen das richtige Modul.",
+    "levels_available": "Verfügbare Niveaus", "choose_level": "Niveau wählen und jetzt beginnen",
+    "see_course": "Kurs ansehen", "lessons_count": "Unterrichtseinheiten"
+  },
+  "ru": {
+    "home": "Главная", "courses": "Курсы",
+    "cta_test": "Пройти бесплатный тест", "cta_whats": "Написать в WhatsApp",
+    "summary": "Кратко о программе", "for_whom": "Для кого", "level": "Уровень",
+    "frequency": "Частота занятий", "duration": "Продолжительность",
+    "need_diag": "Анализ потребностей", "pain_point": "Ключевой вопрос",
+    "track_content": "Содержание программы", "what_learn": "Чему вы научитесь",
+    "method": "Методика Vedium", "how_works": "Как это работает на практике",
+    "step1_t": "Тест и диагностика", "step1_p": "Вы проходите бесплатный тест, сообщаете свою цель и получаете предварительную оценку уровня перед разговором с командой.",
+    "step2_t": "Учебный план", "step2_p": "Vedium рекомендует программу, частоту занятий и приоритеты с учетом вашего уровня, сроков и цели.",
+    "step3_t": "Живые занятия", "step3_p": "Занятия объединяют разговорную практику, исправление ошибок, задания и сопровождение преподавателя с фокусом на реальный прогресс.",
+    "format": "Формат", "what_expect": "Что вас ждет на занятиях",
+    "format_p": "Все просто: онлайн-курс, живые занятия, поддержка преподавателя и план под вашу цель. Это не набор стандартных записанных уроков.",
+    "common_q": "Частые вопросы", "faq": "Вопросы и ответы",
+    "price": "Стоимость", "see_plans": "Посмотреть планы и частоту", "understand": "Узнать подробнее",
+    "no_commit": "Начните без обязательств", "find_level": "Определите уровень перед выбором плана",
+    "find_level_p": "Бесплатный тест помогает подготовиться к разговору с Vedium и выбрать программу, соответствующую вашему уровню.",
+    "no_test_title": "Поговорите с командой перед началом", "no_test_p": "Расскажите о цели и текущем уровне — команда Vedium подберет подходящий модуль.",
+    "levels_available": "Доступные уровни", "choose_level": "Выберите уровень и начните обучение",
+    "see_course": "Посмотреть курс", "lessons_count": "занятий"
   }
 } %}
 {%- set t = vd_i18n.get(vd_lang, vd_i18n["pt-BR"]) %}
+{%- set vd_landing_routes = {
+  "pt-BR": {"home": "/", "courses": "/cursos-de-idiomas-online"},
+  "en": {"home": "/en/", "courses": "/en/catalogo"},
+  "es": {"home": "/es/", "courses": "/es/catalogo"},
+  "fr": {"home": "/fr/", "courses": "/fr/catalogo"},
+  "de": {"home": "/de/", "courses": "/de/catalogo"},
+  "ru": {"home": "/ru/", "courses": "/ru/catalogo"}
+} %}
+{%- set landing_routes = vd_landing_routes.get(vd_lang, vd_landing_routes["pt-BR"]) %}
 <section class="page-header clearfix" style="background-image:linear-gradient(rgba(15,23,42,.84),rgba(46,109,164,.80)),url({{ landing.hero_image }});">
   <div class="container"><div class="page-header__wrapper clearfix">
     <div class="page-header__title"><h2>{{ landing.short_title }}</h2></div>
-    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="/">{{ t.home }}</a></li><li><a href="/cursos-de-idiomas-online">{{ t.courses }}</a></li><li class="active">{{ landing.short_title }}</li></ul></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="{{ landing_routes.home }}">{{ t.home }}</a></li><li><a href="{{ landing_routes.courses }}">{{ t.courses }}</a></li><li class="active">{{ landing.short_title }}</li></ul></div>
   </div></div>
 </section>
 
