@@ -116,6 +116,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+    labels:
+      autoheal: "true"
 
   # --------------------------------------------------
   # WORKERS — processam fila de jobs assíncronos
@@ -333,6 +335,19 @@ services:
       - "127.0.0.1:3004:3001"
     networks:
       - vedium-network
+
+  # Reinicia serviços opt-in que falharem no healthcheck. O Socket.IO usa
+  # esse monitor para não deixar o Raven sem eventos em tempo real.
+  vedium-autoheal:
+    image: willfarrell/autoheal:1.2.0
+    container_name: vedium-autoheal
+    restart: always
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: autoheal
+      AUTOHEAL_INTERVAL: "15"
+      AUTOHEAL_START_PERIOD: "60"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   frappe-bench-v16:

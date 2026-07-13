@@ -51,6 +51,8 @@ nano deploy/.env
 
 # Copie a configuração NGINX
 cp deploy/nginx/vediums.com.conf /etc/nginx/sites-available/vediums.com
+mkdir -p /etc/nginx/snippets
+cp deploy/nginx/security-headers.conf /etc/nginx/snippets/vedium-security-headers.conf
 ln -sf /etc/nginx/sites-available/vediums.com /etc/nginx/sites-enabled/
 
 # Teste e recarregue NGINX

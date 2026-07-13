@@ -24,7 +24,9 @@ RUN apt-get update \
         pkg-config \
     && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
-    && npm install -g yarn \
+    # A imagem base mantém um NVM_DIR do usuário frappe. Sem --prefix, o npm
+    # coloca o Yarn dentro desse diretório, que não entra no PATH do runtime.
+    && npm install -g yarn --prefix /usr/local \
     && rm -rf /var/lib/apt/lists/*
 
 USER frappe
