@@ -1,0 +1,53 @@
+# Vedium LMS - Backup semanal pro Cloudflare R2
+# Cópia offsite fora do GitHub, complementar ao artifact diário do backup.yml
+# (retido 90 dias). Reaproveita o artifact mais recente, não roda backup de novo.
+
+name: Backup R2 (semanal)
+
+on:
+  schedule:
+    - cron: "30 3 * * 0" # domingo às 03:30 UTC
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  upload-r2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find latest successful backup run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow=backup.yml --status=success --limit 1 \
+            --json databaseId --jq '.[0].databaseId')
+          if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+            echo "::error::Nenhum backup bem-sucedido encontrado nos artifacts"
+            exit 1
+          fi
+          echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
+          echo "Backup run: $RUN_ID"
+
+      - name: Download backup artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --dir backup/
+          TGZ=$(find backup/ -name '*.tgz' | head -1)
+          [ -n "$TGZ" ] || { echo "::error::backup .tgz não encontrado no artifact"; exit 1; }
+          echo "TGZ=$TGZ" >> "$GITHUB_ENV"
+          ls -lh "$TGZ"
+
+      - name: Upload to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: https://ca47f39f200143c942f02ee8fc9cf1a2.r2.cloudflarestorage.com
+        run: |
+          DATE=$(date -u +%F)
+          aws s3 cp "$TGZ" "s3://vedium-backups/vedium-backup-$DATE.tgz" --endpoint-url "$R2_ENDPOINT"
+          echo "✅ Backup semanal enviado pro R2: vedium-backup-$DATE.tgz"

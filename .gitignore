@@ -129,3 +129,6 @@ idiomas/
 
 # Notas de trabalho locais (memoria de sessao) — nao versionar
 memory/
+
+# Cache/estado local do wrangler CLI (Cloudflare)
+.wrangler/
