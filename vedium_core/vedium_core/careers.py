@@ -6,6 +6,23 @@ import frappe
 
 CANDIDATURA = "Candidatura"
 
+CAREERS_ALT_LANGS = {
+    "pt-br": "https://vediums.com/carreiras",
+    "en": "https://vediums.com/en/carreiras",
+    "es": "https://vediums.com/es/carreiras",
+    "fr": "https://vediums.com/fr/carreiras",
+    "de": "https://vediums.com/de/carreiras",
+    "ru": "https://vediums.com/ru/carreiras",
+}
+
+
+def set_careers_seo_context(context, lang="pt-BR"):
+    lang_key = "pt-br" if lang == "pt-BR" else lang
+    context.lang = lang
+    context.canonical_url = CAREERS_ALT_LANGS[lang_key]
+    context.alt_langs = dict(CAREERS_ALT_LANGS)
+    context.alt_lang_url = CAREERS_ALT_LANGS["pt-br"]
+
 
 CANDIDATURA_FIELDS = [
     ("candidate_name", "Nome completo", "Data", {"reqd": 1, "in_list_view": 1}),

@@ -25,6 +25,11 @@ LANGUAGE_ROUTE_PREFIXES = (
 
 PUBLIC_LANGUAGE_ROUTES = (
     "catalogo",
+    # Alias canônico do catálogo em PT. Versões antigas do seletor regional
+    # preservavam este slug ao trocar só o prefixo e geravam, por exemplo,
+    # /en-us/cursos-de-idiomas-online (404). Mantê-lo na matriz permite
+    # redirecionar qualquer variante regional ao /<idioma>/catalogo real.
+    "cursos-de-idiomas-online",
     "sobre",
     "como-funciona",
     "aula-diagnostica",
@@ -171,6 +176,13 @@ def _build_language_prefix_redirects():
     # páginas com tradução real que não são entradas em LANDINGS
     # (controllers próprios, não landing pages).
     pt_to_lang_slug = {
+        "cursos-de-idiomas-online": {
+            "en": "catalogo",
+            "es": "catalogo",
+            "fr": "catalogo",
+            "de": "catalogo",
+            "ru": "catalogo",
+        },
         "teste-de-nivel": {
             "en": "portuguese-placement-test",
             "es": "prueba-de-nivel-de-portugues",
@@ -356,6 +368,10 @@ app_theme_color = "#2E6DA4"
 website_context = {
     "favicon": "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png",
     "splash_image": "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png",
+    "brand_html": (
+        '<img alt="Vedium" src="/assets/vedium_core/images/vedium-logo-reta-color.png" '
+        'style="height:28px;">'
+    ),
 }
 
 # =============================================================================
@@ -368,6 +384,10 @@ def get_web_context(context):
     context.pwa_enabled = True
     context.theme_color = "#2E6DA4"
     context.background_color = "#0f1419"
+    # Website Settings ainda contém um caminho legado inexistente
+    # (/images/vedium-logo.png). Força o asset versionado em toda página
+    # que usa templates/web.html, como Carreiras.
+    context.brand_html = website_context["brand_html"]
     return context
 
 

@@ -23,7 +23,11 @@ PUBLIC_E2E_WORKFLOW = ROOT / ".github" / "workflows" / "e2e-public.yml"
 API = ROOT / "vedium_core" / "vedium_core" / "api.py"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
-from vedium_core.marketing_landing_content import LANDINGS  # noqa: E402
+from vedium_core.marketing_landing_content import (  # noqa: E402
+    LANDINGS,
+    LANDING_COURSE_FILTERS,
+)
+from vedium_core.course_translations import COURSE_TRANSLATIONS  # noqa: E402
 from vedium_core.blog_content import BLOG_POSTS, get_blog_post  # noqa: E402
 from vedium_core import hooks as vedium_hooks  # noqa: E402
 
@@ -995,6 +999,122 @@ def test_english_main_menu_pages_exist_with_same_slug_and_reciprocal_hreflang():
         assert rules_by_from.get(f"/en/{slug}") is None
         assert rules_by_from.get(f"/en-us/{slug}") is None
 
+    # Alias legado/canônico em PT também deve chegar ao catálogo inglês.
+    # Uma versão antiga do seletor gerava exatamente esta URL (404).
+    assert by_source["/en/cursos-de-idiomas-online"] == "/en/catalogo"
+    assert by_source["/en-us/cursos-de-idiomas-online"] == "/en/catalogo"
+    assert by_source["/en-au/cursos-de-idiomas-online"] == "/en/catalogo"
+
+
+def test_catalog_alias_redirects_to_each_real_translated_catalog():
+    by_source = {
+        redirect["source"]: redirect["target"]
+        for redirect in vedium_hooks.LANGUAGE_PREFIX_REDIRECTS
+    }
+    expected = {
+        "en": "/en/catalogo",
+        "en-us": "/en/catalogo",
+        "en-au": "/en/catalogo",
+        "es": "/es/catalogo",
+        "es-ar": "/es/catalogo",
+        "es-co": "/es/catalogo",
+        "fr": "/fr/catalogo",
+        "fr-ca": "/fr/catalogo",
+        "de": "/de/catalogo",
+        "ru": "/ru/catalogo",
+    }
+    for prefix, target in expected.items():
+        assert by_source[f"/{prefix}/cursos-de-idiomas-online"] == target
+
+    # O proxy Cloudflare deste domínio injeta email-decode.min.js, mas o
+    # próprio /cdn-cgi retorna 404. Evita a injeção nos dois emails comuns
+    # do catálogo sem remover o link mailto acessível.
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    assert '<!--email_off--><a href="mailto:contato@vediums.com">' in navbar
+    for lang in ("", "en", "es", "fr", "de", "ru"):
+        catalog_path = WWW / lang / "catalogo.html" if lang else WWW / "catalogo.html"
+        catalog = catalog_path.read_text(encoding="utf-8")
+        assert '<!--email_off--><a href="mailto:contato@vediums.com">' in catalog
+
+
+def test_translated_course_menu_links_include_the_real_language_prefix():
+    navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    expected = (
+        "/en/learn-english-online",
+        "/en/learn-yoruba-online",
+        "/en/learn-portuguese-brazil",
+        "/es/curso-de-ingles-online-en-vivo",
+        "/es/curso-de-yoruba-online",
+        "/es/portugues-para-extranjeros",
+        "/fr/cours-anglais-en-ligne-en-direct",
+        "/fr/portugais-pour-etrangers",
+        "/de/englischkurs-online-live",
+        "/de/portugiesisch-fuer-auslaender",
+        "/ru/kurs-angliyskogo-online",
+        "/ru/kurs-yoruba-online",
+        "/ru/portugalskiy-dlya-inostrantsev",
+    )
+    for url in expected:
+        assert f'"{url}"' in navbar
+
+
+def test_russian_institutional_routes_use_hyphenated_public_filenames():
+    for slug in ("como-funciona", "aula-diagnostica", "programa-de-indicacao"):
+        assert (WWW / "ru" / f"{slug}.html").exists()
+        assert not (WWW / "ru" / f"{slug.replace('-', '_')}.html").exists()
+
+
+def test_frappe_base_template_has_valid_brand_mobile_icon_language_and_canonical():
+    base = (ROOT / "vedium_core" / "vedium_core" / "templates" / "base.html").read_text(
+        encoding="utf-8"
+    )
+    hooks = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(
+        encoding="utf-8"
+    )
+    assert '<html lang="{{ lang or boot.lang }}">' in base
+    assert '{% if canonical_url %}<link rel="canonical" href="{{ canonical_url }}">' in base
+    assert "/assets/vedium_core/vedium_assets/images/favicons/apple-touch-icon.png" in base
+    assert '"brand_html": (' in hooks
+    assert "/assets/vedium_core/images/vedium-logo-reta-color.png" in hooks
+
+
+def test_sitemap_covers_russian_institutional_pages_and_every_marketing_landing():
+    sitemap = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    for slug in (
+        "catalogo",
+        "sobre",
+        "como-funciona",
+        "aula-diagnostica",
+        "programa-de-indicacao",
+        "carreiras",
+    ):
+        assert f'{{"loc": "/ru/{slug}"' in sitemap
+    assert "def _marketing_landing_urls():" in sitemap
+    assert "for slug, landing in LANDINGS.items()" in sitemap
+    assert 'urls_by_location.setdefault(url["loc"], url)' in sitemap
+
+
+def test_careers_pages_share_canonical_hreflang_and_do_not_expose_gtm_example():
+    careers = (ROOT / "vedium_core" / "vedium_core" / "careers.py").read_text(
+        encoding="utf-8"
+    )
+    for lang in ("pt-br", "en", "es", "fr", "de", "ru"):
+        prefix = "" if lang == "pt-br" else f"/{lang}"
+        assert f'"{lang}": "https://vediums.com{prefix}/carreiras"' in careers
+    assert not (WWW / "gtm_examples.html").exists()
+    assert (ROOT / "docs" / "gtm" / "gtm_examples.html").exists()
+
+
+def test_public_nginx_canonicalizes_www_and_serves_nonempty_pwa_assets():
+    nginx = (ROOT / "deploy" / "nginx" / "vediums.com.conf").read_text(
+        encoding="utf-8"
+    )
+    assert "return 301 https://vediums.com$request_uri;" in nginx
+    assert nginx.count("location = /sw.js {") >= 2
+    assert nginx.count("location = /manifest.json {") >= 2
+    assert "proxy_pass http://127.0.0.1:8005/assets/vedium_core/js/sw.js;" in nginx
+    assert "proxy_pass http://127.0.0.1:8005/assets/vedium_core/manifest.json;" in nginx
+
     # Conteúdo real (adaptação, não tradução literal) — CTAs apontam pro
     # teste de nível de inglês e pro catálogo em inglês, não pro PT.
     catalogo_en = (WWW / "en" / "catalogo.html").read_text(encoding="utf-8")
@@ -1089,7 +1209,8 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert '"empresas": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/en/empresas"' in sitemap_py
 
-    # carreiras: web.html generico, sem hreflang (mesma limitacao do PT)
+    # carreiras: web.html genérico agora recebe canonical/hreflang pelo
+    # contexto compartilhado de careers.py + templates/base.html.
     assert (WWW / "en" / "carreiras.html").exists()
     assert (WWW / "en" / "carreiras.py").exists()
     carreiras_en = (WWW / "en" / "carreiras.html").read_text(encoding="utf-8")
@@ -1097,7 +1218,7 @@ def test_english_institutional_pages_exist_with_reciprocal_hreflang():
     assert "English Teacher" in carreiras_en_py
     assert "Submit application" in carreiras_en
     assert "vedium_core.careers.submit_candidatura" in carreiras_en
-    assert 'context.canonical_url = "https://vediums.com/en/carreiras"' in carreiras_en_py
+    assert 'set_careers_seo_context(context, "en")' in carreiras_en_py
     assert '"carreiras": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/en/carreiras"' in sitemap_py
 
@@ -1815,11 +1936,8 @@ def test_individual_course_pages_have_english_translation():
     assert 'path.startswith(f"{candidate}/curso/")' in curso_py
 
 
-def test_english_pillar_course_grid_links_to_english_course_pages():
-    """As páginas pilar EN (learn-yoruba-online, learn-portuguese-brazil)
-    ganham o mesmo grid de cursos das PT (task #38), mas linkando pra
-    /en/curso/<slug> com título traduzido — não faz sentido levar quem
-    está lendo em inglês pra uma ficha de curso 100% em português.
+def test_translated_pillar_course_grids_link_to_translated_course_pages():
+    """Grades de PLE e Iorubá acompanham o idioma da landing, inclusive RU.
     """
     landing_content = (
         ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
@@ -1829,8 +1947,39 @@ def test_english_pillar_course_grid_links_to_english_course_pages():
         '"learn-portuguese-brazil": {"category_exact": "Português para Estrangeiros"}'
         in landing_content
     )
-    assert "LANDING_COURSE_GRID_USES_EN_COURSE_URL" in landing_content
-    assert 'course.url = get_course_url(course.name, "en")' in landing_content
+    assert '"kurs-yoruba-online": {"category_prefix": "Iorubá"}' in landing_content
+    assert (
+        '"portugalskiy-dlya-inostrantsev": {"category_exact": "Português para Estrangeiros"}'
+        in landing_content
+    )
+    assert "COURSE_LEVEL_BADGE_I18N" in landing_content
+    assert 'translation = COURSE_TRANSLATIONS.get(course.name, {}).get(lang)' in landing_content
+    assert "course.url = get_course_url(course.name, lang)" in landing_content
+
+
+def test_ple_course_grid_is_available_and_translated_in_every_public_language():
+    landing_slugs = {
+        "en": "learn-portuguese-brazil",
+        "es": "portugues-para-extranjeros",
+        "fr": "portugais-pour-etrangers",
+        "de": "portugiesisch-fuer-auslaender",
+        "ru": "portugalskiy-dlya-inostrantsev",
+    }
+    course_slugs = {
+        "portugues-para-estrangeiros-basico",
+        "portugues-para-estrangeiros-intermediario",
+        "portugues-para-estrangeiros-avancado",
+    }
+
+    for lang, landing_slug in landing_slugs.items():
+        assert LANDINGS[landing_slug]["lang"] == lang
+        assert LANDING_COURSE_FILTERS[landing_slug] == {
+            "category_exact": "Português para Estrangeiros"
+        }
+        for course_slug in course_slugs:
+            translation = COURSE_TRANSLATIONS[course_slug][lang]
+            assert translation["title"].strip()
+            assert translation["short_introduction"].strip()
 
 
 def test_lesson_slot_doctype_is_not_world_writable():
@@ -2243,7 +2392,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     assert '"empresas": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/es/empresas"' in sitemap_py
 
-    # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN)
+    # carreiras: canonical/hreflang vêm do contexto compartilhado.
     assert (WWW / "es" / "carreiras.html").exists()
     assert (WWW / "es" / "carreiras.py").exists()
     carreiras_es = (WWW / "es" / "carreiras.html").read_text(encoding="utf-8")
@@ -2251,7 +2400,7 @@ def test_spanish_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Profesor de Inglés" in carreiras_es_py
     assert "Enviar postulación" in carreiras_es
     assert "vedium_core.careers.submit_candidatura" in carreiras_es
-    assert 'context.canonical_url = "https://vediums.com/es/carreiras"' in carreiras_es_py
+    assert 'set_careers_seo_context(context, "es")' in carreiras_es_py
     assert '"carreiras": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/es/carreiras"' in sitemap_py
 
@@ -2710,7 +2859,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
     assert '"empresas": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/fr/empresas"' in sitemap_py
 
-    # carreiras: web.html generico, sem hreflang (mesma limitacao do PT/EN/ES)
+    # carreiras: canonical/hreflang vêm do contexto compartilhado.
     assert (WWW / "fr" / "carreiras.html").exists()
     assert (WWW / "fr" / "carreiras.py").exists()
     carreiras_fr = (WWW / "fr" / "carreiras.html").read_text(encoding="utf-8")
@@ -2718,7 +2867,7 @@ def test_french_institutional_pages_exist_with_reciprocal_hreflang():
     assert "Professeur d'Anglais" in carreiras_fr_py
     assert "Envoyer ma candidature" in carreiras_fr
     assert "vedium_core.careers.submit_candidatura" in carreiras_fr
-    assert 'context.canonical_url = "https://vediums.com/fr/carreiras"' in carreiras_fr_py
+    assert 'set_careers_seo_context(context, "fr")' in carreiras_fr_py
     assert '"carreiras": {"en", "es", "fr", "de", "ru"}' in hooks
     assert '{"loc": "/fr/carreiras"' in sitemap_py
 

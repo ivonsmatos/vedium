@@ -1,4 +1,5 @@
 import frappe
+from vedium_core.careers import set_careers_seo_context
 
 no_cache = 1
 
@@ -18,6 +19,4 @@ def get_context(context):
         "Ventes",
         "Autre (précisez dans le message)",
     ]
-    context.lang = "fr"
-    context.canonical_url = "https://vediums.com/fr/carreiras"
-    context.alt_lang_url = "https://vediums.com/carreiras"
+    set_careers_seo_context(context, "fr")

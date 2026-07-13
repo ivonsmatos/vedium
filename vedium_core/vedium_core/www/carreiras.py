@@ -1,10 +1,12 @@
 import frappe
+from vedium_core.careers import set_careers_seo_context
 
 no_cache = 1
 
 
 def get_context(context):
     context.no_cache = 1
+    set_careers_seo_context(context)
     context.positions = [
         "Professor(a) de Ingles",
         "Professor(a) de Ioruba",

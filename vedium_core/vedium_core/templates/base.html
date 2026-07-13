@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Built on Frappe. https://frappeframework.com/ -->
-<html lang="{{boot.lang}}">
+<html lang="{{ lang or boot.lang }}">
 
 <head>
     <meta charset="utf-8">
@@ -17,12 +17,17 @@
     {% endblock %}
 
     <title>{% block title %}{{ title | striptags }}{% endblock %}</title>
+    {% if canonical_url %}<link rel="canonical" href="{{ canonical_url }}">{% endif %}
+    {% if alt_langs %}
+      {% for hreflang, href in alt_langs.items() %}<link rel="alternate" hreflang="{{ hreflang }}" href="{{ href }}">{% endfor %}
+      {% if alt_langs.get("pt-br") %}<link rel="alternate" hreflang="x-default" href="{{ alt_langs.get('pt-br') }}">{% endif %}
+    {% endif %}
 
     {% block favicon %}
     <link rel="shortcut icon" href="{{ (favicon or " /assets/frappe/images/frappe-favicon.svg") | abs_url }}"
         type="image/x-icon">
     {# Apple Touch Icons #}
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/favicons/apple-touch-icon.png">
     {% endblock %}
 
     {%- block head -%}

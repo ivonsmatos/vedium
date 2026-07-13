@@ -4330,14 +4330,20 @@ LANDING_COURSE_FILTERS = {
     "cours-anglais-en-ligne-en-direct": {"category_prefix": "Inglês"},
     "portugiesisch-fuer-auslaender": {"category_exact": "Português para Estrangeiros"},
     "englischkurs-online-live": {"category_prefix": "Inglês"},
+    "kurs-yoruba-online": {"category_prefix": "Iorubá"},
+    "portugalskiy-dlya-inostrantsev": {"category_exact": "Português para Estrangeiros"},
 }
 
-# Landings em inglês cujo grid de cursos deve linkar pra /en/curso/<slug>
-# (traduzido) em vez de /curso/<slug> — os 2 clusters aqui têm 100% dos
-# cursos cobertos por course_translations.COURSE_TRANSLATIONS. curso-de-yoruba-online
-# (ES) ainda não tem tradução de curso individual em espanhol, então fica de
-# fora por ora — o grid cai de volta pro /curso/<slug> em português.
-LANDING_COURSE_GRID_USES_EN_COURSE_URL = {"learn-yoruba-online", "learn-portuguese-brazil"}
+# Os níveis de PLE e Iorubá vêm do LMS em português. Nas landings traduzidas,
+# os títulos, resumos e links precisam acompanhar o idioma da página. O mapa
+# também corrige o selo de nível, que é calculado antes da tradução do título.
+COURSE_LEVEL_BADGE_I18N = {
+    "en": {"Básico": "Basic", "Intermediário": "Intermediate", "Avançado": "Advanced"},
+    "es": {"Básico": "Básico", "Intermediário": "Intermedio", "Avançado": "Avanzado"},
+    "fr": {"Básico": "Débutant", "Intermediário": "Intermédiaire", "Avançado": "Avancé"},
+    "de": {"Básico": "Grundstufe", "Intermediário": "Mittelstufe", "Avançado": "Fortgeschritten"},
+    "ru": {"Básico": "Базовый", "Intermediário": "Средний", "Avançado": "Продвинутый"},
+}
 
 
 def apply_landing_context(context, slug):
@@ -4372,16 +4378,19 @@ def get_marketing_landing(slug):
         from vedium_core.courses import get_published_courses
 
         course_grid = get_published_courses(**course_filter)
-        if slug in LANDING_COURSE_GRID_USES_EN_COURSE_URL:
+        if lang != "pt-BR":
             from vedium_core.course_translations import COURSE_TRANSLATIONS
+            from vedium_core.course_urls import get_course_url
 
             for course in course_grid:
-                translation = COURSE_TRANSLATIONS.get(course.name, {}).get("en")
+                translation = COURSE_TRANSLATIONS.get(course.name, {}).get(lang)
                 if translation:
                     course.title = translation["title"]
                     course.short_introduction = translation["short_introduction"]
-                    from vedium_core.course_urls import get_course_url
-                    course.url = get_course_url(course.name, "en")
+                    course.level_badge = COURSE_LEVEL_BADGE_I18N.get(lang, {}).get(
+                        course.level_badge, course.level_badge
+                    )
+                    course.url = get_course_url(course.name, lang)
         landing["course_grid"] = course_grid
 
     # Versões alternativas em outros idiomas (hreflang). "alt" mapeia idioma -> slug.

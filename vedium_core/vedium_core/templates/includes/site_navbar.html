@@ -88,9 +88,9 @@
    de marketing_landing_content.py); onde não existe tradução real (ex.:
    Iorubá em fr/de), mesma regra: cai no catálogo daquele idioma. #}
 {%- set vd_courses_links = {
-  "english": {"pt-br": "/curso-de-ingles-online", "en": "/learn-english-online", "es": "/curso-de-ingles-online-en-vivo", "fr": "/cours-anglais-en-ligne-en-direct", "de": "/englischkurs-online-live", "ru": "/ru/kurs-angliyskogo-online"},
-  "yoruba": {"pt-br": "/curso-de-ioruba-online", "en": "/learn-yoruba-online", "es": "/curso-de-yoruba-online", "ru": "/ru/kurs-yoruba-online"},
-  "ple": {"pt-br": "/portugues-para-estrangeiros", "en": "/learn-portuguese-brazil", "es": "/portugues-para-extranjeros", "fr": "/portugais-pour-etrangers", "de": "/portugiesisch-fuer-auslaender", "ru": "/ru/portugalskiy-dlya-inostrantsev"},
+  "english": {"pt-br": "/curso-de-ingles-online", "en": "/en/learn-english-online", "es": "/es/curso-de-ingles-online-en-vivo", "fr": "/fr/cours-anglais-en-ligne-en-direct", "de": "/de/englischkurs-online-live", "ru": "/ru/kurs-angliyskogo-online"},
+  "yoruba": {"pt-br": "/curso-de-ioruba-online", "en": "/en/learn-yoruba-online", "es": "/es/curso-de-yoruba-online", "ru": "/ru/kurs-yoruba-online"},
+  "ple": {"pt-br": "/portugues-para-estrangeiros", "en": "/en/learn-portuguese-brazil", "es": "/es/portugues-para-extranjeros", "fr": "/fr/portugais-pour-etrangers", "de": "/de/portugiesisch-fuer-auslaender", "ru": "/ru/portugalskiy-dlya-inostrantsev"},
   "spanish": {"pt-br": "/curso-de-espanhol-online"},
   "hebrew": {"pt-br": "/curso-de-hebraico-online"},
 } %}
@@ -144,7 +144,7 @@
                             </li>
                             <li class="main-header--one__top-contact-info-list-item">
                                 <div class="icon"><span class="icon-message"></span></div>
-                                <div class="text"><h6>{{ vd_chrome_t.talk }}</h6><p><a href="mailto:contato@vediums.com">contato@vediums.com</a></p></div>
+                                <div class="text"><h6>{{ vd_chrome_t.talk }}</h6><p><!--email_off--><a href="mailto:contato@vediums.com">contato@vediums.com</a><!--/email_off--></p></div>
                             </li>
                         </ul>
                     </div>

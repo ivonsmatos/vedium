@@ -175,6 +175,24 @@ STATIC_URLS = [
     {"loc": "/de/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
     {"loc": "/de/empresas", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/de/carreiras", "priority": "0.4", "changefreq": "monthly"},
+    # Páginas institucionais russas. As landings SEO russas entram pela
+    # função _marketing_landing_urls(), evitando nova omissão por idioma.
+    {"loc": "/ru", "priority": "0.9", "changefreq": "weekly"},
+    {"loc": "/ru/catalogo", "priority": "0.8", "changefreq": "daily"},
+    {"loc": "/ru/sobre", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/ru/como-funciona", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/ru/faq", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/ru/contato", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/ru/planos", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/ru/matricula", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/ru/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
+    {"loc": "/ru/certificado", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/ru/comunidade", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/ru/programa-de-indicacao", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/ru/empresas", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/ru/carreiras", "priority": "0.4", "changefreq": "monthly"},
+    {"loc": "/ru/diferenciais", "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/ru/metodologia", "priority": "0.5", "changefreq": "monthly"},
 ]
 
 def _absolute_url(path):
@@ -214,6 +232,20 @@ def _course_urls():
     return urls
 
 
+def _marketing_landing_urls():
+    """Inclui toda landing publicada, sem listas manuais por idioma."""
+    from vedium_core.marketing_landing_content import LANDINGS, LANG_URL_PREFIX
+
+    return [
+        {
+            "loc": f"/{LANG_URL_PREFIX.get(landing.get('lang', 'pt-BR'), '')}{slug}",
+            "priority": "0.7",
+            "changefreq": "monthly",
+        }
+        for slug, landing in LANDINGS.items()
+    ]
+
+
 def _blog_urls():
     try:
         from vedium_core.blog_content import list_blog_posts
@@ -229,7 +261,13 @@ def _blog_urls():
 
 def get_context(context):
     today = nowdate()
-    urls = STATIC_URLS + _course_urls() + _blog_urls()
+    candidates = STATIC_URLS + _marketing_landing_urls() + _course_urls() + _blog_urls()
+    # STATIC_URLS já contém algumas landings prioritárias. Mantém a primeira
+    # configuração e elimina duplicatas no XML.
+    urls_by_location = {}
+    for url in candidates:
+        urls_by_location.setdefault(url["loc"], url)
+    urls = list(urls_by_location.values())
 
     context.no_cache = 1
     context.links = [
