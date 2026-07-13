@@ -7,10 +7,10 @@ com mais de poucas semanas.
 ## Apps instalados
 
 `frappe`, `erpnext`, `payments`, `lms`, `vedium_core`, `telephony`,
-`helpdesk`, `crm`, `hrms`, `insights`, `wiki`.
+`helpdesk`, `crm`, `hrms`, `insights`, `wiki`, `raven`.
 
 Não instalados/fora do stack atual: `education`, `builder`, `drive`,
-`frappe_whatsapp`, `raven`. Ver [doc 04](04-ecossistema-frappe-oficial.md)
+`frappe_whatsapp`. Ver [doc 04](04-ecossistema-frappe-oficial.md)
 para trade-offs e critérios de adoção.
 
 ## Cursos e certificação
@@ -84,6 +84,32 @@ para trade-offs e critérios de adoção.
   continua criando `Support Ticket` pra leads de matrícula/B2B) — a
   correção só destravou o acesso à página `/crm`, não migrou nenhum
   fluxo.
+
+## Raven (`raven`)
+
+- **Corrigido em 2026-07-13** (patch manual, ⚠️ ver risco abaixo): chat
+  em tempo real quebrado — toast "Realtime events are not working" e
+  mensagens só apareciam após dar refresh na página. Causa raiz: o
+  handshake de long-polling do Socket.IO (Engine.IO) ficava instável
+  atravessando a rede anycast do Cloudflare (requests da mesma sessão
+  chegando por nós de borda diferentes, fora de ordem) — nginx, Redis,
+  `vedium-socketio` e `host_name` do site estavam todos corretos; não
+  era bug de config do servidor.
+- Fix: `frappe-react-sdk` (usado pelo Raven) não expõe `transports` como
+  opção configurável ao instanciar o `socket.io-client`, então caía no
+  padrão (`polling` + upgrade). Corrigido injetando
+  `transports:["websocket"]` direto no bundle já compilado servido em
+  produção: `apps/raven/raven/public/raven/assets/index-CXbC3MJi.js`
+  (backup em `index-CXbC3MJi.js.bak-2026-07-13` no mesmo diretório,
+  dentro do container `vedium-frappe`).
+- ⚠️ **Risco**: é um patch manual no arquivo **compilado/minificado** do
+  app, **não um commit git nem mudança no source do `frappe-react-sdk`**
+  — qualquer atualização/rebuild futuro do app `raven` (novo hash de
+  bundle, ex. deixa de ser `index-CXbC3MJi.js`) sobrescreve e desfaz a
+  correção sem aviso. Se o toast de realtime voltar a aparecer após uma
+  atualização do Raven, esse é o primeiro lugar a checar. Fix definitivo
+  seria via fork/PR upstream do `frappe-react-sdk` expondo `transports`
+  como prop do `FrappeProvider`.
 
 ## Helpdesk (`helpdesk`)
 

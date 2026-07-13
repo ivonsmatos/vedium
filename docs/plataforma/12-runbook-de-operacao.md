@@ -63,11 +63,13 @@ continua vendo o estado velho.
   distintas; cada escrita nova em produção (mesmo pequena, tipo um
   `Custom DocPerm`) pede confirmação de novo, nomeando a ação específica.
 - **Patch manual em arquivo de app instalado (fora do `vedium_core`) não
-  é rastreado por git** — o fix do `crm` (`crm/utils/__init__.py`) foi
-  editado direto no container. Funciona, mas um futuro `bench update`
-  do app `crm` pode sobrescrever sem aviso. Registrar esse tipo de patch
-  no [doc 11](11-estado-do-ambiente.md) (checklist vivo) pra não
-  esquecer que existe.
+  é rastreado por git** — já aconteceu duas vezes: o fix do `crm`
+  (`crm/utils/__init__.py`) e o fix de realtime do `raven` (bundle
+  compilado `index-CXbC3MJi.js`), ambos editados direto no container.
+  Funcionam, mas um futuro `bench update`/rebuild do respectivo app pode
+  sobrescrever sem aviso. Registrar esse tipo de patch no
+  [doc 11](11-estado-do-ambiente.md) (checklist vivo) pra não esquecer
+  que existe.
 - **Commit com múltiplos agentes na mesma árvore (sem isolamento de
   worktree)**: usar `git add <arquivo>` + `git commit <arquivo...>`
   (pathspec explícito), nunca `git add -A`/`git commit -a`, quando há
