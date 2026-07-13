@@ -32,6 +32,8 @@ log "Sincronizando vedium_core para o volume..."
 rsync -av --delete \
   --exclude="__pycache__" \
   --exclude="*.pyc" \
+  --exclude=".pytest_cache" \
+  --exclude="node_modules" \
   --exclude=".git" \
   "$APP_SRC/" "$APP_DEST/"
 log "Rsync vedium_core concluído."
