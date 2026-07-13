@@ -3663,6 +3663,12 @@ def test_translated_landings_translate_shared_chrome_and_keep_header_on_one_row(
     assert "margin-left: clamp(16px, 1.55vw, 30px)" in navbar
     assert '"ru": {"home": "Главная"' in navbar
 
+    cookie_js = (ROOT / "vedium_core" / "vedium_core" / "public" / "js" / "cookie-consent.js").read_text(encoding="utf-8")
+    for lang in ("pt", "en", "es", "fr", "de", "ru"):
+        assert f"    {lang}: {{" in cookie_js
+    assert "Usamos cookies para mejorar tu experiencia" in cookie_js
+    assert "Мы используем файлы cookie" in cookie_js
+
 
 def test_russian_cluster_has_reciprocal_hreflang_and_real_pages():
     """Rollout russo (5º idioma da sequência en->es->fr->de->ru->zh,

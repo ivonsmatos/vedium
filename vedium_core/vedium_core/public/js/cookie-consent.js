@@ -1,5 +1,40 @@
 /* Vedium — barra de consentimento de cookies (LGPD) */
 (function () {
+  var language = ((document.documentElement.lang || "pt-BR").toLowerCase().split("-")[0]);
+  var messages = {
+    pt: {
+      aria: "Aviso de cookies",
+      text: "Usamos cookies para melhorar a sua experiência e analisar o uso do site. Ao continuar navegando, você concorda com a nossa ",
+      privacy: "Política de Privacidade", accept: "Aceitar", more: "Saiba mais"
+    },
+    en: {
+      aria: "Cookie notice",
+      text: "We use cookies to improve your experience and analyze website usage. By continuing to browse, you agree to our ",
+      privacy: "Privacy Policy", accept: "Accept", more: "Learn more"
+    },
+    es: {
+      aria: "Aviso de cookies",
+      text: "Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Al continuar navegando, aceptas nuestra ",
+      privacy: "Política de Privacidad", accept: "Aceptar", more: "Más información"
+    },
+    fr: {
+      aria: "Avis relatif aux cookies",
+      text: "Nous utilisons des cookies pour améliorer votre expérience et analyser l'utilisation du site. En poursuivant votre navigation, vous acceptez notre ",
+      privacy: "Politique de confidentialité", accept: "Accepter", more: "En savoir plus"
+    },
+    de: {
+      aria: "Cookie-Hinweis",
+      text: "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und die Nutzung der Website zu analysieren. Wenn Sie weitersurfen, stimmen Sie unserer ",
+      privacy: "Datenschutzerklärung", accept: "Akzeptieren", more: "Mehr erfahren"
+    },
+    ru: {
+      aria: "Уведомление о файлах cookie",
+      text: "Мы используем файлы cookie, чтобы улучшить работу сайта и анализировать его использование. Продолжая просмотр, вы соглашаетесь с нашей ",
+      privacy: "Политикой конфиденциальности", accept: "Принять", more: "Подробнее"
+    }
+  };
+  var copy = messages[language] || messages.pt;
+
   try {
     var saved = localStorage.getItem("vedium_cookie_consent");
     if (saved === "1" || saved === "accepted" || saved === "essential") return;
@@ -27,14 +62,13 @@
     var bar = document.createElement("div");
     bar.id = "vd-cookie-bar";
     bar.setAttribute("role", "dialog");
-    bar.setAttribute("aria-label", "Aviso de cookies");
+    bar.setAttribute("aria-label", copy.aria);
     bar.innerHTML =
-      '<p>Usamos cookies para melhorar a sua experiência e analisar o uso do site. ' +
-      'Ao continuar navegando, você concorda com a nossa ' +
-      '<a href="/privacidade">Política de Privacidade</a>.</p>' +
+      '<p>' + copy.text +
+      '<a href="/privacidade">' + copy.privacy + '</a>.</p>' +
       '<span class="vd-cookie-actions">' +
-      '<button id="vd-cookie-ok" type="button">Aceitar</button>' +
-      '<a class="vd-cookie-more" href="/privacidade">Saiba mais</a>' +
+      '<button id="vd-cookie-ok" type="button">' + copy.accept + '</button>' +
+      '<a class="vd-cookie-more" href="/privacidade">' + copy.more + '</a>' +
       '</span>';
     document.body.appendChild(bar);
     var btn = document.getElementById("vd-cookie-ok");
