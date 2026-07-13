@@ -153,18 +153,19 @@ else
 fi
 
 # ------------------------------------------------------------------
-# 4. Restaurar volume frappe-bench-data
+# 4. Restaurar o volume Frappe ativo
 # ------------------------------------------------------------------
 FRAPPE_BENCH_RESTORE=$(find "${RESTORE_TMP}/tmp/vedium-frappe-bench" -maxdepth 0 -type d 2>/dev/null || true)
 
 if [[ -d "${FRAPPE_BENCH_RESTORE}" ]]; then
-    log "Restaurando volume frappe-bench-data..."
+    FRAPPE_BENCH_VOLUME="${FRAPPE_BENCH_VOLUME:-vedium_frappe-bench-v16}"
+    log "Restaurando volume ${FRAPPE_BENCH_VOLUME}..."
     docker run --rm \
-        -v vedium_frappe-bench-data:/data \
+        -v "${FRAPPE_BENCH_VOLUME}:/data" \
         -v "${FRAPPE_BENCH_RESTORE}":/source:ro \
         alpine sh -c "rm -rf /data/* && cp -a /source/. /data/" \
-        || die "Falha ao restaurar volume frappe-bench-data"
-    log "Volume frappe-bench-data restaurado"
+        || die "Falha ao restaurar volume ${FRAPPE_BENCH_VOLUME}"
+    log "Volume ${FRAPPE_BENCH_VOLUME} restaurado"
 else
     log "Aviso: diretório frappe-bench não encontrado no snapshot — volume não alterado"
 fi

@@ -95,16 +95,17 @@ log "Enviando para repositório restic: ${RESTIC_REPOSITORY}..."
 
 BACKUP_PATHS=("${DUMP_TMP}")
 
-# Exportar volume frappe-bench-data para diretório temporário via docker
+# Exportar o volume Frappe ativo para diretório temporário via docker
+FRAPPE_BENCH_VOLUME="${FRAPPE_BENCH_VOLUME:-vedium_frappe-bench-v16}"
 FRAPPE_TMP="/tmp/vedium-frappe-bench"
 mkdir -p "${FRAPPE_TMP}"
 if docker run --rm \
-        -v vedium_frappe-bench-data:/data:ro \
+        -v "${FRAPPE_BENCH_VOLUME}:/data:ro" \
         -v "${FRAPPE_TMP}":/backup \
         alpine sh -c "cp -a /data/. /backup/"; then
     BACKUP_PATHS+=("${FRAPPE_TMP}")
 else
-    alert "Falha ao exportar volume frappe-bench-data"
+    alert "Falha ao exportar volume ${FRAPPE_BENCH_VOLUME}"
     BACKUP_FAILED=1
 fi
 

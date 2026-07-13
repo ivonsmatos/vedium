@@ -10,7 +10,8 @@ set -euo pipefail
 
 REPO_DIR="/opt/vedium-src"
 APP_SRC="$REPO_DIR/vedium_core"
-APP_DEST="/var/lib/docker/volumes/vedium_frappe-bench-data/_data/apps/vedium_core"
+FRAPPE_BENCH_VOLUME="${FRAPPE_BENCH_VOLUME:-vedium_frappe-bench-v16}"
+APP_DEST="/var/lib/docker/volumes/${FRAPPE_BENCH_VOLUME}/_data/apps/vedium_core"
 SITE="app.vediums.com"
 COMPOSE_DIR="/opt/vedium"
 LOG="/var/log/vedium-app-deploy.log"
@@ -40,6 +41,7 @@ log "Sincronizando pasta deploy/ para $COMPOSE_DIR..."
 rsync -av --delete \
   --exclude=".git" \
   --exclude=".env" \
+  --exclude="scripts/app-deploy.sh" \
   "$REPO_DIR/deploy/" "$COMPOSE_DIR/"
 log "Rsync deploy/ concluído."
 

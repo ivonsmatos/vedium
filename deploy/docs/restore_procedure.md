@@ -40,7 +40,7 @@ docker-compose down
 
 # Restaurar volumes
 docker run --rm \
-    -v vedium_frappe-bench-data:/data \
+    -v vedium_frappe-bench-v16:/data \
     -v $(pwd):/backup \
     alpine tar xzf /backup/frappe-bench-data.tar.gz -C /data
 ```
