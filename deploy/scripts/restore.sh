@@ -14,7 +14,7 @@
 #   RESTIC_REPOSITORY  — mesmo que backup.sh
 #   RESTIC_PASSWORD    — mesmo que backup.sh
 #   AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
-#   MYSQL_ROOT_PASSWORD
+#   As credenciais do banco são lidas do site_config.json do Frappe.
 # =============================================================
 set -euo pipefail
 
@@ -23,6 +23,7 @@ COMPOSE_DIR="${COMPOSE_DIR:-/opt/vedium}"
 RESTORE_TMP="/tmp/vedium-restore"
 SNAPSHOT_ID="latest"
 DRY_RUN=false
+SITE_CONFIG_PATH="${SITE_CONFIG_PATH:-/var/lib/docker/volumes/vedium_vedium-sites/_data/${FRAPPE_SITE_NAME:-app.vediums.com}/site_config.json}"
 
 # ------------------------------------------------------------------
 # Funções utilitárias
@@ -48,9 +49,7 @@ Exemplos:
   $0 --dry-run                # Testa sem alterar dados
 
 Variáveis necessárias:
-  RESTIC_REPOSITORY, RESTIC_PASSWORD,
-  AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
-  MYSQL_ROOT_PASSWORD
+  RESTIC_REPOSITORY, RESTIC_PASSWORD
 EOF
 }
 
@@ -73,13 +72,28 @@ done
 # ------------------------------------------------------------------
 # Validar dependências e variáveis
 # ------------------------------------------------------------------
-for cmd in restic docker; do
+for cmd in restic docker python3; do
     command -v "$cmd" >/dev/null 2>&1 || die "Dependência ausente: $cmd"
 done
 
-for var in RESTIC_REPOSITORY RESTIC_PASSWORD MYSQL_ROOT_PASSWORD; do
+for var in RESTIC_REPOSITORY RESTIC_PASSWORD; do
     [[ -n "${!var:-}" ]] || die "Variável de ambiente ausente: $var"
 done
+
+[[ -r "${SITE_CONFIG_PATH}" ]] || die "site_config.json não encontrado: ${SITE_CONFIG_PATH}"
+mapfile -t DB_CREDENTIALS < <(python3 - "${SITE_CONFIG_PATH}" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    config = json.load(handle)
+print(config["db_name"])
+print(config["db_password"])
+PY
+)
+DB_NAME="${DB_CREDENTIALS[0]:-}"
+DB_PASSWORD="${DB_CREDENTIALS[1]:-}"
+[[ -n "${DB_NAME}" && -n "${DB_PASSWORD}" ]] || die "Credenciais do banco ausentes"
 
 # ------------------------------------------------------------------
 # Confirmação interativa (pular se --dry-run)
@@ -103,8 +117,10 @@ mkdir -p "${RESTORE_TMP}"
 
 log "Extraindo snapshot ${SNAPSHOT_ID} para ${RESTORE_TMP}..."
 if [[ "${DRY_RUN}" == true ]]; then
-    restic restore "${SNAPSHOT_ID}" --target "${RESTORE_TMP}" --dry-run --verbose
-    log "[DRY-RUN] Concluído. Nenhum dado alterado."
+    # Versões anteriores do Restic não oferecem `restore --dry-run`.
+    # Listar a árvore valida acesso, senha, snapshot e metadados sem gravar dados.
+    restic ls "${SNAPSHOT_ID}" >/dev/null
+    log "[DRY-RUN] Snapshot acessível e árvore validada. Nenhum dado alterado."
     exit 0
 fi
 
@@ -138,14 +154,14 @@ if [[ -f "${DUMP_FILE}" ]]; then
     # Criar backup de segurança do banco atual antes de sobrescrever
     SAFE_DUMP="/tmp/vedium-pre-restore-$(date +%Y%m%d%H%M%S).sql.gz"
     log "Criando backup de segurança do banco atual em ${SAFE_DUMP}..."
-    docker exec vedium-mariadb mysqldump \
-        -u root -p"${MYSQL_ROOT_PASSWORD}" \
-        --all-databases --single-transaction 2>/dev/null | gzip > "${SAFE_DUMP}" \
+    docker exec vedium-mariadb mariadb-dump \
+        -u "${DB_NAME}" -p"${DB_PASSWORD}" \
+        "${DB_NAME}" --single-transaction 2>/dev/null | gzip > "${SAFE_DUMP}" \
         || log "Aviso: não foi possível criar backup de segurança do banco atual"
 
     # Restaurar
-    zcat "${DUMP_FILE}" | docker exec -i vedium-mariadb mysql \
-        -u root -p"${MYSQL_ROOT_PASSWORD}" \
+    zcat "${DUMP_FILE}" | docker exec -i vedium-mariadb mariadb \
+        -u "${DB_NAME}" -p"${DB_PASSWORD}" "${DB_NAME}" \
         || die "Falha ao restaurar MariaDB"
     log "Banco restaurado com sucesso"
 else
@@ -155,10 +171,15 @@ fi
 # ------------------------------------------------------------------
 # 4. Restaurar o volume Frappe ativo
 # ------------------------------------------------------------------
-FRAPPE_BENCH_RESTORE=$(find "${RESTORE_TMP}/tmp/vedium-frappe-bench" -maxdepth 0 -type d 2>/dev/null || true)
+FRAPPE_BENCH_VOLUME="${FRAPPE_BENCH_VOLUME:-vedium_frappe-bench-v16}"
+FRAPPE_BENCH_RESTORE="${RESTORE_TMP}/var/lib/docker/volumes/${FRAPPE_BENCH_VOLUME}/_data"
+
+# Compatibilidade com snapshots produzidos pela versão antiga do backup.
+if [[ ! -d "${FRAPPE_BENCH_RESTORE}" ]]; then
+    FRAPPE_BENCH_RESTORE="${RESTORE_TMP}/tmp/vedium-frappe-bench"
+fi
 
 if [[ -d "${FRAPPE_BENCH_RESTORE}" ]]; then
-    FRAPPE_BENCH_VOLUME="${FRAPPE_BENCH_VOLUME:-vedium_frappe-bench-v16}"
     log "Restaurando volume ${FRAPPE_BENCH_VOLUME}..."
     docker run --rm \
         -v "${FRAPPE_BENCH_VOLUME}:/data" \

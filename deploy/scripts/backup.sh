@@ -14,7 +14,7 @@
 #   RESTIC_PASSWORD    — senha de criptografia (gerada com openssl rand -base64 32)
 #   AWS_ACCESS_KEY_ID  — credencial do bucket Wasabi/R2
 #   AWS_SECRET_ACCESS_KEY
-#   MYSQL_ROOT_PASSWORD
+#   As credenciais do banco são lidas do site_config.json do Frappe.
 #   TELEGRAM_BOT_TOKEN (opcional) — alertas de falha
 #   TELEGRAM_CHAT_ID   (opcional)
 # =============================================================
@@ -24,6 +24,7 @@ LOG_FILE="${LOG_FILE:-/var/log/vedium-backup.log}"
 COMPOSE_DIR="${COMPOSE_DIR:-/opt/vedium}"
 SITE_NAME="${FRAPPE_SITE_NAME:-app.vediums.com}"
 DUMP_TMP="/tmp/vedium-mariadb-dump.sql.gz"
+SITE_CONFIG_PATH="${SITE_CONFIG_PATH:-/var/lib/docker/volumes/vedium_vedium-sites/_data/${SITE_NAME}/site_config.json}"
 
 # ------------------------------------------------------------------
 # Funções utilitárias
@@ -49,14 +50,23 @@ notify_ok() {
     fi
 }
 
+# Impede dois backups simultâneos (por exemplo, cron + execução manual) e
+# garante a remoção do dump temporário mesmo quando o processo é interrompido.
+exec 9>/var/lock/vedium-backup.lock
+if ! flock -n 9; then
+    log "Outro backup já está em execução; encerrando sem iniciar uma cópia concorrente."
+    exit 0
+fi
+trap 'rm -f "${DUMP_TMP}"' EXIT
+
 # ------------------------------------------------------------------
 # Validar dependências e variáveis
 # ------------------------------------------------------------------
-for cmd in restic docker curl; do
+for cmd in restic docker curl python3 flock; do
     command -v "$cmd" >/dev/null 2>&1 || { alert "Dependência ausente: $cmd"; exit 1; }
 done
 
-for var in RESTIC_REPOSITORY RESTIC_PASSWORD MYSQL_ROOT_PASSWORD; do
+for var in RESTIC_REPOSITORY RESTIC_PASSWORD; do
     [[ -n "${!var:-}" ]] || { alert "Variável de ambiente ausente: $var"; exit 1; }
 done
 
@@ -69,14 +79,36 @@ fi
 log "=== Iniciando backup Vedium (restic) ==="
 BACKUP_FAILED=0
 
+if [[ ! -r "${SITE_CONFIG_PATH}" ]]; then
+    alert "site_config.json não encontrado: ${SITE_CONFIG_PATH}"
+    exit 1
+fi
+
+mapfile -t DB_CREDENTIALS < <(python3 - "${SITE_CONFIG_PATH}" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    config = json.load(handle)
+print(config["db_name"])
+print(config["db_password"])
+PY
+)
+DB_NAME="${DB_CREDENTIALS[0]:-}"
+DB_PASSWORD="${DB_CREDENTIALS[1]:-}"
+[[ -n "${DB_NAME}" && -n "${DB_PASSWORD}" ]] || {
+    alert "Credenciais do banco ausentes em ${SITE_CONFIG_PATH}"
+    exit 1
+}
+
 # ------------------------------------------------------------------
 # 1. Dump MariaDB → arquivo temporário (single-transaction: zero downtime)
 # ------------------------------------------------------------------
 log "Fazendo dump do MariaDB..."
-if docker exec vedium-mariadb mysqldump \
-        -u root \
-        -p"${MYSQL_ROOT_PASSWORD}" \
-        --all-databases \
+if docker exec vedium-mariadb mariadb-dump \
+        -u "${DB_NAME}" \
+        -p"${DB_PASSWORD}" \
+        "${DB_NAME}" \
         --single-transaction \
         --routines \
         --triggers \
@@ -95,17 +127,14 @@ log "Enviando para repositório restic: ${RESTIC_REPOSITORY}..."
 
 BACKUP_PATHS=("${DUMP_TMP}")
 
-# Exportar o volume Frappe ativo para diretório temporário via docker
+# O cron roda como root, então o Restic pode ler o volume diretamente.
+# Isso evita duplicar vários GB em /tmp antes de cada backup.
 FRAPPE_BENCH_VOLUME="${FRAPPE_BENCH_VOLUME:-vedium_frappe-bench-v16}"
-FRAPPE_TMP="/tmp/vedium-frappe-bench"
-mkdir -p "${FRAPPE_TMP}"
-if docker run --rm \
-        -v "${FRAPPE_BENCH_VOLUME}:/data:ro" \
-        -v "${FRAPPE_TMP}":/backup \
-        alpine sh -c "cp -a /data/. /backup/"; then
-    BACKUP_PATHS+=("${FRAPPE_TMP}")
+FRAPPE_VOLUME_PATH="/var/lib/docker/volumes/${FRAPPE_BENCH_VOLUME}/_data"
+if [[ -d "${FRAPPE_VOLUME_PATH}" ]]; then
+    BACKUP_PATHS+=("${FRAPPE_VOLUME_PATH}")
 else
-    alert "Falha ao exportar volume ${FRAPPE_BENCH_VOLUME}"
+    alert "Volume Frappe não encontrado: ${FRAPPE_VOLUME_PATH}"
     BACKUP_FAILED=1
 fi
 
@@ -152,7 +181,6 @@ restic check --read-data-subset=5% || {
 # 5. Limpeza de arquivos temporários
 # ------------------------------------------------------------------
 rm -f "${DUMP_TMP}"
-rm -rf "${FRAPPE_TMP}"
 
 # ------------------------------------------------------------------
 # 6. Alerta de espaço em disco

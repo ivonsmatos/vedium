@@ -90,6 +90,21 @@ reversão é manual — refazer a ação contrária (ex.: deletar o registro
 
 ## Backup
 
-`Backup Production` roda agendado (GitHub Actions, ver
-`gh run list --repo ivonsmatos/vedium`). Não verificado nesta sessão onde
-o backup é armazenado nem como restaurar — pendência de documentação.
+O host executa `/opt/vedium/scripts/backup.sh` diariamente às 02:00. As
+credenciais ficam em `/etc/vedium/backup.env` (modo `0600`), separadas do
+`.env` do Docker Compose. O backup Restic inclui o banco do site, o volume
+`vedium_frappe-bench-v16`, a configuração de produção e o Nginx.
+
+O repositório local padrão é `/var/backups/vedium-restic`. Ele é criptografado
+e permite validar backup/restauração, mas não protege contra perda total do
+servidor. Para proteção contra desastre, configure `RESTIC_REPOSITORY` e as
+credenciais S3 em `/etc/vedium/backup.env` para Wasabi ou Cloudflare R2.
+
+Comandos operacionais:
+
+```bash
+. /etc/vedium/backup.env
+/opt/vedium/scripts/restore.sh --list
+/opt/vedium/scripts/restore.sh --dry-run
+restic check --read-data-subset=5%
+```
