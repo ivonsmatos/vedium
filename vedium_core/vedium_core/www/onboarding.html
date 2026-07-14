@@ -92,7 +92,7 @@ html,body{height:100%;font-family:'Kumbh Sans',sans-serif;background:var(--bg);c
     <div class="vd-slide active" id="slide-0">
       <div class="vd-emoji">🎉</div>
       <h2>Você chegou ao lugar certo!</h2>
-      <p>Bem-vindo à <strong style="color:var(--gold)">Vedium</strong> — a plataforma de idiomas que respeita sua história e acelera o seu futuro. Em 3 passos vamos personalizar sua experiência.</p>
+      <p>Bem-vindo à <strong style="color:var(--gold)">Vedium</strong> a plataforma de idiomas que respeita sua história e acelera o seu futuro. Em 3 passos vamos personalizar sua experiência.</p>
     </div>
 
     <!-- Slide 1: Escolha de idioma -->
@@ -143,7 +143,7 @@ html,body{height:100%;font-family:'Kumbh Sans',sans-serif;background:var(--bg);c
       <div class="vd-pref-list" id="freq-list">
         <div class="vd-pref-item" data-freq="1" onclick="selectFreq(this)">
           <span class="icon">🌱</span>
-          <div class="vd-pref-item-text"><h4>1× por semana</h4><p>Ritmo suave — ideal para manter</p></div>
+          <div class="vd-pref-item-text"><h4>1× por semana</h4><p>Ritmo suave ideal para manter</p></div>
         </div>
         <div class="vd-pref-item" data-freq="2" onclick="selectFreq(this)">
           <span class="icon">📈</span>
@@ -151,7 +151,7 @@ html,body{height:100%;font-family:'Kumbh Sans',sans-serif;background:var(--bg);c
         </div>
         <div class="vd-pref-item" data-freq="5" onclick="selectFreq(this)">
           <span class="icon">🚀</span>
-          <div class="vd-pref-item-text"><h4>5× ou mais</h4><p>Imersão — resultados em meses</p></div>
+          <div class="vd-pref-item-text"><h4>5× ou mais</h4><p>Imersão resultados em meses</p></div>
         </div>
       </div>
     </div>
@@ -273,7 +273,7 @@ html,body{height:100%;font-family:'Kumbh Sans',sans-serif;background:var(--bg);c
   }
 
   function saveOnboarding(){
-    // Salva preferências via frappe.call (silencioso — não bloquear UX)
+    // Salva preferências via frappe.call (silencioso não bloquear UX)
     if(typeof frappe === 'undefined') return;
     frappe.call({
       method: 'vedium_core.onboarding.save_onboarding',
