@@ -284,6 +284,23 @@ website_route_rules = [
     # posts (inclusive os antigos) passam por aqui agora — não há mais
     # www/blog/<slug>.html individuais.
     {"from_route": "/blog/<slug>", "to_route": "blog_post"},
+    # Estrutura por categoria (2026-07-14, ver blog_content.CATEGORY_PAGES):
+    # /blog/<slug> acima também serve as páginas de categoria PT (ingles,
+    # ioruba, hebraico, espanhol — blog_post.py detecta pelo nome reservado).
+    # Artigos NOVOS (publicados depois da reestruturação) ficam aninhados
+    # sob a categoria: /blog/<categoria>/<slug>.
+    {"from_route": "/blog/<category>/<slug>", "to_route": "blog_post"},
+    # Blog PLE (Português para Estrangeiros) com prefixo de idioma ANTES de
+    # /blog — ver www/blog.py e www/blog_post.py, que detectam o prefixo via
+    # frappe.local.path (mesmo padrão do /en/curso/<course> acima). Hoje só
+    # en/es têm conteúdo real planejado no calendário editorial; fr/de/ru/
+    # zh-cn entram aqui quando ganharem posts.
+    {"from_route": "/en/blog", "to_route": "blog"},
+    {"from_route": "/es/blog", "to_route": "blog"},
+    {"from_route": "/en/blog/<category>", "to_route": "blog_post"},
+    {"from_route": "/es/blog/<category>", "to_route": "blog_post"},
+    {"from_route": "/en/blog/<category>/<slug>", "to_route": "blog_post"},
+    {"from_route": "/es/blog/<category>/<slug>", "to_route": "blog_post"},
 ]
 
 # Redirecionamentos 301 (SEO) — URLs antigas/removidas -> destino canônico

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+{%- set vd_bl_en = blog_lang is defined and blog_lang %}
+{%- set vd_bl_prefix = ("/" ~ blog_lang) if vd_bl_en else "" %}
+<html lang="{{ blog_lang if vd_bl_en else 'pt-BR' }}"{% if vd_bl_en %} translate="no"{% endif %}>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{{ title }}</title>
 <meta name="description" content="{{ description }}" />
+{%- if vd_bl_en %}
+<meta name="google" content="notranslate" />
+{%- endif %}
 {% if is_filtered %}
 <meta name="robots" content="noindex, follow" />
-<link rel="canonical" href="https://vediums.com/blog" />
+<link rel="canonical" href="https://vediums.com{{ vd_bl_prefix }}/blog" />
 {% else %}
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<link rel="canonical" href="https://vediums.com/blog{% if page > 1 %}?page={{ page }}{% endif %}" />
-{% if has_prev %}<link rel="prev" href="https://vediums.com/blog{% if page > 2 %}?page={{ page - 1 }}{% endif %}" />{% endif %}
-{% if has_next %}<link rel="next" href="https://vediums.com/blog?page={{ page + 1 }}" />{% endif %}
+<link rel="canonical" href="https://vediums.com{{ vd_bl_prefix }}/blog{% if page > 1 %}?page={{ page }}{% endif %}" />
+{% if has_prev %}<link rel="prev" href="https://vediums.com{{ vd_bl_prefix }}/blog{% if page > 2 %}?page={{ page - 1 }}{% endif %}" />{% endif %}
+{% if has_next %}<link rel="next" href="https://vediums.com{{ vd_bl_prefix }}/blog?page={{ page + 1 }}" />{% endif %}
 {% endif %}
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ title }}" />
@@ -59,13 +64,14 @@
   .vd-bl-pager a:hover { border-color:#2E6DA4;color:#2E6DA4; }
   .vd-bl-pager span.current { background:#2E6DA4;color:#fff; }
   .vd-bl-count { color:#5f6b7a;font-size:14px;margin:-10px 0 24px; }
+  .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "Blog da Vedium",
-  "url": "https://vediums.com/blog",
+  "name": {{ title | tojson }},
+  "url": {{ ("https://vediums.com" ~ vd_bl_prefix ~ "/blog") | tojson }},
   "description": {{ description | tojson }},
   "publisher": {"@type": "Organization", "name": "Vedium", "url": "https://vediums.com"}
 }
@@ -78,26 +84,34 @@
 
 <section class="vd-bl-head">
   <div class="container">
-    <h1>Blog da Vedium</h1>
-    <p>Guias práticos e gratuitos sobre inglês, iorubá e português para estrangeiros — níveis, pronúncia, vocabulário e cultura, escritos pela equipe da Vedium.</p>
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
   </div>
 </section>
 
 <section class="vd-sec">
   <div class="container">
-    <form class="vd-bl-toolbar" method="get" action="/blog">
-      <input type="search" name="q" placeholder="Pesquisar artigos..." value="{{ search_query }}">
-      <select name="category">
-        <option value="">Todas as categorias</option>
+    <form class="vd-bl-toolbar" method="get" action="{{ vd_bl_prefix }}/blog">
+      <label for="vd-bl-q" class="sr-only">{{ search_placeholder }}</label>
+      <input id="vd-bl-q" type="search" name="q" placeholder="{{ search_placeholder }}" value="{{ search_query }}">
+      <label for="vd-bl-cat" class="sr-only">{{ "Category" if vd_bl_en else "Categoria" }}</label>
+      <select id="vd-bl-cat" name="category" title="{{ 'Category' if vd_bl_en else 'Categoria' }}">
+        <option value="">{{ "All categories" if vd_bl_en else "Todas as categorias" }}</option>
         {% for cat in categories %}
         <option value="{{ cat }}"{% if cat == selected_category %} selected{% endif %}>{{ cat }}</option>
         {% endfor %}
       </select>
-      <button type="submit">Filtrar</button>
+      <button type="submit">{{ "Filter" if vd_bl_en else "Filtrar" }}</button>
     </form>
 
     {% if is_filtered %}
-    <p class="vd-bl-count">{{ total_posts }} artigo{{ 's' if total_posts != 1 else '' }} encontrado{{ 's' if total_posts != 1 else '' }}{% if selected_category %} em "{{ selected_category }}"{% endif %}{% if search_query %} para "{{ search_query }}"{% endif %}. <a href="/blog">Limpar filtros</a></p>
+    <p class="vd-bl-count">
+      {% if vd_bl_en %}
+      {{ total_posts }} article{{ 's' if total_posts != 1 else '' }} found{% if selected_category %} in "{{ selected_category }}"{% endif %}{% if search_query %} for "{{ search_query }}"{% endif %}. <a href="{{ vd_bl_prefix }}/blog">Clear filters</a>
+      {% else %}
+      {{ total_posts }} artigo{{ 's' if total_posts != 1 else '' }} encontrado{{ 's' if total_posts != 1 else '' }}{% if selected_category %} em "{{ selected_category }}"{% endif %}{% if search_query %} para "{{ search_query }}"{% endif %}. <a href="{{ vd_bl_prefix }}/blog">Limpar filtros</a>
+      {% endif %}
+    </p>
     {% endif %}
 
     {% if posts %}
@@ -109,7 +123,7 @@
           <span class="vd-bl-tag">{{ p.tag }}</span>
           <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>
           <p>{{ p.meta_description }}</p>
-          <a class="vd-bl-more" href="{{ p.url }}">Ler artigo &rarr;</a>
+          <a class="vd-bl-more" href="{{ p.url }}">{{ "Read article" if vd_bl_en else "Ler artigo" }} &rarr;</a>
         </div>
       </div>
       {% endfor %}
@@ -117,15 +131,15 @@
 
     {% if total_pages > 1 %}
     <div class="vd-bl-pager">
-      {% if has_prev %}<a href="/blog?{% if page == 2 %}{% else %}page={{ page - 1 }}&{% endif %}{% if selected_category %}category={{ selected_category }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}">&larr; Anterior</a>{% endif %}
+      {% if has_prev %}<a href="{{ vd_bl_prefix }}/blog?{% if page == 2 %}{% else %}page={{ page - 1 }}&{% endif %}{% if selected_category %}category={{ selected_category }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}">&larr; {{ "Previous" if vd_bl_en else "Anterior" }}</a>{% endif %}
       {% for p in range(1, total_pages + 1) %}
-        {% if p == page %}<span class="current">{{ p }}</span>{% else %}<a href="/blog?{% if p > 1 %}page={{ p }}&{% endif %}{% if selected_category %}category={{ selected_category }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}">{{ p }}</a>{% endif %}
+        {% if p == page %}<span class="current">{{ p }}</span>{% else %}<a href="{{ vd_bl_prefix }}/blog?{% if p > 1 %}page={{ p }}&{% endif %}{% if selected_category %}category={{ selected_category }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}">{{ p }}</a>{% endif %}
       {% endfor %}
-      {% if has_next %}<a href="/blog?page={{ page + 1 }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">Próxima &rarr;</a>{% endif %}
+      {% if has_next %}<a href="{{ vd_bl_prefix }}/blog?page={{ page + 1 }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">{{ "Next" if vd_bl_en else "Próxima" }} &rarr;</a>{% endif %}
     </div>
     {% endif %}
     {% else %}
-    <div class="vd-bl-empty"><p>Nenhum artigo encontrado.</p><a href="/blog">Ver todos os artigos</a></div>
+    <div class="vd-bl-empty"><p>{{ "No articles found." if vd_bl_en else "Nenhum artigo encontrado." }}</p><a href="{{ vd_bl_prefix }}/blog">{{ "See all articles" if vd_bl_en else "Ver todos os artigos" }}</a></div>
     {% endif %}
   </div>
 </section>

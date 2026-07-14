@@ -61,6 +61,12 @@ STATIC_URLS = [
     # Blog (índice; os posts individuais vêm de _blog_urls(), dinâmico —
     # cobre tanto os de código quanto os publicados pelo painel)
     {"loc": "/blog", "priority": "0.7", "changefreq": "weekly"},
+    # Páginas de categoria/pilar do blog (2026-07-14, ver
+    # blog_content.CATEGORY_PAGES) — editorial + listagem, não só filtro.
+    {"loc": "/blog/ingles", "priority": "0.7", "changefreq": "weekly"},
+    {"loc": "/blog/ioruba", "priority": "0.7", "changefreq": "weekly"},
+    {"loc": "/blog/hebraico", "priority": "0.6", "changefreq": "weekly"},
+    {"loc": "/blog/espanhol", "priority": "0.6", "changefreq": "weekly"},
     # Páginas em inglês (SEO internacional)
     {"loc": "/en", "priority": "0.9", "changefreq": "weekly"},
     {"loc": "/en/catalogo", "priority": "0.8", "changefreq": "daily"},
@@ -73,6 +79,8 @@ STATIC_URLS = [
     {"loc": "/en/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/en/learn-yoruba-online", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/en/learn-portuguese-brazil", "priority": "0.7", "changefreq": "monthly"},
+    {"loc": "/en/blog", "priority": "0.7", "changefreq": "weekly"},
+    {"loc": "/en/blog/brazilian-portuguese", "priority": "0.7", "changefreq": "weekly"},
     {"loc": "/en/portuguese-placement-test", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/en/yoruba-for-beginners", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/en/yoruba-culture-and-heritage", "priority": "0.6", "changefreq": "monthly"},
@@ -102,6 +110,8 @@ STATIC_URLS = [
     {"loc": "/es/matricula", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/es/aula-diagnostica", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/es/prueba-de-nivel-de-portugues", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/es/blog", "priority": "0.7", "changefreq": "weekly"},
+    {"loc": "/es/blog/portugues-brasileno", "priority": "0.7", "changefreq": "weekly"},
     {"loc": "/es/curso-de-ingles-online-en-vivo", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/es/ingles-para-entrevistas-de-trabajo", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/es/ingles-para-desarrolladores", "priority": "0.6", "changefreq": "monthly"},

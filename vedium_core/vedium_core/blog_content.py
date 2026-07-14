@@ -656,16 +656,31 @@ BLOG_POSTS = {
 
 
 
+def _post_url(slug, post):
+    """URL do post: nova estrutura por categoria (/blog/<cat>/<slug> ou
+    /<lang>/blog/<cat>/<slug>) se o post declarar "category"; senão, a URL
+    plana antiga (/blog/<slug>) — usada pelos 8 posts publicados antes da
+    reestruturação de URL de 2026-07-14, que NÃO mudam de endereço."""
+    category = post.get("category")
+    if not category:
+        return f"/blog/{slug}"
+    lang = post.get("lang") or "pt-BR"
+    prefix = "" if lang in ("pt-BR", "pt") else f"/{lang}"
+    return f"{prefix}/blog/{category}/{slug}"
+
+
 def _post_card(slug, post):
     return {
         "slug": slug,
-        "url": f"/blog/{slug}",
+        "url": _post_url(slug, post),
         "title": post["title"],
         "meta_description": post["meta_description"],
         "date": str(post.get("date", "")),
         "date_display": post.get("date_display", ""),
         "tag": post.get("tag", "Vedium"),
         "hero_image": post.get("hero_image", ""),
+        "category": post.get("category"),
+        "lang": post.get("lang", "pt-BR"),
     }
 
 
@@ -777,9 +792,13 @@ def apply_blog_context(context, slug):
 POSTS_PER_PAGE = 12
 
 
-def get_blog_categories():
-    """Categorias (tag) distintas entre todos os posts, para o filtro do /blog."""
-    return sorted({c["tag"] for c in list_blog_posts() if c.get("tag")})
+def get_blog_categories(lang=None):
+    """Categorias (tag) distintas entre os posts, para o filtro do /blog
+    (ou /<lang>/blog, quando lang é passado)."""
+    posts = list_blog_posts()
+    if lang:
+        posts = [p for p in posts if p.get("lang") == lang]
+    return sorted({c["tag"] for c in posts if c.get("tag")})
 
 
 def get_adjacent_posts(slug):
@@ -795,7 +814,234 @@ def get_adjacent_posts(slug):
     return newer, older
 
 
-def get_blog_index_context(context):
+# =============================================================================
+# Páginas de categoria do blog (2026-07-14) — cada frente do calendário
+# editorial (Cliente/Vedium/Artigos/vedium_calendario_editorial_seo_geo_318_posts.xlsx)
+# ganha uma página própria, ao mesmo tempo categoria (lista os posts daquele
+# tema) e página editorial (H1, introdução, blocos temáticos, FAQ e CTA) —
+# não uma lista automática pura. Chave = (lang, slug da categoria); lang "pt"
+# pras 4 frentes brasileiras (URL sem prefixo: /blog/<slug>), "en"/"es" pro
+# PLE internacional (URL com prefixo: /<lang>/blog/<slug>).
+#
+# "legacy_tag" é o valor de "tag" usado pelos posts publicados ANTES desta
+# reestruturação (ver BLOG_POSTS acima) — permite listar esses posts na
+# categoria certa sem mexer na URL deles (só ganham "category"/nested URL
+# os posts NOVOS, publicados depois de 2026-07-14).
+RESERVED_CATEGORY_SLUGS = {"ingles", "ioruba", "hebraico", "espanhol"}
+
+PLE_CATEGORY_BY_LANG = {
+    "en": "brazilian-portuguese",
+    "es": "portugues-brasileno",
+}
+
+CATEGORY_PAGES = {
+    ("pt", "ingles"): {
+        "h1": "Inglês para carreira, viagens e conversas reais",
+        "meta_description": "Conteúdos para quem deseja aprender inglês com clareza, entender como o idioma funciona e evoluir nível a nível.",
+        "intro": "Conteúdos para quem deseja aprender inglês com clareza, entender como o idioma funciona e evoluir nível a nível — carreira, entrevistas, viagens e conversação real, sem enrolação.",
+        "blocks": [
+            {"title": "Comece por aqui", "text": "Descubra seu nível real e o caminho recomendado antes de escolher um curso."},
+            {"title": "Inglês para carreira", "text": "Entrevistas, e-mails corporativos, reuniões e vocabulário para o mercado de trabalho."},
+            {"title": "Conversação", "text": "Como treinar speaking de verdade, sem depender só de aplicativo ou gramática decorada."},
+            {"title": "Pronúncia", "text": "Sons que não existem em português, ritmo da fala e os erros mais comuns de brasileiros."},
+            {"title": "Gramática", "text": "Os pontos que mais confundem — tempos verbais, preposições e uso natural do idioma."},
+            {"title": "Viagens", "text": "Frases e situações práticas para se virar bem em qualquer país de língua inglesa."},
+        ],
+        "faqs": [
+            {"q": "Preciso saber gramática antes de começar a falar inglês?", "a": "Não. Na Vedium, o foco é começar a falar desde a primeira aula, com a gramática entrando naturalmente como suporte — não como pré-requisito."},
+            {"q": "Quanto tempo leva para ficar fluente em inglês?", "a": "Depende do nível inicial e da frequência de prática, mas aulas ao vivo regulares costumam mostrar evolução perceptível em poucos meses."},
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível gratuito da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível",
+        "cta_url": "/teste-de-nivel-ingles",
+        "course_url": "/curso-de-ingles-online",
+        "course_label": "Conhecer o curso de Inglês",
+        "legacy_tag": None,
+    },
+    ("pt", "ioruba"): {
+        "h1": "Iorubá: idioma, cultura e ancestralidade com respeito",
+        "meta_description": "Guias sobre o idioma iorubá — alfabeto, tons, saudações, números e cultura — pensados para quem está começando do zero.",
+        "intro": "O iorubá é uma língua tonal riquíssima, com forte presença na cultura e na história brasileiras. Aqui você encontra guias práticos sobre pronúncia, vocabulário e cultura, sempre com respeito à ancestralidade do idioma.",
+        "blocks": [
+            {"title": "Comece por aqui", "text": "O que é o idioma iorubá e por que ele carrega cultura e memória."},
+            {"title": "Alfabeto e pronúncia", "text": "As 25 letras, as vogais e os três tons que mudam o significado das palavras."},
+            {"title": "Saudações e vocabulário", "text": "Como cumprimentar com respeito e o vocabulário do dia a dia."},
+            {"title": "Cultura e ancestralidade", "text": "A relação do iorubá com a diáspora e as tradições afro-brasileiras."},
+            {"title": "Números e estrutura", "text": "Como contar em iorubá e a lógica vigesimal (base 20) do idioma."},
+        ],
+        "faqs": [
+            {"q": "Preciso ter alguma religião para aprender iorubá?", "a": "Não. O curso da Vedium ensina o idioma e a cultura de forma aberta e respeitosa, sem exigir nenhuma prática religiosa."},
+            {"q": "O iorubá é difícil para quem fala português?", "a": "O maior desafio é o sistema de tons, mas com aulas ao vivo e correção em tempo real a pronúncia é totalmente aprendível desde o início."},
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Conhecer o curso de Iorubá",
+        "cta_url": "/curso-de-ioruba-online",
+        "course_url": "/curso-de-ioruba-online",
+        "course_label": "Conhecer o curso de Iorubá",
+        "legacy_tag": "Iorubá",
+    },
+    ("pt", "hebraico"): {
+        "h1": "Hebraico bíblico e moderno: como aprender com clareza",
+        "meta_description": "Guias sobre o alfabeto, a leitura e as diferenças entre o hebraico bíblico e o moderno, para quem está começando.",
+        "intro": "Para quem quer ler a Bíblia no original ou se comunicar em hebraico moderno, o primeiro passo é entender o alfabeto e as diferenças entre os dois registros do idioma. Os conteúdos aqui organizam esse caminho.",
+        "blocks": [
+            {"title": "Comece por aqui", "text": "Como começar a ler hebraico e por onde seguir depois do alfabeto."},
+            {"title": "Alfabeto hebraico", "text": "As letras, os sinais de vogal (nikkud) e a leitura da direita para a esquerda."},
+            {"title": "Hebraico bíblico", "text": "Vocabulário e estrutura para ler o Antigo Testamento no original."},
+            {"title": "Hebraico moderno", "text": "O idioma falado hoje em Israel, no dia a dia e na conversação."},
+            {"title": "Pronúncia e leitura", "text": "Sons próprios do hebraico e como treinar a leitura com confiança."},
+        ],
+        "faqs": [
+            {"q": "Hebraico bíblico e hebraico moderno são o mesmo idioma?", "a": "Compartilham o alfabeto e boa parte da raiz, mas têm diferenças de vocabulário, gramática e uso — vale entender qual dos dois você quer aprender antes de começar."},
+            {"q": "Preciso já saber ler hebraico para começar o curso?", "a": "Não. O curso da Vedium começa pelo alfabeto e pela leitura, do zero."},
+        ],
+        "cta_title": "Quer aprender a ler e entender hebraico desde o início?",
+        "cta_text": "Aulas ao vivo com professor especializado, do alfabeto à leitura fluente.",
+        "cta_label": "Conhecer o curso de Hebraico",
+        "cta_url": "/curso-de-hebraico-online",
+        "course_url": "/curso-de-hebraico-online",
+        "course_label": "Conhecer o curso de Hebraico",
+        "legacy_tag": None,
+    },
+    ("pt", "espanhol"): {
+        "h1": "Espanhol para viagens, trabalho e o dia a dia",
+        "meta_description": "Guias práticos de espanhol — falsos cognatos, gramática essencial e espanhol para viagem — para brasileiros aprendendo o idioma.",
+        "intro": "O espanhol parece fácil pra quem fala português, mas é justamente essa proximidade que esconde as maiores armadilhas — os falsos cognatos, a pronúncia e as diferenças regionais. Os conteúdos aqui ajudam a aprender com precisão, não só por semelhança.",
+        "blocks": [
+            {"title": "Comece por aqui", "text": "Os primeiros passos e as armadilhas mais comuns de quem já fala português."},
+            {"title": "Falsos cognatos", "text": "Palavras parecidas com o português que têm significados bem diferentes."},
+            {"title": "Espanhol para viagem", "text": "Frases e vocabulário essenciais para se comunicar em qualquer país hispanofalante."},
+            {"title": "Gramática essencial", "text": "Ser x estar, os tempos verbais e outros pontos que mais confundem brasileiros."},
+            {"title": "Diferenças regionais", "text": "Como o espanhol muda entre Espanha e a América Latina."},
+        ],
+        "faqs": [
+            {"q": "Falar português ajuda a aprender espanhol mais rápido?", "a": "Ajuda na compreensão, mas também cria vícios — os falsos cognatos e a pronúncia exigem atenção específica, que o curso trabalha desde o início."},
+            {"q": "O curso ensina o espanhol da Espanha ou da América Latina?", "a": "O professor mostra as principais diferenças regionais, para você reconhecer variações e se comunicar bem em qualquer país hispanofalante."},
+        ],
+        "cta_title": "Quer aprender espanhol sem cair nas armadilhas do português?",
+        "cta_text": "Aulas ao vivo com foco em pronúncia, gramática essencial e conversação real.",
+        "cta_label": "Conhecer o curso de Espanhol",
+        "cta_url": "/curso-de-espanhol-online",
+        "course_url": "/curso-de-espanhol-online",
+        "course_label": "Conhecer o curso de Espanhol",
+        "legacy_tag": None,
+    },
+    ("en", "brazilian-portuguese"): {
+        "h1": "Brazilian Portuguese for people who actually need it",
+        "meta_description": "Practical guides to Brazilian Portuguese for expats, relocation and everyday life in Brazil — real situations, not just grammar.",
+        "intro": "Whether you're relocating to Brazil, working with a Brazilian team, or just visiting, these guides focus on the Portuguese you'll actually use — real-life situations, essential vocabulary and honest advice from Vedium's teachers.",
+        "blocks": [
+            {"title": "Start here", "text": "What to learn before your first month in Brazil."},
+            {"title": "Living in Brazil", "text": "Everyday bureaucracy, housing and getting around."},
+            {"title": "Portuguese for work", "text": "Vocabulary and etiquette for relocation teams and professionals."},
+            {"title": "Everyday conversations", "text": "How to greet people, ask questions and sound natural, not textbook-formal."},
+            {"title": "Pronunciation", "text": "The sounds that trip up English speakers and how to train them."},
+        ],
+        "faqs": [
+            {"q": "Do I need to already speak Spanish or another Romance language to learn Portuguese?", "a": "No. Vedium's live classes start from zero, with a teacher guiding pronunciation and structure from day one."},
+            {"q": "Is Brazilian Portuguese very different from European Portuguese?", "a": "Yes — pronunciation, some vocabulary and everyday expressions differ. These guides focus specifically on the Brazilian variant."},
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Take the placement test",
+        "cta_url": "/en/portuguese-placement-test",
+        "course_url": "/en/learn-portuguese-brazil",
+        "course_label": "Learn about the Portuguese course",
+        "legacy_tag": None,
+    },
+    ("es", "portugues-brasileno"): {
+        "h1": "Português brasileño para quienes lo necesitan de verdad",
+        "meta_description": "Guías prácticas de portugués brasileño para expatriados y vida diaria en Brasil — situaciones reales, no solo gramática.",
+        "intro": "Si te mudas a Brasil, trabajas con un equipo brasileño o simplemente estás de viaje, estas guías se enfocan en el portugués que realmente vas a usar — situaciones reales, vocabulario esencial y consejos honestos de los profesores de Vedium.",
+        "blocks": [
+            {"title": "Empieza por aquí", "text": "Qué aprender antes de tu primer mes en Brasil."},
+            {"title": "Vivir en Brasil", "text": "Trámites del día a día, vivienda y cómo moverte por la ciudad."},
+            {"title": "Portugués para el trabajo", "text": "Vocabulario y etiqueta para equipos de reubicación y profesionales."},
+            {"title": "Conversaciones cotidianas", "text": "Cómo saludar, preguntar y sonar natural, no como en un libro de texto."},
+            {"title": "Pronunciación", "text": "Los sonidos que más confunden a hispanohablantes y cómo entrenarlos."},
+        ],
+        "faqs": [
+            {"q": "¿El portugués brasileño es muy diferente del español?", "a": "Se parecen en varias estructuras, pero la pronunciación y muchos falsos cognatos exigen atención específica desde el principio."},
+            {"q": "¿Necesito conocimientos previos de portugués para empezar?", "a": "No. Las clases en vivo de Vedium empiezan desde cero, con un profesor guiando la pronunciación y la estructura desde el primer día."},
+        ],
+        "cta_title": "¿Quieres saber tu nivel real de portugués?",
+        "cta_text": "Haz la prueba de nivel gratuita de Vedium y descubre por dónde empezar.",
+        "cta_label": "Hacer la prueba de nivel",
+        "cta_url": "/es/prueba-de-nivel-de-portugues",
+        "course_url": "/es/portugues-para-extranjeros",
+        "course_label": "Conocer el curso de portugués",
+        "legacy_tag": None,
+    },
+}
+
+
+def _post_matches_category(card, lang, category, legacy_tag):
+    want_lang = lang or "pt-BR"
+    if card.get("category") == category and (card.get("lang") or "pt-BR") == want_lang:
+        return True
+    if legacy_tag and want_lang == "pt-BR" and card.get("tag") == legacy_tag:
+        return True
+    return False
+
+
+def get_category_context(context, category, lang=None):
+    """Contexto da página de categoria/pilar (ver CATEGORY_PAGES acima).
+    `lang` é None para as 4 categorias PT (URL sem prefixo) ou "en"/"es"
+    para as categorias PLE (URL com prefixo /<lang>/blog/<category>)."""
+    import frappe
+
+    key = (lang or "pt", category)
+    page = CATEGORY_PAGES.get(key)
+    if not page:
+        frappe.local.flags.redirect_location = f"/{lang}/blog" if lang else "/blog"
+        raise frappe.Redirect
+
+    posts = [
+        card for card in list_blog_posts()
+        if _post_matches_category(card, lang, category, page.get("legacy_tag"))
+    ]
+
+    context.is_category = True
+    context.category = page
+    context.category_posts = posts
+    context.category_lang = lang or "pt-BR"
+    context.category_slug = category
+    context.title = f"{page['h1']} | Vedium"
+    context.description = page["meta_description"]
+    return context
+
+
+BLOG_INDEX_COPY = {
+    None: {
+        "title": "Blog da Vedium — idiomas, cultura e aprendizado",
+        "description": (
+            "Conteúdos gratuitos sobre inglês, iorubá e português para estrangeiros: "
+            "guias práticos, níveis, pronúncia e cultura, escritos pela equipe da Vedium."
+        ),
+        "search_placeholder": "Pesquisar artigos...",
+    },
+    "en": {
+        "title": "Vedium Blog — Brazilian Portuguese for expats and relocation",
+        "description": (
+            "Free guides on Brazilian Portuguese for expats, relocation and everyday life "
+            "in Brazil, written by Vedium's teaching team."
+        ),
+        "search_placeholder": "Search articles...",
+    },
+    "es": {
+        "title": "Blog de Vedium — Portugués brasileño para expatriados",
+        "description": (
+            "Guías gratuitas de portugués brasileño para expatriados y vida diaria en "
+            "Brasil, escritas por el equipo de profesores de Vedium."
+        ),
+        "search_placeholder": "Buscar artículos...",
+    },
+}
+
+
+def get_blog_index_context(context, lang=None):
     import frappe
 
     page = frappe.utils.cint(frappe.form_dict.get("page") or 1) or 1
@@ -803,6 +1049,8 @@ def get_blog_index_context(context):
     query = (frappe.form_dict.get("q") or "").strip()
 
     posts = list_blog_posts()
+    if lang:
+        posts = [p for p in posts if p.get("lang") == lang]
     if category:
         posts = [p for p in posts if p.get("tag") == category]
     if query:
@@ -818,13 +1066,13 @@ def get_blog_index_context(context):
     start = (page - 1) * POSTS_PER_PAGE
     page_posts = posts[start:start + POSTS_PER_PAGE]
 
-    context.title = "Blog da Vedium — idiomas, cultura e aprendizado"
-    context.description = (
-        "Conteúdos gratuitos sobre inglês, iorubá e português para estrangeiros: "
-        "guias práticos, níveis, pronúncia e cultura, escritos pela equipe da Vedium."
-    )
+    copy = BLOG_INDEX_COPY.get(lang, BLOG_INDEX_COPY[None])
+    context.title = copy["title"]
+    context.description = copy["description"]
+    context.search_placeholder = copy["search_placeholder"]
+    context.blog_lang = lang
     context.posts = page_posts
-    context.categories = get_blog_categories()
+    context.categories = get_blog_categories(lang)
     context.selected_category = category
     context.search_query = query
     context.page = page

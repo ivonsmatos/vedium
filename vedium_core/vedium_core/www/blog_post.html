@@ -1,1 +1,5 @@
+{% if is_category %}
+{% include "templates/includes/blog_category.html" %}
+{% else %}
 {% include "templates/includes/blog_post.html" %}
+{% endif %}
