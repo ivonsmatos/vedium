@@ -32,6 +32,8 @@ STATIC_URLS = [
     {"loc": "/faq", "priority": "0.7", "changefreq": "monthly"},
     {"loc": "/diferenciais", "priority": "0.6", "changefreq": "monthly"},
     {"loc": "/metodologia", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/aulas-ao-vivo", "priority": "0.6", "changefreq": "monthly"},
+    {"loc": "/parcerias", "priority": "0.5", "changefreq": "monthly"},
     {"loc": "/teste-de-nivel", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/teste-de-nivel-ingles", "priority": "0.8", "changefreq": "monthly"},
     {"loc": "/contato", "priority": "0.6", "changefreq": "monthly"},

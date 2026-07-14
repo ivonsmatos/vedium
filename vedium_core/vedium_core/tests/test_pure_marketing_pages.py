@@ -3332,6 +3332,51 @@ def test_diferenciais_and_metodologia_pages_exist():
     assert "/diferenciais" in metodologia
     assert "HowTo" in metodologia
 
+
+def test_aulas_ao_vivo_and_parcerias_pages_exist():
+    """2026-07-14: páginas institucionais Aulas ao Vivo e Parcerias, com
+    conteúdo baseado nos documentos internos revisados da empresa (Método
+    Pedagógico e Produtos, Personas e Jornada, Parcerias Estratégicas) e nas
+    políticas já publicadas (Termos, Termo de Gravação/Imagem/Voz) — sem
+    estatística ou promessa comercial inventada. PT-only por enquanto,
+    mesmo padrão de diferenciais/metodologia. O controller de Aulas ao Vivo
+    usa underscore (aulas_ao_vivo.py) porque Frappe não resolve módulo com
+    hífen no nome do arquivo."""
+    pages = [("aulas-ao-vivo", "aulas_ao_vivo"), ("parcerias", "parcerias")]
+    for slug, py_name in pages:
+        py_path = WWW / f"{py_name}.py"
+        html_path = WWW / f"{slug}.html"
+        assert py_path.exists(), f"falta www/{py_name}.py"
+        assert html_path.exists(), f"falta www/{slug}.html"
+        html = html_path.read_text(encoding="utf-8")
+        assert 'lang="pt-BR"' in html
+        assert "site_navbar.html" in html
+        assert "site_footer.html" in html
+        assert f'<link rel="canonical" href="https://vediums.com/{slug}" />' in html
+        assert "FAQPage" in html
+
+    aulas = (WWW / "aulas-ao-vivo.html").read_text(encoding="utf-8")
+    assert "180 dias" in aulas
+    assert "18 anos" in aulas
+    assert "/metodologia" in aulas
+    assert "/gravacao-imagem-voz" in aulas
+    assert "/teste-de-nivel" in aulas
+
+    parcerias = (WWW / "parcerias.html").read_text(encoding="utf-8")
+    assert "/empresas" in parcerias
+    assert "/programa-de-indicacao" in parcerias
+    assert "/contato" in parcerias
+
+    sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
+    assert '{"loc": "/aulas-ao-vivo"' in sitemap_py
+    assert '{"loc": "/parcerias"' in sitemap_py
+
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    assert "vd_footer_t.live_classes" in footer
+    assert "vd_footer_t.partnerships" in footer
+    assert "'aulas-ao-vivo'" in footer
+    assert "'parcerias'" in footer
+
     sitemap_py = (WWW / "sitemap.py").read_text(encoding="utf-8")
     assert '{"loc": "/diferenciais"' in sitemap_py
     assert '{"loc": "/metodologia"' in sitemap_py
