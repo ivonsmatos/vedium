@@ -2,6 +2,32 @@ import frappe
 
 from vedium_core.course_urls import get_course_url
 
+# Cache de páginas públicas (catálogo, landings, página de curso). Um único
+# contador de versão, incrementado via doc_events (hooks.py) sempre que
+# LMS Course/Course Chapter/Course Lesson/LMS Enrollment/LMS Course Review
+# mudam — invalida TODAS as chaves de uma vez (mais simples que rastrear
+# cada combinação de filtro individualmente). TTL é só um teto de segurança
+# caso algum evento escape da invalidação explícita.
+CACHE_VERSION_KEY = "vedium:courses_cache_version"
+CACHE_TTL = 300  # 5 minutos
+
+
+def _courses_cache_version():
+    version = frappe.cache().get_value(CACHE_VERSION_KEY)
+    if version is None:
+        version = 1
+        frappe.cache().set_value(CACHE_VERSION_KEY, version)
+    return version
+
+
+def bump_courses_cache_version(doc=None, method=None):
+    """Invalida o cache de cursos públicos. Assinatura compatível com
+    doc_events do Frappe (doc, method), registrada em hooks.py."""
+    try:
+        frappe.cache().set_value(CACHE_VERSION_KEY, _courses_cache_version() + 1)
+    except Exception:
+        pass
+
 
 def get_published_courses(category_prefix=None, category_exact=None):
     """Busca cursos publicados da LMS, com dados enriquecidos para exibição.
@@ -9,6 +35,14 @@ def get_published_courses(category_prefix=None, category_exact=None):
     Usado tanto pelo /catalogo (todos os cursos) quanto pelas páginas pilar
     de campanha (filtradas por idioma via categoria) — ver marketing_landing_content.py.
     """
+    cache_key = (
+        f"vedium:published_courses:v{_courses_cache_version()}:"
+        f"{category_prefix or ''}:{category_exact or ''}"
+    )
+    cached = frappe.cache().get_value(cache_key)
+    if cached is not None:
+        return cached
+
     try:
         filters = {"published": 1}
         if category_exact:
@@ -59,6 +93,7 @@ def get_published_courses(category_prefix=None, category_exact=None):
                        "Básico": 10, "Intermediário": 11, "Avançado": 12}
         courses.sort(key=lambda c: level_order.get(c.get("level_badge", ""), 99))
 
+        frappe.cache().set_value(cache_key, courses, expires_in_sec=CACHE_TTL)
         return courses
 
     except Exception as e:

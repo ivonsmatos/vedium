@@ -24,7 +24,7 @@ def get_context(context):
 
     # Todos os cursos publicados, agrupados por idioma
     context.courses = get_courses()
-    context.courses_by_language = get_courses_by_language()
+    context.courses_by_language = get_courses_by_language(context.courses)
     context.featured_courses = context.courses[:4] if context.courses else []
 
     # Idiomas disponíveis para filtro no template
@@ -89,9 +89,10 @@ def get_courses():
         return []
 
 
-def get_courses_by_language():
+def get_courses_by_language(all_courses=None):
     """Retorna dict {idioma: [cursos]} para uso no template com agrupamento."""
-    all_courses = get_courses()
+    if all_courses is None:
+        all_courses = get_courses()
     result = {lang: [] for lang in LANGUAGE_ORDER}
 
     for course in all_courses:

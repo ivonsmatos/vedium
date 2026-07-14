@@ -26,7 +26,7 @@ def get_context(context):
     _redirect_app_root_to_login()
 
     context.courses = get_courses()
-    context.courses_by_language = get_courses_by_language()
+    context.courses_by_language = get_courses_by_language(context.courses)
     context.featured_courses = context.courses[:4] if context.courses else []
     context.language_programs = LANGUAGE_ORDER
     context.cart_count = get_cart_count()
@@ -97,9 +97,10 @@ def get_courses():
         return []
 
 
-def get_courses_by_language():
+def get_courses_by_language(all_courses=None):
     """Retorna dict {idioma: [cursos]} para uso no template com agrupamento."""
-    all_courses = get_courses()
+    if all_courses is None:
+        all_courses = get_courses()
     result = {lang: [] for lang in LANGUAGE_ORDER}
 
     for course in all_courses:

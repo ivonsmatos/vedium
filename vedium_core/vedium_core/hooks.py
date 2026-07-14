@@ -440,9 +440,38 @@ doc_events = {
         "after_insert": [
             "vedium_core.integrations.on_enrollment",
             "vedium_core.communication.sync_enrollment",
+            "vedium_core.courses.bump_courses_cache_version",
         ],
-        "on_update": "vedium_core.communication.sync_enrollment",
-        "on_trash": "vedium_core.communication.remove_enrollment_membership",
+        "on_update": [
+            "vedium_core.communication.sync_enrollment",
+            "vedium_core.courses.bump_courses_cache_version",
+        ],
+        "on_trash": [
+            "vedium_core.communication.remove_enrollment_membership",
+            "vedium_core.courses.bump_courses_cache_version",
+        ],
+    },
+    # Invalida o cache de páginas públicas (catálogo, landings, página de
+    # curso — ver vedium_core/courses.py) sempre que dados exibidos lá mudam.
+    "LMS Course": {
+        "after_insert": "vedium_core.courses.bump_courses_cache_version",
+        "on_update": "vedium_core.courses.bump_courses_cache_version",
+        "on_trash": "vedium_core.courses.bump_courses_cache_version",
+    },
+    "Course Chapter": {
+        "after_insert": "vedium_core.courses.bump_courses_cache_version",
+        "on_update": "vedium_core.courses.bump_courses_cache_version",
+        "on_trash": "vedium_core.courses.bump_courses_cache_version",
+    },
+    "Course Lesson": {
+        "after_insert": "vedium_core.courses.bump_courses_cache_version",
+        "on_update": "vedium_core.courses.bump_courses_cache_version",
+        "on_trash": "vedium_core.courses.bump_courses_cache_version",
+    },
+    "LMS Course Review": {
+        "after_insert": "vedium_core.courses.bump_courses_cache_version",
+        "on_update": "vedium_core.courses.bump_courses_cache_version",
+        "on_trash": "vedium_core.courses.bump_courses_cache_version",
     },
     "LMS Certificate Request": {
         "after_insert": "vedium_core.notifications.notify_lms_certificate_request"

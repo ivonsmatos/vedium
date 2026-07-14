@@ -5,6 +5,7 @@ from frappe import _
 
 from vedium_core.course_translations import COURSE_TRANSLATIONS
 from vedium_core.course_urls import get_course_url, get_internal_course_name
+from vedium_core.courses import CACHE_TTL, _courses_cache_version
 
 
 def get_context(context):
@@ -153,24 +154,28 @@ def get_cart_count():
 
 def get_course_details(course_name):
     """Fetch complete course details"""
+    cache_key = f"vedium:course_details:v{_courses_cache_version()}:{course_name}"
+    cached = frappe.cache().get_value(cache_key)
+    if cached is not None:
+        return frappe._dict(cached)
+
     try:
         # Get course document
         course = frappe.get_doc("LMS Course", course_name)
-        
+
         if not course.published:
             frappe.throw("Course not available", frappe.PermissionError)
-        
+
         # Fallback image
-        if not course.image:
-            course.image = "/assets/vedium_core/vedium_assets/images/resources/course-details-img1.jpg"
-        
+        image = course.image or "/assets/vedium_core/vedium_assets/images/resources/course-details-img1.jpg"
+
         # Get instructors with details
-        course.instructors_list = []
+        instructors_list = []
         instructors = frappe.get_all("Course Instructor",
             filters={"parent": course.name},
             fields=["instructor"]
         )
-        
+
         for instructor in instructors:
             instructor_data = frappe.db.get_value("User",
                 instructor.instructor,
@@ -178,17 +183,17 @@ def get_course_details(course_name):
                 as_dict=True
             )
             if instructor_data:
-                course.instructors_list.append(instructor_data)
-        
+                instructors_list.append(instructor_data)
+
         # Get chapters and lessons
-        course.chapters_list = []
+        chapters_list = []
         try:
-            course.chapters_list = frappe.get_all("Course Chapter",
+            chapters_list = frappe.get_all("Course Chapter",
                 filters={"course": course.name},
                 fields=["name", "title"],
                 order_by="idx"
             )
-            for chapter in course.chapters_list:
+            for chapter in chapters_list:
                 try:
                     chapter.lessons = frappe.get_all("Course Lesson",
                         filters={"chapter": chapter.name},
@@ -198,31 +203,46 @@ def get_course_details(course_name):
                     chapter.lessons = _dedupe_lessons(chapter.lessons)
                 except Exception:
                     chapter.lessons = []
-            course.chapters_list = _dedupe_chapters(course.chapters_list)
+            chapters_list = _dedupe_chapters(chapters_list)
         except Exception:
-            course.chapters_list = []
-        
+            chapters_list = []
+
         # Get total lesson count and duration
-        course.total_lessons = frappe.db.count("Course Lesson", {"course": course.name})
-        
+        total_lessons = frappe.db.count("Course Lesson", {"course": course.name})
+
         # Get enrollment count
-        course.enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
-        
+        enrollment_count = frappe.db.count("LMS Enrollment", {"course": course.name})
+
         if course.paid_course and course.course_price:
-            course.formatted_price = _format_price(course.course_price, course.currency)
+            formatted_price = _format_price(course.course_price, course.currency)
         else:
-            course.formatted_price = "Gratuito"
-        
+            formatted_price = "Gratuito"
+
         # Category name
+        category_name = None
         if course.category:
-            course.category_name = frappe.db.get_value("LMS Category", course.category, "category")
-        
+            category_name = frappe.db.get_value("LMS Category", course.category, "category")
+
         # Get reviews/ratings if available
-        course.reviews = get_course_reviews(course_name)
-        course.average_rating = calculate_average_rating(course.reviews)
-        
-        return course
-        
+        reviews = get_course_reviews(course_name)
+        average_rating = calculate_average_rating(reviews)
+
+        result = course.as_dict()
+        result.update({
+            "image": image,
+            "instructors_list": instructors_list,
+            "chapters_list": chapters_list,
+            "total_lessons": total_lessons,
+            "enrollment_count": enrollment_count,
+            "formatted_price": formatted_price,
+            "category_name": category_name,
+            "reviews": reviews,
+            "average_rating": average_rating,
+        })
+
+        frappe.cache().set_value(cache_key, result, expires_in_sec=CACHE_TTL)
+        return frappe._dict(result)
+
     except frappe.DoesNotExistError:
         frappe.throw(_("Curso não encontrado"), frappe.DoesNotExistError)
     except frappe.PermissionError:

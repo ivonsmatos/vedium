@@ -10,7 +10,11 @@
     'use strict';
 
     var PUBLIC_HOSTS = ['vediums.com', 'www.vediums.com'];
-    var SAFE_CACHE = 'vedium-static-v3';
+    // sw.js gerencia sua própria versão de cache (CACHE_NAME) e já limpa
+    // versões antigas no evento `activate`. Aqui só removemos caches de fora
+    // desse esquema (ex.: PWA antigo, pré-versionamento) — nunca um valor de
+    // versão fixo, pra não brigar com o sw.js quando a versão for atualizada.
+    var CACHE_PREFIX = 'vedium-static-';
 
     function isPublicHost() {
         return PUBLIC_HOSTS.indexOf(window.location.hostname) !== -1;
@@ -21,7 +25,7 @@
         caches.keys()
             .then(function (keys) {
                 keys.forEach(function (key) {
-                    if (key !== SAFE_CACHE) caches.delete(key);
+                    if (key.indexOf(CACHE_PREFIX) !== 0) caches.delete(key);
                 });
             })
             .catch(function () { /* noop */ });
