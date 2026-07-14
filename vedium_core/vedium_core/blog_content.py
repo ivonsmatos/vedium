@@ -316,14 +316,14 @@ BLOG_POSTS = {
                     "<li>Reconexão com raízes culturais e religiosas;</li>"
                     "<li>Acesso a músicas, provérbios e literatura no original;</li>"
                     "<li>Comunicação com falantes na África e na diáspora;</li>"
-                    "<li>Um diferencial cultural e acadêmico.</li>"
+                    "<li>Um diferencial cultural e acadêmico — veja mais em <a href=\"/ioruba-cultura-e-ancestralidade\">iorubá, cultura e ancestralidade</a>.</li>"
                     "</ul>",
                 ],
             },
             {
                 "heading": "Como é o curso na Vedium",
                 "body": [
-                    "<p>Na Vedium, o iorubá é ensinado em <strong>aulas ao vivo</strong>, do básico ao avançado, com o professor Busayo Frank Alonge. As aulas trazem o idioma e a cultura de forma viva e acessível, com foco em você falar de verdade.</p>",
+                    "<p>Na Vedium, o iorubá é ensinado em <strong>aulas ao vivo</strong>, do básico ao avançado, com o professor Busayo Frank Alonge. As aulas trazem o idioma e a cultura de forma viva e acessível, com foco em você falar de verdade. Conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a> ou veja mais <a href=\"/blog/ioruba\">conteúdos sobre iorubá no blog</a>.</p>",
                 ],
             },
         ],
@@ -635,14 +635,14 @@ BLOG_POSTS = {
                     "<li>Reconnection with cultural and religious roots;</li>"
                     "<li>Access to music, proverbs and literature in the original language;</li>"
                     "<li>Communication with speakers across Africa and the diaspora;</li>"
-                    "<li>A cultural and academic differentiator.</li>"
+                    "<li>A cultural and academic differentiator — see more in <a href=\"/en/yoruba-culture-and-heritage\">Yoruba culture and heritage</a>.</li>"
                     "</ul>",
                 ],
             },
             {
                 "heading": "What the course is like at Vedium",
                 "body": [
-                    "<p>At Vedium, Yoruba is taught in <strong>live classes</strong>, from beginner to advanced, with teacher Busayo Frank Alonge. Classes bring the language and culture to life in an accessible way, with a focus on helping you actually speak.</p>",
+                    "<p>At Vedium, Yoruba is taught in <strong>live classes</strong>, from beginner to advanced, with teacher Busayo Frank Alonge. Classes bring the language and culture to life in an accessible way, with a focus on helping you actually speak. Learn about the <a href=\"/en/learn-yoruba-online\">Yoruba online course</a> or see more <a href=\"/blog\">Yoruba content on the blog</a>.</p>",
                 ],
             },
         ],
@@ -20060,6 +20060,7 @@ def _post_card(slug, post):
         "date_display": post.get("date_display", ""),
         "tag": post.get("tag", "Vedium"),
         "hero_image": post.get("hero_image", ""),
+        "hero_alt": post.get("hero_alt") or post["title"],
         "category": post.get("category"),
         "lang": post.get("lang", "pt-BR"),
     }
@@ -20075,6 +20076,7 @@ def _db_post_card(row):
         "date_display": "",
         "tag": row.tag or "Vedium",
         "hero_image": row.hero_image or "",
+        "hero_alt": row.hero_alt or row.title,
         "lang": row.lang or "pt-BR",
     }
 
@@ -20086,7 +20088,7 @@ def list_db_blog_posts():
     rows = frappe.get_all(
         "Vedium Blog Post",
         filters={"published": 1},
-        fields=["name as slug", "title", "meta_description", "tag", "date", "hero_image", "lang"],
+        fields=["name as slug", "title", "meta_description", "tag", "date", "hero_image", "hero_alt", "lang"],
         ignore_permissions=True,
     )
     return [_db_post_card(row) for row in rows]

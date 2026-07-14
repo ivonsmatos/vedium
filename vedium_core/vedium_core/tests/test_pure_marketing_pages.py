@@ -3386,6 +3386,40 @@ def test_aulas_ao_vivo_and_parcerias_pages_exist():
     assert "vd_footer_u.metodologia" in footer
 
 
+def test_blog_posts_have_alt_text_and_internal_links():
+    """2026-07-15: usuário apontou 2 regras de SEO que precisam valer pra
+    QUALQUER post do blog, não só os de hoje: (1) toda imagem de capa
+    precisa ter ALT (acessibilidade + SEO de imagem); (2) o corpo do post
+    precisa ter link interno de verdade pra página relacionada (curso, FAQ
+    etc.), não só o botão de CTA no fim. Trava as duas regras pra sempre no
+    dict BLOG_POSTS, e confirma que os grids de listagem (blog.html,
+    blog_category.html) renderizam <img alt> de verdade em vez de <div>
+    com background-image (que não tem alt nenhum)."""
+    import vedium_core.blog_content as bc
+
+    missing_alt = []
+    low_links = []
+    for slug, post in bc.BLOG_POSTS.items():
+        if not (post.get("hero_alt") or "").strip():
+            missing_alt.append(slug)
+
+        body_html = "".join(
+            "".join(sec.get("body", [])) for sec in post.get("sections", [])
+        )
+        internal_links = re.findall(r'href="(/[^"#]*)"', body_html)
+        if len(internal_links) < 2:
+            low_links.append(slug)
+
+    assert not missing_alt, f"posts sem hero_alt: {missing_alt}"
+    assert not low_links, f"posts com menos de 2 links internos no corpo: {low_links}"
+
+    blog_html = (WWW / "blog.html").read_text(encoding="utf-8")
+    assert '<img src="{{ p.hero_image }}" alt="{{ p.hero_alt }}"' in blog_html
+
+    blog_category_html = (TPL / "blog_category.html").read_text(encoding="utf-8")
+    assert '<img src="{{ p.hero_image }}" alt="{{ p.hero_alt }}"' in blog_category_html
+
+
 def test_faq_enriched_with_course_specific_questions():
     """2026-07-04: /faq ganhou perguntas segmentadas por curso (inglês,
     iorubá, português para estrangeiros) além das gerais — mantendo a
