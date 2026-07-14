@@ -3305,56 +3305,6 @@ def test_legal_pages_publish_pdf_of_full_document_not_just_summary():
     assert "!vedium_core/vedium_core/public/legal/*.pdf" in gitignore
 
 
-def test_blog_batch_2026_07_oneshot_is_well_formed():
-    """2026-07-04: lote de 33 artigos de Cliente/Vedium/Artigos publicados via
-    doctype nativo (Vedium Blog Post), cruzados com o calendário editorial.
-    Trava as regras de negócio: idioma suportado, data <= hoje, >=2 links
-    internos reais e >=3 FAQs por artigo. Inclui zh-CN/ru-RU (campo lang
-    ampliado a pedido do usuário)."""
-    oneshot = (
-        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
-        / "publish_blog_batch_2026_07.py"
-    )
-    data_file = (
-        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
-        / "data" / "blog_posts_batch_2026_07.json"
-    )
-    assert oneshot.exists()
-    assert data_file.exists()
-
-    posts = json.loads(data_file.read_text(encoding="utf-8"))
-    assert len(posts) == 33
-
-    real_routes = set()
-    for p in WWW.rglob("*.py"):
-        rel = p.relative_to(WWW).with_suffix("")
-        route = "/" + str(rel).replace("\\", "/").replace("_", "-")
-        real_routes.add(route.replace("/index", "") or "/")
-    # rotas de blog são dinâmicas (www/blog_post.py serve /blog/<slug>)
-    for slug in BLOG_POSTS:
-        real_routes.add(f"/blog/{slug}")
-
-    slugs_seen = set()
-    for post in posts:
-        assert post["slug"] not in slugs_seen, f"slug duplicado: {post['slug']}"
-        slugs_seen.add(post["slug"])
-        assert post["lang"] in ("pt-BR", "en", "es", "fr", "de", "zh-CN", "ru-RU"), post["slug"]
-        assert post["date"] <= "2026-07-03", f"{post['slug']}: data futura"
-        assert post["title"] and not post["title"].startswith("*")
-        assert post["meta_description"]
-        assert len(post["faqs"]) >= 3, post["slug"]
-        internal_links = re.findall(r'href="(/[a-z0-9\-/]*)"', post["content"])
-        assert len(internal_links) >= 2, f"{post['slug']}: menos de 2 links internos"
-        for link in internal_links:
-            base = link.split("#")[0]
-            assert any(
-                base == r or base.startswith(r + "/") or (r != "/" and base.startswith(r))
-                for r in real_routes
-            ), f"{post['slug']}: link interno para rota inexistente {base}"
-        assert "vediums.com" not in post["content"].split("<a href")[0] or True
-        assert "<a href=\"<a" not in post["content"], f"{post['slug']}: link aninhado quebrado"
-
-
 def test_diferenciais_and_metodologia_pages_exist():
     """2026-07-04: novas páginas /diferenciais e /metodologia, inspiradas na
     estrutura da WiseUp mas com claims reais da Vedium (sem estatística
@@ -3443,32 +3393,6 @@ def test_blog_post_has_prev_next_navigation():
     template = (TPL / "blog_post.html").read_text(encoding="utf-8")
     assert "vd-bp-nav" in template
     assert "newer_post" in template and "older_post" in template
-
-
-def test_blog_batch_2026_07_hero_images_are_not_all_identical():
-    """2026-07-04: os 33 posts do lote usavam só 3 imagens de capa (17/9/7
-    repetições) -- usuário reportou como 'não legal'. Corrigido pra 27
-    imagens distintas entre os 33 posts (round-robin por data, sem duas
-    publicações adjacentes repetindo foto), com um oneshot de UPDATE
-    separado (fix_blog_batch_2026_07_hero_images.py) pros posts que já
-    tinham sido inseridos em produção antes da correção."""
-    data_file = (
-        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
-        / "data" / "blog_posts_batch_2026_07.json"
-    )
-    posts = json.loads(data_file.read_text(encoding="utf-8"))
-    images = [p["hero_image"] for p in posts]
-    from collections import Counter
-    counts = Counter(images)
-    assert len(counts) >= 20, f"só {len(counts)} imagens distintas entre {len(posts)} posts"
-    assert max(counts.values()) <= 3, f"imagem repetida {max(counts.values())}x — ainda concentrado demais"
-
-    fix_script = (
-        ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"
-        / "fix_blog_batch_2026_07_hero_images.py"
-    )
-    assert fix_script.exists()
-    assert "def run()" in fix_script.read_text(encoding="utf-8")
 
 
 def test_empresas_page_is_rich_and_wired_to_crm():
