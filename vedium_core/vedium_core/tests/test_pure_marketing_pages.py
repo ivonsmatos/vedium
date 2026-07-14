@@ -3386,6 +3386,23 @@ def test_aulas_ao_vivo_and_parcerias_pages_exist():
     assert "vd_footer_u.metodologia" in footer
 
 
+def test_sobre_page_has_mission_vision_values():
+    """2026-07-15: usuário apontou que /sobre era rasa demais -- faltava
+    propósito, missão, visão e valores, baseados nos documentos internos
+    reais (Identidade Organizacional v1/v2, Modelo de Negócio v2), não
+    inventados."""
+    sobre = (WWW / "sobre.html").read_text(encoding="utf-8")
+    assert "Propósito" in sobre
+    assert "Missão" in sobre
+    assert "Visão" in sobre
+    assert "Manifesto" in sobre
+    assert "AboutPage" in sobre
+    assert "EducationalOrganization" in sobre
+    # tabela de valores (fazemos / não fazemos), mesmo padrão de diferenciais.html
+    for valor in ("Presença", "Respeito cultural", "Acessibilidade", "Evolução real", "Verdade"):
+        assert valor in sobre
+
+
 def test_blog_posts_have_alt_text_and_internal_links():
     """2026-07-15: usuário apontou 2 regras de SEO que precisam valer pra
     QUALQUER post do blog, não só os de hoje: (1) toda imagem de capa
