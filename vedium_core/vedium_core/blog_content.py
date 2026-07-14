@@ -20105,7 +20105,7 @@ def list_blog_posts():
 def get_blog_post(slug):
     post = dict(BLOG_POSTS[slug])
     post["slug"] = slug
-    post["url"] = f"{BASE_URL}/blog/{slug}"
+    post["url"] = f"{BASE_URL}{_post_url(slug, post)}"
     return post
 
 

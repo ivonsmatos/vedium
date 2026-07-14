@@ -7,6 +7,12 @@ no_cache = 1
 def get_context(context):
     context.no_cache = 1
     set_careers_seo_context(context)
+    context.title = "Trabalhe Conosco - Vedium"
+    context.description = (
+        "Trabalhe na Vedium: vagas para professores de inglês, iorubá, "
+        "português para estrangeiros, hebraico, espanhol e mais, além de "
+        "atendimento, marketing e vendas. Envie sua candidatura."
+    )
     context.positions = [
         "Professor(a) de Ingles",
         "Professor(a) de Ioruba",

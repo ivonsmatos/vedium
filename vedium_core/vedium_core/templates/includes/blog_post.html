@@ -96,6 +96,17 @@
 }
 </script>
 {%- endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": {{ ("Home" if (post.lang or "pt-BR") != "pt-BR" else "Início") | tojson }}, "item": "https://vediums.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vediums.com/blog"},
+    {"@type": "ListItem", "position": 3, "name": {{ post.title | tojson }}, "item": {{ post.url | tojson }}}
+  ]
+}
+</script>
 </head>
 <body>
 <div class="page-wrapper">
