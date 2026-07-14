@@ -20,6 +20,24 @@ sobrescreve edições feitas depois pelo painel).
 Rodar:
   bench --site app.vediums.com execute \
     vedium_core.scripts.migrations.oneshot.publish_blog_batch_2026_07.run
+
+⚠️ SUPERSEDIDO em 2026-07-14 — NÃO RODAR sem antes ler isto:
+O blog ganhou páginas de categoria (/blog/ingles, /blog/ioruba, /en/blog/
+brazilian-portuguese, /es/blog/portugues-brasileno) que só listam posts do
+dict BLOG_POSTS (vedium_core/blog_content.py), não posts do doctype "Vedium
+Blog Post". Os MESMOS 33 slugs deste lote (mesmos títulos, mesmas datas) já
+foram publicados em BLOG_POSTS com "category"/"lang" corretos e URLs NOVAS
+(ex.: /blog/ingles/<slug>, /en/blog/brazilian-portuguese/<slug> em vez de
+/blog/<slug> flat). Rodar este oneshot agora criaria um "Vedium Blog Post"
+com o MESMO slug -- e get_blog_post_any() procura primeiro no doctype, então
+o registro do doctype passaria a "sombrear" (shadow) a entrada do dict pros
+mesmos slugs: o conteúdo do doctype (URL plana /blog/<slug>, canonical
+plano) seria servido tanto em /blog/<slug> quanto em /blog/ingles/<slug>
+etc., quebrando o canonical da nova estrutura de categoria e duplicando
+publicação do mesmo conteúdo por dois caminhos diferentes.
+Antes de rodar: decida com o time qual caminho é o definitivo pra esses 33
+posts (doctype flat OU dict com category) -- não rode os dois pro mesmo
+lote.
 """
 import json
 import os
