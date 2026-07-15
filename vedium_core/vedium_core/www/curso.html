@@ -28,6 +28,9 @@
     <!-- SEO Meta Tags -->
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
+    {%- if meta_keywords %}
+    <meta name="keywords" content="{{ meta_keywords }}" />
+    {%- endif %}
     <meta name="author" content="Vedium" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     {%- if vd_course_en %}
