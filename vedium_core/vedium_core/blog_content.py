@@ -20400,8 +20400,9 @@ BLOG_INDEX_COPY = {
     None: {
         "title": "Blog da Vedium — idiomas, cultura e aprendizado",
         "description": (
-            "Conteúdos gratuitos sobre inglês, iorubá e português para estrangeiros: "
-            "guias práticos, níveis, pronúncia e cultura, escritos pela equipe da Vedium."
+            "Conteúdos sobre inglês, espanhol, hebraico, iorubá e português para "
+            "estrangeiros, com dicas práticas, cultura, aprendizagem online e "
+            "orientação para quem estuda idiomas com aulas ao vivo."
         ),
         "search_placeholder": "Pesquisar artigos...",
     },
