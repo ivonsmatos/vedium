@@ -843,7 +843,7 @@ BLOG_POSTS = {
                             '<p>Se a maioria das respostas for incerta, você não precisa desistir. '
                             'Você precisa de um nivelamento melhor e de uma turma adequada. O erro não '
                             'está em não saber tudo; está em começar no lugar errado.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Saber seu nível real de inglês é o primeiro passo para parar de '
                             'estudar no escuro. Quando você entende onde está, fica mais fácil '
                             'escolher a turma certa, praticar com objetivo e medir sua evolução. Para '
@@ -1081,7 +1081,7 @@ BLOG_POSTS = {
                             'transformar inglês em prática. Com nivelamento, conversação e evolução no '
                             'seu ritmo, o speaking deixa de ser uma promessa distante e passa a ser '
                             'construído aula após aula.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Inglês ao vivo ou gravado não são formatos iguais com nomes '
                             'diferentes. Eles geram experiências diferentes. O gravado pode informar, '
                             'revisar e complementar. O ao vivo faz você interagir, improvisar, errar '
@@ -1427,7 +1427,7 @@ BLOG_POSTS = {
                             'href="/teste-de-nivel-ingles">https://vediums.com/</a> e descubra como '
                             'combinar leitura, escuta, fala e escrita em um plano de inglês ao vivo '
                             'feito para seu momento.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Combinar leitura, escuta, fala e escrita no mesmo plano é a forma mais '
                             'inteligente de estudar inglês porque aproxima o aprendizado da vida real. '
                             'Você lê para ganhar repertório, escuta para entender o som, fala para '
@@ -1807,7 +1807,7 @@ BLOG_POSTS = {
                             'vivo.</li></ol>',
                             '<p>Essa rotina é mais eficiente do que tentar decorar uma lista enorme. O '
                             'vocabulário acadêmico precisa ser usado, não apenas reconhecido.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Inglês para estudar fora exige mais do que frases básicas. Você '
                             'precisa de vocabulário acadêmico inicial para entender aulas, acompanhar '
                             'prazos, escrever trabalhos, falar com professores, participar de '
@@ -2155,7 +2155,7 @@ BLOG_POSTS = {
                             'diferentes.</li><li><strong>Meça evolução por uso.</strong> Pergunte: '
                             '“consigo falar melhor do que antes?”</li></ol>',
                             '<p>A rotina não precisa ser perfeita. Precisa ser repetível.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>A prática constante supera maratonas de estudo em inglês porque '
                             'fluência nasce do uso repetido, da correção e da conversa real. Maratonas '
                             'podem até parecer produtivas, mas são frágeis quando não existe '
@@ -2849,7 +2849,7 @@ BLOG_POSTS = {
                             'grande. Em vez de acumular fragmentos, o aluno encontra um caminho. Em '
                             'vez de repetir sem saber, aprende a perguntar. Em vez de buscar respostas '
                             'rápidas, constrói compreensão.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Avaliar se um conteúdo de iorubá é sério e responsável é uma etapa '
                             'essencial para quem deseja aprender com respeito. O melhor material não é '
                             'o que promete respostas fáceis, mas o que reconhece a profundidade da '
@@ -3197,7 +3197,7 @@ BLOG_POSTS = {
                             '<h3>Evite buscar respostas rápidas para temas profundos</h3>',
                             '<p>Cantigas, rezas, nomes e expressões culturais exigem cuidado. '
                             'Constância também é aceitar que algumas respostas vêm com tempo.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Manter constância no estudo de uma língua de herança é um ato de '
                             'cuidado. No caso do iorubá, esse cuidado envolve disciplina, mas também '
                             'escuta, respeito, memória e orientação cultural. Não se trata de correr '
@@ -3436,7 +3436,7 @@ BLOG_POSTS = {
                             'essa postura importa. O aprendizado precisa ser sério, mas também '
                             'acolhedor. Precisa ter profundidade, mas sem elitismo. Precisa respeitar '
                             'a cultura, mas sem tornar o caminho inacessível.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Os tons mudam o significado das palavras em iorubá porque fazem parte '
                             'da estrutura da língua. Eles não são detalhe estético, nem simples “jeito '
                             'de falar”. São parte do sentido. Para quem deseja compreender cantigas, '
@@ -3793,7 +3793,7 @@ BLOG_POSTS = {
                             '<p>Para a persona Adá, isso é essencial. Quem quer entender o que canta, '
                             'reza ou pesquisa precisa de respeito, profundidade e orientação. Não quer '
                             'conteúdo raso. Não quer exotização. Quer aprender com seriedade.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Usar perguntas culturais para aprofundar a aula de iorubá é uma das '
                             'formas mais responsáveis de aprender. Boas perguntas ajudam a sair da '
                             'tradução literal e entrar no território do contexto, da pronúncia, dos '
@@ -4017,7 +4017,7 @@ BLOG_POSTS = {
                             'liberdade para o aluno começar sem amarras. Essa combinação reduz o medo '
                             'de entrar em “mais um curso” e aumenta a confiança de estudar com '
                             'seriedade.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>O idioma iorubá carrega cultura e memória porque vive em palavras, '
                             'sons, cantigas, nomes, saudações, histórias e práticas que atravessam '
                             'gerações. Aprender iorubá é mais do que traduzir expressões: é construir '
@@ -4377,7 +4377,7 @@ BLOG_POSTS = {
                             'quem está começando iorubá, essa liberdade combina com um aprendizado '
                             'mais consciente: você entra, experimenta, sente a aula e decide continuar '
                             'pelo valor real da experiência.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Um plano de 30 dias para começar iorubá com base sólida não promete '
                             'fluência imediata. Ele oferece algo mais importante: um início correto, '
                             'respeitoso e consciente. Em um mês, você pode formar o ouvido, entender a '
@@ -4634,7 +4634,7 @@ BLOG_POSTS = {
                             '<p>Para quem busca um curso de iorubá online, esse modelo reduz o medo de '
                             'começar e aumenta a chance de desenvolver constância. Afinal, aprender '
                             'uma língua não é decorar uma vez. É criar relação com ela.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>As primeiras saudações em iorubá são mais do que frases básicas. Elas '
                             'são uma entrada respeitosa em uma língua que carrega história, presença, '
                             'ancestralidade e cultura. Ao aprender expressões como <strong>Ẹ n '
@@ -4974,7 +4974,7 @@ BLOG_POSTS = {
                             '<p>Essa sequência evita que o aluno pule direto para materiais complexos '
                             'sem ter base. Quem quer entender cantigas, rezas e termos culturais '
                             'precisa primeiro construir ouvido, vocabulário e postura.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>O vocabulário de relações sociais em iorubá é uma porta de entrada '
                             'poderosa porque mostra a língua em sua dimensão humana: família, '
                             'comunidade, amizade, respeito, caráter e convivência. Para quem busca '
@@ -6389,7 +6389,7 @@ BLOG_POSTS = {
                             'entrada?”</li><li>“Quando é a consulta?”</li></ul>',
                             '<p>Vocabulary becomes useful when it becomes a question you can actually '
                             'ask.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Asking better questions in Brazilian Portuguese is one of the fastest '
                             'ways to become more independent in Brazil. You do not need to wait for '
                             'advanced fluency. You can start with practical question words, polite '
@@ -6673,7 +6673,7 @@ BLOG_POSTS = {
                             'contracts, you can begin with a clear goal: speak with more confidence in '
                             'the situations you will actually face. You stay because the classes help '
                             'you progress, not because you are locked into a long commitment.</p>']},
-                  {'heading': 'Conclusion with CTA: start greeting people in Brazil with confidence',
+                  {'heading': 'In summary',
                    'body': ['<p>If you want to greet people in Brazil without sounding too formal, '
                             'start with a simple toolkit: “Oi, tudo bem?”, “Bom dia”, “Boa tarde”, '
                             '“Boa noite”, “Prazer”, “Por favor” and “Obrigado/obrigada”. Then learn '
@@ -7050,7 +7050,7 @@ BLOG_POSTS = {
                             'href="/en/portuguese-placement-test">https://vediums.com/</a> and '
                             'discover how live Portuguese classes can help you speak with more '
                             'confidence in Brazil.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Speaking confidence in Brazilian Portuguese is not built by waiting '
                             'until you know everything. It is built through real interaction: '
                             'speaking, listening, asking, making mistakes, receiving correction and '
@@ -7427,7 +7427,7 @@ BLOG_POSTS = {
                             'role-play or full review</td></tr></tbody></table>',
                             '<p>Practice aloud every day. Speaking is not only mental. Your mouth '
                             'needs to get used to the sounds.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Your first airport arrival and hotel check-in in Brazil do not require '
                             'perfect Portuguese. They require practical, clear and polite '
                             'communication. If you can ask where to go, request repetition, confirm '
@@ -7780,7 +7780,7 @@ BLOG_POSTS = {
                             'employee adaptation, reduces stress and improves integration. A '
                             'professional who can communicate basic needs in Portuguese often feels '
                             'more confident, more connected and more prepared to work in Brazil.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Learning Portuguese for Brazil from A1 to B1 is not about memorizing '
                             'every grammar rule before you speak. It is about building practical '
                             'confidence step by step: first survival communication, then daily-life '
@@ -8106,7 +8106,7 @@ BLOG_POSTS = {
                             'extranjeros. La propuesta combina idioma, cultura y práctica real. '
                             'Además, no hay contratos largos de fidelidad: el alumno continúa porque '
                             'siente progreso, no porque está atado a una obligación.</p>']},
-                  {'heading': 'Conclusión con CTA fuerte',
+                  {'heading': 'En resumen',
                    'body': ['<p>Llegar a Brasil preparado no significa hablar portugués perfecto. '
                             'Significa tener herramientas para comunicarte desde el primer día: '
                             'saludar, pedir ayuda, confirmar información, moverte por la ciudad, hacer '
@@ -8404,7 +8404,7 @@ BLOG_POSTS = {
                             'Notwendigkeit, sich durch einen langen Vertrag unter Druck zu setzen. Die '
                             'Idee ist einfach: Sie bleiben, weil der Unterricht Ihnen hilft, in '
                             'Brasilien besser zu leben, zu arbeiten und sich sicherer zu fühlen.</p>']},
-                  {'heading': 'Fazit mit starkem CTA',
+                  {'heading': 'Fazit',
                    'body': ['<p>Brasilianisches Portugiesisch für Auswanderer muss praktisch, '
                             'kulturell und lebendig sein. Die wichtigsten Grundlagen sind nicht nur '
                             'Verben und Vokabeln, sondern konkrete Fähigkeiten: sich vorstellen, Hilfe '
@@ -8805,7 +8805,7 @@ BLOG_POSTS = {
                             'les phrases et vous aide à construire une confiance progressive. Vous '
                             'restez parce que vous voyez le résultat, pas parce qu’un contrat long '
                             'vous retient.</p>']},
-                  {'heading': 'Conclusion avec CTA fort',
+                  {'heading': 'En résumé',
                    'body': ['<p>Le portugais brésilien pour expatriés doit être pratique, vivant et '
                             'culturel. Avant de vivre au Brésil, concentrez-vous sur ce qui vous '
                             'donnera de l’autonomie : vous présenter, parler de logement, comprendre '
@@ -9538,7 +9538,7 @@ BLOG_POSTS = {
                             'говорить, даже если ошибаетесь.</li></ul>',
                             '<p>Именно это нужно на начальном этапе. Не идеальная грамматика, а '
                             'способность действовать.</p>']},
-                  {'heading': 'Заключение с сильным CTA',
+                  {'heading': 'Итог',
                    'body': ['<p>Реалистичный план изучения бразильского португальского на 90 дней не '
                             'обещает мгновенную беглость. Он дает более ценное: понятный старт, '
                             'практическую базу и уверенность для первых реальных ситуаций в Бразилии. '
@@ -9970,7 +9970,7 @@ BLOG_POSTS = {
                             'sem base. Quem quer entender palavras de cantigas, rezas e '
                             'tradições precisa primeiro aprender a ouvir e ler com '
                             'atenção.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>O alfabeto iorubá é o primeiro passo para aprender a '
                             'língua com mais respeito. Ele mostra que cada letra, marca e '
                             'tom importa. Para quem busca o iorubá por ancestralidade, '
@@ -10362,7 +10362,7 @@ BLOG_POSTS = {
                             'nível?</li><li>Estou estudando com continuidade?</li></ul>',
                             '<p>Se muitas respostas forem “não”, o melhor próximo passo é '
                             'desacelerar e buscar orientação.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Ouvir cantigas em iorubá com mais atenção ao significado é '
                             'um caminho de escuta, respeito e profundidade. A cantiga não '
                             'deve ser tratada apenas como texto para tradução. Ela envolve '
@@ -10756,7 +10756,7 @@ BLOG_POSTS = {
                             '<p>Esses sinais mostram que o aprendizado está ficando mais '
                             'maduro. A oralidade não é apenas falar. É aprender a '
                             'escutar.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>O papel da oralidade no aprendizado do iorubá é central. O '
                             'aluno que deseja aprender com profundidade precisa ouvir, '
                             'repetir, perceber tons, respeitar ritmo, registrar contexto e '
@@ -11150,7 +11150,7 @@ BLOG_POSTS = {
                             'começar?</li></ul>',
                             '<p>Se a maioria das respostas for sim, você está diante de '
                             'uma turma com boa chance de gerar evolução real.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Escolher sua primeira turma de inglês online ao vivo é uma '
                             'decisão importante porque define seu ritmo, sua confiança e '
                             'sua evolução. Não escolha apenas pelo preço ou pela promessa. '
@@ -11524,7 +11524,7 @@ BLOG_POSTS = {
                             'menos medo de errar.</li></ul>',
                             '<p>Esses sinais são mais importantes do que “terminar uma '
                             'unidade”. O objetivo é usar melhor o idioma.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>A estagnação no nível intermediário de inglês acontece '
                             'quando o aluno já entende parte do idioma, mas não transforma '
                             'esse conhecimento em comunicação ativa. Ele consome conteúdo, '
@@ -11936,7 +11936,7 @@ BLOG_POSTS = {
                             '<p>Se você respondeu “não” para muitos pontos, comece '
                             'pequeno. Escolha uma situação profissional e pratique por uma '
                             'semana.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Melhorar o listening usando situações reais do trabalho é '
                             'uma das formas mais inteligentes de evoluir no inglês. Em vez '
                             'de ouvir conteúdos aleatórios, você treina reuniões, '
@@ -12404,7 +12404,7 @@ BLOG_POSTS = {
                             '<p>Se você respondeu “não” para muitos itens, comece por '
                             'eles. O caminho para destravar é mais simples do que parece: '
                             'frases úteis, repetição e prática ao vivo.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Sair do verbo <em>to be</em> é um marco importante para '
                             'quem quer aprender inglês de verdade. O verbo <em>to be</em> '
                             'é útil, mas não pode ser o limite do seu aprendizado. Para '
@@ -12854,7 +12854,7 @@ BLOG_POSTS = {
                             'evolução real. Não há contrato de fidelidade: você continua '
                             'porque percebe resultado. Para quem tem uma entrevista pela '
                             'frente, esse formato é direto, prático e sem enrolação.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Inglês para entrevista de emprego exige mais do que '
                             'vocabulário. Exige preparo, estrutura, prática oral, escuta e '
                             'feedback. Você precisa treinar perguntas como “Tell me about '
@@ -13287,7 +13287,7 @@ BLOG_POSTS = {
                             '<p>Se você respondeu “não” para vários itens, escolha três '
                             'frases deste artigo e pratique hoje. Pequenos blocos bem '
                             'treinados podem destravar sua participação.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Inglês para reuniões é uma habilidade prática e '
                             'estratégica. Para participar sem travar, você não precisa '
                             'saber todas as palavras do idioma. Precisa dominar frases '
@@ -13663,7 +13663,7 @@ BLOG_POSTS = {
                             'dúvida para levar à próxima aula?</li></ul>',
                             '<p>Se você responder “sim” para a maioria, está construindo '
                             'um básico mais forte.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Os erros que travam brasileiros no inglês básico não são '
                             'sinais de incapacidade. Eles são sinais de método '
                             'desalinhado. Traduzir palavra por palavra, estudar gramática '
@@ -14020,7 +14020,7 @@ BLOG_POSTS = {
                             'um tema</td></tr></tbody></table>',
                             '<p>Esse checklist simples evita improviso e aumenta '
                             'consistência.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Criar uma rotina de estudo de inglês com pouco tempo por '
                             'semana é possível quando você troca planos grandiosos por '
                             'prática inteligente. O segredo é estudar com frequência, foco '
@@ -14424,7 +14424,7 @@ BLOG_POSTS = {
                             'começa com menos atrito e continua porque percebe progresso. '
                             'A lógica é simples: aula ao vivo, prática real e '
                             'desenvolvimento constante.</p>']},
-                  {'heading': 'Conclusão com CTA forte',
+                  {'heading': 'Em resumo',
                    'body': ['<p>Brasileiros entendem espanhol, mas travam para falar '
                             'porque proximidade não é fluência. A semelhança entre '
                             'português e espanhol ajuda na compreensão, mas também cria '
@@ -14937,7 +14937,7 @@ BLOG_POSTS = {
                             'little Portuguese and need help.</li></ul>',
                             '<p>Choose five phrases and practice them aloud. In health '
                             'situations, automatic phrases can reduce stress.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Brazilian Portuguese for doctors, clinics and emergencies '
                             'is essential for foreigners who want more independence and '
                             'confidence in Brazil. Healthcare conversations involve '
@@ -15319,7 +15319,7 @@ BLOG_POSTS = {
                             'href="/en/portuguese-placement-test">https://vediums.com/</a> '
                             'and start learning Brazilian Portuguese for supermarkets, '
                             'pharmacies and everyday life in Brazil.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Brazilian Portuguese for supermarket, pharmacy and daily '
                             'errands is essential for foreigners who want more '
                             'independence in Brazil. These small daily situations shape '
@@ -15852,7 +15852,7 @@ BLOG_POSTS = {
                             '<p>If several answers are “no,” your next step is not more '
                             'passive exposure. Your next step is guided speaking '
                             'practice.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Learning Portuguese for Brazil when you already speak '
                             'another Romance language is both easier and more delicate. '
                             'Spanish, French, Italian or another Romance language can help '
@@ -16380,7 +16380,7 @@ BLOG_POSTS = {
                             '<p>Choose five phrases from this article and practice them '
                             'aloud. The goal is not to memorize every word. The goal is to '
                             'handle the most common situations with more confidence.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Understanding Brazilian addresses, neighborhoods and '
                             'directions is a practical skill for foreigners living, '
                             'working or studying in Brazil. You will use this language for '
@@ -16840,7 +16840,7 @@ BLOG_POSTS = {
                             '<p>If most answers are “no,” your learning may be too '
                             'disconnected from real life. Start with one cultural '
                             'situation this week and practice it deeply.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Learning Portuguese for Brazil through cultural situations '
                             'is more effective than studying isolated grammar because it '
                             'prepares you for the life you will actually live. You need '
@@ -17328,7 +17328,7 @@ BLOG_POSTS = {
                             '<p>Now choose five phrases from this article and practice '
                             'them aloud. The goal is not to memorize everything. The goal '
                             'is to handle the conversation with more confidence.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Opening a bank account in Brazil can be easier when you '
                             'understand the Portuguese used in banking conversations. You '
                             'may need to talk about documents, CPF, proof of address, '
@@ -17749,7 +17749,7 @@ BLOG_POSTS = {
                             'focus is practical communication, cultural context and '
                             'confidence. There are no long-term loyalty contracts: you '
                             'continue because you feel progress.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>Renting an apartment in Brazil is one of the first '
                             'situations where foreigners need practical Brazilian '
                             'Portuguese. You may need to ask about rent, condominium fees, '
@@ -18214,7 +18214,7 @@ BLOG_POSTS = {
                             'href="/en/portuguese-placement-test">https://vediums.com/</a> '
                             'and discover what a structured Brazilian Portuguese course '
                             'can do for your life in Brazil.</p>']},
-                  {'heading': 'Conclusion with strong CTA',
+                  {'heading': 'In summary',
                    'body': ['<p>A structured Portuguese course for foreigners should give '
                             'you a clear path, not a pile of disconnected lessons. It '
                             'should begin with a level check, focus on Brazilian '
@@ -18675,7 +18675,7 @@ BLOG_POSTS = {
                             'para extranjeros. La propuesta combina idioma, cultura y '
                             'práctica real. Además, no hay contratos largos de fidelidad: '
                             'sigues porque avanzas, no porque estás atado.</p>']},
-                  {'heading': 'Conclusión con CTA fuerte',
+                  {'heading': 'En resumen',
                    'body': ['<p>El portugués brasileño para hispanohablantes parece fácil '
                             'al principio, pero los errores pequeños pueden afectar mucho '
                             'la comunicación. Pronunciar como en español, confiar '
@@ -19087,7 +19087,7 @@ BLOG_POSTS = {
                             '<p>Les cours ne reposent pas sur des contrats longs de '
                             'fidélité. Vous continuez parce que vous voyez des progrès et '
                             'parce que la langue devient utile dans votre vie.</p>']},
-                  {'heading': 'Conclusion avec CTA fort',
+                  {'heading': 'En résumé',
                    'body': ['<p>Apprendre le portugais du Brésil avec des cours en direct '
                             'est une décision intelligente pour les étrangers qui veulent '
                             'vivre, travailler ou étudier au Brésil. Les situations '
@@ -19498,7 +19498,7 @@ BLOG_POSTS = {
                             'href="/fr/test-de-niveau-de-portugais">https://vediums.com/</a> '
                             'et découvrez comment commencer le portugais brésilien avec un '
                             'parcours clair et des cours en direct.</p>']},
-                  {'heading': 'Conclusion avec CTA fort',
+                  {'heading': 'En résumé',
                    'body': ['<p>Choisir un cours de portugais brésilien pour étrangers, ce '
                             'n’est pas seulement choisir une plateforme ou un horaire. '
                             'C’est choisir un chemin d’adaptation au Brésil. Le bon cours '
@@ -19985,7 +19985,7 @@ BLOG_POSTS = {
                             'reagieren.</li></ul>',
                             '<p>Wenn viele Punkte noch unsicher sind, ist das normal. '
                             'Genau dafür ist Live-Unterricht geeignet.</p>']},
-                  {'heading': 'Fazit mit starkem CTA',
+                  {'heading': 'Fazit',
                    'body': ['<p>Portugiesisch für Brasilien mit Live-Unterricht zu lernen '
                             'ist eine kluge Entscheidung für alle, die in Brasilien leben, '
                             'arbeiten, studieren oder sich sicherer im Alltag bewegen '
@@ -20214,7 +20214,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusión con CTA fuerte",
+                "heading": "En resumen",
                 "body": [
                     "<p>Aprender portugués de Brasil con clases en vivo y práctica real es una decisión inteligente para hispanohablantes que quieren vivir, trabajar, estudiar o relacionarse mejor en Brasil. El español ayuda, pero no basta. La cercanía entre los idiomas puede acelerar el aprendizaje, pero también puede generar “portunhol”, errores de pronunciación y falsa confianza.</p>",
                     "<p>El mejor camino es aprender frases útiles, practicar situaciones reales, recibir corrección y desarrollar confianza para hablar. El portugués de Brasil se vuelve más claro cuando se estudia con contexto: reuniones, WhatsApp, vivienda, farmacia, transporte, estudio, trabajo y vida diaria.</p>",
@@ -20448,7 +20448,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Aula de inglês online ao vivo vale a pena para quem quer transformar estudo em comunicação. Se você está cansado de assistir vídeos, fazer exercícios e ainda travar para falar, o problema provavelmente não é falta de capacidade. É falta de prática real com correção, interação e direção.</p>",
                     "<p>O formato ao vivo permite falar, ouvir, errar, ajustar e tentar de novo. Ele funciona para iniciantes, intermediários e alunos com objetivos profissionais, desde que respeite o nível CEFR e trabalhe situações reais. Para quem busca carreira, entrevista, reuniões, viagem ou evolução consistente, a presença de um professor ao vivo pode acelerar o caminho.</p>",
@@ -20699,7 +20699,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Fazit mit starkem CTA",
+                "heading": "Fazit",
                 "body": [
                     "<p>Brasilianisches Portugiesisch für Beruf und Alltag in Brasilien ist der Schlüssel zu mehr Sicherheit, Selbstständigkeit und echter Integration. Du brauchst die Sprache nicht nur für große Gespräche, sondern für viele kleine Momente: eine Nachricht schreiben, eine Adresse erklären, eine Lieferung erhalten, im Meeting nachfragen, Small Talk führen, einen Termin vereinbaren oder um Hilfe bitten.</p>",
                     "<p>Der beste Lernweg ist praktisch: Lerne Sätze nach Situationen, sprich laut, übe reale Dialoge und erhalte Korrektur im Live-Unterricht. So wird Portugiesisch nicht nur Wissen, sondern Handlung.</p>",
@@ -20941,7 +20941,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Brazilian Portuguese for international students choosing a city in Brazil is a practical tool for making a better decision and arriving with more confidence. The city you choose will affect your commute, housing, cost of living, academic life, social life and daily communication. Portuguese helps you ask better questions before you move and handle real situations after you arrive.</p>",
                     "<p>Start with the language you will actually need: university information, housing, neighborhoods, transportation, WhatsApp messages, documents, student support and daily services. Learn phrases, not only words. Practice real dialogues, not only grammar exercises. Use live classes to correct pronunciation, tone and natural phrasing.</p>",
@@ -21220,7 +21220,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Brazilian Portuguese pronunciation can confuse English speakers because the language has nasal vowels, <strong>ão</strong>, <strong>lh</strong>, <strong>nh</strong>, variable <strong>r</strong>, unpredictable <strong>x</strong>, open and closed vowels, and a rhythm that differs from English. These differences matter because pronunciation affects real communication in Brazil.</p>",
                     "<p>You do not need to eliminate your accent to speak Portuguese well. You need clarity, confidence and practice with the sounds that appear in daily life: <strong>não</strong>, <strong>reunião</strong>, <strong>trabalho</strong>, <strong>dinheiro</strong>, <strong>banheiro</strong>, <strong>obrigado</strong>, <strong>endereço</strong>, <strong>portaria</strong> and many others. The fastest path is to practice useful phrases aloud, receive correction and repeat in real contexts.</p>",
@@ -21497,7 +21497,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Estudar phrasal verbs sem decorar listas infinitas é possível quando você muda o foco: menos quantidade, mais contexto. Em vez de tentar memorizar centenas de combinações, escolha os phrasal verbs mais úteis para seu nível e objetivo, aprenda em frases, pratique em voz alta e use em conversas reais.</p>",
                     "<p>Phrasal verbs são importantes para entender inglês natural, participar de reuniões, viajar, assistir vídeos, escrever mensagens e falar com mais fluidez. Mas eles não devem virar uma barreira. Com método, você aprende aos poucos e começa a usar com confiança.</p>",
@@ -21735,7 +21735,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>A alfabetização em hebraico do zero é o primeiro passo para quem quer estudar hebraico moderno, hebraico bíblico ou uma trilha combinada. Ela envolve letras, sons, direção da leitura, sinais vocálicos, prática oral e leitura gradual. O segredo é seguir uma sequência clara, sem pressa e com correção.</p>",
                     "<p>O iniciante não precisa dominar tudo de uma vez. Precisa reconhecer letras, treinar o olhar da direita para a esquerda, praticar sons, ler palavras curtas e revisar com constância. A aula ao vivo faz diferença porque o professor corrige pronúncia, identifica travas e conduz o aluno com segurança.</p>",
@@ -21933,7 +21933,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Perguntar nome, origem e bem-estar em iorubá é uma forma de iniciar a língua pelo respeito. Frases como <strong>Kí ni orúkọ rẹ?</strong>, <strong>Orúkọ mi ni...</strong>, <strong>Níbo ni o ti wá?</strong>, <strong>Mo wá láti...</strong>, <strong>Báwo ni?</strong> e <strong>Dáadáa ni</strong> ajudam o estudante a construir as primeiras interações com mais consciência.</p>",
                     "<p>Esse vocabulário não é superficial. Nome toca identidade. Origem toca pertencimento. Bem-estar toca cuidado. Para quem estuda iorubá no Brasil, especialmente em comunidades afro-diaspóricas, essas perguntas podem abrir um caminho de escuta, ancestralidade e relação.</p>",
@@ -22197,7 +22197,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Shadowing pode ser uma excelente técnica para melhorar inglês, mas precisa ser usado com inteligência. O objetivo não é copiar sotaque de forma artificial, nem apagar sua identidade. O objetivo é desenvolver clareza, ritmo, escuta ativa e confiança para falar inglês em situações reais.</p>",
                     "<p>Para usar bem, escolha áudios curtos, entenda o significado, marque blocos de sentido, repita com calma, grave sua voz e use as frases em conversas. Evite imitações exageradas e materiais difíceis demais. O shadowing deve aproximar você da comunicação, não da performance.</p>",
@@ -22413,7 +22413,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Um curso de inglês com professor ao vivo muda a evolução da fala porque coloca o aluno em interação real. Ele não fica apenas assistindo. Ele fala, escuta, erra, recebe correção e tenta de novo. Esse processo transforma inglês passivo em comunicação ativa.</p>",
                     "<p>Para quem quer melhorar conversação, participar de reuniões, fazer entrevistas, viajar ou crescer profissionalmente, o professor ao vivo faz diferença porque adapta o conteúdo, corrige pronúncia, trabalha frases naturais e acompanha o progresso. A semelhança com uma aula presencial está na presença humana; a vantagem online está na flexibilidade.</p>",
@@ -22609,7 +22609,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Dias da semana e expressões de tempo em iorubá são fundamentais para organizar o aprendizado, compreender rotinas, reconhecer sequências e transformar vocabulário em comunicação. Palavras como <strong>ọjọ́</strong>, <strong>ọ̀sẹ̀</strong>, <strong>òní</strong>, <strong>àná</strong>, <strong>ọ̀la</strong>, <strong>òwúrọ̀</strong>, <strong>ọ̀sán</strong> e <strong>alẹ́</strong> ajudam o aluno a falar de presença, passado, futuro e prática.</p>",
                     "<p>O estudo deve ser feito com respeito. Não basta decorar uma tabela. É preciso ouvir, repetir, preservar marcas gráficas, praticar tons, entender contexto e usar as palavras em frases guiadas. A aula ao vivo faz diferença porque o professor corrige pronúncia e impede que erros virem hábito.</p>",
@@ -22819,7 +22819,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Erros de pronúncia em iorubá podem alterar palavras porque o idioma depende de tons, sons, vogais, marcas gráficas, nasalização e ritmo. Para quem busca aprender por ancestralidade, cultura, cantigas, rezas ou estudo sério, pronunciar melhor é uma forma de respeito.</p>",
                     "<p>O objetivo não é criar medo de falar. O objetivo é aprender com cuidado. O iniciante pode errar, mas deve escutar, perguntar, receber correção e praticar com orientação. A pronúncia precisa caminhar junto com contexto cultural e compreensão.</p>",
@@ -23079,7 +23079,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Falsos cognatos em espanhol confundem brasileiros porque o idioma parece próximo demais do português. Essa proximidade ajuda na compreensão inicial, mas também cria armadilhas. Palavras como <strong>embarazada</strong>, <strong>apellido</strong>, <strong>exquisito</strong>, <strong>oficina</strong>, <strong>vaso</strong>, <strong>aceite</strong>, <strong>cena</strong>, <strong>carpeta</strong>, <strong>rojo</strong> e <strong>escoba</strong> podem gerar erros se forem usadas por aparência.</p>",
                     "<p>O melhor caminho é aprender falsos cognatos em frases, por contexto e com prática oral. Em vez de decorar listas soltas, use situações reais: restaurante, hotel, trabalho, documentos, reunião, viagem e estudo. A aula ao vivo acelera esse processo porque o professor corrige seu portunhol, ajusta sua pronúncia e mostra o uso natural das palavras.</p>",
@@ -23275,7 +23275,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Hebraico moderno e hebraico bíblico estão conectados, mas não são a mesma coisa. O hebraico moderno é uma língua viva de comunicação atual. O hebraico bíblico é uma trilha de leitura, análise e compreensão de textos antigos. Ambos têm valor, mas servem a objetivos diferentes.</p>",
                     "<p>A melhor escolha depende do que você quer fazer com a língua. Se deseja conversar, viajar e entender conteúdos atuais, comece pelo hebraico moderno. Se deseja estudar textos bíblicos no original, escolha o hebraico bíblico. Se tem interesse nos dois, construa uma base comum e siga uma trilha orientada.</p>",
@@ -23537,7 +23537,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Small talk with Brazilians in Portuguese is an essential part of real communication in Brazil. It helps you build trust, feel included and participate more naturally at work, university, in your building and in everyday life. You do not need advanced Portuguese to start. You need warm greetings, short answers, reaction phrases, follow-up questions and confidence to ask for repetition.</p>",
                     "<p>Start with the basics: <strong>Tudo bem?</strong>, <strong>Tudo certo?</strong>, <strong>E você?</strong>, <strong>Que legal!</strong>, <strong>Pois é</strong>, <strong>Verdade</strong>, <strong>Pode repetir, por favor?</strong> and <strong>Ainda estou aprendendo português.</strong> These phrases make daily interactions easier immediately.</p>",
@@ -23839,7 +23839,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Introducing yourself professionally in Brazilian Portuguese is a practical skill for foreigners who want to work, study or build relationships in Brazil. A good introduction helps you enter meetings, interviews, teams, projects and professional communities with more confidence.</p>",
                     "<p>Start with a simple structure: greeting, name, origin, professional area, role or objective, language-level clarification when needed, and polite closing. Then practice follow-up questions so your introduction does not stop after one memorized sentence. Professional Portuguese is not only vocabulary. It is tone, clarity, pronunciation and real interaction.</p>",
@@ -24125,7 +24125,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Learning Brazilian Portuguese without relying only on apps means using apps wisely while building real communication skills. Apps can support your vocabulary and habit, but they cannot replace live conversation, pronunciation correction, cultural context and practical role-play for life in Brazil.</p>",
                     "<p>Start by learning phrases for real situations: housing, transportation, food, pharmacy, work, study, WhatsApp and small talk. Speak aloud every day. Turn app words into sentences. Practice with a teacher. Ask for correction. Use one phrase in real life whenever possible.</p>",
@@ -24375,7 +24375,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Ordering food in Brazil is one of the most useful first skills for foreigners learning Brazilian Portuguese. It helps you participate in daily life, feel more independent and reduce the stress of small but important interactions. You need practical phrases for menus, drinks, ingredients, food restrictions, payment, delivery and polite communication.</p>",
                     "<p>The best way to learn is through real situations. Study phrases, not only words. Practice aloud, simulate restaurant dialogues, learn how Brazilians ask questions, and get live correction from a teacher. This is how Brazilian Portuguese becomes useful outside the classroom.</p>",
@@ -24663,7 +24663,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Inglês para apresentação profissional em dois minutos é uma habilidade essencial para quem busca carreira internacional, entrevistas melhores, reuniões com times globais e mais confiança em contextos profissionais. A estrutura é simples: apresente quem você é, o que faz, sua experiência, seus pontos fortes e seu objetivo.</p>",
                     "<p>O segredo é não tentar falar tudo. Escolha as informações mais importantes, use frases curtas, pratique em voz alta e prepare versões de 30 segundos, 1 minuto e 2 minutos. Uma boa apresentação não precisa ser perfeita. Ela precisa ser clara, natural e adequada ao contexto.</p>",
@@ -24918,7 +24918,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Inglês para atendimento ao cliente exige expressões educadas, naturais e claras. Não basta traduzir frases do português. Você precisa aprender como abrir a conversa, pedir informações, demonstrar empatia, verificar dados, explicar soluções, lidar com reclamações e encerrar o atendimento com profissionalismo.</p>",
                     "<p>O melhor caminho é praticar por situação. Use scripts curtos, role-plays, frases por etapa e simulações com clientes reais ou fictícios. Grave sua voz, revise o tom e peça correção. Atendimento em inglês melhora quando o aluno fala, recebe feedback e tenta novamente.</p>",
@@ -25140,7 +25140,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Inglês para viagem é uma das formas mais práticas de perceber a utilidade real do idioma. Aeroporto e hotel concentram situações em que você precisa entender, responder e resolver. Não é necessário falar inglês perfeito, mas é essencial dominar frases-chave para check-in, imigração, bagagem, reserva, Wi-Fi, horários e pedidos de ajuda.</p>",
                     "<p>O melhor caminho é estudar por situação, praticar diálogos curtos e repetir em voz alta. Vocabulário isolado ajuda pouco se você não consegue usar em conversa. Por isso, a aula ao vivo faz diferença: o professor simula situações reais, corrige sua fala e ajuda você a ganhar confiança antes da viagem.</p>",
@@ -25364,7 +25364,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Заключение с сильным CTA",
+                "heading": "Итог",
                 "body": [
                     "<p>Учить португальский для Бразилии на живых занятиях — это практичный путь для тех, кто хочет жить, работать, учиться или чувствовать себя увереннее в бразильской среде. Вам нужен не только учебник. Вам нужны реальные фразы, живые диалоги, произношение, культурный контекст и способность реагировать в моменте.</p>",
                     "<p>Начинайте с простых ситуаций: представление, просьба повторить, адрес, жильё, работа, учёба, WhatsApp, покупки и аптека. Учите фразы целиком, говорите вслух, разыгрывайте диалоги и повторяйте исправления после урока. Так пассивное понимание превращается в активную речь.</p>",
@@ -25587,7 +25587,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Números em iorubá são uma porta de entrada para a lógica, a oralidade e a estrutura do idioma. Eles mostram que aprender iorubá não é apenas memorizar equivalências em português. É escutar, perceber tons, preservar marcas, compreender padrões e praticar com respeito.</p>",
                     "<p>Para iniciantes, o melhor caminho é começar de 1 a 10, avançar com calma para 11 a 20, entender a lógica de formação e usar números em frases simples. A aula ao vivo faz diferença porque o professor corrige pronúncia, explica padrões e impede que o aluno transforme a língua em uma lista sem contexto.</p>",
@@ -25800,7 +25800,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Palavras iorubás presentes na cultura afro-brasileira são caminhos de memória, ancestralidade, fé, comida, música, dança, comunidade e resistência. Elas mostram que a língua não ficou no passado: continua viva em sons, nomes, saudações, cantigas, terreiros, festas, livros, conversas e práticas culturais.</p>",
                     "<p>Mas esse estudo precisa de responsabilidade. Nem toda palavra afro-brasileira é iorubá. Nem toda tradução literal explica o sentido. Nem todo termo pode ser usado sem contexto. Aprender com respeito significa escutar, perguntar, preservar grafia, entender a função cultural e reconhecer os limites do próprio conhecimento.</p>",
@@ -26016,7 +26016,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Brasileiros entendem inglês escrito, mas travam na fala porque leitura e conversação exigem habilidades diferentes. A leitura permite pausa, contexto e reconhecimento. A fala exige produção, escuta, resposta rápida, pronúncia e confiança. Se você treinou mais leitura do que conversação, é natural que sua compreensão esteja mais avançada que sua fala.</p>",
                     "<p>A boa notícia é que isso tem solução. Você não precisa jogar fora o que já aprendeu. Precisa ativar. Transforme vocabulário passivo em ativo, pratique perguntas e respostas, grave sua voz, reduza a tradução mental e entre em situações de conversação com correção.</p>",
@@ -26282,7 +26282,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusión con CTA fuerte",
+                "heading": "En resumen",
                 "body": [
                     "<p>El portugués brasileño para trabajar y vivir en Brasil es una herramienta de autonomía. Te ayuda a participar en reuniones, escribir mensajes, resolver problemas cotidianos, entender la cultura local y sentirte menos dependiente de traducciones improvisadas. Para hispanohablantes, la cercanía con el español es una ventaja, pero también exige cuidado: pronunciación, falsos amigos, ritmo y uso real deben practicarse.</p>",
                     "<p>Empieza por frases útiles: <strong>Pode repetir, por favor?</strong>, <strong>Tenho uma dúvida</strong>, <strong>Só para confirmar...</strong>, <strong>Estou aprendendo português</strong>, <strong>Pode deixar na portaria</strong>, <strong>Preciso de ajuda</strong> y <strong>Qual é o endereço?</strong>. Después, practica esas frases en situaciones reales y en clases en vivo.</p>",
@@ -26548,7 +26548,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Portuguese for remote workers living in Brazil is practical, urgent and deeply connected to daily independence. Even if your job is online and international, your life in Brazil happens through Portuguese: housing, deliveries, internet, transportation, coworking, errands, small talk and services.</p>",
                     "<p>Start with the phrases that protect your routine: <strong>Eu trabalho remotamente</strong>, <strong>A internet não está funcionando</strong>, <strong>Tenho uma reunião agora</strong>, <strong>Pode deixar na portaria</strong>, <strong>Qual é a senha do Wi-Fi?</strong>, <strong>Preciso de manutenção</strong> and <strong>Pode repetir, por favor?</strong> Then practice real conversations in live classes so the language becomes usable under pressure.</p>",
@@ -26801,7 +26801,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Portuguese for ride apps, taxis and public transportation in Brazil is a practical skill that helps foreigners move around with more confidence. You need more than an app. You need the language to confirm pickup points, explain addresses, ask for directions, understand routes, talk to drivers and handle small problems.</p>",
                     "<p>Start with the phrases you will use most: <strong>Estou na portaria</strong>, <strong>Já estou descendo</strong>, <strong>Pode me esperar um minuto?</strong>, <strong>Onde fica o ponto de ônibus?</strong>, <strong>Qual é a estação mais próxima?</strong>, <strong>Preciso trocar de linha?</strong> and <strong>Pode repetir, por favor?</strong> These phrases make daily life easier immediately.</p>",
@@ -27100,7 +27100,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusion with strong CTA",
+                "heading": "In summary",
                 "body": [
                     "<p>Portuguese for work meetings in Brazil is a practical skill that helps foreigners participate more confidently in professional life. You do not need advanced Portuguese to start. You need the first phrases that help you greet people, ask for repetition, share updates, confirm deadlines, clarify responsibilities and close the meeting with clear next steps.</p>",
                     "<p>The best way to learn is through real situations. Study meeting vocabulary in complete phrases, practice aloud, prepare before meetings and use live classes to simulate workplace conversations. Live feedback helps you sound clearer, more polite and more natural in Brazilian Portuguese.</p>",
@@ -27431,7 +27431,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>Saber quando usar <strong>do, does e did</strong> é essencial para fazer perguntas, negar frases, responder com naturalidade e participar de conversas em inglês. A regra é simples: <strong>do</strong> no presente com <strong>I, you, we, they</strong>; <strong>does</strong> no presente com <strong>he, she, it</strong>; <strong>did</strong> no passado com todos os sujeitos. A parte mais importante é lembrar que o verbo principal volta para a forma base depois desses auxiliares.</p>",
                     "<p>Mas saber a regra não basta. Você precisa praticar em voz alta, fazer perguntas reais, responder rápido, corrigir erros e usar as estruturas em situações de trabalho, estudo, viagem e conversa. É assim que a gramática vira fluência prática.</p>",
@@ -27654,7 +27654,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "结论与强力 CTA",
+                "heading": "总结",
                 "body": [
                     "<p>通过真人直播课学习巴西葡萄牙语，是面向真实生活的学习方式。对于想去巴西工作、学习、生活或建立关系的中文母语者来说，语言不应该停留在词汇表和录播课里。你需要能听懂、能回应、能提问、能纠正发音，并能在巴西真实场景中使用。</p>",
                     "<p>最好的开始方式是学习高频场景：自我介绍、请求重复、地址、公寓、门卫、工作会议、课堂、WhatsApp、超市、药店和交通。每次学习都要把词汇变成句子，把句子变成对话，把对话带到直播课中练习。</p>",
@@ -27869,7 +27869,7 @@ BLOG_POSTS.update({
                 ]
             },
             {
-                "heading": "Conclusão com CTA forte",
+                "heading": "Em resumo",
                 "body": [
                     "<p>O vocabulário de família em iorubá tem valor cultural porque fala de vínculo, origem, respeito, senioridade, pertencimento e continuidade. Palavras como <strong>ìyá</strong>, <strong>bàbá</strong>, <strong>ọmọ</strong>, <strong>ìdílé</strong>, <strong>ẹbí</strong>, <strong>arákùnrin</strong>, <strong>arábìnrin</strong> e <strong>àgbà</strong> não devem ser vistas apenas como equivalentes diretos de palavras em português. Elas precisam ser estudadas com pronúncia, contexto e escuta.</p>",
                     "<p>Para quem busca iorubá por ancestralidade, cantigas, rezas, cultura ou memória, esse campo de vocabulário é um caminho de aprofundamento. Aprender com respeito significa preservar sinais, observar tons, ouvir antes de repetir e aceitar que a língua carrega camadas.</p>",
