@@ -3,6 +3,7 @@ from urllib.parse import quote
 import frappe
 from frappe import _
 
+from vedium_core.course_seo import COURSE_SEO
 from vedium_core.course_translations import COURSE_TRANSLATIONS
 from vedium_core.course_urls import get_course_url, get_internal_course_name
 from vedium_core.courses import CACHE_TTL, _courses_cache_version
@@ -92,8 +93,11 @@ def get_context(context):
         context.description = (desc[:155] if desc else
                                _fallback_desc[req_lang].format(title=context.course.title))
     else:
-        context.description = (desc[:155] if desc else
-                               f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
+        seo_meta_description = COURSE_SEO.get(course_name, {}).get("meta_description")
+        context.description = (
+            seo_meta_description
+            or (desc[:155] if desc else f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
+        )
     context.canonical_url = (
         f"https://vediums.com{get_course_url(course_name, req_lang)}" if translation
         else f"https://vediums.com{get_course_url(course_name)}"
