@@ -20035,6 +20035,7879 @@ BLOG_POSTS = {
      'cta_url': '/de/portugiesisch-fuer-auslaender'},
 }
 
+BLOG_POSTS.update({
+
+    # =========================================================================
+    # Lote 2026-07-15 -- 32 posts prontos de Cliente/Vedium/Artigos/Publicar,
+    # publicados conforme vedium_calendario_editorial_seo_geo_reorganizado.xlsx
+    # (aba Calendario_Editorial, IDs 36-65 e 319-320; datas de calendario no
+    # passado -- backlog represado, todas <= hoje). Conversao Markdown -> HTML
+    # fiel ao .md (paragrafos/listas/tabelas preservados, nao resumido nem
+    # reescrito), com >=2 links internos reais por post (curso do cluster +
+    # post-irmao do mesmo cluster ou post ja publicado no mesmo idioma).
+    # =========================================================================
+    "aprender-portugues-de-brasil-con-clases-en-vivo-y-practica-real": {
+        "title": "Aprender portugués de Brasil con clases en vivo y práctica real",
+        "meta_description": "Aprende portugués de Brasil con clases en vivo, práctica real y situaciones útiles para trabajar, estudiar y vivir en Brasil.",
+        "h1": "Aprender portugués de Brasil con clases en vivo y práctica real",
+        "date": "2025-03-05",
+        "date_display": "5 de marzo de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Palestrante conduzindo apresentacao para uma turma em sala de treinamento",
+        "tag": "Portugués brasileño",
+        "lang": "es",
+        "category": "portugues-brasileno",
+        "lead": "Aprender portugués de Brasil con clases en vivo y práctica real es una de las formas más eficaces de prepararse para vivir, trabajar, estudiar o hacer negocios en Brasil. La razón es simple: el portugués brasileño no se aprende solo memorizando reglas. Se aprende hablando, escuchando, preguntando, cometiendo errores, recibiendo corrección y practicando situaciones que realmente ocurren en la vida diaria.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para una persona hispanohablante, el portugués de Brasil puede parecer cercano. Muchas palabras se reconocen, algunas estructuras resultan familiares y, al leer, es posible captar el sentido general de textos simples. Pero esa cercanía también puede engañar. Entender un poco no significa poder hablar con seguridad en una reunión, escribir un mensaje natural por WhatsApp, explicar un problema en un apartamento, pedir ayuda en una farmacia o participar en una conversación con brasileños que hablan rápido.</p>",
+                    "<p>Ahí es donde las clases en vivo marcan la diferencia. En una clase grabada, el estudiante recibe información. En una clase en vivo, participa. El profesor escucha la pronunciación, corrige interferencias del español, adapta ejemplos al objetivo del alumno y crea situaciones reales de uso. Para quienes buscan un Brazilian Portuguese course o Portuguese for foreigners, esta práctica guiada es clave para transformar comprensión pasiva en comunicación real.</p>",
+                    "<p>En este artículo, entenderás por qué el portugués de Brasil requiere práctica viva, qué situaciones conviene estudiar primero, qué vocabulario inicial ayuda en trabajo y estudio, cómo funciona una clase online en vivo y por qué Vedium puede ser una opción adecuada para aprender con flexibilidad, sin contratos largos de fidelidad.</p>"
+                ]
+            },
+            {
+                "heading": "Respuesta directa: ¿por qué aprender portugués de Brasil con clases en vivo?",
+                "body": [
+                    "<p>Aprender portugués de Brasil con clases en vivo es importante porque permite practicar comunicación real con corrección inmediata. El estudiante no solo aprende vocabulario y gramática, sino que usa el idioma en situaciones parecidas a las que vivirá en Brasil.</p>",
+                    "<p>Las clases en vivo ayudan a:</p>",
+                    "<ul><li>mejorar la pronunciación;</li><li>reducir el “portunhol”;</li><li>practicar conversaciones reales;</li><li>ganar confianza para hablar;</li><li>entender mejor el ritmo brasileño;</li><li>aprender frases útiles para trabajo y estudio;</li><li>recibir corrección del profesor;</li><li>preparar situaciones de la vida diaria;</li><li>adaptar el aprendizaje al nivel del alumno;</li><li>mantener constancia.</li></ul>",
+                    "<p>Para hispanohablantes, este formato es especialmente útil porque el profesor puede corregir errores de transferencia del español. Muchas frases parecen fáciles, pero no se dicen igual en portugués. La clase en vivo evita que esos errores se vuelvan hábitos.</p>",
+                    "<p>Si quieres saber tu nivel actual y empezar con un plan claro, reserva una prueba de nivel gratuita en <a href=\"/es/portugues-para-extranjeros\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Situación real de uso: llegar a Brasil y comunicarse desde el primer día",
+                "body": [
+                    "<p>Llegar a Brasil exige portugués práctico desde el primer día. Aunque hables español, no siempre podrás depender de la similitud entre idiomas. En aeropuertos, hoteles, transporte, edificios, bancos, universidades y empresas, necesitarás frases claras.</p>",
+                    "<p>Vocabulario inicial:</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>aeroporto</td><td>aeropuerto</td></tr><tr><td>endereço</td><td>dirección</td></tr><tr><td>saída</td><td>salida</td></tr><tr><td>entrada</td><td>entrada</td></tr><tr><td>ajuda</td><td>ayuda</td></tr><tr><td>bagagem</td><td>equipaje</td></tr><tr><td>documento</td><td>documento</td></tr><tr><td>reserva</td><td>reserva</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>aplicativo</td><td>aplicación</td></tr></tbody></table>",
+                    "<p>Frases útiles:</p>",
+                    "<ul><li><strong>Onde fica a saída?</strong> — ¿Dónde está la salida?</li><li><strong>Você pode me ajudar?</strong> — ¿Me puede ayudar?</li><li><strong>Eu tenho uma reserva.</strong> — Tengo una reserva.</li><li><strong>Este é o endereço.</strong> — Esta es la dirección.</li><li><strong>Pode repetir, por favor?</strong> — ¿Puede repetir, por favor?</li><li><strong>Pode falar mais devagar?</strong> — ¿Puede hablar más despacio?</li><li><strong>Eu falo pouco português.</strong> — Hablo poco portugués.</li></ul>",
+                    "<p>Una frase fundamental para principiantes es:</p>",
+                    "<p><strong>Desculpa, eu ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
+                    "<p>Esta frase reduce la presión y mantiene la conversación abierta. No necesitas fingir que entiendes todo. Necesitas saber pedir ayuda de forma natural.</p>"
+                ]
+            },
+            {
+                "heading": "Por qué el español ayuda, pero no es suficiente",
+                "body": [
+                    "<p>El español ayuda a aprender portugués, pero no sustituye el estudio. La cercanía entre los idiomas puede acelerar la lectura y la comprensión inicial, pero también genera confusiones de pronunciación, vocabulario y estructura.</p>",
+                    "<p>Ejemplos:</p>",
+                    "<table><thead><tr><th>Español</th><th>Portugués natural</th><th>Cuidado</th></tr></thead><tbody><tr><td>Tengo una duda.</td><td>Tenho uma dúvida.</td><td>Muy parecido, pero la pronunciación cambia.</td></tr><tr><td>Estoy con hambre.</td><td>Estou com fome.</td><td>No se usa “hambre”; se usa “fome”.</td></tr><tr><td>Necesito ayuda.</td><td>Preciso de ajuda.</td><td>“Necesito” no es la forma natural en portugués.</td></tr><tr><td>¿Dónde queda?</td><td>Onde fica?</td><td>La estructura común cambia.</td></tr><tr><td>Trabajo en marketing.</td><td>Trabalho com marketing / na área de marketing.</td><td>Puede variar según contexto.</td></tr></tbody></table>",
+                    "<p>Muchos hispanohablantes entienden portugués escrito, pero se bloquean al hablar. Esto ocurre porque el cerebro intenta usar el español como base. El resultado puede ser una mezcla que parece comprensible, pero no siempre suena natural.</p>",
+                    "<p>La solución no es negar la ventaja del español. La solución es usarla con orientación. Un profesor en vivo ayuda a mostrar qué se parece, qué cambia y qué debe practicarse de forma específica.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulario clave para trabajo y estudio en Brasil",
+                "body": [
+                    "<p>Para trabajar o estudiar en Brasil, conviene aprender primero el vocabulario que aparece en reuniones, clases, correos, mensajes y trámites. No basta con palabras sueltas. Lo ideal es aprender frases completas.</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>reunião</td><td>reunión</td></tr><tr><td>trabalho</td><td>trabajo</td></tr><tr><td>equipe</td><td>equipo</td></tr><tr><td>prazo</td><td>plazo</td></tr><tr><td>projeto</td><td>proyecto</td></tr><tr><td>aula</td><td>clase</td></tr><tr><td>atividade</td><td>actividad / tarea</td></tr><tr><td>prova</td><td>examen</td></tr><tr><td>relatório</td><td>informe</td></tr><tr><td>apresentação</td><td>presentación</td></tr><tr><td>dúvida</td><td>duda / pregunta</td></tr><tr><td>horário</td><td>horario</td></tr><tr><td>documento</td><td>documento</td></tr><tr><td>matrícula</td><td>matrícula</td></tr><tr><td>inscrição</td><td>inscripción</td></tr></tbody></table>",
+                    "<p>Frases útiles para trabajo:</p>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — Tengo una reunión hoy.</li><li><strong>Qual é o prazo?</strong> — ¿Cuál es el plazo?</li><li><strong>Tenho uma dúvida.</strong> — Tengo una duda.</li><li><strong>Você pode explicar de novo?</strong> — ¿Puede explicar de nuevo?</li><li><strong>Vou enviar o relatório.</strong> — Voy a enviar el informe.</li><li><strong>Podemos marcar uma reunião?</strong> — ¿Podemos agendar una reunión?</li></ul>",
+                    "<p>Frases útiles para estudio:</p>",
+                    "<ul><li><strong>Onde é a aula?</strong> — ¿Dónde es la clase?</li><li><strong>Qual é o horário?</strong> — ¿Cuál es el horario?</li><li><strong>Preciso fazer a inscrição.</strong> — Necesito hacer la inscripción.</li><li><strong>Tenho uma dúvida sobre a atividade.</strong> — Tengo una duda sobre la actividad.</li><li><strong>Quando é a prova?</strong> — ¿Cuándo es el examen?</li></ul>",
+                    "<p>Estas frases permiten actuar en contextos reales, no solo estudiar teoría.</p>"
+                ]
+            },
+            {
+                "heading": "Cómo funciona un curso de portugués brasileño en vivo",
+                "body": [
+                    "<p>Un curso de portugués brasileño en vivo debe combinar explicación clara, práctica oral, escucha, corrección y situaciones reales. La clase no debería ser una conferencia pasiva. Debe ser un espacio donde el alumno habla y recibe orientación.</p>",
+                    "<p>Una estructura eficiente puede incluir:</p>",
+                    "<table><thead><tr><th>Etapa de la clase</th><th>Qué ocurre</th><th>Beneficio</th></tr></thead><tbody><tr><td>Apertura</td><td>saludo y activación del tema</td><td>reduce ansiedad</td></tr><tr><td>Revisión</td><td>repaso de frases anteriores</td><td>fortalece memoria</td></tr><tr><td>Vocabulario</td><td>palabras y expresiones útiles</td><td>crea base práctica</td></tr><tr><td>Pronunciación</td><td>repetición con corrección</td><td>mejora claridad</td></tr><tr><td>Role-play</td><td>simulación de situación real</td><td>entrena respuesta</td></tr><tr><td>Corrección</td><td>ajustes de frase y tono</td><td>evita errores repetidos</td></tr><tr><td>Cierre</td><td>resumen y tarea</td><td>mantiene continuidad</td></tr></tbody></table>",
+                    "<p>Ejemplo de práctica en clase:</p>",
+                    "<p>Profesor:<br><strong>Você trabalha com o quê?</strong></p>",
+                    "<p>Alumno:<br><strong>Eu trabalho com tecnologia.</strong></p>",
+                    "<p>Profesor:<br><strong>Ótimo. Agora diga: “Eu trabalho na área de tecnologia e preciso melhorar meu português para reuniões.”</strong></p>",
+                    "<p>Alumno:<br><strong>Eu trabalho na área de tecnologia e preciso melhorar meu português para reuniões.</strong></p>",
+                    "<p>Ese proceso parece simple, pero es muy poderoso. El alumno aprende una frase útil, la pronuncia, recibe corrección y la usa en contexto.</p>"
+                ]
+            },
+            {
+                "heading": "Práctica en clase en vivo: situaciones que debes entrenar",
+                "body": [
+                    "<p>La práctica en clase en vivo debe enfocarse en situaciones que realmente vivirás en Brasil. Esto es más útil que estudiar listas enormes de vocabulario sin contexto.</p>",
+                    "<h3>1. Presentarte en portugués</h3>",
+                    "<p>Frases:</p>",
+                    "<ul><li><strong>Meu nome é...</strong></li><li><strong>Eu sou de...</strong></li><li><strong>Eu trabalho com...</strong></li><li><strong>Estou no Brasil para trabalhar / estudar.</strong></li><li><strong>Estou aprendendo português.</strong></li></ul>",
+                    "<p>Ejemplo:</p>",
+                    "<p><strong>Meu nome é Laura. Eu sou da Colômbia. Estou no Brasil para trabalhar e estou aprendendo português.</strong></p>",
+                    "<h3>2. Pedir repetición</h3>",
+                    "<p>Frases:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Você pode explicar de novo?</strong></li></ul>",
+                    "<p>Estas frases son esenciales para no abandonar la conversación.</p>",
+                    "<h3>3. Hablar en reuniones</h3>",
+                    "<p>Frases:</p>",
+                    "<ul><li><strong>Tenho uma dúvida.</strong></li><li><strong>Concordo com esse ponto.</strong></li><li><strong>Qual é o próximo passo?</strong></li><li><strong>Quem é o responsável?</strong></li><li><strong>Qual é o prazo?</strong></li></ul>",
+                    "<h3>4. Escribir mensajes por WhatsApp</h3>",
+                    "<p>En Brasil, WhatsApp se usa mucho para trabajo, vivienda, servicios y organización diaria.</p>",
+                    "<p>Mensaje útil:</p>",
+                    "<p><strong>Olá, tudo bem? Tenho uma dúvida sobre o horário da reunião. Você pode confirmar, por favor? Obrigado.</strong></p>",
+                    "<p>Este tipo de mensaje suena más natural que una traducción demasiado directa.</p>",
+                    "<h3>5. Resolver situaciones cotidianas</h3>",
+                    "<p>Frases:</p>",
+                    "<ul><li><strong>Onde fica a farmácia?</strong></li><li><strong>Pode deixar na portaria.</strong></li><li><strong>Aceita cartão?</strong></li><li><strong>Preciso de uma nota fiscal.</strong></li><li><strong>Qual é o endereço?</strong></li></ul>",
+                    "<p>Estas situaciones preparan al estudiante para la vida real.</p>"
+                ]
+            },
+            {
+                "heading": "Cómo reducir el “portunhol” con práctica guiada",
+                "body": [
+                    "<p>El “portunhol” aparece cuando el alumno usa estructuras del español con palabras portuguesas. Es normal al principio, pero debe corregirse para que el estudiante gane claridad y naturalidad.</p>",
+                    "<p>Ejemplos:</p>",
+                    "<table><thead><tr><th>Portunhol</th><th>Portugués más natural</th></tr></thead><tbody><tr><td>Eu necessito ajuda.</td><td>Eu preciso de ajuda.</td></tr><tr><td>Onde queda a farmácia?</td><td>Onde fica a farmácia?</td></tr><tr><td>Tenho hambre.</td><td>Estou com fome.</td></tr><tr><td>Vou tomar um ônibus.</td><td>Vou pegar um ônibus.</td></tr><tr><td>Quero fazer uma pergunta.</td><td>Quero fazer uma pergunta / Posso fazer uma pergunta?</td></tr></tbody></table>",
+                    "<p>La corrección en vivo ayuda porque el profesor escucha el error en el momento. En lugar de solo decir “está mal”, muestra una forma natural y hace que el alumno repita.</p>",
+                    "<p>Ejercicio recomendado:</p>",
+                    "<p>1. El alumno dice una frase espontánea.<br>2. El profesor identifica interferencias del español.<br>3. La frase se corrige.<br>4. El alumno repite.<br>5. La frase entra en una mini conversación.</p>",
+                    "<p>Así, el error se convierte en aprendizaje.</p>"
+                ]
+            },
+            {
+                "heading": "Pronunciación: el gran desafío para hispanohablantes",
+                "body": [
+                    "<p>La pronunciación del portugués brasileño puede ser más desafiante que la lectura. Para hispanohablantes, algunas palabras se entienden al leer, pero suenan muy diferentes en boca de brasileños.</p>",
+                    "<p>Puntos importantes:</p>",
+                    "<ul><li>vocales nasales, como <strong>não</strong>, <strong>pão</strong>, <strong>mãe</strong>;</li><li>sonidos de <strong>lh</strong> y <strong>nh</strong>, como <strong>trabalho</strong> y <strong>dinheiro</strong>;</li><li>ritmo más fluido que el español en muchas regiones;</li><li>reducción o unión de sonidos en el habla rápida;</li><li>diferencia entre escritura y pronunciación cotidiana;</li><li>entonación brasileña en preguntas y respuestas.</li></ul>",
+                    "<p>Palabras útiles para practicar:</p>",
+                    "<ul><li><strong>não</strong></li><li><strong>obrigado / obrigada</strong></li><li><strong>trabalho</strong></li><li><strong>dinheiro</strong></li><li><strong>endereço</strong></li><li><strong>reunião</strong></li><li><strong>manhã</strong></li><li><strong>informação</strong></li></ul>",
+                    "<p>La meta no es eliminar completamente el acento. La meta es hablar con claridad, ser entendido y ganar confianza.</p>"
+                ]
+            },
+            {
+                "heading": "Cómo elegir un curso de Portuguese for Brazil",
+                "body": [
+                    "<p>Para elegir un curso de Portuguese for Brazil, analiza si el curso prepara para situaciones reales en Brasil. No basta con estudiar portugués genérico. El alumno extranjero necesita lenguaje útil para vivir, trabajar, estudiar y relacionarse en el país.</p>",
+                    "<p>Un buen curso debe ofrecer:</p>",
+                    "<ul><li>clases en vivo;</li><li>práctica de conversación;</li><li>portugués brasileño, no solo portugués general;</li><li>corrección de pronunciación;</li><li>situaciones de trabajo y estudio;</li><li>vocabulario de vida diaria;</li><li>práctica de WhatsApp;</li><li>contexto cultural;</li><li>nivelación inicial;</li><li>flexibilidad;</li><li>ausencia de contratos largos de fidelidad.</li></ul>",
+                    "<p>Evita cursos que prometen fluidez rápida o que dependen solo de videos. La fluidez real se construye con práctica, constancia y corrección.</p>"
+                ]
+            },
+            {
+                "heading": "Por qué Vedium puede ayudarte a aprender portugués de Brasil",
+                "body": [
+                    "<p>Vedium puede ayudarte porque ofrece clases de portugués brasileño en vivo, con foco en comunicación real y contexto cultural. La propuesta no es que memorices frases sin sentido. La idea es que aprendas portugués para situaciones que realmente vivirás en Brasil.</p>",
+                    "<p>En Vedium, puedes practicar:</p>",
+                    "<ul><li>presentaciones personales;</li><li>reuniones de trabajo;</li><li>estudios y clases;</li><li>WhatsApp;</li><li>vivienda y portaria;</li><li>supermercados y farmacias;</li><li>direcciones y transporte;</li><li>pronunciación;</li><li>escucha;</li><li>conversación guiada;</li><li>corrección en tiempo real.</li></ul>",
+                    "<p>Además, Vedium trabaja sin contratos largos de fidelidad. Esto reduce el miedo de empezar. La permanencia viene del resultado: sigues porque sientes que el portugués se vuelve útil en tu vida.</p>",
+                    "<p>Reserva una prueba de nivel gratuita en <a href=\"/es/portugues-para-extranjeros\">https://vediums.com/</a> y descubre cómo empezar a aprender portugués de Brasil con clases en vivo y práctica real.</p>"
+                ]
+            },
+            {
+                "heading": "Plan de 30 días para empezar portugués de Brasil",
+                "body": [
+                    "<p>Un plan de 30 días no promete fluidez completa, pero sí puede ayudarte a construir una base práctica.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Semana 1</td><td>saludos, presentación y frases de ayuda</td><td>iniciar conversaciones simples</td></tr><tr><td>Semana 2</td><td>trabajo, estudio y reuniones</td><td>participar con frases básicas</td></tr><tr><td>Semana 3</td><td>vida diaria en Brasil</td><td>resolver situaciones comunes</td></tr><tr><td>Semana 4</td><td>WhatsApp, pronunciación y role-play</td><td>ganar confianza en interacciones reales</td></tr></tbody></table>",
+                    "<p>Rutina recomendada:</p>",
+                    "<ul><li>aprender 5 frases útiles por día;</li><li>decirlas en voz alta;</li><li>grabar tu pronunciación;</li><li>practicar una situación real por semana;</li><li>escribir un mensaje corto en portugués;</li><li>revisar errores con profesor;</li><li>repetir frases corregidas.</li></ul>",
+                    "<p>La constancia es más importante que estudiar muchas horas sin dirección.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: ¿estás aprendiendo portugués para la vida real?",
+                "body": [
+                    "<p>Usa este checklist:</p>",
+                    "<ul><li>Puedo presentarme en portugués.</li><li>Sé pedir que alguien repita.</li><li>Puedo explicar que estoy aprendiendo.</li><li>Sé escribir un mensaje básico por WhatsApp.</li><li>Puedo hacer una pregunta en una reunión.</li><li>Conozco frases para trabajo o estudio.</li><li>Practico pronunciación en voz alta.</li><li>Recibo corrección de un profesor.</li><li>Evito depender del español todo el tiempo.</li><li>Estudio situaciones reales de Brasil.</li></ul>",
+                    "<p>Si muchas respuestas son “no”, necesitas más práctica guiada, no solo más teoría.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusión con CTA fuerte",
+                "body": [
+                    "<p>Aprender portugués de Brasil con clases en vivo y práctica real es una decisión inteligente para hispanohablantes que quieren vivir, trabajar, estudiar o relacionarse mejor en Brasil. El español ayuda, pero no basta. La cercanía entre los idiomas puede acelerar el aprendizaje, pero también puede generar “portunhol”, errores de pronunciación y falsa confianza.</p>",
+                    "<p>El mejor camino es aprender frases útiles, practicar situaciones reales, recibir corrección y desarrollar confianza para hablar. El portugués de Brasil se vuelve más claro cuando se estudia con contexto: reuniones, WhatsApp, vivienda, farmacia, transporte, estudio, trabajo y vida diaria.</p>",
+                    "<p>Vedium ofrece clases online en vivo de portugués brasileño para extranjeros, con práctica real, orientación cultural y flexibilidad. Sin contratos largos de fidelidad: continúas porque ves progreso.</p>",
+                    "<p>Reserva una prueba de nivel gratuita en <a href=\"/es/portugues-para-extranjeros\">https://vediums.com/</a> y empieza a aprender portugués de Brasil con clases en vivo, práctica real y un camino pensado para tu vida en Brasil.</p>",
+                    "<p>Para seguir aprendiendo, consulta también <a href=\"/es/blog/portugues-brasileno/portugues-brasileno-para-trabajar-y-vivir-en-brasil\">Portugués brasileño para trabajar y vivir en Brasil</a> o conoce el <a href=\"/es/portugues-para-extranjeros\">curso de portugués brasileño</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "¿Por qué aprender portugués de Brasil con clases en vivo?",
+                "a": "Porque las clases en vivo permiten hablar, recibir corrección, practicar situaciones reales y ganar confianza para comunicarse en Brasil."
+            },
+            {
+                "q": "¿El portugués de Brasil es fácil para hispanohablantes?",
+                "a": "Puede ser más accesible por la cercanía con el español, pero requiere práctica específica de pronunciación, vocabulario, estructuras y contexto cultural."
+            },
+            {
+                "q": "¿Qué debo aprender primero para vivir o trabajar en Brasil?",
+                "a": "Empieza por saludos, presentación personal, frases para pedir ayuda, portugués para reuniones, WhatsApp, direcciones, supermercado, farmacia y vivienda."
+            },
+            {
+                "q": "¿Cómo evitar hablar portunhol?",
+                "a": "Practica con profesor, corrige interferencias del español, aprende frases completas, trabaja pronunciación y usa el portugués en situaciones reales."
+            },
+            {
+                "q": "¿Vedium ofrece clases de portugués brasileño para extranjeros?",
+                "a": "Sí. Vedium ofrece clases online en vivo de portugués brasileño para extranjeros, con práctica real, contexto cultural y prueba de nivel gratuita."
+            }
+        ],
+        "cta_title": "¿Quieres saber tu nivel real de portugués?",
+        "cta_text": "Haz la prueba de nivel gratuita de Vedium y descubre por dónde empezar.",
+        "cta_label": "Reservar una prueba de nivel gratuita",
+        "cta_url": "/es/portugues-para-extranjeros"
+    },
+    "aula-de-ingles-online-ao-vivo-como-funciona-e-para-quem-vale-a-pena": {
+        "title": "Aula de inglês online ao vivo: como funciona e para quem vale a pena",
+        "meta_description": "Entenda como funciona a aula de inglês online ao vivo, para quem vale a pena e como avançar com professor ao vivo.",
+        "h1": "Aula de inglês online ao vivo: como funciona e para quem vale a pena",
+        "date": "2026-07-13",
+        "date_display": "13 de julho de 2026",
+        "hero_image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Close de maos apontando e digitando na tela de um notebook",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Aula de inglês online ao vivo funciona como uma aula em tempo real com professor, interação, conversação, correção e acompanhamento de evolução, mas com a flexibilidade do ambiente digital. Ela vale a pena para quem precisa falar inglês de verdade, sair do estudo passivo, ganhar confiança em reuniões, entrevistas, viagens, trabalho, estudos ou situações internacionais, sem depender apenas de vídeos gravados e exercícios automáticos.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>A principal diferença entre uma aula online ao vivo e um curso gravado é a presença humana. Em uma aula gravada, você assiste. Em uma aula ao vivo, você participa. O professor faz perguntas, escuta sua resposta, corrige sua pronúncia, adapta exemplos ao seu nível, percebe onde você trava e ajuda a transformar conhecimento em comunicação. Para quem quer melhorar conversação em inglês, esse ponto é decisivo.</p>",
+                    "<p>Muitos brasileiros já tentaram aprender inglês por aplicativos, vídeos, apostilas ou cursos massificados. O problema não é que esses recursos não ajudem. Eles ajudam, mas geralmente não resolvem a principal dor: falar. O aluno entende regras, reconhece palavras, faz exercícios, mas trava quando precisa responder em tempo real. É nesse espaço que a aula de inglês online ao vivo se torna uma escolha mais eficiente.</p>",
+                    "<p>Na Vedium, as aulas são ao vivo, com professor real, prática de conversação, orientação por nível e sem contrato de fidelidade. O aluno continua porque percebe evolução, não porque está preso. Neste artigo, você vai entender como funciona esse formato, para quem vale a pena, como praticar em aula, como pensar o plano por nível CEFR e qual é o próximo passo para começar com segurança.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: o que é uma aula de inglês online ao vivo?",
+                "body": [
+                    "<p>Uma aula de inglês online ao vivo é uma aula em tempo real, feita pela internet, com professor e interação direta entre aluno e professor ou turma. Diferente de uma videoaula gravada, ela permite conversa, perguntas, correção imediata, prática oral e adaptação ao nível do aluno.</p>",
+                    "<p>Na prática, uma boa aula online ao vivo inclui:</p>",
+                    "<ul><li>professor presente em tempo real;</li><li>explicação clara do conteúdo;</li><li>prática de speaking;</li><li>listening com interação;</li><li>correção de pronúncia;</li><li>exercícios orais;</li><li>perguntas e respostas;</li><li>simulações de situações reais;</li><li>orientação para estudo fora da aula;</li><li>acompanhamento de evolução.</li></ul>",
+                    "<p>Esse formato é especialmente útil para quem quer desenvolver inglês ativo. Inglês ativo é aquele que você consegue usar: falar, responder, perguntar, explicar, confirmar, pedir ajuda, participar de reuniões e se comunicar com mais segurança.</p>",
+                    "<p>Se você quer saber se a aula ao vivo é o melhor caminho para seu momento, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Para quem aula de inglês online ao vivo vale a pena?",
+                "body": [
+                    "<p>A aula de inglês online ao vivo vale a pena para quem precisa praticar, receber correção e usar o idioma em situações reais. Ela é indicada para alunos que já perceberam que estudar sozinho não está sendo suficiente para destravar a fala.</p>",
+                    "<p>Esse formato costuma ser ideal para:</p>",
+                    "<ul><li>profissionais que precisam de inglês para carreira;</li><li>alunos que travam na conversação;</li><li>pessoas que querem evoluir do A1 ao C1;</li><li>quem precisa se preparar para entrevistas em inglês;</li><li>quem participa ou quer participar de reuniões internacionais;</li><li>quem entende textos, mas não consegue falar;</li><li>quem já tentou aplicativos e vídeos sem constância;</li><li>quem precisa de rotina com professor;</li><li>quem quer aprender no próprio ritmo;</li><li>quem busca flexibilidade sem abrir mão de interação.</li></ul>",
+                    "<p>Para a persona Bruno, que trabalha ou estuda, tem rotina cheia e precisa de inglês de verdade para crescer, a aula online ao vivo faz sentido porque combina flexibilidade com compromisso. Você não perde tempo em deslocamento, mas também não fica sozinho diante de uma plataforma. Há uma pessoa conduzindo o aprendizado.</p>"
+                ]
+            },
+            {
+                "heading": "Quando a aula gravada não é suficiente?",
+                "body": [
+                    "<p>A aula gravada não é suficiente quando o aluno precisa falar, ser corrigido e reagir em tempo real. Conteúdos gravados podem explicar gramática, vocabulário e estruturas, mas não escutam sua fala.</p>",
+                    "<p>Você pode perceber esse limite quando:</p>",
+                    "<ul><li>entende a explicação, mas não consegue formar frases;</li><li>sabe a regra, mas trava ao responder;</li><li>repete palavras com pronúncia errada sem perceber;</li><li>abandona o curso por falta de rotina;</li><li>não sabe qual conteúdo estudar depois;</li><li>assiste aulas, mas não conversa;</li><li>sente que está sempre recomeçando;</li><li>não sabe medir sua evolução.</li></ul>",
+                    "<p>A aula gravada pode ser complemento. Ela pode reforçar conteúdo, ajudar na revisão e oferecer contato extra com o idioma. Mas, para desenvolver conversação em inglês, feedback humano faz diferença. O aluno precisa ser ouvido.</p>"
+                ]
+            },
+            {
+                "heading": "Como funciona uma aula de inglês online ao vivo na prática?",
+                "body": [
+                    "<p>Uma aula de inglês online ao vivo normalmente começa com acolhimento, revisão rápida, objetivo do encontro, explicação, prática guiada, conversação, correção e plano de estudo. O formato pode variar conforme nível, turma, professor e objetivo, mas a lógica deve ser sempre ativa.</p>",
+                    "<p>Um modelo eficiente de aula pode seguir esta estrutura:</p>",
+                    "<table><thead><tr><th>Etapa</th><th>O que acontece</th><th>Por que importa</th></tr></thead><tbody><tr><td>Abertura</td><td>professor cumprimenta e ativa o tema</td><td>reduz ansiedade e cria presença</td></tr><tr><td>Revisão</td><td>retoma o que foi estudado</td><td>fortalece memória</td></tr><tr><td>Objetivo</td><td>define o foco da aula</td><td>dá direção</td></tr><tr><td>Input</td><td>apresenta vocabulário ou estrutura</td><td>cria base</td></tr><tr><td>Prática guiada</td><td>aluno usa frases com apoio</td><td>transforma teoria em uso</td></tr><tr><td>Conversação</td><td>simulação ou discussão</td><td>treina resposta real</td></tr><tr><td>Correção</td><td>professor ajusta erros</td><td>evita vícios</td></tr><tr><td>Encerramento</td><td>resumo e tarefa</td><td>mantém continuidade</td></tr></tbody></table>",
+                    "<p>A diferença está no ciclo: ouvir, falar, errar, corrigir e tentar de novo. Esse ciclo é o que tira o aluno da passividade.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar em aula ao vivo?",
+                "body": [
+                    "<p>Para praticar bem em aula ao vivo, o aluno deve chegar disposto a falar frases simples, responder perguntas, pedir correção e repetir. Não é preciso esperar estar “pronto” para conversar. A aula existe justamente para construir essa prontidão.</p>",
+                    "<h3>Prática 1: perguntas e respostas rápidas</h3>",
+                    "<p>O professor faz perguntas curtas e o aluno responde sem tentar montar uma frase perfeita.</p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>What do you do?</strong></li><li><strong>Where do you work?</strong></li><li><strong>Why are you studying English?</strong></li><li><strong>Do you use English at work?</strong></li><li><strong>What is your biggest difficulty?</strong></li></ul>",
+                    "<p>Respostas possíveis:</p>",
+                    "<ul><li><strong>I work in sales.</strong></li><li><strong>I work with clients.</strong></li><li><strong>I study English because I want to grow in my career.</strong></li><li><strong>I use English in emails, but I need more speaking practice.</strong></li><li><strong>My biggest difficulty is listening.</strong></li></ul>",
+                    "<p>Esse tipo de exercício desenvolve velocidade e confiança.</p>",
+                    "<h3>Prática 2: simulação de situação real</h3>",
+                    "<p>A aula ao vivo permite simular uma entrevista, reunião, viagem, apresentação ou conversa profissional.</p>",
+                    "<p>Exemplo: entrevista de emprego.</p>",
+                    "<p>Professor:</p>",
+                    "<p><strong>Tell me about yourself.</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>My name is Bruno. I work in technology, and I have experience with customer support. I want to improve my English because I want to work with international teams.</strong></p>",
+                    "<p>Depois, o professor corrige, melhora a estrutura e pede uma nova tentativa. Esse processo gera evolução imediata.</p>",
+                    "<h3>Prática 3: correção de pronúncia</h3>",
+                    "<p>Pronúncia não melhora apenas lendo. O professor precisa ouvir.</p>",
+                    "<p>Exemplos de palavras que brasileiros costumam praticar:</p>",
+                    "<ul><li>work;</li><li>world;</li><li>think;</li><li>thought;</li><li>meeting;</li><li>interview;</li><li>schedule;</li><li>career;</li><li>project;</li><li>comfortable.</li></ul>",
+                    "<p>A correção ao vivo evita que o aluno repita o mesmo erro por meses.</p>",
+                    "<h3>Prática 4: frases funcionais</h3>",
+                    "<p>Frases funcionais ajudam o aluno a não travar quando não entende algo.</p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>Can you repeat, please?</strong></li><li><strong>Can you speak more slowly?</strong></li><li><strong>I didn’t understand.</strong></li><li><strong>How do you say...?</strong></li><li><strong>I have a question.</strong></li><li><strong>Let me try again.</strong></li><li><strong>Just a moment, please.</strong></li><li><strong>Can you give me an example?</strong></li></ul>",
+                    "<p>Essas frases mantêm a conversa viva e reduzem a ansiedade.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: como aproveitar uma aula de inglês online ao vivo",
+                "body": [
+                    "<p>Para aproveitar melhor uma aula de inglês online ao vivo, siga um processo simples antes, durante e depois da aula. O resultado não vem apenas da presença, mas da forma como você participa.</p>",
+                    "<h3>Passo 1: saiba seu objetivo</h3>",
+                    "<p>Antes de começar, defina o motivo do seu inglês:</p>",
+                    "<ul><li>carreira;</li><li>entrevista;</li><li>reuniões;</li><li>viagem;</li><li>estudo;</li><li>conversação geral;</li><li>mudança de país;</li><li>leitura e escrita profissional.</li></ul>",
+                    "<p>Quanto mais claro o objetivo, mais útil fica a aula.</p>",
+                    "<h3>Passo 2: descubra seu nível</h3>",
+                    "<p>Faça um teste de nível para entender seu ponto de partida. O nível CEFR ajuda a organizar a evolução de A1 a C1, evitando conteúdos fáceis demais ou difíceis demais.</p>",
+                    "<h3>Passo 3: leve situações reais</h3>",
+                    "<p>Traga para aula exemplos do que você precisa falar:</p>",
+                    "<ul><li>uma apresentação pessoal;</li><li>uma reunião;</li><li>um e-mail;</li><li>uma entrevista;</li><li>uma viagem;</li><li>uma dúvida de pronúncia;</li><li>uma frase que você não consegue montar.</li></ul>",
+                    "<p>A aula fica mais forte quando conversa com sua vida.</p>",
+                    "<h3>Passo 4: fale mesmo com erro</h3>",
+                    "<p>O erro faz parte do processo. O aluno que espera perfeição fala pouco. O aluno que fala com correção evolui mais rápido.</p>",
+                    "<h3>Passo 5: anote correções</h3>",
+                    "<p>Não anote tudo. Anote as correções que mais se repetem. Exemplo:</p>",
+                    "<ul><li>“I have 30 years” → <strong>I am 30 years old</strong></li><li>“I am work” → <strong>I work</strong></li><li>“I need to improve my speak” → <strong>I need to improve my speaking</strong></li></ul>",
+                    "<h3>Passo 6: repita depois da aula</h3>",
+                    "<p>A revisão pós-aula transforma correção em memória. Repita frases em voz alta por 5 a 10 minutos.</p>",
+                    "<h3>Passo 7: mantenha constância</h3>",
+                    "<p>Aula ao vivo funciona melhor com frequência. Pouco e sempre costuma ser melhor do que estudar muito uma vez e desaparecer por semanas.</p>"
+                ]
+            },
+            {
+                "heading": "Plano por nível CEFR",
+                "body": [
+                    "<p>O plano por nível CEFR ajuda o aluno a entender o que deve praticar em cada fase. Uma aula de inglês online ao vivo deve respeitar o nível atual e conduzir o aluno para o próximo passo.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Objetivo principal</th><th>O que praticar em aula ao vivo</th></tr></thead><tbody><tr><td>A1</td><td>sobreviver em frases simples</td><td>apresentação, rotina, perguntas básicas, frases de ajuda</td></tr><tr><td>A2</td><td>falar sobre vida e trabalho simples</td><td>passado básico, planos, preferências, situações comuns</td></tr><tr><td>B1</td><td>participar de conversas com mais autonomia</td><td>opiniões, experiências, reuniões simples, entrevistas</td></tr><tr><td>B2</td><td>ganhar fluência profissional</td><td>argumentação, reuniões, clientes, apresentações, feedback</td></tr><tr><td>C1</td><td>refinar precisão e naturalidade</td><td>debates, nuances, negociação, liderança, temas complexos</td></tr></tbody></table>",
+                    "<p>O aluno iniciante não deve pular etapas. O aluno intermediário não deve repetir eternamente conteúdo básico. O teste de nível existe para encaixar o aluno no ponto certo.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra qual plano faz sentido para sua etapa.</p>"
+                ]
+            },
+            {
+                "heading": "Aula online ao vivo ajuda na conversação?",
+                "body": [
+                    "<p>Sim, aula online ao vivo ajuda muito na conversação porque cria um ambiente seguro para falar, errar, receber correção e tentar novamente. Conversação não nasce apenas de ouvir inglês. Ela nasce de interação.</p>",
+                    "<p>A conversação em inglês exige:</p>",
+                    "<ul><li>entender perguntas;</li><li>organizar respostas;</li><li>escolher vocabulário;</li><li>pronunciar com clareza;</li><li>reagir em tempo real;</li><li>pedir repetição;</li><li>manter o assunto;</li><li>confirmar entendimento;</li><li>fazer perguntas de volta.</li></ul>",
+                    "<p>Essas habilidades aparecem juntas em uma conversa real. Por isso, precisam ser treinadas juntas. A aula ao vivo permite exatamente isso.</p>",
+                    "<p>Em vez de apenas estudar “frases prontas”, você aprende a usá-las. Por exemplo:</p>",
+                    "<p>Frase isolada:</p>",
+                    "<p><strong>Can you repeat, please?</strong></p>",
+                    "<p>Uso real:</p>",
+                    "<p>Professor fala uma pergunta rápida. O aluno não entende tudo e responde:</p>",
+                    "<p><strong>Sorry, can you repeat, please?</strong></p>",
+                    "<p>Essa pequena interação é um avanço real para quem antes travava.</p>"
+                ]
+            },
+            {
+                "heading": "Aula de inglês online ao vivo serve para iniciantes?",
+                "body": [
+                    "<p>Sim, aula de inglês online ao vivo serve para iniciantes, desde que o conteúdo seja adequado ao nível. O iniciante não precisa falar muito no primeiro dia, mas precisa começar a ouvir, repetir, responder e ganhar confiança.</p>",
+                    "<p>No nível inicial, a aula deve trabalhar:</p>",
+                    "<ul><li>apresentação pessoal;</li><li>alfabeto e sons;</li><li>frases de sobrevivência;</li><li>rotina;</li><li>trabalho e estudos;</li><li>perguntas simples;</li><li>respostas curtas;</li><li>vocabulário de alta utilidade;</li><li>pronúncia básica;</li><li>confiança para tentar.</li></ul>",
+                    "<p>Exemplo de mini-conversa A1:</p>",
+                    "<p><strong>Teacher:</strong> What is your name?<br><strong>Student:</strong> My name is Ana.<br><strong>Teacher:</strong> Where are you from?<br><strong>Student:</strong> I am from Brazil.<br><strong>Teacher:</strong> Why are you studying English?<br><strong>Student:</strong> I want to grow in my career.</p>",
+                    "<p>Simples, direto e útil.</p>"
+                ]
+            },
+            {
+                "heading": "Aula ao vivo vale para quem já é intermediário?",
+                "body": [
+                    "<p>Sim, e muitas vezes vale ainda mais. O aluno intermediário costuma entender bastante, mas sente que não sai do lugar. Ele lê, escreve e até assiste vídeos, mas trava para falar com naturalidade.</p>",
+                    "<p>No intermediário, a aula ao vivo deve trabalhar:</p>",
+                    "<ul><li>fluência;</li><li>vocabulário ativo;</li><li>listening real;</li><li>reuniões;</li><li>entrevistas;</li><li>apresentações;</li><li>opiniões;</li><li>correção de vícios;</li><li>phrasal verbs úteis;</li><li>expressões profissionais;</li><li>pronúncia mais natural.</li></ul>",
+                    "<p>Exemplo de prática B1/B2:</p>",
+                    "<p><strong>Teacher:</strong> What are the main challenges in your current job?<br><strong>Student:</strong> I think the main challenge is communication with international clients. I can understand emails, but I need more confidence in meetings.</p>",
+                    "<p>Depois o professor expande a resposta, corrige e simula perguntas de follow-up.</p>"
+                ]
+            },
+            {
+                "heading": "Como comparar curso de inglês online ao vivo com aplicativo?",
+                "body": [
+                    "<p>A principal diferença é que o aplicativo treina repetição e reconhecimento, enquanto a aula ao vivo treina comunicação. Um aplicativo pode ser útil como apoio, mas não substitui um professor quando o objetivo é falar melhor.</p>",
+                    "<table><thead><tr><th>Critério</th><th>Aplicativo</th><th>Aula online ao vivo</th></tr></thead><tbody><tr><td>Flexibilidade</td><td>alta</td><td>alta</td></tr><tr><td>Correção de fala</td><td>limitada</td><td>direta e personalizada</td></tr><tr><td>Conversação real</td><td>baixa</td><td>alta</td></tr><tr><td>Adaptação ao aluno</td><td>limitada</td><td>maior</td></tr><tr><td>Motivação</td><td>depende do aluno</td><td>professor ajuda a manter</td></tr><tr><td>Pronúncia</td><td>feedback automático</td><td>feedback humano</td></tr><tr><td>Situações reais</td><td>geralmente padronizadas</td><td>adaptadas ao objetivo</td></tr><tr><td>Evolução profissional</td><td>limitada</td><td>mais estratégica</td></tr></tbody></table>",
+                    "<p>A melhor combinação pode ser usar recursos extras para revisão e aula ao vivo para interação. Mas, se a dor principal é falar, o professor ao vivo tende a ser mais eficiente.</p>"
+                ]
+            },
+            {
+                "heading": "Como saber se a aula online ao vivo é boa?",
+                "body": [
+                    "<p>Uma boa aula online ao vivo faz o aluno falar, não apenas assistir. O professor deve conduzir, corrigir, adaptar e criar situações reais de prática.</p>",
+                    "<p>Sinais de uma boa aula:</p>",
+                    "<ul><li>há interação real;</li><li>o professor corrige sem constranger;</li><li>o aluno fala em todas as aulas;</li><li>existe objetivo claro;</li><li>o conteúdo respeita o nível;</li><li>há prática de listening e speaking;</li><li>as frases têm uso real;</li><li>há revisão;</li><li>o aluno sabe o próximo passo;</li><li>a aula conecta inglês à vida do aluno.</li></ul>",
+                    "<p>Sinais de alerta:</p>",
+                    "<ul><li>aula vira palestra;</li><li>aluno quase não fala;</li><li>não há correção;</li><li>todos recebem o mesmo conteúdo;</li><li>foco só em regra;</li><li>não existe plano de evolução;</li><li>não há prática oral;</li><li>o aluno termina sem saber o que revisar.</li></ul>",
+                    "<p>Aula ao vivo precisa ser viva de verdade.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo na Vedium",
+                "body": [
+                    "<p>O próximo passo na Vedium é fazer um teste de nível grátis para entender onde você está e qual caminho faz sentido para seu objetivo. A ideia não é colocar todo mundo na mesma trilha. Um aluno que quer inglês para entrevista precisa de prática diferente de alguém que quer inglês para viagem ou reuniões.</p>",
+                    "<p>Na Vedium, o inglês online ao vivo é pensado para quem quer:</p>",
+                    "<ul><li>praticar conversação;</li><li>evoluir por nível;</li><li>estudar com professor real;</li><li>ter flexibilidade;</li><li>evitar contratos longos;</li><li>aprender no próprio ritmo;</li><li>conectar inglês à carreira;</li><li>sair do estudo passivo;</li><li>medir progresso;</li><li>ganhar confiança.</li></ul>",
+                    "<p>A proposta é simples: aulas ao vivo, do A1 ao C1, sem fidelidade. Você evolui de verdade, no seu ritmo.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist antes de escolher uma aula de inglês online ao vivo",
+                "body": [
+                    "<p>Antes de decidir, use este checklist:</p>",
+                    "<ul><li>A aula é realmente ao vivo?</li><li>Há professor em tempo real?</li><li>O aluno fala durante a aula?</li><li>Existe correção de pronúncia?</li><li>O curso trabalha conversação?</li><li>O nível é avaliado antes?</li><li>Há plano por etapa?</li><li>O conteúdo se conecta ao meu objetivo?</li><li>Posso começar sem contrato de fidelidade?</li><li>Existe próximo passo claro?</li></ul>",
+                    "<p>Se a resposta for “sim” para a maioria dos pontos, o formato tem mais chance de funcionar para você.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Aula de inglês online ao vivo vale a pena para quem quer transformar estudo em comunicação. Se você está cansado de assistir vídeos, fazer exercícios e ainda travar para falar, o problema provavelmente não é falta de capacidade. É falta de prática real com correção, interação e direção.</p>",
+                    "<p>O formato ao vivo permite falar, ouvir, errar, ajustar e tentar de novo. Ele funciona para iniciantes, intermediários e alunos com objetivos profissionais, desde que respeite o nível CEFR e trabalhe situações reais. Para quem busca carreira, entrevista, reuniões, viagem ou evolução consistente, a presença de um professor ao vivo pode acelerar o caminho.</p>",
+                    "<p>A Vedium oferece curso de inglês online ao vivo com professor, conversação, plano por nível e sem contrato de fidelidade. Você fica porque percebe evolução, não por amarra contratual.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra como a aula de inglês online ao vivo pode ajudar você a falar com mais segurança.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/como-estudar-phrasal-verbs-sem-decorar-listas-infinitas\">Como estudar phrasal verbs sem decorar listas infinitas</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "O que é uma aula de inglês online ao vivo?",
+                "a": "É uma aula feita pela internet em tempo real, com professor presente, interação, conversação, correção e prática de inglês durante a aula."
+            },
+            {
+                "q": "Aula de inglês online ao vivo vale a pena para iniciantes?",
+                "a": "Sim. Iniciantes podem aprender apresentação, frases básicas, pronúncia, perguntas simples e confiança para começar a falar desde as primeiras aulas."
+            },
+            {
+                "q": "Qual a diferença entre aula ao vivo e curso gravado?",
+                "a": "No curso gravado, você assiste ao conteúdo. Na aula ao vivo, você participa, fala, recebe correção, tira dúvidas e pratica conversação em tempo real."
+            },
+            {
+                "q": "Como saber meu nível antes de começar?",
+                "a": "O ideal é fazer um teste de nível baseado em habilidades como speaking, listening, leitura, escrita e estruturas do CEFR para entrar na etapa certa."
+            },
+            {
+                "q": "A Vedium oferece curso de inglês online ao vivo sem fidelidade?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo, com professor, conversação, evolução por nível e sem contrato de fidelidade."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "brasilianisches-portugiesisch-fur-beruf-und-alltag-in-brasilien": {
+        "title": "Brasilianisches Portugiesisch für Beruf und Alltag in Brasilien",
+        "meta_description": "Lerne brasilianisches Portugiesisch für Beruf und Alltag in Brasilien mit realen Situationen und Live-Unterricht.",
+        "h1": "Brasilianisches Portugiesisch für Beruf und Alltag in Brasilien",
+        "date": "2025-04-09",
+        "date_display": "9. April 2025",
+        "hero_image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Duas profissionais sorrindo durante uma reuniao de trabalho",
+        "tag": "Deutsch",
+        "lang": "de",
+        "lead": "Brasilianisches Portugiesisch für Beruf und Alltag in Brasilien bedeutet, die Sprache nicht nur als Grammatiksystem zu lernen, sondern als Werkzeug für echte Situationen: Meetings, E-Mails, Wohnungssuche, Banktermine, Arztbesuche, Lieferungen, Small Talk, Universität, Behörden, öffentliche Verkehrsmittel und Gespräche mit Nachbarn oder Kollegen. Wer aus Deutschland, Österreich oder der Schweiz nach Brasilien zieht, dort arbeitet, studiert oder regelmäßig mit brasilianischen Teams kommuniziert, braucht Portugiesisch, das im echten Leben funktioniert.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Viele Lernende beginnen mit der Frage: „Reicht Englisch in Brasilien?“ In manchen internationalen Unternehmen, Hotels oder Universitäten kann Englisch helfen. Aber im Alltag ist brasilianisches Portugiesisch entscheidend. Beim Pförtner im Wohnhaus, in der Apotheke, beim Fahrer einer App, bei der Wohnungsbesichtigung, im Supermarkt, bei Handwerkern, in WhatsApp-Nachrichten oder in informellen Gesprächen am Arbeitsplatz wird häufig Portugiesisch erwartet. Genau dort entsteht echte Sicherheit.</p>",
+                    "<p>Der wichtigste Punkt ist: Du musst nicht perfekt sprechen, bevor du beginnst. Du brauchst zuerst die Sätze, die dir helfen, dich zu orientieren, höflich nachzufragen, Missverständnisse zu klären und aktiv am Alltag teilzunehmen. Ein guter Brazilian Portuguese course sollte deshalb nicht nur Verbtabellen erklären, sondern reale Situationen simulieren. Live-Unterricht ist besonders wertvoll, weil ein Lehrer deine Aussprache hört, deine Sätze korrigiert und dich auf Gespräche vorbereitet, die du wirklich führen wirst.</p>",
+                    "<p>In diesem Artikel erfährst du, warum brasilianisches Portugiesisch für Beruf und Alltag in Brasilien so wichtig ist, welche Wörter und Sätze du zuerst lernen solltest, wie du typische Situationen übst und warum Live-Unterricht für Ausländer besonders effektiv ist. Vedium bietet Online-Live-Unterricht für brasilianisches Portugiesisch, ohne langfristige Vertragsbindung: Du bleibst, weil du Fortschritte spürst.</p>"
+                ]
+            },
+            {
+                "heading": "Direkte Antwort: Warum brauchst du brasilianisches Portugiesisch für Beruf und Alltag?",
+                "body": [
+                    "<p>Du brauchst brasilianisches Portugiesisch für Beruf und Alltag, weil viele wichtige Situationen in Brasilien auf Portugiesisch stattfinden: Wohnen, Arbeit, Studium, Transport, Gesundheit, Einkäufe, Dienstleistungen, WhatsApp-Kommunikation und soziale Kontakte. Englisch kann unterstützen, ersetzt aber nicht die Fähigkeit, einfache und klare Sätze auf Portugiesisch zu verwenden.</p>",
+                    "<p>Brasilianisches Portugiesisch hilft dir, wenn du:</p>",
+                    "<ul><li>dich im Unternehmen vorstellen musst;</li><li>an Meetings teilnimmst;</li><li>mit Kollegen Small Talk führst;</li><li>eine Wohnung suchst;</li><li>mit dem Pförtner oder der Hausverwaltung sprichst;</li><li>eine Lieferung erklärst;</li><li>zum Arzt oder in die Apotheke gehst;</li><li>öffentliche Verkehrsmittel nutzt;</li><li>im Restaurant bestellst;</li><li>Bank- oder Vertragsfragen klärst;</li><li>WhatsApp-Nachrichten schreibst;</li><li>kulturelle Nuancen besser verstehst.</li></ul>",
+                    "<p>Der erste Lernschritt ist nicht Perfektion. Der erste Lernschritt ist funktionale Kommunikation: verstehen, antworten, nachfragen und wiederholen können.</p>",
+                    "<p>Wenn du wissen möchtest, welches Niveau du hast und was du für Brasilien zuerst lernen solltest, buche einen kostenlosen Einstufungstest bei <a href=\"/de/portugiesisch-fuer-auslaender\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Reale Alltagssituation: Ankunft in Brasilien",
+                "body": [
+                    "<p>Die ersten Tage in Brasilien zeigen schnell, welche Portugiesischkenntnisse wirklich nützlich sind. Du brauchst Wörter für Adresse, Transport, Unterkunft, Begrüßung, Hilfe, Dokumente und alltägliche Fragen.</p>",
+                    "<p>Wichtige Sätze für die Ankunft:</p>",
+                    "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>Olá, tudo bem?</td><td>Hallo, alles gut?</td></tr><tr><td>Eu não falo muito português.</td><td>Ich spreche noch nicht viel Portugiesisch.</td></tr><tr><td>Estou aprendendo português.</td><td>Ich lerne Portugiesisch.</td></tr><tr><td>Pode repetir, por favor?</td><td>Können Sie das bitte wiederholen?</td></tr><tr><td>Pode falar mais devagar?</td><td>Können Sie bitte langsamer sprechen?</td></tr><tr><td>Preciso de ajuda.</td><td>Ich brauche Hilfe.</td></tr><tr><td>Este é o endereço.</td><td>Das ist die Adresse.</td></tr><tr><td>Onde fica...?</td><td>Wo ist...?</td></tr><tr><td>Quanto custa?</td><td>Wie viel kostet es?</td></tr><tr><td>Obrigado / obrigada.</td><td>Danke.</td></tr></tbody></table>",
+                    "<p>Ein sehr nützlicher Satz ist:</p>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
+                    "<p>Deutsch:</p>",
+                    "<p>Entschuldigung, ich lerne noch Portugiesisch. Können Sie bitte langsamer sprechen?</p>",
+                    "<p>Dieser Satz ist wichtig, weil er das Gespräch offen hält. Statt zu schweigen oder nur zu lächeln, zeigst du, dass du lernen willst und Unterstützung brauchst.</p>"
+                ]
+            },
+            {
+                "heading": "Wichtiger Wortschatz für den beruflichen Kontext",
+                "body": [
+                    "<p>Portugiesisch für den Beruf sollte sich zuerst auf Situationen konzentrieren, die du tatsächlich erlebst: Begrüßung, Vorstellung, Meeting, Zeitplan, Projekt, Frist, Rückfrage, E-Mail und Follow-up. Es geht nicht darum, sofort komplizierte Präsentationen zu halten. Es geht darum, im Berufsalltag reagieren zu können.</p>",
+                    "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>trabalho</td><td>Arbeit</td></tr><tr><td>empresa</td><td>Unternehmen</td></tr><tr><td>equipe</td><td>Team</td></tr><tr><td>reunião</td><td>Meeting</td></tr><tr><td>projeto</td><td>Projekt</td></tr><tr><td>prazo</td><td>Frist</td></tr><tr><td>relatório</td><td>Bericht</td></tr><tr><td>cliente</td><td>Kunde</td></tr><tr><td>apresentação</td><td>Präsentation</td></tr><tr><td>dúvida</td><td>Frage / Zweifel</td></tr><tr><td>horário</td><td>Uhrzeit / Zeitplan</td></tr><tr><td>e-mail</td><td>E-Mail</td></tr><tr><td>mensagem</td><td>Nachricht</td></tr><tr><td>responsável</td><td>verantwortlich / Verantwortliche Person</td></tr><tr><td>combinado</td><td>vereinbart</td></tr></tbody></table>",
+                    "<p>Nützliche Sätze:</p>",
+                    "<ul><li><strong>Eu trabalho com tecnologia.</strong> — Ich arbeite im Bereich Technologie.</li><li><strong>Tenho uma reunião hoje.</strong> — Ich habe heute ein Meeting.</li><li><strong>Qual é o prazo?</strong> — Was ist die Frist?</li><li><strong>Tenho uma dúvida.</strong> — Ich habe eine Frage.</li><li><strong>Você pode explicar de novo?</strong> — Können Sie das noch einmal erklären?</li><li><strong>Vou enviar o relatório amanhã.</strong> — Ich werde den Bericht morgen senden.</li><li><strong>Combinado.</strong> — Abgemacht / So machen wir es.</li><li><strong>Só para confirmar...</strong> — Nur zur Bestätigung...</li></ul>",
+                    "<p>Gerade der Ausdruck <strong>“Só para confirmar...”</strong> ist im Berufsleben sehr nützlich. Er hilft dir, Informationen höflich zu überprüfen, ohne unsicher zu wirken.</p>"
+                ]
+            },
+            {
+                "heading": "Small Talk im brasilianischen Arbeitsalltag",
+                "body": [
+                    "<p>Small Talk ist in Brasilien oft Teil professioneller Beziehungen. Gespräche beginnen nicht immer direkt mit dem Thema. Kollegen fragen vielleicht nach dem Wochenende, dem Verkehr, dem Mittagessen oder danach, ob du dich in Brasilien wohlfühlst.</p>",
+                    "<p>Typische Fragen:</p>",
+                    "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>Como foi o fim de semana?</td><td>Wie war das Wochenende?</td></tr><tr><td>Você está gostando do Brasil?</td><td>Gefällt dir Brasilien?</td></tr><tr><td>Muito trabalho hoje?</td><td>Viel Arbeit heute?</td></tr><tr><td>Você já almoçou?</td><td>Hast du schon zu Mittag gegessen?</td></tr><tr><td>Pegou muito trânsito?</td><td>Hattest du viel Verkehr?</td></tr><tr><td>Está tudo certo?</td><td>Ist alles in Ordnung?</td></tr></tbody></table>",
+                    "<p>Mögliche Antworten:</p>",
+                    "<ul><li><strong>Foi bom, obrigado. E o seu?</strong> — Es war gut, danke. Und deins?</li><li><strong>Estou gostando muito do Brasil.</strong> — Brasilien gefällt mir sehr.</li><li><strong>Sim, bastante trabalho hoje.</strong> — Ja, heute ist viel Arbeit.</li><li><strong>Ainda não almocei.</strong> — Ich habe noch nicht zu Mittag gegessen.</li><li><strong>Peguei um pouco de trânsito.</strong> — Ich hatte ein bisschen Verkehr.</li><li><strong>Está tudo certo, obrigado.</strong> — Alles ist in Ordnung, danke.</li></ul>",
+                    "<p>Small Talk ist nicht oberflächlich, wenn du in einem neuen Land lebst. Er hilft dir, Beziehungen aufzubauen und dich weniger isoliert zu fühlen.</p>"
+                ]
+            },
+            {
+                "heading": "Wichtiger Wortschatz für Wohnen und Alltag",
+                "body": [
+                    "<p>Wer in Brasilien lebt, braucht sehr früh Wörter für Wohnung, Gebäude, Pförtner, Lieferung, Miete, Vertrag und Nachbarschaft. Diese Wörter erscheinen in Gesprächen, Anzeigen, WhatsApp-Nachrichten und praktischen Problemen.</p>",
+                    "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>apartamento</td><td>Wohnung</td></tr><tr><td>prédio</td><td>Gebäude</td></tr><tr><td>portaria</td><td>Pförtnerbereich / Empfang im Wohnhaus</td></tr><tr><td>porteiro / porteira</td><td>Pförtner / Pförtnerin</td></tr><tr><td>aluguel</td><td>Miete</td></tr><tr><td>contrato</td><td>Vertrag</td></tr><tr><td>condomínio</td><td>Wohngebühr / Hausgeld</td></tr><tr><td>contas</td><td>Rechnungen / Nebenkosten</td></tr><tr><td>chave</td><td>Schlüssel</td></tr><tr><td>encomenda</td><td>Paket</td></tr><tr><td>entrega</td><td>Lieferung</td></tr><tr><td>bairro</td><td>Stadtviertel</td></tr><tr><td>vizinho / vizinha</td><td>Nachbar / Nachbarin</td></tr><tr><td>manutenção</td><td>Wartung / Reparatur</td></tr><tr><td>endereço</td><td>Adresse</td></tr></tbody></table>",
+                    "<p>Nützliche Sätze:</p>",
+                    "<ul><li><strong>Moro neste prédio.</strong> — Ich wohne in diesem Gebäude.</li><li><strong>Pode deixar na portaria.</strong> — Sie können es beim Pförtner abgeben.</li><li><strong>Chegou alguma encomenda para mim?</strong> — Ist ein Paket für mich angekommen?</li><li><strong>Tenho um problema no apartamento.</strong> — Ich habe ein Problem in der Wohnung.</li><li><strong>Preciso falar com a administração.</strong> — Ich muss mit der Verwaltung sprechen.</li><li><strong>O aluguel inclui condomínio?</strong> — Enthält die Miete die Wohngebühr?</li><li><strong>As contas estão incluídas?</strong> — Sind die Nebenkosten enthalten?</li><li><strong>Qual é o endereço completo?</strong> — Wie lautet die vollständige Adresse?</li></ul>",
+                    "<p>Für Expats ist <strong>portaria</strong> ein besonders wichtiges Wort, weil viele brasilianische Wohngebäude einen Pförtnerbereich haben. Lieferungen, Besucher, Nachrichten und Alltagsfragen laufen oft über diesen Ort.</p>"
+                ]
+            },
+            {
+                "heading": "Portugiesisch für WhatsApp in Brasilien",
+                "body": [
+                    "<p>WhatsApp ist in Brasilien extrem wichtig für berufliche und private Kommunikation. Viele Gespräche mit Vermietern, Kollegen, Lehrern, Dienstleistern, Lieferfahrern, Nachbarn und Unternehmen laufen über kurze Nachrichten.</p>",
+                    "<p>Nützliche WhatsApp-Sätze:</p>",
+                    "<ul><li><strong>Olá, tudo bem?</strong> — Hallo, alles gut?</li><li><strong>Tenho uma dúvida.</strong> — Ich habe eine Frage.</li><li><strong>Você pode confirmar o horário?</strong> — Kannst du die Uhrzeit bestätigen?</li><li><strong>Pode me enviar o endereço?</strong> — Kannst du mir die Adresse schicken?</li><li><strong>Estou chegando.</strong> — Ich komme gleich an.</li><li><strong>Já estou descendo.</strong> — Ich komme gerade runter.</li><li><strong>Pode deixar na portaria.</strong> — Du kannst es beim Pförtner abgeben.</li><li><strong>Obrigado pela ajuda.</strong> — Danke für die Hilfe.</li><li><strong>Desculpa a demora.</strong> — Entschuldigung für die Verzögerung.</li><li><strong>Combinado.</strong> — Abgemacht.</li></ul>",
+                    "<p>Beispielnachricht:</p>",
+                    "<p><strong>Olá, tudo bem? Tenho uma dúvida sobre o horário da reunião. Você pode confirmar, por favor? Obrigado.</strong></p>",
+                    "<p>Deutsch:</p>",
+                    "<p>Hallo, alles gut? Ich habe eine Frage zur Uhrzeit des Meetings. Kannst du sie bitte bestätigen? Danke.</p>",
+                    "<p>Ein Live-Lehrer kann dir helfen, solche Nachrichten natürlich klingen zu lassen. Direkte Übersetzungen aus dem Deutschen wirken im Portugiesischen manchmal zu hart oder zu formell.</p>"
+                ]
+            },
+            {
+                "heading": "Portugiesisch für Dienstleistungen, Arzt und Apotheke",
+                "body": [
+                    "<p>Alltag in Brasilien bedeutet auch, Dienstleistungen zu nutzen: Apotheke, Arztpraxis, Supermarkt, Bank, Fitnessstudio, Reparaturen, Friseur, Telefonanbieter oder Lieferdienst. Dafür brauchst du klare und einfache Sätze.</p>",
+                    "<table><thead><tr><th>Situation</th><th>Nützlicher Satz</th></tr></thead><tbody><tr><td>Apotheke</td><td><strong>Preciso de um remédio para dor de cabeça.</strong></td></tr><tr><td>Arzt</td><td><strong>Quero marcar uma consulta.</strong></td></tr><tr><td>Supermarkt</td><td><strong>Aceita cartão?</strong></td></tr><tr><td>Bank</td><td><strong>Preciso abrir uma conta.</strong></td></tr><tr><td>Reparatur</td><td><strong>Preciso de manutenção.</strong></td></tr><tr><td>Telefon</td><td><strong>Quero contratar um plano.</strong></td></tr><tr><td>Lieferung</td><td><strong>O pedido ainda não chegou.</strong></td></tr><tr><td>Fitnessstudio</td><td><strong>Quero fazer uma matrícula.</strong></td></tr></tbody></table>",
+                    "<p>Übersetzungen:</p>",
+                    "<ul><li>Ich brauche ein Medikament gegen Kopfschmerzen.</li><li>Ich möchte einen Termin vereinbaren.</li><li>Akzeptieren Sie Karte?</li><li>Ich muss ein Konto eröffnen.</li><li>Ich brauche eine Reparatur/Wartung.</li><li>Ich möchte einen Tarif abschließen.</li><li>Die Bestellung ist noch nicht angekommen.</li><li>Ich möchte mich anmelden.</li></ul>",
+                    "<p>Diese Sätze zeigen, warum ein praktischer Brazilian Portuguese course wichtig ist. Du lernst nicht nur abstrakte Grammatik, sondern Sätze, die deinen Alltag einfacher machen.</p>"
+                ]
+            },
+            {
+                "heading": "Aussprache: Warum brasilianisches Portugiesisch anders klingt, als es aussieht",
+                "body": [
+                    "<p>Brasilianisches Portugiesisch kann für deutschsprachige Lernende überraschend sein, weil die Aussprache nicht immer der Schreibweise entspricht, die man erwartet. Nasale Laute, offene und geschlossene Vokale, das brasilianische <strong>r</strong>, das <strong>lh</strong>, das <strong>nh</strong> und der Rhythmus der Sprache brauchen Übung.</p>",
+                    "<p>Wörter, die du früh üben solltest:</p>",
+                    "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>não</td><td>nein / nicht</td></tr><tr><td>reunião</td><td>Meeting</td></tr><tr><td>trabalho</td><td>Arbeit</td></tr><tr><td>dinheiro</td><td>Geld</td></tr><tr><td>endereço</td><td>Adresse</td></tr><tr><td>banheiro</td><td>Badezimmer / Toilette</td></tr><tr><td>informação</td><td>Information</td></tr><tr><td>obrigado / obrigada</td><td>danke</td></tr><tr><td>amanhã</td><td>morgen</td></tr><tr><td>português</td><td>Portugiesisch</td></tr></tbody></table>",
+                    "<p>Aussprache ist nicht nur Ästhetik. Sie beeinflusst, ob du verstanden wirst. Ein Live-Unterricht hilft, weil der Lehrer dich hört und gezielt korrigieren kann. Eine App kann dir ein Modell geben, aber sie ersetzt nicht immer die persönliche Rückmeldung.</p>"
+                ]
+            },
+            {
+                "heading": "Übung im Live-Unterricht: Beruf und Alltag kombinieren",
+                "body": [
+                    "<p>Live-Unterricht ist besonders effektiv, wenn du reale Situationen simulierst. Dadurch werden Wörter zu Handlung. Du lernst nicht nur, was ein Satz bedeutet, sondern wie du ihn unter leichtem Druck verwendest.</p>",
+                    "<h3>Übung 1: Vorstellung im Beruf</h3>",
+                    "<p>Lehrer fragt:</p>",
+                    "<p><strong>Você trabalha com o quê?</strong></p>",
+                    "<p>Lernender antwortet:</p>",
+                    "<p><strong>Eu trabalho com marketing e estou no Brasil para um projeto.</strong></p>",
+                    "<p>Ziel: sich beruflich vorstellen.</p>",
+                    "<h3>Übung 2: Meeting bestätigen</h3>",
+                    "<p>Lehrer spielt einen Kollegen:</p>",
+                    "<p><strong>A reunião é às três, certo?</strong></p>",
+                    "<p>Lernender antwortet:</p>",
+                    "<p><strong>Sim, só para confirmar: a reunião é às três na sala dois?</strong></p>",
+                    "<p>Ziel: Informationen höflich bestätigen.</p>",
+                    "<h3>Übung 3: Nachricht an die Hausverwaltung</h3>",
+                    "<p>Lernender formuliert:</p>",
+                    "<p><strong>Olá, tudo bem? Tenho um problema no apartamento e preciso de manutenção.</strong></p>",
+                    "<p>Ziel: praktisches Schreiben.</p>",
+                    "<h3>Übung 4: Gespräch mit dem Pförtner</h3>",
+                    "<p>Lehrer sagt:</p>",
+                    "<p><strong>Chegou uma encomenda para você.</strong></p>",
+                    "<p>Lernender antwortet:</p>",
+                    "<p><strong>Obrigado. Vou pegar agora.</strong></p>",
+                    "<p>Ziel: Alltagssprache aktivieren.</p>",
+                    "<h3>Übung 5: Nachfrage bei Unklarheit</h3>",
+                    "<p>Lehrer spricht schnell. Lernender sagt:</p>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode repetir, por favor?</strong></p>",
+                    "<p>Ziel: Gespräch nicht abbrechen, sondern weiterführen.</p>",
+                    "<p>Diese Übungen sind einfach, aber sehr wirksam.</p>"
+                ]
+            },
+            {
+                "heading": "Wie du brasilianisches Portugiesisch Schritt für Schritt lernst",
+                "body": [
+                    "<p>Um Portugiesisch für Brasilien sinnvoll zu lernen, brauchst du eine klare Reihenfolge. Beginne nicht mit seltenen Wörtern, sondern mit den Situationen, die du wirklich erleben wirst.</p>",
+                    "<h3>Schritt 1: Definiere dein Ziel</h3>",
+                    "<p>Frag dich:</p>",
+                    "<ul><li>Ziehe ich nach Brasilien?</li><li>Arbeite ich mit brasilianischen Teams?</li><li>Studiere ich in Brasilien?</li><li>Brauche ich Portugiesisch für Alltag, Beruf oder beides?</li><li>Muss ich sprechen, schreiben oder beides?</li></ul>",
+                    "<h3>Schritt 2: Lerne Überlebenssätze</h3>",
+                    "<p>Beginne mit:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Tenho uma dúvida.</strong></li><li><strong>Preciso de ajuda.</strong></li><li><strong>Estou aprendendo português.</strong></li></ul>",
+                    "<h3>Schritt 3: Lerne nach Situationen</h3>",
+                    "<p>Wähle pro Woche ein Thema:</p>",
+                    "<ul><li>Arbeit;</li><li>Wohnung;</li><li>Transport;</li><li>Restaurant;</li><li>Apotheke;</li><li>WhatsApp;</li><li>Universität;</li><li>Small Talk.</li></ul>",
+                    "<h3>Schritt 4: Sprich laut</h3>",
+                    "<p>Portugiesisch muss gesprochen werden. Lies Sätze laut, nimm dich auf und wiederhole.</p>",
+                    "<h3>Schritt 5: Übe im Live-Unterricht</h3>",
+                    "<p>Bitte den Lehrer, reale Situationen zu simulieren. Korrigiere nicht nur Grammatik, sondern auch Aussprache, Ton und Natürlichkeit.</p>",
+                    "<h3>Schritt 6: Wiederhole im Alltag</h3>",
+                    "<p>Nutze dieselben Sätze in echten Situationen. Sprache wächst durch Wiederholung.</p>"
+                ]
+            },
+            {
+                "heading": "Kursentscheidung: Was sollte ein guter Brazilian Portuguese course bieten?",
+                "body": [
+                    "<p>Ein guter Brazilian Portuguese course für Ausländer sollte auf reale Situationen in Brasilien vorbereiten. Wenn ein Kurs nur Grammatik erklärt, aber keine Gespräche simuliert, bleibt der Lernende im Alltag unsicher.</p>",
+                    "<p>Achte auf folgende Punkte:</p>",
+                    "<ul><li>Live-Unterricht mit echter Interaktion;</li><li>brasilianisches Portugiesisch, nicht nur allgemeines Portugiesisch;</li><li>Aussprachekorrektur;</li><li>Alltagssituationen;</li><li>Berufssituationen;</li><li>WhatsApp-Kommunikation;</li><li>kultureller Kontext;</li><li>flexible Lernstruktur;</li><li>Einstufungstest;</li><li>keine langfristige Vertragsbindung;</li><li>Lehrerfeedback;</li><li>Übungen mit realen Dialogen.</li></ul>",
+                    "<p>Vedium verbindet Sprache und Kultur. Der Unterricht ist live, praktisch und auf echte Kommunikation ausgerichtet. Du lernst nicht nur Wörter, sondern die Sprache, die du in Brasilien wirklich brauchst.</p>",
+                    "<p>Buche deinen kostenlosen Einstufungstest bei <a href=\"/de/portugiesisch-fuer-auslaender\">https://vediums.com/</a> und finde heraus, welcher Lernweg zu deinem Ziel in Brasilien passt.</p>"
+                ]
+            },
+            {
+                "heading": "Häufige Fehler deutschsprachiger Lernender",
+                "body": [
+                    "<p>Deutschsprachige Lernende machen oft ähnliche Fehler, wenn sie brasilianisches Portugiesisch lernen. Diese Fehler sind normal, aber sie lassen sich durch Live-Praxis schneller korrigieren.</p>",
+                    "<h3>Fehler 1: Zu lange warten, bis man spricht</h3>",
+                    "<p>Viele Lernende möchten erst „genug Grammatik“ lernen. Aber Sprechen ist Teil des Lernens, nicht die Belohnung danach.</p>",
+                    "<h3>Fehler 2: Direkte Übersetzung aus dem Deutschen</h3>",
+                    "<p>Deutsche Satzstrukturen klingen im Portugiesischen oft unnatürlich. Lerne ganze Phrasen.</p>",
+                    "<h3>Fehler 3: Small Talk unterschätzen</h3>",
+                    "<p>In Brasilien kann Small Talk beruflich und sozial wichtig sein. Er baut Vertrauen auf.</p>",
+                    "<h3>Fehler 4: Aussprache ignorieren</h3>",
+                    "<p>Aussprache beeinflusst Verständlichkeit. Wörter wie <strong>não</strong>, <strong>trabalho</strong> und <strong>reunião</strong> brauchen gezielte Übung.</p>",
+                    "<h3>Fehler 5: Nur mit Apps lernen</h3>",
+                    "<p>Apps helfen, aber echte Gespräche brauchen Reaktion, Korrektur und kulturelles Verständnis.</p>"
+                ]
+            },
+            {
+                "heading": "30-Tage-Plan für Beruf und Alltag",
+                "body": [
+                    "<p>Ein 30-Tage-Plan macht dich nicht fließend, aber er kann eine solide Grundlage schaffen.</p>",
+                    "<table><thead><tr><th>Woche</th><th>Fokus</th><th>Ziel</th></tr></thead><tbody><tr><td>Woche 1</td><td>Begrüßung, Hilfe, Wiederholung</td><td>einfache Gespräche beginnen</td></tr><tr><td>Woche 2</td><td>Arbeit, Meeting, WhatsApp</td><td>berufliche Basissätze nutzen</td></tr><tr><td>Woche 3</td><td>Wohnung, Transport, Dienstleistungen</td><td>Alltagssituationen bewältigen</td></tr><tr><td>Woche 4</td><td>Small Talk, Aussprache, Wiederholung</td><td>mehr Sicherheit im echten Gespräch</td></tr></tbody></table>",
+                    "<p>Tägliche Mini-Routine:</p>",
+                    "<ul><li>5 Minuten Wörter wiederholen;</li><li>5 Minuten Sätze laut sprechen;</li><li>5 Minuten WhatsApp-Nachricht formulieren;</li><li>5 Minuten Audio hören;</li><li>1 Frage für den Live-Unterricht notieren.</li></ul>",
+                    "<p>Konstanz ist wichtiger als Perfektion.</p>"
+                ]
+            },
+            {
+                "heading": "Wie Vedium dich unterstützt",
+                "body": [
+                    "<p>Vedium unterstützt Ausländer beim Lernen von brasilianischem Portugiesisch durch Online-Live-Unterricht, praktische Situationen und kulturelle Tiefe. Der Fokus liegt auf echter Kommunikation für Brasilien: Beruf, Alltag, Studium, Wohnen, Transport, Small Talk und Aussprache.</p>",
+                    "<p>In den Live-Kursen von Vedium kannst du üben:</p>",
+                    "<ul><li>dich beruflich vorzustellen;</li><li>Meetings zu verstehen;</li><li>WhatsApp-Nachrichten zu schreiben;</li><li>Fragen höflich zu stellen;</li><li>mit dem Pförtner zu sprechen;</li><li>Essen zu bestellen;</li><li>Transport zu nutzen;</li><li>Small Talk zu führen;</li><li>Aussprache zu verbessern;</li><li>brasilianische Kommunikationsgewohnheiten zu verstehen.</li></ul>",
+                    "<p>Vedium arbeitet ohne langfristige Vertragsbindung. Du bleibst, weil der Unterricht dir im echten Leben hilft, nicht weil ein Vertrag dich festhält.</p>"
+                ]
+            },
+            {
+                "heading": "Praktische Checkliste: Bist du bereit für Beruf und Alltag in Brasilien?",
+                "body": [
+                    "<p>Nutze diese Checkliste:</p>",
+                    "<ul><li>Ich kann mich auf Portugiesisch vorstellen.</li><li>Ich kann sagen, dass ich noch Portugiesisch lerne.</li><li>Ich kann jemanden bitten, langsamer zu sprechen.</li><li>Ich kann eine Adresse erklären.</li><li>Ich kann eine WhatsApp-Nachricht schreiben.</li><li>Ich kann ein Meeting bestätigen.</li><li>Ich kann eine Frage höflich stellen.</li><li>Ich kann mit dem Pförtner sprechen.</li><li>Ich kenne wichtige Wörter für Wohnung und Arbeit.</li><li>Ich kann Small Talk kurz beantworten.</li></ul>",
+                    "<p>Wenn mehrere Punkte noch schwierig sind, ist das kein Problem. Genau diese Themen solltest du zuerst im Live-Unterricht üben.</p>"
+                ]
+            },
+            {
+                "heading": "Fazit mit starkem CTA",
+                "body": [
+                    "<p>Brasilianisches Portugiesisch für Beruf und Alltag in Brasilien ist der Schlüssel zu mehr Sicherheit, Selbstständigkeit und echter Integration. Du brauchst die Sprache nicht nur für große Gespräche, sondern für viele kleine Momente: eine Nachricht schreiben, eine Adresse erklären, eine Lieferung erhalten, im Meeting nachfragen, Small Talk führen, einen Termin vereinbaren oder um Hilfe bitten.</p>",
+                    "<p>Der beste Lernweg ist praktisch: Lerne Sätze nach Situationen, sprich laut, übe reale Dialoge und erhalte Korrektur im Live-Unterricht. So wird Portugiesisch nicht nur Wissen, sondern Handlung.</p>",
+                    "<p>Vedium bietet brasilianisches Portugiesisch für Ausländer mit Online-Live-Unterricht, kulturellem Kontext, praktischen Übungen und ohne langfristige Vertragsbindung. Du lernst in deinem Tempo und bleibst, weil du Fortschritte im echten Leben spürst.</p>",
+                    "<p>Buche jetzt deinen kostenlosen Einstufungstest bei <a href=\"/de/portugiesisch-fuer-auslaender\">https://vediums.com/</a> und beginne, brasilianisches Portugiesisch für Beruf und Alltag in Brasilien mit Live-Unterstützung zu lernen.</p>",
+                    "<p>Um weiterzulernen, lesen Sie auch <a href=\"/blog/brasilianisches-portugiesisch-fur-fuhrungskrafte-und-manager\">Brasilianisches Portugiesisch für Führungskräfte und Manager</a> oder entdecken Sie den <a href=\"/de/portugiesisch-fuer-auslaender\">brasilianisches Portugiesisch-Programm</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Brauche ich Portugiesisch, wenn ich in Brasilien arbeite?",
+                "a": "Ja. Auch wenn im Unternehmen Englisch genutzt wird, brauchst du Portugiesisch für Alltag, Small Talk, Wohnung, Transport, Dienstleistungen und informelle Kommunikation."
+            },
+            {
+                "q": "Was sollte ich zuerst auf brasilianischem Portugiesisch lernen?",
+                "a": "Beginne mit Begrüßungen, Hilfe-Sätzen, Nachfragen, beruflicher Vorstellung, Adresse, Wohnung, Transport, WhatsApp und einfachen Alltagssituationen."
+            },
+            {
+                "q": "Ist brasilianisches Portugiesisch anders als europäisches Portugiesisch?",
+                "a": "Ja. Aussprache, Wortschatz, Rhythmus und viele Alltagssituationen unterscheiden sich. Wenn dein Ziel Brasilien ist, solltest du brasilianisches Portugiesisch lernen."
+            },
+            {
+                "q": "Reicht eine App, um Portugiesisch für Brasilien zu lernen?",
+                "a": "Eine App kann helfen, aber für echte Gespräche brauchst du Sprechen, Korrektur, Aussprachetraining und kulturellen Kontext. Live-Unterricht ist dafür besonders nützlich."
+            },
+            {
+                "q": "Bietet Vedium brasilianisches Portugiesisch für Ausländer an?",
+                "a": "Ja. Vedium bietet Online-Live-Unterricht für brasilianisches Portugiesisch mit praktischen Situationen für Beruf, Alltag, Studium und Leben in Brasilien."
+            }
+        ],
+        "cta_title": "Bereit für Ihr brasilianisches Portugiesisch?",
+        "cta_text": "Buchen Sie einen kostenlosen Einstufungstest und starten Sie mit einem klaren Lernplan.",
+        "cta_label": "Kostenlosen Einstufungstest buchen",
+        "cta_url": "/de/portugiesisch-fuer-auslaender"
+    },
+    "brazilian-portuguese-for-international-students-choosing-a-city-in-brazil": {
+        "title": "Brazilian Portuguese for international students choosing a city in Brazil",
+        "meta_description": "Learn Brazilian Portuguese for choosing a city in Brazil, with student vocabulary, real situations and live-class practice.",
+        "h1": "Brazilian Portuguese for international students choosing a city in Brazil",
+        "date": "2025-03-26",
+        "date_display": "March 26, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoa gesticulando durante discussao de trabalho, notebook com graficos ao fundo",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "Brazilian Portuguese for international students choosing a city in Brazil is not only about learning grammar before arrival. It is about understanding how to ask practical questions, compare cities, talk to universities, read housing information, communicate with landlords, understand transportation, handle documents and participate in student life with more confidence. If you are planning to study in Brazil, the city you choose will shape your daily language needs.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Brazil is a large and diverse country. Studying in São Paulo, Rio de Janeiro, Brasília, Salvador, Recife, Belo Horizonte, Curitiba, Florianópolis, Porto Alegre or another city can mean different routines, costs, accents, transportation systems, university environments and cultural experiences. For an international student, this decision is not only academic. It affects where you will live, how you will commute, how you will make friends, how much Portuguese you will need immediately and which real-life situations you should prepare for first.</p>",
+                    "<p>Many students start by researching programs in English, but daily life in Brazil quickly requires Portuguese. You may need to ask about rent, understand a university schedule, send WhatsApp messages, talk to a building doorman, buy a transport card, ask for directions, explain that you are an international student, open a bank account or solve a problem with housing. These situations do not wait until your Portuguese is perfect.</p>",
+                    "<p>A strong Brazilian Portuguese course for foreigners should help international students prepare for the city they will actually live in. It should teach real phrases, not only isolated vocabulary. It should also help students understand Brazilian communication style, pronunciation and cultural context. In this guide, you will learn how Brazilian Portuguese helps when choosing a city in Brazil, what vocabulary to study first, what questions to ask and how live classes can prepare you for student life.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: why does Portuguese matter when choosing a city in Brazil?",
+                "body": [
+                    "<p>Portuguese matters when choosing a city in Brazil because your decision depends on real-life information that often appears in Portuguese: housing ads, university pages, transportation details, neighborhood names, safety advice, student groups, local services and daily communication. Even before arriving, Portuguese helps you understand the practical side of studying in Brazil.</p>",
+                    "<p>Brazilian Portuguese can help you:</p>",
+                    "<ul><li>compare cities and neighborhoods;</li><li>ask universities about courses and schedules;</li><li>read housing and rental information;</li><li>talk to landlords or roommates;</li><li>understand transportation options;</li><li>ask about cost of living;</li><li>communicate with student support offices;</li><li>join student WhatsApp groups;</li><li>ask for directions;</li><li>understand local services;</li><li>prepare for different accents;</li><li>feel less dependent on English.</li></ul>",
+                    "<p>The goal is not to master the entire language before choosing a city. The goal is to learn enough practical Portuguese to ask better questions and make a more informed decision.</p>",
+                    "<p>If you want to prepare for student life in Brazil with live Brazilian Portuguese classes, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: comparing cities before you move",
+                "body": [
+                    "<p>Comparing cities in Brazil requires more than reading rankings. You need to understand your daily routine: where the university is, where students live, how transportation works, how expensive rent is, and whether you will need Portuguese immediately in daily situations.</p>",
+                    "<p>Useful questions in Portuguese:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Qual é o custo de vida nessa cidade?</td><td>What is the cost of living in this city?</td></tr><tr><td>Onde fica a universidade?</td><td>Where is the university?</td></tr><tr><td>Quais bairros são bons para estudantes?</td><td>Which neighborhoods are good for students?</td></tr><tr><td>Tem transporte público perto da universidade?</td><td>Is there public transportation near the university?</td></tr><tr><td>É fácil encontrar moradia estudantil?</td><td>Is it easy to find student housing?</td></tr><tr><td>A cidade é segura para estudantes internacionais?</td><td>Is the city safe for international students?</td></tr><tr><td>Tem muitos estudantes estrangeiros?</td><td>Are there many international students?</td></tr><tr><td>Como é a vida cultural da cidade?</td><td>What is the cultural life of the city like?</td></tr></tbody></table>",
+                    "<p>Example message:</p>",
+                    "<p><strong>Olá, tudo bem? Sou estudante internacional e estou pesquisando cidades para estudar no Brasil. Você sabe quais bairros são bons para morar perto da universidade?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, how are you? I am an international student and I am researching cities to study in Brazil. Do you know which neighborhoods are good to live in near the university?</p>",
+                    "<p>This kind of message is practical, polite and useful in Brazil.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for international students",
+                "body": [
+                    "<p>Essential vocabulary for international students should focus on study, housing, transportation and daily life. These are the areas you will use most when choosing a city and preparing for arrival.</p>",
+                    "<h3>University and study vocabulary</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>universidade</td><td>university</td></tr><tr><td>faculdade</td><td>college / school within a university</td></tr><tr><td>curso</td><td>course / program</td></tr><tr><td>disciplina</td><td>subject / class</td></tr><tr><td>matrícula</td><td>enrollment</td></tr><tr><td>inscrição</td><td>application / registration</td></tr><tr><td>intercâmbio</td><td>exchange program</td></tr><tr><td>estudante estrangeiro</td><td>foreign student</td></tr><tr><td>estudante internacional</td><td>international student</td></tr><tr><td>calendário acadêmico</td><td>academic calendar</td></tr><tr><td>horário</td><td>schedule / time</td></tr><tr><td>aula</td><td>class</td></tr><tr><td>prova</td><td>exam</td></tr><tr><td>atividade</td><td>assignment / activity</td></tr><tr><td>biblioteca</td><td>library</td></tr><tr><td>secretaria</td><td>administrative office</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Sou estudante internacional.</strong> — I am an international student.</li><li><strong>Estou procurando informações sobre o curso.</strong> — I am looking for information about the program.</li><li><strong>Como faço a matrícula?</strong> — How do I enroll?</li><li><strong>Qual é o calendário acadêmico?</strong> — What is the academic calendar?</li><li><strong>Onde fica a secretaria?</strong> — Where is the administrative office?</li><li><strong>Tenho uma dúvida sobre a inscrição.</strong> — I have a question about the application.</li></ul>",
+                    "<h3>Housing vocabulary</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>aluguel</td><td>rent</td></tr><tr><td>apartamento</td><td>apartment</td></tr><tr><td>quarto</td><td>room</td></tr><tr><td>república</td><td>student shared house</td></tr><tr><td>contrato</td><td>contract</td></tr><tr><td>caução</td><td>deposit</td></tr><tr><td>mobiliado</td><td>furnished</td></tr><tr><td>condomínio</td><td>building fee / condo fee</td></tr><tr><td>contas</td><td>bills</td></tr><tr><td>internet</td><td>internet</td></tr><tr><td>localização</td><td>location</td></tr><tr><td>bairro</td><td>neighborhood</td></tr><tr><td>perto de</td><td>near</td></tr><tr><td>longe de</td><td>far from</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>O apartamento é mobiliado?</strong> — Is the apartment furnished?</li><li><strong>O aluguel inclui condomínio?</strong> — Does the rent include the building fee?</li><li><strong>As contas estão incluídas?</strong> — Are bills included?</li><li><strong>O quarto ainda está disponível?</strong> — Is the room still available?</li><li><strong>Fica perto da universidade?</strong> — Is it near the university?</li><li><strong>Posso visitar o apartamento?</strong> — Can I visit the apartment?</li></ul>"
+                ]
+            },
+            {
+                "heading": "How to ask about neighborhoods in Portuguese",
+                "body": [
+                    "<p>Asking about neighborhoods is one of the most important skills for international students. In Brazil, the neighborhood you choose can affect commute time, cost, lifestyle and access to services.</p>",
+                    "<p>Useful words:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>bairro</td><td>neighborhood</td></tr><tr><td>centro</td><td>downtown / city center</td></tr><tr><td>perto</td><td>near</td></tr><tr><td>longe</td><td>far</td></tr><tr><td>seguro</td><td>safe</td></tr><tr><td>tranquilo</td><td>calm</td></tr><tr><td>movimentado</td><td>busy</td></tr><tr><td>transporte público</td><td>public transportation</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>ônibus</td><td>bus</td></tr><tr><td>mercado</td><td>supermarket</td></tr><tr><td>farmácia</td><td>pharmacy</td></tr><tr><td>universidade</td><td>university</td></tr></tbody></table>",
+                    "<p>Useful questions:</p>",
+                    "<ul><li><strong>Esse bairro é seguro?</strong> — Is this neighborhood safe?</li><li><strong>Esse bairro é bom para estudantes?</strong> — Is this neighborhood good for students?</li><li><strong>É perto da universidade?</strong> — Is it near the university?</li><li><strong>Tem mercado e farmácia por perto?</strong> — Are there a supermarket and pharmacy nearby?</li><li><strong>Tem metrô ou ônibus perto?</strong> — Is there subway or bus nearby?</li><li><strong>Quanto tempo leva até a universidade?</strong> — How long does it take to get to the university?</li><li><strong>É uma região tranquila?</strong> — Is it a calm area?</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Estou procurando um bairro perto da universidade, com transporte público e mercado por perto. Você recomenda alguma região?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am looking for a neighborhood near the university, with public transportation and a supermarket nearby. Do you recommend any area?</p>",
+                    "<p>This is the kind of sentence that helps you get real advice from Brazilians.</p>"
+                ]
+            },
+            {
+                "heading": "How to talk about transportation",
+                "body": [
+                    "<p>Transportation can change your student experience completely. A city may look good on a map, but your daily commute may be difficult if you do not understand local transportation.</p>",
+                    "<p>Important vocabulary:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>ônibus</td><td>bus</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>trem</td><td>train</td></tr><tr><td>ponto de ônibus</td><td>bus stop</td></tr><tr><td>estação</td><td>station</td></tr><tr><td>passagem</td><td>fare / ticket</td></tr><tr><td>cartão de transporte</td><td>transport card</td></tr><tr><td>integração</td><td>transfer / integrated fare</td></tr><tr><td>aplicativo</td><td>app</td></tr><tr><td>trânsito</td><td>traffic</td></tr><tr><td>trajeto</td><td>route</td></tr><tr><td>demora</td><td>delay / takes time</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Como eu chego à universidade?</strong> — How do I get to the university?</li><li><strong>Tem ônibus direto?</strong> — Is there a direct bus?</li><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li><li><strong>Quanto tempo demora?</strong> — How long does it take?</li><li><strong>Preciso pegar metrô?</strong> — Do I need to take the subway?</li><li><strong>Onde compro o cartão de transporte?</strong> — Where do I buy the transport card?</li><li><strong>O trânsito é muito ruim nesse horário?</strong> — Is traffic very bad at this time?</li></ul>",
+                    "<p>For student life, transportation Portuguese is not optional. It helps you arrive on time, avoid confusion and understand local routines.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: choose a city in Brazil using Portuguese",
+                "body": [
+                    "<p>To choose a city in Brazil using Portuguese, combine academic research with practical language tasks. Instead of only reading in English, use Portuguese to investigate the city like a future resident.</p>",
+                    "<h3>Step 1: define your academic priority</h3>",
+                    "<p>Start with the program.</p>",
+                    "<p>Ask:</p>",
+                    "<ul><li><strong>Qual universidade oferece o curso que eu quero?</strong></li><li><strong>O curso é presencial ou online?</strong></li><li><strong>Qual é a duração do curso?</strong></li><li><strong>Quais documentos são necessários?</strong></li></ul>",
+                    "<p>Translation:</p>",
+                    "<p>Which university offers the program I want? Is the program in person or online? How long is the program? Which documents are required?</p>",
+                    "<h3>Step 2: research neighborhoods near the university</h3>",
+                    "<p>Use Portuguese keywords:</p>",
+                    "<ul><li><strong>bairro perto da universidade</strong></li><li><strong>moradia estudantil</strong></li><li><strong>república estudantil</strong></li><li><strong>aluguel perto da universidade</strong></li><li><strong>quarto mobiliado</strong></li></ul>",
+                    "<p>Then ask:</p>",
+                    "<p><strong>Quais bairros são bons para estudantes perto da universidade?</strong></p>",
+                    "<h3>Step 3: compare cost of living</h3>",
+                    "<p>Useful questions:</p>",
+                    "<ul><li><strong>Qual é o custo de vida nessa cidade?</strong></li><li><strong>Quanto custa um aluguel para estudante?</strong></li><li><strong>O transporte é caro?</strong></li><li><strong>Mercado é caro nessa região?</strong></li></ul>",
+                    "<h3>Step 4: check transportation</h3>",
+                    "<p>Ask:</p>",
+                    "<ul><li><strong>Tem transporte público perto?</strong></li><li><strong>Quanto tempo demora até a universidade?</strong></li><li><strong>Tem metrô nessa cidade?</strong></li><li><strong>É fácil usar ônibus?</strong></li></ul>",
+                    "<h3>Step 5: join student communities</h3>",
+                    "<p>Many student groups in Brazil use WhatsApp, Facebook or university channels. Prepare a short message:</p>",
+                    "<p><strong>Olá, pessoal. Sou estudante internacional e estou pesquisando moradia perto da universidade. Alguém pode indicar bairros bons para estudantes?</strong></p>",
+                    "<h3>Step 6: practice the conversation in a live class</h3>",
+                    "<p>Before sending messages or making calls, practice with a teacher. The teacher can correct tone, grammar, pronunciation and natural phrasing.</p>",
+                    "<h3>Step 7: make your decision with practical information</h3>",
+                    "<p>Choose the city not only by reputation, but by your real ability to live there: housing, transportation, study environment, services and communication.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: contacting a university",
+                "body": [
+                    "<p>Contacting a university in Portuguese can feel intimidating, but many questions follow a predictable structure. You can prepare a polite message.</p>",
+                    "<p>Example email:</p>",
+                    "<p><strong>Olá, tudo bem? Meu nome é Emma, sou estudante internacional e tenho interesse no curso de Relações Internacionais. Gostaria de saber quais documentos são necessários para a inscrição e se há suporte para estudantes estrangeiros. Obrigada.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, how are you? My name is Emma, I am an international student and I am interested in the International Relations program. I would like to know which documents are required for the application and whether there is support for foreign students. Thank you.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Tenho interesse no curso de...</strong> — I am interested in the program of...</li><li><strong>Gostaria de saber...</strong> — I would like to know...</li><li><strong>Quais documentos são necessários?</strong> — Which documents are required?</li><li><strong>Existe suporte para estudantes estrangeiros?</strong> — Is there support for foreign students?</li><li><strong>Como funciona o processo de inscrição?</strong> — How does the application process work?</li></ul>",
+                    "<p>These phrases sound polite and professional.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: looking for housing",
+                "body": [
+                    "<p>Housing is one of the most important topics for international students. You need vocabulary for rent, room, location, contract and included costs.</p>",
+                    "<p>Example message to a landlord or roommate:</p>",
+                    "<p><strong>Olá, tudo bem? Vi o anúncio do quarto e tenho interesse. Sou estudante internacional e vou estudar perto dessa região. O quarto ainda está disponível? O aluguel inclui contas e internet?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, how are you? I saw the room ad and I am interested. I am an international student and I will study near this area. Is the room still available? Does the rent include bills and internet?</p>",
+                    "<p>Questions to ask:</p>",
+                    "<ul><li><strong>O quarto ainda está disponível?</strong></li><li><strong>O aluguel inclui contas?</strong></li><li><strong>Tem internet?</strong></li><li><strong>O apartamento é mobiliado?</strong></li><li><strong>Qual é o valor do caução?</strong></li><li><strong>Tem contrato?</strong></li><li><strong>Posso visitar?</strong></li><li><strong>Fica perto da universidade?</strong></li></ul>",
+                    "<p>A live class can help you write and practice these messages before you send them.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: choosing a city in Brazil",
+                "body": [
+                    "<p>Live-class practice helps international students because choosing a city requires real communication. You may need to ask questions, understand answers, compare options and explain your needs.</p>",
+                    "<h3>Exercise 1: city comparison</h3>",
+                    "<p>Teacher asks:</p>",
+                    "<p><strong>O que é mais importante para você: custo de vida, universidade, transporte ou segurança?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Para mim, transporte e segurança são muito importantes. Também preciso morar perto da universidade.</strong></p>",
+                    "<p>Goal: explain priorities.</p>",
+                    "<h3>Exercise 2: housing message</h3>",
+                    "<p>Student writes a message to a landlord. Teacher corrects tone and natural phrasing.</p>",
+                    "<p>Goal: avoid awkward or overly direct messages.</p>",
+                    "<h3>Exercise 3: university support</h3>",
+                    "<p>Teacher plays a university staff member.</p>",
+                    "<p>Student asks:</p>",
+                    "<p><strong>Existe suporte para estudantes estrangeiros?</strong></p>",
+                    "<p>Teacher responds with follow-up information.</p>",
+                    "<p>Goal: practice academic communication.</p>",
+                    "<h3>Exercise 4: neighborhood questions</h3>",
+                    "<p>Student asks about a neighborhood.</p>",
+                    "<p><strong>Esse bairro é seguro? Tem transporte público perto?</strong></p>",
+                    "<p>Goal: practice practical city vocabulary.</p>",
+                    "<h3>Exercise 5: pronunciation and listening</h3>",
+                    "<p>Teacher practices words like:</p>",
+                    "<ul><li><strong>universidade</strong></li><li><strong>bairro</strong></li><li><strong>aluguel</strong></li><li><strong>transporte</strong></li><li><strong>matrícula</strong></li><li><strong>inscrição</strong></li><li><strong>república</strong></li><li><strong>secretaria</strong></li></ul>",
+                    "<p>Goal: speak clearly before real conversations.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes international students make",
+                "body": [
+                    "<p>International students often focus on university admission but forget daily-life Portuguese. This can make arrival stressful.</p>",
+                    "<h3>Mistake 1: choosing a city without understanding commute</h3>",
+                    "<p>A university may be excellent, but if housing is far and transportation is difficult, daily life becomes harder.</p>",
+                    "<h3>Mistake 2: relying only on English</h3>",
+                    "<p>Some university staff or students may speak English, but housing, transportation and services often require Portuguese.</p>",
+                    "<h3>Mistake 3: not learning housing vocabulary</h3>",
+                    "<p>Words like <strong>aluguel</strong>, <strong>caução</strong>, <strong>condomínio</strong>, <strong>contas</strong> and <strong>contrato</strong> are essential.</p>",
+                    "<h3>Mistake 4: not practicing WhatsApp messages</h3>",
+                    "<p>Many practical conversations in Brazil happen by WhatsApp. Written Portuguese matters.</p>",
+                    "<h3>Mistake 5: ignoring regional accents</h3>",
+                    "<p>Brazilian Portuguese varies by region. Live practice helps you adapt to real speech.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps international students",
+                "body": [
+                    "<p>Vedium helps international students learn Brazilian Portuguese for real life in Brazil through live classes, practical scenarios and cultural context. The goal is not only to memorize grammar, but to prepare for situations students actually face.</p>",
+                    "<p>In Vedium’s live Portuguese classes, you can practice:</p>",
+                    "<ul><li>introducing yourself as an international student;</li><li>asking about universities;</li><li>comparing cities;</li><li>talking about neighborhoods;</li><li>asking about rent;</li><li>writing WhatsApp messages;</li><li>understanding transportation;</li><li>asking for directions;</li><li>practicing pronunciation;</li><li>preparing for meetings and classes;</li><li>understanding Brazilian communication style.</li></ul>",
+                    "<p>The live format matters because your needs may be specific. A student going to São Paulo may need different examples from a student going to Recife, Curitiba or Florianópolis. A teacher can adapt practice to your city, university and goals.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the classes help you communicate better in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start preparing your Brazilian Portuguese for student life.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist before choosing a city",
+                "body": [
+                    "<p>Use this checklist before deciding where to study in Brazil:</p>",
+                    "<ul><li>I can say I am an international student.</li><li>I can ask about the university program.</li><li>I can ask about enrollment documents.</li><li>I can ask about student support.</li><li>I can ask which neighborhoods are good for students.</li><li>I can understand basic housing vocabulary.</li><li>I can ask if rent includes bills.</li><li>I can ask about transportation to the university.</li><li>I can write a polite WhatsApp message.</li><li>I can ask someone to repeat or explain more slowly.</li></ul>",
+                    "<p>If several items feel difficult, you do not need to wait. These are exactly the topics to practice in a live Brazilian Portuguese class.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Brazilian Portuguese for international students choosing a city in Brazil is a practical tool for making a better decision and arriving with more confidence. The city you choose will affect your commute, housing, cost of living, academic life, social life and daily communication. Portuguese helps you ask better questions before you move and handle real situations after you arrive.</p>",
+                    "<p>Start with the language you will actually need: university information, housing, neighborhoods, transportation, WhatsApp messages, documents, student support and daily services. Learn phrases, not only words. Practice real dialogues, not only grammar exercises. Use live classes to correct pronunciation, tone and natural phrasing.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, international students, expats and professionals preparing for life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because Portuguese becomes useful in your life.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start preparing for student life in Brazil with live Brazilian Portuguese classes.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/brazilian-portuguese-pronunciation-sounds-that-confuse-english-speakers\">Brazilian Portuguese pronunciation: sounds that confuse English speakers</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Why should international students learn Portuguese before choosing a city in Brazil?",
+                "a": "Portuguese helps students research housing, neighborhoods, transportation, university support and daily-life information that may not be fully available in English."
+            },
+            {
+                "q": "What Portuguese vocabulary should international students learn first?",
+                "a": "Start with university, housing, transportation and daily-life vocabulary, such as universidade, matrícula, aluguel, bairro, ônibus, metrô and documentos."
+            },
+            {
+                "q": "How can I ask about good neighborhoods for students in Portuguese?",
+                "a": "You can ask: “Quais bairros são bons para estudantes perto da universidade?” This means “Which neighborhoods are good for students near the university?”"
+            },
+            {
+                "q": "Do I need fluent Portuguese before studying in Brazil?",
+                "a": "No. You do not need fluency before arrival, but practical Portuguese for housing, transportation, university communication and daily life will make your transition easier."
+            },
+            {
+                "q": "Does Vedium teach Brazilian Portuguese for international students?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, including practical situations for international students choosing and living in a city in Brazil."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "brazilian-portuguese-pronunciation-sounds-that-confuse-english-speakers": {
+        "title": "Brazilian Portuguese pronunciation: sounds that confuse English speakers",
+        "meta_description": "Learn Brazilian Portuguese pronunciation sounds that confuse English speakers and how live classes help you speak clearly.",
+        "h1": "Brazilian Portuguese pronunciation: sounds that confuse English speakers",
+        "date": "2025-03-18",
+        "date_display": "March 18, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1758270705518-b61b40527e76?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Grupo de estudantes sorridentes reunidos ao redor de um notebook em sala de aula",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "Brazilian Portuguese pronunciation can confuse English speakers because the language uses sounds, rhythm, spelling patterns and nasal vowels that do not work the same way in English. Words that look simple on the page may sound very different in conversation, and sounds like ão, lh, nh, final -e, final -o, the Brazilian r, and the letter x can create real listening and speaking challenges for foreigners living, working or studying in Brazil.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For expats in Brazil, pronunciation is not only about sounding “native.” It is about being understood at the pharmacy, in a work meeting, at the bank, in an apartment building, in a taxi, during a medical appointment or in a WhatsApp audio message. A small pronunciation difference can make a word harder to understand, slow down a conversation or make the learner avoid speaking altogether.</p>",
+                    "<p>Many English speakers study vocabulary first and assume pronunciation will come naturally later. But Brazilian Portuguese has patterns that deserve attention from the beginning. For example, <strong>não</strong> is not simply “now,” <strong>trabalho</strong> is not pronounced like an English word, <strong>dinheiro</strong> has a sound that does not map neatly onto English, and <strong>obrigado</strong> often sounds different in real Brazilian speech from what a beginner expects by reading the spelling.</p>",
+                    "<p>A good Brazilian Portuguese course for foreigners should teach pronunciation in context: not isolated sounds forever, but sounds inside useful words, phrases and real situations. Live Portuguese classes are especially helpful because a teacher can hear your pronunciation, identify the specific sound causing confusion, correct it, and make you repeat the word in a real sentence. This is how pronunciation becomes communication.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: which Brazilian Portuguese sounds confuse English speakers most?",
+                "body": [
+                    "<p>The Brazilian Portuguese sounds that confuse English speakers most are nasal vowels, <strong>ão</strong>, <strong>lh</strong>, <strong>nh</strong>, final unstressed vowels, the different sounds of <strong>r</strong>, the letter <strong>x</strong>, open and closed vowels, and the rhythm of spoken Brazilian Portuguese. These sounds are confusing because English spelling and sound patterns do not prepare learners for them directly.</p>",
+                    "<p>The most common challenges are:</p>",
+                    "<ul><li><strong>ã, õ, ãe, ão</strong> — nasal sounds, as in <strong>não</strong>, <strong>pão</strong>, <strong>mãe</strong>;</li><li><strong>lh</strong> — as in <strong>trabalho</strong>;</li><li><strong>nh</strong> — as in <strong>dinheiro</strong> and <strong>manhã</strong>;</li><li>final <strong>-e</strong> and <strong>-o</strong> — often sounding different from English expectations;</li><li>Brazilian <strong>r</strong> — changing by region and word position;</li><li><strong>x</strong> — with multiple possible sounds;</li><li>open and closed vowels — as in <strong>avó</strong> and <strong>avô</strong>;</li><li>word rhythm — smoother and more connected than many learners expect;</li><li>reduced everyday speech — natural shortcuts in fast conversation.</li></ul>",
+                    "<p>The goal is not to erase your accent. The goal is to speak clearly enough to be understood and confident enough to participate in Brazilian life.</p>",
+                    "<p>If you want a teacher to hear your pronunciation and guide your next step, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: why pronunciation matters in Brazil",
+                "body": [
+                    "<p>Pronunciation matters in Brazil because daily life requires spoken interaction. You may need to speak Portuguese before you feel “ready,” and people may respond quickly, naturally and with local rhythm.</p>",
+                    "<p>You may need clear pronunciation when you:</p>",
+                    "<ul><li>give your address to a driver;</li><li>ask for help at a pharmacy;</li><li>introduce yourself at work;</li><li>speak with the doorman or building manager;</li><li>ask about a delivery;</li><li>schedule a doctor’s appointment;</li><li>confirm a meeting time;</li><li>order food;</li><li>explain a problem in your apartment;</li><li>send a WhatsApp voice message;</li><li>participate in a Brazilian work meeting;</li><li>ask someone to repeat more slowly.</li></ul>",
+                    "<p>Imagine you need to say:</p>",
+                    "<p><strong>Moro na Rua João Moura.</strong></p>",
+                    "<p>If <strong>rua</strong>, <strong>João</strong> and <strong>Moura</strong> are not clear, the person may ask you to repeat several times. This can feel frustrating, especially when you know the vocabulary. Pronunciation becomes the bridge between knowing the word and actually using it.</p>",
+                    "<p>This is why pronunciation should be connected to real phrases, not treated as a separate technical topic. The learner needs words and sentences they will actually say in Brazil.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 1: nasal vowels and the famous “ão”",
+                "body": [
+                    "<p>The sound <strong>ão</strong> is one of the most important pronunciation challenges in Brazilian Portuguese. English speakers often try to pronounce it as “ow,” “own,” or “ah-oh,” but Brazilian Portuguese uses a nasal sound that comes through the nose and mouth together.</p>",
+                    "<p>Common words with <strong>ão</strong>:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>não</td><td>no / not</td></tr><tr><td>pão</td><td>bread</td></tr><tr><td>mão</td><td>hand</td></tr><tr><td>informação</td><td>information</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>atenção</td><td>attention</td></tr><tr><td>coração</td><td>heart</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>avião</td><td>airplane</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Não entendi.</strong> — I did not understand.</li><li><strong>Tenho uma reunião hoje.</strong> — I have a meeting today.</li><li><strong>Preciso de informação.</strong> — I need information.</li><li><strong>Aceita cartão?</strong> — Do you accept card?</li><li><strong>Pode prestar atenção?</strong> — Can you pay attention?</li></ul>",
+                    "<p>For foreigners, <strong>não</strong> is essential from the first week. It appears constantly in Brazilian Portuguese. If you pronounce it too much like the English “now,” you may still be understood in context, but it will not sound clear or natural.</p>",
+                    "<p>How to practice:</p>",
+                    "<p>1. listen to the word first;<br>2. notice the nasal quality;<br>3. say it slowly;<br>4. avoid adding a hard English “n” at the end;<br>5. repeat it in a sentence;<br>6. practice with a teacher who can correct the sound.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 2: “lh” in words like trabalho",
+                "body": [
+                    "<p>The sound <strong>lh</strong> can confuse English speakers because English does not have the exact same sound in the same way. It often appears in very common words, including one of the most important words for expats and professionals: <strong>trabalho</strong>.</p>",
+                    "<p>Common words with <strong>lh</strong>:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>trabalho</td><td>work</td></tr><tr><td>filho / filha</td><td>son / daughter</td></tr><tr><td>mulher</td><td>woman / wife</td></tr><tr><td>melhor</td><td>better</td></tr><tr><td>velho / velha</td><td>old</td></tr><tr><td>olhar</td><td>to look</td></tr><tr><td>conselho</td><td>advice / council</td></tr><tr><td>detalhe</td><td>detail</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Eu trabalho com tecnologia.</strong> — I work with technology.</li><li><strong>Qual é o seu trabalho?</strong> — What is your job?</li><li><strong>Tenho uma filha.</strong> — I have a daughter.</li><li><strong>Você pode olhar isso?</strong> — Can you look at this?</li><li><strong>Preciso de um conselho.</strong> — I need advice.</li></ul>",
+                    "<p>English speakers may pronounce <strong>trabalho</strong> too close to “tra-ba-lo” or “tra-ba-lio.” The sound needs focused practice, especially because this word appears in introductions and professional conversations.</p>",
+                    "<p>Live-class practice helps because the teacher can isolate the sound, then put it back into a useful phrase:</p>",
+                    "<p><strong>Eu trabalho na área de marketing.</strong></p>",
+                    "<p>That is better than repeating <strong>lh</strong> mechanically without context.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 3: “nh” in dinheiro and manhã",
+                "body": [
+                    "<p>The sound <strong>nh</strong> appears in words that foreigners need early in Brazil. It is similar to the sound in some English approximations, but it still needs practice because learners may separate the letters or pronounce them too hard.</p>",
+                    "<p>Common words with <strong>nh</strong>:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>dinheiro</td><td>money</td></tr><tr><td>manhã</td><td>morning</td></tr><tr><td>banheiro</td><td>bathroom</td></tr><tr><td>cozinha</td><td>kitchen</td></tr><tr><td>companhia</td><td>company / companionship</td></tr><tr><td>tamanho</td><td>size</td></tr><tr><td>sozinho / sozinha</td><td>alone</td></tr><tr><td>caminho</td><td>path / way</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Preciso de dinheiro.</strong> — I need money.</li><li><strong>A reunião é amanhã de manhã.</strong> — The meeting is tomorrow morning.</li><li><strong>Onde fica o banheiro?</strong> — Where is the bathroom?</li><li><strong>Qual é o tamanho?</strong> — What is the size?</li><li><strong>Estou sozinho aqui.</strong> — I am alone here.</li></ul>",
+                    "<p>A very useful beginner phrase is:</p>",
+                    "<p><strong>Onde fica o banheiro?</strong></p>",
+                    "<p>This phrase is practical, but many English speakers struggle with <strong>banheiro</strong>. Practicing it in live class builds confidence for real situations.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 4: final “e” and “o”",
+                "body": [
+                    "<p>Final <strong>-e</strong> and <strong>-o</strong> often sound different in Brazilian Portuguese from what English speakers expect. In many Brazilian accents, an unstressed final <strong>e</strong> may sound close to “i,” and an unstressed final <strong>o</strong> may sound close to “u.” This is one reason spoken Portuguese may sound different from written Portuguese.</p>",
+                    "<p>Examples:</p>",
+                    "<table><thead><tr><th>Written word</th><th>Common spoken tendency</th></tr></thead><tbody><tr><td>cidade</td><td>sounds closer to “cidadi”</td></tr><tr><td>tarde</td><td>sounds closer to “tardi”</td></tr><tr><td>leite</td><td>sounds closer to “leiti”</td></tr><tr><td>obrigado</td><td>final “o” may sound closer to “u”</td></tr><tr><td>tudo</td><td>final “o” may sound closer to “u”</td></tr><tr><td>cinco</td><td>final “o” may sound closer to “u”</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Boa tarde.</strong> — Good afternoon.</li><li><strong>Obrigado.</strong> — Thank you.</li><li><strong>Tudo bem?</strong> — How are you?</li><li><strong>Eu moro nesta cidade.</strong> — I live in this city.</li><li><strong>Quero leite.</strong> — I want milk.</li></ul>",
+                    "<p>This does not mean you should exaggerate these sounds. The key is to hear how Brazilians pronounce everyday words so you do not rely only on spelling.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 5: the many faces of Brazilian “r”",
+                "body": [
+                    "<p>The Brazilian <strong>r</strong> can confuse English speakers because it changes depending on region and position in the word. In many contexts, <strong>r</strong> may sound like an English <strong>h</strong>, especially at the beginning of words or as <strong>rr</strong>. In other contexts, it may be tapped or softened, depending on the accent.</p>",
+                    "<p>Examples:</p>",
+                    "<table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td>rua</td><td>street</td></tr><tr><td>Rio</td><td>Rio</td></tr><tr><td>carro</td><td>car</td></tr><tr><td>correto</td><td>correct</td></tr><tr><td>trabalho</td><td>work</td></tr><tr><td>porta</td><td>door</td></tr><tr><td>mercado</td><td>market</td></tr><tr><td>problema</td><td>problem</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Qual é a rua?</strong> — What is the street?</li><li><strong>Eu moro no Rio.</strong> — I live in Rio.</li><li><strong>Tenho um carro.</strong> — I have a car.</li><li><strong>Está correto.</strong> — It is correct.</li><li><strong>Tenho um problema.</strong> — I have a problem.</li></ul>",
+                    "<p>Do not try to master every regional <strong>r</strong> at once. Start with clarity. Learn how people around you pronounce it, and practice the words you actually use in Brazil.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 6: the letter “x”",
+                "body": [
+                    "<p>The letter <strong>x</strong> is confusing because it can have different sounds in Portuguese. English speakers often expect one stable sound, but Portuguese spelling has historical patterns that make <strong>x</strong> less predictable.</p>",
+                    "<p>Common examples:</p>",
+                    "<table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td>exemplo</td><td>example</td></tr><tr><td>exercício</td><td>exercise</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>próximo</td><td>next / close</td></tr><tr><td>caixa</td><td>box / cashier</td></tr><tr><td>deixar</td><td>to leave / let</td></tr><tr><td>explicar</td><td>to explain</td></tr><tr><td>experiência</td><td>experience</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Pode dar um exemplo?</strong> — Can you give an example?</li><li><strong>Tenho um exercício.</strong> — I have an exercise.</li><li><strong>Vou chamar um táxi.</strong> — I will call a taxi.</li><li><strong>Qual é o próximo passo?</strong> — What is the next step?</li><li><strong>Você pode explicar de novo?</strong> — Can you explain again?</li></ul>",
+                    "<p>Because <strong>x</strong> is not fully predictable for beginners, the best strategy is to learn common words with audio and teacher correction.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 7: open and closed vowels",
+                "body": [
+                    "<p>Open and closed vowels can change meaning in Portuguese. English speakers may not notice the difference at first, but it matters for understanding and natural speech.</p>",
+                    "<p>A classic example:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>Meaning</th></tr></thead><tbody><tr><td>avó</td><td>grandmother</td></tr><tr><td>avô</td><td>grandfather</td></tr></tbody></table>",
+                    "<p>Other common contrasts may appear in everyday words, names and regional speech. The important point for beginners is not to memorize every technical category immediately. The important point is to become aware that vowel quality matters.</p>",
+                    "<p>Practice method:</p>",
+                    "<p>1. choose pairs with a teacher;<br>2. listen before repeating;<br>3. repeat slowly;<br>4. use the words in sentences;<br>5. ask the teacher to confirm if the sound is clear.</p>",
+                    "<p>In live classes, a teacher can tell whether your vowel is understandable or if it needs adjustment.</p>"
+                ]
+            },
+            {
+                "heading": "Sound 8: rhythm and connected speech",
+                "body": [
+                    "<p>Brazilian Portuguese rhythm can confuse English speakers because words often connect smoothly. Learners may recognize words when they are isolated, but not when Brazilians speak naturally.</p>",
+                    "<p>For example, a learner may know:</p>",
+                    "<p><strong>Tudo bem?</strong></p>",
+                    "<p>But in real speech it may sound faster and more connected. A learner may know:</p>",
+                    "<p><strong>Você pode repetir, por favor?</strong></p>",
+                    "<p>But in conversation, a Brazilian may say it naturally, with reductions and rhythm that make it harder to process.</p>",
+                    "<p>Common everyday phrases to practice:</p>",
+                    "<ul><li><strong>Tudo bem?</strong></li><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Você pode me ajudar?</strong></li><li><strong>Só um minutinho.</strong></li><li><strong>Deixa eu ver.</strong></li><li><strong>Não entendi.</strong></li><li><strong>Como assim?</strong></li><li><strong>Tá bom.</strong></li><li><strong>Combinado.</strong></li></ul>",
+                    "<p>These phrases are more useful when practiced at natural speed after slow practice. Start slow, then build speed.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for pronunciation practice",
+                "body": [
+                    "<p>The best pronunciation vocabulary is practical. Choose words you will need in real life, not random word lists.</p>",
+                    "<table><thead><tr><th>Category</th><th>Words to practice</th></tr></thead><tbody><tr><td>Work</td><td>trabalho, reunião, relatório, projeto, equipe</td></tr><tr><td>Housing</td><td>apartamento, portaria, banheiro, endereço, chave</td></tr><tr><td>Daily life</td><td>mercado, farmácia, dinheiro, cartão, informação</td></tr><tr><td>Politeness</td><td>obrigado, desculpa, por favor, tudo bem</td></tr><tr><td>Time</td><td>manhã, tarde, noite, amanhã, horário</td></tr><tr><td>Help</td><td>ajuda, problema, repetir, explicar, entender</td></tr></tbody></table>",
+                    "<p>Useful sentence practice:</p>",
+                    "<ul><li><strong>Eu tenho uma reunião amanhã de manhã.</strong></li><li><strong>Meu trabalho é na área de tecnologia.</strong></li><li><strong>Qual é o endereço?</strong></li><li><strong>Pode deixar na portaria.</strong></li><li><strong>Preciso de informação.</strong></li><li><strong>Pode repetir, por favor?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Você pode explicar de novo?</strong></li></ul>",
+                    "<p>A teacher can use these sentences to correct multiple pronunciation issues at once.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: improve Brazilian Portuguese pronunciation step by step",
+                "body": [
+                    "<p>To improve Brazilian Portuguese pronunciation, practice sounds inside real phrases, record yourself, compare with a model and get live correction. Do not wait until you “know enough grammar” to work on pronunciation.</p>",
+                    "<h3>Step 1: choose one sound per week</h3>",
+                    "<p>Do not try to fix everything at once. Start with one sound, such as <strong>ão</strong> or <strong>lh</strong>.</p>",
+                    "<h3>Step 2: collect 10 useful words</h3>",
+                    "<p>For <strong>ão</strong>, choose words like:</p>",
+                    "<ul><li>não;</li><li>pão;</li><li>reunião;</li><li>informação;</li><li>cartão;</li><li>atenção;</li><li>coração;</li><li>avião;</li><li>estação;</li><li>profissão.</li></ul>",
+                    "<h3>Step 3: put each word in a phrase</h3>",
+                    "<p>Examples:</p>",
+                    "<ul><li><strong>Não entendi.</strong></li><li><strong>Tenho uma reunião.</strong></li><li><strong>Aceita cartão?</strong></li><li><strong>Preciso de informação.</strong></li></ul>",
+                    "<h3>Step 4: say the phrases aloud</h3>",
+                    "<p>Pronunciation improves through the mouth, not only through reading. Say each phrase slowly first.</p>",
+                    "<h3>Step 5: record your voice</h3>",
+                    "<p>Listen for clarity. Do not judge your accent harshly. Focus on whether the key sound is recognizable.</p>",
+                    "<h3>Step 6: practice in a live class</h3>",
+                    "<p>Ask your teacher:</p>",
+                    "<ul><li>Is this sound clear?</li><li>Am I adding an English sound?</li><li>Can you correct my pronunciation?</li><li>Can I try again?</li></ul>",
+                    "<h3>Step 7: repeat the corrected version</h3>",
+                    "<p>Correction only works if you repeat after receiving it. The second attempt is where learning becomes physical.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: pronunciation drills that feel real",
+                "body": [
+                    "<p>Live-class practice is effective because pronunciation needs immediate feedback. A teacher can identify whether the problem is the vowel, the rhythm, the stress, the nasal sound or the learner’s English-speaking habit.</p>",
+                    "<h3>Exercise 1: minimal context repetition</h3>",
+                    "<p>Teacher says:</p>",
+                    "<p><strong>reunião</strong></p>",
+                    "<p>Student repeats.</p>",
+                    "<p>Then teacher adds:</p>",
+                    "<p><strong>Tenho uma reunião.</strong></p>",
+                    "<p>Student repeats.</p>",
+                    "<p>Then:</p>",
+                    "<p><strong>Tenho uma reunião amanhã.</strong></p>",
+                    "<p>Student repeats.</p>",
+                    "<p>Goal: move from sound to sentence.</p>",
+                    "<h3>Exercise 2: real-life role-play</h3>",
+                    "<p>Teacher plays a receptionist:</p>",
+                    "<p><strong>Qual é o seu nome e endereço?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Meu nome é Sarah. Meu endereço é Rua João Moura, 120.</strong></p>",
+                    "<p>Goal: practice pronunciation under real communication pressure.</p>",
+                    "<h3>Exercise 3: correction loop</h3>",
+                    "<p>Student says a sentence. Teacher corrects one sound. Student repeats the sentence. Teacher adds a follow-up question.</p>",
+                    "<p>Goal: prevent correction from staying theoretical.</p>",
+                    "<h3>Exercise 4: WhatsApp voice message</h3>",
+                    "<p>Student records a short Portuguese voice message:</p>",
+                    "<p><strong>Oi, tudo bem? Tenho uma dúvida sobre a reunião de amanhã. Você pode confirmar o horário, por favor?</strong></p>",
+                    "<p>Teacher gives feedback on pronunciation and natural rhythm.</p>",
+                    "<p>Goal: prepare for real Brazilian communication.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes English speakers make",
+                "body": [
+                    "<p>English speakers often make pronunciation mistakes because they apply English sound rules to Portuguese spelling. This is normal, but it should be corrected early.</p>",
+                    "<h3>Mistake 1: reading Portuguese as English</h3>",
+                    "<p>Words like <strong>hotel</strong>, <strong>real</strong>, <strong>informação</strong> and <strong>trabalho</strong> should not be pronounced with English sound patterns.</p>",
+                    "<h3>Mistake 2: ignoring nasal sounds</h3>",
+                    "<p>Words like <strong>não</strong>, <strong>pão</strong>, <strong>mãe</strong> and <strong>reunião</strong> need nasal practice.</p>",
+                    "<h3>Mistake 3: overpronouncing final letters</h3>",
+                    "<p>Final <strong>-e</strong> and <strong>-o</strong> often do not sound the way English speakers expect.</p>",
+                    "<h3>Mistake 4: treating all “r” sounds the same</h3>",
+                    "<p>Brazilian <strong>r</strong> changes by region and position. Learn the practical patterns first.</p>",
+                    "<h3>Mistake 5: avoiding speaking because of accent</h3>",
+                    "<p>Accent is normal. Avoiding speech is more harmful than speaking with an accent. The goal is clear communication.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps English speakers with Brazilian Portuguese pronunciation",
+                "body": [
+                    "<p>Vedium helps English speakers with Brazilian Portuguese pronunciation through live classes, real-life practice and teacher feedback. The goal is not to make you sound artificially perfect. The goal is to help you speak more clearly, understand Brazilians better and participate in daily life with confidence.</p>",
+                    "<p>In Vedium’s live Portuguese classes, you can practice:</p>",
+                    "<ul><li>nasal sounds;</li><li><strong>ão</strong>, <strong>lh</strong> and <strong>nh</strong>;</li><li>work and daily-life vocabulary;</li><li>Brazilian rhythm;</li><li>pronunciation in meetings;</li><li>WhatsApp voice messages;</li><li>housing and portaria conversations;</li><li>pharmacy, supermarket and bank situations;</li><li>polite phrases;</li><li>listening and speaking together.</li></ul>",
+                    "<p>The live format matters because pronunciation is personal. Two English speakers may struggle with different sounds. A teacher can hear your specific difficulty and give targeted correction. This is something recorded lessons cannot do with the same precision.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because you feel the language becoming useful in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing Brazilian Portuguese pronunciation with live support.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist: are you ready to be understood in Brazil?",
+                "body": [
+                    "<p>Use this checklist to identify your next pronunciation goals:</p>",
+                    "<ul><li>I can say <strong>não</strong> clearly.</li><li>I can pronounce <strong>reunião</strong> in a sentence.</li><li>I can say <strong>trabalho</strong> when introducing myself.</li><li>I can ask <strong>Onde fica o banheiro?</strong></li><li>I can say my address clearly.</li><li>I can pronounce <strong>obrigado</strong> naturally.</li><li>I can ask someone to repeat.</li><li>I can record a short WhatsApp voice message.</li><li>I can understand common spoken phrases.</li><li>I receive correction from a live teacher.</li></ul>",
+                    "<p>If several points are difficult, that is normal. These are exactly the sounds and situations to practice first.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Brazilian Portuguese pronunciation can confuse English speakers because the language has nasal vowels, <strong>ão</strong>, <strong>lh</strong>, <strong>nh</strong>, variable <strong>r</strong>, unpredictable <strong>x</strong>, open and closed vowels, and a rhythm that differs from English. These differences matter because pronunciation affects real communication in Brazil.</p>",
+                    "<p>You do not need to eliminate your accent to speak Portuguese well. You need clarity, confidence and practice with the sounds that appear in daily life: <strong>não</strong>, <strong>reunião</strong>, <strong>trabalho</strong>, <strong>dinheiro</strong>, <strong>banheiro</strong>, <strong>obrigado</strong>, <strong>endereço</strong>, <strong>portaria</strong> and many others. The fastest path is to practice useful phrases aloud, receive correction and repeat in real contexts.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, including pronunciation, real-life situations and cultural context. No long-term loyalty contracts: you continue because the language becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start improving Brazilian Portuguese pronunciation with live classes and practical speaking support.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/how-to-handle-small-talk-with-brazilians-in-portuguese\">How to handle small talk with Brazilians in Portuguese</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "What Brazilian Portuguese sounds are hardest for English speakers?",
+                "a": "The hardest sounds often include nasal vowels, ão, lh, nh, Brazilian r, final unstressed vowels, the letter x, and open versus closed vowels."
+            },
+            {
+                "q": "Do I need a perfect accent to speak Portuguese in Brazil?",
+                "a": "No. You do not need a perfect accent. You need clear pronunciation so people can understand you in daily life, work, study and practical situations."
+            },
+            {
+                "q": "How can I practice the sound “ão”?",
+                "a": "Practice words like não, pão, reunião, informação and cartão inside full phrases. A live teacher can correct the nasal sound."
+            },
+            {
+                "q": "Why do written Portuguese and spoken Portuguese sound different?",
+                "a": "Brazilian Portuguese has pronunciation patterns such as reduced final vowels, connected speech and regional accents. This makes real speech sound different from spelling."
+            },
+            {
+                "q": "Does Vedium teach Brazilian Portuguese pronunciation for foreigners?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, with pronunciation practice, real-life phrases, teacher correction and free level check."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "como-estudar-phrasal-verbs-sem-decorar-listas-infinitas": {
+        "title": "Como estudar phrasal verbs sem decorar listas infinitas",
+        "meta_description": "Aprenda phrasal verbs sem decorar listas infinitas, com contexto, conversação e prática ao vivo por nível.",
+        "h1": "Como estudar phrasal verbs sem decorar listas infinitas",
+        "date": "2025-04-07",
+        "date_display": "7 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoa de fone de ouvido concentrada estudando no notebook",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Estudar phrasal verbs sem decorar listas infinitas exige uma mudança de método: em vez de tentar memorizar centenas de combinações como get up, give up, look for, turn on, take off e put off de forma isolada, você deve aprender phrasal verbs por contexto, situação, frequência, nível CEFR e uso real em frases. O objetivo não é saber uma lista enorme. O objetivo é reconhecer, entender e usar os phrasal verbs que realmente aparecem na sua vida: trabalho, reunião, entrevista, viagem, estudos, tecnologia, atendimento, rotina e conversas do dia a dia.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Muitos brasileiros travam com phrasal verbs porque estudam do jeito mais difícil: pegam uma lista com 100 ou 200 expressões, tentam traduzir palavra por palavra e acreditam que precisam decorar tudo antes de falar. O resultado costuma ser frustração. O aluno reconhece alguns phrasal verbs quando vê em texto, mas não consegue usar na fala. Ou pior: confunde significados porque uma mesma base, como <strong>get</strong>, pode aparecer em várias combinações diferentes.</p>",
+                    "<p>A verdade é que phrasal verbs são importantes, mas não devem ser estudados como um dicionário. Eles precisam ser aprendidos como blocos de comunicação. Quando você entende que <strong>look for</strong> aparece quando alguém procura algo, <strong>turn on</strong> aparece quando liga um aparelho, <strong>find out</strong> aparece quando descobre uma informação e <strong>bring up</strong> aparece quando levanta um assunto, o aprendizado fica mais natural. Você deixa de decorar e começa a usar.</p>",
+                    "<p>Para o Bruno, profissional que quer avançar do A1 ao C1, phrasal verbs são especialmente relevantes a partir do nível A2/B1. Eles aparecem em reuniões, mensagens, entrevistas, vídeos, podcasts, e-mails e conversas com clientes ou colegas. Mas o aluno não precisa dominar todos. Precisa aprender os mais úteis para seu nível e objetivo, com prática de conversação e correção ao vivo.</p>",
+                    "<p>Neste artigo, você vai entender por que phrasal verbs travam tantos alunos, como estudar de forma objetiva, como comparar lista decorada com curso ao vivo e qual é o próximo passo para aprender com mais leveza e resultado. A Vedium oferece inglês online ao vivo, com prática real, plano por nível CEFR e sem contrato de fidelidade: você continua porque sente evolução.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: como estudar phrasal verbs sem decorar listas infinitas?",
+                "body": [
+                    "<p>Para estudar phrasal verbs sem decorar listas infinitas, aprenda por contexto e por situação. Escolha poucos phrasal verbs por semana, coloque cada um em frases reais, pratique em voz alta, use em conversas e revise com professor. Não tente memorizar centenas de combinações sem uso.</p>",
+                    "<p>O método mais eficiente é:</p>",
+                    "<p>1. escolher um tema, como trabalho, viagem ou rotina;<br>2. selecionar 5 a 8 phrasal verbs úteis;<br>3. aprender o significado em frases, não em tradução solta;<br>4. criar exemplos da sua vida;<br>5. praticar perguntas e respostas;<br>6. revisar em voz alta;<br>7. usar em aula ao vivo;<br>8. receber correção;<br>9. repetir em conversas;<br>10. avançar conforme seu nível CEFR.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p>Em vez de decorar <strong>put off = adiar</strong>, aprenda a frase:</p>",
+                    "<p><strong>We need to put off the meeting.</strong><br>Precisamos adiar a reunião.</p>",
+                    "<p>Depois, pratique variações:</p>",
+                    "<p><strong>Can we put off the call?</strong><br>Podemos adiar a ligação?</p>",
+                    "<p><strong>I don’t want to put it off again.</strong><br>Não quero adiar isso de novo.</p>",
+                    "<p>Assim, o phrasal verb deixa de ser item de lista e vira ferramenta de comunicação.</p>",
+                    "<p>Se você quer saber quais phrasal verbs fazem sentido para seu nível, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p>Phrasal verbs travam o aluno porque parecem imprevisíveis. O estudante aprende o verbo <strong>get</strong>, depois descobre <strong>get up</strong>, <strong>get in</strong>, <strong>get out</strong>, <strong>get over</strong>, <strong>get along</strong>, <strong>get by</strong>, <strong>get back</strong>, <strong>get into</strong> e sente que cada combinação é uma palavra nova. Isso gera a sensação de que o inglês é infinito e impossível de organizar.</p>",
+                    "<p>As principais travas são:</p>",
+                    "<ul><li>tentar decorar listas muito grandes;</li><li>traduzir palavra por palavra;</li><li>ignorar contexto;</li><li>estudar sem exemplos reais;</li><li>não praticar conversação;</li><li>não saber quais phrasal verbs são importantes por nível;</li><li>confundir significados parecidos;</li><li>estudar só para reconhecer, não para usar;</li><li>achar que todo phrasal verb é informal;</li><li>não receber correção ao vivo.</li></ul>",
+                    "<p>Outro problema é a comparação com falantes avançados. O aluno vê alguém usando phrasal verbs naturalmente e acha que precisa falar assim imediatamente. Mas phrasal verbs são incorporados em etapas. Primeiro você reconhece. Depois entende em contexto. Depois usa em frases simples. Só então começa a usar com naturalidade em conversas.</p>",
+                    "<p>O erro não está em estudar phrasal verbs. O erro está em estudar sem método.</p>"
+                ]
+            },
+            {
+                "heading": "O que são phrasal verbs?",
+                "body": [
+                    "<p>Phrasal verbs são combinações de um verbo com uma partícula, geralmente uma preposição ou advérbio, que criam um sentido específico. Muitas vezes, esse sentido não é totalmente previsível pela tradução literal das partes.</p>",
+                    "<p>Exemplos:</p>",
+                    "<table><thead><tr><th>Phrasal verb</th><th>Sentido</th><th>Exemplo</th></tr></thead><tbody><tr><td>look for</td><td>procurar</td><td>I’m looking for my keys.</td></tr><tr><td>give up</td><td>desistir</td><td>Don’t give up.</td></tr><tr><td>turn on</td><td>ligar</td><td>Can you turn on the light?</td></tr><tr><td>turn off</td><td>desligar</td><td>Please turn off the computer.</td></tr><tr><td>find out</td><td>descobrir</td><td>I need to find out the price.</td></tr><tr><td>put off</td><td>adiar</td><td>We put off the meeting.</td></tr><tr><td>bring up</td><td>mencionar</td><td>She brought up an important point.</td></tr><tr><td>call back</td><td>retornar ligação</td><td>I’ll call you back later.</td></tr></tbody></table>",
+                    "<p>Phrasal verbs aparecem muito em inglês falado porque deixam a comunicação mais natural. Em alguns casos, existe uma palavra mais formal equivalente. Por exemplo:</p>",
+                    "<ul><li><strong>continue</strong> pode aparecer como <strong>go on</strong>;</li><li><strong>postpone</strong> pode aparecer como <strong>put off</strong>;</li><li><strong>discover</strong> pode aparecer como <strong>find out</strong>;</li><li><strong>mention</strong> pode aparecer como <strong>bring up</strong>.</li></ul>",
+                    "<p>Isso não significa que você precisa abandonar palavras formais. Significa que precisa reconhecer e usar phrasal verbs comuns para entender melhor o inglês real.</p>"
+                ]
+            },
+            {
+                "heading": "Comparativo: decorar lista x aprender em curso ao vivo",
+                "body": [
+                    "<p>Para quem está decidindo como estudar inglês, a diferença entre decorar listas e aprender com aula ao vivo é grande. A lista pode ajudar como apoio, mas não substitui prática, contexto e correção.</p>",
+                    "<table><thead><tr><th>Critério</th><th>Decorar listas infinitas</th><th>Aula ao vivo com contexto</th></tr></thead><tbody><tr><td>Memorização</td><td>pesada e cansativa</td><td>gradual e conectada ao uso</td></tr><tr><td>Conversação</td><td>quase inexistente</td><td>prática real com professor</td></tr><tr><td>Correção</td><td>limitada</td><td>imediata</td></tr><tr><td>Escolha de conteúdo</td><td>aleatória</td><td>alinhada ao nível CEFR</td></tr><tr><td>Aplicação profissional</td><td>fraca</td><td>adaptada a reuniões, entrevistas e rotina</td></tr><tr><td>Confiança</td><td>pode diminuir</td><td>cresce com uso guiado</td></tr><tr><td>Revisão</td><td>repetição mecânica</td><td>revisão em frases e situações</td></tr><tr><td>Resultado</td><td>reconhecimento passivo</td><td>uso ativo na fala</td></tr></tbody></table>",
+                    "<p>A melhor estratégia não é abandonar listas completamente. Uma lista curta pode ser útil. O problema é transformar a lista no centro do estudo. O centro deve ser o uso.</p>"
+                ]
+            },
+            {
+                "heading": "Como escolher phrasal verbs por objetivo",
+                "body": [
+                    "<p>A escolha dos phrasal verbs deve depender do seu objetivo. Um profissional que usa inglês em reuniões precisa de phrasal verbs diferentes de alguém que está se preparando para viagem. Um iniciante precisa de expressões mais frequentes e concretas. Um aluno B2 pode trabalhar usos mais abstratos.</p>",
+                    "<h3>Para rotina</h3>",
+                    "<ul><li>get up — levantar;</li><li>wake up — acordar;</li><li>go out — sair;</li><li>come back — voltar;</li><li>clean up — limpar/organizar;</li><li>put on — vestir/colocar;</li><li>take off — tirar/remover;</li><li>sit down — sentar.</li></ul>",
+                    "<p>Frases:</p>",
+                    "<p><strong>I usually wake up at 6 a.m.</strong><br>Normalmente acordo às 6h.</p>",
+                    "<p><strong>I’ll come back later.</strong><br>Vou voltar mais tarde.</p>",
+                    "<h3>Para trabalho</h3>",
+                    "<ul><li>follow up — acompanhar/retomar;</li><li>bring up — mencionar;</li><li>set up — configurar/organizar;</li><li>put off — adiar;</li><li>carry out — realizar;</li><li>figure out — entender/descobrir;</li><li>get back to — retornar para alguém;</li><li>point out — apontar/destacar.</li></ul>",
+                    "<p>Frases:</p>",
+                    "<p><strong>I’ll follow up with the client tomorrow.</strong><br>Vou retomar com o cliente amanhã.</p>",
+                    "<p><strong>She brought up an important issue.</strong><br>Ela levantou um ponto importante.</p>",
+                    "<h3>Para viagem</h3>",
+                    "<ul><li>check in — fazer check-in;</li><li>check out — fazer check-out;</li><li>get on — entrar em transporte;</li><li>get off — descer;</li><li>pick up — buscar/pegar;</li><li>drop off — deixar alguém em algum lugar;</li><li>look around — dar uma olhada;</li><li>run out of — ficar sem.</li></ul>",
+                    "<p>Frases:</p>",
+                    "<p><strong>What time can I check in?</strong><br>Que horas posso fazer check-in?</p>",
+                    "<p><strong>Where should I get off?</strong><br>Onde devo descer?</p>",
+                    "<h3>Para tecnologia</h3>",
+                    "<ul><li>log in — entrar/acessar;</li><li>log out — sair/desconectar;</li><li>set up — configurar;</li><li>back up — fazer backup;</li><li>plug in — conectar na tomada;</li><li>shut down — desligar;</li><li>scroll down — rolar para baixo;</li><li>fill out — preencher.</li></ul>",
+                    "<p>Frases:</p>",
+                    "<p><strong>I can’t log in to my account.</strong><br>Não consigo acessar minha conta.</p>",
+                    "<p><strong>Please fill out this form.</strong><br>Por favor, preencha este formulário.</p>"
+                ]
+            },
+            {
+                "heading": "Como estudar de forma objetiva",
+                "body": [
+                    "<p>Para estudar phrasal verbs de forma objetiva, siga um processo simples: tema, frase, uso, repetição e correção. Não comece pelo dicionário.</p>",
+                    "<h3>Passo 1: escolha um tema real</h3>",
+                    "<p>Pergunte:</p>",
+                    "<ul><li>preciso de inglês para trabalho?</li><li>entrevistas?</li><li>viagem?</li><li>atendimento?</li><li>tecnologia?</li><li>reuniões?</li><li>estudos?</li><li>rotina?</li></ul>",
+                    "<p>O tema define quais phrasal verbs merecem atenção agora.</p>",
+                    "<h3>Passo 2: selecione poucos phrasal verbs</h3>",
+                    "<p>Escolha de 5 a 8 por semana. Mais do que isso pode virar acúmulo sem uso.</p>",
+                    "<h3>Passo 3: aprenda em frases</h3>",
+                    "<p>Não estude apenas:</p>",
+                    "<p><strong>give up = desistir</strong></p>",
+                    "<p>Estude:</p>",
+                    "<p><strong>Don’t give up on your English.</strong><br>Não desista do seu inglês.</p>",
+                    "<h3>Passo 4: crie frases pessoais</h3>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>I don’t want to put off my English studies anymore.</strong><br>Não quero mais adiar meus estudos de inglês.</p>",
+                    "<h3>Passo 5: pratique perguntas e respostas</h3>",
+                    "<p>Pergunta:</p>",
+                    "<p><strong>Why did you put off the meeting?</strong></p>",
+                    "<p>Resposta:</p>",
+                    "<p><strong>We put it off because the client wasn’t available.</strong></p>",
+                    "<h3>Passo 6: use em conversação</h3>",
+                    "<p>Em aula, tente usar o phrasal verb em uma resposta real. O professor corrige se o uso ficou estranho.</p>",
+                    "<h3>Passo 7: revise em ciclos</h3>",
+                    "<p>Revise depois de 1 dia, 1 semana e 1 mês. Phrasal verbs precisam reaparecer.</p>"
+                ]
+            },
+            {
+                "heading": "Phrasal verbs por nível CEFR",
+                "body": [
+                    "<p>O nível CEFR ajuda a organizar o aprendizado. Nem todo aluno precisa estudar os mesmos phrasal verbs ao mesmo tempo.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Foco recomendado</th></tr></thead><tbody><tr><td>A1</td><td>ações concretas: wake up, sit down, stand up, turn on</td></tr><tr><td>A2</td><td>rotina e viagem: get up, go out, come back, check in</td></tr><tr><td>B1</td><td>trabalho e situações comuns: find out, look for, call back, put off</td></tr><tr><td>B2</td><td>reuniões e comunicação profissional: bring up, follow up, point out, figure out</td></tr><tr><td>C1</td><td>nuances, idiomaticidade e registros: carry out, put forward, come across, look into</td></tr></tbody></table>",
+                    "<p>Exemplo A2:</p>",
+                    "<p><strong>I wake up early and go out at 7.</strong></p>",
+                    "<p>Exemplo B1:</p>",
+                    "<p><strong>I need to find out what happened.</strong></p>",
+                    "<p>Exemplo B2:</p>",
+                    "<p><strong>I’ll follow up with the team and get back to you.</strong></p>",
+                    "<p>Exemplo C1:</p>",
+                    "<p><strong>We need to look into the issue before making a decision.</strong></p>",
+                    "<p>Esse avanço por nível evita que o aluno tente aprender tudo ao mesmo tempo.</p>"
+                ]
+            },
+            {
+                "heading": "Phrasal verbs separáveis e inseparáveis",
+                "body": [
+                    "<p>Alguns phrasal verbs permitem separar verbo e partícula quando há objeto. Outros não. Esse ponto costuma confundir, mas não precisa ser estudado de forma abstrata no começo. O ideal é aprender exemplos corretos.</p>",
+                    "<h3>Separáveis</h3>",
+                    "<p><strong>Turn off the computer.</strong><br>Desligue o computador.</p>",
+                    "<p><strong>Turn the computer off.</strong><br>Desligue o computador.</p>",
+                    "<p>Com pronome, a separação é obrigatória:</p>",
+                    "<p><strong>Turn it off.</strong><br>Desligue-o.</p>",
+                    "<p>Não diga:</p>",
+                    "<p><strong>Turn off it.</strong></p>",
+                    "<p>Outros exemplos:</p>",
+                    "<ul><li>put on;</li><li>take off;</li><li>turn on;</li><li>turn off;</li><li>pick up;</li><li>write down.</li></ul>",
+                    "<h3>Inseparáveis</h3>",
+                    "<p><strong>I’m looking for my phone.</strong><br>Estou procurando meu celular.</p>",
+                    "<p>Não diga:</p>",
+                    "<p><strong>I’m looking my phone for.</strong></p>",
+                    "<p>Outros exemplos:</p>",
+                    "<ul><li>look for;</li><li>look after;</li><li>run into;</li><li>get over;</li><li>go through.</li></ul>",
+                    "<p>A melhor maneira de aprender isso é com frases-modelo e correção. Regras ajudam, mas o uso em voz alta fixa melhor.</p>"
+                ]
+            },
+            {
+                "heading": "Phrasal verbs no inglês profissional",
+                "body": [
+                    "<p>No inglês profissional, phrasal verbs aparecem em reuniões, e-mails, entrevistas, apresentações e atendimento. Usar alguns deles com naturalidade melhora sua fluidez, mas é preciso escolher os mais úteis.</p>",
+                    "<p>Frases profissionais:</p>",
+                    "<ul><li><strong>I’ll follow up with the client.</strong></li><li><strong>Let’s set up a meeting.</strong></li><li><strong>Can you look into this issue?</strong></li><li><strong>I’ll get back to you by Friday.</strong></li><li><strong>She brought up a good point.</strong></li><li><strong>We need to figure out the next step.</strong></li><li><strong>The meeting was put off.</strong></li><li><strong>Please fill out the form.</strong></li><li><strong>Can you point out the main risks?</strong></li><li><strong>We carried out the plan successfully.</strong></li></ul>",
+                    "<p>Essas frases são melhores do que listas porque já mostram contexto. Se você trabalha com clientes, projetos, tecnologia ou gestão, elas são muito mais úteis do que decorar phrasal verbs raros.</p>",
+                    "<p>Se seu objetivo é inglês profissional, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e veja qual plano faz sentido para você.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: phrasal verbs em contexto",
+                "body": [
+                    "<p>Este exercício é ideal para curso de inglês online ao vivo.</p>",
+                    "<h3>Etapa 1: escolher o tema</h3>",
+                    "<p>O professor escolhe um tema: reunião, viagem, rotina ou tecnologia.</p>",
+                    "<h3>Etapa 2: selecionar 6 phrasal verbs</h3>",
+                    "<p>Exemplo para trabalho:</p>",
+                    "<ul><li>follow up;</li><li>set up;</li><li>bring up;</li><li>put off;</li><li>look into;</li><li>get back to.</li></ul>",
+                    "<h3>Etapa 3: criar frases-modelo</h3>",
+                    "<p><strong>Let’s set up a meeting.</strong><br><strong>I’ll follow up with the client.</strong><br><strong>Can you look into this issue?</strong></p>",
+                    "<h3>Etapa 4: praticar perguntas</h3>",
+                    "<p><strong>When can we set up the meeting?</strong><br><strong>Who will follow up with the client?</strong><br><strong>Can you look into this today?</strong></p>",
+                    "<h3>Etapa 5: simular conversa</h3>",
+                    "<p>Professor faz papel de gestor ou cliente. Aluno responde usando os phrasal verbs.</p>",
+                    "<h3>Etapa 6: corrigir naturalidade</h3>",
+                    "<p>O professor corrige:</p>",
+                    "<ul><li>uso;</li><li>ordem das palavras;</li><li>pronúncia;</li><li>ritmo;</li><li>contexto;</li><li>alternativas mais naturais.</li></ul>",
+                    "<h3>Etapa 7: aplicar na vida real</h3>",
+                    "<p>O aluno escolhe 2 frases para usar no trabalho, em estudo ou em simulação durante a semana.</p>",
+                    "<p>Esse processo transforma phrasal verbs em fala, não em memória passiva.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo no curso ao vivo é mapear quais phrasal verbs realmente importam para seu nível e objetivo. Um aluno A2 não precisa estudar os mesmos itens que um aluno B2. Um profissional de tecnologia precisa de expressões diferentes de alguém que está estudando para viagem.</p>",
+                    "<p>Em uma aula ao vivo, o professor pode identificar:</p>",
+                    "<ul><li>seu nível CEFR atual;</li><li>quais phrasal verbs você já reconhece;</li><li>quais você consegue usar;</li><li>onde o português está interferindo;</li><li>quais frases fazem sentido para sua rotina;</li><li>como transformar vocabulário passivo em fala;</li><li>quais erros precisam de correção imediata.</li></ul>",
+                    "<p>Essa personalização é decisiva. O aluno não fica perdido em listas genéricas. Ele pratica o que faz sentido para sua vida.</p>"
+                ]
+            },
+            {
+                "heading": "Como comparar um curso de inglês para phrasal verbs",
+                "body": [
+                    "<p>Se você está escolhendo um curso de inglês, observe se ele ensina phrasal verbs dentro de conversas reais. Muitos cursos apenas entregam listas e exercícios de múltipla escolha. Isso pode ajudar no reconhecimento, mas não garante uso na fala.</p>",
+                    "<p>Um bom curso deve oferecer:</p>",
+                    "<ul><li>aulas ao vivo;</li><li>prática de conversação;</li><li>correção de uso;</li><li>plano por nível CEFR;</li><li>frases profissionais e cotidianas;</li><li>role-plays;</li><li>revisão espaçada;</li><li>atividades de listening;</li><li>foco em clareza;</li><li>liberdade sem fidelidade longa.</li></ul>",
+                    "<p>Perguntas para avaliar:</p>",
+                    "<ul><li>o curso corrige minha fala?</li><li>eu pratico frases reais?</li><li>aprendo por nível?</li><li>tenho espaço para dúvidas?</li><li>consigo aplicar no trabalho?</li><li>o método evita listas infinitas?</li><li>há conversação ao vivo?</li><li>posso continuar sem contrato de fidelidade?</li></ul>",
+                    "<p>A Vedium se encaixa nessa proposta porque trabalha inglês online ao vivo, prática real e evolução no ritmo do aluno.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para estudar phrasal verbs",
+                "body": [
+                    "<p>Este plano ajuda você a começar sem excesso.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>rotina</td><td>wake up, get up, go out, come back, sit down</td></tr><tr><td>Semana 2</td><td>trabalho</td><td>follow up, set up, bring up, put off, get back to</td></tr><tr><td>Semana 3</td><td>viagem</td><td>check in, check out, get on, get off, pick up</td></tr><tr><td>Semana 4</td><td>tecnologia e revisão</td><td>log in, fill out, back up, shut down, look into</td></tr></tbody></table>",
+                    "<p>Rotina de estudo:</p>",
+                    "<p>1. escolha 5 phrasal verbs;<br>2. escreva uma frase real para cada;<br>3. fale em voz alta;<br>4. transforme em pergunta;<br>5. responda sem ler;<br>6. revise com professor;<br>7. use em uma conversa.</p>",
+                    "<p>Quinze minutos bem usados valem mais do que uma hora decorando lista.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse aprendizado",
+                "body": [
+                    "<p>A Vedium ajuda brasileiros a estudar phrasal verbs porque oferece inglês online ao vivo, com professor, conversação e plano por nível. O foco é tirar o aluno da memorização passiva e levá-lo ao uso real.</p>",
+                    "<p>Nas aulas da Vedium, você pode praticar:</p>",
+                    "<ul><li>phrasal verbs por tema;</li><li>conversação;</li><li>inglês profissional;</li><li>entrevistas;</li><li>reuniões;</li><li>viagens;</li><li>tecnologia;</li><li>frases por nível CEFR;</li><li>pronúncia;</li><li>listening;</li><li>correção de erros;</li><li>uso natural em contexto.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. Você continua porque percebe evolução, não porque está preso. Esse modelo combina com o aprendizado de phrasal verbs, que precisa de prática constante, correção e aplicação real.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou estudando phrasal verbs do jeito certo?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Eu estudo poucos phrasal verbs por vez.</li><li>Aprendo em frases, não só em tradução.</li><li>Escolho temas úteis para minha vida.</li><li>Pratico em voz alta.</li><li>Sei quais phrasal verbs fazem sentido para meu nível CEFR.</li><li>Uso exemplos profissionais ou pessoais.</li><li>Reviso em ciclos.</li><li>Peço correção quando possível.</li><li>Evito listas infinitas.</li><li>Tento usar em conversação.</li></ul>",
+                    "<p>Se você respondeu “não” a vários itens, seu problema talvez não seja memória. Pode ser método.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Estudar phrasal verbs sem decorar listas infinitas é possível quando você muda o foco: menos quantidade, mais contexto. Em vez de tentar memorizar centenas de combinações, escolha os phrasal verbs mais úteis para seu nível e objetivo, aprenda em frases, pratique em voz alta e use em conversas reais.</p>",
+                    "<p>Phrasal verbs são importantes para entender inglês natural, participar de reuniões, viajar, assistir vídeos, escrever mensagens e falar com mais fluidez. Mas eles não devem virar uma barreira. Com método, você aprende aos poucos e começa a usar com confiança.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo, com professor, conversação, plano por nível CEFR e sem contrato de fidelidade. Você fica porque evolui, não porque está preso.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra quais phrasal verbs você precisa aprender agora para falar inglês com mais clareza, naturalidade e segurança.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/como-usar-shadowing-sem-copiar-sotaque-de-forma-artificial\">Como usar shadowing sem copiar sotaque de forma artificial</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Preciso decorar listas de phrasal verbs?",
+                "a": "Não. Listas curtas podem ajudar, mas o ideal é aprender phrasal verbs em frases, situações reais e conversação."
+            },
+            {
+                "q": "Quais phrasal verbs devo aprender primeiro?",
+                "a": "Comece pelos mais úteis para seu nível e objetivo, como wake up, look for, find out, put off, follow up e get back to."
+            },
+            {
+                "q": "Phrasal verbs são sempre informais?",
+                "a": "Não. Muitos são usados em contextos profissionais, como follow up, set up, look into, bring up e carry out."
+            },
+            {
+                "q": "Como memorizar phrasal verbs com mais facilidade?",
+                "a": "Aprenda por tema, crie frases pessoais, pratique em voz alta, revise em ciclos e use os phrasal verbs em conversas reais."
+            },
+            {
+                "q": "A Vedium ajuda a praticar phrasal verbs em aula ao vivo?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo com conversação, correção, prática por nível CEFR e foco em uso real."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "como-funciona-a-alfabetizacao-em-hebraico-do-zero": {
+        "title": "Como funciona a alfabetização em hebraico do zero",
+        "meta_description": "Entenda como funciona a alfabetização em hebraico do zero, com letras, sons, direção da leitura e aula ao vivo.",
+        "h1": "Como funciona a alfabetização em hebraico do zero",
+        "date": "2025-04-23",
+        "date_display": "23 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Escritorio moderno de plano aberto com pessoas trabalhando",
+        "tag": "Hebraico",
+        "category": "hebraico",
+        "lead": "A alfabetização em hebraico do zero funciona como uma reconstrução cuidadosa da forma como o aluno lê, reconhece sons e organiza palavras. Diferente de idiomas que usam o alfabeto latino, o hebraico exige que o iniciante aprenda um novo sistema de escrita, a direção da leitura da direita para a esquerda, o formato das letras, os sons correspondentes, a diferença entre consoantes e sinais vocálicos e, aos poucos, a leitura de sílabas, palavras e frases simples.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para quem está começando, isso pode parecer difícil no primeiro contato. A boa notícia é que a alfabetização em hebraico fica muito mais clara quando o estudo segue uma sequência: reconhecer as letras, entender a direção da leitura, ouvir os sons, praticar a escrita, formar combinações simples, ler palavras curtas e receber correção ao vivo. O problema não é o hebraico ser “impossível”. O problema é tentar aprender tudo sozinho, sem ordem e sem feedback.</p>",
+                    "<p>A alfabetização é a base tanto para o hebraico moderno quanto para o hebraico bíblico. Quem quer falar hebraico atual precisa ler placas, mensagens, nomes, diálogos e materiais de aula. Quem quer estudar hebraico bíblico precisa reconhecer letras, sinais vocálicos, raízes e palavras recorrentes em textos antigos. Por isso, mesmo que os objetivos sejam diferentes, o começo precisa ser bem feito.</p>",
+                    "<p>Neste artigo, você vai entender como funciona a alfabetização em hebraico do zero, quais são os primeiros desafios, como estudar letras, sons e direção da leitura, quais exercícios ajudam iniciantes e por que a aula de hebraico ao vivo reduz travas de pronúncia, leitura e constância. A Vedium oferece curso de hebraico online com aulas ao vivo, orientação para iniciantes e trilhas para hebraico moderno, bíblico ou particular.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: como funciona a alfabetização em hebraico?",
+                "body": [
+                    "<p>A alfabetização em hebraico começa pelo reconhecimento das letras e pela adaptação à leitura da direita para a esquerda. Depois, o aluno associa cada letra a sons, pratica combinações simples, aprende sinais vocálicos quando necessário e começa a ler palavras curtas com orientação.</p>",
+                    "<p>Em uma sequência didática, o processo costuma seguir estas etapas:</p>",
+                    "<p>1. entender que o hebraico é lido da direita para a esquerda;<br>2. reconhecer visualmente as letras;<br>3. diferenciar letras parecidas;<br>4. associar letras a sons;<br>5. praticar a escrita manual ou digital;<br>6. aprender sinais vocálicos básicos;<br>7. juntar consoantes e vogais;<br>8. ler sílabas e palavras curtas;<br>9. praticar pronúncia com correção;<br>10. avançar para frases simples ou leitura guiada.</p>",
+                    "<p>Esse caminho vale para iniciantes absolutos. O aluno não precisa chegar sabendo nada. Precisa apenas de orientação, repetição e paciência para construir uma base segura.</p>",
+                    "<p>Se você quer começar hebraico com uma trilha clara e aula ao vivo, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-hebraico-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Letras, sons e direção da leitura",
+                "body": [
+                    "<p>Letras, sons e direção da leitura são os três primeiros pilares da alfabetização em hebraico. Antes de tentar traduzir palavras, o aluno precisa entender como o sistema funciona.</p>",
+                    "<h3>Direção da leitura</h3>",
+                    "<p>O hebraico é lido da direita para a esquerda. Para quem está acostumado ao português, isso exige adaptação. O olho tenta começar pela esquerda, mas precisa ser treinado a iniciar pela direita.</p>",
+                    "<p>Exemplo didático:</p>",
+                    "<ul><li>Português: leitura da esquerda para a direita.</li><li>Hebraico: leitura da direita para a esquerda.</li></ul>",
+                    "<p>Essa mudança parece simples, mas afeta tudo: leitura de palavras, cópia, localização da primeira letra, ordem das sílabas e percepção visual. Por isso, uma boa alfabetização não pula essa etapa.</p>",
+                    "<h3>Reconhecimento das letras</h3>",
+                    "<p>O aluno aprende a identificar as letras do alfabeto hebraico. No começo, algumas podem parecer parecidas. A prática deve incluir observação visual, repetição, comparação e leitura em voz alta.</p>",
+                    "<p>Boas perguntas para o iniciante:</p>",
+                    "<ul><li>Qual letra estou vendo?</li><li>Essa letra se parece com outra?</li><li>Qual é o som aproximado?</li><li>Ela aparece no começo, meio ou fim da palavra?</li><li>Estou lendo na direção correta?</li></ul>",
+                    "<h3>Sons</h3>",
+                    "<p>Depois de reconhecer a letra, o aluno associa som. Essa parte precisa de cuidado porque sons aproximados em português nem sempre explicam bem o hebraico. A aula ao vivo ajuda justamente porque o professor escuta a pronúncia do aluno e corrige.</p>",
+                    "<p>A alfabetização não é apenas “decorar letras”. É treinar olho, ouvido e voz ao mesmo tempo.</p>"
+                ]
+            },
+            {
+                "heading": "O hebraico tem vogais?",
+                "body": [
+                    "<p>Sim, o hebraico pode usar sinais vocálicos, especialmente em materiais didáticos, textos bíblicos, livros para iniciantes e contextos de leitura guiada. No hebraico moderno cotidiano, muitos textos aparecem sem sinais vocálicos completos, mas iniciantes costumam estudá-los para aprender a ler com mais segurança.</p>",
+                    "<p>Essa é uma diferença importante para quem está começando. Em português, as vogais aparecem como letras independentes. No hebraico, a escrita tradicional é baseada principalmente em consoantes, e os sinais vocálicos podem aparecer como pequenos sinais associados às letras.</p>",
+                    "<p>De forma simples:</p>",
+                    "<table><thead><tr><th>Elemento</th><th>Função</th></tr></thead><tbody><tr><td>Letras</td><td>base da palavra, principalmente consoantes</td></tr><tr><td>Sinais vocálicos</td><td>indicam sons de vogal em contextos didáticos ou textuais</td></tr><tr><td>Leitura guiada</td><td>ajuda o aluno a juntar letra e som</td></tr><tr><td>Prática oral</td><td>confirma se a leitura está correta</td></tr></tbody></table>",
+                    "<p>Para o hebraico bíblico, os sinais vocálicos costumam ter grande importância na leitura inicial. Para o hebraico moderno, eles também podem ajudar o aluno no começo, mesmo que depois ele precise aprender a reconhecer palavras sem depender totalmente deles.</p>"
+                ]
+            },
+            {
+                "heading": "Hebraico moderno e bíblico: a alfabetização muda?",
+                "body": [
+                    "<p>A base da alfabetização é parecida, mas o objetivo muda. Quem estuda hebraico moderno usa a alfabetização para chegar à comunicação atual. Quem estuda hebraico bíblico usa a alfabetização para ler e compreender textos antigos.</p>",
+                    "<p>Veja a diferença:</p>",
+                    "<table><thead><tr><th>Trilha</th><th>Para que serve a alfabetização</th></tr></thead><tbody><tr><td>Hebraico moderno</td><td>ler palavras atuais, mensagens, placas, diálogos, nomes e frases do cotidiano</td></tr><tr><td>Hebraico bíblico</td><td>ler textos antigos, reconhecer sinais vocálicos, vocabulário recorrente e estruturas textuais</td></tr><tr><td>Trilha mista</td><td>construir base comum e depois dividir o foco entre fala moderna e leitura bíblica</td></tr></tbody></table>",
+                    "<p>O erro é achar que alfabetizar é apenas aprender o desenho das letras. Na verdade, a alfabetização prepara o tipo de uso que virá depois. Um aluno que quer conversar precisa avançar para frases, escuta e fala. Um aluno que quer ler textos bíblicos precisa avançar para leitura guiada, vocabulário e estruturas.</p>",
+                    "<p>Por isso, a Vedium orienta o aluno a identificar o objetivo desde o início: moderno, bíblico ou particular.</p>"
+                ]
+            },
+            {
+                "heading": "Por que iniciantes travam no hebraico?",
+                "body": [
+                    "<p>Iniciantes travam no hebraico porque tentam processar muitas novidades ao mesmo tempo: letras novas, direção de leitura diferente, sons desconhecidos, sinais vocálicos, escrita não latina e ansiedade por resultados rápidos.</p>",
+                    "<p>As travas mais comuns são:</p>",
+                    "<ul><li>confundir letras visualmente parecidas;</li><li>ler da esquerda para a direita por hábito;</li><li>esquecer o som das letras;</li><li>tentar memorizar tudo em um único dia;</li><li>pular a prática oral;</li><li>depender apenas de transliteração;</li><li>evitar ler em voz alta;</li><li>não revisar;</li><li>estudar sem correção;</li><li>perder constância depois da primeira dificuldade.</li></ul>",
+                    "<p>A solução é dividir o processo em pequenas metas. Em vez de tentar “ler hebraico” de uma vez, o aluno deve aprender a reconhecer, pronunciar, juntar e revisar. O avanço vem por camadas.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: como se alfabetizar em hebraico do zero",
+                "body": [
+                    "<p>Para se alfabetizar em hebraico do zero, siga uma sequência simples, gradual e prática. O objetivo inicial não é ler textos longos, mas construir familiaridade com o sistema de escrita.</p>",
+                    "<h3>Passo 1: entenda a direção da leitura</h3>",
+                    "<p>Antes de decorar letras, treine o olhar. Pegue uma palavra em hebraico e marque mentalmente que a leitura começa pela direita. Faça isso várias vezes até reduzir o impulso de começar pela esquerda.</p>",
+                    "<h3>Passo 2: aprenda poucas letras por vez</h3>",
+                    "<p>Não tente memorizar todo o alfabeto em uma única sessão. Estude grupos pequenos. Reconheça a forma, o nome, o som e uma palavra exemplo.</p>",
+                    "<p>Boa prática:</p>",
+                    "<ul><li>3 a 5 letras por ciclo;</li><li>revisão no dia seguinte;</li><li>leitura em voz alta;</li><li>comparação com letras parecidas.</li></ul>",
+                    "<h3>Passo 3: associe letra a som</h3>",
+                    "<p>A letra precisa sair do visual e ir para a voz. Pronuncie com calma e peça correção quando possível.</p>",
+                    "<p>Perguntas úteis:</p>",
+                    "<ul><li>Estou pronunciando esse som corretamente?</li><li>Esse som existe em português?</li><li>Preciso abrir mais a boca?</li><li>Estou adicionando uma vogal que não deveria?</li></ul>",
+                    "<h3>Passo 4: pratique a escrita</h3>",
+                    "<p>Escrever ajuda a memorizar. O objetivo não é ter caligrafia perfeita no início, mas fortalecer reconhecimento e direção.</p>",
+                    "<p>Pratique:</p>",
+                    "<ul><li>copiar letras;</li><li>escrever da direita para a esquerda;</li><li>separar letras parecidas;</li><li>repetir palavras curtas;</li><li>revisar com professor.</li></ul>",
+                    "<h3>Passo 5: use sinais vocálicos para aprender a ler</h3>",
+                    "<p>Quando o material traz sinais vocálicos, use-os como apoio. Eles ajudam a ligar consoantes e vogais, principalmente para iniciantes e para quem estuda hebraico bíblico.</p>",
+                    "<h3>Passo 6: leia palavras curtas</h3>",
+                    "<p>Comece por palavras pequenas. Leia devagar, da direita para a esquerda, observando letra por letra. Depois tente ler com mais fluidez.</p>",
+                    "<h3>Passo 7: leia em voz alta na aula ao vivo</h3>",
+                    "<p>A leitura em voz alta é essencial. O professor corrige som, ritmo e direção. Sem esse feedback, o aluno pode repetir erros sem perceber.</p>",
+                    "<h3>Passo 8: revise todos os dias por poucos minutos</h3>",
+                    "<p>A alfabetização depende de constância. Cinco a dez minutos por dia podem ser mais eficazes do que uma sessão longa e cansativa uma vez por semana.</p>",
+                    "<p>Esse passo a passo ajuda o aluno a sair da sensação de confusão e criar progresso visível.</p>"
+                ]
+            },
+            {
+                "heading": "Primeiros exercícios para alfabetização em hebraico",
+                "body": [
+                    "<p>Os primeiros exercícios devem treinar reconhecimento, som, direção e leitura curta. Não precisam ser complexos. Precisam ser consistentes.</p>",
+                    "<h3>Exercício 1: reconhecimento visual</h3>",
+                    "<p>O professor mostra letras em ordem aleatória e o aluno identifica. O foco é diferenciar formas parecidas.</p>",
+                    "<p>Objetivo: reconhecer sem depender da ordem do alfabeto.</p>",
+                    "<h3>Exercício 2: leitura da direita para a esquerda</h3>",
+                    "<p>O aluno recebe sequências curtas e aponta a primeira letra correta. Isso treina o olho.</p>",
+                    "<p>Objetivo: criar hábito de direção.</p>",
+                    "<h3>Exercício 3: som da letra</h3>",
+                    "<p>O professor fala o som ou a letra, e o aluno repete. Depois o aluno lê sozinho.</p>",
+                    "<p>Objetivo: conectar visão e pronúncia.</p>",
+                    "<h3>Exercício 4: cópia guiada</h3>",
+                    "<p>O aluno copia letras e palavras curtas. O professor observa ordem, forma e direção.</p>",
+                    "<p>Objetivo: reforçar memória visual.</p>",
+                    "<h3>Exercício 5: sílabas com sinais vocálicos</h3>",
+                    "<p>O aluno junta letra e sinal vocálico para formar sons simples.</p>",
+                    "<p>Objetivo: iniciar leitura real.</p>",
+                    "<h3>Exercício 6: leitura em voz alta</h3>",
+                    "<p>O aluno lê palavras curtas. O professor corrige imediatamente.</p>",
+                    "<p>Objetivo: evitar que erros virem hábito.</p>",
+                    "<p>Esses exercícios são simples, mas são a base de uma alfabetização sólida.</p>"
+                ]
+            },
+            {
+                "heading": "Como a aula ao vivo corrige a pronúncia",
+                "body": [
+                    "<p>A aula ao vivo corrige a pronúncia porque o professor escuta o aluno em tempo real. Isso é especialmente importante no hebraico, pois o iniciante pode tentar aproximar tudo do português e criar sons imprecisos.</p>",
+                    "<p>Em aula, o professor pode corrigir:</p>",
+                    "<ul><li>som de letras específicas;</li><li>vogais adicionadas indevidamente;</li><li>ritmo da leitura;</li><li>confusão entre letras;</li><li>acentuação da palavra;</li><li>leitura na direção errada;</li><li>pronúncia influenciada pela transliteração;</li><li>pausas inadequadas.</li></ul>",
+                    "<p>A transliteração pode ser útil como apoio inicial, mas não deve virar dependência. Se o aluno só lê hebraico por letras latinas, ele não se alfabetiza de fato. A aula ao vivo ajuda a reduzir essa dependência porque coloca o aluno diante da escrita original, com orientação.</p>",
+                    "<p>Exemplo de rotina em aula:</p>",
+                    "<p>1. professor apresenta uma letra;<br>2. aluno repete o som;<br>3. professor mostra palavra curta;<br>4. aluno lê em voz alta;<br>5. professor corrige;<br>6. aluno repete;<br>7. a palavra entra em uma frase ou contexto.</p>",
+                    "<p>Esse ciclo cria confiança.</p>"
+                ]
+            },
+            {
+                "heading": "Como evitar depender da transliteração",
+                "body": [
+                    "<p>Para evitar depender da transliteração, use-a apenas como ponte temporária. A transliteração ajuda no começo, mas pode atrapalhar se substituir a leitura do hebraico.</p>",
+                    "<p>Problemas da dependência excessiva:</p>",
+                    "<ul><li>o aluno lê sons aproximados, não a escrita real;</li><li>perde contato com as letras;</li><li>demora mais para reconhecer palavras;</li><li>confunde pronúncia;</li><li>não desenvolve autonomia;</li><li>fica preso ao material transliterado.</li></ul>",
+                    "<p>Como usar melhor:</p>",
+                    "<table><thead><tr><th>Use a transliteração para</th><th>Não use a transliteração para</th></tr></thead><tbody><tr><td>apoio temporário de pronúncia</td><td>substituir o alfabeto</td></tr><tr><td>comparação inicial</td><td>evitar leitura real</td></tr><tr><td>revisar sons difíceis</td><td>decorar palavras sem olhar o hebraico</td></tr><tr><td>tirar dúvidas pontuais</td><td>estudar para sempre por letras latinas</td></tr></tbody></table>",
+                    "<p>O objetivo da alfabetização é olhar para o hebraico e reconhecer o hebraico. A transliteração pode ajudar no começo, mas a leitura real precisa assumir o centro.</p>"
+                ]
+            },
+            {
+                "heading": "Plano inicial de 4 semanas para alfabetização em hebraico",
+                "body": [
+                    "<p>Um plano de 4 semanas não torna ninguém fluente, mas ajuda o iniciante a criar base.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Semana 1</td><td>direção da leitura e primeiras letras</td><td>reconhecer a lógica do sistema e algumas letras</td></tr><tr><td>Semana 2</td><td>mais letras, sons e escrita</td><td>ampliar reconhecimento e pronúncia</td></tr><tr><td>Semana 3</td><td>sinais vocálicos e palavras curtas</td><td>começar a juntar letras e sons</td></tr><tr><td>Semana 4</td><td>leitura em voz alta e revisão</td><td>ganhar confiança em palavras e frases simples</td></tr></tbody></table>",
+                    "<p>Rotina recomendada:</p>",
+                    "<ul><li>10 minutos de revisão diária;</li><li>3 a 5 letras por ciclo;</li><li>leitura em voz alta;</li><li>cópia curta;</li><li>aula ao vivo para correção;</li><li>revisão de letras parecidas;</li><li>registro de dúvidas.</li></ul>",
+                    "<p>Para hebraico moderno, depois dessa base o aluno pode avançar para saudações, apresentação e frases do cotidiano. Para hebraico bíblico, pode avançar para sinais vocálicos, vocabulário recorrente e leitura guiada de trechos curtos.</p>"
+                ]
+            },
+            {
+                "heading": "Alfabetização em hebraico para adultos é possível?",
+                "body": [
+                    "<p>Sim, adultos podem se alfabetizar em hebraico. A ideia de que “adulto não aprende alfabeto novo” é falsa. O adulto pode até ter mais consciência de estudo, disciplina e objetivo. O desafio é lidar com ansiedade e comparação.</p>",
+                    "<p>Adultos aprendem melhor quando:</p>",
+                    "<ul><li>entendem o motivo do estudo;</li><li>têm material organizado;</li><li>praticam pouco e sempre;</li><li>recebem correção;</li><li>não pulam a base;</li><li>usam exemplos relevantes;</li><li>revisam com frequência;</li><li>aceitam errar no início.</li></ul>",
+                    "<p>O aluno adulto costuma querer resultado rápido. Mas alfabetização exige fase de familiaridade. No começo, reconhecer uma letra já é progresso. Depois, reconhecer uma palavra. Depois, ler uma frase. A evolução acontece em camadas.</p>"
+                ]
+            },
+            {
+                "heading": "Como escolher um curso de hebraico online para iniciantes",
+                "body": [
+                    "<p>Um bom curso de hebraico online para iniciantes deve oferecer uma alfabetização clara, progressiva e com prática ao vivo. Antes de se matricular, observe se o curso explica como o aluno vai aprender letras, sons, direção da leitura e primeiros exercícios.</p>",
+                    "<p>Checklist de escolha:</p>",
+                    "<ul><li>o curso começa pelo alfabeto?</li><li>há aula ao vivo?</li><li>o professor corrige pronúncia?</li><li>há prática de leitura em voz alta?</li><li>o aluno aprende da direita para a esquerda?</li><li>há exercícios de revisão?</li><li>o curso diferencia hebraico moderno e bíblico?</li><li>há possibilidade de trilha particular?</li><li>o ritmo é adequado para iniciantes?</li><li>não há contrato de fidelidade?</li></ul>",
+                    "<p>Esses pontos ajudam a escolher um curso que não abandona o aluno no momento mais delicado: o começo.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda na alfabetização em hebraico",
+                "body": [
+                    "<p>A Vedium ajuda na alfabetização em hebraico porque trabalha com aulas online ao vivo, orientação gradual e atenção ao objetivo do aluno. O foco é fazer o iniciante construir base sem se perder entre letras, sons e trilhas diferentes.</p>",
+                    "<p>Nas aulas de hebraico da Vedium, o aluno pode praticar:</p>",
+                    "<ul><li>alfabeto do zero;</li><li>direção da leitura;</li><li>sons iniciais;</li><li>escrita e reconhecimento;</li><li>leitura em voz alta;</li><li>sinais vocálicos;</li><li>hebraico moderno para iniciantes;</li><li>hebraico bíblico com leitura guiada;</li><li>dúvidas individuais;</li><li>revisão e evolução no próprio ritmo.</li></ul>",
+                    "<p>A proposta da Vedium é unir idioma, cultura e profundidade. O hebraico não é tratado apenas como código, mas como uma língua com história, usos e caminhos diferentes. A retenção vem do resultado, não de contratos longos: as aulas são ao vivo e sem fidelidade.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Hebraico em <a href=\"/curso-de-hebraico-online\">https://vediums.com/</a> e comece sua alfabetização com acompanhamento ao vivo.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou avançando na alfabetização em hebraico?",
+                "body": [
+                    "<p>Use este checklist para acompanhar seu progresso:</p>",
+                    "<ul><li>Sei que a leitura começa pela direita.</li><li>Reconheço algumas letras fora da ordem alfabética.</li><li>Consigo diferenciar letras parecidas.</li><li>Associo letras a sons.</li><li>Pratico leitura em voz alta.</li><li>Uso transliteração apenas como apoio.</li><li>Já li palavras curtas.</li><li>Revisito letras antigas.</li><li>Recebo correção de pronúncia.</li><li>Sei se meu objetivo é moderno, bíblico ou misto.</li></ul>",
+                    "<p>Se muitos itens ainda não estão firmes, não há problema. Eles são exatamente os primeiros objetivos da alfabetização.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>A alfabetização em hebraico do zero é o primeiro passo para quem quer estudar hebraico moderno, hebraico bíblico ou uma trilha combinada. Ela envolve letras, sons, direção da leitura, sinais vocálicos, prática oral e leitura gradual. O segredo é seguir uma sequência clara, sem pressa e com correção.</p>",
+                    "<p>O iniciante não precisa dominar tudo de uma vez. Precisa reconhecer letras, treinar o olhar da direita para a esquerda, praticar sons, ler palavras curtas e revisar com constância. A aula ao vivo faz diferença porque o professor corrige pronúncia, identifica travas e conduz o aluno com segurança.</p>",
+                    "<p>A Vedium oferece curso de hebraico online com aulas ao vivo para iniciantes, com possibilidade de trilhas em hebraico moderno, hebraico bíblico e aulas particulares. Sem contrato de fidelidade: você continua porque sente evolução.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Hebraico em <a href=\"/curso-de-hebraico-online\">https://vediums.com/</a> e comece sua alfabetização em hebraico com clareza, prática e acompanhamento real.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/hebraico/hebraico-moderno-x-hebraico-biblico-entenda-a-diferenca\">Hebraico moderno x hebraico bíblico: entenda a diferença</a> ou conheça o <a href=\"/curso-de-hebraico-online\">curso de hebraico online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Como funciona a alfabetização em hebraico do zero?",
+                "a": "Começa pelo reconhecimento das letras, direção da leitura da direita para a esquerda, associação entre letras e sons, sinais vocálicos e leitura de palavras curtas."
+            },
+            {
+                "q": "É difícil aprender o alfabeto hebraico?",
+                "a": "É desafiador no início porque o sistema é diferente do alfabeto latino, mas fica mais claro com sequência, repetição, leitura em voz alta e correção ao vivo."
+            },
+            {
+                "q": "Preciso aprender sinais vocálicos em hebraico?",
+                "a": "Para iniciantes, os sinais vocálicos ajudam muito na leitura. Eles são especialmente importantes no hebraico bíblico e úteis como apoio no começo do hebraico moderno."
+            },
+            {
+                "q": "Posso aprender hebraico online mesmo começando do zero?",
+                "a": "Sim. Com aula ao vivo, material organizado e prática regular, iniciantes podem aprender letras, sons, direção da leitura e primeiras palavras online."
+            },
+            {
+                "q": "A Vedium oferece aula de hebraico para alfabetização?",
+                "a": "Sim. A Vedium oferece aulas de hebraico online ao vivo para iniciantes, com foco em alfabetização, pronúncia, leitura e trilhas para hebraico moderno ou bíblico."
+            }
+        ],
+        "cta_title": "Quer aprender a ler e entender hebraico desde o início?",
+        "cta_text": "Aulas ao vivo com professor especializado, do alfabeto à leitura fluente.",
+        "cta_label": "Falar sobre a próxima turma de Hebraico",
+        "cta_url": "/curso-de-hebraico-online"
+    },
+    "como-perguntar-nome-origem-e-bem-estar-em-ioruba": {
+        "title": "Como perguntar nome, origem e bem-estar em iorubá",
+        "meta_description": "Aprenda como perguntar nome, origem e bem-estar em iorubá com respeito, pronúncia e contexto cultural.",
+        "h1": "Como perguntar nome, origem e bem-estar em iorubá",
+        "date": "2025-04-11",
+        "date_display": "11 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Aerial view of Sugarloaf Mountain and Guanabara Bay in Rio de Janeiro",
+        "tag": "Iorubá",
+        "category": "ioruba",
+        "lead": "Perguntar nome, origem e bem-estar em iorubá importa porque essas perguntas abrem o caminho para relações de respeito. Antes de falar de vocabulário mais complexo, cantigas, rezas, textos ou estruturas profundas, o estudante precisa aprender a se apresentar, perguntar quem é o outro, reconhecer de onde alguém vem e demonstrar cuidado pela pessoa. Em qualquer língua, essas primeiras perguntas revelam mais do que gramática: elas mostram postura, escuta e intenção.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para quem estuda iorubá no Brasil, especialmente em comunidades afro-diaspóricas, aprender perguntas básicas não deve ser tratado como conteúdo simples demais. Perguntar “qual é o seu nome?”, “de onde você vem?” e “como você está?” envolve identidade, pertencimento, trajetória e bem-estar. Essas palavras podem parecer iniciais, mas se conectam com temas maiores: ancestralidade, comunidade, respeito aos mais velhos, oralidade e reconhecimento do outro.</p>",
+                    "<p>Muitos alunos chegam ao iorubá motivados por cantigas, rezas, nomes, tradição religiosa, memória familiar ou interesse cultural. Esse caminho é legítimo, mas precisa de base. Sem base de pronúncia, escuta e contexto, o estudante pode repetir palavras sem compreender como elas funcionam na relação. Aprender perguntas iniciais é uma forma de entrar na língua pela porta do encontro, não pela pressa de acumular termos.</p>",
+                    "<p>Neste artigo, você vai aprender formas iniciais para perguntar nome, origem e bem-estar em iorubá, entender o valor cultural dessas perguntas, ver cuidados de pronúncia e praticar com respeito. A Vedium oferece curso de iorubá online e ao vivo, com atenção à língua, à cultura e à profundidade necessária para estudar sem superficialidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: como perguntar nome, origem e bem-estar em iorubá?",
+                "body": [
+                    "<p>Para perguntar nome, origem e bem-estar em iorubá, o estudante pode começar por frases como <strong>Kí ni orúkọ rẹ?</strong> para “qual é o seu nome?”, <strong>Níbo ni o ti wá?</strong> para “de onde você vem?” e <strong>Báwo ni?</strong> ou formas de saudação ligadas à paz e ao bem-estar, conforme o contexto. Essas frases devem ser praticadas com orientação, porque tons, marcas gráficas e pronúncia importam.</p>",
+                    "<p>Um ponto de partida didático:</p>",
+                    "<table><thead><tr><th>Português</th><th>Iorubá</th><th>Uso inicial</th></tr></thead><tbody><tr><td>Qual é o seu nome?</td><td>Kí ni orúkọ rẹ?</td><td>pergunta de apresentação</td></tr><tr><td>Meu nome é...</td><td>Orúkọ mi ni...</td><td>resposta sobre nome</td></tr><tr><td>De onde você vem?</td><td>Níbo ni o ti wá?</td><td>pergunta sobre origem</td></tr><tr><td>Eu venho de...</td><td>Mo wá láti...</td><td>resposta sobre origem</td></tr><tr><td>Como você está?</td><td>Báwo ni?</td><td>pergunta de bem-estar</td></tr><tr><td>Estou bem.</td><td>Dáadáa ni.</td><td>resposta simples</td></tr></tbody></table>",
+                    "<p>Essas frases são uma base. O uso real pode variar conforme contexto, formalidade, região, relação entre as pessoas e nível de respeito exigido. Por isso, o ideal é aprender com professor, escutar antes de repetir e não apagar sinais gráficos.</p>",
+                    "<p>Se você quer estudar iorubá com pronúncia, contexto e respeito cultural, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Contexto cultural do tema",
+                "body": [
+                    "<p>Perguntar nome, origem e bem-estar é um gesto de reconhecimento. Em muitas tradições, nome não é apenas identificação administrativa. Nome pode se relacionar com história, família, caminho, nascimento, destino, memória e pertencimento. Por isso, estudar <strong>orúkọ</strong>, palavra associada a “nome”, deve ser mais do que memorizar uma tradução.</p>",
+                    "<p>A origem também é uma pergunta sensível. “De onde você vem?” pode apontar para cidade, país, casa, família, comunidade, terreiro, linhagem, trajetória ou identidade. Em um estudo afro-diaspórico, essa pergunta toca uma dimensão profunda: muitas pessoas buscam no iorubá uma forma de reconstruir vínculos rompidos pela história. O cuidado cultural começa quando entendemos que origem não é apenas geografia.</p>",
+                    "<p>O bem-estar, por sua vez, está ligado à relação. Perguntar como alguém está demonstra presença e consideração. Em línguas africanas, saudações e perguntas de cuidado muitas vezes não são enfeites. Elas organizam o início da interação. Antes da informação, existe o reconhecimento da pessoa.</p>",
+                    "<p>Por isso, esse tema é ideal para iniciantes: ele ensina vocabulário e também ensina postura.</p>"
+                ]
+            },
+            {
+                "heading": "Glossário prático: nome em iorubá",
+                "body": [
+                    "<p>Para perguntar nome em iorubá, uma forma didática inicial é <strong>Kí ni orúkọ rẹ?</strong>. A resposta pode ser construída com <strong>Orúkọ mi ni...</strong>, que significa “meu nome é...”. Essas estruturas ajudam o aluno a iniciar apresentações simples.</p>",
+                    "<table><thead><tr><th>Iorubá</th><th>Português</th><th>Observação</th></tr></thead><tbody><tr><td>orúkọ</td><td>nome</td><td>palavra central do tema</td></tr><tr><td>Kí ni orúkọ rẹ?</td><td>Qual é o seu nome?</td><td>pergunta direta para apresentação</td></tr><tr><td>Orúkọ mi ni...</td><td>Meu nome é...</td><td>resposta inicial</td></tr><tr><td>mi</td><td>meu / minha, conforme estrutura</td><td>aparece em “meu nome”</td></tr><tr><td>rẹ</td><td>seu / sua, conforme estrutura</td><td>aparece em “seu nome”</td></tr></tbody></table>",
+                    "<p>Exemplo de diálogo:</p>",
+                    "<p><strong>A:</strong> Kí ni orúkọ rẹ?<br><strong>B:</strong> Orúkọ mi ni Ana.</p>",
+                    "<p>Em português:</p>",
+                    "<p><strong>A:</strong> Qual é o seu nome?<br><strong>B:</strong> Meu nome é Ana.</p>",
+                    "<p>Esse diálogo parece simples, mas merece atenção. O aluno deve observar a pronúncia de <strong>orúkọ</strong>, os tons e a forma como a frase soa em sequência. Não basta ler como português. Em aula ao vivo, o professor pode repetir, corrigir e fazer o aluno responder com o próprio nome.</p>"
+                ]
+            },
+            {
+                "heading": "Glossário prático: origem em iorubá",
+                "body": [
+                    "<p>Para perguntar origem, uma forma inicial é <strong>Níbo ni o ti wá?</strong>, que pode ser entendida como “de onde você vem?”. Para responder, o aluno pode usar <strong>Mo wá láti...</strong>, “eu venho de...”, seguido do lugar.</p>",
+                    "<table><thead><tr><th>Iorubá</th><th>Português</th><th>Observação</th></tr></thead><tbody><tr><td>Níbo ni o ti wá?</td><td>De onde você vem?</td><td>pergunta sobre origem</td></tr><tr><td>Mo wá láti...</td><td>Eu venho de...</td><td>resposta inicial</td></tr><tr><td>níbo</td><td>onde / de onde, conforme construção</td><td>pede orientação em aula</td></tr><tr><td>wá</td><td>vir</td><td>verbo importante</td></tr><tr><td>láti</td><td>de / a partir de</td><td>usado em resposta de origem</td></tr></tbody></table>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>A:</strong> Níbo ni o ti wá?<br><strong>B:</strong> Mo wá láti Brazil.</p>",
+                    "<p>Em uma aula, o professor pode ajustar o uso de nomes de países, cidades e formas mais naturais. O importante, para o iniciante, é compreender a estrutura básica e praticar com escuta.</p>",
+                    "<p>Essa pergunta também pode abrir conversa cultural:</p>",
+                    "<ul><li>De onde vem seu interesse pelo iorubá?</li><li>De onde vem sua família?</li><li>De onde vem sua prática?</li><li>De onde vem sua relação com a língua?</li></ul>",
+                    "<p>Nem tudo isso será dito em iorubá no começo, mas o campo de sentido já começa a se formar.</p>"
+                ]
+            },
+            {
+                "heading": "Glossário prático: bem-estar em iorubá",
+                "body": [
+                    "<p>Para perguntar sobre bem-estar, uma forma inicial muito ensinada é <strong>Báwo ni?</strong>, que pode ser entendida como “como vai?” ou “como você está?”. A resposta simples <strong>Dáadáa ni</strong> indica “estou bem” ou “está bem”, em um nível didático inicial.</p>",
+                    "<table><thead><tr><th>Iorubá</th><th>Português</th><th>Observação</th></tr></thead><tbody><tr><td>Báwo ni?</td><td>Como vai? / Como está?</td><td>pergunta inicial de bem-estar</td></tr><tr><td>Dáadáa ni.</td><td>Está bem / estou bem</td><td>resposta simples</td></tr><tr><td>Àlàáfíà</td><td>paz / bem-estar</td><td>palavra culturalmente importante</td></tr><tr><td>Ṣé àlàáfíà ni?</td><td>Está tudo em paz?</td><td>forma ligada a paz/bem-estar</td></tr><tr><td>Àlàáfíà ni.</td><td>Está em paz / tudo bem</td><td>resposta associada à paz</td></tr></tbody></table>",
+                    "<p>A palavra <strong>Àlàáfíà</strong> merece cuidado. Ela costuma ser associada à ideia de paz, tranquilidade, bem-estar e equilíbrio. Em muitos contextos afro-diaspóricos, essa palavra aparece com força simbólica. Por isso, não deve ser usada como enfeite, mas compreendida com respeito.</p>",
+                    "<p>Exemplo de diálogo:</p>",
+                    "<p><strong>A:</strong> Báwo ni?<br><strong>B:</strong> Dáadáa ni.</p>",
+                    "<p>Outro exemplo:</p>",
+                    "<p><strong>A:</strong> Ṣé àlàáfíà ni?<br><strong>B:</strong> Àlàáfíà ni.</p>",
+                    "<p>O professor deve orientar quando cada forma é mais adequada, porque saudação, pergunta e resposta dependem de contexto.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar com respeito?",
+                "body": [
+                    "<p>Praticar perguntas de nome, origem e bem-estar com respeito significa aprender a frase junto com som, contexto e postura. O estudante não deve apenas copiar frases e sair usando sem compreender minimamente o que elas comunicam.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>preserve os sinais gráficos;</li><li>escute antes de repetir;</li><li>pratique devagar;</li><li>não leia como português;</li><li>observe tons;</li><li>pergunte sobre contexto de uso;</li><li>diferencie pergunta literal e valor cultural;</li><li>treine respostas com seu próprio nome;</li><li>evite transformar frases em slogan;</li><li>revise com professor ao vivo.</li></ul>",
+                    "<p>O respeito também aparece na forma de perguntar. Nem toda pergunta sobre origem deve ser feita de qualquer jeito, em qualquer contexto. Em português, perguntar “de onde você é?” pode ser simples ou sensível, dependendo da situação. Em iorubá, o estudante também precisa aprender que língua e relação caminham juntas.</p>",
+                    "<p>Para praticar perguntas, respostas e pronúncia com orientação, fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: apresentação em três passos",
+                "body": [
+                    "<p>Um exercício simples e poderoso para aula ao vivo é a apresentação em três passos: nome, origem e bem-estar. O objetivo é fazer o aluno abrir uma conversa básica com respeito e pronúncia correta.</p>",
+                    "<h3>Etapa 1: escuta das frases</h3>",
+                    "<p>O professor pronuncia:</p>",
+                    "<ul><li><strong>Kí ni orúkọ rẹ?</strong></li><li><strong>Orúkọ mi ni...</strong></li><li><strong>Níbo ni o ti wá?</strong></li><li><strong>Mo wá láti...</strong></li><li><strong>Báwo ni?</strong></li><li><strong>Dáadáa ni.</strong></li></ul>",
+                    "<p>O aluno apenas escuta e observa a escrita.</p>",
+                    "<h3>Etapa 2: repetição lenta</h3>",
+                    "<p>O aluno repete frase por frase. O professor corrige tons, vogais, ritmo e marcas.</p>",
+                    "<h3>Etapa 3: resposta pessoal</h3>",
+                    "<p>O aluno responde com o próprio nome e origem.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Orúkọ mi ni Mariana.</strong><br><strong>Mo wá láti Brasil.</strong></p>",
+                    "<h3>Etapa 4: troca de papéis</h3>",
+                    "<p>O aluno pergunta, o professor responde. Depois o professor pergunta, o aluno responde.</p>",
+                    "<h3>Etapa 5: variação de ritmo</h3>",
+                    "<p>Depois de praticar devagar, a turma repete em ritmo mais natural, sem perder clareza.</p>",
+                    "<h3>Etapa 6: comentário cultural</h3>",
+                    "<p>O professor explica o valor de nome, origem e bem-estar como gestos de reconhecimento.</p>",
+                    "<h3>Etapa 7: revisão final</h3>",
+                    "<p>O aluno grava a própria apresentação e leva dúvidas para a próxima aula.</p>",
+                    "<p>Esse exercício ensina língua, escuta e relação.</p>"
+                ]
+            },
+            {
+                "heading": "Como evitar erros comuns",
+                "body": [
+                    "<p>Os erros mais comuns acontecem quando o aluno tenta aprender as frases apenas pela aparência. Como algumas palavras parecem curtas, o estudante acha que já sabe. Mas em iorubá, tons, vogais e marcas podem mudar completamente a qualidade da fala.</p>",
+                    "<p>Evite:</p>",
+                    "<ul><li>apagar acentos e pontos;</li><li>pronunciar como português;</li><li>falar rápido demais;</li><li>usar frases sem saber o contexto;</li><li>confundir pergunta e resposta;</li><li>decorar sem escutar;</li><li>repetir sem correção;</li><li>publicar grafias sem revisão;</li><li>misturar frases de fontes diferentes sem orientação;</li><li>achar que pergunta básica é conteúdo superficial.</li></ul>",
+                    "<p>Melhor caminho:</p>",
+                    "<table><thead><tr><th>Em vez de...</th><th>Faça...</th></tr></thead><tbody><tr><td>decorar frases isoladas</td><td>pratique diálogos</td></tr><tr><td>apagar sinais</td><td>preserve a grafia completa</td></tr><tr><td>repetir sem ouvir</td><td>escute antes de falar</td></tr><tr><td>traduzir palavra por palavra</td><td>aprenda a função da frase</td></tr><tr><td>falar rápido</td><td>fale claro e devagar</td></tr><tr><td>estudar sozinho sempre</td><td>revise em aula ao vivo</td></tr></tbody></table>",
+                    "<p>Perguntas iniciais são base. Base fraca compromete temas mais profundos.</p>"
+                ]
+            },
+            {
+                "heading": "Como esse vocabulário aparece em um curso de iorubá online",
+                "body": [
+                    "<p>Em um bom curso de iorubá online, nome, origem e bem-estar aparecem logo no início, mas não como lista vazia. Eles devem ser ensinados dentro de uma sequência de apresentação, saudação, escuta e resposta.</p>",
+                    "<p>Um curso sério deve trabalhar:</p>",
+                    "<ul><li>vocabulário inicial;</li><li>pronúncia;</li><li>tons;</li><li>oralidade;</li><li>sinais gráficos;</li><li>perguntas e respostas;</li><li>contexto cultural;</li><li>diferenças de uso;</li><li>prática em dupla;</li><li>revisão com correção.</li></ul>",
+                    "<p>Se um curso oferece apenas frases prontas sem áudio, sem explicação e sem correção, o aluno pode até memorizar, mas dificilmente vai desenvolver segurança para falar. O iorubá exige escuta e presença.</p>",
+                    "<p>A Vedium trabalha o iorubá como língua viva, com cultura e profundidade. A proposta é aprender além das palavras, respeitando o som, o sentido e a tradição.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 7 dias para praticar nome, origem e bem-estar",
+                "body": [
+                    "<p>Este plano ajuda o iniciante a começar com constância.</p>",
+                    "<table><thead><tr><th>Dia</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Dia 1</td><td>orúkọ</td><td>ouvir e repetir a palavra “nome”</td></tr><tr><td>Dia 2</td><td>Kí ni orúkọ rẹ?</td><td>praticar a pergunta</td></tr><tr><td>Dia 3</td><td>Orúkọ mi ni...</td><td>responder com seu nome</td></tr><tr><td>Dia 4</td><td>Níbo ni o ti wá?</td><td>praticar pergunta sobre origem</td></tr><tr><td>Dia 5</td><td>Mo wá láti...</td><td>responder sobre origem</td></tr><tr><td>Dia 6</td><td>Báwo ni? / Dáadáa ni</td><td>praticar bem-estar</td></tr><tr><td>Dia 7</td><td>diálogo completo</td><td>gravar apresentação curta</td></tr></tbody></table>",
+                    "<p>Rotina de 10 minutos:</p>",
+                    "<p>1. ouvir a frase;<br>2. repetir devagar;<br>3. copiar com sinais;<br>4. falar sem olhar;<br>5. gravar a voz;<br>6. anotar dúvidas;<br>7. revisar em aula.</p>",
+                    "<p>Esse plano é simples, mas cria base real.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse aprendizado",
+                "body": [
+                    "<p>A Vedium ajuda estudantes de iorubá porque oferece aulas online ao vivo com orientação, correção, escuta e contexto cultural. Para perguntas como nome, origem e bem-estar, a aula ao vivo permite que o aluno pratique a interação, não apenas a frase.</p>",
+                    "<p>Nas aulas de iorubá da Vedium, o aluno pode praticar:</p>",
+                    "<ul><li>perguntas de apresentação;</li><li>respostas pessoais;</li><li>saudações;</li><li>bem-estar;</li><li>origem;</li><li>pronúncia;</li><li>tons;</li><li>oralidade;</li><li>escuta guiada;</li><li>cultura iorubá;</li><li>dúvidas individuais;</li><li>revisão no próprio ritmo.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. O aluno continua porque percebe profundidade, cuidado e evolução. Para quem estuda iorubá por ancestralidade, tradição e respeito, isso faz diferença.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou pronto para me apresentar em iorubá?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Sei perguntar o nome de alguém.</li><li>Sei dizer meu nome.</li><li>Sei perguntar de onde alguém vem.</li><li>Sei dizer de onde venho.</li><li>Sei perguntar como alguém está.</li><li>Sei responder de forma simples.</li><li>Preservo sinais gráficos.</li><li>Pratico pronúncia em voz alta.</li><li>Não leio como português.</li><li>Peço correção em aula ao vivo.</li></ul>",
+                    "<p>Se muitos itens ainda estão inseguros, esse é um ótimo tema para começar com orientação.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Perguntar nome, origem e bem-estar em iorubá é uma forma de iniciar a língua pelo respeito. Frases como <strong>Kí ni orúkọ rẹ?</strong>, <strong>Orúkọ mi ni...</strong>, <strong>Níbo ni o ti wá?</strong>, <strong>Mo wá láti...</strong>, <strong>Báwo ni?</strong> e <strong>Dáadáa ni</strong> ajudam o estudante a construir as primeiras interações com mais consciência.</p>",
+                    "<p>Esse vocabulário não é superficial. Nome toca identidade. Origem toca pertencimento. Bem-estar toca cuidado. Para quem estuda iorubá no Brasil, especialmente em comunidades afro-diaspóricas, essas perguntas podem abrir um caminho de escuta, ancestralidade e relação.</p>",
+                    "<p>A melhor forma de aprender é com orientação: ouvir, repetir, preservar marcas, praticar tons, usar em diálogo e receber correção. A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura, oralidade e respeito à tradição. Sem contrato de fidelidade: você continua porque sente profundidade no aprendizado.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a> e comece a se apresentar em iorubá com respeito, pronúncia e contexto.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ioruba/dias-da-semana-e-expressoes-de-tempo-em-ioruba\">Dias da semana e expressões de tempo em iorubá</a> ou conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Como perguntar “qual é o seu nome?” em iorubá?",
+                "a": "Uma forma inicial é Kí ni orúkọ rẹ?. A pronúncia deve ser praticada com atenção aos tons e sinais gráficos."
+            },
+            {
+                "q": "Como dizer “meu nome é...” em iorubá?",
+                "a": "Uma forma didática inicial é Orúkọ mi ni..., seguida do nome da pessoa."
+            },
+            {
+                "q": "Como perguntar “de onde você vem?” em iorubá?",
+                "a": "Uma forma inicial é Níbo ni o ti wá?. Para responder, pode-se praticar Mo wá láti..., com orientação do professor."
+            },
+            {
+                "q": "Como perguntar “como você está?” em iorubá?",
+                "a": "Uma forma comum para estudo inicial é Báwo ni?. Também há formas ligadas a àlàáfíà, que devem ser aprendidas com contexto."
+            },
+            {
+                "q": "A Vedium ensina perguntas básicas em iorubá em aula ao vivo?",
+                "a": "Sim. A Vedium oferece aulas de iorubá online e ao vivo, com perguntas básicas, saudações, pronúncia, tons, oralidade e contexto cultural."
+            }
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Falar sobre a próxima turma de Iorubá",
+        "cta_url": "/curso-de-ioruba-online"
+    },
+    "como-usar-shadowing-sem-copiar-sotaque-de-forma-artificial": {
+        "title": "Como usar shadowing sem copiar sotaque de forma artificial",
+        "meta_description": "Aprenda a usar shadowing para melhorar inglês sem copiar sotaque artificialmente, com prática real e aula ao vivo.",
+        "h1": "Como usar shadowing sem copiar sotaque de forma artificial",
+        "date": "2025-03-24",
+        "date_display": "24 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Customer inserting a card into a payment terminal at a counter",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Shadowing é uma técnica de estudo em que você escuta uma frase em inglês e tenta repeti-la quase ao mesmo tempo, acompanhando ritmo, entonação, pausas e pronúncia. Ela pode ajudar muito quem quer melhorar speaking, listening e fluidez. Mas existe um cuidado importante: o objetivo do shadowing não é copiar um sotaque de forma artificial. O objetivo é treinar clareza, ritmo e resposta oral para ser entendido melhor.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Muitos brasileiros descobrem o shadowing em vídeos de estudo, podcasts ou métodos de fluência e começam tentando imitar cada detalhe de um falante nativo. Isso pode gerar dois problemas. O primeiro é a frustração: o aluno sente que nunca soa igual e conclui que está falando errado. O segundo é a artificialidade: a fala fica forçada, teatral, distante da personalidade do aluno e, às vezes, até menos clara.</p>",
+                    "<p>O melhor uso do shadowing é outro. Em vez de tentar “virar outra pessoa falando”, você usa a fala de referência como treino de escuta ativa. Você observa como as palavras se conectam, onde a frase sobe ou desce, quais sons são reduzidos, como as pausas funcionam e quais blocos aparecem juntos. Depois, repete com intenção comunicativa, preservando naturalidade.</p>",
+                    "<p>Para o Bruno, profissional que quer inglês para carreira, reuniões, entrevistas e evolução do A1 ao C1, o shadowing pode ser um excelente complemento. Ele ajuda a destravar a boca, reduzir tradução mental e criar familiaridade com frases reais. Mas ele funciona melhor quando vem acompanhado de aula ao vivo, porque o professor pode corrigir pronúncia, ritmo, entonação e clareza sem transformar o aluno em uma cópia artificial.</p>",
+                    "<p>Neste artigo, você vai entender quando usar shadowing, por que ele pode travar alguns alunos, como praticar de forma objetiva e qual é o próximo passo em um curso de inglês online ao vivo.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: como usar shadowing sem copiar sotaque artificialmente?",
+                "body": [
+                    "<p>Use shadowing para melhorar ritmo, clareza e escuta, não para apagar sua identidade. A técnica deve ajudar você a falar inglês de forma mais compreensível e natural, sem tentar reproduzir cada detalhe do sotaque de outra pessoa.</p>",
+                    "<p>A forma mais segura de praticar é:</p>",
+                    "<p>1. escolher um áudio curto;<br>2. ouvir primeiro sem repetir;<br>3. entender o sentido da frase;<br>4. marcar pausas e palavras-chave;<br>5. repetir em velocidade lenta;<br>6. acompanhar o ritmo sem exagerar;<br>7. gravar sua voz;<br>8. comparar clareza, não “perfeição nativa”;<br>9. levar dúvidas para aula ao vivo;<br>10. usar a frase em uma conversa real.</p>",
+                    "<p>Shadowing não deve ser uma imitação teatral. Ele é uma ponte entre ouvir inglês e falar inglês. A meta é comunicar melhor.</p>",
+                    "<p>Se você quer descobrir seu nível e treinar speaking com professor ao vivo, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p>Shadowing trava o aluno quando ele tenta copiar sotaque antes de construir clareza. A pessoa escuta um nativo, tenta repetir tudo exatamente igual, percebe que não consegue e começa a achar que sua pronúncia é ruim. Isso gera ansiedade e bloqueio.</p>",
+                    "<p>As principais travas são:</p>",
+                    "<ul><li>tentar falar rápido demais;</li><li>copiar entonação de forma exagerada;</li><li>repetir sem entender o sentido;</li><li>escolher áudios muito difíceis;</li><li>comparar sua voz com a de um nativo;</li><li>achar que sotaque brasileiro é erro;</li><li>não receber correção;</li><li>praticar frases soltas sem usar em conversa;</li><li>focar mais em performance do que comunicação;</li><li>desistir por não soar “perfeito”.</li></ul>",
+                    "<p>O ponto central é este: você não precisa soar como um americano, britânico, canadense ou australiano para falar inglês bem. Você precisa ser claro, compreensível e adequado ao contexto. Um sotaque leve não impede comunicação. A falta de prática, sim.</p>",
+                    "<p>O shadowing deve reduzir a trava, não aumentar. Se a técnica está deixando você mais inseguro, é sinal de que precisa ajustar o método.</p>"
+                ]
+            },
+            {
+                "heading": "O que é shadowing em inglês?",
+                "body": [
+                    "<p>Shadowing em inglês é uma prática de repetição ativa em que o aluno acompanha um áudio quase ao mesmo tempo em que escuta. A técnica treina ouvido, boca e memória auditiva. Em vez de apenas ouvir passivamente, o aluno participa fisicamente da fala.</p>",
+                    "<p>Na prática, você pode usar:</p>",
+                    "<ul><li>trechos curtos de podcast;</li><li>diálogos de aula;</li><li>frases de entrevista;</li><li>apresentações;</li><li>cenas simples;</li><li>áudio de livro didático;</li><li>materiais do professor;</li><li>respostas profissionais;</li><li>diálogos de viagem;</li><li>scripts de reunião.</li></ul>",
+                    "<p>Exemplo simples:</p>",
+                    "<p>Áudio:</p>",
+                    "<p><strong>I need to improve my speaking because I use English at work.</strong></p>",
+                    "<p>Aluno repete:</p>",
+                    "<p><strong>I need to improve my speaking because I use English at work.</strong></p>",
+                    "<p>Depois, o professor pode adaptar:</p>",
+                    "<p><strong>I need to improve my speaking because I have meetings with international clients.</strong></p>",
+                    "<p>O shadowing fica mais forte quando a frase tem relação com sua vida real. Repetir qualquer frase aleatória pode ajudar no som, mas repetir frases que você realmente usaria ajuda na comunicação.</p>"
+                ]
+            },
+            {
+                "heading": "Shadowing não é apagar sotaque",
+                "body": [
+                    "<p>Shadowing não é apagar sotaque porque sotaque faz parte da fala de qualquer pessoa. Todo mundo tem sotaque, inclusive falantes nativos. O problema não é ter sotaque. O problema é quando a pronúncia impede compreensão.</p>",
+                    "<p>O objetivo deve ser:</p>",
+                    "<ul><li>falar com mais clareza;</li><li>melhorar ritmo;</li><li>reduzir pausas desnecessárias;</li><li>conectar palavras;</li><li>entender fala natural;</li><li>ganhar velocidade;</li><li>usar frases prontas;</li><li>se comunicar com confiança.</li></ul>",
+                    "<p>O objetivo não deve ser:</p>",
+                    "<ul><li>parecer outra pessoa;</li><li>apagar sua identidade;</li><li>copiar sotaque de forma caricata;</li><li>falar rápido sem clareza;</li><li>fingir naturalidade;</li><li>buscar perfeição impossível;</li><li>evitar falar por medo do próprio sotaque.</li></ul>",
+                    "<p>Uma fala com sotaque pode ser excelente. Uma fala sem clareza, mesmo tentando imitar nativos, pode ser difícil de entender. O foco precisa estar na inteligibilidade.</p>"
+                ]
+            },
+            {
+                "heading": "Como escolher o áudio certo para shadowing",
+                "body": [
+                    "<p>Escolher o áudio certo é decisivo. Se o áudio for difícil demais, você vai apenas correr atrás do som sem aprender. Se for fácil demais, não haverá desafio. O ideal é escolher um trecho um pouco acima do seu conforto, mas ainda compreensível.</p>",
+                    "<p>Um bom áudio para shadowing deve ter:</p>",
+                    "<ul><li>10 a 30 segundos no início;</li><li>fala clara;</li><li>tema útil;</li><li>velocidade moderada;</li><li>vocabulário relevante;</li><li>boa qualidade de som;</li><li>frases que você pode usar;</li><li>transcrição disponível;</li><li>contexto real;</li><li>possibilidade de repetição.</li></ul>",
+                    "<p>Evite começar com:</p>",
+                    "<ul><li>cenas com muita gíria;</li><li>debates rápidos;</li><li>comédia cheia de trocadilhos;</li><li>áudio com ruído;</li><li>sotaques que você ainda não entende;</li><li>trechos longos;</li><li>discursos complexos;</li><li>letras de música muito rápidas.</li></ul>",
+                    "<p>Para iniciantes, diálogos de aula e frases do cotidiano funcionam melhor. Para intermediários, trechos de reuniões, entrevistas e podcasts curtos podem ser úteis. Para avançados, apresentações e debates ajudam a refinar ritmo e naturalidade.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar de forma objetiva",
+                "body": [
+                    "<p>Para praticar shadowing de forma objetiva, use um processo claro. Não basta colocar um áudio e sair repetindo. Você precisa saber o que está treinando.</p>",
+                    "<h3>Passo 1: escute sem repetir</h3>",
+                    "<p>Na primeira escuta, apenas entenda. Não tente falar. Pergunte:</p>",
+                    "<ul><li>Qual é o assunto?</li><li>Quais palavras eu reconheço?</li><li>Onde a pessoa faz pausa?</li><li>Qual frase parece útil?</li></ul>",
+                    "<h3>Passo 2: leia a transcrição</h3>",
+                    "<p>Leia o trecho e confira o significado. Shadowing sem compreensão vira imitação vazia.</p>",
+                    "<h3>Passo 3: marque blocos de sentido</h3>",
+                    "<p>Divida a frase em blocos.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>I need to improve my speaking / because I use English / at work.</strong></p>",
+                    "<p>Isso ajuda a não repetir palavra por palavra de forma mecânica.</p>",
+                    "<h3>Passo 4: repita devagar</h3>",
+                    "<p>Antes de acompanhar a velocidade original, repita mais devagar. Foque clareza.</p>",
+                    "<h3>Passo 5: acompanhe o áudio</h3>",
+                    "<p>Agora tente falar junto ou logo depois. Não exagere no sotaque. Preste atenção ao ritmo e às conexões.</p>",
+                    "<h3>Passo 6: grave sua voz</h3>",
+                    "<p>Grave e compare. Pergunte:</p>",
+                    "<ul><li>Minha fala está clara?</li><li>Quais palavras sumiram?</li><li>Estou falando rápido demais?</li><li>A frase tem ritmo?</li><li>O sentido aparece?</li></ul>",
+                    "<h3>Passo 7: use a frase em conversa</h3>",
+                    "<p>Transforme a frase em resposta real.</p>",
+                    "<p>Frase praticada:</p>",
+                    "<p><strong>I need to improve my speaking because I use English at work.</strong></p>",
+                    "<p>Pergunta:</p>",
+                    "<p><strong>Why are you studying English?</strong></p>",
+                    "<p>Resposta:</p>",
+                    "<p><strong>I need to improve my speaking because I use English at work.</strong></p>",
+                    "<p>Esse é o ponto em que shadowing vira comunicação.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício prático de shadowing para brasileiros",
+                "body": [
+                    "<p>Este exercício foi pensado para quem entende inglês, mas quer falar com mais naturalidade sem imitar sotaque de forma artificial.</p>",
+                    "<h3>Frase 1</h3>",
+                    "<p><strong>I work in sales and I need English for meetings.</strong></p>",
+                    "<p>Treino:</p>",
+                    "<ul><li>escute;</li><li>repita devagar;</li><li>marque blocos;</li><li>grave;</li><li>responda: <strong>What do you do?</strong></li></ul>",
+                    "<p>Resposta:</p>",
+                    "<p><strong>I work in sales and I need English for meetings.</strong></p>",
+                    "<h3>Frase 2</h3>",
+                    "<p><strong>Can you repeat that, please?</strong></p>",
+                    "<p>Treino:</p>",
+                    "<ul><li>foque no ritmo;</li><li>não fale rápido demais;</li><li>use em simulação de reunião.</li></ul>",
+                    "<p>Resposta em contexto:</p>",
+                    "<p><strong>Sorry, can you repeat that, please?</strong></p>",
+                    "<h3>Frase 3</h3>",
+                    "<p><strong>I’m still learning, but I can try to explain.</strong></p>",
+                    "<p>Treino:</p>",
+                    "<ul><li>pratique entonação confiante;</li><li>evite soar como pedido de desculpas;</li><li>use para destravar.</li></ul>",
+                    "<p>Contexto:</p>",
+                    "<p><strong>What do you think about the project?</strong></p>",
+                    "<p>Resposta:</p>",
+                    "<p><strong>I’m still learning, but I can try to explain.</strong></p>",
+                    "<h3>Frase 4</h3>",
+                    "<p><strong>In my opinion, we need more time.</strong></p>",
+                    "<p>Treino:</p>",
+                    "<ul><li>pratique a pausa depois de “opinion”;</li><li>use em reunião;</li><li>evite traduzir do português.</li></ul>",
+                    "<h3>Frase 5</h3>",
+                    "<p><strong>Let me check and I’ll get back to you.</strong></p>",
+                    "<p>Treino:</p>",
+                    "<ul><li>frase profissional útil;</li><li>foco em ritmo;</li><li>usar em e-mail falado, reunião e atendimento.</li></ul>",
+                    "<p>Esse tipo de exercício é mais produtivo do que repetir frases aleatórias sem aplicação.</p>"
+                ]
+            },
+            {
+                "heading": "Shadowing por nível CEFR",
+                "body": [
+                    "<p>O nível CEFR ajuda a escolher o tipo de shadowing adequado. Um erro comum é usar material avançado quando o aluno ainda precisa consolidar frases básicas.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Tipo de shadowing recomendado</th></tr></thead><tbody><tr><td>A1</td><td>saudações, apresentação, frases curtas e pedidos simples</td></tr><tr><td>A2</td><td>rotina, viagem, trabalho básico, perguntas e respostas</td></tr><tr><td>B1</td><td>opiniões simples, experiências, reuniões curtas e entrevistas</td></tr><tr><td>B2</td><td>apresentações, argumentos, reuniões profissionais e podcasts claros</td></tr><tr><td>C1</td><td>debates, nuances, liderança, storytelling e fala natural avançada</td></tr></tbody></table>",
+                    "<p>Exemplos por nível:</p>",
+                    "<p>A1:<br><strong>My name is Bruno. I work in Brazil.</strong></p>",
+                    "<p>A2:<br><strong>I need English because I travel for work.</strong></p>",
+                    "<p>B1:<br><strong>I think this project is important because it can help our team.</strong></p>",
+                    "<p>B2:<br><strong>From my perspective, we should review the timeline before making a decision.</strong></p>",
+                    "<p>C1:<br><strong>Although the proposal is promising, we need to consider the long-term impact on the team.</strong></p>",
+                    "<p>A técnica deve acompanhar o nível, não atropelar o processo.</p>"
+                ]
+            },
+            {
+                "heading": "Shadowing para inglês profissional",
+                "body": [
+                    "<p>Shadowing é especialmente útil para inglês profissional porque ajuda o aluno a automatizar frases de reuniões, entrevistas e apresentações. Em vez de montar tudo do zero, o aluno passa a ter blocos prontos para situações frequentes.</p>",
+                    "<p>Frases profissionais para shadowing:</p>",
+                    "<ul><li><strong>I’d like to add something.</strong></li><li><strong>Can I ask a question?</strong></li><li><strong>I agree with your point.</strong></li><li><strong>I’m not sure I understand.</strong></li><li><strong>Could you explain that again?</strong></li><li><strong>Let’s schedule a follow-up meeting.</strong></li><li><strong>I’ll send the report by Friday.</strong></li><li><strong>We need to review the deadline.</strong></li><li><strong>That makes sense to me.</strong></li><li><strong>I have a different perspective.</strong></li></ul>",
+                    "<p>Essas frases são úteis porque aparecem em reuniões reais. O aluno pratica ritmo, pronúncia e resposta profissional ao mesmo tempo.</p>",
+                    "<p>Se você precisa de inglês para reuniões, entrevistas ou crescimento profissional, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo no curso ao vivo é usar o shadowing com correção humana. O aluno pratica uma frase, grava ou fala em aula, e o professor corrige o que realmente importa: clareza, som, ritmo, pausas e naturalidade.</p>",
+                    "<p>Em uma aula de inglês online ao vivo, o professor pode ajudar a identificar:</p>",
+                    "<ul><li>se você está falando rápido demais;</li><li>se sua pronúncia está clara;</li><li>se uma palavra está sendo engolida;</li><li>se a entonação parece artificial;</li><li>se a frase está natural;</li><li>se o ritmo combina com o contexto;</li><li>se você entendeu o significado;</li><li>se consegue usar a frase em conversa.</li></ul>",
+                    "<p>Isso é importante porque o aluno sozinho pode não perceber o próprio padrão. Às vezes, ele acha que o problema é sotaque, mas o problema real é ritmo. Às vezes, acha que precisa imitar mais, mas na verdade precisa reduzir velocidade. Às vezes, acha que está falando claro, mas está engolindo consoantes importantes.</p>",
+                    "<p>A aula ao vivo transforma shadowing em treino orientado.</p>"
+                ]
+            },
+            {
+                "heading": "Comparativo: shadowing sozinho x shadowing com professor",
+                "body": [
+                    "<p>Shadowing sozinho pode ajudar, mas shadowing com professor é mais preciso. A diferença está no feedback.</p>",
+                    "<table><thead><tr><th>Critério</th><th>Shadowing sozinho</th><th>Shadowing com professor ao vivo</th></tr></thead><tbody><tr><td>Repetição</td><td>forte</td><td>forte</td></tr><tr><td>Correção de pronúncia</td><td>limitada</td><td>imediata</td></tr><tr><td>Ajuste de ritmo</td><td>difícil</td><td>guiado</td></tr><tr><td>Naturalidade</td><td>difícil de medir</td><td>avaliada em contexto</td></tr><tr><td>Uso em conversa</td><td>depende do aluno</td><td>praticado em aula</td></tr><tr><td>Ansiedade</td><td>pode aumentar</td><td>tende a reduzir</td></tr><tr><td>Escolha de material</td><td>aleatória</td><td>alinhada ao nível</td></tr><tr><td>Evolução</td><td>difícil de medir</td><td>acompanhada</td></tr></tbody></table>",
+                    "<p>A técnica fica melhor quando integrada a um plano. O professor pode selecionar frases úteis para seu objetivo, seja viagem, carreira, entrevista, reunião ou fluência geral.</p>"
+                ]
+            },
+            {
+                "heading": "Como evitar artificialidade no shadowing",
+                "body": [
+                    "<p>Para evitar artificialidade no shadowing, foque na intenção da frase. Não repita como ator copiando uma voz. Repita como alguém que quer comunicar aquela ideia.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>entenda antes de repetir;</li><li>fale em ritmo confortável;</li><li>não force sotaque;</li><li>mantenha sua voz natural;</li><li>imite padrões, não personalidade;</li><li>preserve clareza;</li><li>use frases reais;</li><li>grave sem se julgar;</li><li>peça feedback;</li><li>repita em contexto.</li></ul>",
+                    "<p>Pergunta útil:</p>",
+                    "<p><strong>Eu falaria essa frase assim em uma conversa real?</strong></p>",
+                    "<p>Se a resposta for “não”, ajuste. O shadowing precisa aproximar você da comunicação, não criar uma performance estranha.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para usar shadowing",
+                "body": [
+                    "<p>Este plano ajuda a aplicar a técnica sem exageros.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>frases curtas</td><td>repetir pedidos, saudações e respostas simples</td></tr><tr><td>Semana 2</td><td>frases profissionais</td><td>treinar reuniões e apresentações curtas</td></tr><tr><td>Semana 3</td><td>ritmo e pausas</td><td>gravar, comparar e ajustar velocidade</td></tr><tr><td>Semana 4</td><td>conversa real</td><td>usar frases em simulações com professor</td></tr></tbody></table>",
+                    "<p>Rotina de 15 minutos:</p>",
+                    "<p>1. 2 minutos ouvindo;<br>2. 3 minutos lendo e entendendo;<br>3. 5 minutos repetindo;<br>4. 3 minutos gravando;<br>5. 2 minutos anotando dúvidas.</p>",
+                    "<p>Essa rotina curta pode ser feita várias vezes por semana. Constância vale mais que excesso.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda a usar shadowing do jeito certo",
+                "body": [
+                    "<p>A Vedium ajuda porque trabalha inglês online ao vivo com professor, conversação e plano por nível. O shadowing pode entrar como ferramenta dentro de uma estratégia maior: ativar vocabulário, melhorar listening, ganhar ritmo e destravar a fala.</p>",
+                    "<p>Nas aulas, você pode praticar:</p>",
+                    "<ul><li>frases por nível CEFR;</li><li>shadowing com correção;</li><li>inglês para carreira;</li><li>entrevistas;</li><li>reuniões;</li><li>apresentações;</li><li>pronúncia;</li><li>ritmo;</li><li>conversação;</li><li>listening;</li><li>redução da tradução mental;</li><li>uso real das frases.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. O aluno continua porque percebe evolução. Isso combina com o uso responsável do shadowing: progresso real, sem promessas mágicas e sem imitação artificial.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou usando shadowing bem?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Eu entendo a frase antes de repetir.</li><li>Escolho áudios curtos.</li><li>Pratico com transcrição.</li><li>Não tento copiar sotaque de forma exagerada.</li><li>Foco em clareza.</li><li>Gravo minha voz.</li><li>Uso frases que posso aplicar.</li><li>Peço correção quando possível.</li><li>Pratico no meu nível CEFR.</li><li>Transformo a frase em conversa.</li></ul>",
+                    "<p>Se você respondeu “não” a vários itens, ajuste o método. Shadowing bom é simples, consciente e repetível.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Shadowing pode ser uma excelente técnica para melhorar inglês, mas precisa ser usado com inteligência. O objetivo não é copiar sotaque de forma artificial, nem apagar sua identidade. O objetivo é desenvolver clareza, ritmo, escuta ativa e confiança para falar inglês em situações reais.</p>",
+                    "<p>Para usar bem, escolha áudios curtos, entenda o significado, marque blocos de sentido, repita com calma, grave sua voz e use as frases em conversas. Evite imitações exageradas e materiais difíceis demais. O shadowing deve aproximar você da comunicação, não da performance.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo, com professor real, conversação, plano por nível CEFR e sem contrato de fidelidade. Você fica porque sente evolução, não porque está preso.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra como usar shadowing, conversação e correção ao vivo para falar inglês com mais clareza e confiança.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/curso-de-ingles-com-professor-ao-vivo-o-que-muda-na-evolucao-da-fala\">Curso de inglês com professor ao vivo: o que muda na evolução da fala</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "O que é shadowing em inglês?",
+                "a": "Shadowing é uma técnica em que você escuta uma frase em inglês e repete acompanhando ritmo, pronúncia e entonação, quase ao mesmo tempo."
+            },
+            {
+                "q": "Shadowing ajuda a melhorar speaking?",
+                "a": "Sim. Shadowing ajuda a treinar ritmo, fluidez, listening, pronúncia e vocabulário ativo, especialmente quando usado com frases reais."
+            },
+            {
+                "q": "Preciso copiar o sotaque de um nativo?",
+                "a": "Não. O objetivo não é copiar sotaque artificialmente, mas falar com mais clareza, naturalidade e confiança."
+            },
+            {
+                "q": "Qual material usar para shadowing?",
+                "a": "Use áudios curtos, claros, com transcrição e frases úteis para seu nível CEFR, como diálogos, reuniões simples, entrevistas ou situações do cotidiano."
+            },
+            {
+                "q": "A Vedium ajuda a praticar shadowing em aula ao vivo?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo com professor, conversação, correção de pronúncia e prática por nível."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "curso-de-ingles-com-professor-ao-vivo-o-que-muda-na-evolucao-da-fala": {
+        "title": "Curso de inglês com professor ao vivo: o que muda na evolução da fala",
+        "meta_description": "Entenda como um curso de inglês com professor ao vivo acelera a fala, corrige travas e melhora a conversação.",
+        "h1": "Curso de inglês com professor ao vivo: o que muda na evolução da fala",
+        "date": "2026-07-15",
+        "date_display": "15 de julho de 2026",
+        "hero_image": "https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Empty apartment interior ready to move in, with a living room in the background",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Um curso de inglês com professor ao vivo muda a evolução da fala porque transforma o aluno de espectador em participante. Em vez de apenas assistir aulas, responder exercícios automáticos ou repetir frases sozinho, o aluno precisa ouvir, falar, receber correção, reformular e tentar novamente em tempo real. Esse ciclo é decisivo para quem quer melhorar a conversação em inglês.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Muitos brasileiros já estudaram inglês por anos, mas ainda travam na hora de falar. Eles entendem textos, reconhecem regras, sabem algumas palavras e até conseguem acompanhar vídeos com legenda. Porém, quando precisam responder em uma reunião, entrevista, viagem ou conversa profissional, a fala não sai. Isso acontece porque falar inglês é uma habilidade ativa. Ela não se desenvolve apenas com consumo de conteúdo.</p>",
+                    "<p>O professor ao vivo tem um papel que aplicativo, videoaula e material gravado não conseguem cumprir da mesma forma: escutar o aluno. A partir da fala real do aluno, o professor percebe onde está a trava, corrige pronúncia, ajusta frases, adapta exemplos, propõe perguntas, simula situações reais e acompanha a evolução por nível. Isso cria um aprendizado mais humano, mais prático e mais conectado ao objetivo do aluno.</p>",
+                    "<p>Para o Bruno, profissional que quer inglês de verdade para crescer, participar de entrevistas, reuniões ou oportunidades internacionais, o curso de inglês online ao vivo com professor é especialmente relevante. Ele une flexibilidade com prática real. Você estuda pela internet, mas não fica sozinho. Existe alguém conduzindo, corrigindo e puxando sua fala para frente.</p>",
+                    "<p>Na Vedium, o curso de inglês com professor ao vivo é pensado para evolução real, com conversação, plano por nível e sem contrato de fidelidade. Você continua porque percebe progresso, não porque está preso.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: o que muda com professor ao vivo?",
+                "body": [
+                    "<p>Com professor ao vivo, o aluno passa a praticar inglês em interação real. A principal mudança é que a fala deixa de ser uma promessa futura e passa a acontecer dentro da aula. O professor pergunta, escuta, corrige, adapta e faz o aluno tentar novamente.</p>",
+                    "<p>Na prática, isso muda quatro pontos:</p>",
+                    "<p>1. <strong>Correção imediata:</strong> o aluno descobre o que está falando errado e como melhorar.<br>2. <strong>Conversação real:</strong> a aula não fica só na teoria; há troca, resposta e improviso.<br>3. <strong>Adaptação ao nível:</strong> o professor ajusta conteúdo, velocidade e desafio.<br>4. <strong>Confiança progressiva:</strong> o aluno aprende a falar mesmo sem perfeição.</p>",
+                    "<p>Essa diferença é importante porque muitos alunos não precisam de mais uma lista de regras. Eles precisam de um ambiente seguro para falar. O professor ao vivo cria esse ambiente e conduz a prática.</p>",
+                    "<p>Para descobrir seu nível e entender o melhor ponto de partida, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que tantos alunos estudam inglês, mas não conseguem falar?",
+                "body": [
+                    "<p>Tantos alunos estudam inglês, mas não conseguem falar, porque grande parte do estudo foi passiva. Eles assistiram, leram, completaram exercícios e memorizaram regras, mas falaram pouco. E fala se desenvolve falando.</p>",
+                    "<p>A trava geralmente aparece por uma combinação de fatores:</p>",
+                    "<ul><li>medo de errar;</li><li>falta de prática oral;</li><li>pouca correção;</li><li>vergonha da pronúncia;</li><li>tentativa de traduzir tudo;</li><li>vocabulário passivo;</li><li>ausência de rotina;</li><li>conteúdo distante da vida real;</li><li>falta de feedback humano;</li><li>estudo sem objetivo claro.</li></ul>",
+                    "<p>O aluno pode saber que “I work” está certo, mas na hora da reunião dizer “I am work” porque nunca praticou sob pressão. Pode conhecer a palavra “meeting”, mas não conseguir dizer “I have a meeting at 3 p.m.” com naturalidade. Pode entender “Can you repeat?” quando lê, mas travar quando precisa pedir repetição.</p>",
+                    "<p>O problema não é incapacidade. É falta de treino ativo. Um curso com professor ao vivo resolve justamente esse ponto: cria situações para o aluno usar o inglês, errar com segurança e ajustar.</p>"
+                ]
+            },
+            {
+                "heading": "Professor ao vivo corrige o que você não percebe sozinho",
+                "body": [
+                    "<p>O professor ao vivo corrige padrões que o aluno muitas vezes não percebe. Quando você estuda sozinho, pode repetir a mesma pronúncia, estrutura ou tradução literal por meses. Sem alguém escutando, o erro vira hábito.</p>",
+                    "<p>Exemplos comuns de erros corrigidos em aula:</p>",
+                    "<table><thead><tr><th>Erro comum</th><th>Correção natural</th><th>Por que acontece</th></tr></thead><tbody><tr><td>I have 30 years</td><td>I am 30 years old</td><td>tradução literal do português</td></tr><tr><td>I am work in sales</td><td>I work in sales</td><td>confusão com verbo to be</td></tr><tr><td>I need improve my English</td><td>I need to improve my English</td><td>falta do “to”</td></tr><tr><td>I have doubt</td><td>I have a question</td><td>tradução de “tenho uma dúvida”</td></tr><tr><td>I go to home</td><td>I go home</td><td>estrutura diferente do português</td></tr><tr><td>I make a meeting</td><td>I have a meeting</td><td>verbo inadequado</td></tr><tr><td>I pretend to travel</td><td>I intend to travel / I plan to travel</td><td>falso cognato</td></tr></tbody></table>",
+                    "<p>Essas correções parecem pequenas, mas mudam a qualidade da fala. O aluno começa a montar frases mais naturais e ganha confiança para se expressar.</p>",
+                    "<p>A correção ao vivo também ajuda na pronúncia. Palavras como <strong>work</strong>, <strong>world</strong>, <strong>career</strong>, <strong>comfortable</strong>, <strong>thought</strong>, <strong>through</strong>, <strong>meeting</strong> e <strong>schedule</strong> costumam exigir escuta e repetição guiada. Um professor pode dizer exatamente o que ajustar.</p>"
+                ]
+            },
+            {
+                "heading": "Conversação em inglês precisa de resposta, não só repetição",
+                "body": [
+                    "<p>Conversação em inglês exige resposta real. Repetir frases ajuda, mas não basta. Em uma conversa, você não sabe exatamente o que a outra pessoa vai perguntar. Por isso, precisa treinar escuta, reação e flexibilidade.</p>",
+                    "<p>Em um curso com professor ao vivo, a conversação pode trabalhar:</p>",
+                    "<ul><li>perguntas pessoais;</li><li>rotina profissional;</li><li>entrevistas;</li><li>reuniões;</li><li>apresentações;</li><li>viagens;</li><li>atendimento ao cliente;</li><li>small talk;</li><li>e-mails falados;</li><li>dúvidas e esclarecimentos;</li><li>opiniões;</li><li>planos futuros.</li></ul>",
+                    "<p>Exemplo de prática:</p>",
+                    "<p><strong>Professor:</strong> Why are you studying English?<br><strong>Aluno:</strong> I’m studying English because I want to grow in my career.<br><strong>Professor:</strong> Good. Can you give me an example of a situation where you need English?<br><strong>Aluno:</strong> I need English in meetings with international clients.<br><strong>Professor:</strong> Great. Try: “I need English to participate in meetings with international clients.”</p>",
+                    "<p>Esse tipo de interação faz o aluno avançar. Ele não apenas repete uma frase. Ele aprende a melhorar a própria resposta.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar em aula ao vivo?",
+                "body": [
+                    "<p>Para praticar em aula ao vivo, o aluno deve participar ativamente, falar frases curtas, aceitar correção e repetir. A evolução da fala acontece quando a aula vira espaço de uso, não apenas de explicação.</p>",
+                    "<h3>1. Comece com frases simples</h3>",
+                    "<p>Não espere conseguir frases longas logo no início. Frases simples bem faladas criam base.</p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I work in marketing.</strong></li><li><strong>I study English online.</strong></li><li><strong>I need more practice.</strong></li><li><strong>I want to improve my speaking.</strong></li><li><strong>I have a meeting today.</strong></li></ul>",
+                    "<h3>2. Peça correção</h3>",
+                    "<p>Diga ao professor:</p>",
+                    "<ul><li><strong>Can you correct me?</strong></li><li><strong>Is this sentence natural?</strong></li><li><strong>How can I say this better?</strong></li><li><strong>Can I try again?</strong></li></ul>",
+                    "<p>Essas frases tornam o aluno protagonista do processo.</p>",
+                    "<h3>3. Repita a frase corrigida</h3>",
+                    "<p>A correção só vira aprendizado quando você repete. Se o professor corrigiu uma frase, fale de novo em voz alta.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p>Aluno:<br><strong>I have doubt.</strong></p>",
+                    "<p>Professor:<br><strong>Say: I have a question.</strong></p>",
+                    "<p>Aluno:<br><strong>I have a question.</strong></p>",
+                    "<p>Depois, use em contexto:</p>",
+                    "<p><strong>I have a question about the meeting.</strong></p>",
+                    "<h3>4. Simule situações reais</h3>",
+                    "<p>Leve temas da sua vida para a aula:</p>",
+                    "<ul><li>uma reunião que você precisa fazer;</li><li>uma entrevista que quer preparar;</li><li>uma apresentação;</li><li>uma viagem;</li><li>uma conversa com cliente;</li><li>uma dificuldade de listening;</li><li>uma frase que não conseguiu dizer.</li></ul>",
+                    "<p>Quanto mais real a situação, mais útil a aula.</p>"
+                ]
+            },
+            {
+                "heading": "O que muda na pronúncia com professor ao vivo?",
+                "body": [
+                    "<p>Com professor ao vivo, a pronúncia melhora porque o aluno recebe feedback específico. Pronúncia não é apenas “saber como a palavra deveria soar”. É conseguir produzir o som com clareza e ser entendido.</p>",
+                    "<p>O professor pode corrigir:</p>",
+                    "<ul><li>som de vogais;</li><li>sílabas fortes;</li><li>ritmo da frase;</li><li>sons que não existem no português;</li><li>palavras que o aluno pronuncia como escreve;</li><li>entonação;</li><li>ligação entre palavras;</li><li>clareza em frases profissionais.</li></ul>",
+                    "<p>Exemplo:</p>",
+                    "<p>A palavra <strong>work</strong> costuma ser difícil para brasileiros. O aluno pode pronunciar de forma muito próxima de “uorque”, “worki” ou “walk”. O professor percebe, corrige e propõe repetição em frases:</p>",
+                    "<ul><li><strong>I work in sales.</strong></li><li><strong>I work with clients.</strong></li><li><strong>I work from home.</strong></li><li><strong>I work every day.</strong></li></ul>",
+                    "<p>A pronúncia melhora quando aparece dentro de frases reais, não apenas como palavra isolada.</p>"
+                ]
+            },
+            {
+                "heading": "Plano por nível CEFR",
+                "body": [
+                    "<p>O nível CEFR ajuda a organizar o curso de inglês com professor ao vivo em etapas claras. Em vez de estudar conteúdos aleatórios, o aluno entende o que precisa desenvolver em cada fase.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Objetivo da fala</th><th>Como praticar com professor ao vivo</th></tr></thead><tbody><tr><td>A1</td><td>formar frases simples</td><td>apresentação, rotina, perguntas básicas e frases de ajuda</td></tr><tr><td>A2</td><td>falar sobre situações comuns</td><td>trabalho, estudos, viagem, planos e necessidades</td></tr><tr><td>B1</td><td>sustentar conversas simples</td><td>opiniões, experiências, reuniões curtas e entrevistas iniciais</td></tr><tr><td>B2</td><td>ganhar fluência profissional</td><td>reuniões, argumentação, apresentações e clientes</td></tr><tr><td>C1</td><td>refinar naturalidade</td><td>debates, liderança, negociação, nuances e precisão</td></tr></tbody></table>",
+                    "<p>Esse plano evita dois problemas comuns: o iniciante ser exposto a conteúdo difícil demais e o intermediário ficar preso em conteúdos básicos. O professor ao vivo ajusta o desafio ao nível.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra em qual etapa você está.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: como escolher um curso de inglês com professor ao vivo",
+                "body": [
+                    "<p>Para escolher um bom curso de inglês com professor ao vivo, avalie se ele realmente entrega prática, correção e evolução. Nem toda aula “ao vivo” é boa se o aluno apenas assiste.</p>",
+                    "<h3>Passo 1: confirme se a aula é realmente ao vivo</h3>",
+                    "<p>A aula deve ter professor presente em tempo real. Não basta ser uma plataforma com vídeos.</p>",
+                    "<h3>Passo 2: verifique se há conversação</h3>",
+                    "<p>O aluno precisa falar em todas as aulas. Se a aula vira palestra, a evolução da fala fica limitada.</p>",
+                    "<h3>Passo 3: veja se existe avaliação de nível</h3>",
+                    "<p>Um teste de nível ajuda a montar uma trilha adequada ao CEFR e aos objetivos do aluno.</p>",
+                    "<h3>Passo 4: pergunte como funciona a correção</h3>",
+                    "<p>Correção deve acontecer sem constranger, com foco em melhorar a frase e repetir em contexto.</p>",
+                    "<h3>Passo 5: observe se o curso trabalha situações reais</h3>",
+                    "<p>O conteúdo deve incluir trabalho, entrevistas, reuniões, viagens, apresentações e comunicação cotidiana.</p>",
+                    "<h3>Passo 6: avalie flexibilidade e contrato</h3>",
+                    "<p>Um curso sem fidelidade reduz o medo de começar. A retenção deve vir do resultado, não de multa.</p>",
+                    "<h3>Passo 7: procure próximo passo claro</h3>",
+                    "<p>O aluno precisa saber o que estudar, o que revisar e como medir evolução.</p>",
+                    "<p>Se esses pontos estão presentes, o curso tem mais chance de ajudar você a falar melhor.</p>"
+                ]
+            },
+            {
+                "heading": "Curso com professor ao vivo vale para iniciantes?",
+                "body": [
+                    "<p>Sim, curso com professor ao vivo vale para iniciantes porque cria desde cedo o hábito de falar. O iniciante não precisa conversar sobre temas complexos; precisa começar a formar frases, ouvir perguntas simples e responder com segurança.</p>",
+                    "<p>No nível A1, a aula pode trabalhar:</p>",
+                    "<ul><li>alfabeto e sons;</li><li>saudações;</li><li>apresentação pessoal;</li><li>país e cidade;</li><li>profissão;</li><li>rotina;</li><li>frases com “I need”, “I want”, “I work”;</li><li>perguntas simples;</li><li>pedido de repetição;</li><li>vocabulário de sobrevivência.</li></ul>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Teacher:</strong> What do you do?<br><strong>Student:</strong> I work in sales.<br><strong>Teacher:</strong> Good. Where do you work?<br><strong>Student:</strong> I work in São Paulo.<br><strong>Teacher:</strong> Great. Say: “I work in sales in São Paulo.”</p>",
+                    "<p>Essa prática simples já desenvolve fala.</p>"
+                ]
+            },
+            {
+                "heading": "Curso com professor ao vivo vale para intermediários?",
+                "body": [
+                    "<p>Sim, e muitas vezes é o intermediário que mais se beneficia. O aluno B1 ou B2 costuma entender bastante, mas sente que não fala com naturalidade. Ele já passou do básico, mas precisa ativar vocabulário, corrigir vícios e ganhar velocidade.</p>",
+                    "<p>No intermediário, o professor pode trabalhar:</p>",
+                    "<ul><li>reuniões;</li><li>entrevistas;</li><li>apresentações;</li><li>storytelling;</li><li>opiniões;</li><li>fluência;</li><li>listening real;</li><li>pronúncia avançada;</li><li>vocabulário profissional;</li><li>argumentos;</li><li>respostas mais completas.</li></ul>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Professor:</strong> Tell me about a challenge at work.<br><strong>Aluno:</strong> One challenge is communicating with international clients. I understand emails, but I need more confidence in meetings.<br><strong>Professor:</strong> Good. Let’s make it more natural: “One of my main challenges is communicating with international clients. I can handle emails, but I still need more confidence during meetings.”</p>",
+                    "<p>Esse refinamento é difícil de obter apenas com aplicativo.</p>"
+                ]
+            },
+            {
+                "heading": "O que um professor ao vivo faz que um aplicativo não faz?",
+                "body": [
+                    "<p>Um professor ao vivo entende a intenção do aluno. Ele percebe quando a frase está gramaticalmente possível, mas pouco natural. Percebe quando o aluno está evitando falar. Percebe quando o erro vem do português. Percebe quando precisa diminuir ou aumentar o desafio.</p>",
+                    "<p>Comparação:</p>",
+                    "<table><thead><tr><th>Recurso</th><th>Aplicativo</th><th>Professor ao vivo</th></tr></thead><tbody><tr><td>Repetição</td><td>alta</td><td>alta</td></tr><tr><td>Correção personalizada</td><td>limitada</td><td>forte</td></tr><tr><td>Conversação espontânea</td><td>baixa</td><td>alta</td></tr><tr><td>Adaptação ao objetivo</td><td>limitada</td><td>alta</td></tr><tr><td>Percepção emocional</td><td>não</td><td>sim</td></tr><tr><td>Simulação real</td><td>limitada</td><td>personalizada</td></tr><tr><td>Feedback de pronúncia</td><td>automático</td><td>humano</td></tr><tr><td>Plano de evolução</td><td>genérico</td><td>orientado</td></tr></tbody></table>",
+                    "<p>Aplicativos podem complementar o estudo. Mas, se a dor é falar, o professor ao vivo costuma ser o diferencial.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo na Vedium",
+                "body": [
+                    "<p>O próximo passo na Vedium é fazer um teste de nível grátis para entender onde você está e qual objetivo deve guiar sua jornada. A partir disso, o curso pode focar em conversação, carreira, entrevistas, reuniões, viagem ou base geral.</p>",
+                    "<p>Na Vedium, você encontra:</p>",
+                    "<ul><li>curso de inglês online ao vivo;</li><li>professor ao vivo;</li><li>prática de conversação;</li><li>evolução por nível;</li><li>foco em situações reais;</li><li>flexibilidade;</li><li>ausência de contrato de fidelidade;</li><li>acompanhamento do progresso;</li><li>aulas com gente real, em tempo real.</li></ul>",
+                    "<p>A proposta da Vedium é ajudar o aluno a evoluir de verdade, no próprio ritmo. Você fica porque sente que está falando melhor, não porque existe uma multa para sair.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: antes de escolher um curso de inglês com professor ao vivo",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>O curso tem professor ao vivo em tempo real?</li><li>O aluno pratica fala em todas as aulas?</li><li>Há correção de pronúncia?</li><li>Há conversação em inglês?</li><li>O nível CEFR é considerado?</li><li>O conteúdo se adapta ao objetivo profissional?</li><li>Há prática de entrevistas, reuniões ou situações reais?</li><li>Existe acompanhamento de evolução?</li><li>O contrato é sem fidelidade?</li><li>O próximo passo é claro?</li></ul>",
+                    "<p>Se a maioria das respostas for “sim”, o curso está alinhado com o que realmente ajuda na evolução da fala.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Um curso de inglês com professor ao vivo muda a evolução da fala porque coloca o aluno em interação real. Ele não fica apenas assistindo. Ele fala, escuta, erra, recebe correção e tenta de novo. Esse processo transforma inglês passivo em comunicação ativa.</p>",
+                    "<p>Para quem quer melhorar conversação, participar de reuniões, fazer entrevistas, viajar ou crescer profissionalmente, o professor ao vivo faz diferença porque adapta o conteúdo, corrige pronúncia, trabalha frases naturais e acompanha o progresso. A semelhança com uma aula presencial está na presença humana; a vantagem online está na flexibilidade.</p>",
+                    "<p>A Vedium oferece curso de inglês online ao vivo com professor, conversação, plano por nível CEFR e sem contrato de fidelidade. A retenção vem do resultado: você continua porque evolui.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra como um curso de inglês com professor ao vivo pode ajudar você a falar com mais confiança.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/ingles-para-apresentacao-profissional-em-dois-minutos\">Inglês para apresentação profissional em dois minutos</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "O que é um curso de inglês com professor ao vivo?",
+                "a": "É um curso com aulas em tempo real, conduzidas por professor, com interação, conversação, correção e prática oral durante a aula."
+            },
+            {
+                "q": "Curso de inglês com professor ao vivo ajuda na fala?",
+                "a": "Sim. Ele ajuda porque o aluno fala, recebe correção imediata, pratica situações reais e desenvolve confiança para responder em inglês."
+            },
+            {
+                "q": "Qual a diferença entre professor ao vivo e aplicativo?",
+                "a": "O aplicativo ajuda na repetição, mas o professor ao vivo corrige sua fala, adapta a aula ao seu nível e cria conversas reais."
+            },
+            {
+                "q": "Como saber meu nível antes de começar?",
+                "a": "O ideal é fazer um teste de nível com base no CEFR para identificar se você está em A1, A2, B1, B2 ou C1 e escolher o plano adequado."
+            },
+            {
+                "q": "A Vedium oferece curso de inglês com professor ao vivo sem fidelidade?",
+                "a": "Sim. A Vedium oferece curso de inglês online ao vivo com professor, conversação e evolução por nível, sem contrato de fidelidade."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "dias-da-semana-e-expressoes-de-tempo-em-ioruba": {
+        "title": "Dias da semana e expressões de tempo em iorubá",
+        "meta_description": "Aprenda dias da semana e expressões de tempo em iorubá com contexto cultural, pronúncia e aula ao vivo.",
+        "h1": "Dias da semana e expressões de tempo em iorubá",
+        "date": "2025-04-04",
+        "date_display": "4 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "People laughing outdoors in golden hour light",
+        "tag": "Iorubá",
+        "category": "ioruba",
+        "lead": "Dias da semana e expressões de tempo em iorubá ajudam o aluno a sair do vocabulário isolado e começar a organizar a fala em torno de rotina, memória, sequência e prática cultural. Palavras como hoje, amanhã, ontem, manhã, tarde, noite, semana, mês e ano parecem simples, mas são essenciais para quem deseja compreender melhor frases, cantigas, rezas, saudações, histórias e conversas básicas com mais respeito ao idioma.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para quem estuda iorubá no Brasil, especialmente em comunidades afro-diaspóricas, o tempo não deve ser visto apenas como uma categoria gramatical. O tempo também aparece na oralidade, na repetição, na memória, na organização de práticas, na transmissão de conhecimento e na forma como uma comunidade nomeia acontecimentos. Aprender expressões de tempo é aprender a perguntar “quando?”, dizer “hoje”, reconhecer “amanhã”, falar de uma semana, marcar uma prática e perceber como o idioma organiza presença, passado e continuidade.</p>",
+                    "<p>Muitos iniciantes querem começar por palavras de saudação, nomes, cantigas ou vocabulário religioso. Esse caminho é compreensível. Mas expressões de tempo são igualmente importantes porque dão estrutura ao aprendizado. Quando o aluno aprende a dizer “hoje”, “amanhã”, “de manhã”, “à noite” ou “na próxima semana”, ele começa a montar frases mais úteis e a compreender melhor sequências orais. O idioma deixa de ser apenas lista de palavras e passa a virar comunicação.</p>",
+                    "<p>Neste artigo, você vai conhecer os dias da semana em iorubá, expressões iniciais de tempo, cuidados de pronúncia, formas de praticar com respeito e como escolher um curso de iorubá online que trabalhe língua e cultura sem superficialidade. A Vedium oferece aulas de iorubá ao vivo, com orientação, escuta, correção e sem contrato de fidelidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que aprender dias da semana e tempo em iorubá?",
+                "body": [
+                    "<p>Aprender dias da semana e expressões de tempo em iorubá importa porque esse vocabulário ajuda o aluno a organizar frases, compreender rotinas, reconhecer sequências e praticar a língua em situações reais. Tempo é um dos campos mais úteis para transformar palavras soltas em comunicação.</p>",
+                    "<p>Esse vocabulário ajuda a:</p>",
+                    "<ul><li>falar de hoje, ontem e amanhã;</li><li>compreender dias da semana;</li><li>organizar rotina de estudo;</li><li>entender referências temporais em falas e cantigas;</li><li>praticar perguntas simples;</li><li>falar de encontros, aulas e práticas;</li><li>estudar oralidade com mais atenção;</li><li>perceber a lógica da língua;</li><li>evitar traduções mecânicas;</li><li>aprofundar vocabulário com contexto cultural.</li></ul>",
+                    "<p>Para iniciantes, os dias da semana são uma excelente prática de leitura, escuta e pronúncia. O aluno trabalha sons, tons, marcas gráficas e repetição. O cuidado é não reduzir o estudo a uma tabela. Em iorubá, escrita, oralidade e contexto precisam caminhar juntos.</p>",
+                    "<p>Para estudar iorubá com orientação ao vivo, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Contexto cultural do tema",
+                "body": [
+                    "<p>Expressões de tempo em iorubá carregam mais do que função prática. Elas ajudam a perceber como a língua organiza experiência, rotina e memória. Em contextos afro-diaspóricos, aprender essas palavras pode aproximar o estudante de formas de escuta mais cuidadosas, especialmente quando ele encontra referências temporais em cantigas, saudações, narrativas e práticas de aprendizado.</p>",
+                    "<p>O tempo aparece quando alguém conta uma história, marca uma aula, relembra uma prática, fala de uma data, diferencia passado e futuro ou situa uma ação. Sem esse vocabulário, o aluno pode reconhecer palavras isoladas, mas perder a relação entre elas.</p>",
+                    "<p>Ao estudar esse tema, é importante considerar:</p>",
+                    "<ul><li>o iorubá deve ser estudado com escuta, não apenas leitura;</li><li>tons e marcas gráficas precisam ser preservados;</li><li>a tradução literal nem sempre explica todo o uso;</li><li>palavras de tempo podem aparecer em contextos cotidianos e tradicionais;</li><li>pronúncia errada pode dificultar compreensão;</li><li>listas sem orientação podem gerar falsas certezas.</li></ul>",
+                    "<p>Aprender dias e tempo é uma forma de dar ordem ao estudo. O aluno começa a falar sobre quando algo acontece, quando estuda, quando pratica, quando escuta e quando revisa.</p>"
+                ]
+            },
+            {
+                "heading": "Dias da semana em iorubá",
+                "body": [
+                    "<p>Os dias da semana em iorubá devem ser aprendidos com atenção à grafia, aos tons e à pronúncia. A tabela abaixo apresenta formas frequentemente ensinadas em materiais didáticos. A pronúncia deve ser praticada com professor, porque sinais e ritmo não devem ser tratados como detalhe.</p>",
+                    "<table><thead><tr><th>Português</th><th>Iorubá</th><th>Observação didática</th></tr></thead><tbody><tr><td>Domingo</td><td>Ọjọ́ Àìkú</td><td>observar a palavra <strong>ọjọ́</strong>, ligada a “dia”</td></tr><tr><td>Segunda-feira</td><td>Ọjọ́ Ajé</td><td>cuidado com tom e vogais</td></tr><tr><td>Terça-feira</td><td>Ọjọ́ Ìṣẹ́gun</td><td>palavra mais longa, exige prática por sílabas</td></tr><tr><td>Quarta-feira</td><td>Ọjọ́rú</td><td>atenção à contração e ao ritmo</td></tr><tr><td>Quinta-feira</td><td>Ọjọ́bọ</td><td>observar o som de <strong>bọ</strong></td></tr><tr><td>Sexta-feira</td><td>Ọjọ́ Ẹtì</td><td>cuidado com <strong>ẹ</strong> e marcação</td></tr><tr><td>Sábado</td><td>Ọjọ́ Àbámẹ́ta</td><td>palavra longa, deve ser praticada devagar</td></tr></tbody></table>",
+                    "<p>A primeira observação importante é que muitos dias começam com <strong>Ọjọ́</strong>, palavra associada a “dia”. Isso ajuda o aluno a perceber padrão. Em vez de decorar sete formas completamente isoladas, ele entende que existe uma estrutura recorrente.</p>",
+                    "<p>A segunda observação é que alguns nomes são mais longos e exigem divisão em partes. Para iniciantes, tentar falar rápido pode atrapalhar. O melhor é escutar, repetir devagar e receber correção.</p>"
+                ]
+            },
+            {
+                "heading": "Expressões básicas de tempo em iorubá",
+                "body": [
+                    "<p>Além dos dias da semana, o aluno deve aprender expressões simples que aparecem com frequência. Elas ajudam a construir frases e entender referências temporais.</p>",
+                    "<table><thead><tr><th>Português</th><th>Iorubá</th><th>Uso inicial</th></tr></thead><tbody><tr><td>dia</td><td>ọjọ́</td><td>base para dias e datas</td></tr><tr><td>semana</td><td>ọ̀sẹ̀</td><td>rotina semanal</td></tr><tr><td>mês</td><td>oṣù</td><td>tempo mensal</td></tr><tr><td>ano</td><td>ọdún</td><td>idade, datas e ciclos</td></tr><tr><td>hoje</td><td>òní</td><td>referência ao presente</td></tr><tr><td>ontem</td><td>àná</td><td>referência ao passado recente</td></tr><tr><td>amanhã</td><td>ọ̀la</td><td>referência ao futuro próximo</td></tr><tr><td>manhã</td><td>òwúrọ̀</td><td>parte do dia</td></tr><tr><td>tarde / período do dia</td><td>ọ̀sán</td><td>parte do dia</td></tr><tr><td>noite</td><td>alẹ́</td><td>parte do dia</td></tr><tr><td>fim / tarde da tarde</td><td>ìrọ̀lẹ́</td><td>fim do dia / entardecer</td></tr></tbody></table>",
+                    "<p>Essas palavras devem ser estudadas com cautela. Algumas traduções em português são aproximações didáticas. O uso real pode variar conforme frase, contexto e material. Por isso, é melhor aprender cada palavra em exemplos, e não apenas como equivalência fixa.</p>",
+                    "<p>Exemplos de estudo em português para orientar o tipo de uso:</p>",
+                    "<ul><li>hoje;</li><li>amanhã;</li><li>ontem;</li><li>de manhã;</li><li>à noite;</li><li>nesta semana;</li><li>no próximo mês;</li><li>neste ano.</li></ul>",
+                    "<p>Em aula, o professor pode apresentar estruturas corretas em iorubá e ajustar o nível do aluno.</p>"
+                ]
+            },
+            {
+                "heading": "Como perguntar “quando?” em iorubá",
+                "body": [
+                    "<p>Perguntar “quando?” é um passo importante para transformar vocabulário em interação. Para iniciantes, o objetivo é primeiro reconhecer a ideia de tempo e depois praticar perguntas guiadas com professor.</p>",
+                    "<p>Em português, perguntas de tempo aparecem assim:</p>",
+                    "<ul><li>Quando é a aula?</li><li>Quando você estuda?</li><li>Que dia é hoje?</li><li>Em que dia vamos praticar?</li><li>Você estudou ontem?</li><li>Você vai estudar amanhã?</li></ul>",
+                    "<p>Em iorubá, o aluno deve aprender essas estruturas com orientação, porque a ordem da frase, a marcação e o contexto não devem ser inventados por tradução literal. O erro comum é pegar palavras soltas e montar frase como se fosse português. Isso pode gerar estruturas incorretas.</p>",
+                    "<p>A forma responsável de aprender é:</p>",
+                    "<p>1. aprender a palavra de tempo;<br>2. ouvir uma frase-modelo;<br>3. repetir com correção;<br>4. trocar apenas uma palavra;<br>5. praticar pergunta e resposta;<br>6. revisar em aula ao vivo.</p>",
+                    "<p>Esse cuidado evita que o aluno memorize frases erradas.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar com respeito?",
+                "body": [
+                    "<p>Praticar dias da semana e expressões de tempo com respeito significa estudar pronúncia, escrita e contexto juntos. Mesmo palavras básicas merecem atenção, porque o iorubá não deve ser tratado como coleção de termos soltos.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>copie as palavras com sinais gráficos;</li><li>escute antes de repetir;</li><li>pratique devagar;</li><li>não leia como português;</li><li>pergunte sobre tons;</li><li>grave sua voz;</li><li>revise com professor;</li><li>use palavras em frases simples;</li><li>evite publicar listas sem revisão;</li><li>diferencie tradução literal de uso real.</li></ul>",
+                    "<p>O respeito também aparece na constância. Estudar um pouco toda semana, ouvir com atenção e aceitar correção costuma ser mais profundo do que tentar decorar muitas palavras sem orientação.</p>",
+                    "<p>Para praticar tempo, pronúncia e frases com orientação ao vivo, fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: calendário em iorubá",
+                "body": [
+                    "<p>Um bom exercício para aula ao vivo é construir um calendário simples com dias da semana, partes do dia e rotina de estudo. O objetivo é unir vocabulário, pronúncia e uso.</p>",
+                    "<h3>Etapa 1: escuta dos dias da semana</h3>",
+                    "<p>O professor pronuncia os sete dias. O aluno apenas escuta e observa a escrita.</p>",
+                    "<h3>Etapa 2: repetição guiada</h3>",
+                    "<p>O aluno repete cada dia lentamente. O professor corrige tons, vogais, ritmo e marcas.</p>",
+                    "<h3>Etapa 3: reconhecimento fora de ordem</h3>",
+                    "<p>O professor fala um dia aleatório. O aluno identifica qual foi.</p>",
+                    "<h3>Etapa 4: associação com rotina</h3>",
+                    "<p>O aluno marca em quais dias estuda, revisa, escuta áudios ou participa da aula.</p>",
+                    "<h3>Etapa 5: partes do dia</h3>",
+                    "<p>O professor adiciona palavras como manhã, tarde e noite, ajustando o uso ao nível da turma.</p>",
+                    "<h3>Etapa 6: frases-modelo</h3>",
+                    "<p>O aluno pratica frases simples com apoio, sem inventar estruturas complexas.</p>",
+                    "<h3>Etapa 7: revisão cultural</h3>",
+                    "<p>O professor explica que tempo não é apenas calendário: é também memória, rotina, oralidade e continuidade de prática.</p>",
+                    "<p>Esse exercício transforma uma lista em experiência de aprendizagem.</p>"
+                ]
+            },
+            {
+                "heading": "Comparação de curso: lista pronta x aula ao vivo",
+                "body": [
+                    "<p>Para quem está em fase de decisão, é importante comparar o estudo por listas soltas com um curso de iorubá ao vivo. Dias da semana parecem conteúdo simples, mas podem ser aprendidos de forma superficial quando não há correção.</p>",
+                    "<table><thead><tr><th>Critério</th><th>Lista pronta na internet</th><th>Aula de iorubá ao vivo</th></tr></thead><tbody><tr><td>Pronúncia</td><td>ausente ou limitada</td><td>professor escuta e corrige</td></tr><tr><td>Tons</td><td>frequentemente ignorados</td><td>trabalhados com orientação</td></tr><tr><td>Marcas gráficas</td><td>podem ser apagadas</td><td>preservadas e explicadas</td></tr><tr><td>Contexto cultural</td><td>superficial</td><td>discutido com cuidado</td></tr><tr><td>Frases</td><td>muitas vezes traduzidas literalmente</td><td>construídas conforme o nível</td></tr><tr><td>Dúvidas</td><td>ficam sem resposta</td><td>aluno pergunta em tempo real</td></tr><tr><td>Evolução</td><td>dispersa</td><td>organizada por sequência</td></tr><tr><td>Respeito à tradição</td><td>depende da fonte</td><td>deve fazer parte do método</td></tr></tbody></table>",
+                    "<p>A lista pode ajudar como apoio, mas não substitui o aprendizado vivo. O iorubá é uma língua de oralidade forte, e a pronúncia precisa de escuta e correção.</p>"
+                ]
+            },
+            {
+                "heading": "Como avaliar um curso de iorubá antes de escolher",
+                "body": [
+                    "<p>Um bom curso de iorubá online deve trabalhar conteúdos básicos com seriedade. Se o curso não cuida da pronúncia nos dias da semana, provavelmente também não cuidará de temas mais complexos.</p>",
+                    "<p>Antes de escolher, observe se o curso:</p>",
+                    "<ul><li>oferece aula ao vivo;</li><li>corrige pronúncia;</li><li>explica tons;</li><li>preserva sinais gráficos;</li><li>trabalha oralidade;</li><li>contextualiza vocabulário;</li><li>evita promessas rápidas;</li><li>respeita cultura iorubá;</li><li>permite perguntas;</li><li>tem progressão para iniciantes;</li><li>ajuda a transformar palavras em frases.</li></ul>",
+                    "<p>A Vedium trabalha com a proposta de língua e cultura juntas. Para o iorubá, isso significa aprender além da tradução: escutar, pronunciar, compreender e respeitar.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para estudar tempo em iorubá",
+                "body": [
+                    "<p>Este plano ajuda o iniciante a organizar o estudo sem pressa.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>palavra <strong>ọjọ́</strong> e dias da semana</td><td>escuta, repetição e escrita</td></tr><tr><td>Semana 2</td><td>hoje, ontem e amanhã</td><td>frases simples e reconhecimento</td></tr><tr><td>Semana 3</td><td>manhã, tarde e noite</td><td>rotina de estudo e partes do dia</td></tr><tr><td>Semana 4</td><td>semana, mês e ano</td><td>calendário simples e revisão oral</td></tr></tbody></table>",
+                    "<p>Rotina recomendada:</p>",
+                    "<ul><li>ouvir os termos antes de repetir;</li><li>estudar 3 a 5 palavras por vez;</li><li>copiar com marcas;</li><li>gravar a própria voz;</li><li>revisar fora da ordem;</li><li>usar calendário visual;</li><li>levar dúvidas para aula ao vivo.</li></ul>",
+                    "<p>Essa prática ajuda o aluno a memorizar sem perder o cuidado com o som.</p>"
+                ]
+            },
+            {
+                "heading": "Erros comuns ao estudar dias da semana em iorubá",
+                "body": [
+                    "<p>Os erros mais comuns acontecem quando o aluno trata o tema como uma lista fácil demais. Em idiomas com tons e marcas, até palavras básicas exigem atenção.</p>",
+                    "<p>Evite:</p>",
+                    "<ul><li>apagar acentos e pontos;</li><li>ler com som de português;</li><li>decorar a sequência sem reconhecer cada dia;</li><li>ignorar a palavra <strong>ọjọ́</strong>;</li><li>repetir rápido demais;</li><li>usar frases traduzidas literalmente;</li><li>confiar em listas sem fonte;</li><li>não praticar em voz alta;</li><li>não pedir correção;</li><li>avançar sem consolidar.</li></ul>",
+                    "<p>Melhor caminho:</p>",
+                    "<table><thead><tr><th>Em vez de...</th><th>Faça...</th></tr></thead><tbody><tr><td>decorar sete nomes rapidamente</td><td>aprenda com escuta</td></tr><tr><td>apagar sinais</td><td>copie a grafia completa</td></tr><tr><td>repetir como português</td><td>peça correção</td></tr><tr><td>estudar só em tabela</td><td>use calendário e rotina</td></tr><tr><td>inventar frases</td><td>pratique modelos de aula</td></tr><tr><td>estudar sem contexto</td><td>entenda uso e cultura</td></tr></tbody></table>",
+                    "<p>A base bem feita protege o aprendizado futuro.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse caminho",
+                "body": [
+                    "<p>A Vedium ajuda estudantes de iorubá porque oferece aulas online ao vivo, com foco em pronúncia, escuta, vocabulário e contexto cultural. Em temas como dias da semana e expressões de tempo, a aula ao vivo permite que o aluno pratique o que parece simples, mas exige cuidado real.</p>",
+                    "<p>Nas aulas de iorubá da Vedium, o aluno pode praticar:</p>",
+                    "<ul><li>dias da semana;</li><li>expressões de tempo;</li><li>pronúncia;</li><li>tons;</li><li>escrita com marcas;</li><li>perguntas simples;</li><li>rotina de estudo;</li><li>escuta guiada;</li><li>oralidade;</li><li>cultura iorubá;</li><li>dúvidas individuais;</li><li>revisão no próprio ritmo.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. O aluno continua porque percebe profundidade e evolução, não porque está preso. Essa liberdade combina com um aprendizado que precisa ser sério, respeitoso e constante.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou pronto para estudar tempo em iorubá com mais seriedade?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Sei reconhecer <strong>ọjọ́</strong> como palavra importante para “dia”.</li><li>Conheço os sete dias da semana.</li><li>Sei que tons e marcas importam.</li><li>Copio as palavras sem apagar sinais.</li><li>Pratico pronúncia em voz alta.</li><li>Reconheço termos como hoje, ontem e amanhã.</li><li>Sei palavras para manhã, tarde e noite.</li><li>Não monto frases por tradução literal.</li><li>Levo dúvidas para aula ao vivo.</li><li>Estudo com respeito à cultura.</li></ul>",
+                    "<p>Se muitos itens ainda estão inseguros, esse é exatamente o momento de começar com orientação.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Dias da semana e expressões de tempo em iorubá são fundamentais para organizar o aprendizado, compreender rotinas, reconhecer sequências e transformar vocabulário em comunicação. Palavras como <strong>ọjọ́</strong>, <strong>ọ̀sẹ̀</strong>, <strong>òní</strong>, <strong>àná</strong>, <strong>ọ̀la</strong>, <strong>òwúrọ̀</strong>, <strong>ọ̀sán</strong> e <strong>alẹ́</strong> ajudam o aluno a falar de presença, passado, futuro e prática.</p>",
+                    "<p>O estudo deve ser feito com respeito. Não basta decorar uma tabela. É preciso ouvir, repetir, preservar marcas gráficas, praticar tons, entender contexto e usar as palavras em frases guiadas. A aula ao vivo faz diferença porque o professor corrige pronúncia e impede que erros virem hábito.</p>",
+                    "<p>A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura, oralidade e respeito à tradição. Sem contrato de fidelidade: você continua porque percebe profundidade no aprendizado.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a> e comece a estudar dias da semana, tempo e oralidade com orientação real.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ioruba/erros-comuns-de-pronuncia-que-alteram-palavras-em-ioruba\">Erros comuns de pronúncia que alteram palavras em iorubá</a> ou conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Como se diz “dia” em iorubá?",
+                "a": "Uma forma comum para “dia” é ọjọ́. Ela aparece também na formação dos dias da semana e deve ser pronunciada com atenção aos tons."
+            },
+            {
+                "q": "Quais são os dias da semana em iorubá?",
+                "a": "Formas frequentemente ensinadas incluem Ọjọ́ Àìkú, Ọjọ́ Ajé, Ọjọ́ Ìṣẹ́gun, Ọjọ́rú, Ọjọ́bọ, Ọjọ́ Ẹtì e Ọjọ́ Àbámẹ́ta."
+            },
+            {
+                "q": "Como dizer hoje, ontem e amanhã em iorubá?",
+                "a": "Formas iniciais comuns são òní para hoje, àná para ontem e ọ̀la para amanhã, sempre com cuidado de pronúncia."
+            },
+            {
+                "q": "Posso aprender dias da semana em iorubá apenas por tabela?",
+                "a": "A tabela ajuda, mas não basta. É importante ouvir, repetir, preservar sinais gráficos, praticar tons e receber correção ao vivo."
+            },
+            {
+                "q": "A Vedium oferece aula de iorubá com vocabulário de tempo?",
+                "a": "Sim. A Vedium oferece aulas de iorubá online e ao vivo, com dias da semana, expressões de tempo, pronúncia, oralidade e contexto cultural."
+            }
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Falar sobre a próxima turma de Iorubá",
+        "cta_url": "/curso-de-ioruba-online"
+    },
+    "erros-comuns-de-pronuncia-que-alteram-palavras-em-ioruba": {
+        "title": "Erros comuns de pronúncia que alteram palavras em iorubá",
+        "meta_description": "Veja erros de pronúncia em iorubá que mudam sentidos e como aulas ao vivo ajudam a praticar com respeito.",
+        "h1": "Erros comuns de pronúncia que alteram palavras em iorubá",
+        "date": "2025-03-07",
+        "date_display": "7 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Road running through an open landscape, evoking travel and directions",
+        "tag": "Iorubá",
+        "category": "ioruba",
+        "lead": "Erros de pronúncia em iorubá podem alterar palavras porque o idioma depende de sons, tons, vogais abertas, marcas gráficas, nasalização e ritmo de fala que não funcionam exatamente como no português. Para quem busca aprender iorubá por ancestralidade, cultura, cantigas, rezas, nomes ou estudo responsável, pronunciar com atenção não é detalhe estético: é parte do significado.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Muitas pessoas brasileiras chegam ao iorubá pela escuta. Ouvem uma cantiga, uma saudação, uma reza, um nome, uma palavra em contexto religioso ou cultural, e sentem vontade de compreender melhor. Esse desejo é legítimo e profundo. Porém, quando o aluno tenta repetir o que ouviu usando apenas os hábitos do português, alguns sons podem ser aproximados demais, marcas podem ser ignoradas e tons podem desaparecer. O resultado é que a palavra pode ficar diferente do que deveria ser.</p>",
+                    "<p>Esse cuidado é especialmente importante porque o iorubá não deve ser tratado como uma lista de palavras bonitas para repetir. A língua carrega tradição, oralidade, memória e cultura. Por isso, aprender pronúncia em iorubá é uma forma de respeito: respeito ao idioma, à tradição e ao sentido por trás da palavra.</p>",
+                    "<p>Neste artigo, você vai entender quais erros de pronúncia mais atrapalham iniciantes, por que eles podem mudar sentidos, como praticar de forma responsável e como uma aula de iorubá ao vivo ajuda a corrigir o que vídeos soltos e traduções rápidas não conseguem. A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura e profundidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que a pronúncia muda palavras em iorubá?",
+                "body": [
+                    "<p>A pronúncia muda palavras em iorubá porque o idioma é tonal e usa contrastes sonoros que precisam ser respeitados. Tons, vogais, marcas gráficas e consoantes não são acessórios. Eles ajudam a diferenciar palavras, orientar sentido e preservar a forma correta da língua.</p>",
+                    "<p>Em termos práticos, o aluno precisa observar:</p>",
+                    "<ul><li>tom alto, médio e baixo;</li><li>vogais abertas e fechadas;</li><li>sons que não existem da mesma forma no português;</li><li>marcas abaixo de letras;</li><li>acentos tonais;</li><li>nasalização;</li><li>ritmo da oralidade;</li><li>diferença entre escutar, repetir e compreender.</li></ul>",
+                    "<p>Quando esses elementos são ignorados, a palavra pode deixar de soar como iorubá e virar uma aproximação baseada no português. Em alguns casos, isso dificulta a compreensão. Em outros, pode alterar o sentido. Por isso, aprender iorubá com atenção à pronúncia é parte essencial do estudo sério.</p>",
+                    "<p>Se você quer praticar pronúncia com orientação ao vivo, fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Contexto cultural do tema",
+                "body": [
+                    "<p>Pronúncia em iorubá não é apenas técnica. Ela também tem dimensão cultural. Para muitas pessoas no Brasil e nas comunidades afro-diaspóricas, palavras em iorubá aparecem em cantigas, rezas, saudações, nomes, expressões de respeito e práticas de memória. Pronunciar com cuidado é uma forma de reconhecer que a língua não é enfeite.</p>",
+                    "<p>Isso não significa que o aluno iniciante precise ter medo de falar. Errar faz parte do aprendizado. O problema não é errar. O problema é repetir sem escutar, sem perguntar, sem aceitar correção e sem considerar o contexto.</p>",
+                    "<p>Uma postura responsável inclui:</p>",
+                    "<ul><li>ouvir antes de repetir;</li><li>perguntar como se pronuncia;</li><li>aceitar correções;</li><li>preservar marcas gráficas;</li><li>não apagar tons;</li><li>não transformar palavras em decoração;</li><li>não publicar traduções ou pronúncias sem confirmação;</li><li>praticar com quem orienta;</li><li>entender que som e sentido caminham juntos.</li></ul>",
+                    "<p>A persona Adá, que quer compreender o que canta e reza, precisa de um caminho que una escuta, língua e cultura. Não basta saber “o que significa”. É necessário aprender como a palavra vive na fala.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 1: ignorar os tons",
+                "body": [
+                    "<p>Ignorar os tons é um dos erros mais importantes no aprendizado do iorubá. O iorubá é uma língua tonal. Isso significa que a altura da voz na sílaba participa do significado. Em português, costumamos usar entonação para emoção, pergunta ou ênfase. Em iorubá, o tom é parte da estrutura da palavra.</p>",
+                    "<p>De forma didática, o aluno deve saber que existem tons que podem ser marcados na escrita e percebidos na fala. Em materiais didáticos, é comum ver sinais indicando tom alto, tom baixo e tom médio. Quando o aluno ignora esses sinais, ele pode repetir a palavra como se todas as sílabas tivessem o mesmo peso, o que empobrece a pronúncia e pode alterar o entendimento.</p>",
+                    "<p>O erro costuma aparecer assim:</p>",
+                    "<ul><li>o aluno lê a palavra como se fosse português;</li><li>ignora acentos;</li><li>coloca a mesma melodia em tudo;</li><li>não percebe subida ou descida de voz;</li><li>repete cantigas sem observar variação sonora.</li></ul>",
+                    "<p>Como praticar:</p>",
+                    "<p>1. escolha uma palavra curta;<br>2. observe se há marcas tonais;<br>3. escute a pronúncia guiada;<br>4. repita devagar;<br>5. grave sua voz;<br>6. compare em aula ao vivo;<br>7. repita até perceber a diferença.</p>",
+                    "<p>A meta não é decorar teoria tonal de forma abstrata. A meta é educar o ouvido.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 2: apagar marcas gráficas",
+                "body": [
+                    "<p>Apagar marcas gráficas é outro erro comum. Em iorubá, sinais não são detalhes decorativos. Eles ajudam a orientar som, tom e diferença entre letras. Quando o aluno copia uma palavra sem marcas, perde informação importante.</p>",
+                    "<p>Esse erro aparece quando a pessoa:</p>",
+                    "<ul><li>retira acentos;</li><li>não diferencia letras com ponto abaixo;</li><li>adapta tudo para o alfabeto do português;</li><li>escreve de memória sem conferir;</li><li>compartilha palavras sem grafia correta;</li><li>usa imagens ou posts que simplificam a escrita.</li></ul>",
+                    "<p>Um exemplo didático de cuidado é observar letras como <strong>ẹ</strong>, <strong>ọ</strong> e <strong>ṣ</strong> quando aparecem em materiais de estudo. Elas não devem ser tratadas como se fossem exatamente iguais a <strong>e</strong>, <strong>o</strong> e <strong>s</strong> do português. A diferença precisa ser explicada e treinada.</p>",
+                    "<p>Boa prática de estudo:</p>",
+                    "<table><thead><tr><th>Ao anotar</th><th>Faça assim</th></tr></thead><tbody><tr><td>Palavra nova</td><td>copie com todos os sinais</td></tr><tr><td>Dúvida de som</td><td>marque para perguntar em aula</td></tr><tr><td>Tradução</td><td>registre como aproximada, quando for o caso</td></tr><tr><td>Pronúncia</td><td>peça correção ao vivo</td></tr><tr><td>Revisão</td><td>compare escrita e som juntos</td></tr></tbody></table>",
+                    "<p>Preservar a escrita é parte do respeito à língua.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 3: pronunciar tudo como se fosse português",
+                "body": [
+                    "<p>Pronunciar tudo como português é um erro natural no começo, mas precisa ser corrigido. O aluno usa os sons que já conhece para aproximar o iorubá. Isso ajuda a iniciar, mas não pode virar o destino final.</p>",
+                    "<p>A influência do português pode aparecer em:</p>",
+                    "<ul><li>vogais com som brasileiro demais;</li><li>sílabas alongadas sem necessidade;</li><li>perda de tons;</li><li>troca de sons;</li><li>redução de marcas;</li><li>ritmo de fala inadequado;</li><li>acento colocado onde não deveria.</li></ul>",
+                    "<p>O problema é que o português e o iorubá têm sistemas diferentes. Uma palavra não deve ser lida apenas pela intuição do português. Ela precisa ser ouvida.</p>",
+                    "<p>Como corrigir:</p>",
+                    "<ul><li>ouvir palavras isoladas;</li><li>repetir em velocidade lenta;</li><li>trabalhar sílaba por sílaba;</li><li>praticar com professor;</li><li>gravar a própria voz;</li><li>comparar com a pronúncia orientada;</li><li>evitar “aportuguesar” a palavra para facilitar.</li></ul>",
+                    "<p>A facilidade inicial pode ser enganosa. O aluno sente que está repetindo, mas na verdade pode estar recriando a palavra dentro do som do português.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 4: confundir vogais abertas e fechadas",
+                "body": [
+                    "<p>Confundir vogais abertas e fechadas pode alterar a pronúncia de palavras em iorubá. Para brasileiros, esse ponto exige atenção porque o português também tem variações de vogais, mas o sistema não funciona da mesma maneira.</p>",
+                    "<p>Em iorubá, algumas letras indicam sons que precisam ser diferenciados. Quando o aluno não percebe essa diferença, tudo passa a soar parecido. Isso dificulta a escuta, a repetição e a compreensão.</p>",
+                    "<p>Prática recomendada:</p>",
+                    "<p>1. coloque duas formas parecidas lado a lado;<br>2. escute a diferença com professor;<br>3. repita lentamente;<br>4. peça correção;<br>5. use em uma palavra;<br>6. depois use em uma frase curta ou cantiga guiada.</p>",
+                    "<p>O aluno não precisa dominar tudo na primeira semana. Mas precisa saber que essa diferença existe e que deve ser treinada.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 5: não perceber nasalização",
+                "body": [
+                    "<p>Não perceber nasalização é outro ponto que pode atrapalhar. Em muitas línguas, sons nasais aparecem de formas diferentes. O aluno brasileiro pode até reconhecer nasalidade em português, mas isso não significa que vai aplicar corretamente em iorubá.</p>",
+                    "<p>O risco é transformar uma palavra nasal em uma forma oral comum ou acrescentar nasalização onde não existe. Em ambos os casos, a palavra pode ficar diferente.</p>",
+                    "<p>Como praticar nasalização com cuidado:</p>",
+                    "<ul><li>escutar primeiro;</li><li>repetir sem pressa;</li><li>perceber se o som sai pelo nariz;</li><li>comparar com palavras sem nasalização;</li><li>pedir feedback;</li><li>evitar inventar “n” ou “m” quando não há;</li><li>observar como o material didático representa o som.</li></ul>",
+                    "<p>Esse ponto mostra por que o estudo apenas visual não basta. A escrita ajuda, mas a escuta é indispensável.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 6: depender apenas de transliteração ou escrita simplificada",
+                "body": [
+                    "<p>Depender de transliteração ou escrita simplificada pode afastar o aluno da pronúncia real. Transliterações tentam aproximar sons usando letras do português ou do alfabeto latino simplificado, mas nem sempre dão conta de tons, marcas e diferenças sonoras.</p>",
+                    "<p>Esse recurso pode ser útil como apoio inicial, mas apresenta riscos:</p>",
+                    "<ul><li>apagar tons;</li><li>simplificar vogais;</li><li>esconder marcas;</li><li>criar pronúncia aportuguesada;</li><li>dar falsa segurança;</li><li>dificultar a leitura correta depois;</li><li>afastar o aluno da grafia responsável.</li></ul>",
+                    "<p>A melhor prática é usar transliteração apenas como ponte, nunca como substituta do estudo. O aluno deve voltar à forma correta, ouvir a palavra e praticar com orientação.</p>"
+                ]
+            },
+            {
+                "heading": "Erro 7: aprender cantigas só pela repetição",
+                "body": [
+                    "<p>Aprender cantigas apenas pela repetição pode gerar memorização sem compreensão. A repetição é importante, mas precisa ser acompanhada de escuta, contexto e orientação. Em cantigas, o ritmo ajuda a memorizar, mas também pode esconder detalhes de pronúncia.</p>",
+                    "<p>O aluno pode repetir por anos uma palavra sem saber:</p>",
+                    "<ul><li>onde começa e termina;</li><li>qual é o tom;</li><li>qual é a tradução aproximada;</li><li>qual é o contexto;</li><li>qual som está sendo reduzido pela melodia;</li><li>quais palavras se repetem;</li><li>o que precisa ser preservado.</li></ul>",
+                    "<p>Por isso, a escuta de cantigas deve ser guiada. O ideal é trabalhar trechos curtos, identificar palavras, ouvir pronúncia fora da melodia e depois retornar à cantiga com mais consciência.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar com respeito?",
+                "body": [
+                    "<p>Praticar com respeito significa tratar a pronúncia como parte do sentido, e não como detalhe secundário. O respeito aparece na forma como o aluno escuta, pergunta, anota e aceita correção.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>não tenha vergonha de errar;</li><li>não tenha orgulho de permanecer no erro;</li><li>peça correção;</li><li>estude tons desde o início;</li><li>não apague sinais;</li><li>escute mais de uma vez;</li><li>evite repetir cantigas sem orientação;</li><li>diferencie tradução de pronúncia;</li><li>pratique palavras antes de frases;</li><li>leve dúvidas para aula ao vivo.</li></ul>",
+                    "<p>O respeito não é silêncio. É presença consciente no aprendizado. Você pode falar, tentar e errar, desde que esteja disposto a ouvir e corrigir.</p>",
+                    "<p>Para estudar iorubá com pronúncia, cultura e orientação ao vivo, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Comparação de curso: pronúncia guiada x estudo solto",
+                "body": [
+                    "<p>Nem todo curso de iorubá trabalha pronúncia com a mesma seriedade. Para quem está em fase de consideração, comparar formatos é essencial.</p>",
+                    "<table><thead><tr><th>Critério</th><th>Estudo solto por vídeos</th><th>Curso de iorubá ao vivo</th></tr></thead><tbody><tr><td>Correção de pronúncia</td><td>limitada ou inexistente</td><td>professor escuta e corrige</td></tr><tr><td>Tons</td><td>muitas vezes ignorados</td><td>trabalhados com orientação</td></tr><tr><td>Dúvidas culturais</td><td>ficam sem resposta</td><td>podem ser discutidas em aula</td></tr><tr><td>Cantigas</td><td>repetição sem contexto</td><td>escuta guiada e responsável</td></tr><tr><td>Escrita</td><td>pode vir simplificada</td><td>preserva marcas e sinais</td></tr><tr><td>Ritmo de estudo</td><td>disperso</td><td>sequência pedagógica</td></tr><tr><td>Responsabilidade cultural</td><td>depende da fonte</td><td>deve ser parte do método</td></tr></tbody></table>",
+                    "<p>Vídeos podem ser úteis para contato inicial, mas não substituem correção. No iorubá, especialmente para quem busca compreender cantigas, rezas e ancestralidade, o acompanhamento ao vivo ajuda a evitar superficialidade.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: pronúncia consciente em 7 etapas",
+                "body": [
+                    "<p>Este exercício ajuda o aluno a perceber como som, escrita e sentido se conectam.</p>",
+                    "<h3>Etapa 1: escolha uma palavra curta</h3>",
+                    "<p>O professor seleciona uma palavra adequada ao nível da turma, com foco em uma dificuldade específica: tom, vogal, marca gráfica ou nasalização.</p>",
+                    "<h3>Etapa 2: escuta sem repetição</h3>",
+                    "<p>O aluno ouve primeiro. A primeira tarefa é perceber, não imitar.</p>",
+                    "<h3>Etapa 3: observação da escrita</h3>",
+                    "<p>A turma observa a forma escrita, marcas e sinais. O professor explica o que deve ser percebido.</p>",
+                    "<h3>Etapa 4: repetição lenta</h3>",
+                    "<p>O aluno repete devagar, sem pressa de falar rápido.</p>",
+                    "<h3>Etapa 5: correção individual</h3>",
+                    "<p>O professor corrige pontos específicos: tom, vogal, ritmo, nasalização ou consoante.</p>",
+                    "<h3>Etapa 6: gravação e comparação</h3>",
+                    "<p>O aluno grava a própria voz e compara com a orientação recebida.</p>",
+                    "<h3>Etapa 7: contexto</h3>",
+                    "<p>A palavra é colocada em uma saudação, frase curta, pergunta cultural ou trecho de escuta guiada.</p>",
+                    "<p>Esse exercício mostra que pronúncia não é uma etapa separada do aprendizado. Ela acompanha a língua desde o início.</p>"
+                ]
+            },
+            {
+                "heading": "Como avaliar se um curso de iorubá leva a pronúncia a sério",
+                "body": [
+                    "<p>Um bom curso de iorubá online deve trabalhar pronúncia desde as primeiras aulas. Se o curso só entrega vocabulário, tradução e curiosidades culturais, pode faltar uma parte essencial do aprendizado.</p>",
+                    "<p>Antes de escolher, observe se o curso:</p>",
+                    "<ul><li>tem aula ao vivo;</li><li>corrige pronúncia;</li><li>explica tons;</li><li>preserva marcas gráficas;</li><li>trabalha oralidade;</li><li>inclui escuta guiada;</li><li>contextualiza cantigas;</li><li>diferencia tradução literal de sentido cultural;</li><li>permite perguntas;</li><li>respeita a tradição;</li><li>não promete atalhos irreais.</li></ul>",
+                    "<p>A Vedium trabalha com a proposta de ensinar língua e cultura juntas. Para o iorubá, isso significa dar atenção à pronúncia, à escuta, à oralidade e ao sentido cultural das palavras.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para melhorar a pronúncia em iorubá",
+                "body": [
+                    "<p>Este plano ajuda iniciantes a criar uma rotina de pronúncia mais cuidadosa.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>escuta e tons</td><td>ouvir palavras curtas e marcar subida/descida</td></tr><tr><td>Semana 2</td><td>vogais e marcas</td><td>comparar sons e preservar grafia</td></tr><tr><td>Semana 3</td><td>nasalização e ritmo</td><td>repetir devagar e gravar a voz</td></tr><tr><td>Semana 4</td><td>palavras em contexto</td><td>usar em saudações, perguntas e escuta guiada</td></tr></tbody></table>",
+                    "<p>Rotina diária:</p>",
+                    "<ul><li>ouvir 3 palavras;</li><li>repetir cada uma 5 vezes;</li><li>olhar a escrita correta;</li><li>gravar a própria voz;</li><li>anotar dúvida;</li><li>revisar em aula ao vivo.</li></ul>",
+                    "<p>A evolução vem de pequenos ajustes constantes.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Erros de pronúncia em iorubá podem alterar palavras porque o idioma depende de tons, sons, vogais, marcas gráficas, nasalização e ritmo. Para quem busca aprender por ancestralidade, cultura, cantigas, rezas ou estudo sério, pronunciar melhor é uma forma de respeito.</p>",
+                    "<p>O objetivo não é criar medo de falar. O objetivo é aprender com cuidado. O iniciante pode errar, mas deve escutar, perguntar, receber correção e praticar com orientação. A pronúncia precisa caminhar junto com contexto cultural e compreensão.</p>",
+                    "<p>A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura, oralidade, pronúncia e respeito à tradição. Sem contrato de fidelidade: você continua porque percebe profundidade e evolução.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a> e comece a praticar pronúncia com escuta, presença e orientação real.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ioruba/numeros-em-ioruba-logica-uso-e-pratica-inicial\">Números em iorubá: lógica, uso e prática inicial</a> ou conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Por que a pronúncia em iorubá é tão importante?",
+                "a": "Porque o iorubá é uma língua tonal e sonora. Tons, vogais, marcas e ritmo podem diferenciar palavras e orientar sentidos."
+            },
+            {
+                "q": "É normal errar a pronúncia no começo?",
+                "a": "Sim. Errar faz parte do aprendizado. O importante é ouvir, aceitar correção, repetir com cuidado e não transformar o erro em hábito."
+            },
+            {
+                "q": "Posso aprender pronúncia de iorubá só com vídeos?",
+                "a": "Vídeos ajudam no contato inicial, mas não corrigem sua fala. A aula ao vivo permite feedback, ajuste de tons e prática orientada."
+            },
+            {
+                "q": "Como praticar pronúncia em iorubá com respeito?",
+                "a": "Ouça antes de repetir, preserve marcas gráficas, estude tons, grave sua voz, peça correção e contextualize palavras antes de usá-las."
+            },
+            {
+                "q": "A Vedium oferece curso de iorubá com foco em pronúncia?",
+                "a": "Sim. A Vedium oferece aulas de iorubá online e ao vivo, com atenção à pronúncia, oralidade, cultura e respeito à tradição."
+            }
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Falar sobre a próxima turma de Iorubá",
+        "cta_url": "/curso-de-ioruba-online"
+    },
+    "falsos-cognatos-em-espanhol-que-mais-confundem-brasileiros": {
+        "title": "Falsos cognatos em espanhol que mais confundem brasileiros",
+        "meta_description": "Conheça falsos cognatos em espanhol que confundem brasileiros e aprenda a evitar erros com prática ao vivo.",
+        "h1": "Falsos cognatos em espanhol que mais confundem brasileiros",
+        "date": "2025-04-02",
+        "date_display": "2 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Maca sobre pilha de livros ao lado de blocos com letras, tema estudo",
+        "tag": "Espanhol",
+        "category": "espanhol",
+        "lead": "Falsos cognatos em espanhol são palavras que parecem muito com palavras em português, mas têm significado diferente. Eles confundem brasileiros porque dão uma sensação de entendimento imediato: o aluno olha, reconhece a forma, acha que sabe o sentido e usa a palavra como se fosse português. O problema é que essa semelhança pode levar a erros em viagem, trabalho, reuniões, estudos e conversas do dia a dia.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para brasileiros, o espanhol costuma parecer “fácil” no começo. Muitas palavras são parecidas, a estrutura geral parece familiar e é possível entender parte de uma conversa ou texto sem nunca ter estudado formalmente. Mas essa proximidade cria uma armadilha: o aluno entende mais do que consegue falar com precisão. Ele usa palavras parecidas, mistura português com espanhol, monta frases com lógica brasileira e acredita que será compreendido sem dificuldade. Às vezes será. Em outras, pode gerar mal-entendidos.</p>",
+                    "<p>É por isso que estudar falsos cognatos em espanhol é essencial para quem quer sair do “portunhol” e desenvolver comunicação real. Palavras como <strong>embarazada</strong>, <strong>exquisito</strong>, <strong>apellido</strong>, <strong>oficina</strong>, <strong>vaso</strong>, <strong>copa</strong>, <strong>rato</strong>, <strong>largo</strong> e <strong>aceite</strong> parecem familiares, mas não significam o que muitos brasileiros imaginam. Em uma conversa casual, o erro pode virar piada. Em contexto profissional, pode causar confusão. Em uma viagem, pode atrapalhar uma informação importante.</p>",
+                    "<p>Neste artigo, você vai entender por que brasileiros entendem espanhol, mas travam para falar, conhecer uma lista de falsos cognatos que mais confundem, ver frases de exemplo e aprender como memorizar sem traduzir palavra por palavra. A Vedium oferece curso de espanhol online com aula ao vivo, prática real e sem contrato de fidelidade: você continua porque sente evolução, não porque está preso.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que falsos cognatos em espanhol confundem brasileiros?",
+                "body": [
+                    "<p>Falsos cognatos em espanhol confundem brasileiros porque parecem palavras conhecidas em português, mas têm outro significado. A aparência familiar faz o aluno baixar a atenção e usar a palavra de forma automática, como se espanhol fosse apenas português com outro som.</p>",
+                    "<p>O problema aparece em três momentos:</p>",
+                    "<p>1. <strong>Na leitura:</strong> o aluno acha que entendeu uma palavra pelo formato.<br>2. <strong>Na fala:</strong> o aluno usa uma palavra errada porque traduziu do português.<br>3. <strong>Na escuta:</strong> o aluno ouve uma palavra parecida e interpreta com sentido brasileiro.</p>",
+                    "<p>Exemplo simples:</p>",
+                    "<ul><li><strong>embarazada</strong> em espanhol não significa “embaraçada”; significa “grávida”.</li><li><strong>apellido</strong> não significa “apelido”; significa “sobrenome”.</li><li><strong>exquisito</strong> não significa “esquisito”; significa “delicioso” ou “refinado”, dependendo do contexto.</li></ul>",
+                    "<p>Por isso, aprender espanhol para brasileiros exige atenção especial aos falsos amigos. Não basta “se virar” com palavras parecidas. É preciso estudar diferenças, praticar frases e receber correção em situações reais.</p>",
+                    "<p>Quer transformar seu espanhol de “eu entendo” para “eu falo com segurança”? Agende uma aula experimental de Espanhol em <a href=\"/curso-de-espanhol-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que brasileiros entendem espanhol, mas travam para falar?",
+                "body": [
+                    "<p>Brasileiros entendem espanhol, mas travam para falar porque a compreensão passiva vem da semelhança entre os idiomas, enquanto a fala exige precisão, pronúncia, vocabulário ativo e controle de interferências do português. Entender uma frase não significa conseguir produzir uma resposta natural.</p>",
+                    "<p>Essa trava aparece porque o aluno:</p>",
+                    "<ul><li>reconhece palavras parecidas, mas não sabe usá-las;</li><li>traduz mentalmente do português;</li><li>mistura estruturas brasileiras;</li><li>confia demais no “portunhol”;</li><li>tem medo de parecer errado;</li><li>não pratica conversação;</li><li>desconhece falsos cognatos;</li><li>não recebe correção ao vivo;</li><li>estuda vocabulário solto, sem frases;</li><li>acha que espanhol é simples demais para exigir método.</li></ul>",
+                    "<p>O espanhol é próximo do português, mas não é uma versão simplificada dele. A proximidade ajuda no começo, porém exige mais consciência. O aluno brasileiro precisa aprender a perceber o que é parecido, o que é diferente e o que parece igual, mas não é.</p>",
+                    "<p>Um curso de espanhol online com aula ao vivo ajuda porque o professor escuta a fala do aluno, identifica interferências do português e corrige em tempo real. Isso acelera a passagem do “eu entendo mais ou menos” para “eu consigo falar melhor”.</p>"
+                ]
+            },
+            {
+                "heading": "Lista de falsos cognatos em espanhol que mais confundem brasileiros",
+                "body": [
+                    "<p>A melhor forma de estudar falsos cognatos é aprender cada palavra em contexto. A tabela abaixo mostra palavras frequentes, o significado real em espanhol e a confusão comum para brasileiros.</p>",
+                    "<table><thead><tr><th>Espanhol</th><th>Significado correto</th><th>Confusão comum em português</th></tr></thead><tbody><tr><td>embarazada</td><td>grávida</td><td>embaraçada</td></tr><tr><td>apellido</td><td>sobrenome</td><td>apelido</td></tr><tr><td>exquisito</td><td>delicioso / refinado</td><td>esquisito</td></tr><tr><td>oficina</td><td>escritório</td><td>oficina mecânica</td></tr><tr><td>vaso</td><td>copo</td><td>vaso sanitário ou vaso de planta</td></tr><tr><td>copa</td><td>taça / copo / copa</td><td>copa da casa ou competição</td></tr><tr><td>aceite</td><td>óleo</td><td>azeite</td></tr><tr><td>rato</td><td>momento / intervalo curto</td><td>rato animal</td></tr><tr><td>largo</td><td>comprido</td><td>largo em largura</td></tr><tr><td>ancho</td><td>largo</td><td>ancho não existe em português comum</td></tr><tr><td>cena</td><td>jantar</td><td>cena de filme</td></tr><tr><td>éxito</td><td>sucesso</td><td>êxito, mas pouco usado no cotidiano brasileiro</td></tr><tr><td>contestar</td><td>responder</td><td>contestar no sentido de discordar</td></tr><tr><td>carpeta</td><td>pasta</td><td>carpete</td></tr><tr><td>polvo</td><td>pó / polvo animal dependendo do contexto</td><td>polvo animal, em português</td></tr><tr><td>rubio</td><td>loiro</td><td>rubro/vermelho</td></tr><tr><td>rojo</td><td>vermelho</td><td>roxo</td></tr><tr><td>morado</td><td>roxo</td><td>morado como residência</td></tr><tr><td>dirección</td><td>endereço / direção</td><td>direção apenas como sentido</td></tr><tr><td>asignatura</td><td>disciplina escolar</td><td>assinatura</td></tr><tr><td>firma</td><td>assinatura / empresa</td><td>firma, empresa</td></tr><tr><td>taller</td><td>oficina / workshop</td><td>talher</td></tr><tr><td>regalo</td><td>presente</td><td>regalia</td></tr><tr><td>cuello</td><td>pescoço</td><td>coelho</td></tr><tr><td>cubierto</td><td>talher / coberto</td><td>coberto apenas como manta ou clima</td></tr><tr><td>borracha</td><td>bêbada</td><td>borracha escolar</td></tr><tr><td>escoba</td><td>vassoura</td><td>escova</td></tr><tr><td>cepillo</td><td>escova</td><td>cepilho</td></tr><tr><td>quitar</td><td>tirar / remover</td><td>quitar dívida</td></tr><tr><td>sensible</td><td>sensível</td><td>sensato</td></tr><tr><td>actual</td><td>atual</td><td>atual, aqui é cognato real</td></tr><tr><td>actualmente</td><td>atualmente</td><td>eventualmente</td></tr><tr><td>eventualmente</td><td>possivelmente / ocasionalmente</td><td>eventualmente no sentido de “por fim”</td></tr></tbody></table>",
+                    "<p>Essa lista mostra que o problema não está apenas em palavras “engraçadas”. Muitos falsos cognatos aparecem em situações comuns: trabalho, hotel, restaurante, escola, e-mail, documentos, transporte e compras.</p>"
+                ]
+            },
+            {
+                "heading": "Frases de exemplo com falsos cognatos",
+                "body": [
+                    "<p>Frases ajudam a memorizar porque mostram o uso real. Em vez de decorar “apellido = sobrenome”, pratique uma frase que você usaria.</p>",
+                    "<h3>1. Apellido</h3>",
+                    "<p><strong>¿Cuál es tu apellido?</strong><br>Qual é o seu sobrenome?</p>",
+                    "<p>Erro comum: achar que estão perguntando seu apelido.</p>",
+                    "<h3>2. Embarazada</h3>",
+                    "<p><strong>Mi hermana está embarazada.</strong><br>Minha irmã está grávida.</p>",
+                    "<p>Erro comum: interpretar como “embaraçada”.</p>",
+                    "<h3>3. Oficina</h3>",
+                    "<p><strong>Trabajo en una oficina en Madrid.</strong><br>Trabalho em um escritório em Madrid.</p>",
+                    "<p>Erro comum: pensar em oficina mecânica.</p>",
+                    "<h3>4. Vaso</h3>",
+                    "<p><strong>Quiero un vaso de agua, por favor.</strong><br>Quero um copo de água, por favor.</p>",
+                    "<p>Erro comum: pensar em vaso de planta ou banheiro.</p>",
+                    "<h3>5. Aceite</h3>",
+                    "<p><strong>Necesito aceite para cocinar.</strong><br>Preciso de óleo para cozinhar.</p>",
+                    "<p>Erro comum: entender como azeite especificamente. Em espanhol, <strong>aceite de oliva</strong> é azeite de oliva.</p>",
+                    "<h3>6. Cena</h3>",
+                    "<p><strong>La cena es a las ocho.</strong><br>O jantar é às oito.</p>",
+                    "<p>Erro comum: pensar em “cena” de filme.</p>",
+                    "<h3>7. Largo</h3>",
+                    "<p><strong>El camino es largo.</strong><br>O caminho é comprido.</p>",
+                    "<p>Erro comum: interpretar como “largo” em oposição a estreito.</p>",
+                    "<h3>8. Rojo</h3>",
+                    "<p><strong>El coche rojo está afuera.</strong><br>O carro vermelho está lá fora.</p>",
+                    "<p>Erro comum: confundir com roxo.</p>",
+                    "<h3>9. Escoba</h3>",
+                    "<p><strong>Necesito una escoba.</strong><br>Preciso de uma vassoura.</p>",
+                    "<p>Erro comum: pensar em escova.</p>",
+                    "<h3>10. Carpeta</h3>",
+                    "<p><strong>El documento está en la carpeta.</strong><br>O documento está na pasta.</p>",
+                    "<p>Erro comum: pensar em carpete.</p>",
+                    "<p>Esses exemplos mostram por que aprender em frases é mais eficiente do que memorizar pares soltos.</p>"
+                ]
+            },
+            {
+                "heading": "Falsos cognatos no trabalho e nos estudos",
+                "body": [
+                    "<p>No trabalho e nos estudos, falsos cognatos podem gerar mal-entendidos mais sérios. Um e-mail, reunião ou formulário pode parecer fácil, mas uma palavra mal interpretada muda o sentido da informação.</p>",
+                    "<p>Palavras importantes:</p>",
+                    "<table><thead><tr><th>Espanhol</th><th>Uso profissional/acadêmico</th><th>Atenção</th></tr></thead><tbody><tr><td>apellido</td><td>formulários e documentos</td><td>significa sobrenome</td></tr><tr><td>asignatura</td><td>escola/universidade</td><td>significa disciplina</td></tr><tr><td>oficina</td><td>ambiente profissional</td><td>significa escritório</td></tr><tr><td>dirección</td><td>endereço ou direção</td><td>pode variar pelo contexto</td></tr><tr><td>firma</td><td>assinatura ou empresa</td><td>depende da frase</td></tr><tr><td>carpeta</td><td>pasta de documentos</td><td>não é carpete</td></tr><tr><td>contestar</td><td>responder</td><td>não necessariamente discordar</td></tr><tr><td>éxito</td><td>sucesso</td><td>muito comum em contexto profissional</td></tr><tr><td>actual</td><td>atual</td><td>parecido correto, mas cuidado com “actualmente”</td></tr><tr><td>taller</td><td>oficina/workshop</td><td>não é talher</td></tr></tbody></table>",
+                    "<p>Exemplo em reunião:</p>",
+                    "<p><strong>Voy a contestar el correo después de la reunión.</strong><br>Vou responder ao e-mail depois da reunião.</p>",
+                    "<p>Se o brasileiro interpreta <strong>contestar</strong> como “discordar”, entende errado a frase.</p>",
+                    "<p>Exemplo em formulário:</p>",
+                    "<p><strong>Nombre y apellido</strong><br>Nome e sobrenome.</p>",
+                    "<p>Se o aluno coloca um apelido, comete erro de preenchimento.</p>"
+                ]
+            },
+            {
+                "heading": "Falsos cognatos em viagem",
+                "body": [
+                    "<p>Em viagem, falsos cognatos aparecem em hotel, restaurante, transporte e lojas. Como o ambiente é rápido, o aluno pode interpretar errado e responder com insegurança.</p>",
+                    "<p>Palavras úteis:</p>",
+                    "<table><thead><tr><th>Espanhol</th><th>Significado</th><th>Situação</th></tr></thead><tbody><tr><td>habitación</td><td>quarto</td><td>hotel</td></tr><tr><td>equipaje</td><td>bagagem</td><td>aeroporto</td></tr><tr><td>cena</td><td>jantar</td><td>restaurante</td></tr><tr><td>vaso</td><td>copo</td><td>restaurante</td></tr><tr><td>aceite</td><td>óleo</td><td>restaurante</td></tr><tr><td>dirección</td><td>endereço</td><td>táxi / hotel</td></tr><tr><td>tarjeta</td><td>cartão</td><td>pagamento</td></tr><tr><td>billete</td><td>passagem / cédula, conforme país</td><td>transporte</td></tr><tr><td>cola</td><td>fila / cauda</td><td>loja</td></tr><tr><td>baño</td><td>banheiro</td><td>vida diária</td></tr></tbody></table>",
+                    "<p>Embora algumas dessas palavras não sejam falsos cognatos perfeitos, elas confundem brasileiros por semelhança, uso regional ou expectativa do português.</p>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>¿Dónde está el baño?</strong> — Onde fica o banheiro?</li><li><strong>Quiero un vaso de agua.</strong> — Quero um copo de água.</li><li><strong>¿Cuál es la dirección del hotel?</strong> — Qual é o endereço do hotel?</li><li><strong>¿La cena está incluida?</strong> — O jantar está incluído?</li><li><strong>¿Puedo pagar con tarjeta?</strong> — Posso pagar com cartão?</li></ul>",
+                    "<p>O espanhol para viagem fica muito mais seguro quando você aprende frases completas.</p>"
+                ]
+            },
+            {
+                "heading": "Como memorizar sem traduzir palavra por palavra",
+                "body": [
+                    "<p>Para memorizar falsos cognatos sem traduzir palavra por palavra, você precisa criar associação por contexto. O cérebro aprende melhor quando conecta palavra, imagem, situação e frase.</p>",
+                    "<h3>Estratégia 1: aprenda por cena</h3>",
+                    "<p>Em vez de decorar:</p>",
+                    "<p><strong>vaso = copo</strong></p>",
+                    "<p>Imagine a cena:</p>",
+                    "<p>Você está em um restaurante e diz:</p>",
+                    "<p><strong>Quiero un vaso de agua.</strong></p>",
+                    "<p>A palavra fica ligada ao pedido real.</p>",
+                    "<h3>Estratégia 2: use pares de contraste</h3>",
+                    "<p>Compare o falso cognato com a palavra que você achava que era.</p>",
+                    "<table><thead><tr><th>Ideia em português</th><th>Espanhol correto</th></tr></thead><tbody><tr><td>apelido</td><td>apodo</td></tr><tr><td>sobrenome</td><td>apellido</td></tr><tr><td>embaraçada</td><td>avergonzada / confundida, conforme contexto</td></tr><tr><td>grávida</td><td>embarazada</td></tr><tr><td>escritório</td><td>oficina</td></tr><tr><td>oficina mecânica</td><td>taller mecánico</td></tr><tr><td>vassoura</td><td>escoba</td></tr><tr><td>escova</td><td>cepillo</td></tr><tr><td>vermelho</td><td>rojo</td></tr><tr><td>roxo</td><td>morado</td></tr></tbody></table>",
+                    "<h3>Estratégia 3: crie frases pessoais</h3>",
+                    "<p>Use frases próximas da sua vida:</p>",
+                    "<ul><li><strong>Mi apellido es Silva.</strong></li><li><strong>Trabajo en una oficina.</strong></li><li><strong>Quiero un vaso de agua.</strong></li><li><strong>La cena es a las ocho.</strong></li><li><strong>Necesito aceite para cocinar.</strong></li></ul>",
+                    "<h3>Estratégia 4: pratique em voz alta</h3>",
+                    "<p>Falsos cognatos não devem ficar só no caderno. Fale em voz alta para transformar reconhecimento em uso.</p>",
+                    "<h3>Estratégia 5: revise em aula ao vivo</h3>",
+                    "<p>Leve seus erros para o professor. A correção em tempo real ajuda a evitar que a palavra errada vire hábito.</p>"
+                ]
+            },
+            {
+                "heading": "Como evitar portunhol com falsos cognatos",
+                "body": [
+                    "<p>Evitar portunhol não significa negar a vantagem de falar português. Significa usar essa vantagem com consciência. O português ajuda a entender o espanhol, mas também pode enganar.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>desconfie de palavras muito parecidas;</li><li>confirme o uso em frases;</li><li>aprenda falsos cognatos por tema;</li><li>pratique com professor;</li><li>evite traduzir mentalmente tudo;</li><li>escute nativos;</li><li>observe contexto;</li><li>crie listas de erro pessoal;</li><li>repita frases corrigidas;</li><li>revise antes de viagens ou reuniões.</li></ul>",
+                    "<p>Exemplo de portunhol:</p>",
+                    "<p><strong>Mi apelido es Silva.</strong></p>",
+                    "<p>Forma correta:</p>",
+                    "<p><strong>Mi apellido es Silva.</strong></p>",
+                    "<p>Outro exemplo:</p>",
+                    "<p><strong>Trabajo en una oficina mecánica.</strong><br>Se você quer dizer oficina mecânica, o melhor é:</p>",
+                    "<p><strong>Trabajo en un taller mecánico.</strong></p>",
+                    "<p>Essas correções parecem pequenas, mas melhoram muito a clareza.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar falsos cognatos em aula ao vivo",
+                "body": [
+                    "<p>A aula ao vivo é ideal para falsos cognatos porque o professor percebe quando o aluno está traduzindo do português e corrige imediatamente. Em vez de apenas dizer “essa palavra está errada”, o professor mostra a forma natural e faz o aluno usar em contexto.</p>",
+                    "<h3>Exercício 1: interpretação rápida</h3>",
+                    "<p>O professor mostra frases com falsos cognatos. O aluno explica o sentido real.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Estoy embarazada.</strong></p>",
+                    "<p>Aluno deve reconhecer: “Estou grávida”, não “estou embaraçada”.</p>",
+                    "<h3>Exercício 2: completar frase</h3>",
+                    "<p>Professor dá uma situação:</p>",
+                    "<p>Você está em um hotel e precisa informar seu sobrenome.</p>",
+                    "<p>Aluno responde:</p>",
+                    "<p><strong>Mi apellido es...</strong></p>",
+                    "<h3>Exercício 3: contraste português x espanhol</h3>",
+                    "<p>Professor pergunta:</p>",
+                    "<p>Como se diz “apelido” em espanhol?</p>",
+                    "<p>Aluno aprende:</p>",
+                    "<p><strong>apodo</strong></p>",
+                    "<p>E compara com:</p>",
+                    "<p><strong>apellido = sobrenome</strong></p>",
+                    "<h3>Exercício 4: role-play de viagem</h3>",
+                    "<p>Professor simula restaurante:</p>",
+                    "<p><strong>¿Quiere un vaso de agua?</strong></p>",
+                    "<p>Aluno responde:</p>",
+                    "<p><strong>Sí, gracias.</strong></p>",
+                    "<h3>Exercício 5: reunião profissional</h3>",
+                    "<p>Professor simula e-mail:</p>",
+                    "<p><strong>Voy a contestar el mensaje.</strong></p>",
+                    "<p>Aluno interpreta: “Vou responder à mensagem.”</p>",
+                    "<p>Esses exercícios transformam falsos cognatos em reflexo comunicativo.</p>"
+                ]
+            },
+            {
+                "heading": "Curso de espanhol online: o que observar antes de escolher",
+                "body": [
+                    "<p>Um bom curso de espanhol online para brasileiros deve trabalhar as semelhanças e diferenças entre português e espanhol de forma explícita. Se o curso trata o aluno brasileiro como qualquer outro iniciante, pode perder uma oportunidade pedagógica importante.</p>",
+                    "<p>Antes de escolher, observe se o curso oferece:</p>",
+                    "<ul><li>aula de espanhol ao vivo;</li><li>prática de conversação;</li><li>correção de portunhol;</li><li>estudo de falsos cognatos;</li><li>pronúncia para brasileiros;</li><li>frases reais de viagem e trabalho;</li><li>plano por nível;</li><li>exercícios de escuta;</li><li>feedback individual;</li><li>flexibilidade;</li><li>ausência de contrato de fidelidade.</li></ul>",
+                    "<p>A Vedium trabalha com aulas ao vivo e prática real. Isso ajuda o brasileiro a usar a vantagem do português sem cair nas armadilhas da semelhança.</p>",
+                    "<p>Agende uma aula experimental de Espanhol em <a href=\"/curso-de-espanhol-online\">https://vediums.com/</a> e veja como praticar conversação com correção ao vivo.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 7 dias para revisar falsos cognatos",
+                "body": [
+                    "<p>Este plano simples ajuda o aluno a começar sem excesso.</p>",
+                    "<table><thead><tr><th>Dia</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Dia 1</td><td>documentos</td><td>nombre, apellido, dirección</td></tr><tr><td>Dia 2</td><td>restaurante</td><td>vaso, aceite, cena</td></tr><tr><td>Dia 3</td><td>trabalho</td><td>oficina, contestar, éxito</td></tr><tr><td>Dia 4</td><td>viagem</td><td>equipaje, habitación, tarjeta</td></tr><tr><td>Dia 5</td><td>cores e descrição</td><td>rojo, morado, largo, ancho</td></tr><tr><td>Dia 6</td><td>objetos</td><td>carpeta, escoba, cepillo</td></tr><tr><td>Dia 7</td><td>revisão oral</td><td>frases em voz alta e role-play</td></tr></tbody></table>",
+                    "<p>Rotina diária:</p>",
+                    "<p>1. escolha 5 palavras;<br>2. escreva uma frase para cada;<br>3. fale em voz alta;<br>4. crie uma mini situação;<br>5. revise com alguém ou em aula.</p>",
+                    "<p>A meta não é decorar uma lista gigante. É começar a usar corretamente.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda brasileiros aprendendo espanhol",
+                "body": [
+                    "<p>A Vedium ajuda brasileiros aprendendo espanhol porque oferece aula ao vivo, prática de conversação e correção em tempo real. O foco não é apenas ensinar palavras parecidas, mas ajudar o aluno a falar com segurança em situações reais.</p>",
+                    "<p>Nas aulas de espanhol da Vedium, você pode praticar:</p>",
+                    "<ul><li>falsos cognatos;</li><li>pronúncia;</li><li>escuta;</li><li>conversação;</li><li>espanhol para viagem;</li><li>espanhol para trabalho;</li><li>frases profissionais;</li><li>situações de restaurante e hotel;</li><li>reuniões;</li><li>vocabulário ativo;</li><li>correção de portunhol;</li><li>plano por nível.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. Você começa com mais liberdade e continua porque percebe evolução. Para brasileiros que já “entendem um pouco” de espanhol, a aula ao vivo é uma forma prática de transformar familiaridade em comunicação real.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou caindo em falsos cognatos?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Eu acho que espanhol é fácil demais.</li><li>Eu uso palavras parecidas sem confirmar.</li><li>Eu confundo apellido com apelido.</li><li>Eu já achei que embarazada era embaraçada.</li><li>Eu traduzo frases do português para o espanhol.</li><li>Eu falo portunhol quando preciso responder rápido.</li><li>Eu entendo textos, mas travo na fala.</li><li>Eu não pratico conversação ao vivo.</li><li>Eu não reviso falsos cognatos por contexto.</li><li>Eu quero espanhol para viagem, trabalho ou estudo.</li></ul>",
+                    "<p>Se você marcou vários itens, estudar falsos cognatos deve ser prioridade.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Falsos cognatos em espanhol confundem brasileiros porque o idioma parece próximo demais do português. Essa proximidade ajuda na compreensão inicial, mas também cria armadilhas. Palavras como <strong>embarazada</strong>, <strong>apellido</strong>, <strong>exquisito</strong>, <strong>oficina</strong>, <strong>vaso</strong>, <strong>aceite</strong>, <strong>cena</strong>, <strong>carpeta</strong>, <strong>rojo</strong> e <strong>escoba</strong> podem gerar erros se forem usadas por aparência.</p>",
+                    "<p>O melhor caminho é aprender falsos cognatos em frases, por contexto e com prática oral. Em vez de decorar listas soltas, use situações reais: restaurante, hotel, trabalho, documentos, reunião, viagem e estudo. A aula ao vivo acelera esse processo porque o professor corrige seu portunhol, ajusta sua pronúncia e mostra o uso natural das palavras.</p>",
+                    "<p>A Vedium oferece curso de espanhol online com aulas ao vivo, prática real e sem contrato de fidelidade. Você continua porque percebe evolução na fala, não porque está preso.</p>",
+                    "<p>Agende uma aula experimental de Espanhol em <a href=\"/curso-de-espanhol-online\">https://vediums.com/</a> e comece a falar espanhol com mais clareza, segurança e menos armadilhas de tradução.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/espanhol/por-que-brasileiro-entende-espanhol-mas-trava-para-falar\">Por que brasileiro entende espanhol, mas trava para falar</a> ou conheça o <a href=\"/curso-de-espanhol-online\">curso de espanhol online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "O que são falsos cognatos em espanhol?",
+                "a": "Falsos cognatos são palavras que parecem ter o mesmo significado em português e espanhol, mas significam coisas diferentes."
+            },
+            {
+                "q": "Quais falsos cognatos mais confundem brasileiros?",
+                "a": "Alguns dos mais comuns são embarazada, apellido, exquisito, oficina, vaso, aceite, cena, carpeta, rojo e escoba."
+            },
+            {
+                "q": "Por que brasileiros caem tanto em falsos cognatos?",
+                "a": "Porque português e espanhol são parecidos. Essa semelhança ajuda na leitura, mas faz o aluno confiar demais na aparência das palavras."
+            },
+            {
+                "q": "Como memorizar falsos cognatos em espanhol?",
+                "a": "Memorize por frases e contextos reais. Use exemplos de viagem, trabalho, documentos e restaurante, e pratique em voz alta com correção."
+            },
+            {
+                "q": "A Vedium oferece curso de espanhol online para brasileiros?",
+                "a": "Sim. A Vedium oferece aulas de espanhol online ao vivo, com conversação, correção de portunhol, falsos cognatos e prática real."
+            }
+        ],
+        "cta_title": "Quer aprender espanhol sem cair nas armadilhas do português?",
+        "cta_text": "Aulas ao vivo com foco em pronúncia, gramática essencial e conversação real.",
+        "cta_label": "Agendar aula experimental de Espanhol",
+        "cta_url": "/curso-de-espanhol-online"
+    },
+    "hebraico-moderno-x-hebraico-biblico-entenda-a-diferenca": {
+        "title": "Hebraico moderno x hebraico bíblico: entenda a diferença",
+        "meta_description": "Entenda a diferença entre hebraico moderno e bíblico, quando estudar cada um e como a aula ao vivo ajuda iniciantes.",
+        "h1": "Hebraico moderno x hebraico bíblico: entenda a diferença",
+        "date": "2025-03-14",
+        "date_display": "14 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Duas pessoas olhando juntas para a tela de um notebook perto da janela",
+        "tag": "Hebraico",
+        "category": "hebraico",
+        "lead": "Hebraico moderno e hebraico bíblico não são exatamente a mesma coisa. Eles pertencem à mesma tradição linguística, compartilham raízes, letras e muitas estruturas, mas têm objetivos, usos, vocabulários e formas de estudo diferentes. O hebraico moderno é usado hoje para comunicação viva: conversas, viagens, estudos, cultura, notícias, músicas, família, trabalho e vida cotidiana em Israel. O hebraico bíblico é estudado principalmente para leitura, interpretação e compreensão de textos antigos, especialmente textos da Bíblia Hebraica e materiais religiosos, históricos ou acadêmicos.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para quem está começando, essa diferença é essencial. Muitos alunos pesquisam “curso de hebraico online” ou “hebraico para iniciantes” sem saber se querem falar hebraico atual ou ler textos bíblicos. Outros querem os dois, mas não sabem por onde começar. Há também quem chegue pelo interesse religioso, pela cultura judaica, pela história, por viagens, por estudo acadêmico ou pela vontade de aprender uma língua profundamente ligada à memória e à identidade.</p>",
+                    "<p>A pergunta mais importante não é apenas “qual hebraico é melhor?”. A pergunta certa é: “para que eu quero aprender hebraico agora?”. Se seu objetivo é conversar, viajar, entender conteúdos atuais e se comunicar com pessoas, o hebraico moderno tende a ser o caminho principal. Se seu objetivo é ler textos bíblicos com mais autonomia, entender estruturas antigas e estudar passagens em sua língua original, o hebraico bíblico é a trilha mais adequada.</p>",
+                    "<p>Neste artigo, você vai entender de forma simples a diferença entre hebraico moderno e hebraico bíblico, quando estudar cada um, quais exemplos ajudam a visualizar essa separação e como a aula de hebraico ao vivo pode reduzir travas de leitura, pronúncia e compreensão. A Vedium oferece aulas online ao vivo, com orientação, prática e sem contrato de fidelidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: moderno e bíblico não são a mesma coisa",
+                "body": [
+                    "<p>Hebraico moderno e hebraico bíblico não são a mesma coisa porque o hebraico moderno é uma língua viva de comunicação atual, enquanto o hebraico bíblico é uma forma antiga da língua, estudada principalmente para leitura e interpretação de textos clássicos. Eles se conectam, mas não têm o mesmo uso.</p>",
+                    "<p>De forma simples:</p>",
+                    "<table><thead><tr><th>Tipo de hebraico</th><th>Uso principal</th><th>Foco do estudo</th></tr></thead><tbody><tr><td>Hebraico moderno</td><td>comunicação atual</td><td>fala, escuta, leitura cotidiana, escrita e cultura contemporânea</td></tr><tr><td>Hebraico bíblico</td><td>leitura de textos antigos</td><td>gramática, vocabulário bíblico, tradução e interpretação</td></tr><tr><td>Ambos</td><td>base linguística comum</td><td>alfabeto, raízes, estruturas, vocabulário compartilhado e tradição textual</td></tr></tbody></table>",
+                    "<p>A diferença fica mais clara quando pensamos em objetivos. Quem quer pedir informação em uma viagem, conversar, entender uma música atual ou acompanhar notícias precisa de hebraico moderno. Quem quer analisar uma passagem bíblica, compreender vocabulário antigo e estudar construções textuais precisa de hebraico bíblico.</p>",
+                    "<p>Isso não significa que um caminho exclui o outro. Muitos alunos começam pelo moderno e depois estudam o bíblico. Outros começam pelo bíblico e depois desejam falar. A melhor trilha depende do seu objetivo inicial.</p>",
+                    "<p>Se você quer entender qual trilha faz mais sentido para você, fale com a Vedium sobre a próxima turma de Hebraico em <a href=\"/curso-de-hebraico-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "O que é hebraico moderno?",
+                "body": [
+                    "<p>Hebraico moderno é o hebraico usado hoje como língua de comunicação cotidiana. Ele aparece em conversas, escolas, universidades, tecnologia, filmes, séries, músicas, documentos, placas, restaurantes, aeroportos, aplicativos, notícias e relações sociais.</p>",
+                    "<p>Em um curso de hebraico moderno, o aluno geralmente estuda:</p>",
+                    "<ul><li>alfabeto hebraico;</li><li>leitura inicial;</li><li>pronúncia;</li><li>saudações;</li><li>apresentações pessoais;</li><li>perguntas do dia a dia;</li><li>vocabulário de viagem;</li><li>frases úteis;</li><li>conversação;</li><li>escuta;</li><li>escrita básica;</li><li>cultura contemporânea;</li><li>situações reais.</li></ul>",
+                    "<p>Exemplos de situações do hebraico moderno:</p>",
+                    "<ul><li>cumprimentar alguém;</li><li>se apresentar;</li><li>pedir informação;</li><li>fazer uma compra;</li><li>perguntar preço;</li><li>entender uma placa;</li><li>ler uma mensagem curta;</li><li>conversar sobre rotina;</li><li>falar sobre família, trabalho ou estudos;</li><li>entender expressões atuais.</li></ul>",
+                    "<p>O hebraico moderno é indicado para quem quer usar a língua com pessoas e no mundo atual. Para iniciantes, ele costuma ser mais comunicativo e prático desde as primeiras aulas.</p>"
+                ]
+            },
+            {
+                "heading": "O que é hebraico bíblico?",
+                "body": [
+                    "<p>Hebraico bíblico é a forma do hebraico usada nos textos da Bíblia Hebraica e em materiais antigos ligados a esse universo textual. O foco não é conversar em situações atuais, mas ler, reconhecer formas gramaticais, compreender vocabulário e interpretar frases dentro do contexto textual.</p>",
+                    "<p>Em um curso de hebraico bíblico, o aluno geralmente estuda:</p>",
+                    "<ul><li>alfabeto hebraico;</li><li>leitura com atenção;</li><li>sinais vocálicos;</li><li>vocabulário recorrente nos textos;</li><li>raízes verbais;</li><li>substantivos e pronomes;</li><li>estrutura das frases;</li><li>formas verbais;</li><li>tradução guiada;</li><li>leitura de trechos;</li><li>contexto histórico e literário;</li><li>cuidado interpretativo.</li></ul>",
+                    "<p>O objetivo não é “falar hebraico bíblico” em uma conversa cotidiana. O objetivo é desenvolver autonomia gradual para ler e compreender textos. Por isso, a aula costuma ter ritmo diferente: menos conversação diária e mais leitura, análise e interpretação.</p>",
+                    "<p>O hebraico bíblico é indicado para estudantes de teologia, pesquisadores, líderes religiosos, interessados em Bíblia, história, cultura judaica ou leitura textual profunda.</p>"
+                ]
+            },
+            {
+                "heading": "Quando estudar hebraico moderno?",
+                "body": [
+                    "<p>Você deve estudar hebraico moderno quando seu objetivo principal é comunicação atual. Se você quer falar, entender pessoas, viajar, consumir cultura contemporânea ou se aproximar do idioma vivo, essa trilha faz mais sentido.</p>",
+                    "<p>O hebraico moderno é ideal para quem quer:</p>",
+                    "<ul><li>viajar para Israel;</li><li>conversar com falantes de hebraico;</li><li>entender conteúdos atuais;</li><li>aprender saudações e frases práticas;</li><li>desenvolver escuta e fala;</li><li>ler placas e mensagens simples;</li><li>estudar cultura contemporânea;</li><li>criar base comunicativa;</li><li>aprender no ritmo de uma língua viva.</li></ul>",
+                    "<p>Exemplos de temas iniciais:</p>",
+                    "<table><thead><tr><th>Tema</th><th>O que o aluno aprende</th></tr></thead><tbody><tr><td>Saudações</td><td>cumprimentar e responder</td></tr><tr><td>Apresentação</td><td>dizer nome, origem, profissão e interesses</td></tr><tr><td>Viagem</td><td>pedir informação, localização e ajuda</td></tr><tr><td>Restaurante</td><td>pedir comida, perguntar preço e agradecer</td></tr><tr><td>Rotina</td><td>falar sobre dia, horários e atividades</td></tr><tr><td>Cultura atual</td><td>músicas, nomes, notícias e expressões</td></tr></tbody></table>",
+                    "<p>Para quem quer “sentir” a língua viva, o hebraico moderno é uma excelente entrada.</p>"
+                ]
+            },
+            {
+                "heading": "Quando estudar hebraico bíblico?",
+                "body": [
+                    "<p>Você deve estudar hebraico bíblico quando seu objetivo principal é ler e compreender textos antigos. Se você quer estudar passagens bíblicas no original, analisar palavras, entender estrutura textual e evitar depender apenas de traduções, essa trilha é mais adequada.</p>",
+                    "<p>O hebraico bíblico é ideal para quem quer:</p>",
+                    "<ul><li>ler textos da Bíblia Hebraica;</li><li>compreender vocabulário bíblico;</li><li>estudar raízes e formas verbais;</li><li>analisar traduções;</li><li>aprofundar estudo teológico;</li><li>desenvolver leitura guiada;</li><li>entender melhor termos recorrentes;</li><li>estudar cultura e história do texto;</li><li>interpretar com mais cuidado.</li></ul>",
+                    "<p>Exemplos de temas iniciais:</p>",
+                    "<table><thead><tr><th>Tema</th><th>O que o aluno aprende</th></tr></thead><tbody><tr><td>Alfabeto</td><td>reconhecer letras e direção da leitura</td></tr><tr><td>Sinais vocálicos</td><td>ler com apoio de vogais escritas</td></tr><tr><td>Vocabulário comum</td><td>identificar palavras recorrentes</td></tr><tr><td>Raízes</td><td>perceber famílias de palavras</td></tr><tr><td>Pronomes</td><td>entender sujeitos e referências</td></tr><tr><td>Leitura guiada</td><td>trabalhar trechos curtos com orientação</td></tr></tbody></table>",
+                    "<p>O hebraico bíblico exige paciência. Ele não deve ser vendido como atalho para interpretações rápidas. O estudo sério respeita texto, contexto e limites do nível do aluno.</p>"
+                ]
+            },
+            {
+                "heading": "Exemplos de uso: moderno e bíblico na prática",
+                "body": [
+                    "<p>A diferença entre hebraico moderno e bíblico fica mais clara quando observamos o uso.</p>",
+                    "<h3>Exemplo 1: objetivo de comunicação</h3>",
+                    "<p>Se o aluno quer aprender a dizer “olá”, “obrigado”, “onde fica?”, “quanto custa?” e “eu sou do Brasil”, ele precisa de hebraico moderno. A prioridade será fala, escuta e frases práticas.</p>",
+                    "<h3>Exemplo 2: objetivo de leitura textual</h3>",
+                    "<p>Se o aluno quer compreender uma palavra recorrente em um texto bíblico, analisar uma forma verbal ou comparar traduções, ele precisa de hebraico bíblico. A prioridade será leitura, gramática e contexto.</p>",
+                    "<h3>Exemplo 3: interesse misto</h3>",
+                    "<p>Alguns alunos querem os dois: falar um pouco e também ler textos. Nesse caso, a trilha pode ser combinada. O ideal é construir base de alfabeto e leitura, depois organizar o plano por objetivo: momentos de conversação moderna e momentos de leitura bíblica.</p>",
+                    "<h3>Exemplo 4: iniciante absoluto</h3>",
+                    "<p>Quem nunca estudou hebraico deve começar pelo alfabeto, direção da leitura, sons básicos e primeiras palavras. Depois, define se seguirá para comunicação moderna, leitura bíblica ou uma trilha híbrida.</p>"
+                ]
+            },
+            {
+                "heading": "Semelhanças entre hebraico moderno e hebraico bíblico",
+                "body": [
+                    "<p>Embora sejam diferentes, moderno e bíblico têm pontos de contato importantes. Estudar um pode ajudar no outro, especialmente na base inicial.</p>",
+                    "<p>Semelhanças:</p>",
+                    "<ul><li>usam o alfabeto hebraico;</li><li>compartilham muitas raízes;</li><li>têm vocabulário em comum;</li><li>exigem leitura da direita para a esquerda;</li><li>trabalham estrutura de palavras por raízes;</li><li>pedem atenção à pronúncia;</li><li>têm ligação com cultura, história e identidade;</li><li>exigem estudo gradual.</li></ul>",
+                    "<p>Essas semelhanças fazem muitos alunos acreditarem que basta estudar um para dominar o outro. Mas é preciso cuidado. A base ajuda, mas os usos são diferentes. Quem estuda moderno não aprende automaticamente gramática bíblica. Quem estuda bíblico não ganha automaticamente conversação contemporânea.</p>"
+                ]
+            },
+            {
+                "heading": "Diferenças principais entre hebraico moderno e bíblico",
+                "body": [
+                    "<p>As diferenças principais estão no objetivo, no vocabulário, na gramática usada, no tipo de prática e no resultado esperado.</p>",
+                    "<table><thead><tr><th>Aspecto</th><th>Hebraico moderno</th><th>Hebraico bíblico</th></tr></thead><tbody><tr><td>Finalidade</td><td>comunicar no presente</td><td>ler textos antigos</td></tr><tr><td>Prática</td><td>fala, escuta, interação</td><td>leitura, análise, tradução</td></tr><tr><td>Vocabulário</td><td>cotidiano e atual</td><td>textual, antigo, recorrente em textos bíblicos</td></tr><tr><td>Pronúncia</td><td>comunicação contemporânea</td><td>leitura guiada conforme tradição didática</td></tr><tr><td>Aula</td><td>conversação e situações reais</td><td>gramática, leitura e interpretação</td></tr><tr><td>Resultado</td><td>falar e compreender situações atuais</td><td>ler e analisar textos com mais autonomia</td></tr></tbody></table>",
+                    "<p>Essa tabela ajuda a tomar decisão. Antes de escolher o curso, pergunte: eu quero falar, ler textos antigos ou combinar os dois?</p>"
+                ]
+            },
+            {
+                "heading": "Como a aula ao vivo reduz travas no hebraico?",
+                "body": [
+                    "<p>A aula ao vivo reduz travas porque o professor vê onde o aluno está errando, escuta a pronúncia, corrige a leitura, ajusta o ritmo e responde dúvidas em tempo real. No hebraico, isso é muito importante porque o aluno iniciante costuma enfrentar três desafios: alfabeto novo, direção da leitura e sons diferentes.</p>",
+                    "<p>Em uma aula de hebraico ao vivo, o aluno pode praticar:</p>",
+                    "<ul><li>reconhecimento das letras;</li><li>leitura da direita para a esquerda;</li><li>pronúncia;</li><li>saudações;</li><li>frases simples;</li><li>leitura de palavras;</li><li>sinais vocálicos;</li><li>vocabulário bíblico;</li><li>leitura guiada de trechos;</li><li>dúvidas sobre moderno x bíblico.</li></ul>",
+                    "<p>O professor ajuda a evitar que o aluno memorize errado, leia sem direção ou pule etapas importantes. Em vez de estudar sozinho por vídeos soltos, o aluno recebe uma trilha.</p>",
+                    "<p>A aula ao vivo também cria constância. Muitos iniciantes param porque se sentem perdidos no alfabeto. Com orientação, a primeira etapa fica mais clara e menos solitária.</p>"
+                ]
+            },
+            {
+                "heading": "Qual trilha escolher na Vedium?",
+                "body": [
+                    "<p>A melhor trilha na Vedium depende do seu objetivo. Se você quer usar hebraico em situações atuais, escolha hebraico moderno. Se quer ler textos bíblicos, escolha hebraico bíblico. Se quer os dois, comece por uma base comum e depois siga uma trilha combinada.</p>",
+                    "<h3>Trilha 1: Hebraico moderno para iniciantes</h3>",
+                    "<p>Indicada para quem quer:</p>",
+                    "<ul><li>falar frases básicas;</li><li>viajar;</li><li>conversar;</li><li>entender cultura contemporânea;</li><li>aprender saudações;</li><li>desenvolver escuta;</li><li>praticar com professor ao vivo.</li></ul>",
+                    "<h3>Trilha 2: Hebraico bíblico — leitura guiada</h3>",
+                    "<p>Indicada para quem quer:</p>",
+                    "<ul><li>ler textos bíblicos;</li><li>estudar vocabulário antigo;</li><li>entender estruturas;</li><li>analisar palavras;</li><li>comparar traduções;</li><li>aprofundar estudo religioso, cultural ou acadêmico.</li></ul>",
+                    "<h3>Trilha 3: Hebraico particular</h3>",
+                    "<p>Indicada para quem tem objetivo específico, como:</p>",
+                    "<ul><li>preparação para viagem;</li><li>leitura de um texto;</li><li>reforço de alfabeto;</li><li>dúvidas de pronúncia;</li><li>estudo acadêmico;</li><li>trilha combinada entre moderno e bíblico.</li></ul>",
+                    "<p>Na Vedium, o foco é ajudar o aluno a escolher com clareza, sem promessa exagerada. A aprendizagem acontece aula após aula, com presença, prática e orientação.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Hebraico em <a href=\"/curso-de-hebraico-online\">https://vediums.com/</a> e escolha a trilha mais adequada ao seu objetivo.</p>"
+                ]
+            },
+            {
+                "heading": "Como começar hebraico do zero?",
+                "body": [
+                    "<p>Para começar hebraico do zero, o primeiro passo é aprender o alfabeto com orientação. Depois, o aluno deve praticar leitura, pronúncia e primeiras palavras antes de avançar para uma trilha moderna ou bíblica.</p>",
+                    "<p>Sequência recomendada:</p>",
+                    "<p>1. entender a direção da leitura;<br>2. reconhecer letras;<br>3. praticar sons básicos;<br>4. formar primeiras sílabas e palavras;<br>5. ler palavras curtas;<br>6. aprender vocabulário inicial;<br>7. definir objetivo: moderno, bíblico ou misto;<br>8. praticar em aula ao vivo;<br>9. revisar com frequência;<br>10. avançar para frases ou textos curtos.</p>",
+                    "<p>O erro comum é tentar ir direto para textos complexos ou conversas longas sem dominar a base. O hebraico exige paciência inicial, mas fica mais claro quando o aluno tem sequência.</p>"
+                ]
+            },
+            {
+                "heading": "Plano inicial de 4 semanas para hebraico",
+                "body": [
+                    "<p>Um plano inicial de 4 semanas não promete domínio do idioma. Ele cria uma base para o aluno entender o caminho.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Semana 1</td><td>alfabeto e direção da leitura</td><td>reconhecer letras e ler da direita para a esquerda</td></tr><tr><td>Semana 2</td><td>sons e primeiras palavras</td><td>pronunciar melhor e identificar padrões</td></tr><tr><td>Semana 3</td><td>trilha moderna ou bíblica</td><td>iniciar frases práticas ou leitura guiada</td></tr><tr><td>Semana 4</td><td>revisão e prática ao vivo</td><td>consolidar dúvidas e ganhar autonomia inicial</td></tr></tbody></table>",
+                    "<p>Para hebraico moderno, a semana 3 pode incluir saudações e frases simples. Para hebraico bíblico, pode incluir sinais vocálicos, vocabulário recorrente e leitura de trechos curtos. Para uma trilha mista, o professor pode equilibrar os dois objetivos.</p>"
+                ]
+            },
+            {
+                "heading": "Como escolher um curso de hebraico online?",
+                "body": [
+                    "<p>Um bom curso de hebraico online deve explicar claramente se trabalha hebraico moderno, bíblico ou ambos. Também deve oferecer orientação ao vivo, correção e sequência para iniciantes.</p>",
+                    "<p>Avalie se o curso oferece:</p>",
+                    "<ul><li>aula ao vivo;</li><li>explicação da diferença entre moderno e bíblico;</li><li>trilha para iniciantes;</li><li>alfabeto bem trabalhado;</li><li>prática de leitura;</li><li>pronúncia com correção;</li><li>materiais organizados;</li><li>espaço para dúvidas;</li><li>possibilidade de aula particular;</li><li>flexibilidade sem contrato de fidelidade.</li></ul>",
+                    "<p>Evite cursos que tratam hebraico moderno e bíblico como se fossem a mesma coisa ou prometem leitura profunda em poucos dias. O aprendizado sério precisa de base.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Hebraico moderno e hebraico bíblico estão conectados, mas não são a mesma coisa. O hebraico moderno é uma língua viva de comunicação atual. O hebraico bíblico é uma trilha de leitura, análise e compreensão de textos antigos. Ambos têm valor, mas servem a objetivos diferentes.</p>",
+                    "<p>A melhor escolha depende do que você quer fazer com a língua. Se deseja conversar, viajar e entender conteúdos atuais, comece pelo hebraico moderno. Se deseja estudar textos bíblicos no original, escolha o hebraico bíblico. Se tem interesse nos dois, construa uma base comum e siga uma trilha orientada.</p>",
+                    "<p>A Vedium oferece curso de hebraico online com aulas ao vivo, orientação para iniciantes e possibilidade de trilhas modernas, bíblicas ou particulares. Sem contrato de fidelidade: você continua porque sente que está evoluindo.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Hebraico em <a href=\"/curso-de-hebraico-online\">https://vediums.com/</a> e comece com clareza, base e acompanhamento ao vivo.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/hebraico/como-funciona-a-alfabetizacao-em-hebraico-do-zero\">Como funciona a alfabetização em hebraico do zero</a> ou conheça o <a href=\"/curso-de-hebraico-online\">curso de hebraico online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Qual é a diferença entre hebraico moderno e hebraico bíblico?",
+                "a": "O hebraico moderno é usado para comunicação atual. O hebraico bíblico é estudado principalmente para leitura e interpretação de textos antigos."
+            },
+            {
+                "q": "Devo estudar hebraico moderno ou bíblico primeiro?",
+                "a": "Depende do seu objetivo. Para falar e viajar, comece pelo moderno. Para ler textos bíblicos, comece pelo bíblico. Para ambos, construa uma base comum."
+            },
+            {
+                "q": "Hebraico bíblico serve para conversar hoje?",
+                "a": "Não é a melhor trilha para conversação atual. O hebraico bíblico foca leitura e compreensão textual, enquanto o moderno foca comunicação viva."
+            },
+            {
+                "q": "Iniciantes podem aprender hebraico online?",
+                "a": "Sim. Iniciantes podem aprender hebraico online, especialmente com aula ao vivo, orientação no alfabeto, pronúncia, leitura e prática gradual."
+            },
+            {
+                "q": "A Vedium oferece aulas de hebraico moderno e bíblico?",
+                "a": "Sim. A Vedium oferece aulas de hebraico online ao vivo com trilhas para hebraico moderno, hebraico bíblico, iniciantes e objetivos particulares."
+            }
+        ],
+        "cta_title": "Quer aprender a ler e entender hebraico desde o início?",
+        "cta_text": "Aulas ao vivo com professor especializado, do alfabeto à leitura fluente.",
+        "cta_label": "Falar sobre a próxima turma de Hebraico",
+        "cta_url": "/curso-de-hebraico-online"
+    },
+    "how-to-handle-small-talk-with-brazilians-in-portuguese": {
+        "title": "How to handle small talk with Brazilians in Portuguese",
+        "meta_description": "Learn how to handle small talk with Brazilians in Portuguese using practical phrases, cultural context and live-class practice.",
+        "h1": "How to handle small talk with Brazilians in Portuguese",
+        "date": "2025-04-08",
+        "date_display": "April 8, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Grupo de pessoas trabalhando juntas em notebooks ao redor de uma mesa",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "To handle small talk with Brazilians in Portuguese, you need more than vocabulary. You need practical phrases, cultural awareness, listening confidence and the ability to respond naturally to greetings, casual questions, work conversations, social invitations and everyday comments. Brazilian small talk is often warm, flexible and relationship-oriented, so learning how to participate can make daily life, work and study in Brazil much easier.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For foreigners in Brazil, small talk can be surprisingly important. A short conversation with a doorman, coworker, classmate, neighbor, teacher, delivery person or client can help build trust. In many Brazilian contexts, people do not always jump straight to the practical topic. They may start with <strong>“Tudo bem?”</strong>, comment on the weather, ask whether you liked the city, mention traffic, talk about lunch, ask how your weekend was or make a friendly remark before moving to the main subject.</p>",
+                    "<p>This can confuse foreigners who come from cultures where professional or service interactions are more direct. You may know how to say <strong>“I need help”</strong> or <strong>“Where is the meeting?”</strong>, but still feel lost when someone says <strong>“E aí, tudo certo?”</strong>, <strong>“Como foi o fim de semana?”</strong>, <strong>“Tá gostando do Brasil?”</strong> or <strong>“Nossa, que trânsito hoje, né?”</strong>. These phrases are simple, but they require quick listening and a culturally appropriate answer.</p>",
+                    "<p>A strong Brazilian Portuguese course for foreigners should prepare you for this kind of real communication. Small talk is not “extra.” It is part of living, working and studying in Brazil. In this guide, you will learn essential vocabulary, common phrases, real-life situations and live-class practice ideas to help you handle small talk with Brazilians in Portuguese with more confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: how do you handle small talk with Brazilians in Portuguese?",
+                "body": [
+                    "<p>You handle small talk with Brazilians by using warm greetings, short natural answers, follow-up questions and polite phrases that keep the conversation going. The most useful phrases include <strong>“Tudo bem?”</strong>, <strong>“Tudo certo?”</strong>, <strong>“E você?”</strong>, <strong>“Que legal!”</strong>, <strong>“Pois é”</strong>, <strong>“Verdade”</strong>, <strong>“Ainda estou aprendendo português”</strong> and <strong>“Pode repetir, por favor?”</strong></p>",
+                    "<p>Brazilian small talk usually involves:</p>",
+                    "<ul><li>greeting the person warmly;</li><li>answering briefly but naturally;</li><li>asking the same question back;</li><li>reacting with interest;</li><li>making simple comments;</li><li>asking for clarification when needed;</li><li>showing openness without oversharing;</li><li>adapting your tone to the situation;</li><li>understanding that <strong>“Tudo bem?”</strong> is often a greeting, not a deep question;</li><li>practicing short responses until they become automatic.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Brazilian:</strong> Oi, tudo bem?<br><strong>You:</strong> Tudo bem, e você?</p>",
+                    "<p>Translation:</p>",
+                    "<p>Brazilian: Hi, how are you?<br>You: I’m good, and you?</p>",
+                    "<p>This simple exchange is one of the most important foundations of daily Portuguese in Brazil.</p>",
+                    "<p>If you want to practice real small talk situations with a live teacher, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: greetings that sound natural",
+                "body": [
+                    "<p>Greetings are the beginning of most small talk in Brazil. You will hear different versions depending on region, age, formality and context. The key is to recognize them and answer without freezing.</p>",
+                    "<p>Common greetings:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Oi, tudo bem?</td><td>Hi, how are you?</td></tr><tr><td>Olá, tudo bem?</td><td>Hello, how are you?</td></tr><tr><td>Tudo certo?</td><td>Everything okay?</td></tr><tr><td>Tudo bom?</td><td>All good?</td></tr><tr><td>E aí?</td><td>What’s up?</td></tr><tr><td>Bom dia.</td><td>Good morning.</td></tr><tr><td>Boa tarde.</td><td>Good afternoon.</td></tr><tr><td>Boa noite.</td><td>Good evening / good night.</td></tr><tr><td>Como você está?</td><td>How are you?</td></tr><tr><td>Como vai?</td><td>How is it going?</td></tr></tbody></table>",
+                    "<p>Natural answers:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Tudo bem, e você?</td><td>I’m good, and you?</td></tr><tr><td>Tudo certo.</td><td>Everything is fine.</td></tr><tr><td>Tudo bom.</td><td>All good.</td></tr><tr><td>Estou bem, obrigado / obrigada.</td><td>I’m well, thank you.</td></tr><tr><td>Bem, graças a Deus.</td><td>Good, thank God.</td></tr><tr><td>Estou bem, só um pouco cansado / cansada.</td><td>I’m good, just a little tired.</td></tr><tr><td>Mais ou menos.</td><td>So-so.</td></tr><tr><td>Tranquilo / tranquila.</td><td>All good / relaxed.</td></tr></tbody></table>",
+                    "<p>In Brazil, a greeting can include a question that does not require a long answer. When someone says <strong>“Tudo bem?”</strong>, you can simply answer <strong>“Tudo bem, e você?”</strong>. You do not need to explain your whole day unless the context is close or personal.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for small talk",
+                "body": [
+                    "<p>Essential small-talk vocabulary should be practical and flexible. You need words for weather, work, study, weekends, transportation, food, city life and personal reactions.</p>",
+                    "<table><thead><tr><th>Category</th><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Weather</td><td>calor</td><td>heat / hot weather</td></tr><tr><td>Weather</td><td>frio</td><td>cold</td></tr><tr><td>Weather</td><td>chuva</td><td>rain</td></tr><tr><td>Weather</td><td>tempo</td><td>weather / time</td></tr><tr><td>Work</td><td>trabalho</td><td>work</td></tr><tr><td>Work</td><td>reunião</td><td>meeting</td></tr><tr><td>Work</td><td>projeto</td><td>project</td></tr><tr><td>Study</td><td>aula</td><td>class</td></tr><tr><td>Study</td><td>universidade</td><td>university</td></tr><tr><td>Routine</td><td>fim de semana</td><td>weekend</td></tr><tr><td>Routine</td><td>almoço</td><td>lunch</td></tr><tr><td>Routine</td><td>trânsito</td><td>traffic</td></tr><tr><td>City</td><td>bairro</td><td>neighborhood</td></tr><tr><td>City</td><td>cidade</td><td>city</td></tr><tr><td>Reaction</td><td>legal</td><td>nice / cool</td></tr><tr><td>Reaction</td><td>interessante</td><td>interesting</td></tr><tr><td>Reaction</td><td>verdade</td><td>true</td></tr><tr><td>Reaction</td><td>pois é</td><td>yeah / that’s true</td></tr><tr><td>Reaction</td><td>nossa</td><td>wow / oh my</td></tr><tr><td>Reaction</td><td>que bom</td><td>that’s good</td></tr></tbody></table>",
+                    "<p>Useful short reactions:</p>",
+                    "<ul><li><strong>Que legal!</strong> — That’s nice!</li><li><strong>Que bom!</strong> — That’s good!</li><li><strong>Nossa!</strong> — Wow! / Oh my!</li><li><strong>Verdade.</strong> — True.</li><li><strong>Pois é.</strong> — Yeah / That’s right.</li><li><strong>Entendi.</strong> — I understand.</li><li><strong>Interessante.</strong> — Interesting.</li><li><strong>Sério?</strong> — Really?</li><li><strong>Ah, sim.</strong> — Oh, yes.</li><li><strong>Com certeza.</strong> — Definitely.</li></ul>",
+                    "<p>These reactions help you participate even when you cannot say a long sentence yet.</p>"
+                ]
+            },
+            {
+                "heading": "Small talk at work in Brazil",
+                "body": [
+                    "<p>Small talk at work in Brazil often happens before meetings, during coffee breaks, in elevators, at lunch or when greeting colleagues. It helps create rapport. You do not need to be overly personal, but you should be able to respond politely.</p>",
+                    "<p>Common work small-talk questions:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Como foi o fim de semana?</td><td>How was your weekend?</td></tr><tr><td>Como está o trabalho?</td><td>How is work?</td></tr><tr><td>Muito trabalho hoje?</td><td>A lot of work today?</td></tr><tr><td>Você já almoçou?</td><td>Have you had lunch?</td></tr><tr><td>Como está o projeto?</td><td>How is the project?</td></tr><tr><td>Você está gostando do Brasil?</td><td>Are you enjoying Brazil?</td></tr><tr><td>Você mora perto daqui?</td><td>Do you live near here?</td></tr><tr><td>Pegou muito trânsito?</td><td>Did you face a lot of traffic?</td></tr></tbody></table>",
+                    "<p>Natural answers:</p>",
+                    "<ul><li><strong>Foi bom, obrigado. E o seu?</strong> — It was good, thanks. And yours?</li><li><strong>Sim, bastante trabalho hoje.</strong> — Yes, a lot of work today.</li><li><strong>Ainda não almocei.</strong> — I haven’t had lunch yet.</li><li><strong>O projeto está indo bem.</strong> — The project is going well.</li><li><strong>Estou gostando muito do Brasil.</strong> — I’m really enjoying Brazil.</li><li><strong>Moro um pouco longe.</strong> — I live a little far.</li><li><strong>Peguei um pouco de trânsito.</strong> — I hit a bit of traffic.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Coworker:</strong> Como foi o fim de semana?<br><strong>You:</strong> Foi bom, obrigado. Fui a um restaurante novo. E o seu?</p>",
+                    "<p>Translation:</p>",
+                    "<p>Coworker: How was your weekend?<br>You: It was good, thanks. I went to a new restaurant. And yours?</p>",
+                    "<p>This answer is short, friendly and keeps the conversation going.</p>"
+                ]
+            },
+            {
+                "heading": "Small talk at university or school",
+                "body": [
+                    "<p>For international students, small talk helps build friendships, understand class routines and feel less isolated. Brazilian classmates may ask casual questions before or after class.</p>",
+                    "<p>Common student small-talk questions:</p>",
+                    "<ul><li><strong>Você é de onde?</strong> — Where are you from?</li><li><strong>Você está fazendo qual curso?</strong> — What program are you studying?</li><li><strong>Você entendeu a aula?</strong> — Did you understand the class?</li><li><strong>Você já fez a atividade?</strong> — Have you done the assignment?</li><li><strong>Você vai à aula amanhã?</strong> — Are you going to class tomorrow?</li><li><strong>Está gostando da universidade?</strong> — Are you enjoying the university?</li><li><strong>Você mora perto do campus?</strong> — Do you live near campus?</li></ul>",
+                    "<p>Useful answers:</p>",
+                    "<ul><li><strong>Eu sou dos Estados Unidos.</strong> — I am from the United States.</li><li><strong>Estou estudando Relações Internacionais.</strong> — I am studying International Relations.</li><li><strong>Entendi mais ou menos.</strong> — I understood more or less.</li><li><strong>Ainda não fiz a atividade.</strong> — I haven’t done the assignment yet.</li><li><strong>Sim, vou à aula amanhã.</strong> — Yes, I’m going to class tomorrow.</li><li><strong>Estou gostando bastante.</strong> — I’m enjoying it a lot.</li><li><strong>Moro perto do campus.</strong> — I live near campus.</li></ul>",
+                    "<p>A good phrase for international students:</p>",
+                    "<p><strong>Ainda estou aprendendo português, mas estou tentando falar mais.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am still learning Portuguese, but I am trying to speak more.</p>",
+                    "<p>This phrase is useful because it invites patience and encourages conversation.</p>"
+                ]
+            },
+            {
+                "heading": "Small talk with neighbors, doormen and service workers",
+                "body": [
+                    "<p>In Brazil, small talk with neighbors, doormen and service workers can be part of everyday social life. You do not need long conversations, but greeting people and responding politely is important.</p>",
+                    "<p>Common phrases you may hear:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Bom dia, tudo bem?</td><td>Good morning, how are you?</td></tr><tr><td>Chegou encomenda para você.</td><td>A package arrived for you.</td></tr><tr><td>Vai chover hoje.</td><td>It’s going to rain today.</td></tr><tr><td>Muito calor hoje, né?</td><td>Very hot today, right?</td></tr><tr><td>Está tudo certo?</td><td>Is everything okay?</td></tr><tr><td>Já está descendo?</td><td>Are you coming down now?</td></tr><tr><td>Pode deixar aqui.</td><td>You can leave it here.</td></tr></tbody></table>",
+                    "<p>Useful answers:</p>",
+                    "<ul><li><strong>Bom dia, tudo bem?</strong> — Good morning, how are you?</li><li><strong>Obrigado / obrigada.</strong> — Thank you.</li><li><strong>Pois é, muito calor.</strong> — Yeah, very hot.</li><li><strong>Está tudo certo, obrigado.</strong> — Everything is okay, thank you.</li><li><strong>Já estou descendo.</strong> — I am coming down now.</li><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building entrance/doorman area.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Doorman:</strong> Chegou uma encomenda para você.<br><strong>You:</strong> Obrigado. Vou pegar agora.</p>",
+                    "<p>Translation:</p>",
+                    "<p>Doorman: A package arrived for you.<br>You: Thank you. I’ll get it now.</p>",
+                    "<p>This kind of interaction is small, but it builds confidence in daily Portuguese.</p>"
+                ]
+            },
+            {
+                "heading": "How to keep the conversation going",
+                "body": [
+                    "<p>To keep small talk going, use simple follow-up questions. You do not need advanced grammar. A few short questions can make you sound more natural.</p>",
+                    "<p>Useful follow-up questions:</p>",
+                    "<ul><li><strong>E você?</strong> — And you?</li><li><strong>E o seu?</strong> — And yours?</li><li><strong>Você gosta daqui?</strong> — Do you like it here?</li><li><strong>Você mora perto?</strong> — Do you live nearby?</li><li><strong>Como foi?</strong> — How was it?</li><li><strong>Foi bom?</strong> — Was it good?</li><li><strong>Você recomenda?</strong> — Do you recommend it?</li><li><strong>Onde fica?</strong> — Where is it?</li><li><strong>Há quanto tempo você mora aqui?</strong> — How long have you lived here?</li><li><strong>O que você acha?</strong> — What do you think?</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Brazilian:</strong> Fui à praia no fim de semana.<br><strong>You:</strong> Que legal! Onde fica?</p>",
+                    "<p>Translation:</p>",
+                    "<p>Brazilian: I went to the beach on the weekend.<br>You: Nice! Where is it?</p>",
+                    "<p>This is enough to continue the conversation naturally.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: handle small talk with Brazilians step by step",
+                "body": [
+                    "<p>To handle small talk with Brazilians, prepare short answers and simple follow-up questions. Small talk works best when you are ready for common topics.</p>",
+                    "<h3>Step 1: master greetings</h3>",
+                    "<p>Practice:</p>",
+                    "<ul><li><strong>Tudo bem?</strong></li><li><strong>Tudo certo?</strong></li><li><strong>Bom dia.</strong></li><li><strong>Boa tarde.</strong></li><li><strong>Boa noite.</strong></li></ul>",
+                    "<h3>Step 2: prepare basic answers</h3>",
+                    "<p>Practice:</p>",
+                    "<ul><li><strong>Tudo bem, e você?</strong></li><li><strong>Estou bem, obrigado / obrigada.</strong></li><li><strong>Mais ou menos.</strong></li><li><strong>Um pouco cansado / cansada.</strong></li></ul>",
+                    "<h3>Step 3: learn reaction phrases</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Que legal!</strong></li><li><strong>Que bom!</strong></li><li><strong>Nossa!</strong></li><li><strong>Verdade.</strong></li><li><strong>Pois é.</strong></li></ul>",
+                    "<h3>Step 4: prepare three personal topics</h3>",
+                    "<p>Prepare short sentences about:</p>",
+                    "<ul><li>where you are from;</li><li>what you do;</li><li>why you are in Brazil.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Sou do Canadá e estou no Brasil para trabalhar.</strong></p>",
+                    "<h3>Step 5: ask back</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>E você?</strong></li><li><strong>E o seu fim de semana?</strong></li><li><strong>Você mora perto?</strong></li></ul>",
+                    "<h3>Step 6: ask for repetition</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Ainda estou aprendendo português.</strong></li></ul>",
+                    "<h3>Step 7: practice in live class</h3>",
+                    "<p>Simulate work, study, building and social situations with a teacher. Repeat until the phrases feel natural.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: small talk role-plays",
+                "body": [
+                    "<p>Live classes are especially useful for small talk because small talk depends on timing, tone, listening and quick responses. A teacher can simulate real Brazilian situations and help you sound natural.</p>",
+                    "<h3>Exercise 1: elevator small talk</h3>",
+                    "<p>Teacher says:</p>",
+                    "<p><strong>Bom dia. Muito calor hoje, né?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Pois é, muito calor.</strong></p>",
+                    "<p>Goal: respond naturally to a simple comment.</p>",
+                    "<h3>Exercise 2: work Monday greeting</h3>",
+                    "<p>Teacher says:</p>",
+                    "<p><strong>Como foi o fim de semana?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Foi bom, obrigado. Fui ao parque. E o seu?</strong></p>",
+                    "<p>Goal: answer and ask back.</p>",
+                    "<h3>Exercise 3: university introduction</h3>",
+                    "<p>Teacher asks:</p>",
+                    "<p><strong>Você é de onde?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Sou da Alemanha e estou estudando no Brasil.</strong></p>",
+                    "<p>Goal: introduce yourself naturally.</p>",
+                    "<h3>Exercise 4: clarification</h3>",
+                    "<p>Teacher speaks quickly. Student says:</p>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode repetir, por favor?</strong></p>",
+                    "<p>Goal: avoid freezing.</p>",
+                    "<h3>Exercise 5: neighbor conversation</h3>",
+                    "<p>Teacher says:</p>",
+                    "<p><strong>Vai chover hoje.</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Verdade. Preciso levar guarda-chuva.</strong></p>",
+                    "<p>Goal: react to everyday comments.</p>",
+                    "<p>These exercises make small talk practical instead of abstract.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes foreigners make in Brazilian small talk",
+                "body": [
+                    "<p>Foreigners often make small mistakes that can make conversations feel stiff or confusing. These mistakes are normal and easy to improve with practice.</p>",
+                    "<h3>Mistake 1: answering “Tudo bem?” too literally</h3>",
+                    "<p>In many situations, <strong>“Tudo bem?”</strong> is a greeting. You do not need to give a long personal answer.</p>",
+                    "<p>Good answer:</p>",
+                    "<p><strong>Tudo bem, e você?</strong></p>",
+                    "<h3>Mistake 2: not asking back</h3>",
+                    "<p>If someone asks <strong>“Como foi seu fim de semana?”</strong>, it is polite to answer and ask back:</p>",
+                    "<p><strong>Foi bom, e o seu?</strong></p>",
+                    "<h3>Mistake 3: translating from English directly</h3>",
+                    "<p>English small talk patterns do not always map perfectly into Portuguese. Learn Brazilian phrases as complete chunks.</p>",
+                    "<h3>Mistake 4: avoiding conversation completely</h3>",
+                    "<p>Avoiding small talk may seem safe, but it can make you feel isolated. Short phrases are enough to start.</p>",
+                    "<h3>Mistake 5: not learning reaction words</h3>",
+                    "<p>Words like <strong>“legal”</strong>, <strong>“pois é”</strong>, <strong>“verdade”</strong> and <strong>“nossa”</strong> make conversations sound more natural.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps foreigners with small talk in Portuguese",
+                "body": [
+                    "<p>Vedium helps foreigners handle small talk with Brazilians through live Brazilian Portuguese classes focused on real communication. The goal is not only to study grammar, but to practice the interactions that happen every day in Brazil.</p>",
+                    "<p>In Vedium’s live classes, you can practice:</p>",
+                    "<ul><li>greetings;</li><li>work small talk;</li><li>university conversations;</li><li>neighbor interactions;</li><li>doorman and building phrases;</li><li>weather comments;</li><li>weekend conversations;</li><li>asking follow-up questions;</li><li>reacting naturally;</li><li>asking for repetition;</li><li>pronunciation and rhythm;</li><li>cultural context.</li></ul>",
+                    "<p>The live format matters because small talk is interactive. A recorded lesson can explain phrases, but a live teacher can ask you a question, wait for your answer, correct your response and help you try again. This builds speaking confidence.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the language becomes useful in your life in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing Brazilian Portuguese for real conversations at work, university and daily life.</p>"
+                ]
+            },
+            {
+                "heading": "Course decision: why small talk should be part of your Portuguese course",
+                "body": [
+                    "<p>If you are choosing a Brazilian Portuguese course, check whether it includes real-life communication such as small talk. A course that only teaches grammar may not prepare you for daily life in Brazil.</p>",
+                    "<p>A good course should include:</p>",
+                    "<ul><li>live speaking practice;</li><li>greetings and casual conversation;</li><li>work and study scenarios;</li><li>cultural explanations;</li><li>pronunciation correction;</li><li>listening to natural Brazilian phrases;</li><li>role-plays;</li><li>phrases for asking repetition;</li><li>practical vocabulary;</li><li>flexibility for your goals.</li></ul>",
+                    "<p>Small talk is not superficial when you are living abroad. It helps you build relationships, participate in social life and feel more confident in everyday situations.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist before your next conversation",
+                "body": [
+                    "<p>Use this checklist before going to work, class or a social situation in Brazil:</p>",
+                    "<ul><li>I can answer <strong>“Tudo bem?”</strong></li><li>I can ask <strong>“E você?”</strong></li><li>I can say where I am from.</li><li>I can say why I am in Brazil.</li><li>I can comment on the weather.</li><li>I can answer a weekend question.</li><li>I can use <strong>“Que legal!”</strong></li><li>I can use <strong>“Pois é”</strong> or <strong>“Verdade.”</strong></li><li>I can ask someone to repeat.</li><li>I can say I am still learning Portuguese.</li></ul>",
+                    "<p>Choose three phrases from this checklist and practice them aloud today.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Small talk with Brazilians in Portuguese is an essential part of real communication in Brazil. It helps you build trust, feel included and participate more naturally at work, university, in your building and in everyday life. You do not need advanced Portuguese to start. You need warm greetings, short answers, reaction phrases, follow-up questions and confidence to ask for repetition.</p>",
+                    "<p>Start with the basics: <strong>Tudo bem?</strong>, <strong>Tudo certo?</strong>, <strong>E você?</strong>, <strong>Que legal!</strong>, <strong>Pois é</strong>, <strong>Verdade</strong>, <strong>Pode repetir, por favor?</strong> and <strong>Ainda estou aprendendo português.</strong> These phrases make daily interactions easier immediately.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, students and professionals who need the language for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because Portuguese becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing small talk in Brazilian Portuguese with live support.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/how-to-introduce-yourself-professionally-in-brazilian-portuguese\">How to introduce yourself professionally in Brazilian Portuguese</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "What is the most common small-talk phrase in Brazilian Portuguese?",
+                "a": "One of the most common phrases is “Tudo bem?”, which means “How are you?” or “All good?” In many situations, it works as a friendly greeting."
+            },
+            {
+                "q": "How should I answer “Tudo bem?” in Brazil?",
+                "a": "A simple answer is “Tudo bem, e você?” This means “I’m good, and you?” It is natural, polite and very common."
+            },
+            {
+                "q": "What should I say if I do not understand small talk in Portuguese?",
+                "a": "Say “Pode repetir, por favor?” or “Pode falar mais devagar?” You can also say “Ainda estou aprendendo português.”"
+            },
+            {
+                "q": "Is small talk important in Brazilian work culture?",
+                "a": "Yes. Small talk can help build rapport with coworkers, clients and classmates. It is often part of friendly and professional interaction in Brazil."
+            },
+            {
+                "q": "Does Vedium teach small talk in Brazilian Portuguese?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, including greetings, small talk, work and study conversations, pronunciation and cultural context."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "how-to-introduce-yourself-professionally-in-brazilian-portuguese": {
+        "title": "How to introduce yourself professionally in Brazilian Portuguese",
+        "meta_description": "Learn how to introduce yourself professionally in Brazilian Portuguese with practical phrases and live-class practice.",
+        "h1": "How to introduce yourself professionally in Brazilian Portuguese",
+        "date": "2025-03-11",
+        "date_display": "March 11, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoas reunidas em volta de uma mesa trabalhando em notebooks",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "To introduce yourself professionally in Brazilian Portuguese, you need a short, clear and natural structure: greet the person, say your name, explain your role or area, mention where you are from when relevant, describe what you do, and add a polite sentence to keep the conversation open. You do not need advanced Portuguese to make a strong first impression, but you do need phrases that sound appropriate in Brazilian professional contexts.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For foreigners living, working or studying in Brazil, professional introductions happen often: at work meetings, job interviews, networking events, onboarding sessions, university presentations, client calls, coworking spaces, conferences, WhatsApp groups and first conversations with colleagues. The words are simple, but the moment can feel stressful because you want to sound competent, polite and natural.</p>",
+                    "<p>Many learners prepare only one sentence, such as <strong>“Meu nome é...”</strong>, but professional introductions require a little more. You may need to say what you do, where you work, what your area is, why you are in Brazil, what project you are involved in, or what you are looking for. You may also need to understand follow-up questions such as <strong>“Você trabalha com o quê?”</strong>, <strong>“De onde você é?”</strong>, <strong>“Há quanto tempo você está no Brasil?”</strong> or <strong>“Qual é a sua área?”</strong></p>",
+                    "<p>A good Brazilian Portuguese course for foreigners should prepare you for these real situations. It should not teach only grammar in isolation. It should help you speak clearly, adapt your tone, practice pronunciation, answer follow-up questions and sound natural in Brazil. In this guide, you will learn professional introduction models, essential vocabulary, common mistakes, live-class exercises and a practical plan to build confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Why professional introductions matter in Brazil",
+                "body": [
+                    "<p>Professional introductions matter because they open the door to trust, collaboration and participation. In Brazil, professional communication is often warm, relational and polite. People may want to know not only your job title, but also your area, background, current project and reason for being in Brazil.</p>",
+                    "<p>You may need to introduce yourself when you:</p>",
+                    "<ul><li>join a new company;</li><li>attend a meeting for the first time;</li><li>start a project with a Brazilian team;</li><li>take part in a job interview;</li><li>meet a client;</li><li>attend a conference;</li><li>join a university class;</li><li>introduce yourself in a WhatsApp group;</li><li>contact a service provider;</li><li>talk to a coworking community;</li><li>meet a partner or supplier.</li></ul>",
+                    "<p>The goal is not to sound memorized. The goal is to sound clear, respectful and comfortable. A strong introduction should be short enough to remember, but complete enough to help the other person understand who you are.</p>",
+                    "<p>If you want to practice professional Portuguese for real situations in Brazil, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: your first meeting with a Brazilian team",
+                "body": [
+                    "<p>Your first meeting with a Brazilian team may start with a friendly greeting before the agenda. Someone may say: <strong>“Vamos começar com uma rodada rápida de apresentações?”</strong> This means: “Shall we start with a quick round of introductions?”</p>",
+                    "<p>A simple professional introduction could be:</p>",
+                    "<p><strong>Olá, bom dia. Meu nome é Daniel. Eu sou da Alemanha e trabalho na área de tecnologia. Estou no Brasil para acompanhar um projeto com a equipe local. Ainda estou aprendendo português, então talvez eu peça para repetir algumas coisas. Prazer em conhecer vocês.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, good morning. My name is Daniel. I am from Germany and I work in technology. I am in Brazil to follow a project with the local team. I am still learning Portuguese, so I may ask you to repeat some things. Nice to meet you all.</p>",
+                    "<p>This introduction works because it includes:</p>",
+                    "<ul><li>greeting;</li><li>name;</li><li>country;</li><li>professional area;</li><li>reason for being in Brazil;</li><li>language-level clarification;</li><li>polite closing.</li></ul>",
+                    "<p>You can make it shorter or longer depending on the situation.</p>",
+                    "<p>Short version:</p>",
+                    "<p><strong>Olá, meu nome é Daniel. Trabalho na área de tecnologia e estou acompanhando este projeto no Brasil. Prazer em conhecer vocês.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, my name is Daniel. I work in technology and I am following this project in Brazil. Nice to meet you all.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for professional introductions",
+                "body": [
+                    "<p>Essential vocabulary should be learned in complete phrases. It is not enough to know the word <strong>trabalho</strong>. You need to say <strong>“Eu trabalho na área de...”</strong> or <strong>“Eu trabalho com...”</strong> in a natural way.</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>nome</td><td>name</td></tr><tr><td>profissão</td><td>profession</td></tr><tr><td>cargo</td><td>job title / position</td></tr><tr><td>área</td><td>area / field</td></tr><tr><td>empresa</td><td>company</td></tr><tr><td>equipe</td><td>team</td></tr><tr><td>projeto</td><td>project</td></tr><tr><td>cliente</td><td>client</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>experiência</td><td>experience</td></tr><tr><td>formação</td><td>educational background</td></tr><tr><td>objetivo</td><td>objective</td></tr><tr><td>responsável</td><td>responsible / person in charge</td></tr><tr><td>trabalho</td><td>work</td></tr><tr><td>estudo</td><td>study</td></tr><tr><td>universidade</td><td>university</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Meu nome é...</strong> — My name is...</li><li><strong>Eu sou de...</strong> — I am from...</li><li><strong>Eu trabalho na área de...</strong> — I work in the field of...</li><li><strong>Eu trabalho com...</strong> — I work with...</li><li><strong>Eu sou responsável por...</strong> — I am responsible for...</li><li><strong>Eu faço parte da equipe de...</strong> — I am part of the ... team.</li><li><strong>Estou no Brasil para...</strong> — I am in Brazil to...</li><li><strong>Tenho experiência com...</strong> — I have experience with...</li><li><strong>Estou aprendendo português.</strong> — I am learning Portuguese.</li><li><strong>Prazer em conhecer vocês.</strong> — Nice to meet you all.</li></ul>",
+                    "<p>These phrases are practical because they can be adapted to different professional contexts.</p>"
+                ]
+            },
+            {
+                "heading": "The basic structure of a professional introduction",
+                "body": [
+                    "<p>A professional introduction in Brazilian Portuguese can follow a simple six-part structure. This helps you avoid freezing when someone asks you to introduce yourself.</p>",
+                    "<h3>1. Greeting</h3>",
+                    "<p>Use a warm greeting:</p>",
+                    "<ul><li><strong>Olá, bom dia.</strong></li><li><strong>Oi, tudo bem?</strong></li><li><strong>Boa tarde, pessoal.</strong></li><li><strong>Prazer estar aqui.</strong></li></ul>",
+                    "<h3>2. Name</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Meu nome é...</strong></li><li><strong>Eu me chamo...</strong></li></ul>",
+                    "<p>Both are correct. <strong>Meu nome é...</strong> is direct and very common.</p>",
+                    "<h3>3. Origin or current location</h3>",
+                    "<p>Use this if relevant:</p>",
+                    "<ul><li><strong>Eu sou dos Estados Unidos.</strong></li><li><strong>Eu sou da França.</strong></li><li><strong>Eu moro em São Paulo.</strong></li><li><strong>Estou no Brasil há três meses.</strong></li></ul>",
+                    "<h3>4. Professional area</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Eu trabalho na área de marketing.</strong></li><li><strong>Eu trabalho com tecnologia.</strong></li><li><strong>Eu sou professor.</strong></li><li><strong>Eu sou gerente de projetos.</strong></li><li><strong>Eu faço parte da equipe de produto.</strong></li></ul>",
+                    "<h3>5. Current role or objective</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Sou responsável por...</strong></li><li><strong>Estou acompanhando este projeto.</strong></li><li><strong>Estou aqui para apoiar a equipe.</strong></li><li><strong>Quero melhorar meu português para o trabalho.</strong></li></ul>",
+                    "<h3>6. Polite closing</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Prazer em conhecer vocês.</strong></li><li><strong>Obrigado pelo convite.</strong></li><li><strong>Fico feliz em participar.</strong></li><li><strong>Estou à disposição.</strong></li></ul>",
+                    "<p>A complete version:</p>",
+                    "<p><strong>Olá, bom dia. Meu nome é Emma. Eu sou do Canadá e trabalho na área de recursos humanos. Estou no Brasil para apoiar a integração da equipe local. Ainda estou aprendendo português, mas vou tentar participar em português. Prazer em conhecer vocês.</strong></p>",
+                    "<p>This sounds professional, polite and realistic.</p>"
+                ]
+            },
+            {
+                "heading": "How to say what you do in Brazilian Portuguese",
+                "body": [
+                    "<p>To say what you do, you can use three very common structures: <strong>trabalho em</strong>, <strong>trabalho com</strong> and <strong>sou</strong>. Each one has a slightly different use.</p>",
+                    "<h3>“Eu trabalho na área de...”</h3>",
+                    "<p>Use this for your professional field:</p>",
+                    "<ul><li><strong>Eu trabalho na área de marketing.</strong></li><li><strong>Eu trabalho na área de tecnologia.</strong></li><li><strong>Eu trabalho na área de finanças.</strong></li><li><strong>Eu trabalho na área de educação.</strong></li><li><strong>Eu trabalho na área de recursos humanos.</strong></li></ul>",
+                    "<h3>“Eu trabalho com...”</h3>",
+                    "<p>Use this for what you handle or deal with:</p>",
+                    "<ul><li><strong>Eu trabalho com clientes internacionais.</strong></li><li><strong>Eu trabalho com dados.</strong></li><li><strong>Eu trabalho com vendas.</strong></li><li><strong>Eu trabalho com desenvolvimento de produto.</strong></li><li><strong>Eu trabalho com treinamento de equipes.</strong></li></ul>",
+                    "<h3>“Eu sou...”</h3>",
+                    "<p>Use this for profession or job title:</p>",
+                    "<ul><li><strong>Eu sou engenheiro.</strong></li><li><strong>Eu sou médica.</strong></li><li><strong>Eu sou professora.</strong></li><li><strong>Eu sou gerente de projetos.</strong></li><li><strong>Eu sou analista de marketing.</strong></li></ul>",
+                    "<p>A strong introduction can combine these structures:</p>",
+                    "<p><strong>Eu sou analista de marketing e trabalho com clientes internacionais.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am a marketing analyst and I work with international clients.</p>"
+                ]
+            },
+            {
+                "heading": "How to mention your Portuguese level professionally",
+                "body": [
+                    "<p>Mentioning your Portuguese level can be useful, especially if you are still learning. The key is to say it with confidence, not as an apology. You are setting expectations and inviting clearer communication.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Ainda estou aprendendo português.</strong> — I am still learning Portuguese.</li><li><strong>Eu falo um pouco de português.</strong> — I speak a little Portuguese.</li><li><strong>Meu português ainda é básico.</strong> — My Portuguese is still basic.</li><li><strong>Estou praticando português para o trabalho.</strong> — I am practicing Portuguese for work.</li><li><strong>Talvez eu peça para repetir algumas coisas.</strong> — I may ask you to repeat some things.</li><li><strong>Pode falar um pouco mais devagar, por favor?</strong> — Can you speak a little more slowly, please?</li></ul>",
+                    "<p>Professional example:</p>",
+                    "<p><strong>Ainda estou aprendendo português, então talvez eu peça para repetir algumas coisas.</strong></p>",
+                    "<p>This phrase is natural and respectful. It helps people understand how to support you in the conversation.</p>",
+                    "<p>Avoid sounding too negative:</p>",
+                    "<p>Less confident:</p>",
+                    "<p><strong>Meu português é muito ruim.</strong></p>",
+                    "<p>Better:</p>",
+                    "<p><strong>Ainda estou aprendendo português.</strong></p>",
+                    "<p>The second version is more professional and confident.</p>"
+                ]
+            },
+            {
+                "heading": "Professional introductions for different situations",
+                "body": [
+                    "<p>Your introduction should change depending on the context. A job interview, a team meeting and a networking event do not require the same level of detail.</p>",
+                    "<h3>Team meeting</h3>",
+                    "<p><strong>Olá, bom dia. Meu nome é James. Eu trabalho na equipe de produto e estou acompanhando este projeto com vocês. Prazer em conhecer todos.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, good morning. My name is James. I work on the product team and I am following this project with you. Nice to meet everyone.</p>",
+                    "<h3>Job interview</h3>",
+                    "<p><strong>Olá, meu nome é Sofia. Sou analista financeira e tenho experiência com planejamento e relatórios. Estou buscando uma oportunidade para atuar com equipes internacionais no Brasil.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, my name is Sofia. I am a financial analyst and I have experience with planning and reports. I am looking for an opportunity to work with international teams in Brazil.</p>",
+                    "<h3>University or academic setting</h3>",
+                    "<p><strong>Olá, meu nome é Lucas. Sou estudante internacional e estou no Brasil para fazer um intercâmbio. Minha área de estudo é engenharia.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, my name is Lucas. I am an international student and I am in Brazil for an exchange program. My field of study is engineering.</p>",
+                    "<h3>Networking event</h3>",
+                    "<p><strong>Oi, tudo bem? Meu nome é Clara. Eu trabalho com tecnologia e estou conhecendo empresas brasileiras na área de inovação.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hi, how are you? My name is Clara. I work with technology and I am getting to know Brazilian companies in innovation.</p>",
+                    "<h3>WhatsApp group</h3>",
+                    "<p><strong>Olá, pessoal. Tudo bem? Meu nome é Alex. Faço parte da equipe de marketing e vou acompanhar este projeto. Prazer em conhecer vocês.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, everyone. How are you? My name is Alex. I am part of the marketing team and I will follow this project. Nice to meet you all.</p>"
+                ]
+            },
+            {
+                "heading": "Follow-up questions you should understand",
+                "body": [
+                    "<p>After you introduce yourself, people may ask follow-up questions. Preparing for these questions is essential because introductions are rarely one-way.</p>",
+                    "<p>Common questions:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Você é de onde?</td><td>Where are you from?</td></tr><tr><td>Você trabalha com o quê?</td><td>What do you do? / What do you work with?</td></tr><tr><td>Qual é a sua área?</td><td>What is your field?</td></tr><tr><td>Há quanto tempo você está no Brasil?</td><td>How long have you been in Brazil?</td></tr><tr><td>Você fala português?</td><td>Do you speak Portuguese?</td></tr><tr><td>Você está no Brasil a trabalho?</td><td>Are you in Brazil for work?</td></tr><tr><td>Qual é o seu cargo?</td><td>What is your job title?</td></tr><tr><td>Você faz parte de qual equipe?</td><td>Which team are you part of?</td></tr><tr><td>Você conhece o projeto?</td><td>Are you familiar with the project?</td></tr></tbody></table>",
+                    "<p>Useful answers:</p>",
+                    "<ul><li><strong>Eu sou da Argentina.</strong></li><li><strong>Eu trabalho com tecnologia.</strong></li><li><strong>Minha área é marketing.</strong></li><li><strong>Estou no Brasil há seis meses.</strong></li><li><strong>Falo um pouco de português.</strong></li><li><strong>Sim, estou no Brasil a trabalho.</strong></li><li><strong>Sou gerente de projetos.</strong></li><li><strong>Faço parte da equipe de produto.</strong></li><li><strong>Estou conhecendo o projeto agora.</strong></li></ul>",
+                    "<p>Live practice is especially helpful here because you need to respond in real time, not only memorize your initial introduction.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: prepare your professional introduction in Brazilian Portuguese",
+                "body": [
+                    "<p>To prepare your professional introduction, create a short script, practice it aloud, then train follow-up questions in a live class. The goal is to sound natural, not robotic.</p>",
+                    "<h3>Step 1: Write your basic information</h3>",
+                    "<p>Answer these questions in English first:</p>",
+                    "<ul><li>What is your name?</li><li>Where are you from?</li><li>What is your profession?</li><li>What is your area?</li><li>Why are you in Brazil?</li><li>What do you need Portuguese for?</li></ul>",
+                    "<h3>Step 2: Translate into simple Portuguese</h3>",
+                    "<p>Do not try to create complex sentences. Use clear structures.</p>",
+                    "<p>Example:</p>",
+                    "<p><strong>Meu nome é Anna. Eu sou da Alemanha. Eu trabalho na área de tecnologia. Estou no Brasil para trabalhar com a equipe local.</strong></p>",
+                    "<h3>Step 3: Add one professional detail</h3>",
+                    "<p>Add one sentence about your role or objective.</p>",
+                    "<p>Examples:</p>",
+                    "<ul><li><strong>Sou responsável por comunicação interna.</strong></li><li><strong>Trabalho com clientes internacionais.</strong></li><li><strong>Estou acompanhando este projeto.</strong></li><li><strong>Quero melhorar meu português para reuniões.</strong></li></ul>",
+                    "<h3>Step 4: Add a polite closing</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Prazer em conhecer vocês.</strong></li><li><strong>Obrigado pelo convite.</strong></li><li><strong>Fico feliz em participar.</strong></li></ul>",
+                    "<h3>Step 5: Practice aloud</h3>",
+                    "<p>Read your introduction aloud several times. Do not only read silently. Speaking is a physical skill.</p>",
+                    "<h3>Step 6: Prepare follow-up answers</h3>",
+                    "<p>Practice answers to:</p>",
+                    "<ul><li><strong>Você trabalha com o quê?</strong></li><li><strong>Qual é a sua área?</strong></li><li><strong>Há quanto tempo você está no Brasil?</strong></li><li><strong>Você fala português?</strong></li></ul>",
+                    "<h3>Step 7: Practice in a live class</h3>",
+                    "<p>A teacher can correct pronunciation, word choice and tone. This is what turns your script into real communication.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: professional introduction role-play",
+                "body": [
+                    "<p>Live-class practice helps because introductions are interactive. You need to speak clearly, listen to the other person and answer follow-up questions.</p>",
+                    "<h3>Exercise 1: 30-second introduction</h3>",
+                    "<p>Student gives a short introduction in Portuguese. Teacher corrects grammar, pronunciation and natural phrasing.</p>",
+                    "<p>Goal: create a clear basic version.</p>",
+                    "<h3>Exercise 2: follow-up questions</h3>",
+                    "<p>Teacher asks:</p>",
+                    "<ul><li><strong>Você trabalha com o quê?</strong></li><li><strong>Qual é a sua área?</strong></li><li><strong>Você está no Brasil há quanto tempo?</strong></li><li><strong>Por que você está aprendendo português?</strong></li></ul>",
+                    "<p>Student answers spontaneously.</p>",
+                    "<p>Goal: move beyond memorization.</p>",
+                    "<h3>Exercise 3: formal vs informal tone</h3>",
+                    "<p>Teacher gives two contexts: job interview and team meeting. Student adapts the introduction.</p>",
+                    "<p>Goal: sound appropriate for different situations.</p>",
+                    "<h3>Exercise 4: WhatsApp introduction</h3>",
+                    "<p>Student writes a short introduction for a professional group. Teacher corrects tone and naturalness.</p>",
+                    "<p>Goal: handle written professional communication in Brazil.</p>",
+                    "<h3>Exercise 5: pronunciation clinic</h3>",
+                    "<p>Teacher focuses on difficult words:</p>",
+                    "<ul><li><strong>trabalho</strong></li><li><strong>reunião</strong></li><li><strong>responsável</strong></li><li><strong>experiência</strong></li><li><strong>equipe</strong></li><li><strong>projeto</strong></li><li><strong>português</strong></li></ul>",
+                    "<p>Goal: improve clarity and confidence.</p>",
+                    "<p>This type of practice is one of the strongest reasons to choose live Portuguese classes instead of only passive study.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes foreigners make",
+                "body": [
+                    "<p>Foreigners often make predictable mistakes when introducing themselves in Brazilian Portuguese. These mistakes are normal, but they should be corrected early.</p>",
+                    "<h3>Mistake 1: translating job titles too literally</h3>",
+                    "<p>Some job titles do not translate word for word. It is often better to describe your area and responsibilities.</p>",
+                    "<p>Instead of forcing a title, say:</p>",
+                    "<p><strong>Eu trabalho na área de...</strong><br><strong>Eu sou responsável por...</strong></p>",
+                    "<h3>Mistake 2: sounding too direct</h3>",
+                    "<p>Brazilian professional communication often uses warm openings. Starting with <strong>“Olá, tudo bem?”</strong> or <strong>“Bom dia, pessoal”</strong> sounds natural.</p>",
+                    "<h3>Mistake 3: apologizing too much for your Portuguese</h3>",
+                    "<p>Avoid saying your Portuguese is terrible. Say you are still learning.</p>",
+                    "<p>Better:</p>",
+                    "<p><strong>Ainda estou aprendendo português.</strong></p>",
+                    "<h3>Mistake 4: memorizing only one script</h3>",
+                    "<p>If you memorize only one introduction, you may freeze when someone asks a follow-up question. Practice variations.</p>",
+                    "<h3>Mistake 5: not practicing pronunciation</h3>",
+                    "<p>Words like <strong>trabalho</strong>, <strong>reunião</strong>, <strong>experiência</strong> and <strong>responsável</strong> can be challenging. Practice them with correction.</p>"
+                ]
+            },
+            {
+                "heading": "Cultural tone: professional but warm",
+                "body": [
+                    "<p>In Brazil, a professional introduction can be both clear and warm. Being polite does not mean being overly formal. Being friendly does not mean being unprofessional.</p>",
+                    "<p>Useful warm phrases:</p>",
+                    "<ul><li><strong>Tudo bem?</strong></li><li><strong>Prazer em conhecer vocês.</strong></li><li><strong>Obrigado pelo convite.</strong></li><li><strong>Fico feliz em participar.</strong></li><li><strong>Estou à disposição.</strong></li></ul>",
+                    "<p>Examples:</p>",
+                    "<p>More formal:</p>",
+                    "<p><strong>Bom dia. Meu nome é David. Sou gerente de projetos e estou aqui para acompanhar a implementação com a equipe local. Obrigado pelo convite.</strong></p>",
+                    "<p>More warm and conversational:</p>",
+                    "<p><strong>Oi, bom dia, pessoal. Meu nome é David. Eu trabalho com gestão de projetos e vou acompanhar essa implementação com vocês. Prazer em conhecer todo mundo.</strong></p>",
+                    "<p>Both can work. The right choice depends on context.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps with professional Portuguese",
+                "body": [
+                    "<p>Vedium helps foreigners learn professional Brazilian Portuguese through live classes, real situations and cultural context. Instead of studying only grammar, you practice what you need to say in Brazil: introductions, meetings, WhatsApp messages, questions, clarifications and workplace communication.</p>",
+                    "<p>In Vedium’s live Portuguese classes, you can practice:</p>",
+                    "<ul><li>professional introductions;</li><li>meeting participation;</li><li>job interview phrases;</li><li>role and responsibility descriptions;</li><li>polite questions;</li><li>pronunciation;</li><li>listening to natural speech;</li><li>WhatsApp introductions;</li><li>follow-up conversations;</li><li>Brazilian cultural tone.</li></ul>",
+                    "<p>The live format matters because a teacher can hear how you speak and adjust the phrase to your context. If you work in technology, healthcare, education, finance or marketing, your examples can reflect your real area. This makes learning more useful and memorable.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the classes help you communicate better in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing Brazilian Portuguese for professional situations with live classes.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist before introducing yourself",
+                "body": [
+                    "<p>Before your next professional introduction in Portuguese, check if you can say:</p>",
+                    "<ul><li>my name;</li><li>my country or city;</li><li>my professional area;</li><li>my role;</li><li>what I do;</li><li>why I am in Brazil;</li><li>that I am learning Portuguese;</li><li>a polite closing;</li><li>a response to “Você trabalha com o quê?”;</li><li>a response to “Qual é a sua área?”</li></ul>",
+                    "<p>Choose one short version and one longer version. Practice both aloud. The goal is not to sound perfect. The goal is to sound clear, prepared and confident.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Introducing yourself professionally in Brazilian Portuguese is a practical skill for foreigners who want to work, study or build relationships in Brazil. A good introduction helps you enter meetings, interviews, teams, projects and professional communities with more confidence.</p>",
+                    "<p>Start with a simple structure: greeting, name, origin, professional area, role or objective, language-level clarification when needed, and polite closing. Then practice follow-up questions so your introduction does not stop after one memorized sentence. Professional Portuguese is not only vocabulary. It is tone, clarity, pronunciation and real interaction.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, students and professionals who need the language for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because the language becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing professional introductions in Brazilian Portuguese with live support.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/how-to-learn-brazilian-portuguese-without-relying-only-on-apps\">How to learn Brazilian Portuguese without relying only on apps</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "How do I introduce myself professionally in Brazilian Portuguese?",
+                "a": "Use a simple structure: greeting, name, origin, professional area, role or objective, and polite closing. Example: “Olá, meu nome é Anna. Trabalho na área de tecnologia. Prazer em conhecer vocês.”"
+            },
+            {
+                "q": "How do I say “I work in...” in Portuguese?",
+                "a": "You can say “Eu trabalho na área de...” for your field or “Eu trabalho com...” for what you do. Example: “Eu trabalho na área de marketing.”"
+            },
+            {
+                "q": "How do I say I am still learning Portuguese?",
+                "a": "Say “Ainda estou aprendendo português.” This sounds more confident and professional than saying your Portuguese is bad."
+            },
+            {
+                "q": "What questions should I prepare after introducing myself?",
+                "a": "Prepare answers for “Você trabalha com o quê?”, “Qual é a sua área?”, “Você é de onde?” and “Há quanto tempo você está no Brasil?”"
+            },
+            {
+                "q": "Does Vedium teach professional Brazilian Portuguese for foreigners?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, with practice for introductions, meetings, work communication and real professional situations in Brazil."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "how-to-learn-brazilian-portuguese-without-relying-only-on-apps": {
+        "title": "How to learn Brazilian Portuguese without relying only on apps",
+        "meta_description": "Learn Brazilian Portuguese beyond apps with live classes, real-life phrases, speaking practice and cultural context.",
+        "h1": "How to learn Brazilian Portuguese without relying only on apps",
+        "date": "2025-04-22",
+        "date_display": "April 22, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoa organizando post-its numa parede durante sessao de planejamento",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "To learn Brazilian Portuguese without relying only on apps, you need to combine structured study, live speaking practice, real-life vocabulary, listening to natural Brazilian speech, pronunciation correction and cultural context. Apps can help you build a habit and review words, but they cannot fully prepare you for conversations with doormen, coworkers, landlords, doctors, delivery drivers, classmates, neighbors or Brazilian friends.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For foreigners living, working or studying in Brazil, Portuguese is not just a language-learning project. It is a daily-life tool. You may need Portuguese to explain an apartment problem, ask a driver to wait, order food, understand a pharmacy question, join a work conversation, write a WhatsApp message, ask someone to repeat, or make small talk before a meeting. These moments are practical, fast and human. They rarely follow the predictable structure of an app exercise.</p>",
+                    "<p>Many learners begin with an app because it feels accessible. That is a good starting point. Apps are useful for daily repetition, vocabulary exposure and simple grammar review. But after a few weeks or months, many students notice a gap: they can recognize words on the screen, but freeze when a Brazilian asks a question. They can complete exercises, but cannot pronounce <strong>não</strong>, <strong>trabalho</strong>, <strong>reunião</strong>, <strong>endereço</strong> or <strong>banheiro</strong> clearly. They can translate simple phrases, but struggle to respond naturally in real time.</p>",
+                    "<p>This guide explains how to use apps wisely without depending on them completely. You will learn what apps do well, what they cannot replace, how to create a practical study plan, which real-life situations to practice first, and why live Portuguese classes can help you turn passive knowledge into confident communication in Brazil.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: how can you learn Brazilian Portuguese beyond apps?",
+                "body": [
+                    "<p>You can learn Brazilian Portuguese beyond apps by using apps as support, not as your entire method. The core of your learning should include live speaking practice, real conversations, pronunciation feedback, useful phrases, listening to Brazilian accents and cultural guidance for daily life.</p>",
+                    "<p>A balanced learning plan should include:</p>",
+                    "<ul><li>app practice for vocabulary review;</li><li>live Portuguese classes for speaking and correction;</li><li>real-life phrases for housing, work, food, transportation and services;</li><li>listening practice with Brazilian speech;</li><li>pronunciation work on difficult sounds;</li><li>WhatsApp message practice;</li><li>role-plays for situations you will actually face;</li><li>grammar learned through context;</li><li>weekly speaking goals;</li><li>cultural explanations to avoid awkward communication.</li></ul>",
+                    "<p>Apps can help you remember words. Live classes help you use them with people.</p>",
+                    "<p>If you want to know what to study first for life in Brazil, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: why apps are not enough in Brazil",
+                "body": [
+                    "<p>Apps are not enough because real Brazilian Portuguese is interactive. In an app, you usually receive a prompt, choose an answer and move to the next screen. In Brazil, people interrupt, speak quickly, use local expressions, ask follow-up questions and expect you to respond in context.</p>",
+                    "<p>Imagine these situations:</p>",
+                    "<ul><li>a ride-app driver calls and asks <strong>“Onde você está?”</strong>;</li><li>the doorman says <strong>“Chegou uma encomenda para você”</strong>;</li><li>a coworker asks <strong>“Como foi o fim de semana?”</strong>;</li><li>a pharmacist asks <strong>“Você tem receita?”</strong>;</li><li>a waiter asks <strong>“É para viagem ou para comer aqui?”</strong>;</li><li>a landlord writes <strong>“Podemos marcar a visita amanhã?”</strong>;</li><li>a classmate says <strong>“Você entendeu a aula?”</strong>;</li><li>a receptionist asks <strong>“Qual é o seu CPF?”</strong>.</li></ul>",
+                    "<p>These questions require listening, emotional calm and quick response. An app may have taught you vocabulary, but it probably did not train the pressure of real interaction.</p>",
+                    "<p>That is why Brazilian Portuguese for foreigners should be learned through situations, not only lessons. You need to practice what you will actually say when someone is waiting for your answer.</p>"
+                ]
+            },
+            {
+                "heading": "What apps do well",
+                "body": [
+                    "<p>Apps are useful when they are used for the right purpose. They can help you create consistency and review basic language in small doses.</p>",
+                    "<p>Apps are good for:</p>",
+                    "<ul><li>building a daily study habit;</li><li>reviewing common words;</li><li>practicing basic sentence patterns;</li><li>introducing simple grammar;</li><li>learning spelling;</li><li>repeating vocabulary;</li><li>practicing short exercises;</li><li>keeping motivation with progress tracking;</li><li>studying during short breaks;</li><li>maintaining contact with the language.</li></ul>",
+                    "<p>For example, an app can help you recognize words like:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>casa</td><td>house</td></tr><tr><td>trabalho</td><td>work</td></tr><tr><td>comida</td><td>food</td></tr><tr><td>água</td><td>water</td></tr><tr><td>mercado</td><td>market / supermarket</td></tr><tr><td>rua</td><td>street</td></tr><tr><td>hoje</td><td>today</td></tr><tr><td>amanhã</td><td>tomorrow</td></tr><tr><td>obrigado / obrigada</td><td>thank you</td></tr><tr><td>ajuda</td><td>help</td></tr></tbody></table>",
+                    "<p>This is useful. But recognition is not the same as conversation. Knowing that <strong>ajuda</strong> means help does not automatically prepare you to say:</p>",
+                    "<p><strong>Preciso de ajuda. Pode me explicar de novo?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I need help. Can you explain again?</p>",
+                    "<p>The gap between recognition and use is where live practice becomes essential.</p>"
+                ]
+            },
+            {
+                "heading": "What apps cannot replace",
+                "body": [
+                    "<p>Apps cannot fully replace human correction, real conversation, cultural context and spontaneous speaking. They can show you language, but they cannot always understand your specific difficulties as a learner living in Brazil.</p>",
+                    "<p>Apps cannot fully replace:</p>",
+                    "<ul><li>a teacher correcting your pronunciation;</li><li>a real person asking follow-up questions;</li><li>role-play for daily-life situations;</li><li>feedback on your tone;</li><li>cultural explanations;</li><li>adapting phrases to your city or goal;</li><li>practicing phone calls;</li><li>writing natural WhatsApp messages;</li><li>learning how Brazilians actually respond;</li><li>building confidence under pressure.</li></ul>",
+                    "<p>For example, an app may teach:</p>",
+                    "<p><strong>Eu quero água.</strong><br>I want water.</p>",
+                    "<p>That is correct. But in Brazil, you may need to say:</p>",
+                    "<p><strong>Eu queria uma água sem gás, por favor.</strong><br>I would like still water, please.</p>",
+                    "<p>Or:</p>",
+                    "<p><strong>Você tem água com gás?</strong><br>Do you have sparkling water?</p>",
+                    "<p>Or:</p>",
+                    "<p><strong>Pode trazer uma água para mim?</strong><br>Can you bring me a water?</p>",
+                    "<p>A teacher can explain which phrase sounds more natural in a restaurant, in a café or at someone’s home. This is the type of nuance that matters in real life.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary beyond app exercises",
+                "body": [
+                    "<p>Essential vocabulary for life in Brazil should be organized by situation. Instead of memorizing random words, learn phrases for the places where you actually need Portuguese.</p>",
+                    "<h3>Housing and building</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>apartamento</td><td>apartment</td></tr><tr><td>prédio</td><td>building</td></tr><tr><td>portaria</td><td>building entrance / doorman area</td></tr><tr><td>porteiro / porteira</td><td>doorman / doorwoman</td></tr><tr><td>aluguel</td><td>rent</td></tr><tr><td>contrato</td><td>contract</td></tr><tr><td>encomenda</td><td>package</td></tr><tr><td>manutenção</td><td>maintenance</td></tr><tr><td>chave</td><td>key</td></tr><tr><td>endereço</td><td>address</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Moro neste prédio.</strong> — I live in this building.</li><li><strong>Chegou alguma encomenda para mim?</strong> — Did a package arrive for me?</li><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building entrance.</li><li><strong>Tenho um problema no apartamento.</strong> — I have a problem in the apartment.</li><li><strong>Preciso de manutenção.</strong> — I need maintenance.</li></ul>",
+                    "<h3>Work and study</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>reunião</td><td>meeting</td></tr><tr><td>aula</td><td>class</td></tr><tr><td>dúvida</td><td>question / doubt</td></tr><tr><td>horário</td><td>schedule / time</td></tr><tr><td>projeto</td><td>project</td></tr><tr><td>prazo</td><td>deadline</td></tr><tr><td>equipe</td><td>team</td></tr><tr><td>professor / professora</td><td>teacher</td></tr><tr><td>colega</td><td>colleague / classmate</td></tr><tr><td>mensagem</td><td>message</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — I have a meeting today.</li><li><strong>Tenho uma dúvida.</strong> — I have a question.</li><li><strong>Pode repetir, por favor?</strong> — Can you repeat, please?</li><li><strong>Qual é o horário da aula?</strong> — What time is the class?</li><li><strong>Vou enviar a mensagem.</strong> — I will send the message.</li></ul>",
+                    "<h3>Daily errands</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>mercado</td><td>supermarket</td></tr><tr><td>farmácia</td><td>pharmacy</td></tr><tr><td>restaurante</td><td>restaurant</td></tr><tr><td>banco</td><td>bank</td></tr><tr><td>ônibus</td><td>bus</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr><tr><td>conta</td><td>bill</td></tr><tr><td>remédio</td><td>medicine</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Aceita cartão?</strong> — Do you accept card?</li><li><strong>A conta, por favor.</strong> — The bill, please.</li><li><strong>Onde fica a farmácia?</strong> — Where is the pharmacy?</li><li><strong>Preciso de um remédio.</strong> — I need medicine.</li><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li></ul>",
+                    "<p>This kind of vocabulary is more useful than random app words because it connects directly to your life.</p>"
+                ]
+            },
+            {
+                "heading": "How to turn app vocabulary into real speech",
+                "body": [
+                    "<p>To turn app vocabulary into real speech, you need to take words out of the screen and place them into sentences, conversations and situations. Vocabulary becomes useful only when you can say it at the right moment.</p>",
+                    "<h3>Step 1: choose one app word</h3>",
+                    "<p>Example:</p>",
+                    "<p><strong>endereço</strong> — address</p>",
+                    "<h3>Step 2: create a useful phrase</h3>",
+                    "<p><strong>Este é o endereço.</strong><br>This is the address.</p>",
+                    "<h3>Step 3: create a real-life situation</h3>",
+                    "<p>You are talking to a ride-app driver or delivery person.</p>",
+                    "<h3>Step 4: add a follow-up phrase</h3>",
+                    "<p><strong>A entrada é pela outra rua.</strong><br>The entrance is on the other street.</p>",
+                    "<h3>Step 5: practice aloud</h3>",
+                    "<p>Say the phrase several times slowly.</p>",
+                    "<h3>Step 6: practice with a teacher</h3>",
+                    "<p>The teacher asks:</p>",
+                    "<p><strong>Qual é o endereço?</strong></p>",
+                    "<p>You answer:</p>",
+                    "<p><strong>Este é o endereço. A entrada é pela outra rua.</strong></p>",
+                    "<h3>Step 7: use it in real life</h3>",
+                    "<p>Now the word is no longer passive vocabulary. It is communication.</p>",
+                    "<p>This is how apps can support learning without becoming the whole method.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: what to do beyond app lessons",
+                "body": [
+                    "<p>Live-class practice is essential because Portuguese is a social skill. You need to train your reaction, not only your memory.</p>",
+                    "<h3>Exercise 1: app word to conversation</h3>",
+                    "<p>Student brings 5 words learned in an app. Teacher turns each word into a real situation.</p>",
+                    "<p>Example:</p>",
+                    "<ul><li>word: <strong>farmácia</strong>;</li><li>phrase: <strong>Onde fica a farmácia?</strong>;</li><li>role-play: asking a neighbor for directions.</li></ul>",
+                    "<p>Goal: transform isolated words into use.</p>",
+                    "<h3>Exercise 2: pronunciation correction</h3>",
+                    "<p>Student practices words that often confuse foreigners:</p>",
+                    "<ul><li><strong>não</strong>;</li><li><strong>trabalho</strong>;</li><li><strong>reunião</strong>;</li><li><strong>dinheiro</strong>;</li><li><strong>banheiro</strong>;</li><li><strong>endereço</strong>;</li><li><strong>obrigado / obrigada</strong>;</li><li><strong>amanhã</strong>.</li></ul>",
+                    "<p>Teacher corrects sounds, rhythm and stress.</p>",
+                    "<p>Goal: improve clarity.</p>",
+                    "<h3>Exercise 3: real-life role-play</h3>",
+                    "<p>Teacher plays a doorman, waiter, driver, coworker or landlord. Student responds.</p>",
+                    "<p>Goal: practice spontaneous Portuguese.</p>",
+                    "<h3>Exercise 4: WhatsApp writing</h3>",
+                    "<p>Student writes a short message:</p>",
+                    "<p><strong>Olá, tudo bem? Tenho uma dúvida sobre o horário da reunião. Pode confirmar, por favor?</strong></p>",
+                    "<p>Teacher corrects tone and natural phrasing.</p>",
+                    "<p>Goal: write messages that sound Brazilian.</p>",
+                    "<h3>Exercise 5: clarification under pressure</h3>",
+                    "<p>Teacher speaks naturally. Student uses:</p>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
+                    "<p>Goal: avoid freezing when speech is fast.</p>",
+                    "<p>These exercises help you move beyond app-based recognition.</p>"
+                ]
+            },
+            {
+                "heading": "How to build a balanced Brazilian Portuguese study plan",
+                "body": [
+                    "<p>A balanced study plan should combine short daily practice with live speaking and real-life use. You do not need to study for hours every day. You need consistency and the right mix.</p>",
+                    "<h3>Daily practice: 20 minutes</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li>5 minutes app review;</li><li>5 minutes listening to Brazilian Portuguese;</li><li>5 minutes speaking aloud;</li><li>5 minutes writing one practical message.</li></ul>",
+                    "<h3>Weekly practice: live class</h3>",
+                    "<p>Use your live class to:</p>",
+                    "<ul><li>ask questions;</li><li>practice role-plays;</li><li>correct pronunciation;</li><li>review real situations;</li><li>prepare for upcoming conversations.</li></ul>",
+                    "<h3>Real-life practice: one phrase per day</h3>",
+                    "<p>Choose one phrase and use it in your life:</p>",
+                    "<ul><li><strong>Obrigado / obrigada.</strong></li><li><strong>Pode repetir, por favor?</strong></li><li><strong>Aceita cartão?</strong></li><li><strong>Estou aprendendo português.</strong></li><li><strong>Pode deixar na portaria.</strong></li></ul>",
+                    "<p>Small real uses build confidence faster than passive study.</p>",
+                    "<h3>Review: once a week</h3>",
+                    "<p>Make a list:</p>",
+                    "<ul><li>phrases I used;</li><li>phrases I understood;</li><li>phrases I needed but did not know;</li><li>pronunciation problems;</li><li>questions for the teacher.</li></ul>",
+                    "<p>This gives direction to your next live class.</p>"
+                ]
+            },
+            {
+                "heading": "Portuguese pronunciation needs human feedback",
+                "body": [
+                    "<p>Pronunciation is one of the biggest reasons not to rely only on apps. Brazilian Portuguese has sounds that may be difficult for English speakers and other foreigners: nasal vowels, <strong>ão</strong>, <strong>lh</strong>, <strong>nh</strong>, final unstressed vowels and the Brazilian rhythm.</p>",
+                    "<p>Important words to practice:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>Why it matters</th></tr></thead><tbody><tr><td>não</td><td>essential for daily conversation</td></tr><tr><td>reunião</td><td>common in work and study</td></tr><tr><td>trabalho</td><td>important for introductions</td></tr><tr><td>dinheiro</td><td>useful in daily life</td></tr><tr><td>banheiro</td><td>essential in public places</td></tr><tr><td>endereço</td><td>needed for transportation and housing</td></tr><tr><td>informação</td><td>useful for asking questions</td></tr><tr><td>amanhã</td><td>common for planning</td></tr><tr><td>obrigado / obrigada</td><td>basic politeness</td></tr><tr><td>português</td><td>the language itself</td></tr></tbody></table>",
+                    "<p>An app can play audio, but it may not tell you exactly what you are doing wrong. A live teacher can say: your nasal sound is too open, your rhythm is too English, your final vowel is too strong, or your stress is on the wrong syllable. This feedback is hard to replace.</p>"
+                ]
+            },
+            {
+                "heading": "Cultural context: why words alone are not enough",
+                "body": [
+                    "<p>Brazilian Portuguese is not only vocabulary and grammar. It also includes cultural behavior: how people greet, how direct or indirect a phrase sounds, when to use formal or informal language, how WhatsApp messages are written, how small talk works and how people soften requests.</p>",
+                    "<p>For example, in English, a direct request may be normal in some contexts. In Brazil, you may often hear softer phrases:</p>",
+                    "<ul><li><strong>Você pode...?</strong> — Can you...?</li><li><strong>Por favor</strong> — Please.</li><li><strong>Só para confirmar...</strong> — Just to confirm...</li><li><strong>Desculpa incomodar...</strong> — Sorry to bother...</li><li><strong>Quando puder...</strong> — When you can...</li><li><strong>Tudo bem?</strong> — How are you? / All good?</li></ul>",
+                    "<p>These phrases help your Portuguese sound more natural and polite.</p>",
+                    "<p>Example:</p>",
+                    "<p>Too direct:</p>",
+                    "<p><strong>Me manda o endereço.</strong><br>Send me the address.</p>",
+                    "<p>Softer:</p>",
+                    "<p><strong>Você pode me mandar o endereço, por favor?</strong><br>Can you send me the address, please?</p>",
+                    "<p>A live teacher can explain when each phrase is appropriate.</p>"
+                ]
+            },
+            {
+                "heading": "Course decision: when is it time to move beyond apps?",
+                "body": [
+                    "<p>It is time to move beyond apps when you can recognize words but cannot speak, when you freeze in real conversations, when pronunciation is unclear, when you need Portuguese for daily life, or when your goal involves living, working or studying in Brazil.</p>",
+                    "<p>Signs you need live classes:</p>",
+                    "<ul><li>you understand app exercises but cannot answer Brazilians;</li><li>you avoid speaking because you are afraid of mistakes;</li><li>you cannot understand natural speed;</li><li>you need Portuguese for housing, work or services;</li><li>you rely on translation apps for every message;</li><li>your pronunciation is not being corrected;</li><li>you want to ask questions and get real answers;</li><li>you need a study plan;</li><li>you are moving to Brazil soon;</li><li>you already live in Brazil and feel limited.</li></ul>",
+                    "<p>Apps are not bad. The problem is expecting them to do everything. Once Portuguese becomes part of your life, you need real interaction.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and see how live Brazilian Portuguese classes can complement your app practice.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes learners make when relying only on apps",
+                "body": [
+                    "<p>Learners who rely only on apps often develop passive knowledge but limited speaking confidence.</p>",
+                    "<h3>Mistake 1: confusing streaks with fluency</h3>",
+                    "<p>A 100-day streak is great for discipline, but it does not automatically mean you can handle a conversation in Brazil.</p>",
+                    "<h3>Mistake 2: learning random vocabulary</h3>",
+                    "<p>If you learn animal names but cannot talk to your doorman, your study is not aligned with your life.</p>",
+                    "<h3>Mistake 3: not speaking aloud</h3>",
+                    "<p>Typing correct answers is not the same as speaking.</p>",
+                    "<h3>Mistake 4: ignoring pronunciation</h3>",
+                    "<p>Brazilian Portuguese pronunciation needs active practice and correction.</p>",
+                    "<h3>Mistake 5: avoiding real people</h3>",
+                    "<p>Language is social. At some point, you need to practice with humans.</p>",
+                    "<h3>Mistake 6: translating everything</h3>",
+                    "<p>Apps may encourage word-by-word translation. Real communication needs phrase patterns and context.</p>"
+                ]
+            },
+            {
+                "heading": "30-day plan: app plus live practice",
+                "body": [
+                    "<p>A 30-day plan can help you move from app-based learning to real communication.</p>",
+                    "<table><thead><tr><th>Week</th><th>Focus</th><th>Goal</th></tr></thead><tbody><tr><td>Week 1</td><td>survival phrases</td><td>ask for help, repeat and slow speech</td></tr><tr><td>Week 2</td><td>housing and transportation</td><td>handle address, building and ride-app situations</td></tr><tr><td>Week 3</td><td>food, pharmacy and errands</td><td>solve daily-life situations</td></tr><tr><td>Week 4</td><td>work, study and small talk</td><td>participate in basic conversations</td></tr></tbody></table>",
+                    "<p>Daily routine:</p>",
+                    "<p>1. review 5 app words;<br>2. turn each word into one phrase;<br>3. say the phrases aloud;<br>4. write one WhatsApp message;<br>5. listen to 2 minutes of Brazilian speech;<br>6. save one question for live class.</p>",
+                    "<p>Weekly live class:</p>",
+                    "<ul><li>practice one real situation;</li><li>correct pronunciation;</li><li>review your WhatsApp message;</li><li>simulate a conversation;</li><li>choose next week’s phrases.</li></ul>",
+                    "<p>This combination keeps the convenience of apps but adds the human practice you need.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps you learn beyond apps",
+                "body": [
+                    "<p>Vedium helps foreigners learn Brazilian Portuguese beyond apps through live online classes, real-life practice and cultural context. The focus is not only on knowing words, but on using Portuguese in Brazil.</p>",
+                    "<p>In Vedium’s live classes, you can practice:</p>",
+                    "<ul><li>introductions;</li><li>housing conversations;</li><li>transportation phrases;</li><li>food ordering;</li><li>pharmacy and health situations;</li><li>WhatsApp messages;</li><li>work and study conversations;</li><li>small talk;</li><li>pronunciation;</li><li>listening to natural Brazilian speech;</li><li>asking for clarification;</li><li>cultural communication.</li></ul>",
+                    "<p>The live format matters because your teacher can adapt the class to your reality. If you live in Brazil, plan to move, work remotely, study, or need Portuguese for a specific city or routine, the class can reflect that.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the language becomes useful, not because you are locked into a contract.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist: are you relying too much on apps?",
+                "body": [
+                    "<p>Use this checklist:</p>",
+                    "<ul><li>I can complete app exercises but avoid speaking.</li><li>I know words but cannot use them in real sentences.</li><li>I do not receive pronunciation correction.</li><li>I rely on translation apps for WhatsApp messages.</li><li>I freeze when Brazilians speak quickly.</li><li>I do not know phrases for housing, transportation or services.</li><li>I rarely practice aloud.</li><li>I do not know how to ask someone to repeat.</li><li>I need Portuguese for work, study or daily life.</li><li>I want feedback from a real teacher.</li></ul>",
+                    "<p>If several items apply to you, your next step is not deleting your app. Your next step is adding live practice.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Learning Brazilian Portuguese without relying only on apps means using apps wisely while building real communication skills. Apps can support your vocabulary and habit, but they cannot replace live conversation, pronunciation correction, cultural context and practical role-play for life in Brazil.</p>",
+                    "<p>Start by learning phrases for real situations: housing, transportation, food, pharmacy, work, study, WhatsApp and small talk. Speak aloud every day. Turn app words into sentences. Practice with a teacher. Ask for correction. Use one phrase in real life whenever possible.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, students and professionals who need the language for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because Portuguese becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start learning Brazilian Portuguese beyond apps, with live support and real-life practice.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/how-to-order-food-in-brazil-with-confidence\">How to order food in Brazil with confidence</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Can I learn Brazilian Portuguese only with apps?",
+                "a": "Apps can help with vocabulary and habit, but they are usually not enough for real conversation, pronunciation correction and daily-life situations in Brazil."
+            },
+            {
+                "q": "What should I add to app-based Portuguese study?",
+                "a": "Add live classes, speaking practice, pronunciation feedback, listening to Brazilian speech, WhatsApp writing and role-plays for real situations."
+            },
+            {
+                "q": "How can I turn app vocabulary into real Portuguese?",
+                "a": "Take one app word, create a useful sentence, practice it aloud, use it in a real-life situation and review it with a teacher."
+            },
+            {
+                "q": "Why are live Portuguese classes useful?",
+                "a": "Live classes give you real interaction, correction, pronunciation practice, cultural explanations and situations that apps cannot fully simulate."
+            },
+            {
+                "q": "Does Vedium teach Brazilian Portuguese beyond app exercises?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, with real-life practice, pronunciation correction, cultural context and speaking confidence."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "how-to-order-food-in-brazil-with-confidence": {
+        "title": "How to order food in Brazil with confidence",
+        "meta_description": "Learn how to order food in Brazil with practical Portuguese phrases, restaurant vocabulary and live-class practice.",
+        "h1": "How to order food in Brazil with confidence",
+        "date": "2025-03-25",
+        "date_display": "March 25, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Estudantes sorrindo enquanto olham juntos para a tela de um notebook",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "To order food in Brazil with confidence, you need practical Brazilian Portuguese phrases for greeting the server, asking for a table, reading the menu, ordering food and drinks, explaining restrictions, asking for recommendations, paying the bill and handling small misunderstandings. You do not need perfect Portuguese to eat out comfortably, but you do need phrases that work in real restaurants, cafés, bakeries, food courts, delivery apps and everyday lunch places.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For foreigners living, working or studying in Brazil, food is one of the first real-life situations where Portuguese becomes necessary. You may need to ask if a dish has meat, request water, order coffee, understand the difference between <strong>prato feito</strong> and <strong>à la carte</strong>, ask whether service is included, explain that you do not eat a certain ingredient, or pay with card. These moments are simple, but they can become stressful when the person speaks quickly and you are still translating in your head.</p>",
+                    "<p>Ordering food is also cultural. In Brazil, people may greet casually, use warm expressions, ask if everything is okay, offer options, and expect short but polite interaction. A phrase such as <strong>“Oi, tudo bem?”</strong> may appear before the actual order. In bakeries and casual restaurants, the flow may be fast. In lunch places, you may need to say whether you want to eat there or take away. On delivery apps, you may need to write a clear message to the restaurant or delivery person.</p>",
+                    "<p>A good Brazilian Portuguese course for foreigners should prepare you for these real situations. It should not only teach grammar in isolation. It should help you practice restaurant dialogues, understand menus, pronounce common food words, ask questions and respond naturally. In this guide, you will learn essential vocabulary, real-life phrases, common situations and live-class exercises to help you order food in Brazil with more confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: how do you order food in Brazil?",
+                "body": [
+                    "<p>To order food in Brazil, start with a greeting, ask for the menu or choose from the counter, say what you want using <strong>“Eu queria...”</strong> or <strong>“Vou querer...”</strong>, confirm details, and ask for the bill with <strong>“A conta, por favor.”</strong> If you do not understand, use <strong>“Pode repetir, por favor?”</strong> or <strong>“Pode falar mais devagar?”</strong></p>",
+                    "<p>A simple restaurant order can sound like this:</p>",
+                    "<p><strong>Oi, tudo bem? Eu queria um café e um pão de queijo, por favor.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hi, how are you? I would like a coffee and a cheese bread, please.</p>",
+                    "<p>A simple lunch order:</p>",
+                    "<p><strong>Vou querer o prato do dia, por favor. Sem cebola, se possível.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I’ll have the dish of the day, please. No onion, if possible.</p>",
+                    "<p>A simple bill request:</p>",
+                    "<p><strong>A conta, por favor. Pode pagar no cartão?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>The bill, please. Can I pay by card?</p>",
+                    "<p>These phrases are short, polite and useful in many Brazilian food situations.</p>",
+                    "<p>If you want to practice real restaurant conversations in Brazilian Portuguese, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: entering a restaurant or café",
+                "body": [
+                    "<p>When you enter a restaurant or café in Brazil, the first interaction is usually simple. You may need to say how many people are with you, ask for a table or say whether you want to eat there or take away.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Mesa para dois, por favor.</td><td>Table for two, please.</td></tr><tr><td>Tem mesa disponível?</td><td>Is there a table available?</td></tr><tr><td>Eu queria comer aqui.</td><td>I would like to eat here.</td></tr><tr><td>É para viagem.</td><td>It is to go.</td></tr><tr><td>Posso ver o cardápio?</td><td>Can I see the menu?</td></tr><tr><td>Vocês têm cardápio em inglês?</td><td>Do you have a menu in English?</td></tr><tr><td>Ainda estou decidindo.</td><td>I am still deciding.</td></tr></tbody></table>",
+                    "<p>A natural first exchange:</p>",
+                    "<p><strong>Atendente:</strong> Oi, tudo bem? Mesa para quantas pessoas?<br><strong>You:</strong> Mesa para duas pessoas, por favor.<br><strong>Atendente:</strong> Pode sentar aqui.<br><strong>You:</strong> Obrigado / obrigada.</p>",
+                    "<p>Translation:</p>",
+                    "<p>Server: Hi, how are you? Table for how many people?<br>You: Table for two people, please.<br>Server: You can sit here.<br>You: Thank you.</p>",
+                    "<p>In Brazil, <strong>obrigado</strong> is used by male speakers and <strong>obrigada</strong> by female speakers. You will hear both very often.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for ordering food in Brazil",
+                "body": [
+                    "<p>Essential food vocabulary should be learned in complete phrases. Knowing the word <strong>água</strong> is useful, but knowing <strong>“Eu queria uma água sem gás”</strong> is much more practical.</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>cardápio</td><td>menu</td></tr><tr><td>garçom / garçonete</td><td>waiter / waitress</td></tr><tr><td>pedido</td><td>order</td></tr><tr><td>prato</td><td>dish / plate</td></tr><tr><td>prato do dia</td><td>dish of the day</td></tr><tr><td>entrada</td><td>appetizer / starter</td></tr><tr><td>sobremesa</td><td>dessert</td></tr><tr><td>bebida</td><td>drink</td></tr><tr><td>água com gás</td><td>sparkling water</td></tr><tr><td>água sem gás</td><td>still water</td></tr><tr><td>café</td><td>coffee</td></tr><tr><td>suco</td><td>juice</td></tr><tr><td>conta</td><td>bill / check</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr><tr><td>troco</td><td>change</td></tr><tr><td>gorjeta</td><td>tip</td></tr><tr><td>taxa de serviço</td><td>service charge</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Eu queria ver o cardápio.</strong> — I would like to see the menu.</li><li><strong>Qual é o prato do dia?</strong> — What is the dish of the day?</li><li><strong>O que você recomenda?</strong> — What do you recommend?</li><li><strong>Eu queria uma água sem gás.</strong> — I would like still water.</li><li><strong>Vou querer esse prato.</strong> — I’ll have this dish.</li><li><strong>A conta, por favor.</strong> — The bill, please.</li><li><strong>Posso pagar no cartão?</strong> — Can I pay by card?</li><li><strong>A taxa de serviço está incluída?</strong> — Is the service charge included?</li></ul>",
+                    "<p>These phrases help you act in real situations without needing long explanations.</p>"
+                ]
+            },
+            {
+                "heading": "How to ask questions about the menu",
+                "body": [
+                    "<p>Asking questions about the menu is one of the most useful skills for foreigners in Brazil. Menus may include regional words, ingredients you do not know, abbreviations, daily specials or dishes that are familiar only to Brazilians.</p>",
+                    "<p>Useful questions:</p>",
+                    "<ul><li><strong>O que vem nesse prato?</strong> — What comes in this dish?</li><li><strong>Esse prato tem carne?</strong> — Does this dish have meat?</li><li><strong>Esse prato tem frango?</strong> — Does this dish have chicken?</li><li><strong>Esse prato tem peixe?</strong> — Does this dish have fish?</li><li><strong>Esse prato tem queijo?</strong> — Does this dish have cheese?</li><li><strong>É muito apimentado?</strong> — Is it very spicy?</li><li><strong>Qual é a opção vegetariana?</strong> — What is the vegetarian option?</li><li><strong>Tem alguma opção sem glúten?</strong> — Is there any gluten-free option?</li><li><strong>Tem alguma opção sem lactose?</strong> — Is there any lactose-free option?</li><li><strong>Qual é o prato mais pedido?</strong> — What is the most ordered dish?</li></ul>",
+                    "<p>A practical exchange:</p>",
+                    "<p><strong>You:</strong> O que vem nesse prato?<br><strong>Server:</strong> Vem arroz, feijão, salada e frango.<br><strong>You:</strong> Perfeito. Vou querer esse, por favor.</p>",
+                    "<p>Translation:</p>",
+                    "<p>You: What comes in this dish?<br>Server: It comes with rice, beans, salad and chicken.<br>You: Perfect. I’ll have this one, please.</p>",
+                    "<p>This type of dialogue is common and very useful.</p>"
+                ]
+            },
+            {
+                "heading": "Food restrictions and preferences",
+                "body": [
+                    "<p>If you have food restrictions, allergies or strong preferences, you should learn direct and polite phrases before eating out in Brazil. Do not rely only on translation apps in urgent situations.</p>",
+                    "<p>Important phrases:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Eu sou vegetariano / vegetariana.</td><td>I am vegetarian.</td></tr><tr><td>Eu sou vegano / vegana.</td><td>I am vegan.</td></tr><tr><td>Tenho alergia a...</td><td>I am allergic to...</td></tr><tr><td>Não posso comer...</td><td>I cannot eat...</td></tr><tr><td>Sem cebola, por favor.</td><td>No onion, please.</td></tr><tr><td>Sem alho, por favor.</td><td>No garlic, please.</td></tr><tr><td>Sem lactose, por favor.</td><td>No lactose, please.</td></tr><tr><td>Sem glúten, por favor.</td><td>Gluten-free, please.</td></tr><tr><td>Pode tirar o queijo?</td><td>Can you remove the cheese?</td></tr><tr><td>Pode vir separado?</td><td>Can it come separately?</td></tr></tbody></table>",
+                    "<p>Examples:</p>",
+                    "<p><strong>Tenho alergia a amendoim. Esse prato tem amendoim?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am allergic to peanuts. Does this dish have peanuts?</p>",
+                    "<p><strong>Eu sou vegetariana. Tem alguma opção sem carne?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am vegetarian. Is there any option without meat?</p>",
+                    "<p>These phrases should be practiced aloud, especially if the restriction is important for your health.</p>"
+                ]
+            },
+            {
+                "heading": "Brazilian food situations you should understand",
+                "body": [
+                    "<p>Brazil has different food environments, and each one may require slightly different Portuguese. Ordering at a bakery is not the same as ordering at a formal restaurant or through a delivery app.</p>",
+                    "<h3>Padaria</h3>",
+                    "<p>A <strong>padaria</strong> is a bakery, but in Brazil it can also serve coffee, sandwiches, juices, snacks, lunch and sometimes dinner.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Eu queria um pão de queijo.</strong></li><li><strong>Um café com leite, por favor.</strong></li><li><strong>Tem pão francês?</strong></li><li><strong>É para viagem.</strong></li></ul>",
+                    "<h3>Restaurante por quilo</h3>",
+                    "<p>A <strong>restaurante por quilo</strong> is a pay-by-weight restaurant. You choose food from a buffet, weigh your plate and pay based on weight.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Onde eu peso o prato?</strong> — Where do I weigh the plate?</li><li><strong>Como funciona?</strong> — How does it work?</li><li><strong>Posso pagar no caixa?</strong> — Can I pay at the cashier?</li></ul>",
+                    "<h3>Prato feito</h3>",
+                    "<p>A <strong>prato feito</strong>, often called <strong>PF</strong>, is a simple fixed plate, usually with rice, beans, meat, salad and sides.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Qual é o prato feito de hoje?</strong></li><li><strong>Vou querer um PF, por favor.</strong></li><li><strong>Pode trocar a carne por frango?</strong></li></ul>",
+                    "<h3>Delivery</h3>",
+                    "<p>Delivery in Brazil often involves app messages or WhatsApp communication.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building reception/doorman area.</li><li><strong>Meu apartamento é 802.</strong> — My apartment is 802.</li><li><strong>Estou descendo.</strong> — I am coming downstairs.</li><li><strong>O endereço está correto.</strong> — The address is correct.</li></ul>",
+                    "<p>These details are very Brazil-specific and useful for expats.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: order food in Brazil step by step",
+                "body": [
+                    "<p>To order food in Brazil with confidence, follow a simple structure. This helps you avoid freezing when the server asks a question.</p>",
+                    "<h3>Step 1: greet politely</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Oi, tudo bem?</strong></li><li><strong>Bom dia.</strong></li><li><strong>Boa tarde.</strong></li><li><strong>Boa noite.</strong></li></ul>",
+                    "<h3>Step 2: ask for the menu or choose the item</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Posso ver o cardápio?</strong></li><li><strong>Qual é o prato do dia?</strong></li><li><strong>O que você recomenda?</strong></li></ul>",
+                    "<h3>Step 3: place the order</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Eu queria...</strong></li><li><strong>Vou querer...</strong></li><li><strong>Para mim, vai ser...</strong></li></ul>",
+                    "<p>Examples:</p>",
+                    "<p><strong>Eu queria um café, por favor.</strong><br><strong>Vou querer o prato do dia.</strong><br><strong>Para mim, vai ser uma água sem gás.</strong></p>",
+                    "<h3>Step 4: ask for changes if needed</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Sem cebola, por favor.</strong></li><li><strong>Pode tirar o queijo?</strong></li><li><strong>Pode vir separado?</strong></li><li><strong>Tem opção sem carne?</strong></li></ul>",
+                    "<h3>Step 5: confirm the order</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Isso, obrigado / obrigada.</strong></li><li><strong>Perfeito.</strong></li><li><strong>Está certo.</strong></li><li><strong>Só para confirmar...</strong></li></ul>",
+                    "<h3>Step 6: ask for the bill</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>A conta, por favor.</strong></li><li><strong>Pode fechar a conta?</strong></li><li><strong>Posso pagar no cartão?</strong></li></ul>",
+                    "<h3>Step 7: handle confusion</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Você pode explicar de novo?</strong></li></ul>",
+                    "<p>This structure works in many restaurants, cafés and casual food places.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: restaurant role-play",
+                "body": [
+                    "<p>Live-class practice is one of the best ways to learn how to order food because ordering requires listening, speaking, pronunciation and quick response. A teacher can simulate real restaurant situations and correct your phrases.</p>",
+                    "<h3>Exercise 1: café order</h3>",
+                    "<p>Teacher plays the attendant.</p>",
+                    "<p><strong>Teacher:</strong> O que você vai querer?<br><strong>Student:</strong> Eu queria um café e um pão de queijo, por favor.<br><strong>Teacher:</strong> É para viagem?<br><strong>Student:</strong> Não, é para comer aqui.</p>",
+                    "<p>Goal: practice basic ordering.</p>",
+                    "<h3>Exercise 2: menu questions</h3>",
+                    "<p>Teacher gives a menu item. Student asks questions.</p>",
+                    "<p><strong>Student:</strong> O que vem nesse prato?<br><strong>Teacher:</strong> Vem arroz, feijão, frango e salada.<br><strong>Student:</strong> Perfeito. Vou querer esse, por favor.</p>",
+                    "<p>Goal: understand ingredients.</p>",
+                    "<h3>Exercise 3: food restriction</h3>",
+                    "<p>Student practices explaining a restriction.</p>",
+                    "<p><strong>Student:</strong> Tenho alergia a amendoim. Esse prato tem amendoim?**</p>",
+                    "<p>Goal: practice important safety language.</p>",
+                    "<h3>Exercise 4: paying the bill</h3>",
+                    "<p>Teacher plays the server.</p>",
+                    "<p><strong>Student:</strong> A conta, por favor.<br><strong>Teacher:</strong> Vai pagar no cartão ou em dinheiro?<br><strong>Student:</strong> No cartão, por favor.</p>",
+                    "<p>Goal: practice payment language.</p>",
+                    "<h3>Exercise 5: delivery message</h3>",
+                    "<p>Student writes or says a message:</p>",
+                    "<p><strong>Olá, tudo bem? Pode deixar o pedido na portaria, por favor. Apartamento 802. Obrigado.</strong></p>",
+                    "<p>Goal: connect spoken and written daily-life Portuguese.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes foreigners make when ordering food",
+                "body": [
+                    "<p>Foreigners often make small mistakes when ordering food in Brazil. These mistakes are normal, but practicing them early makes real interactions easier.</p>",
+                    "<h3>Mistake 1: using only isolated words</h3>",
+                    "<p>Saying <strong>“água”</strong> may work, but <strong>“Eu queria uma água sem gás, por favor”</strong> sounds clearer and more polite.</p>",
+                    "<h3>Mistake 2: not knowing “com gás” and “sem gás”</h3>",
+                    "<p>Water in Brazil is often divided into sparkling and still:</p>",
+                    "<ul><li><strong>água com gás</strong> — sparkling water;</li><li><strong>água sem gás</strong> — still water.</li></ul>",
+                    "<h3>Mistake 3: not asking what comes in a dish</h3>",
+                    "<p>Brazilian dishes often come with sides. Ask:</p>",
+                    "<p><strong>O que vem nesse prato?</strong></p>",
+                    "<h3>Mistake 4: forgetting to mention restrictions clearly</h3>",
+                    "<p>If you have an allergy, say it clearly:</p>",
+                    "<p><strong>Tenho alergia a...</strong></p>",
+                    "<h3>Mistake 5: translating “check” too literally</h3>",
+                    "<p>In restaurants, use:</p>",
+                    "<p><strong>A conta, por favor.</strong></p>",
+                    "<p>Do not translate from English word by word.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps foreigners order food in Brazil",
+                "body": [
+                    "<p>Vedium helps foreigners learn food-ordering Portuguese through live Brazilian Portuguese classes focused on real situations. Instead of only memorizing grammar, you practice what you need to say in Brazil.</p>",
+                    "<p>In Vedium’s live classes, you can practice:</p>",
+                    "<ul><li>ordering at a café;</li><li>asking about the menu;</li><li>explaining restrictions;</li><li>ordering in a restaurant;</li><li>understanding daily specials;</li><li>paying the bill;</li><li>talking to delivery drivers;</li><li>writing WhatsApp messages;</li><li>pronunciation of food vocabulary;</li><li>Brazilian cultural habits;</li><li>polite phrases;</li><li>listening to natural questions.</li></ul>",
+                    "<p>The live format matters because a teacher can correct your pronunciation, adjust your phrases and make the situation realistic. If you freeze when the server asks a follow-up question, the teacher helps you respond and try again. That is how confidence grows.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the language becomes useful in your life in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing Brazilian Portuguese for restaurants, cafés, delivery and real daily life.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist before ordering food in Brazil",
+                "body": [
+                    "<p>Use this checklist before going to a restaurant, café or bakery:</p>",
+                    "<ul><li>I can greet the attendant.</li><li>I can ask for the menu.</li><li>I can order coffee or water.</li><li>I know <strong>água com gás</strong> and <strong>água sem gás</strong>.</li><li>I can ask what comes in a dish.</li><li>I can explain a food restriction.</li><li>I can ask for something without onion, cheese or meat.</li><li>I can ask for the bill.</li><li>I can ask to pay by card.</li><li>I can ask someone to repeat more slowly.</li></ul>",
+                    "<p>Choose five phrases from this article and practice them aloud before eating out. The goal is not perfection. The goal is confidence and clarity.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Ordering food in Brazil is one of the most useful first skills for foreigners learning Brazilian Portuguese. It helps you participate in daily life, feel more independent and reduce the stress of small but important interactions. You need practical phrases for menus, drinks, ingredients, food restrictions, payment, delivery and polite communication.</p>",
+                    "<p>The best way to learn is through real situations. Study phrases, not only words. Practice aloud, simulate restaurant dialogues, learn how Brazilians ask questions, and get live correction from a teacher. This is how Brazilian Portuguese becomes useful outside the classroom.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, students and professionals who need the language for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because the language helps you live better.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start learning how to order food in Brazil with confidence.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/portuguese-for-remote-workers-living-in-brazil\">Portuguese for remote workers living in Brazil</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "How do I order food politely in Brazilian Portuguese?",
+                "a": "Use phrases like “Eu queria...”, “Vou querer...” and “por favor.” Example: “Eu queria um café e um pão de queijo, por favor.”"
+            },
+            {
+                "q": "How do I ask for the bill in Brazil?",
+                "a": "Say “A conta, por favor.” If you want to pay by card, say “Posso pagar no cartão?”"
+            },
+            {
+                "q": "How do I ask what comes in a dish?",
+                "a": "Say “O que vem nesse prato?” This is useful when you do not understand the menu or need to check ingredients."
+            },
+            {
+                "q": "How do I explain a food allergy in Portuguese?",
+                "a": "Say “Tenho alergia a...” followed by the ingredient. Example: “Tenho alergia a amendoim.”"
+            },
+            {
+                "q": "Does Vedium teach practical Portuguese for restaurants in Brazil?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, including restaurant phrases, food vocabulary, delivery communication and real-life practice."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "ingles-para-apresentacao-profissional-em-dois-minutos": {
+        "title": "Inglês para apresentação profissional em dois minutos",
+        "meta_description": "Aprenda inglês para apresentação profissional em dois minutos, com roteiro simples, frases úteis e prática ao vivo.",
+        "h1": "Inglês para apresentação profissional em dois minutos",
+        "date": "2025-04-21",
+        "date_display": "21 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Colegas conversando ao redor de mesa com notebooks em escritorio aberto",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Uma apresentação profissional em inglês de dois minutos deve ser clara, objetiva e organizada em quatro partes: quem você é, o que você faz, qual é sua experiência ou resultado principal e o que você busca ou pode contribuir. O objetivo não é falar inglês perfeito nem decorar um texto robótico. O objetivo é transmitir segurança, contexto e valor em pouco tempo.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Esse tipo de apresentação é útil em entrevistas de emprego, reuniões com times internacionais, eventos de networking, processos seletivos, calls com clientes, apresentações internas, onboarding em empresas globais, conversas com recrutadores e situações em que você precisa se apresentar rapidamente. Para muitos brasileiros, esse momento trava porque parece simples, mas exige vocabulário ativo, pronúncia, organização mental e confiança.</p>",
+                    "<p>A dificuldade não está apenas no inglês. Está na pressão. Quando alguém diz <strong>“Could you introduce yourself?”</strong>, o aluno entende a pergunta, mas a mente começa a traduzir do português: “Meu nome é... trabalho com... tenho experiência em...” O resultado pode sair longo demais, curto demais, inseguro ou cheio de pausas. Às vezes, o profissional tem boa experiência, mas não consegue apresentar essa experiência com clareza em inglês.</p>",
+                    "<p>Por isso, aprender inglês para apresentação profissional em dois minutos é uma habilidade estratégica. Ela ajuda você a construir uma resposta pronta, flexível e natural, sem depender de improviso total. Com um roteiro simples, frases úteis e prática ao vivo, você consegue apresentar sua trajetória de forma mais segura e adequada ao seu nível CEFR.</p>",
+                    "<p>Neste artigo, você vai aprender um modelo prático de apresentação em inglês, frases para cada etapa, exemplos por nível, erros comuns e como treinar em aula ao vivo. A Vedium oferece inglês online ao vivo, com conversação, prática profissional, plano por nível e sem contrato de fidelidade: você continua porque percebe evolução real.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: como fazer uma apresentação profissional em inglês em dois minutos?",
+                "body": [
+                    "<p>Para fazer uma apresentação profissional em inglês em dois minutos, siga esta estrutura: nome e função, área de atuação, experiência principal, habilidade ou resultado relevante e objetivo profissional. Use frases curtas e conectores simples para manter clareza.</p>",
+                    "<p>Um roteiro básico é:</p>",
+                    "<p>1. <strong>Greeting and name</strong> — cumprimento e nome;<br>2. <strong>Current role</strong> — cargo ou área atual;<br>3. <strong>Experience</strong> — experiência principal;<br>4. <strong>Strengths</strong> — pontos fortes;<br>5. <strong>Goal or contribution</strong> — objetivo ou contribuição;<br>6. <strong>Closing sentence</strong> — frase de encerramento.</p>",
+                    "<p>Exemplo simples:</p>",
+                    "<p><strong>Hi, my name is Bruno. I’m a marketing analyst from Brazil. I have experience with digital campaigns, content strategy and performance reports. In my current role, I work with social media, paid traffic and lead generation. I’m interested in improving my English because I want to communicate better with international teams and participate more actively in global projects.</strong></p>",
+                    "<p>Tradução:</p>",
+                    "<p>Olá, meu nome é Bruno. Sou analista de marketing do Brasil. Tenho experiência com campanhas digitais, estratégia de conteúdo e relatórios de performance. No meu cargo atual, trabalho com redes sociais, tráfego pago e geração de leads. Tenho interesse em melhorar meu inglês porque quero me comunicar melhor com times internacionais e participar mais ativamente de projetos globais.</p>",
+                    "<p>Se você quer descobrir seu nível e treinar sua apresentação profissional com professor ao vivo, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p>A apresentação profissional em inglês trava o aluno porque mistura idioma, autoestima e pressão de desempenho. O profissional sabe o que faz em português, mas precisa organizar a própria trajetória em outro idioma, com frases naturais e tempo limitado.</p>",
+                    "<p>As travas mais comuns são:</p>",
+                    "<ul><li>tentar traduzir a apresentação do português;</li><li>querer falar tudo em dois minutos;</li><li>não saber selecionar informações importantes;</li><li>usar frases longas demais;</li><li>ter medo de errar a pronúncia;</li><li>não saber explicar o próprio cargo;</li><li>não conhecer vocabulário da área;</li><li>travar quando precisa falar de resultados;</li><li>decorar um texto e esquecer na hora;</li><li>não praticar em voz alta;</li><li>não receber correção.</li></ul>",
+                    "<p>O problema aumenta quando o aluno pensa que precisa soar como um nativo. Não precisa. Uma apresentação profissional boa em inglês deve ser clara, organizada e confiante. Sotaque leve não é problema. Falta de estrutura, excesso de tradução e insegurança extrema atrapalham muito mais.</p>",
+                    "<p>O caminho é criar um roteiro curto, treinar variações e praticar com feedback.</p>"
+                ]
+            },
+            {
+                "heading": "Estrutura ideal para uma apresentação de dois minutos",
+                "body": [
+                    "<p>A melhor estrutura para uma apresentação profissional em inglês é simples. Dois minutos passam rápido. Você não deve contar toda sua carreira. Deve oferecer uma visão clara do seu perfil.</p>",
+                    "<h3>1. Cumprimento e nome</h3>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>Hi, my name is...</strong></li><li><strong>Hello, I’m...</strong></li><li><strong>Nice to meet you. My name is...</strong></li><li><strong>Thank you for the opportunity to introduce myself.</strong></li></ul>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Hi, my name is Ana. It’s a pleasure to be here.</strong></p>",
+                    "<h3>2. Cargo ou área de atuação</h3>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>I’m a...</strong></li><li><strong>I work as a...</strong></li><li><strong>I work in...</strong></li><li><strong>I’m currently working as a...</strong></li><li><strong>My background is in...</strong></li></ul>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I’m a software developer.</strong></li><li><strong>I work as a customer success analyst.</strong></li><li><strong>My background is in finance and operations.</strong></li><li><strong>I’m currently working as a project manager.</strong></li></ul>",
+                    "<h3>3. Experiência principal</h3>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>I have experience with...</strong></li><li><strong>I’ve worked with...</strong></li><li><strong>For the past three years, I’ve been working with...</strong></li><li><strong>My main experience is in...</strong></li><li><strong>I have a strong background in...</strong></li></ul>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I have experience with data analysis and business reports.</strong></li><li><strong>I’ve worked with international clients and sales processes.</strong></li><li><strong>For the past five years, I’ve been working with digital marketing.</strong></li></ul>",
+                    "<h3>4. Competências ou resultados</h3>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>I’m good at...</strong></li><li><strong>My main strengths are...</strong></li><li><strong>I’m responsible for...</strong></li><li><strong>I helped my team...</strong></li><li><strong>One of my main achievements was...</strong></li></ul>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>My main strengths are organization, communication and problem-solving.</strong></li><li><strong>I’m responsible for managing client relationships.</strong></li><li><strong>I helped my team improve our reporting process.</strong></li></ul>",
+                    "<h3>5. Objetivo ou contribuição</h3>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>I’m looking for an opportunity to...</strong></li><li><strong>I want to contribute to...</strong></li><li><strong>I’m interested in...</strong></li><li><strong>My goal is to...</strong></li><li><strong>I believe I can contribute with...</strong></li></ul>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I’m looking for an opportunity to work with international projects.</strong></li><li><strong>My goal is to grow in a global environment.</strong></li><li><strong>I believe I can contribute with my experience in customer support and process improvement.</strong></li></ul>"
+                ]
+            },
+            {
+                "heading": "Modelo pronto de apresentação profissional em inglês",
+                "body": [
+                    "<p>Use este modelo como base e adapte à sua área. Não decore sem entender. Troque palavras para deixar com a sua voz.</p>",
+                    "<p><strong>Hi, my name is [name]. I’m a [profession/role] from Brazil. I have experience with [area 1], [area 2] and [area 3]. In my current role, I’m responsible for [main responsibility]. One of my strengths is [strength], and I enjoy working with [type of work/project]. I’m interested in [goal/opportunity] because I want to [reason]. I believe I can contribute with [skill/experience]. Thank you.</strong></p>",
+                    "<p>Versão em português:</p>",
+                    "<p>Olá, meu nome é [nome]. Sou [profissão/cargo] do Brasil. Tenho experiência com [área 1], [área 2] e [área 3]. No meu cargo atual, sou responsável por [responsabilidade principal]. Um dos meus pontos fortes é [ponto forte], e gosto de trabalhar com [tipo de trabalho/projeto]. Tenho interesse em [objetivo/oportunidade] porque quero [motivo]. Acredito que posso contribuir com [habilidade/experiência]. Obrigado.</p>",
+                    "<p>Esse modelo é flexível. Você pode usar em entrevista, reunião, networking ou aula de conversação.</p>"
+                ]
+            },
+            {
+                "heading": "Exemplo para entrevista de emprego",
+                "body": [
+                    "<p>Em entrevista de emprego, sua apresentação deve mostrar experiência, foco e adequação à vaga. Não precisa ser longa demais. O entrevistador provavelmente fará perguntas depois.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Hi, my name is Rafael. I’m a business analyst with experience in data analysis, process improvement and performance reports. In my current role, I work with different teams to identify problems, organize information and support decision-making. I’m comfortable working with spreadsheets, dashboards and presentations. One of my strengths is turning complex information into clear insights. I’m interested in this opportunity because I want to work in a more international environment and contribute to strategic projects.</strong></p>",
+                    "<p>Pontos positivos do exemplo:</p>",
+                    "<ul><li>apresenta cargo;</li><li>mostra áreas de experiência;</li><li>explica responsabilidade;</li><li>menciona ferramentas;</li><li>destaca força profissional;</li><li>conecta objetivo à vaga.</li></ul>",
+                    "<p>Evite começar com frases vagas como:</p>",
+                    "<p><strong>I am a very hardworking person and I like challenges.</strong></p>",
+                    "<p>Essa frase pode até ser verdadeira, mas é genérica. Melhor mostrar o que você faz e como contribui.</p>"
+                ]
+            },
+            {
+                "heading": "Exemplo para reunião com time internacional",
+                "body": [
+                    "<p>Em reunião com time internacional, a apresentação deve ser mais direta. O objetivo é contextualizar sua função, não vender toda sua carreira.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Hi, everyone. I’m Camila, and I work with customer success in Brazil. I’m responsible for onboarding new clients, following up on support cases and improving the customer experience. I’ll be working with you on this project, especially on client communication and feedback analysis. I’m happy to be here and looking forward to collaborating with the team.</strong></p>",
+                    "<p>Tradução:</p>",
+                    "<p>Olá, pessoal. Sou Camila e trabalho com customer success no Brasil. Sou responsável pelo onboarding de novos clientes, acompanhamento de casos de suporte e melhoria da experiência do cliente. Vou trabalhar com vocês neste projeto, especialmente na comunicação com clientes e análise de feedback. Estou feliz por estar aqui e animada para colaborar com o time.</p>",
+                    "<p>Esse tipo de apresentação é útil porque deixa claro quem você é e como se conecta ao projeto.</p>"
+                ]
+            },
+            {
+                "heading": "Exemplo para networking profissional",
+                "body": [
+                    "<p>Em networking, a apresentação pode ser mais leve, mas ainda precisa ser clara. Você pode mencionar sua área, interesse e tipo de conexão que busca.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Hi, I’m Lucas. I’m a product designer based in São Paulo. I work with user research, interface design and digital products. Lately, I’ve been interested in projects that connect design, education and technology. I’m here to meet professionals from different areas and learn more about international product teams.</strong></p>",
+                    "<p>Esse modelo funciona bem em eventos, comunidades, conferências, grupos profissionais e conversas rápidas.</p>"
+                ]
+            },
+            {
+                "heading": "Como adaptar por nível CEFR",
+                "body": [
+                    "<p>A apresentação profissional deve respeitar seu nível CEFR. Um aluno A2 não precisa tentar montar uma fala de C1. O importante é falar com clareza e crescer por etapas.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Objetivo da apresentação</th></tr></thead><tbody><tr><td>A1</td><td>dizer nome, profissão, país e objetivo simples</td></tr><tr><td>A2</td><td>falar de rotina profissional e habilidades básicas</td></tr><tr><td>B1</td><td>explicar experiência, responsabilidades e objetivos</td></tr><tr><td>B2</td><td>apresentar resultados, projetos e contribuição</td></tr><tr><td>C1</td><td>adaptar tom, nuance e storytelling profissional</td></tr></tbody></table>",
+                    "<h3>Exemplo A1/A2</h3>",
+                    "<p><strong>Hi, my name is Bruno. I’m from Brazil. I work in sales. I study English because I need it for my job. I want to speak better in meetings.</strong></p>",
+                    "<h3>Exemplo B1</h3>",
+                    "<p><strong>Hi, my name is Bruno. I work in sales and I have experience with customer service and business development. In my current job, I talk to clients, prepare proposals and follow up on opportunities. I’m studying English because I want to communicate better with international clients.</strong></p>",
+                    "<h3>Exemplo B2</h3>",
+                    "<p><strong>Hi, my name is Bruno. I’m a sales professional with experience in customer relationships, lead qualification and negotiation. In my current role, I manage client communication and support the sales team with strategic follow-ups. I’m looking to improve my English so I can participate more confidently in international meetings and contribute to global business opportunities.</strong></p>",
+                    "<p>O mesmo conteúdo evolui em complexidade conforme o nível. Isso evita frustração.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulário útil para apresentação profissional",
+                "body": [
+                    "<p>Aprender vocabulário por blocos ajuda muito. Em vez de buscar palavras soltas, aprenda expressões prontas.</p>",
+                    "<h3>Para falar do cargo</h3>",
+                    "<ul><li><strong>I’m a marketing analyst.</strong></li><li><strong>I work as a software developer.</strong></li><li><strong>I’m currently working as a project manager.</strong></li><li><strong>My background is in finance.</strong></li><li><strong>I work in customer support.</strong></li></ul>",
+                    "<h3>Para falar de experiência</h3>",
+                    "<ul><li><strong>I have experience with...</strong></li><li><strong>I’ve worked with...</strong></li><li><strong>My main experience is in...</strong></li><li><strong>I have a strong background in...</strong></li><li><strong>For the past two years, I’ve worked with...</strong></li></ul>",
+                    "<h3>Para falar de responsabilidades</h3>",
+                    "<ul><li><strong>I’m responsible for...</strong></li><li><strong>I manage...</strong></li><li><strong>I support...</strong></li><li><strong>I help my team...</strong></li><li><strong>I work closely with...</strong></li></ul>",
+                    "<h3>Para falar de pontos fortes</h3>",
+                    "<ul><li><strong>One of my strengths is...</strong></li><li><strong>I’m good at...</strong></li><li><strong>I’m comfortable with...</strong></li><li><strong>I enjoy working with...</strong></li><li><strong>I’m interested in...</strong></li></ul>",
+                    "<h3>Para encerrar</h3>",
+                    "<ul><li><strong>I’m happy to be here.</strong></li><li><strong>I’m looking forward to learning more.</strong></li><li><strong>Thank you for the opportunity.</strong></li><li><strong>I’m excited to contribute to this project.</strong></li><li><strong>That’s a brief overview of my background.</strong></li></ul>",
+                    "<p>Essas expressões ajudam a falar com mais naturalidade e menos tradução.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar de forma objetiva",
+                "body": [
+                    "<p>Para praticar uma apresentação profissional em inglês, você precisa transformar o texto em fala. Escrever é só o começo. O objetivo é conseguir falar sem parecer que está lendo um script.</p>",
+                    "<h3>Passo 1: escreva em português</h3>",
+                    "<p>Antes do inglês, defina a mensagem:</p>",
+                    "<ul><li>quem sou?</li><li>o que faço?</li><li>qual experiência importa?</li><li>qual resultado ou habilidade quero destacar?</li><li>qual é meu objetivo?</li></ul>",
+                    "<h3>Passo 2: transforme em inglês simples</h3>",
+                    "<p>Evite frases longas. Use estruturas diretas.</p>",
+                    "<p>Em vez de tentar dizer:</p>",
+                    "<p>“Sou um profissional altamente capacitado com ampla experiência...”</p>",
+                    "<p>Prefira:</p>",
+                    "<p><strong>I’m a marketing professional with experience in digital campaigns and content strategy.</strong></p>",
+                    "<h3>Passo 3: reduza para dois minutos</h3>",
+                    "<p>Leia em voz alta e cronometre. Se passar de dois minutos, corte detalhes.</p>",
+                    "<h3>Passo 4: divida em blocos</h3>",
+                    "<p>Blocos:</p>",
+                    "<ul><li>name;</li><li>role;</li><li>experience;</li><li>strengths;</li><li>goal;</li><li>closing.</li></ul>",
+                    "<h3>Passo 5: grave sua voz</h3>",
+                    "<p>Ouça e pergunte:</p>",
+                    "<ul><li>estou claro?</li><li>falo rápido demais?</li><li>há pausas longas?</li><li>minha pronúncia atrapalha?</li><li>o texto parece natural?</li></ul>",
+                    "<h3>Passo 6: treine variações</h3>",
+                    "<p>Pratique uma versão de 30 segundos, uma de 1 minuto e uma de 2 minutos. Assim você se adapta ao contexto.</p>",
+                    "<h3>Passo 7: pratique em aula ao vivo</h3>",
+                    "<p>O professor corrige gramática, pronúncia, tom, ritmo e naturalidade. Depois, faz perguntas para você responder sem script.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: apresentação em 3 versões",
+                "body": [
+                    "<p>Este exercício é ideal para um curso de inglês online ao vivo.</p>",
+                    "<h3>Versão 1: 30 segundos</h3>",
+                    "<p>Objetivo: apresentação rápida.</p>",
+                    "<p>Modelo:</p>",
+                    "<p><strong>Hi, I’m Ana. I work as a financial analyst in Brazil. I have experience with reports, budgeting and data analysis. I’m improving my English because I want to participate more confidently in international meetings.</strong></p>",
+                    "<h3>Versão 2: 1 minuto</h3>",
+                    "<p>Objetivo: adicionar responsabilidades.</p>",
+                    "<p>Modelo:</p>",
+                    "<p><strong>Hi, I’m Ana. I work as a financial analyst in Brazil. In my current role, I prepare reports, analyze financial data and support the management team with budgeting decisions. I have experience with spreadsheets, dashboards and presentations. I’m improving my English because I want to communicate better with global teams and take part in international projects.</strong></p>",
+                    "<h3>Versão 3: 2 minutos</h3>",
+                    "<p>Objetivo: incluir experiência, força e objetivo.</p>",
+                    "<p>Depois de apresentar, o professor pergunta:</p>",
+                    "<ul><li><strong>Can you tell me more about your current role?</strong></li><li><strong>What are your main strengths?</strong></li><li><strong>Why do you want to improve your English?</strong></li><li><strong>What kind of international projects are you interested in?</strong></li></ul>",
+                    "<p>Assim, o aluno não fica preso ao texto decorado.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo no curso ao vivo é praticar sua apresentação como conversa, não como monólogo. Em situações reais, a apresentação raramente termina sem perguntas. Um recrutador pode pedir exemplos. Um colega pode perguntar sobre sua área. Um cliente pode querer entender melhor sua função.</p>",
+                    "<p>Em aula ao vivo, você pode treinar:</p>",
+                    "<ul><li>apresentação de 30 segundos;</li><li>apresentação de 1 minuto;</li><li>apresentação de 2 minutos;</li><li>perguntas de entrevista;</li><li>follow-up questions;</li><li>pronúncia de cargo e área;</li><li>vocabulário profissional;</li><li>ritmo e entonação;</li><li>clareza;</li><li>confiança;</li><li>adaptação por nível CEFR.</li></ul>",
+                    "<p>Isso é muito diferente de decorar um texto sozinho. A aula ao vivo cria pressão controlada, com correção e repetição.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e comece a treinar sua apresentação profissional em inglês com professor ao vivo.</p>"
+                ]
+            },
+            {
+                "heading": "Erros comuns na apresentação profissional em inglês",
+                "body": [
+                    "<p>Alguns erros aparecem com frequência entre brasileiros. Conhecê-los ajuda a evitar travas.</p>",
+                    "<h3>Erro 1: traduzir literalmente do português</h3>",
+                    "<p>Frases muito brasileiras podem soar estranhas em inglês. Prefira estruturas simples e naturais.</p>",
+                    "<h3>Erro 2: falar demais</h3>",
+                    "<p>Dois minutos não são uma biografia. Escolha o que é mais relevante.</p>",
+                    "<h3>Erro 3: usar palavras genéricas</h3>",
+                    "<p>Evite apenas dizer <strong>hardworking</strong>, <strong>proactive</strong> e <strong>responsible</strong>. Mostre com exemplos.</p>",
+                    "<h3>Erro 4: decorar sem entender</h3>",
+                    "<p>Se você esquece uma palavra, trava. Melhor entender blocos e conseguir reformular.</p>",
+                    "<h3>Erro 5: não praticar em voz alta</h3>",
+                    "<p>Uma apresentação escrita pode parecer boa, mas a fala revela problemas de ritmo, pronúncia e clareza.</p>",
+                    "<h3>Erro 6: ignorar perguntas depois da apresentação</h3>",
+                    "<p>Treine respostas para perguntas comuns. A apresentação é o começo da conversa.</p>"
+                ]
+            },
+            {
+                "heading": "Roteiro final para copiar e adaptar",
+                "body": [
+                    "<p>Use este roteiro como base:</p>",
+                    "<p><strong>Hi, my name is [name]. I’m a [role/profession] from Brazil. I have experience with [area 1], [area 2] and [area 3]. In my current role, I’m responsible for [responsibility]. One of my strengths is [strength], especially when I need to [situation]. I’m interested in [goal/opportunity] because I want to [reason]. I believe I can contribute with [skill/experience], and I’m looking forward to learning more about this opportunity. Thank you.</strong></p>",
+                    "<p>Exemplo preenchido:</p>",
+                    "<p><strong>Hi, my name is Mariana. I’m a customer success analyst from Brazil. I have experience with onboarding, support processes and client communication. In my current role, I’m responsible for helping new clients understand our platform and solve their first questions. One of my strengths is communication, especially when I need to explain complex information in a simple way. I’m interested in international projects because I want to improve my English and work with clients from different countries. I believe I can contribute with my experience in customer relationships and process improvement. Thank you.</strong></p>",
+                    "<p>Esse modelo é forte porque mostra contexto, experiência e objetivo.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse objetivo",
+                "body": [
+                    "<p>A Vedium ajuda profissionais brasileiros a preparar apresentações em inglês porque oferece aulas online ao vivo, conversação e prática direcionada por objetivo. Você não fica apenas lendo um roteiro. Você fala, recebe correção, ajusta e repete.</p>",
+                    "<p>Nas aulas da Vedium, você pode praticar:</p>",
+                    "<ul><li>apresentação profissional;</li><li>inglês para entrevistas;</li><li>inglês para reuniões;</li><li>inglês para networking;</li><li>vocabulário da sua área;</li><li>respostas para perguntas comuns;</li><li>pronúncia;</li><li>ritmo;</li><li>clareza;</li><li>conversação por nível CEFR;</li><li>confiança para falar.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. Você continua porque percebe progresso, não porque está preso. Para quem precisa de inglês para carreira, esse formato dá liberdade e foco em resultado.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: sua apresentação está pronta?",
+                "body": [
+                    "<p>Use este checklist antes de uma entrevista, reunião ou evento:</p>",
+                    "<ul><li>Minha apresentação tem até dois minutos.</li><li>Eu digo meu nome e função claramente.</li><li>Eu explico minha área de atuação.</li><li>Eu menciono experiência relevante.</li><li>Eu mostro uma habilidade ou resultado.</li><li>Eu explico meu objetivo.</li><li>Eu evito frases longas demais.</li><li>Eu pratico em voz alta.</li><li>Eu consigo responder perguntas depois.</li><li>Eu recebi correção de alguém.</li></ul>",
+                    "<p>Se muitos itens ainda estão inseguros, sua apresentação ainda precisa de prática guiada.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Inglês para apresentação profissional em dois minutos é uma habilidade essencial para quem busca carreira internacional, entrevistas melhores, reuniões com times globais e mais confiança em contextos profissionais. A estrutura é simples: apresente quem você é, o que faz, sua experiência, seus pontos fortes e seu objetivo.</p>",
+                    "<p>O segredo é não tentar falar tudo. Escolha as informações mais importantes, use frases curtas, pratique em voz alta e prepare versões de 30 segundos, 1 minuto e 2 minutos. Uma boa apresentação não precisa ser perfeita. Ela precisa ser clara, natural e adequada ao contexto.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo, com professor, conversação, prática profissional, plano por nível CEFR e sem contrato de fidelidade. Você fica porque evolui, não porque está preso.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e comece a treinar sua apresentação profissional em inglês com correção, prática real e confiança.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/ingles-para-atendimento-ao-cliente-expressoes-educadas-e-naturais\">Inglês para atendimento ao cliente: expressões educadas e naturais</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Como começar uma apresentação profissional em inglês?",
+                "a": "Você pode começar com “Hi, my name is...” ou “Hello, I’m...”, seguido do seu cargo ou área de atuação."
+            },
+            {
+                "q": "O que falar em uma apresentação profissional de dois minutos?",
+                "a": "Fale seu nome, cargo, área, experiência relevante, uma habilidade forte e seu objetivo profissional ou contribuição."
+            },
+            {
+                "q": "Preciso decorar minha apresentação em inglês?",
+                "a": "Não é ideal decorar palavra por palavra. O melhor é memorizar a estrutura, praticar blocos e conseguir adaptar a fala."
+            },
+            {
+                "q": "Qual nível de inglês preciso para me apresentar profissionalmente?",
+                "a": "A partir do A2 já é possível fazer uma apresentação simples. Em B1 e B2, você pode incluir experiência, resultados e objetivos com mais clareza."
+            },
+            {
+                "q": "A Vedium ajuda a treinar apresentação profissional em inglês?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo com conversação, correção, prática profissional e treino por nível CEFR."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "ingles-para-atendimento-ao-cliente-expressoes-educadas-e-naturais": {
+        "title": "Inglês para atendimento ao cliente: expressões educadas e naturais",
+        "meta_description": "Aprenda inglês para atendimento ao cliente com expressões educadas, naturais e prática ao vivo para falar com segurança.",
+        "h1": "Inglês para atendimento ao cliente: expressões educadas e naturais",
+        "date": "2025-03-31",
+        "date_display": "31 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoa apresentando para a equipe em reuniao de trabalho",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Inglês para atendimento ao cliente exige mais do que traduzir frases do português. Para atender bem em inglês, você precisa usar expressões educadas, naturais e claras para cumprimentar, entender o problema, pedir informações, confirmar dados, explicar soluções, lidar com reclamações e encerrar a conversa de forma profissional. O objetivo não é parecer formal demais, nem falar como robô. O objetivo é transmitir segurança, respeito e capacidade de resolver.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para muitos brasileiros, o atendimento ao cliente em inglês é um dos pontos mais desafiadores da vida profissional. A pessoa até entende mensagens escritas, conhece vocabulário técnico e consegue ler um manual. Mas, quando precisa falar com um cliente estrangeiro por chamada, chat, e-mail ou reunião, trava. Surge o medo de parecer grosseiro, de não entender a reclamação, de não saber pedir para repetir, de usar uma frase direta demais ou de prometer algo que não deveria.</p>",
+                    "<p>Esse desafio é comum porque atendimento ao cliente combina três habilidades ao mesmo tempo: idioma, escuta e postura. Você precisa compreender o cliente, organizar uma resposta e manter tom educado mesmo sob pressão. Em português, fazemos isso com naturalidade porque conhecemos nuances como “por gentileza”, “vou verificar”, “só para confirmar” e “entendo sua preocupação”. Em inglês, é preciso aprender equivalentes funcionais, não traduções literais.</p>",
+                    "<p>Neste artigo, você vai aprender expressões educadas e naturais para atendimento ao cliente em inglês, entender por que esse tema trava tantos profissionais, ver como praticar de forma objetiva e descobrir como um curso de inglês online ao vivo pode ajudar você a ganhar confiança em conversas reais. A Vedium oferece aulas ao vivo, conversação, plano por nível CEFR e sem contrato de fidelidade: você continua porque sente evolução.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: quais expressões usar no atendimento ao cliente em inglês?",
+                "body": [
+                    "<p>No atendimento ao cliente em inglês, use expressões que mostrem cordialidade, escuta e clareza. As mais úteis são frases como <strong>“How can I help you?”</strong>, <strong>“Could you please confirm...?”</strong>, <strong>“Let me check that for you”</strong>, <strong>“I understand your concern”</strong>, <strong>“Thank you for your patience”</strong> e <strong>“Is there anything else I can help you with?”</strong></p>",
+                    "<p>Essas expressões funcionam porque ajudam em etapas diferentes do atendimento:</p>",
+                    "<ul><li>abrir a conversa;</li><li>entender o pedido;</li><li>pedir informações;</li><li>confirmar detalhes;</li><li>demonstrar empatia;</li><li>explicar o próximo passo;</li><li>oferecer solução;</li><li>pedir tempo;</li><li>lidar com reclamações;</li><li>encerrar com educação.</li></ul>",
+                    "<p>O atendimento em inglês não precisa ser cheio de frases complexas. Ele precisa ser claro, educado e consistente. Muitas vezes, uma frase simples e bem usada transmite mais profissionalismo do que uma construção longa e insegura.</p>",
+                    "<p>Se você quer descobrir seu nível e praticar inglês para atendimento com professor ao vivo, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p>O inglês para atendimento ao cliente trava o aluno porque a conversa envolve pressão real. O cliente pode estar com pressa, irritado, confuso ou preocupado. O profissional precisa responder rápido, mas sem soar rude. Isso exige vocabulário ativo, escuta e prática de situações reais.</p>",
+                    "<p>As travas mais comuns são:</p>",
+                    "<ul><li>medo de não entender o problema;</li><li>insegurança com pronúncia;</li><li>dificuldade para pedir informações;</li><li>tradução literal do português;</li><li>uso de frases diretas demais;</li><li>falta de vocabulário para reclamações;</li><li>dificuldade para dizer “não” com educação;</li><li>medo de prometer algo errado;</li><li>dificuldade para encerrar a conversa;</li><li>pouca prática de role-play.</li></ul>",
+                    "<p>Um exemplo simples: em português, podemos dizer “me passa seu e-mail?” em um contexto informal. Em inglês, dizer <strong>“Give me your email”</strong> pode soar rude. Uma forma melhor seria:</p>",
+                    "<p><strong>Could you please confirm your email address?</strong></p>",
+                    "<p>Ou:</p>",
+                    "<p><strong>May I have your email address, please?</strong></p>",
+                    "<p>A diferença está no tom. Atendimento ao cliente exige que o aluno aprenda frases prontas, mas também entenda quando usar cada uma.</p>"
+                ]
+            },
+            {
+                "heading": "Como abrir um atendimento em inglês",
+                "body": [
+                    "<p>A abertura do atendimento deve ser educada, direta e acolhedora. Ela define o tom da conversa. Em inglês, o ideal é evitar traduções muito literais e usar fórmulas naturais de atendimento.</p>",
+                    "<p>Expressões úteis:</p>",
+                    "<table><thead><tr><th>Inglês</th><th>Português</th></tr></thead><tbody><tr><td>Hello, how can I help you today?</td><td>Olá, como posso ajudar hoje?</td></tr><tr><td>Good morning. How may I assist you?</td><td>Bom dia. Como posso ajudar?</td></tr><tr><td>Thank you for contacting us.</td><td>Obrigado por entrar em contato conosco.</td></tr><tr><td>My name is Bruno. I’ll be assisting you today.</td><td>Meu nome é Bruno. Vou ajudar você hoje.</td></tr><tr><td>Could you please tell me what happened?</td><td>Você poderia me dizer o que aconteceu?</td></tr><tr><td>Can you give me a few more details?</td><td>Você pode me dar mais alguns detalhes?</td></tr></tbody></table>",
+                    "<p>Exemplo de abertura por chat:</p>",
+                    "<p><strong>Hello, thank you for contacting us. My name is Ana. How can I help you today?</strong></p>",
+                    "<p>Exemplo de abertura por chamada:</p>",
+                    "<p><strong>Good morning. Thank you for calling. My name is Lucas. How may I assist you?</strong></p>",
+                    "<p>Essas frases são simples, mas profissionais. Elas evitam um tom frio e ajudam o cliente a explicar o problema.</p>"
+                ]
+            },
+            {
+                "heading": "Como pedir informações sem parecer rude",
+                "body": [
+                    "<p>Para pedir informações em inglês, prefira estruturas com <strong>could</strong>, <strong>may</strong>, <strong>please</strong> e <strong>confirm</strong>. Elas deixam a pergunta mais educada e profissional.</p>",
+                    "<p>Compare:</p>",
+                    "<table><thead><tr><th>Direto demais</th><th>Melhor para atendimento</th></tr></thead><tbody><tr><td>Give me your order number.</td><td>Could you please confirm your order number?</td></tr><tr><td>Send me your email.</td><td>Could you please send me your email address?</td></tr><tr><td>Tell me your name.</td><td>May I have your name, please?</td></tr><tr><td>Wait.</td><td>Could you please hold for a moment?</td></tr><tr><td>Explain again.</td><td>Could you please explain that again?</td></tr></tbody></table>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>Could you please confirm your full name?</strong></li><li><strong>May I have your email address, please?</strong></li><li><strong>Could you please provide your order number?</strong></li><li><strong>Can you send me a screenshot, please?</strong></li><li><strong>Could you give me a few more details?</strong></li><li><strong>Could you please describe the issue?</strong></li></ul>",
+                    "<p>Essas estruturas são essenciais porque atendimento ao cliente exige coleta de informações. Se a frase soa brusca, o cliente pode sentir que está sendo tratado mal, mesmo quando a intenção é boa.</p>"
+                ]
+            },
+            {
+                "heading": "Como demonstrar empatia em inglês",
+                "body": [
+                    "<p>Demonstrar empatia é importante quando o cliente tem um problema, dúvida ou reclamação. Em inglês, existem expressões naturais para mostrar que você entendeu a preocupação sem necessariamente assumir culpa antes de verificar.</p>",
+                    "<p>Expressões úteis:</p>",
+                    "<table><thead><tr><th>Inglês</th><th>Português</th></tr></thead><tbody><tr><td>I understand your concern.</td><td>Entendo sua preocupação.</td></tr><tr><td>I’m sorry to hear that.</td><td>Sinto muito por isso.</td></tr><tr><td>I understand how frustrating that can be.</td><td>Entendo como isso pode ser frustrante.</td></tr><tr><td>Thank you for letting us know.</td><td>Obrigado por nos avisar.</td></tr><tr><td>I’ll do my best to help you.</td><td>Vou fazer o meu melhor para ajudar.</td></tr><tr><td>Let me check what happened.</td><td>Vou verificar o que aconteceu.</td></tr></tbody></table>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>I’m sorry to hear that. I understand how frustrating this situation can be. Let me check what happened and see how we can help.</strong></p>",
+                    "<p>Tradução:</p>",
+                    "<p>Sinto muito por isso. Entendo como essa situação pode ser frustrante. Vou verificar o que aconteceu e ver como podemos ajudar.</p>",
+                    "<p>Essa resposta não promete uma solução imediata, mas mostra atenção e profissionalismo.</p>"
+                ]
+            },
+            {
+                "heading": "Como explicar que você precisa verificar algo",
+                "body": [
+                    "<p>Em atendimento ao cliente, você nem sempre terá resposta imediata. Saber pedir tempo em inglês é essencial para manter a conversa sob controle.</p>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>Let me check that for you.</strong></li><li><strong>I’ll verify this information.</strong></li><li><strong>Could you please hold for a moment?</strong></li><li><strong>I need a moment to check your account.</strong></li><li><strong>I’ll look into this and get back to you.</strong></li><li><strong>Let me confirm this with our team.</strong></li><li><strong>I’m checking the details now.</strong></li></ul>",
+                    "<p>Exemplo em chat:</p>",
+                    "<p><strong>Let me check that for you. This may take a few minutes. Thank you for your patience.</strong></p>",
+                    "<p>Exemplo em chamada:</p>",
+                    "<p><strong>Could you please hold for a moment while I check this information?</strong></p>",
+                    "<p>Essas frases ajudam a evitar silêncio estranho. O cliente entende que você está trabalhando na solução.</p>"
+                ]
+            },
+            {
+                "heading": "Como dizer “não” com educação em inglês",
+                "body": [
+                    "<p>Dizer “não” faz parte do atendimento. O problema é que um “no” seco pode soar grosseiro. Em inglês profissional, é comum suavizar a negativa e oferecer alternativa quando possível.</p>",
+                    "<p>Compare:</p>",
+                    "<table><thead><tr><th>Muito direto</th><th>Mais profissional</th></tr></thead><tbody><tr><td>No, we can’t do that.</td><td>Unfortunately, we’re not able to do that, but we can offer another option.</td></tr><tr><td>That’s not possible.</td><td>I’m afraid that option isn’t available at the moment.</td></tr><tr><td>We don’t have it.</td><td>Unfortunately, we don’t have that available right now.</td></tr><tr><td>You are wrong.</td><td>I understand your point, but according to our records...</td></tr></tbody></table>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>Unfortunately, that option is not available.</strong></li><li><strong>I’m afraid we can’t process that request right now.</strong></li><li><strong>At the moment, we’re not able to offer that.</strong></li><li><strong>What we can do is...</strong></li><li><strong>The best option would be...</strong></li><li><strong>Let me suggest an alternative.</strong></li></ul>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>I’m afraid we can’t change the delivery address after the order has been shipped. What we can do is contact the carrier and check if there is any available option.</strong></p>",
+                    "<p>Esse tipo de resposta é firme, mas educado.</p>"
+                ]
+            },
+            {
+                "heading": "Como lidar com reclamações em inglês",
+                "body": [
+                    "<p>Reclamações exigem escuta, empatia e clareza. O cliente quer sentir que foi ouvido. Mesmo quando você ainda não sabe a solução, precisa conduzir a conversa.</p>",
+                    "<p>Estrutura recomendada:</p>",
+                    "<p>1. agradecer o contato;<br>2. reconhecer o problema;<br>3. demonstrar empatia;<br>4. pedir informações;<br>5. explicar o próximo passo;<br>6. confirmar o acompanhamento.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Thank you for letting us know. I’m sorry to hear about this issue. Could you please send me your order number so I can check what happened?</strong></p>",
+                    "<p>Tradução:</p>",
+                    "<p>Obrigado por nos avisar. Sinto muito por esse problema. Você poderia me enviar o número do pedido para que eu possa verificar o que aconteceu?</p>",
+                    "<p>Frases úteis para reclamações:</p>",
+                    "<ul><li><strong>I understand your frustration.</strong></li><li><strong>Thank you for bringing this to our attention.</strong></li><li><strong>Let me investigate this for you.</strong></li><li><strong>I’ll escalate this to the responsible team.</strong></li><li><strong>We’ll keep you updated.</strong></li><li><strong>I’ll follow up with you as soon as I have more information.</strong></li></ul>",
+                    "<p>A palavra <strong>escalate</strong> é muito usada em atendimento e significa encaminhar para um nível, área ou equipe responsável.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar de forma objetiva",
+                "body": [
+                    "<p>Para praticar inglês para atendimento ao cliente de forma objetiva, use scripts curtos, role-plays e frases por etapa da conversa. Não tente decorar um manual inteiro. Comece pelas situações que você realmente enfrenta no trabalho.</p>",
+                    "<h3>Passo 1: escolha um canal</h3>",
+                    "<p>Atendimento pode acontecer por:</p>",
+                    "<ul><li>chat;</li><li>e-mail;</li><li>telefone;</li><li>reunião;</li><li>WhatsApp corporativo;</li><li>suporte técnico;</li><li>pós-venda;</li><li>onboarding;</li><li>customer success.</li></ul>",
+                    "<p>Cada canal exige tom diferente. Chat pode ser mais direto. E-mail exige mais estrutura. Telefone exige escuta e pronúncia.</p>",
+                    "<h3>Passo 2: monte uma sequência básica</h3>",
+                    "<p>Use esta estrutura:</p>",
+                    "<p>1. greeting;<br>2. question;<br>3. confirmation;<br>4. empathy;<br>5. solution;<br>6. closing.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>Hello, how can I help you today?</strong><br><strong>Could you please confirm your order number?</strong><br><strong>I understand your concern.</strong><br><strong>Let me check that for you.</strong><br><strong>The best option is...</strong><br><strong>Is there anything else I can help you with?</strong></p>",
+                    "<h3>Passo 3: pratique em voz alta</h3>",
+                    "<p>Atendimento falado exige boca treinada. Leia em voz alta e grave.</p>",
+                    "<h3>Passo 4: simule um cliente difícil</h3>",
+                    "<p>Peça ao professor para interpretar um cliente com dúvida, pressa ou reclamação. Isso prepara para a pressão real.</p>",
+                    "<h3>Passo 5: revise suas frases</h3>",
+                    "<p>Depois da simulação, anote:</p>",
+                    "<ul><li>frases que funcionaram;</li><li>frases que soaram diretas demais;</li><li>palavras que faltaram;</li><li>erros de pronúncia;</li><li>alternativas mais naturais.</li></ul>",
+                    "<p>Esse ciclo transforma estudo em habilidade.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: atendimento em 6 etapas",
+                "body": [
+                    "<p>Este exercício é ideal para uma aula de inglês online ao vivo.</p>",
+                    "<h3>Etapa 1: abertura</h3>",
+                    "<p>Aluno pratica:</p>",
+                    "<p><strong>Hello, thank you for contacting us. How can I help you today?</strong></p>",
+                    "<h3>Etapa 2: coleta de dados</h3>",
+                    "<p>Professor faz papel de cliente. Aluno pergunta:</p>",
+                    "<p><strong>Could you please confirm your email address?</strong><br><strong>May I have your order number, please?</strong></p>",
+                    "<h3>Etapa 3: empatia</h3>",
+                    "<p>Cliente apresenta problema. Aluno responde:</p>",
+                    "<p><strong>I’m sorry to hear that. I understand your concern.</strong></p>",
+                    "<h3>Etapa 4: verificação</h3>",
+                    "<p>Aluno pede tempo:</p>",
+                    "<p><strong>Let me check that for you. This may take a few minutes.</strong></p>",
+                    "<h3>Etapa 5: solução</h3>",
+                    "<p>Aluno explica:</p>",
+                    "<p><strong>The best option is to...</strong><br><strong>What we can do is...</strong><br><strong>I’ll escalate this to our team.</strong></p>",
+                    "<h3>Etapa 6: encerramento</h3>",
+                    "<p>Aluno finaliza:</p>",
+                    "<p><strong>Is there anything else I can help you with today?</strong><br><strong>Thank you for your patience. Have a great day.</strong></p>",
+                    "<p>O professor corrige pronúncia, clareza, tom e naturalidade. É esse feedback que diferencia aula ao vivo de estudo passivo.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo no curso ao vivo é transformar frases decoradas em atendimento real. Você precisa praticar perguntas, respostas, interrupções, reclamações, pedidos de repetição e situações inesperadas. Atendimento raramente segue um roteiro perfeito.</p>",
+                    "<p>Em um curso de inglês online ao vivo, você pode treinar:</p>",
+                    "<ul><li>abertura de atendimento;</li><li>pedidos de informação;</li><li>confirmação de dados;</li><li>explicação de procedimentos;</li><li>respostas educadas;</li><li>reclamações;</li><li>clientes irritados;</li><li>solução de problemas;</li><li>encerramento;</li><li>pronúncia;</li><li>listening;</li><li>vocabulário por setor;</li><li>role-play com feedback.</li></ul>",
+                    "<p>Essa prática é especialmente útil para profissionais de suporte, vendas, customer success, hotelaria, turismo, tecnologia, financeiro, educação, saúde, atendimento corporativo e operações.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra como treinar inglês para atendimento ao cliente com professor ao vivo.</p>"
+                ]
+            },
+            {
+                "heading": "Inglês para atendimento e nível CEFR",
+                "body": [
+                    "<p>O nível CEFR ajuda a definir quais atendimentos o aluno consegue fazer. Um profissional A2 pode lidar com frases simples e situações previsíveis. Um B1 consegue explicar problemas e soluções básicas. Um B2 pode lidar com reclamações mais complexas, reuniões e negociações.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Objetivo no atendimento</th></tr></thead><tbody><tr><td>A1</td><td>saudações, pedidos simples e frases de ajuda</td></tr><tr><td>A2</td><td>coletar dados, confirmar informações e responder perguntas básicas</td></tr><tr><td>B1</td><td>explicar processos, lidar com dúvidas e resolver situações comuns</td></tr><tr><td>B2</td><td>conduzir reclamações, negociar alternativas e atender com autonomia</td></tr><tr><td>C1</td><td>lidar com casos complexos, nuance, liderança e comunicação estratégica</td></tr></tbody></table>",
+                    "<p>Saber seu nível evita frustração. Você não precisa começar atendendo casos complexos em inglês se ainda está no A2. O avanço deve ser gradual e prático.</p>"
+                ]
+            },
+            {
+                "heading": "Expressões naturais para encerrar atendimento",
+                "body": [
+                    "<p>Encerrar bem é tão importante quanto começar bem. O cliente precisa sair com clareza sobre o que foi resolvido ou qual será o próximo passo.</p>",
+                    "<p>Frases úteis:</p>",
+                    "<ul><li><strong>Is there anything else I can help you with?</strong></li><li><strong>I’m glad I could help.</strong></li><li><strong>Thank you for your patience.</strong></li><li><strong>Thank you for contacting us.</strong></li><li><strong>We’ll keep you updated.</strong></li><li><strong>You’ll receive an email confirmation shortly.</strong></li><li><strong>Have a great day.</strong></li><li><strong>Please let us know if you need anything else.</strong></li></ul>",
+                    "<p>Exemplo:</p>",
+                    "<p><strong>You’ll receive an email confirmation shortly. Is there anything else I can help you with today?</strong></p>",
+                    "<p>Ou:</p>",
+                    "<p><strong>Thank you for your patience. We’ll keep you updated as soon as we have more information.</strong></p>",
+                    "<p>Essas frases mostram organização e cuidado.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse objetivo",
+                "body": [
+                    "<p>A Vedium ajuda profissionais que precisam de inglês para atendimento ao cliente porque oferece aulas online ao vivo, conversação e prática por objetivo. O aluno não fica apenas lendo listas de frases. Ele usa as expressões em simulações reais, com professor corrigindo tom, pronúncia e naturalidade.</p>",
+                    "<p>Nas aulas, você pode praticar:</p>",
+                    "<ul><li>atendimento por chat;</li><li>atendimento por telefone;</li><li>e-mails de suporte;</li><li>reclamações;</li><li>clientes difíceis;</li><li>pedidos de informação;</li><li>inglês para hotelaria;</li><li>inglês para turismo;</li><li>inglês para tecnologia;</li><li>inglês para vendas;</li><li>customer success;</li><li>pronúncia;</li><li>vocabulário ativo;</li><li>evolução por nível CEFR.</li></ul>",
+                    "<p>A Vedium não exige contrato de fidelidade. Isso significa que você começa com mais liberdade e permanece porque percebe progresso. A proposta é simples: aulas ao vivo, no seu ritmo, com foco em inglês útil de verdade.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou pronto para atender em inglês?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Sei abrir uma conversa com educação.</li><li>Sei perguntar como posso ajudar.</li><li>Sei pedir nome, e-mail e número do pedido.</li><li>Sei pedir para o cliente explicar o problema.</li><li>Sei demonstrar empatia.</li><li>Sei pedir tempo para verificar.</li><li>Sei dizer “não” de forma educada.</li><li>Sei oferecer alternativa.</li><li>Sei encaminhar para outra equipe.</li><li>Sei encerrar com clareza.</li></ul>",
+                    "<p>Se muitos itens ainda estão inseguros, seu próximo passo é prática guiada, não apenas mais vocabulário.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Inglês para atendimento ao cliente exige expressões educadas, naturais e claras. Não basta traduzir frases do português. Você precisa aprender como abrir a conversa, pedir informações, demonstrar empatia, verificar dados, explicar soluções, lidar com reclamações e encerrar o atendimento com profissionalismo.</p>",
+                    "<p>O melhor caminho é praticar por situação. Use scripts curtos, role-plays, frases por etapa e simulações com clientes reais ou fictícios. Grave sua voz, revise o tom e peça correção. Atendimento em inglês melhora quando o aluno fala, recebe feedback e tenta novamente.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo com professor, conversação, prática profissional, plano por nível CEFR e sem contrato de fidelidade. Você fica porque evolui, não porque está preso.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e comece a treinar inglês para atendimento ao cliente com expressões educadas, naturais e prontas para situações reais.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/ingles-para-viagem-vocabulario-essencial-para-aeroporto-e-hotel\">Inglês para viagem: vocabulário essencial para aeroporto e hotel</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Quais expressões são úteis para atendimento ao cliente em inglês?",
+                "a": "Expressões como How can I help you?, Could you please confirm...?, I understand your concern, Let me check that for you e Thank you for your patience são muito úteis."
+            },
+            {
+                "q": "Como pedir informações do cliente em inglês sem parecer rude?",
+                "a": "Use estruturas educadas com could, may e please, como Could you please confirm your email address? ou May I have your order number, please?"
+            },
+            {
+                "q": "Como lidar com reclamações de clientes em inglês?",
+                "a": "Demonstre empatia, agradeça o contato, peça informações e explique o próximo passo. Exemplo: I understand your concern. Let me check what happened."
+            },
+            {
+                "q": "Qual nível de inglês preciso para atendimento ao cliente?",
+                "a": "Depende da complexidade. A2 ajuda em situações simples, B1 em dúvidas comuns, B2 em reclamações e negociações, e C1 em casos complexos."
+            },
+            {
+                "q": "A Vedium ajuda a praticar inglês para atendimento ao cliente?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo com conversação, role-play, correção e prática de atendimento por nível CEFR."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "ingles-para-viagem-vocabulario-essencial-para-aeroporto-e-hotel": {
+        "title": "Inglês para viagem: vocabulário essencial para aeroporto e hotel",
+        "meta_description": "Aprenda inglês para viagem com vocabulário essencial de aeroporto e hotel, frases úteis e prática ao vivo.",
+        "h1": "Inglês para viagem: vocabulário essencial para aeroporto e hotel",
+        "date": "2025-03-10",
+        "date_display": "10 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1758525225816-8dd1901ef6ec?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Duas amigas rindo e conversando descontraidamente em um cafe",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Inglês para viagem é essencial para quem quer passar por aeroporto, imigração, transporte, check-in de hotel, pedidos de informação e pequenos imprevistos com mais segurança. Você não precisa falar inglês perfeito para viajar melhor, mas precisa dominar frases úteis, entender perguntas comuns e saber pedir ajuda sem travar.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Para muitos brasileiros, a viagem internacional é um dos primeiros momentos em que o inglês deixa de ser conteúdo de curso e vira necessidade real. No aeroporto, alguém pergunta sobre sua bagagem. Na imigração, podem perguntar o motivo da viagem. No hotel, você precisa confirmar reserva, pedir uma chave, falar sobre horário de check-out ou resolver um problema no quarto. Tudo acontece rápido, em um ambiente novo, com ansiedade e pouca margem para improviso.</p>",
+                    "<p>É por isso que estudar vocabulário de aeroporto e hotel em inglês deve ir além de listas soltas. O aluno precisa treinar frases completas, perguntas e respostas, escuta de situações reais e pronúncia. Saber que “passport” significa passaporte ajuda, mas não basta. O que realmente ajuda é conseguir responder: <strong>I’m here on vacation</strong>, <strong>I have a reservation</strong>, <strong>Can you repeat, please?</strong>, <strong>Where is the baggage claim?</strong>, <strong>My room key is not working</strong>.</p>",
+                    "<p>Neste artigo, você vai aprender vocabulário essencial de inglês para viagem, frases práticas para aeroporto e hotel, erros comuns que travam brasileiros e formas de praticar com objetivo. Também vai entender por que um curso de inglês online ao vivo pode acelerar sua preparação, especialmente se você precisa ganhar confiança para falar antes da próxima viagem.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que inglês para viagem importa?",
+                "body": [
+                    "<p>Inglês para viagem importa porque dá autonomia em situações internacionais onde você precisa entender, responder e resolver problemas. Aeroporto e hotel são dois dos contextos mais importantes porque concentram documentos, horários, reservas, bagagens, pagamentos, localização e atendimento ao cliente.</p>",
+                    "<p>Você vai precisar de inglês para:</p>",
+                    "<ul><li>fazer check-in no aeroporto;</li><li>despachar bagagem;</li><li>entender avisos de portão de embarque;</li><li>passar pela imigração;</li><li>pedir informação;</li><li>encontrar a esteira de bagagem;</li><li>avisar que perdeu uma mala;</li><li>confirmar reserva no hotel;</li><li>pedir ajuda na recepção;</li><li>resolver problema no quarto;</li><li>perguntar sobre café da manhã;</li><li>pedir late check-out;</li><li>chamar transporte;</li><li>entender orientações básicas.</li></ul>",
+                    "<p>O segredo é estudar por situação. Em vez de tentar memorizar centenas de palavras, foque nas frases que provavelmente vai usar. Inglês para viagem não precisa começar complexo. Precisa começar útil.</p>",
+                    "<p>Se você quer saber seu nível e se preparar para falar inglês em viagem, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p>O inglês para viagem trava o aluno porque ele combina ansiedade, velocidade e falta de prática oral. A pessoa até conhece algumas palavras, mas não treinou respostas em tempo real. No momento da viagem, o cérebro tenta traduzir tudo do português para o inglês e a fala não sai.</p>",
+                    "<p>As travas mais comuns são:</p>",
+                    "<ul><li>medo de não entender o atendente;</li><li>insegurança com pronúncia;</li><li>vocabulário solto, sem frases;</li><li>falta de prática de perguntas e respostas;</li><li>nervosismo na imigração;</li><li>dificuldade com números, horários e datas;</li><li>vergonha de pedir para repetir;</li><li>tentativa de falar perfeito;</li><li>dependência de tradutor no celular;</li><li>pouca experiência ouvindo inglês real.</li></ul>",
+                    "<p>O aluno precisa entender que viajar não exige fluência avançada em todas as áreas. Exige um conjunto de frases de sobrevivência bem treinadas. Você precisa saber pedir repetição, confirmar informação, explicar sua necessidade e responder perguntas básicas.</p>",
+                    "<p>Frases que destravam:</p>",
+                    "<ul><li><strong>Can you repeat, please?</strong> — Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong> — Você pode falar mais devagar?</li><li><strong>I don’t understand.</strong> — Eu não entendo.</li><li><strong>I need help.</strong> — Eu preciso de ajuda.</li><li><strong>Where is...?</strong> — Onde fica...?</li><li><strong>I have a reservation.</strong> — Eu tenho uma reserva.</li><li><strong>I’m traveling for vacation.</strong> — Estou viajando de férias.</li></ul>",
+                    "<p>Essas frases mantêm a conversa viva.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulário essencial de aeroporto em inglês",
+                "body": [
+                    "<p>O vocabulário de aeroporto em inglês deve ser aprendido com frases de uso real. Palavras isoladas ajudam, mas frases completas preparam melhor para a viagem.</p>",
+                    "<table><thead><tr><th>Inglês</th><th>Português</th></tr></thead><tbody><tr><td>airport</td><td>aeroporto</td></tr><tr><td>passport</td><td>passaporte</td></tr><tr><td>ticket</td><td>passagem</td></tr><tr><td>boarding pass</td><td>cartão de embarque</td></tr><tr><td>check-in counter</td><td>balcão de check-in</td></tr><tr><td>luggage / baggage</td><td>bagagem</td></tr><tr><td>carry-on bag</td><td>bagagem de mão</td></tr><tr><td>checked bag</td><td>bagagem despachada</td></tr><tr><td>gate</td><td>portão</td></tr><tr><td>boarding</td><td>embarque</td></tr><tr><td>flight</td><td>voo</td></tr><tr><td>departure</td><td>partida</td></tr><tr><td>arrival</td><td>chegada</td></tr><tr><td>delay</td><td>atraso</td></tr><tr><td>baggage claim</td><td>retirada de bagagem</td></tr><tr><td>customs</td><td>alfândega</td></tr><tr><td>immigration</td><td>imigração</td></tr><tr><td>connection</td><td>conexão</td></tr></tbody></table>",
+                    "<p>Frases úteis no aeroporto:</p>",
+                    "<ul><li><strong>Where is the check-in counter?</strong> — Onde fica o balcão de check-in?</li><li><strong>I have a flight to New York.</strong> — Tenho um voo para Nova York.</li><li><strong>Can I see your passport?</strong> — Posso ver seu passaporte?</li><li><strong>Here is my passport.</strong> — Aqui está meu passaporte.</li><li><strong>Do you have any checked bags?</strong> — Você tem bagagem para despachar?</li><li><strong>I have one checked bag.</strong> — Tenho uma mala para despachar.</li><li><strong>I only have a carry-on bag.</strong> — Tenho apenas bagagem de mão.</li><li><strong>Where is gate 12?</strong> — Onde fica o portão 12?</li><li><strong>Is the flight delayed?</strong> — O voo está atrasado?</li><li><strong>Where is the baggage claim?</strong> — Onde fica a retirada de bagagem?</li></ul>",
+                    "<p>Essas frases cobrem muitas situações comuns antes e depois do voo.</p>"
+                ]
+            },
+            {
+                "heading": "Inglês para imigração: perguntas e respostas simples",
+                "body": [
+                    "<p>A imigração costuma gerar ansiedade, mas as perguntas são geralmente previsíveis. O mais importante é responder de forma clara, curta e verdadeira.</p>",
+                    "<p>Perguntas comuns:</p>",
+                    "<table><thead><tr><th>Pergunta em inglês</th><th>Significado</th></tr></thead><tbody><tr><td>What is the purpose of your trip?</td><td>Qual é o motivo da sua viagem?</td></tr><tr><td>How long are you staying?</td><td>Quanto tempo você vai ficar?</td></tr><tr><td>Where are you staying?</td><td>Onde você vai ficar hospedado?</td></tr><tr><td>Are you traveling alone?</td><td>Você está viajando sozinho(a)?</td></tr><tr><td>Do you have a return ticket?</td><td>Você tem passagem de volta?</td></tr><tr><td>What do you do?</td><td>O que você faz / qual sua profissão?</td></tr></tbody></table>",
+                    "<p>Respostas úteis:</p>",
+                    "<ul><li><strong>I’m here on vacation.</strong> — Estou aqui de férias.</li><li><strong>I’m here for business.</strong> — Estou aqui a trabalho.</li><li><strong>I’m staying for two weeks.</strong> — Vou ficar por duas semanas.</li><li><strong>I’m staying at a hotel.</strong> — Vou ficar em um hotel.</li><li><strong>I’m staying with friends.</strong> — Vou ficar com amigos.</li><li><strong>Yes, I have a return ticket.</strong> — Sim, tenho passagem de volta.</li><li><strong>I’m a marketing analyst.</strong> — Sou analista de marketing.</li></ul>",
+                    "<p>Uma resposta curta é melhor do que uma explicação longa e confusa. O objetivo é clareza.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulário essencial de hotel em inglês",
+                "body": [
+                    "<p>No hotel, você precisa confirmar reserva, entender horários, pedir ajuda e resolver problemas. Esse vocabulário é muito útil mesmo para quem ainda está no nível A1 ou A2.</p>",
+                    "<table><thead><tr><th>Inglês</th><th>Português</th></tr></thead><tbody><tr><td>hotel</td><td>hotel</td></tr><tr><td>reservation</td><td>reserva</td></tr><tr><td>front desk / reception</td><td>recepção</td></tr><tr><td>check-in</td><td>entrada / registro</td></tr><tr><td>check-out</td><td>saída</td></tr><tr><td>room</td><td>quarto</td></tr><tr><td>key card</td><td>cartão-chave</td></tr><tr><td>breakfast</td><td>café da manhã</td></tr><tr><td>elevator</td><td>elevador</td></tr><tr><td>towel</td><td>toalha</td></tr><tr><td>bathroom</td><td>banheiro</td></tr><tr><td>shower</td><td>chuveiro</td></tr><tr><td>air conditioning</td><td>ar-condicionado</td></tr><tr><td>Wi-Fi</td><td>Wi-Fi</td></tr><tr><td>payment</td><td>pagamento</td></tr><tr><td>receipt</td><td>recibo</td></tr><tr><td>luggage storage</td><td>guarda-volumes</td></tr></tbody></table>",
+                    "<p>Frases úteis no hotel:</p>",
+                    "<ul><li><strong>I have a reservation.</strong> — Eu tenho uma reserva.</li><li><strong>My name is Ana Silva.</strong> — Meu nome é Ana Silva.</li><li><strong>Can I check in now?</strong> — Posso fazer check-in agora?</li><li><strong>What time is check-out?</strong> — Que horas é o check-out?</li><li><strong>Is breakfast included?</strong> — O café da manhã está incluído?</li><li><strong>What is the Wi-Fi password?</strong> — Qual é a senha do Wi-Fi?</li><li><strong>My key card is not working.</strong> — Meu cartão-chave não está funcionando.</li><li><strong>Can I have an extra towel?</strong> — Posso pedir uma toalha extra?</li><li><strong>The air conditioning is not working.</strong> — O ar-condicionado não está funcionando.</li><li><strong>Can I leave my luggage here?</strong> — Posso deixar minha bagagem aqui?</li></ul>",
+                    "<p>Essas frases resolvem a maior parte das interações básicas no hotel.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar de forma objetiva",
+                "body": [
+                    "<p>Para praticar inglês para viagem de forma objetiva, treine situações completas. Não estude apenas “airport”, “hotel” e “passport”. Estude diálogos curtos que simulam o que você vai viver.</p>",
+                    "<h3>Exercício 1: check-in no aeroporto</h3>",
+                    "<p>Atendente:</p>",
+                    "<p><strong>Do you have any checked bags?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>Yes, I have one checked bag.</strong></p>",
+                    "<p>Atendente:</p>",
+                    "<p><strong>Can I see your passport, please?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>Sure. Here is my passport.</strong></p>",
+                    "<p>Atendente:</p>",
+                    "<p><strong>Here is your boarding pass.</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>Thank you. Where is the gate?</strong></p>",
+                    "<p>Esse diálogo é simples, mas muito útil.</p>",
+                    "<h3>Exercício 2: imigração</h3>",
+                    "<p>Oficial:</p>",
+                    "<p><strong>What is the purpose of your trip?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>I’m here on vacation.</strong></p>",
+                    "<p>Oficial:</p>",
+                    "<p><strong>How long are you staying?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>I’m staying for ten days.</strong></p>",
+                    "<p>Oficial:</p>",
+                    "<p><strong>Where are you staying?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>I’m staying at a hotel.</strong></p>",
+                    "<p>A prática reduz ansiedade porque você já treinou a estrutura.</p>",
+                    "<h3>Exercício 3: recepção do hotel</h3>",
+                    "<p>Recepcionista:</p>",
+                    "<p><strong>Good evening. How can I help you?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>Good evening. I have a reservation.</strong></p>",
+                    "<p>Recepcionista:</p>",
+                    "<p><strong>What is your name?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>My name is Bruno Santos.</strong></p>",
+                    "<p>Recepcionista:</p>",
+                    "<p><strong>Can I see your passport?</strong></p>",
+                    "<p>Aluno:</p>",
+                    "<p><strong>Sure. Here it is.</strong></p>",
+                    "<p>Esses diálogos devem ser repetidos em voz alta, com correção.</p>"
+                ]
+            },
+            {
+                "heading": "Como transformar vocabulário em conversação",
+                "body": [
+                    "<p>Para transformar vocabulário em conversação, use blocos de frase. O bloco ajuda o aluno a responder mais rápido sem traduzir palavra por palavra.</p>",
+                    "<p>Bloco 1:</p>",
+                    "<p><strong>I have + objeto/reserva/problema</strong></p>",
+                    "<ul><li>I have a reservation.</li><li>I have a ticket.</li><li>I have one checked bag.</li><li>I have a problem.</li><li>I have a question.</li></ul>",
+                    "<p>Bloco 2:</p>",
+                    "<p><strong>Where is + lugar?</strong></p>",
+                    "<ul><li>Where is the gate?</li><li>Where is the bathroom?</li><li>Where is the baggage claim?</li><li>Where is the elevator?</li><li>Where is the reception?</li></ul>",
+                    "<p>Bloco 3:</p>",
+                    "<p><strong>Can I + verbo?</strong></p>",
+                    "<ul><li>Can I check in now?</li><li>Can I leave my luggage here?</li><li>Can I have an extra towel?</li><li>Can I pay by card?</li><li>Can I change rooms?</li></ul>",
+                    "<p>Bloco 4:</p>",
+                    "<p><strong>My + coisa + is not working</strong></p>",
+                    "<ul><li>My key card is not working.</li><li>My shower is not working.</li><li>My Wi-Fi is not working.</li><li>My air conditioning is not working.</li></ul>",
+                    "<p>Esses blocos são mais úteis do que decorar palavras soltas porque permitem criar muitas frases.</p>"
+                ]
+            },
+            {
+                "heading": "Curso de inglês para viagem: quando vale a pena?",
+                "body": [
+                    "<p>Um curso de inglês para viagem vale a pena quando você quer se preparar com foco, sem estudar conteúdos que não vai usar agora. Ele é especialmente útil para quem vai viajar em breve, tem medo de aeroporto ou quer ganhar autonomia.</p>",
+                    "<p>Vale a pena se você:</p>",
+                    "<ul><li>vai fazer uma viagem internacional;</li><li>tem receio da imigração;</li><li>nunca falou inglês em aeroporto;</li><li>quer fazer check-in sem depender de alguém;</li><li>precisa entender hotel, transporte e pedidos simples;</li><li>quer aprender frases de emergência;</li><li>tem pouco tempo para estudar;</li><li>quer praticar com professor ao vivo;</li><li>precisa melhorar pronúncia;</li><li>quer evitar depender de tradutor.</li></ul>",
+                    "<p>No entanto, o ideal é não estudar só para “decorar frases”. Use a viagem como motivação para construir base. Depois da viagem, você pode continuar evoluindo por nível CEFR, com conversação mais ampla.</p>"
+                ]
+            },
+            {
+                "heading": "Inglês para viagem e nível CEFR",
+                "body": [
+                    "<p>O nível CEFR ajuda a entender o que você precisa dominar para viajar com segurança. Não é necessário ser avançado para lidar com aeroporto e hotel, mas o nível influencia o tipo de frase que você consegue usar.</p>",
+                    "<table><thead><tr><th>Nível</th><th>O que consegue fazer em viagem</th></tr></thead><tbody><tr><td>A1</td><td>frases básicas, apresentação, pedidos simples</td></tr><tr><td>A2</td><td>lidar com aeroporto, hotel, restaurante e transporte</td></tr><tr><td>B1</td><td>explicar problemas, dar detalhes, manter conversas simples</td></tr><tr><td>B2</td><td>resolver imprevistos com mais autonomia</td></tr><tr><td>C1</td><td>lidar com situações complexas com naturalidade</td></tr></tbody></table>",
+                    "<p>Para uma primeira viagem, muitos alunos buscam uma base A1/A2 prática. O foco deve ser sobreviver bem, pedir ajuda, entender instruções e responder perguntas previsíveis.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra qual plano faz sentido para sua próxima viagem.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo em um curso ao vivo é simular as situações de viagem. O professor deve atuar como atendente de aeroporto, oficial de imigração, recepcionista do hotel ou funcionário de atendimento. O aluno responde, erra, recebe correção e tenta novamente.</p>",
+                    "<p>Em uma aula de inglês online ao vivo, você pode praticar:</p>",
+                    "<ul><li>check-in no aeroporto;</li><li>despacho de bagagem;</li><li>imigração;</li><li>perguntas sobre portão de embarque;</li><li>perda de bagagem;</li><li>reserva de hotel;</li><li>problemas no quarto;</li><li>pedido de informação;</li><li>pagamento;</li><li>pedidos de ajuda;</li><li>pronúncia de frases essenciais;</li><li>listening com perguntas rápidas.</li></ul>",
+                    "<p>Essa prática é importante porque viajar exige reação. Você não sabe exatamente como a pessoa vai falar, mas pode treinar padrões comuns. A aula ao vivo ajuda a ganhar velocidade e confiança.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda no inglês para viagem",
+                "body": [
+                    "<p>A Vedium ajuda no inglês para viagem porque trabalha com aulas ao vivo, professor real e prática de situações úteis. O aluno não fica apenas assistindo conteúdo. Ele fala, ouve, repete, recebe correção e aprende a responder.</p>",
+                    "<p>Nas aulas, você pode praticar:</p>",
+                    "<ul><li>vocabulário de aeroporto;</li><li>frases para imigração;</li><li>check-in de hotel;</li><li>pedidos de ajuda;</li><li>pronúncia;</li><li>conversação guiada;</li><li>listening com situações reais;</li><li>plano por nível CEFR;</li><li>revisão antes da viagem;</li><li>continuidade depois da viagem.</li></ul>",
+                    "<p>A Vedium não exige contrato de fidelidade. Você começa com menos risco e continua porque percebe evolução. A proposta é simples: aulas ao vivo, no seu ritmo, para desenvolver inglês útil de verdade.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist de inglês antes da viagem",
+                "body": [
+                    "<p>Use este checklist antes de viajar:</p>",
+                    "<ul><li>Sei dizer o motivo da viagem.</li><li>Sei responder por quanto tempo vou ficar.</li><li>Sei dizer onde vou me hospedar.</li><li>Sei pedir para repetir.</li><li>Sei pedir ajuda.</li><li>Sei perguntar onde fica o portão.</li><li>Sei falar sobre bagagem.</li><li>Sei fazer check-in no hotel.</li><li>Sei pedir a senha do Wi-Fi.</li><li>Sei explicar um problema simples no quarto.</li></ul>",
+                    "<p>Se muitos itens ainda estão inseguros, você não precisa entrar em pânico. Esses são exatamente os pontos que podem ser treinados em aula ao vivo.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Inglês para viagem é uma das formas mais práticas de perceber a utilidade real do idioma. Aeroporto e hotel concentram situações em que você precisa entender, responder e resolver. Não é necessário falar inglês perfeito, mas é essencial dominar frases-chave para check-in, imigração, bagagem, reserva, Wi-Fi, horários e pedidos de ajuda.</p>",
+                    "<p>O melhor caminho é estudar por situação, praticar diálogos curtos e repetir em voz alta. Vocabulário isolado ajuda pouco se você não consegue usar em conversa. Por isso, a aula ao vivo faz diferença: o professor simula situações reais, corrige sua fala e ajuda você a ganhar confiança antes da viagem.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo com conversação, plano por nível CEFR e sem contrato de fidelidade. Você fica porque sente que está evoluindo, não por obrigação.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e comece a se preparar para viajar com mais autonomia, segurança e confiança em inglês.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/por-que-brasileiros-entendem-ingles-escrito-mas-travam-na-fala\">Por que brasileiros entendem inglês escrito mas travam na fala</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Qual vocabulário de inglês é essencial para viagem?",
+                "a": "O essencial inclui aeroporto, passaporte, cartão de embarque, bagagem, portão, imigração, reserva, hotel, check-in, check-out, quarto, Wi-Fi e pedidos de ajuda."
+            },
+            {
+                "q": "Como responder na imigração em inglês?",
+                "a": "Responda de forma curta e clara. Exemplos: “I’m here on vacation”, “I’m staying for two weeks” e “I’m staying at a hotel”."
+            },
+            {
+                "q": "Preciso ser fluente para viajar para fora?",
+                "a": "Não. Para viajar melhor, você precisa dominar frases básicas de aeroporto, hotel, transporte, pedidos de ajuda e situações previsíveis."
+            },
+            {
+                "q": "Como praticar inglês para viagem?",
+                "a": "Pratique diálogos de aeroporto, imigração e hotel em voz alta, grave sua fala, revise frases úteis e simule situações com professor ao vivo."
+            },
+            {
+                "q": "A Vedium oferece inglês online ao vivo para viagem?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo com prática de conversação, vocabulário de viagem, correção e plano por nível CEFR."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "ple-ru-011": {
+        "title": "Как учить португальский для Бразилии на живых занятиях",
+        "meta_description": "Как учить португальский для Бразилии на живых занятиях: реальные ситуации, ключевая лексика и практика речи.",
+        "h1": "Как учить португальский для Бразилии на живых занятиях",
+        "date": "2025-03-12",
+        "date_display": "12 марта 2025 г.",
+        "hero_image": "https://images.unsplash.com/photo-1772460290300-011a9dea8894?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Colonial street in an Andean town, evoking a Spanish-speaking country",
+        "tag": "Русский",
+        "lang": "ru-RU",
+        "lead": "Учить португальский для Бразилии на живых занятиях стоит через реальные ситуации: знакомство, жильё, работа, учёба, WhatsApp, супермаркет, аптека, транспорт, банк, встречи и повседневные разговоры. Главная цель — не просто выучить правила, а научиться понимать бразильцев, отвечать вживую, просить повторить, задавать вопросы и чувствовать себя увереннее в реальной жизни в Бразилии.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Для русскоязычных студентов бразильский португальский часто кажется одновременно красивым и сложным. С одной стороны, язык звучит мелодично, а многие хотят выучить его для переезда, работы, отношений, учёбы, бизнеса или путешествий. С другой стороны, на практике появляются трудности: произношение отличается от написания, люди говорят быстро, в быту много коротких фраз, а переписка в WhatsApp может звучать совсем не так, как учебник.</p>",
+                    "<p>Поэтому формат живых уроков особенно важен. На записанном курсе вы слушаете объяснение. На живом занятии вы говорите, ошибаетесь, задаёте вопросы, получаете исправления и пробуете снова. Преподаватель слышит вашу речь, помогает с произношением, объясняет культурный контекст и подбирает примеры под вашу реальную задачу: работа в Бразилии, учёба, адаптация, переезд или повседневная жизнь.</p>",
+                    "<p>Хороший Brazilian Portuguese course для иностранцев должен готовить не к абстрактному экзамену, а к живому общению. В этой статье вы узнаете, как учить Portuguese for Brazil на живых занятиях, какие ситуации нужно освоить первыми, какую лексику стоит выучить, как строить практику и почему Vedium помогает изучать бразильский португальский через живой формат, культуру и реальные диалоги.</p>"
+                ]
+            },
+            {
+                "heading": "Краткий ответ: как учить португальский для Бразилии на живых занятиях?",
+                "body": [
+                    "<p>Португальский для Бразилии нужно учить через разговорную практику, реальные сценарии и регулярную коррекцию преподавателя. Начните с фраз для выживания, затем добавьте ситуации из жизни в Бразилии: жильё, работа, встречи, покупки, аптека, транспорт, документы и WhatsApp.</p>",
+                    "<p>Самый практичный путь выглядит так:</p>",
+                    "<p>1. определить, зачем вам португальский в Бразилии;<br>2. пройти проверку уровня;<br>3. выучить базовые фразы для просьбы о помощи и уточнений;<br>4. каждую неделю брать одну реальную ситуацию;<br>5. учить фразы целиком, а не отдельные слова;<br>6. практиковать произношение вслух;<br>7. разыгрывать диалоги на живом уроке;<br>8. записывать исправления;<br>9. повторять исправленные фразы;<br>10. постепенно расширять темы.</p>",
+                    "<p>Живые занятия важны, потому что язык нужно использовать, а не только понимать. Если вы хотите жить, работать или учиться в Бразилии, вам нужно уметь реагировать в моменте.</p>",
+                    "<p>Если вы хотите понять свой уровень и начать с правильной точки, запишитесь на бесплатную проверку уровня в Vedium: <a href=\"/ru/portugalskiy-dlya-inostrantsev\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Реальная ситуация: первые дни в Бразилии",
+                "body": [
+                    "<p>Первые дни в Бразилии требуют простого, но очень практичного португальского. Вам не нужно говорить идеально, но нужно уметь попросить помощь, назвать адрес, объяснить, что вы учите язык, и понять базовые вопросы.</p>",
+                    "<p>Ключевая лексика:</p>",
+                    "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>aeroporto</td><td>аэропорт</td></tr><tr><td>endereço</td><td>адрес</td></tr><tr><td>ajuda</td><td>помощь</td></tr><tr><td>documento</td><td>документ</td></tr><tr><td>bagagem</td><td>багаж</td></tr><tr><td>saída</td><td>выход</td></tr><tr><td>entrada</td><td>вход</td></tr><tr><td>hotel</td><td>отель</td></tr><tr><td>reserva</td><td>бронь</td></tr><tr><td>táxi</td><td>такси</td></tr><tr><td>aplicativo</td><td>приложение</td></tr><tr><td>dinheiro</td><td>деньги</td></tr><tr><td>cartão</td><td>карта</td></tr></tbody></table>",
+                    "<p>Полезные фразы:</p>",
+                    "<ul><li><strong>Onde fica a saída?</strong> — Где выход?</li><li><strong>Você pode me ajudar?</strong> — Вы можете мне помочь?</li><li><strong>Este é o endereço.</strong> — Это адрес.</li><li><strong>Eu tenho uma reserva.</strong> — У меня есть бронь.</li><li><strong>Pode repetir, por favor?</strong> — Можете повторить, пожалуйста?</li><li><strong>Pode falar mais devagar?</strong> — Можете говорить медленнее?</li><li><strong>Eu falo pouco português.</strong> — Я немного говорю по-португальски.</li><li><strong>Estou aprendendo português.</strong> — Я учу португальский.</li></ul>",
+                    "<p>Одна из самых важных фраз для новичка:</p>",
+                    "<p><strong>Desculpa, estou aprendendo português. Pode falar mais devagar?</strong></p>",
+                    "<p>Перевод: Извините, я учу португальский. Можете говорить медленнее?</p>",
+                    "<p>Эта фраза помогает не выпадать из разговора. Она показывает собеседнику ваш уровень и даёт вам время.</p>"
+                ]
+            },
+            {
+                "heading": "Почему именно бразильский португальский, а не «просто португальский»?",
+                "body": [
+                    "<p>Для жизни в Бразилии нужно учить именно бразильский португальский, потому что произношение, повседневные выражения, ритм речи, культурный тон и некоторые слова отличаются от других вариантов португальского. Если ваша цель — Бразилия, учебные ситуации тоже должны быть бразильскими.</p>",
+                    "<p>В Бразилии вам понадобится язык для:</p>",
+                    "<ul><li>общения с portaria в жилом доме;</li><li>переписки в WhatsApp;</li><li>покупки продуктов;</li><li>посещения аптеки;</li><li>записи к врачу;</li><li>открытия счёта;</li><li>работы и встреч;</li><li>учёбы;</li><li>доставки;</li><li>такси и приложений;</li><li>аренды квартиры;</li><li>объяснения проблем в быту.</li></ul>",
+                    "<p>Например, слово <strong>portaria</strong> очень важно для жизни в бразильских многоквартирных домах. Это не просто “reception” в отеле. Это вход, охрана, консьерж или место, где принимают гостей и доставки. Если вы живёте в Бразилии, вы быстро столкнётесь с такими словами.</p>",
+                    "<p>Поэтому курс Portuguese for foreigners должен учить не только грамматике, но и тому, как реально устроена коммуникация в Бразилии.</p>"
+                ]
+            },
+            {
+                "heading": "Ключевая лексика для жизни в Бразилии",
+                "body": [
+                    "<p>Лучше всего учить лексику в готовых фразах. Отдельные слова помогают узнавать смысл, но в разговоре нужны конструкции.</p>",
+                    "<h3>Жильё и дом</h3>",
+                    "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>apartamento</td><td>квартира</td></tr><tr><td>prédio</td><td>здание</td></tr><tr><td>portaria</td><td>вход / стойка / консьерж в жилом доме</td></tr><tr><td>porteiro / porteira</td><td>консьерж / сотрудник входа</td></tr><tr><td>aluguel</td><td>аренда</td></tr><tr><td>contrato</td><td>договор</td></tr><tr><td>chave</td><td>ключ</td></tr><tr><td>encomenda</td><td>посылка</td></tr><tr><td>entrega</td><td>доставка</td></tr><tr><td>manutenção</td><td>ремонт / обслуживание</td></tr></tbody></table>",
+                    "<p>Фразы:</p>",
+                    "<ul><li><strong>Moro no apartamento 802.</strong> — Я живу в квартире 802.</li><li><strong>Chegou uma encomenda para mim?</strong> — Для меня пришла посылка?</li><li><strong>Pode deixar na portaria.</strong> — Можно оставить на portaria.</li><li><strong>Preciso falar com o síndico.</strong> — Мне нужно поговорить с управляющим дома.</li><li><strong>A internet não está funcionando.</strong> — Интернет не работает.</li></ul>",
+                    "<h3>Работа и учёба</h3>",
+                    "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>reunião</td><td>встреча / совещание</td></tr><tr><td>equipe</td><td>команда</td></tr><tr><td>projeto</td><td>проект</td></tr><tr><td>prazo</td><td>срок</td></tr><tr><td>relatório</td><td>отчёт</td></tr><tr><td>aula</td><td>занятие</td></tr><tr><td>atividade</td><td>задание</td></tr><tr><td>prova</td><td>тест / экзамен</td></tr><tr><td>dúvida</td><td>вопрос / сомнение</td></tr><tr><td>horário</td><td>расписание / время</td></tr></tbody></table>",
+                    "<p>Фразы:</p>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — У меня сегодня встреча.</li><li><strong>Qual é o prazo?</strong> — Какой срок?</li><li><strong>Tenho uma dúvida.</strong> — У меня вопрос.</li><li><strong>Você pode explicar de novo?</strong> — Можете объяснить ещё раз?</li><li><strong>Vou enviar o relatório.</strong> — Я отправлю отчёт.</li><li><strong>Qual é o horário da aula?</strong> — Во сколько занятие?</li></ul>",
+                    "<h3>Покупки и услуги</h3>",
+                    "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>mercado</td><td>магазин / рынок</td></tr><tr><td>farmácia</td><td>аптека</td></tr><tr><td>cartão</td><td>карта</td></tr><tr><td>dinheiro</td><td>наличные</td></tr><tr><td>nota fiscal</td><td>чек / налоговый документ</td></tr><tr><td>preço</td><td>цена</td></tr><tr><td>promoção</td><td>акция</td></tr><tr><td>sacola</td><td>пакет</td></tr></tbody></table>",
+                    "<p>Фразы:</p>",
+                    "<ul><li><strong>Quanto custa?</strong> — Сколько стоит?</li><li><strong>Aceita cartão?</strong> — Вы принимаете карту?</li><li><strong>Preciso de uma sacola.</strong> — Мне нужен пакет.</li><li><strong>Onde fica a farmácia?</strong> — Где находится аптека?</li><li><strong>Preciso de ajuda.</strong> — Мне нужна помощь.</li></ul>"
+                ]
+            },
+            {
+                "heading": "Практика на живом уроке: что нужно тренировать",
+                "body": [
+                    "<p>На живом уроке нужно тренировать не только слова, но и реакцию. Реальная жизнь не даёт времени долго переводить в голове. Поэтому урок должен включать диалоги, роли, вопросы, уточнения и исправления.</p>",
+                    "<h3>Практика 1: представление</h3>",
+                    "<p>Преподаватель спрашивает:</p>",
+                    "<p><strong>Qual é o seu nome?</strong><br>Как вас зовут?</p>",
+                    "<p>Студент отвечает:</p>",
+                    "<p><strong>Meu nome é Anna.</strong><br>Меня зовут Анна.</p>",
+                    "<p>Затем добавляется контекст:</p>",
+                    "<p><strong>Eu sou da Rússia e estou no Brasil para trabalhar.</strong><br>Я из России и нахожусь в Бразилии по работе.</p>",
+                    "<h3>Практика 2: просьба повторить</h3>",
+                    "<p>Преподаватель говорит фразу быстрее. Студент должен не молчать, а использовать фразы поддержки:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Você pode explicar de novo?</strong></li></ul>",
+                    "<p>Эти фразы помогают сохранить разговор.</p>",
+                    "<h3>Практика 3: жильё и portaria</h3>",
+                    "<p>Студент тренирует короткий диалог:</p>",
+                    "<p><strong>Chegou uma encomenda para mim?</strong><br>Для меня пришла посылка?</p>",
+                    "<p><strong>Moro no apartamento 802.</strong><br>Я живу в квартире 802.</p>",
+                    "<p><strong>Pode deixar na portaria, por favor.</strong><br>Можно оставить на portaria, пожалуйста.</p>",
+                    "<h3>Практика 4: рабочая встреча</h3>",
+                    "<p>Студент учится говорить:</p>",
+                    "<ul><li><strong>Tenho uma dúvida.</strong></li><li><strong>Qual é o prazo?</strong></li><li><strong>Quem é o responsável?</strong></li><li><strong>Só para confirmar...</strong></li><li><strong>Vou enviar até amanhã.</strong></li></ul>",
+                    "<p>Такие фразы дают участие в разговоре даже на начальном уровне.</p>",
+                    "<h3>Практика 5: WhatsApp</h3>",
+                    "<p>В Бразилии WhatsApp используется для работы, жилья, услуг, учёбы и повседневной организации. Поэтому нужно тренировать короткие сообщения.</p>",
+                    "<p>Пример:</p>",
+                    "<p><strong>Olá, tudo bem? Tenho uma dúvida sobre o horário da reunião. Você pode confirmar, por favor? Obrigado.</strong></p>",
+                    "<p>Перевод: Здравствуйте, как дела? У меня вопрос по времени встречи. Можете подтвердить, пожалуйста? Спасибо.</p>"
+                ]
+            },
+            {
+                "heading": "Как живые занятия помогают с произношением",
+                "body": [
+                    "<p>Живые занятия помогают с произношением, потому что преподаватель слышит, как вы говорите. Для русскоязычных студентов это особенно важно: бразильский португальский имеет носовые звуки, мягкий ритм, звуки <strong>lh</strong> и <strong>nh</strong>, а также различия между написанием и живой речью.</p>",
+                    "<p>Слова, которые стоит тренировать с преподавателем:</p>",
+                    "<ul><li><strong>não</strong></li><li><strong>pão</strong></li><li><strong>mãe</strong></li><li><strong>obrigado / obrigada</strong></li><li><strong>trabalho</strong></li><li><strong>dinheiro</strong></li><li><strong>endereço</strong></li><li><strong>reunião</strong></li><li><strong>manhã</strong></li><li><strong>informação</strong></li></ul>",
+                    "<p>Цель не в том, чтобы полностью убрать акцент. Цель — говорить понятно, уверенно и естественно для вашей ситуации. Акцент допустим. Непонимание из-за неправильных звуков — то, что можно и нужно исправлять.</p>",
+                    "<p>В живом уроке преподаватель может:</p>",
+                    "<ul><li>попросить повторить слово;</li><li>показать разницу между похожими звуками;</li><li>исправить ударение;</li><li>замедлить фразу;</li><li>дать короткую тренировку;</li><li>поставить слово в реальный диалог.</li></ul>",
+                    "<p>Так произношение перестаёт быть теорией.</p>"
+                ]
+            },
+            {
+                "heading": "Как не застрять на грамматике",
+                "body": [
+                    "<p>Чтобы не застрять на грамматике, учите правила через фразы. Грамматика важна, но она должна помогать говорить, а не блокировать речь. Многие студенты ждут, пока выучат “всё правильно”, и из-за этого долго не начинают говорить.</p>",
+                    "<p>Вместо того чтобы учить только правило, берите готовую фразу:</p>",
+                    "<table><thead><tr><th>Функция</th><th>Фраза</th></tr></thead><tbody><tr><td>попросить помощь</td><td>Preciso de ajuda.</td></tr><tr><td>задать вопрос</td><td>Tenho uma dúvida.</td></tr><tr><td>попросить повторить</td><td>Pode repetir, por favor?</td></tr><tr><td>спросить адрес</td><td>Qual é o endereço?</td></tr><tr><td>сказать о работе</td><td>Trabalho com tecnologia.</td></tr><tr><td>назначить встречу</td><td>Podemos marcar uma reunião?</td></tr><tr><td>подтвердить</td><td>Só para confirmar...</td></tr></tbody></table>",
+                    "<p>После того как фраза стала понятной и удобной, можно разбирать грамматику. Такой путь быстрее приводит к реальному общению.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: пошаговый план изучения португальского для Бразилии",
+                "body": [
+                    "<p>Лучший способ учить португальский для Бразилии — соединить цель, реальные ситуации, живую практику и повторение. Ниже — пошаговый план.</p>",
+                    "<h3>Шаг 1: определите вашу главную цель</h3>",
+                    "<p>Ответьте себе:</p>",
+                    "<ul><li>Я переезжаю в Бразилию?</li><li>Мне нужен португальский для работы?</li><li>Я буду учиться в Бразилии?</li><li>Мне нужен язык для отношений или семьи?</li><li>Я хочу чувствовать себя увереннее в быту?</li><li>Я готовлюсь к поездке?</li></ul>",
+                    "<p>Цель определяет лексику.</p>",
+                    "<h3>Шаг 2: пройдите проверку уровня</h3>",
+                    "<p>Даже если вы начинаете с нуля, проверка уровня полезна. Она помогает понять, какие навыки уже есть: понимание, произношение, чтение, фразы, реакция.</p>",
+                    "<h3>Шаг 3: выучите фразы для поддержания разговора</h3>",
+                    "<p>Начните с:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Como se diz...?</strong></li><li><strong>Tenho uma dúvida.</strong></li><li><strong>Preciso de ajuda.</strong></li></ul>",
+                    "<p>Эти фразы нужны с первого дня.</p>",
+                    "<h3>Шаг 4: выберите одну ситуацию в неделю</h3>",
+                    "<p>Например:</p>",
+                    "<ul><li>аэропорт;</li><li>жильё;</li><li>супермаркет;</li><li>аптека;</li><li>работа;</li><li>учёба;</li><li>WhatsApp;</li><li>встреча;</li><li>банк;</li><li>транспорт.</li></ul>",
+                    "<h3>Шаг 5: учите 10 фраз по ситуации</h3>",
+                    "<p>Не берите 100 слов. Возьмите 10 фраз, которые реально скажете.</p>",
+                    "<h3>Шаг 6: практикуйте на живом уроке</h3>",
+                    "<p>Разыграйте ситуацию с преподавателем. Пусть он задаёт вопросы, перебивает, просит уточнить, исправляет вашу речь.</p>",
+                    "<h3>Шаг 7: повторяйте исправленные фразы</h3>",
+                    "<p>После урока повторите именно то, что было исправлено. Там находится ваш быстрый рост.</p>"
+                ]
+            },
+            {
+                "heading": "30-дневный план для старта",
+                "body": [
+                    "<p>Этот план не обещает свободное владение за месяц. Его цель — создать практическую базу для жизни в Бразилии.</p>",
+                    "<table><thead><tr><th>Неделя</th><th>Фокус</th><th>Результат</th></tr></thead><tbody><tr><td>1</td><td>приветствие, помощь, повторение, представление</td><td>начать простые разговоры</td></tr><tr><td>2</td><td>жильё, portaria, адреса, доставка</td><td>решать бытовые задачи</td></tr><tr><td>3</td><td>работа, учёба, встречи, WhatsApp</td><td>участвовать в базовой коммуникации</td></tr><tr><td>4</td><td>супермаркет, аптека, транспорт, повторение</td><td>чувствовать больше автономии</td></tr></tbody></table>",
+                    "<p>Ежедневная практика:</p>",
+                    "<ul><li>10 минут фраз вслух;</li><li>5 минут повторения слов;</li><li>1 короткое WhatsApp-сообщение;</li><li>1 мини-диалог;</li><li>1 список вопросов для урока.</li></ul>",
+                    "<p>Регулярность важнее длинных, но редких занятий.</p>"
+                ]
+            },
+            {
+                "heading": "Как выбрать курс бразильского португальского",
+                "body": [
+                    "<p>Хороший Brazilian Portuguese course должен готовить к жизни в Бразилии, а не только объяснять язык как систему. Особенно для иностранцев важно, чтобы курс включал реальные ситуации и живую речь.</p>",
+                    "<p>Проверьте, есть ли в курсе:</p>",
+                    "<ul><li>живые занятия;</li><li>практика разговорной речи;</li><li>бразильский вариант португальского;</li><li>произношение;</li><li>ситуации работы и учёбы;</li><li>бытовые темы;</li><li>WhatsApp-коммуникация;</li><li>культурный контекст;</li><li>проверка уровня;</li><li>гибкий формат;</li><li>отсутствие долгого контракта.</li></ul>",
+                    "<p>Избегайте курсов, которые обещают быстрые чудеса или дают только записанные уроки. Реальная коммуникация строится через практику, исправления и повторение.</p>"
+                ]
+            },
+            {
+                "heading": "Почему Vedium подходит для Portuguese for Brazil",
+                "body": [
+                    "<p>Vedium подходит для изучения Portuguese for Brazil, потому что занятия проходят онлайн и вживую, с акцентом на реальные ситуации, культурный контекст и практику речи. Студент не остаётся один с видео. Он говорит, слушает, задаёт вопросы и получает исправления.</p>",
+                    "<p>В Vedium можно тренировать:</p>",
+                    "<ul><li>представление себя;</li><li>жильё и portaria;</li><li>рабочие встречи;</li><li>учёбу;</li><li>WhatsApp;</li><li>супермаркет;</li><li>аптеку;</li><li>адреса и направления;</li><li>произношение;</li><li>диалоги с преподавателем;</li><li>бразильский стиль общения.</li></ul>",
+                    "<p>Vedium работает без долгих контрактов лояльности. Вы продолжаете не из-за штрафа, а потому что видите результат. Это особенно важно для иностранцев, которым нужен язык для реальной жизни, а не просто сертификат на полке.</p>",
+                    "<p>Запишитесь на бесплатную проверку уровня на <a href=\"/ru/portugalskiy-dlya-inostrantsev\">https://vediums.com/</a> и начните учить бразильский португальский через живые занятия и практические ситуации.</p>"
+                ]
+            },
+            {
+                "heading": "Практический чек-лист",
+                "body": [
+                    "<p>Проверьте, готовы ли вы к первым ситуациям в Бразилии:</p>",
+                    "<ul><li>Я могу представиться.</li><li>Я могу сказать, что учу португальский.</li><li>Я могу попросить повторить.</li><li>Я могу попросить говорить медленнее.</li><li>Я могу назвать адрес.</li><li>Я могу спросить, где находится место.</li><li>Я могу написать короткое сообщение в WhatsApp.</li><li>Я могу задать вопрос на работе или учёбе.</li><li>Я могу поговорить с portaria.</li><li>Я практикую речь на живом уроке.</li></ul>",
+                    "<p>Если многие пункты пока сложны, это нормально. Именно их нужно тренировать в первую очередь.</p>"
+                ]
+            },
+            {
+                "heading": "Заключение с сильным CTA",
+                "body": [
+                    "<p>Учить португальский для Бразилии на живых занятиях — это практичный путь для тех, кто хочет жить, работать, учиться или чувствовать себя увереннее в бразильской среде. Вам нужен не только учебник. Вам нужны реальные фразы, живые диалоги, произношение, культурный контекст и способность реагировать в моменте.</p>",
+                    "<p>Начинайте с простых ситуаций: представление, просьба повторить, адрес, жильё, работа, учёба, WhatsApp, покупки и аптека. Учите фразы целиком, говорите вслух, разыгрывайте диалоги и повторяйте исправления после урока. Так пассивное понимание превращается в активную речь.</p>",
+                    "<p>Vedium предлагает живые онлайн-занятия по бразильскому португальскому для иностранцев: практические темы, культурная адаптация, разговорная уверенность и гибкий формат без долгих контрактов. Вы остаётесь, потому что язык становится полезным в вашей жизни.</p>",
+                    "<p>Запишитесь на бесплатную проверку уровня на <a href=\"/ru/portugalskiy-dlya-inostrantsev\">https://vediums.com/</a> и начните изучать португальский для Бразилии с живой практикой и понятным планом.</p>",
+                    "<p>Чтобы продолжить обучение, посмотрите также <a href=\"/blog/ple-ru-077\">Реалистичный план изучения бразильского португальского на 90 дней</a> или узнайте про <a href=\"/ru/portugalskiy-dlya-inostrantsev\">курс бразильского португальского</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Как лучше учить португальский для Бразилии?",
+                "a": "Лучше учить через реальные ситуации, живые уроки, разговорную практику, произношение и фразы для повседневной жизни, работы, учёбы и общения в Бразилии."
+            },
+            {
+                "q": "Чем бразильский португальский отличается для иностранцев?",
+                "a": "Для иностранцев важны произношение, ритм живой речи, бытовые фразы, WhatsApp-коммуникация, культурный тон и ситуации, которые реально встречаются в Бразилии."
+            },
+            {
+                "q": "Можно ли начать с нуля на живых уроках?",
+                "a": "Да. Новичок может начать с приветствий, просьб о помощи, простых фраз, произношения и коротких диалогов с коррекцией преподавателя."
+            },
+            {
+                "q": "Почему живые занятия лучше только записанных уроков?",
+                "a": "На живом занятии вы говорите, получаете исправления, задаёте вопросы и тренируете реальные диалоги. Записанный урок не слышит вашу речь и не корректирует ошибки."
+            },
+            {
+                "q": "Vedium обучает бразильскому португальскому для иностранцев?",
+                "a": "Да. Vedium предлагает живые онлайн-занятия по бразильскому португальскому для иностранцев с практикой реальных ситуаций, культурным контекстом и проверкой уровня."
+            }
+        ],
+        "cta_title": "Готовы начать изучать бразильский португальский?",
+        "cta_text": "Запишитесь на бесплатный тест уровня и начните с чёткого плана обучения.",
+        "cta_label": "Записаться на бесплатную проверку уровня",
+        "cta_url": "/ru/portugalskiy-dlya-inostrantsev"
+    },
+    "numeros-em-ioruba-logica-uso-e-pratica-inicial": {
+        "title": "Números em iorubá: lógica, uso e prática inicial",
+        "meta_description": "Entenda os números em iorubá, sua lógica inicial, usos culturais e como praticar com respeito em aula ao vivo.",
+        "h1": "Números em iorubá: lógica, uso e prática inicial",
+        "date": "2025-03-28",
+        "date_display": "28 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoas se cumprimentando",
+        "tag": "Iorubá",
+        "category": "ioruba",
+        "lead": "Os números em iorubá importam porque ajudam o aluno a perceber que aprender uma língua não é apenas trocar palavras de um idioma por outro. A contagem revela lógica, ritmo, organização mental, oralidade e cultura. Para quem estuda iorubá por ancestralidade, cantigas, rezas, nomes, memória ou interesse linguístico sério, os números são uma excelente porta de entrada: parecem simples, mas mostram que o idioma tem estrutura própria e precisa ser aprendido com escuta, pronúncia e orientação.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Em português, estamos acostumados a um sistema decimal muito direto: dez, vinte, trinta, quarenta; vinte e um, vinte e dois, vinte e três. No iorubá, a lógica tradicional de contagem pode envolver agrupamentos, composição e formas que não seguem exatamente o mesmo raciocínio do português. Por isso, o estudante iniciante não deve tentar traduzir número por número como se estivesse preenchendo uma tabela mecânica. É preciso entender a lógica por trás da forma.</p>",
+                    "<p>Esse cuidado é ainda mais importante porque os números aparecem em contextos cotidianos e culturais: idade, quantidade, ordem, tempo, objetos, dinheiro, histórias, provérbios, organização de atividades, ensino de crianças, conversas simples e, em alguns casos, referências presentes em cantigas, narrativas e tradições. Aprender números em iorubá com respeito significa prestar atenção à pronúncia, aos tons, às marcas gráficas e ao contexto.</p>",
+                    "<p>Neste artigo, você vai entender como começar a estudar números em iorubá, qual é a lógica inicial da contagem, quais cuidados de pronúncia são necessários, como praticar de forma responsável e por que uma aula de iorubá ao vivo ajuda o aluno a não transformar a língua em uma lista rasa de equivalências. A Vedium oferece curso de iorubá online e ao vivo, com foco em idioma, cultura e profundidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: como funcionam os números em iorubá?",
+                "body": [
+                    "<p>Os números em iorubá funcionam por uma lógica própria, que combina memorização inicial, padrões de formação e atenção à oralidade. O aluno deve começar pelos números básicos, praticar pronúncia com tons e depois entender como números maiores podem ser formados por composição.</p>",
+                    "<p>Para iniciar, o estudante deve observar três pontos:</p>",
+                    "<p>1. os números não devem ser lidos como português;<br>2. tons e vogais importam para a pronúncia;<br>3. a lógica de formação pode ser diferente da contagem decimal direta em português.</p>",
+                    "<p>Um caminho seguro é aprender primeiro os números de 1 a 10, praticar em voz alta, depois avançar para 11 a 20 e só então observar a lógica de combinações maiores. O objetivo inicial não é decorar longas listas, mas entender o funcionamento do sistema com respeito.</p>",
+                    "<p>Se você quer estudar iorubá com pronúncia, contexto e aula ao vivo, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Contexto cultural do tema",
+                "body": [
+                    "<p>Números em iorubá não são apenas conteúdo básico de iniciante. Eles fazem parte de uma visão de língua em que som, memória e lógica caminham juntos. Para muitos estudantes brasileiros, especialmente aqueles ligados a comunidades afro-diaspóricas, aprender a contar em iorubá pode ser um primeiro contato com a estrutura viva do idioma.</p>",
+                    "<p>Esse aprendizado deve ser feito com cuidado por três razões.</p>",
+                    "<p>A primeira razão é linguística: a escrita e a pronúncia exigem atenção. Em iorubá, tons e marcas gráficas não são decoração. Eles ajudam a orientar como a palavra deve soar. Se o aluno apaga esses sinais, ele perde informação.</p>",
+                    "<p>A segunda razão é cultural: números podem aparecer em histórias, formas de ensino, oralidade e referências tradicionais. Mesmo quando o uso é cotidiano, o estudante precisa lembrar que está lidando com uma língua que carrega memória.</p>",
+                    "<p>A terceira razão é pedagógica: aprender números permite treinar padrões sem depender de frases longas. O aluno trabalha escuta, repetição, ritmo e comparação entre sons.</p>",
+                    "<p>Por isso, estudar números é um bom começo, mas não deve ser um estudo apressado.</p>"
+                ]
+            },
+            {
+                "heading": "Primeiros números em iorubá: de 1 a 10",
+                "body": [
+                    "<p>Os números de 1 a 10 são a base da prática inicial. A grafia pode variar conforme materiais didáticos e escolhas de marcação tonal, mas um curso sério deve preservar sinais, explicar pronúncia e orientar o aluno a ouvir antes de repetir.</p>",
+                    "<table><thead><tr><th>Número</th><th>Forma em iorubá</th><th>Observação didática</th></tr></thead><tbody><tr><td>1</td><td>ọ̀kan</td><td>atenção ao som inicial e ao tom</td></tr><tr><td>2</td><td>méjì</td><td>perceber ritmo e vogal</td></tr><tr><td>3</td><td>mẹ́ta</td><td>observar a vogal marcada</td></tr><tr><td>4</td><td>mẹ́rin</td><td>praticar sílabas com calma</td></tr><tr><td>5</td><td>márùn-ún</td><td>atenção à nasalização e ao alongamento</td></tr><tr><td>6</td><td>mẹ́fà</td><td>comparar com outros números iniciados por “mẹ́”</td></tr><tr><td>7</td><td>méje</td><td>observar diferença de som</td></tr><tr><td>8</td><td>mẹ́jọ</td><td>praticar pronúncia com orientação</td></tr><tr><td>9</td><td>mẹ́sàn-án</td><td>cuidado com nasalização e ritmo</td></tr><tr><td>10</td><td>mẹ́wàá</td><td>atenção ao tom e à vogal final</td></tr></tbody></table>",
+                    "<p>Essa tabela deve ser usada como ponto de partida, não como substituto da aula. O aluno precisa escutar, repetir e receber correção. Em línguas tonais, ler silenciosamente não basta.</p>",
+                    "<p>Uma boa prática é repetir em blocos:</p>",
+                    "<ul><li>1 a 3;</li><li>4 a 6;</li><li>7 a 10.</li></ul>",
+                    "<p>Depois, misture a ordem para não decorar apenas sequência automática. O aluno deve reconhecer cada número individualmente.</p>"
+                ]
+            },
+            {
+                "heading": "Por que a lógica dos números pode surpreender brasileiros?",
+                "body": [
+                    "<p>A lógica dos números em iorubá pode surpreender brasileiros porque nem sempre ela segue o padrão direto de “vinte e um”, “vinte e dois”, “trinta e três” como fazemos em português. Em sistemas tradicionais de contagem iorubá, há composições que envolvem base vinte e formas que podem incluir ideia de acréscimo ou subtração.</p>",
+                    "<p>Para o iniciante, isso significa uma coisa: não tente forçar a lógica do português. Em vez disso, pergunte:</p>",
+                    "<ul><li>qual é a base dessa formação?</li><li>o número é formado por acréscimo?</li><li>há alguma relação com vinte?</li><li>a forma muda conforme o contexto?</li><li>qual é a pronúncia correta?</li><li>como esse número aparece em frase?</li></ul>",
+                    "<p>Esse ponto é importante porque muitos alunos tentam decorar listas sem entender. Quando chegam a números maiores, ficam perdidos. A aula ao vivo ajuda o professor a explicar a lógica passo a passo, com exemplos adequados ao nível.</p>",
+                    "<p>Não é necessário dominar todo o sistema numérico no primeiro mês. O mais importante é construir uma base firme e perceber que a língua tem sua própria maneira de organizar quantidade.</p>"
+                ]
+            },
+            {
+                "heading": "Números de 11 a 20: avanço com cuidado",
+                "body": [
+                    "<p>Depois de 1 a 10, o aluno pode avançar para 11 a 20. Nessa etapa, é comum aparecerem padrões de formação que precisam ser explicados com calma. Alguns números se relacionam de modo mais direto com dez, enquanto outros se aproximam de uma lógica de composição em relação a vinte, dependendo da forma tradicional ensinada.</p>",
+                    "<p>Exemplos frequentemente apresentados em materiais de estudo incluem formas como:</p>",
+                    "<table><thead><tr><th>Número</th><th>Forma em iorubá</th><th>Observação</th></tr></thead><tbody><tr><td>11</td><td>mọ́kànlá</td><td>relacionado a 10 + 1 em uso didático</td></tr><tr><td>12</td><td>méjìlá</td><td>relacionado a 10 + 2</td></tr><tr><td>13</td><td>mẹ́tàlá</td><td>relacionado a 10 + 3</td></tr><tr><td>14</td><td>mẹ́rìnlá</td><td>relacionado a 10 + 4</td></tr><tr><td>15</td><td>mẹ́ẹ̀dógún</td><td>exige explicação específica</td></tr><tr><td>20</td><td>ogún</td><td>base importante para números maiores</td></tr></tbody></table>",
+                    "<p>Para números intermediários, é fundamental estudar com professor ou material responsável, porque a grafia, os tons e a lógica de formação precisam de orientação. O objetivo aqui não é transformar o artigo em uma lista definitiva, mas mostrar ao aluno que existe um sistema a ser compreendido.</p>",
+                    "<p>A prática deve ser gradual: primeiro reconhecer, depois pronunciar, depois usar em frases simples.</p>"
+                ]
+            },
+            {
+                "heading": "Como usar números em frases simples",
+                "body": [
+                    "<p>Números só ganham vida quando aparecem em frases. Para iniciantes, o ideal é começar com frases curtas e úteis, evitando estruturas complexas demais.</p>",
+                    "<p>Exemplos didáticos em português para orientar o tipo de uso:</p>",
+                    "<ul><li>Eu tenho dois livros.</li><li>Há três pessoas.</li><li>Tenho uma pergunta.</li><li>Quero cinco itens.</li><li>São dez palavras.</li><li>Tenho vinte anos.</li><li>Há quatro alunos na sala.</li></ul>",
+                    "<p>Em aula, o professor pode adaptar essas frases ao nível do aluno e ensinar estruturas iorubás adequadas, com pronúncia e ordem correta. O cuidado aqui é não inventar frases sem domínio da estrutura. Para o estudante, o mais seguro é aprender frases-modelo com orientação.</p>",
+                    "<p>Prática recomendada:</p>",
+                    "<p>1. aprender o número isolado;<br>2. repetir com pronúncia;<br>3. colocar em uma estrutura simples;<br>4. escutar a frase;<br>5. repetir com correção;<br>6. trocar apenas o número;<br>7. revisar em aula ao vivo.</p>",
+                    "<p>Esse processo transforma número em uso.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar com respeito?",
+                "body": [
+                    "<p>Praticar números em iorubá com respeito significa não reduzir a língua a uma brincadeira de repetição. A contagem pode ser inicial, mas ainda exige atenção à pronúncia, ao tom e ao contexto.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>preserve acentos e marcas gráficas;</li><li>escute antes de repetir;</li><li>não leia como português;</li><li>pratique em voz alta;</li><li>grave sua voz;</li><li>peça correção;</li><li>não avance rápido demais;</li><li>entenda a lógica antes de decorar números longos;</li><li>aceite variações didáticas quando explicadas;</li><li>evite publicar “listas definitivas” sem revisão.</li></ul>",
+                    "<p>O respeito também aparece no ritmo. Aprender iorubá não é consumir palavras como se fossem conteúdo rápido. É construir relação com uma língua viva, culturalmente profunda e historicamente importante.</p>",
+                    "<p>Para praticar números, pronúncia e estrutura com orientação ao vivo, fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: como aprender números em iorubá do jeito certo",
+                "body": [
+                    "<p>Para aprender números em iorubá do jeito certo, siga uma sequência que una escuta, escrita, pronúncia e uso. Não comece tentando decorar números altos. Comece pela base.</p>",
+                    "<h3>Passo 1: aprenda de 1 a 5</h3>",
+                    "<p>Comece com poucos números. Escute cada um, observe a grafia e repita devagar. O objetivo é reconhecer forma e som.</p>",
+                    "<h3>Passo 2: avance de 6 a 10</h3>",
+                    "<p>Depois que 1 a 5 estiverem mais firmes, adicione 6 a 10. Compare semelhanças e diferenças de som. Pratique fora da ordem.</p>",
+                    "<h3>Passo 3: grave sua própria voz</h3>",
+                    "<p>Grave a contagem de 1 a 10. Depois escute e anote onde sente dificuldade. Leve essas dúvidas para aula.</p>",
+                    "<h3>Passo 4: estude tons e marcas</h3>",
+                    "<p>Observe acentos, pontos e sinais. Pergunte ao professor o que cada marca indica na pronúncia.</p>",
+                    "<h3>Passo 5: use em contagens reais</h3>",
+                    "<p>Conte objetos simples: livros, copos, passos, palavras ou pessoas em imagens. Isso ajuda o cérebro a ligar número e quantidade.</p>",
+                    "<h3>Passo 6: avance para 11 a 20</h3>",
+                    "<p>Depois de consolidar 1 a 10, avance com calma. Não tente decorar tudo sem entender a lógica de formação.</p>",
+                    "<h3>Passo 7: use frases-modelo</h3>",
+                    "<p>Aprenda frases simples com professor. Troque apenas o número para praticar estrutura sem se perder.</p>",
+                    "<h3>Passo 8: revise semanalmente</h3>",
+                    "<p>Números parecem fáceis, mas somem da memória se não forem usados. Revise toda semana.</p>",
+                    "<p>Esse método reduz ansiedade e evita que o aluno decore de forma superficial.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: contagem com escuta e contexto",
+                "body": [
+                    "<p>Este exercício é ideal para uma aula de iorubá ao vivo com iniciantes.</p>",
+                    "<h3>Etapa 1: escuta guiada</h3>",
+                    "<p>O professor pronuncia os números de 1 a 10. O aluno apenas escuta e observa a grafia.</p>",
+                    "<h3>Etapa 2: repetição lenta</h3>",
+                    "<p>O aluno repete número por número. O professor corrige tons, vogais, ritmo e nasalização.</p>",
+                    "<h3>Etapa 3: reconhecimento fora de ordem</h3>",
+                    "<p>O professor fala números aleatórios. O aluno identifica qual número ouviu.</p>",
+                    "<h3>Etapa 4: associação com objetos</h3>",
+                    "<p>O professor mostra imagens ou objetos. O aluno conta com apoio.</p>",
+                    "<h3>Etapa 5: escrita com marcas</h3>",
+                    "<p>O aluno copia os números preservando acentos, pontos e sinais.</p>",
+                    "<h3>Etapa 6: mini-frases</h3>",
+                    "<p>O professor apresenta frases-modelo simples e o aluno troca o número.</p>",
+                    "<h3>Etapa 7: revisão cultural</h3>",
+                    "<p>O professor explica como a lógica dos números revela uma forma própria de organizar quantidade e por que não se deve forçar a estrutura do português.</p>",
+                    "<p>Esse exercício mostra que número não é apenas memória. É som, escrita, lógica e uso.</p>"
+                ]
+            },
+            {
+                "heading": "Erros comuns ao aprender números em iorubá",
+                "body": [
+                    "<p>Os erros mais comuns acontecem quando o aluno tenta aprender rápido, sem escuta e sem correção. Como os números parecem básicos, muitos estudantes subestimam a importância da pronúncia.</p>",
+                    "<p>Evite estes erros:</p>",
+                    "<ul><li>ler números com som de português;</li><li>ignorar tons;</li><li>apagar sinais;</li><li>decorar apenas a sequência;</li><li>não reconhecer números fora de ordem;</li><li>avançar para números altos cedo demais;</li><li>usar tabelas sem áudio;</li><li>não praticar em frases;</li><li>confundir grafias parecidas;</li><li>achar que tradução resolve tudo.</li></ul>",
+                    "<p>Melhor caminho:</p>",
+                    "<table><thead><tr><th>Em vez de...</th><th>Faça...</th></tr></thead><tbody><tr><td>decorar lista longa</td><td>aprenda em blocos</td></tr><tr><td>repetir sem ouvir</td><td>escute antes de falar</td></tr><tr><td>apagar acentos</td><td>preserve marcas</td></tr><tr><td>estudar só visualmente</td><td>pratique em voz alta</td></tr><tr><td>pular para números altos</td><td>consolide 1 a 20</td></tr><tr><td>estudar sem contexto</td><td>use objetos e frases</td></tr></tbody></table>",
+                    "<p>A base bem feita evita problemas depois.</p>"
+                ]
+            },
+            {
+                "heading": "Curso de iorubá online: o que observar nessa etapa",
+                "body": [
+                    "<p>Um bom curso de iorubá online deve trabalhar números como parte da alfabetização sonora do aluno. Não basta entregar uma lista de 1 a 100. O curso precisa explicar lógica, pronúncia, tons, escrita e uso.</p>",
+                    "<p>Antes de escolher um curso, observe se ele oferece:</p>",
+                    "<ul><li>aula ao vivo;</li><li>correção de pronúncia;</li><li>explicação de tons;</li><li>preservação de marcas gráficas;</li><li>prática de escuta;</li><li>exercícios de repetição;</li><li>contexto cultural;</li><li>progressão para iniciantes;</li><li>espaço para dúvidas;</li><li>respeito à tradição.</li></ul>",
+                    "<p>A Vedium trabalha o iorubá com profundidade cultural e orientação ao vivo. Isso é importante porque a língua não deve ser tratada como curiosidade. Mesmo números, que parecem simples, merecem cuidado.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para números em iorubá",
+                "body": [
+                    "<p>Este plano ajuda o aluno iniciante a criar constância.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>números de 1 a 5</td><td>escuta, repetição e escrita com marcas</td></tr><tr><td>Semana 2</td><td>números de 6 a 10</td><td>reconhecimento fora de ordem e gravação</td></tr><tr><td>Semana 3</td><td>números de 11 a 20</td><td>lógica inicial e comparação de padrões</td></tr><tr><td>Semana 4</td><td>frases simples</td><td>uso em objetos, quantidades e revisão ao vivo</td></tr></tbody></table>",
+                    "<p>Rotina diária de 10 minutos:</p>",
+                    "<p>1. ouvir os números;<br>2. repetir devagar;<br>3. copiar com sinais;<br>4. contar objetos;<br>5. gravar uma vez por semana;<br>6. anotar dúvidas para aula.</p>",
+                    "<p>A constância é mais importante que a velocidade.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse aprendizado",
+                "body": [
+                    "<p>A Vedium ajuda no estudo dos números em iorubá porque oferece aulas online ao vivo com orientação, correção e contexto cultural. O aluno não fica sozinho tentando adivinhar pronúncia ou lógica de formação por tabelas soltas.</p>",
+                    "<p>Nas aulas de iorubá da Vedium, o aluno pode praticar:</p>",
+                    "<ul><li>números básicos;</li><li>pronúncia;</li><li>tons;</li><li>vogais;</li><li>nasalização;</li><li>escrita com marcas;</li><li>lógica de contagem;</li><li>frases simples;</li><li>escuta guiada;</li><li>contexto cultural;</li><li>dúvidas individuais;</li><li>revisão no próprio ritmo.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. A permanência vem do resultado, da profundidade e da confiança no processo. Para quem estuda iorubá por ancestralidade, cultura e respeito, isso faz diferença.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou aprendendo números em iorubá com responsabilidade?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Sei contar de 1 a 10 com orientação de pronúncia.</li><li>Reconheço números fora da ordem.</li><li>Preservo marcas gráficas.</li><li>Pratico em voz alta.</li><li>Escuto antes de repetir.</li><li>Sei que tons importam.</li><li>Não leio como português.</li><li>Entendo que números maiores têm lógica própria.</li><li>Uso números em frases simples.</li><li>Levo dúvidas para aula ao vivo.</li></ul>",
+                    "<p>Se muitos itens ainda estão inseguros, você está no ponto certo para começar uma prática guiada.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Números em iorubá são uma porta de entrada para a lógica, a oralidade e a estrutura do idioma. Eles mostram que aprender iorubá não é apenas memorizar equivalências em português. É escutar, perceber tons, preservar marcas, compreender padrões e praticar com respeito.</p>",
+                    "<p>Para iniciantes, o melhor caminho é começar de 1 a 10, avançar com calma para 11 a 20, entender a lógica de formação e usar números em frases simples. A aula ao vivo faz diferença porque o professor corrige pronúncia, explica padrões e impede que o aluno transforme a língua em uma lista sem contexto.</p>",
+                    "<p>A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura, oralidade e respeito à tradição. Sem contrato de fidelidade: você continua porque percebe profundidade no aprendizado.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a> e comece a estudar números, pronúncia e lógica do idioma com orientação real.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ioruba/palavras-iorubas-presentes-na-cultura-afro-brasileira\">Palavras iorubás presentes na cultura afro-brasileira</a> ou conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Por que aprender números em iorubá é importante?",
+                "a": "Porque os números ajudam o aluno a entender lógica, pronúncia, tons, escrita e estrutura do idioma desde o início."
+            },
+            {
+                "q": "Os números em iorubá seguem a mesma lógica do português?",
+                "a": "Não exatamente. A contagem em iorubá tem lógica própria e pode envolver composição diferente da lógica decimal direta do português."
+            },
+            {
+                "q": "Posso aprender números em iorubá apenas com tabela?",
+                "a": "A tabela ajuda, mas não basta. É preciso ouvir, repetir, praticar tons, preservar marcas gráficas e receber correção de pronúncia."
+            },
+            {
+                "q": "Como praticar números em iorubá com respeito?",
+                "a": "Escute antes de repetir, preserve sinais, pratique em voz alta, aprenda em blocos pequenos e estude com orientação cultural e linguística."
+            },
+            {
+                "q": "A Vedium ensina números em iorubá em aula ao vivo?",
+                "a": "Sim. A Vedium oferece aulas de iorubá online e ao vivo, com prática de números, pronúncia, tons, lógica de contagem e contexto cultural."
+            }
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Falar sobre a próxima turma de Iorubá",
+        "cta_url": "/curso-de-ioruba-online"
+    },
+    "palavras-iorubas-presentes-na-cultura-afro-brasileira": {
+        "title": "Palavras iorubás presentes na cultura afro-brasileira",
+        "meta_description": "Conheça palavras iorubás na cultura afro-brasileira e aprenda seu valor com respeito, contexto e aula ao vivo.",
+        "h1": "Palavras iorubás presentes na cultura afro-brasileira",
+        "date": "2025-04-18",
+        "date_display": "18 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Learning to count in Yoruba",
+        "tag": "Iorubá",
+        "category": "ioruba",
+        "lead": "Palavras iorubás presentes na cultura afro-brasileira importam porque revelam memória, resistência, espiritualidade, comida, música, dança, comunidade e formas de nomear o mundo que atravessaram o Atlântico e continuam vivas no Brasil. Para quem estuda iorubá por ancestralidade, religiosidade, pesquisa, cultura ou pertencimento, reconhecer essas palavras é mais do que ampliar vocabulário: é entender que idioma também é história.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>No Brasil, muitas palavras ligadas ao universo afro-brasileiro têm relação com línguas africanas, especialmente com tradições iorubás, bantas, jeje e outras matrizes. Por isso, é importante estudar com cuidado. Nem toda palavra afro-brasileira vem do iorubá, e nem toda palavra usada em contexto religioso ou cultural deve ser tratada como termo solto. Algumas têm origem iorubá direta, outras passaram por adaptações fonéticas, outras se consolidaram no português brasileiro por uso litúrgico, comunitário ou cultural, e algumas têm origem discutida conforme a fonte.</p>",
+                    "<p>Esse cuidado não diminui o valor do tema. Pelo contrário: torna o estudo mais sério. Palavras como <strong>orixá</strong>, <strong>axé</strong>, <strong>xirê</strong>, <strong>obá</strong>, <strong>iyá</strong>, <strong>babalorixá</strong>, <strong>iyalorixá</strong>, <strong>odu</strong>, <strong>ebó</strong>, <strong>acarajé</strong>, <strong>abará</strong> e muitas outras aparecem em conversas, cantigas, terreiros, festas, literatura, música, culinária e movimentos de afirmação cultural. Mas elas não devem ser aprendidas apenas como curiosidade. Cada palavra tem contexto, uso, história e responsabilidade.</p>",
+                    "<p>Neste artigo, você vai entender por que palavras iorubás estão tão presentes na cultura afro-brasileira, conhecer exemplos relevantes, aprender como praticar com respeito e ver como uma aula de iorubá ao vivo ajuda a ir além da tradução literal. A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura e profundidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que palavras iorubás na cultura afro-brasileira importam?",
+                "body": [
+                    "<p>Palavras iorubás na cultura afro-brasileira importam porque carregam memória ancestral, conhecimento religioso, formas de saudação, comida, música, dança, pertencimento e organização comunitária. Elas mostram que a cultura afro-brasileira não é apenas herança simbólica: ela preserva sons, sentidos e visões de mundo.</p>",
+                    "<p>Essas palavras ajudam a:</p>",
+                    "<ul><li>reconhecer vínculos entre língua e ancestralidade;</li><li>compreender melhor cantigas, rezas e saudações;</li><li>respeitar termos usados em terreiros e comunidades;</li><li>perceber a presença africana no português brasileiro;</li><li>diferenciar tradução literal de valor cultural;</li><li>estudar cultura afro-brasileira com mais profundidade;</li><li>evitar uso superficial ou decorativo de palavras sagradas;</li><li>valorizar a oralidade e a transmissão de conhecimento;</li><li>entender que língua também é resistência;</li><li>buscar aprendizado orientado e responsável.</li></ul>",
+                    "<p>O ponto principal é: uma palavra não é só uma palavra. Em contextos afro-brasileiros, muitos termos carregam função, memória, hierarquia, cuidado e pertencimento.</p>",
+                    "<p>Se você quer estudar iorubá com profundidade cultural, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Contexto cultural do tema",
+                "body": [
+                    "<p>A presença de palavras iorubás na cultura afro-brasileira se relaciona à diáspora africana, à preservação de tradições religiosas e culturais, à oralidade e à resistência de comunidades negras no Brasil. Mesmo diante da violência histórica da escravização, línguas, cantos, nomes, práticas e formas de conhecimento sobreviveram, se adaptaram e continuam produzindo sentido.</p>",
+                    "<p>No Brasil, o termo “iorubá” costuma aparecer ligado ao universo nagô, ao Candomblé de matriz ketu, a nomes de orixás, cantigas, saudações e elementos de cultura afro-brasileira. Mas o estudante precisa evitar simplificações. A cultura afro-brasileira é plural. Ela reúne diferentes matrizes africanas e experiências brasileiras. Portanto, estudar palavras iorubás exige distinguir quando uma palavra é de origem iorubá, quando é usada em contexto afro-brasileiro e quando pertence a outra matriz linguística.</p>",
+                    "<p>Essa distinção é importante por respeito. Não se deve chamar tudo de iorubá apenas porque é afro-brasileiro. Ao mesmo tempo, é preciso reconhecer que o iorubá tem presença profunda em muitos vocabulários religiosos, culturais e identitários no Brasil.</p>",
+                    "<p>Um bom estudo deve unir:</p>",
+                    "<ul><li>língua;</li><li>história;</li><li>pronúncia;</li><li>contexto de uso;</li><li>escuta;</li><li>transmissão oral;</li><li>respeito às comunidades;</li><li>cuidado com traduções rápidas.</li></ul>",
+                    "<p>É esse caminho que transforma curiosidade em aprendizado responsável.</p>"
+                ]
+            },
+            {
+                "heading": "Palavras ligadas à espiritualidade e à comunidade",
+                "body": [
+                    "<p>Algumas palavras de origem iorubá ou fortemente associadas ao universo iorubá-nagô aparecem em contextos religiosos e comunitários afro-brasileiros. Elas devem ser estudadas com cuidado, porque muitas não são apenas vocabulário comum: têm função ritual, hierárquica, simbólica e comunitária.</p>",
+                    "<table><thead><tr><th>Palavra</th><th>Uso comum no Brasil</th><th>Cuidado de estudo</th></tr></thead><tbody><tr><td>orixá</td><td>divindade/categoria espiritual no Candomblé e em outras tradições</td><td>não reduzir a “deus” de forma simplista</td></tr><tr><td>axé</td><td>força, energia, poder de realização, saudação cultural/religiosa</td><td>não tratar como bordão vazio</td></tr><tr><td>ebó</td><td>oferenda/trabalho ritual, conforme contexto</td><td>exige orientação cultural</td></tr><tr><td>odu</td><td>signo/caminho/estrutura ligada à adivinhação em tradições específicas</td><td>não usar sem contexto</td></tr><tr><td>iyá</td><td>mãe, figura feminina de cuidado/autoridade</td><td>pode ter usos ampliados</td></tr><tr><td>babá</td><td>pai, mais velho, figura masculina de respeito, conforme contexto</td><td>observar uso e tradição</td></tr><tr><td>obá</td><td>rei, liderança, título, conforme contexto</td><td>precisa de interpretação contextual</td></tr><tr><td>ilê</td><td>casa, espaço, comunidade, terreiro, conforme uso</td><td>palavra muito ligada a pertencimento</td></tr><tr><td>xirê</td><td>roda, sequência ritual/festiva, conforme contexto afro-brasileiro</td><td>não traduzir apenas como “dança”</td></tr><tr><td>àlàáfíà</td><td>paz, bem-estar, equilíbrio</td><td>palavra de grande valor simbólico</td></tr></tbody></table>",
+                    "<p>A tabela acima é um ponto de partida. Em aula, cada palavra pode ser estudada com mais profundidade: pronúncia, grafia, origem, uso no Brasil, uso em iorubá, adaptação e contexto.</p>"
+                ]
+            },
+            {
+                "heading": "Axé: palavra conhecida, sentido profundo",
+                "body": [
+                    "<p><strong>Axé</strong> é uma das palavras mais conhecidas no Brasil ligadas ao universo afro-brasileiro. Muitas pessoas usam a palavra como saudação, desejo de força ou energia positiva. Mas o termo não deve ser reduzido a “energia boa” de maneira superficial.</p>",
+                    "<p>Em contextos afro-brasileiros, <strong>axé</strong> pode se relacionar com força vital, poder de realização, fundamento, presença, transmissão e eficácia espiritual, dependendo do contexto. É uma palavra que carrega densidade. Por isso, o estudante deve perguntar:</p>",
+                    "<ul><li>em que contexto a palavra está sendo usada?</li><li>é saudação, conceito, força ritual ou expressão cultural?</li><li>quem está usando?</li><li>há uma situação religiosa envolvida?</li><li>existe uma pronúncia ou grafia mais próxima da origem?</li><li>qual é o limite entre uso cotidiano e uso sagrado?</li></ul>",
+                    "<p>Esse tipo de pergunta mostra respeito. Palavras conhecidas podem ser as que mais exigem cuidado, porque justamente por serem populares acabam sendo usadas de forma rasa.</p>"
+                ]
+            },
+            {
+                "heading": "Orixá: por que tradução literal não basta?",
+                "body": [
+                    "<p>A palavra <strong>orixá</strong> é amplamente conhecida na cultura afro-brasileira, especialmente em religiões de matriz africana. Muitas traduções simplificam o termo como “divindade”, mas essa tradução não esgota o sentido. Orixá envolve cosmologia, força da natureza, ancestralidade, relação comunitária, culto, canto, comida, saudação, mito, ética e tradição.</p>",
+                    "<p>Por isso, aprender a palavra <strong>orixá</strong> exige mais do que saber o equivalente em português. O estudante deve entender que o termo aparece em contextos diferentes:</p>",
+                    "<ul><li>estudos sobre cultura afro-brasileira;</li><li>comunidades religiosas;</li><li>cantigas;</li><li>nomes;</li><li>festas;</li><li>literatura;</li><li>conversas identitárias;</li><li>pesquisas acadêmicas;</li><li>ensino de iorubá;</li><li>práticas de terreiro.</li></ul>",
+                    "<p>A palavra tem peso cultural. Usá-la de forma correta é parte de um aprendizado responsável.</p>"
+                ]
+            },
+            {
+                "heading": "Palavras de família, hierarquia e respeito",
+                "body": [
+                    "<p>Na cultura afro-brasileira, muitas palavras relacionadas a família, senioridade e liderança aparecem com grande importância. Elas se conectam à ideia de respeito aos mais velhos, transmissão de conhecimento e organização comunitária.</p>",
+                    "<p>Exemplos:</p>",
+                    "<table><thead><tr><th>Palavra</th><th>Sentido inicial</th><th>Valor cultural</th></tr></thead><tbody><tr><td>iyá</td><td>mãe</td><td>cuidado, autoridade feminina, respeito</td></tr><tr><td>babá</td><td>pai / figura de respeito</td><td>senioridade, liderança, cuidado</td></tr><tr><td>ọmọ</td><td>filho, criança, pertencente</td><td>vínculo e pertencimento</td></tr><tr><td>àgbà</td><td>mais velho, ancião</td><td>senioridade e memória</td></tr><tr><td>ìdílé</td><td>família / casa familiar</td><td>linhagem e origem</td></tr><tr><td>ẹbí</td><td>família / parentesco</td><td>vínculo familiar e comunitário</td></tr></tbody></table>",
+                    "<p>Essas palavras ajudam o estudante a perceber que família, em uma perspectiva cultural iorubá, pode envolver mais do que núcleo doméstico. Pode envolver casa, linhagem, pertencimento e continuidade.</p>",
+                    "<p>Para quem estuda por ancestralidade, esse vocabulário é especialmente importante. Ele mostra que idioma não nomeia apenas objetos: nomeia relações.</p>"
+                ]
+            },
+            {
+                "heading": "Palavras presentes na comida afro-brasileira",
+                "body": [
+                    "<p>A culinária afro-brasileira também preserva palavras de origem africana, incluindo termos associados ao universo iorubá e a outras matrizes. Aqui o cuidado é essencial: nem toda palavra de comida afro-brasileira é iorubá. Algumas têm origem em línguas bantas, outras em diferentes tradições africanas, e algumas passaram por adaptações no português brasileiro.</p>",
+                    "<p>Ainda assim, alguns termos associados à presença iorubá-nagô aparecem no vocabulário cultural, especialmente em contextos da Bahia e de tradições afro-brasileiras.</p>",
+                    "<p>Exemplos a estudar com cuidado:</p>",
+                    "<table><thead><tr><th>Palavra</th><th>Uso no Brasil</th><th>Observação</th></tr></thead><tbody><tr><td>acarajé</td><td>comida ritual e também patrimônio culinário afro-brasileiro</td><td>ligada a contexto cultural e religioso</td></tr><tr><td>abará</td><td>preparação feita com massa de feijão-fradinho</td><td>também associada à culinária afro-brasileira</td></tr><tr><td>amalá</td><td>comida associada a tradições religiosas afro-brasileiras</td><td>requer contexto</td></tr><tr><td>acaçá</td><td>preparação presente em contextos alimentares e rituais</td><td>observar matriz e uso</td></tr><tr><td>dendê</td><td>azeite de dendê, central em várias comidas afro-brasileiras</td><td>origem etimológica deve ser estudada com cuidado</td></tr></tbody></table>",
+                    "<p>O importante é não transformar comida sagrada ou tradicional em “curiosidade gastronômica” sem contexto. Em muitos casos, alimento, rito, comunidade e história caminham juntos.</p>"
+                ]
+            },
+            {
+                "heading": "Palavras em música, dança e oralidade",
+                "body": [
+                    "<p>A cultura afro-brasileira preserva muitos termos por meio da oralidade: cantigas, rezas, toques, danças, festas e práticas coletivas. O iorubá, em especial, aparece em cantos e saudações que muitas pessoas repetem sem conhecer o significado.</p>",
+                    "<p>Esse é um dos pontos em que o estudo responsável mais importa. Ao encontrar uma palavra em uma cantiga, o aluno deve evitar traduções apressadas. Cantiga não é dicionário. Ela tem ritmo, função, contexto, memória e tradição oral.</p>",
+                    "<p>Boas perguntas:</p>",
+                    "<ul><li>qual é a palavra exata?</li><li>há variação de pronúncia?</li><li>o termo foi adaptado no Brasil?</li><li>a cantiga pertence a qual contexto?</li><li>posso traduzir isso literalmente?</li><li>quem pode explicar com responsabilidade?</li><li>há um uso sagrado envolvido?</li></ul>",
+                    "<p>A escuta guiada em aula ao vivo é muito útil nesse processo. O professor pode ajudar o aluno a diferenciar palavra, som, grafia e contexto.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar com respeito?",
+                "body": [
+                    "<p>Praticar palavras iorubás presentes na cultura afro-brasileira com respeito significa não usar o vocabulário como adereço. O estudante deve compreender que algumas palavras pertencem a comunidades, tradições e histórias.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>não reduzir palavras a “curiosidades”;</li><li>preservar sinais gráficos quando estudar iorubá;</li><li>perguntar sobre contexto de uso;</li><li>diferenciar uso cotidiano e uso ritual;</li><li>evitar publicar traduções sem revisão;</li><li>não misturar matrizes africanas sem cuidado;</li><li>estudar pronúncia;</li><li>ouvir antes de repetir;</li><li>valorizar a oralidade;</li><li>aprender com quem tem referência cultural;</li><li>reconhecer limites do próprio conhecimento.</li></ul>",
+                    "<p>O respeito também está em admitir dúvida. Quando a origem ou o uso de uma palavra não é claro, é melhor dizer “precisa de contexto” do que afirmar com falsa certeza.</p>",
+                    "<p>Para estudar palavras iorubás com orientação, pronúncia e contexto cultural, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: palavra, contexto e uso",
+                "body": [
+                    "<p>Um exercício eficiente para aula ao vivo é escolher uma palavra afro-brasileira de origem iorubá ou associada ao universo iorubá e estudá-la em três camadas: som, sentido e contexto.</p>",
+                    "<h3>Etapa 1: escolher a palavra</h3>",
+                    "<p>Exemplo: <strong>axé</strong>, <strong>orixá</strong>, <strong>ilê</strong>, <strong>iyá</strong> ou <strong>àlàáfíà</strong>.</p>",
+                    "<h3>Etapa 2: ouvir a pronúncia</h3>",
+                    "<p>O professor pronuncia a palavra com atenção a sons, vogais e ritmo. O aluno apenas escuta primeiro.</p>",
+                    "<h3>Etapa 3: observar a grafia</h3>",
+                    "<p>O aluno compara a forma usada no português brasileiro com uma forma iorubá de estudo, quando aplicável.</p>",
+                    "<h3>Etapa 4: entender o sentido inicial</h3>",
+                    "<p>O professor explica uma tradução aproximada, deixando claro que a tradução não esgota o termo.</p>",
+                    "<h3>Etapa 5: discutir contexto afro-brasileiro</h3>",
+                    "<p>A turma observa onde a palavra aparece: saudação, cantiga, terreiro, nome, comida, texto, conversa ou música.</p>",
+                    "<h3>Etapa 6: praticar frase com cuidado</h3>",
+                    "<p>O aluno cria uma frase simples, adequada ao contexto de estudo, sem forçar uso ritual.</p>",
+                    "<h3>Etapa 7: revisar limites</h3>",
+                    "<p>O professor explica o que pode ser dito em contexto didático e o que exige vivência ou orientação comunitária específica.</p>",
+                    "<p>Esse exercício ajuda o aluno a estudar sem apropriação superficial.</p>"
+                ]
+            },
+            {
+                "heading": "Como evitar erros comuns",
+                "body": [
+                    "<p>Os erros mais comuns acontecem quando o aluno transforma palavras culturalmente densas em listas rápidas para decorar.</p>",
+                    "<p>Evite:</p>",
+                    "<ul><li>chamar toda palavra afro-brasileira de iorubá;</li><li>traduzir termos sagrados de forma simplista;</li><li>usar palavras religiosas como estética;</li><li>apagar sinais gráficos;</li><li>repetir cantigas sem buscar sentido;</li><li>misturar origem banta, jeje e iorubá sem distinção;</li><li>confiar apenas em posts curtos;</li><li>publicar explicações sem revisão;</li><li>achar que popularidade significa compreensão;</li><li>estudar sem escuta.</li></ul>",
+                    "<p>Melhor caminho:</p>",
+                    "<table><thead><tr><th>Em vez de...</th><th>Faça...</th></tr></thead><tbody><tr><td>decorar palavras soltas</td><td>estude por contexto</td></tr><tr><td>traduzir literalmente</td><td>entenda função cultural</td></tr><tr><td>apagar origem</td><td>investigue com cuidado</td></tr><tr><td>repetir sem ouvir</td><td>pratique pronúncia</td></tr><tr><td>afirmar sem certeza</td><td>reconheça dúvidas</td></tr><tr><td>usar como enfeite</td><td>respeite a tradição</td></tr></tbody></table>",
+                    "<p>Estudar com respeito não torna o aprendizado mais lento. Torna o aprendizado mais verdadeiro.</p>"
+                ]
+            },
+            {
+                "heading": "Como escolher um curso de iorubá online para esse tema",
+                "body": [
+                    "<p>Um bom curso de iorubá online deve tratar palavras presentes na cultura afro-brasileira com seriedade. Se o curso promete “aprender tudo rápido” ou usa a cultura apenas como chamariz, é sinal de alerta.</p>",
+                    "<p>Observe se o curso:</p>",
+                    "<ul><li>oferece aulas ao vivo;</li><li>permite perguntas;</li><li>trabalha pronúncia;</li><li>explica contexto cultural;</li><li>respeita tradições afro-brasileiras;</li><li>diferencia língua e uso religioso;</li><li>evita exotização;</li><li>preserva grafia e tons;</li><li>reconhece a pluralidade africana no Brasil;</li><li>orienta o aluno a não usar termos sem contexto.</li></ul>",
+                    "<p>A Vedium trabalha com a proposta de fluência além das palavras. No iorubá, isso significa aprender som, sentido, história, respeito e cultura. A aula ao vivo permite que o aluno pergunte, escute, repita e corrija a própria compreensão.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para estudar palavras iorubás na cultura afro-brasileira",
+                "body": [
+                    "<p>Este plano ajuda o aluno a começar com organização e cuidado.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>palavras de saudação e bem-estar</td><td>escuta, grafia e contexto</td></tr><tr><td>Semana 2</td><td>palavras de família e respeito</td><td>iyá, babá, ọmọ, àgbà</td></tr><tr><td>Semana 3</td><td>palavras de comunidade e espiritualidade</td><td>axé, orixá, ilê, ebó</td></tr><tr><td>Semana 4</td><td>palavras em cantigas, comida e cultura</td><td>estudo guiado com cautela</td></tr></tbody></table>",
+                    "<p>Rotina recomendada:</p>",
+                    "<p>1. escolher 3 palavras por semana;<br>2. pesquisar o contexto com orientação;<br>3. ouvir a pronúncia;<br>4. copiar a grafia com atenção;<br>5. anotar onde a palavra aparece;<br>6. evitar conclusões apressadas;<br>7. levar dúvidas para aula ao vivo.</p>",
+                    "<p>A meta não é acumular vocabulário. É aprofundar compreensão.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse aprendizado",
+                "body": [
+                    "<p>A Vedium ajuda estudantes de iorubá porque oferece aulas online ao vivo, com foco em língua, cultura, oralidade e respeito. Para palavras presentes na cultura afro-brasileira, esse formato é especialmente importante, porque o aluno precisa de orientação para não confundir origem, uso e contexto.</p>",
+                    "<p>Nas aulas de iorubá da Vedium, o aluno pode praticar:</p>",
+                    "<ul><li>vocabulário cultural;</li><li>pronúncia;</li><li>tons;</li><li>escuta guiada;</li><li>palavras em cantigas;</li><li>termos de família;</li><li>saudações;</li><li>contexto afro-brasileiro;</li><li>diferenças entre tradução e sentido;</li><li>perguntas individuais;</li><li>revisão respeitosa;</li><li>aprendizado no próprio ritmo.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. O aluno continua porque percebe profundidade e cuidado no processo. Para quem busca o iorubá por ancestralidade, identidade e cultura, isso é essencial.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou estudando palavras iorubás com responsabilidade?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Verifico se a palavra é realmente de origem iorubá.</li><li>Reconheço que a cultura afro-brasileira é plural.</li><li>Não traduzo termos sagrados de forma simplista.</li><li>Preservo sinais gráficos quando estudo iorubá.</li><li>Pratico pronúncia com escuta.</li><li>Pergunto sobre contexto.</li><li>Diferencio uso cotidiano e uso ritual.</li><li>Evito usar palavras como decoração.</li><li>Aceito que algumas explicações exigem vivência e orientação.</li><li>Levo dúvidas para aula ao vivo.</li></ul>",
+                    "<p>Se muitos itens ainda são novos para você, esse é exatamente o motivo para estudar com orientação.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Palavras iorubás presentes na cultura afro-brasileira são caminhos de memória, ancestralidade, fé, comida, música, dança, comunidade e resistência. Elas mostram que a língua não ficou no passado: continua viva em sons, nomes, saudações, cantigas, terreiros, festas, livros, conversas e práticas culturais.</p>",
+                    "<p>Mas esse estudo precisa de responsabilidade. Nem toda palavra afro-brasileira é iorubá. Nem toda tradução literal explica o sentido. Nem todo termo pode ser usado sem contexto. Aprender com respeito significa escutar, perguntar, preservar grafia, entender a função cultural e reconhecer os limites do próprio conhecimento.</p>",
+                    "<p>A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura, oralidade e respeito à tradição. Sem contrato de fidelidade: você continua porque percebe profundidade no aprendizado.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a> e comece a estudar palavras iorubás presentes na cultura afro-brasileira com orientação real, respeito e profundidade.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ioruba/vocabulario-de-familia-em-ioruba-e-seu-valor-cultural\">Vocabulário de família em iorubá e seu valor cultural</a> ou conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Existem palavras iorubás na cultura afro-brasileira?",
+                "a": "Sim. Muitas palavras ligadas ao universo iorubá-nagô aparecem na cultura afro-brasileira, especialmente em contextos religiosos, musicais, culinários e comunitários."
+            },
+            {
+                "q": "Toda palavra afro-brasileira vem do iorubá?",
+                "a": "Não. A cultura afro-brasileira é plural e também inclui matrizes bantas, jeje e outras. Por isso, é importante estudar origem e contexto com cuidado."
+            },
+            {
+                "q": "O que significa axé?",
+                "a": "Axé pode ser entendido como força, energia, poder de realização e fundamento, conforme o contexto. A palavra tem valor profundo e não deve ser usada de forma rasa."
+            },
+            {
+                "q": "Como estudar palavras iorubás com respeito?",
+                "a": "Estude com escuta, preserve sinais gráficos, busque contexto cultural, evite traduções simplistas e pratique com orientação de professor ou referência qualificada."
+            },
+            {
+                "q": "A Vedium ensina vocabulário iorubá ligado à cultura afro-brasileira?",
+                "a": "Sim. A Vedium oferece aulas de iorubá online e ao vivo, com vocabulário, pronúncia, oralidade, contexto afro-brasileiro e respeito à tradição."
+            }
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Falar sobre a próxima turma de Iorubá",
+        "cta_url": "/curso-de-ioruba-online"
+    },
+    "por-que-brasileiros-entendem-ingles-escrito-mas-travam-na-fala": {
+        "title": "Por que brasileiros entendem inglês escrito mas travam na fala",
+        "meta_description": "Entenda por que brasileiros entendem inglês escrito, mas travam na fala, e como destravar com conversação ao vivo.",
+        "h1": "Por que brasileiros entendem inglês escrito mas travam na fala",
+        "date": "2025-03-17",
+        "date_display": "17 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Yoruba class: language and culture at Vedium",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Brasileiros entendem inglês escrito, mas travam na fala, porque leitura e conversação são habilidades diferentes. Ler permite pausar, reler, deduzir pelo contexto e reconhecer palavras com calma. Falar exige resposta rápida, pronúncia, escuta, vocabulário ativo, confiança e prática em tempo real. Por isso, muita gente consegue entender e-mails, artigos, legendas e posts em inglês, mas congela quando precisa responder em uma reunião, entrevista, viagem ou conversa com estrangeiros.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Essa é uma das dores mais comuns de quem estudou inglês por muitos anos no Brasil. O aluno conhece regras, reconhece palavras, entende frases no papel e até acompanha vídeos com legenda. Mas, quando alguém pergunta <strong>“What do you do?”</strong>, <strong>“Can you explain that?”</strong> ou <strong>“What are your thoughts?”</strong>, o cérebro parece travar. A pessoa tenta traduzir do português, se preocupa com erro, pensa na pronúncia, esquece palavras simples e acaba respondendo menos do que sabe.</p>",
+                    "<p>O problema não é falta de inteligência. Também não é “dom” para idiomas. Na maioria dos casos, o problema é desequilíbrio de treino. O aluno treinou muito reconhecimento e pouco uso. Leu mais do que falou. Fez mais exercícios do que conversou. Estudou mais gramática do que resposta espontânea. E, como a fala não foi praticada com frequência, ela não aparece com naturalidade quando precisa.</p>",
+                    "<p>Neste artigo, você vai entender por que essa trava acontece, quais hábitos reforçam o bloqueio, como praticar de forma objetiva e por que o inglês online ao vivo pode ser o próximo passo para transformar compreensão escrita em conversação real. A Vedium oferece aulas ao vivo, com prática de fala, plano por nível CEFR e sem contrato de fidelidade: você continua porque sente evolução.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que isso acontece?",
+                "body": [
+                    "<p>Brasileiros entendem inglês escrito, mas travam na fala porque desenvolveram vocabulário passivo, mas não vocabulário ativo. Vocabulário passivo é o que você reconhece quando lê ou escuta. Vocabulário ativo é o que você consegue usar para formar frases, responder perguntas e participar de conversas.</p>",
+                    "<p>Na leitura, você pode:</p>",
+                    "<ul><li>reler a frase;</li><li>deduzir pelo contexto;</li><li>ignorar uma palavra desconhecida;</li><li>usar tradutor;</li><li>pensar com calma;</li><li>reconhecer palavras parecidas;</li><li>entender a ideia geral.</li></ul>",
+                    "<p>Na fala, você precisa:</p>",
+                    "<ul><li>ouvir em tempo real;</li><li>entender a pergunta;</li><li>organizar a resposta;</li><li>escolher palavras;</li><li>pronunciar com clareza;</li><li>controlar a ansiedade;</li><li>responder sem traduzir tudo;</li><li>continuar mesmo com erros.</li></ul>",
+                    "<p>Por isso, entender inglês escrito não garante falar inglês. A leitura é uma base importante, mas a fala precisa de treino próprio. O caminho para destravar é praticar conversação guiada, ativar vocabulário, treinar frases úteis e receber correção ao vivo.</p>",
+                    "<p>Se você quer descobrir seu nível atual e o melhor caminho para destravar a fala, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p>Isso trava o aluno porque ele acredita que “sabe inglês”, mas não consegue usar o idioma quando precisa. Essa diferença gera frustração. A pessoa pensa: “eu entendo, então por que não consigo falar?”. A resposta é que compreender e produzir são processos diferentes.</p>",
+                    "<p>A trava costuma aparecer em situações como:</p>",
+                    "<ul><li>reunião de trabalho;</li><li>entrevista de emprego;</li><li>apresentação;</li><li>call internacional;</li><li>viagem;</li><li>atendimento ao cliente;</li><li>conversa com professor;</li><li>networking;</li><li>prova oral;</li><li>conversa informal.</li></ul>",
+                    "<p>Em todas essas situações, existe pressão. A pessoa não está lendo sozinha. Existe alguém esperando resposta. Isso aumenta ansiedade e reduz acesso ao vocabulário. Palavras simples desaparecem. O aluno pensa em gramática antes de pensar em comunicação. O medo de parecer errado fica maior do que a vontade de falar.</p>",
+                    "<p>O resultado é um ciclo:</p>",
+                    "<p>1. o aluno evita falar;<br>2. por evitar, pratica menos;<br>3. por praticar menos, trava mais;<br>4. por travar mais, ganha vergonha;<br>5. por vergonha, evita de novo.</p>",
+                    "<p>Para quebrar esse ciclo, é preciso criar um ambiente seguro de fala. A aula ao vivo ajuda porque transforma erro em correção, e correção em progresso.</p>"
+                ]
+            },
+            {
+                "heading": "Leitura é reconhecimento; fala é produção",
+                "body": [
+                    "<p>A leitura trabalha principalmente reconhecimento. Você olha para uma palavra e entende. A fala trabalha produção. Você precisa buscar a palavra, encaixar na frase, pronunciar e responder. Essa diferença explica por que muitos alunos sentem que têm inglês “preso na cabeça”.</p>",
+                    "<p>Veja a comparação:</p>",
+                    "<table><thead><tr><th>Habilidade</th><th>O que exige</th><th>Exemplo</th></tr></thead><tbody><tr><td>Leitura</td><td>reconhecer palavras e estruturas</td><td>entender um e-mail em inglês</td></tr><tr><td>Escrita</td><td>organizar ideias com tempo</td><td>responder uma mensagem com calma</td></tr><tr><td>Listening</td><td>compreender som e ritmo</td><td>entender uma pergunta em reunião</td></tr><tr><td>Speaking</td><td>responder em tempo real</td><td>explicar sua opinião em inglês</td></tr></tbody></table>",
+                    "<p>Um aluno pode estar em nível intermediário de leitura e básico de fala. Isso é comum. O erro é achar que todas as habilidades evoluem juntas automaticamente. Elas se conectam, mas precisam de prática específica.</p>",
+                    "<p>Se você lê bem, isso é uma vantagem. O próximo passo é converter esse conhecimento em frases faladas.</p>"
+                ]
+            },
+            {
+                "heading": "O que é vocabulário passivo e ativo?",
+                "body": [
+                    "<p>Vocabulário passivo é o conjunto de palavras que você reconhece. Vocabulário ativo é o conjunto de palavras que você consegue usar sem muito esforço. Para falar melhor, você precisa transformar parte do vocabulário passivo em ativo.</p>",
+                    "<p>Exemplo:</p>",
+                    "<p>Você reconhece a palavra <strong>meeting</strong> quando lê:</p>",
+                    "<p><strong>I have a meeting tomorrow.</strong></p>",
+                    "<p>Mas consegue dizer em voz alta?</p>",
+                    "<p><strong>I have a meeting tomorrow at 10 a.m.</strong></p>",
+                    "<p>Consegue responder se alguém perguntar?</p>",
+                    "<p><strong>Do you have a meeting tomorrow?</strong></p>",
+                    "<p>Resposta:</p>",
+                    "<p><strong>Yes, I do. I have a meeting with my team.</strong></p>",
+                    "<p>Esse é o movimento que ativa vocabulário: reconhecer, falar, responder, variar e repetir.</p>",
+                    "<p>Método simples:</p>",
+                    "<p>1. escolha uma palavra que você entende;<br>2. crie três frases com ela;<br>3. fale as frases em voz alta;<br>4. transforme uma frase em pergunta;<br>5. responda a pergunta;<br>6. use em uma mini-conversa.</p>",
+                    "<p>Exemplo com <strong>deadline</strong>:</p>",
+                    "<ul><li><strong>I have a deadline.</strong></li><li><strong>The deadline is Friday.</strong></li><li><strong>I need more time before the deadline.</strong></li><li><strong>What is the deadline?</strong></li><li><strong>The deadline is next week.</strong></li></ul>",
+                    "<p>Esse tipo de prática faz o inglês sair do papel.</p>"
+                ]
+            },
+            {
+                "heading": "O medo de errar bloqueia a fala",
+                "body": [
+                    "<p>O medo de errar bloqueia a fala porque o aluno tenta controlar tudo antes de dizer qualquer coisa. Ele pensa na gramática, na pronúncia, na ordem das palavras, no sotaque e no julgamento da outra pessoa. Enquanto tenta controlar, perde velocidade.</p>",
+                    "<p>Esse medo é comum, mas precisa ser trabalhado. Falar uma língua não significa produzir frases perfeitas o tempo todo. Significa se comunicar, ajustar e melhorar. Até falantes avançados cometem erros. A diferença é que eles continuam falando.</p>",
+                    "<p>Frases que ajudam a reduzir a pressão:</p>",
+                    "<ul><li><strong>Let me try again.</strong> — Deixe-me tentar de novo.</li><li><strong>I’m still learning English.</strong> — Ainda estou aprendendo inglês.</li><li><strong>Can you repeat, please?</strong> — Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong> — Você pode falar mais devagar?</li><li><strong>I don’t know how to say this, but...</strong> — Eu não sei como dizer isso, mas...</li><li><strong>How do you say...?</strong> — Como se diz...?</li></ul>",
+                    "<p>Essas frases são poderosas porque mantêm a conversa viva. O aluno deixa de ver a trava como fim da comunicação e passa a ter ferramentas para continuar.</p>"
+                ]
+            },
+            {
+                "heading": "O problema da tradução mental",
+                "body": [
+                    "<p>A tradução mental é uma das maiores causas da trava. O aluno pensa em português, tenta traduzir palavra por palavra e só então fala. Esse processo é lento e gera frases pouco naturais.</p>",
+                    "<p>Exemplos:</p>",
+                    "<table><thead><tr><th>Português pensado</th><th>Tradução literal ruim</th><th>Inglês natural</th></tr></thead><tbody><tr><td>Tenho 30 anos</td><td>I have 30 years</td><td>I am 30 years old</td></tr><tr><td>Tenho uma dúvida</td><td>I have a doubt</td><td>I have a question</td></tr><tr><td>Trabalho com vendas</td><td>I work with sales</td><td>I work in sales</td></tr><tr><td>Quero melhorar minha fala</td><td>I want improve my speak</td><td>I want to improve my speaking</td></tr><tr><td>Tenho uma reunião</td><td>I am with a meeting</td><td>I have a meeting</td></tr></tbody></table>",
+                    "<p>A solução é aprender blocos prontos. Blocos são estruturas que você usa sem montar tudo do zero.</p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I work in...</strong></li><li><strong>I need to...</strong></li><li><strong>I have a question about...</strong></li><li><strong>I want to improve...</strong></li><li><strong>Can you help me with...?</strong></li><li><strong>In my opinion...</strong></li><li><strong>I agree with...</strong></li><li><strong>I’m not sure, but...</strong></li></ul>",
+                    "<p>Quanto mais blocos você automatiza, menos depende da tradução mental.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar de forma objetiva",
+                "body": [
+                    "<p>Para praticar de forma objetiva, pare de tentar “falar sobre qualquer coisa” e comece com situações específicas. A fala destrava melhor quando o aluno sabe qual contexto está treinando.</p>",
+                    "<h3>Exercício 1: transformar leitura em fala</h3>",
+                    "<p>Pegue uma frase que você entende lendo e fale em voz alta.</p>",
+                    "<p>Frase lida:</p>",
+                    "<p><strong>I work in marketing.</strong></p>",
+                    "<p>Expanda:</p>",
+                    "<ul><li><strong>I work in marketing.</strong></li><li><strong>I work in marketing and I talk to clients.</strong></li><li><strong>I work in marketing and I need English for meetings.</strong></li></ul>",
+                    "<p>Depois responda:</p>",
+                    "<p><strong>What do you do?</strong></p>",
+                    "<p>Resposta:</p>",
+                    "<p><strong>I work in marketing. I talk to clients and I need English for meetings.</strong></p>",
+                    "<h3>Exercício 2: perguntas rápidas</h3>",
+                    "<p>Treine respostas curtas:</p>",
+                    "<ul><li><strong>What do you do?</strong></li><li><strong>Where do you work?</strong></li><li><strong>Why are you studying English?</strong></li><li><strong>Do you use English at work?</strong></li><li><strong>What is your biggest difficulty?</strong></li></ul>",
+                    "<p>Respostas:</p>",
+                    "<ul><li><strong>I work in technology.</strong></li><li><strong>I work from home.</strong></li><li><strong>I’m studying English because I want to grow in my career.</strong></li><li><strong>Yes, I use English in emails.</strong></li><li><strong>My biggest difficulty is speaking.</strong></li></ul>",
+                    "<h3>Exercício 3: gravar a própria voz</h3>",
+                    "<p>Escolha cinco frases e grave sua voz. Depois, ouça e anote:</p>",
+                    "<ul><li>pronúncia difícil;</li><li>pausas longas;</li><li>palavras esquecidas;</li><li>frases que precisam de correção;</li><li>pontos para levar à aula.</li></ul>",
+                    "<p>Gravar pode dar vergonha no começo, mas acelera a consciência da fala.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo no curso ao vivo é praticar conversação com correção. Se você já entende inglês escrito, não precisa recomeçar do zero como se nunca tivesse visto a língua. Você precisa diagnosticar seu nível, ativar vocabulário e treinar fala em situações reais.</p>",
+                    "<p>Em um curso de inglês online ao vivo, o professor pode trabalhar:</p>",
+                    "<ul><li>perguntas e respostas;</li><li>apresentação profissional;</li><li>entrevistas;</li><li>reuniões;</li><li>vocabulário ativo;</li><li>pronúncia;</li><li>listening sem legenda;</li><li>correção de tradução literal;</li><li>frases funcionais;</li><li>simulações de trabalho;</li><li>fluência progressiva;</li><li>evolução por nível CEFR.</li></ul>",
+                    "<p>A grande diferença é que o professor escuta você. Se você diz <strong>“I have doubt”</strong>, o professor corrige para <strong>“I have a question”</strong> e faz você usar em contexto. Se você trava ao responder, o professor ajuda a montar a frase e pede uma nova tentativa. É assim que a fala começa a ganhar caminho.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra se sua leitura está mais avançada do que sua conversação.</p>"
+                ]
+            },
+            {
+                "heading": "Como o nível CEFR ajuda a entender a trava",
+                "body": [
+                    "<p>O CEFR ajuda porque separa habilidades e objetivos por nível. Um aluno pode ler em B1, mas falar em A2. Esse diagnóstico é útil porque evita frustração e define o treino correto.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Fala esperada</th></tr></thead><tbody><tr><td>A1</td><td>responder perguntas simples e usar frases básicas</td></tr><tr><td>A2</td><td>falar sobre rotina, trabalho, viagem e necessidades</td></tr><tr><td>B1</td><td>sustentar conversas simples e explicar opiniões</td></tr><tr><td>B2</td><td>participar de reuniões, argumentar e detalhar ideias</td></tr><tr><td>C1</td><td>falar com naturalidade sobre temas complexos</td></tr></tbody></table>",
+                    "<p>Se você entende textos, mas trava na fala, talvez sua leitura esteja acima do seu speaking. O objetivo é equilibrar as habilidades, não desvalorizar o que você já sabe.</p>",
+                    "<p>Um bom teste de nível deve observar:</p>",
+                    "<ul><li>leitura;</li><li>listening;</li><li>speaking;</li><li>gramática em uso;</li><li>vocabulário ativo;</li><li>objetivos pessoais;</li><li>situações em que você trava.</li></ul>"
+                ]
+            },
+            {
+                "heading": "Curso ao vivo x estudo sozinho: o que muda?",
+                "body": [
+                    "<p>O estudo sozinho ajuda a construir vocabulário e contato com o idioma, mas o curso ao vivo cria interação e feedback. Para quem trava na fala, essa diferença é central.</p>",
+                    "<table><thead><tr><th>Critério</th><th>Estudo sozinho</th><th>Curso ao vivo</th></tr></thead><tbody><tr><td>Leitura</td><td>forte</td><td>forte</td></tr><tr><td>Gramática</td><td>possível</td><td>aplicada</td></tr><tr><td>Fala</td><td>limitada</td><td>constante</td></tr><tr><td>Correção</td><td>difícil</td><td>imediata</td></tr><tr><td>Pronúncia</td><td>sem feedback humano</td><td>corrigida</td></tr><tr><td>Conversação</td><td>simulada ou ausente</td><td>real</td></tr><tr><td>Rotina</td><td>depende do aluno</td><td>professor conduz</td></tr><tr><td>Ansiedade</td><td>pouco trabalhada</td><td>reduzida com prática</td></tr><tr><td>Evolução</td><td>difícil de medir</td><td>acompanhada por nível</td></tr></tbody></table>",
+                    "<p>Isso não significa que estudar sozinho seja inútil. Significa que, para destravar a fala, você precisa falar com alguém que possa corrigir e conduzir.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 30 dias para destravar a fala",
+                "body": [
+                    "<p>Este plano ajuda quem já entende inglês escrito, mas precisa ativar a fala. Ele não promete fluência em 30 dias. O objetivo é criar movimento.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Semana 1</td><td>frases pessoais e profissionais</td><td>responder perguntas simples</td></tr><tr><td>Semana 2</td><td>vocabulário ativo</td><td>transformar leitura em fala</td></tr><tr><td>Semana 3</td><td>conversação guiada</td><td>reduzir pausas e tradução mental</td></tr><tr><td>Semana 4</td><td>simulações reais</td><td>falar em reuniões, entrevistas ou viagem</td></tr></tbody></table>",
+                    "<p>Rotina semanal:</p>",
+                    "<ul><li>escolher 10 frases úteis;</li><li>falar cada frase em voz alta;</li><li>responder 5 perguntas;</li><li>gravar 1 áudio curto;</li><li>praticar 1 mini-conversa;</li><li>revisar correções;</li><li>repetir frases corrigidas.</li></ul>",
+                    "<p>O mais importante é constância. Falar 10 minutos por dia pode destravar mais do que estudar duas horas só lendo.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda brasileiros que travam na fala",
+                "body": [
+                    "<p>A Vedium ajuda brasileiros que travam na fala porque oferece inglês online ao vivo, com professor, conversação, correção e plano por nível. O foco é tirar o aluno da posição de espectador e colocá-lo em prática real.</p>",
+                    "<p>Na Vedium, você pode trabalhar:</p>",
+                    "<ul><li>inglês para carreira;</li><li>entrevistas;</li><li>reuniões;</li><li>apresentação pessoal;</li><li>pronúncia;</li><li>listening;</li><li>frases funcionais;</li><li>vocabulário ativo;</li><li>conversação;</li><li>evolução do A1 ao C1;</li><li>teste de nível;</li><li>estudo no próprio ritmo.</li></ul>",
+                    "<p>A Vedium não exige contrato de fidelidade. Você começa sem amarras e continua porque percebe resultado. Essa lógica é importante para quem já tentou cursos antes e tem medo de “mais uma matrícula que não vai terminar”.</p>",
+                    "<p>A proposta é direta: aulas ao vivo, no seu ritmo, para evoluir de verdade.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: sua leitura está melhor que sua fala?",
+                "body": [
+                    "<p>Marque os itens que combinam com você:</p>",
+                    "<ul><li>Entendo textos simples, mas não consigo responder.</li><li>Leio e-mails em inglês, mas evito reuniões.</li><li>Vejo vídeos com legenda, mas não falo sem roteiro.</li><li>Sei palavras, mas esqueço na hora.</li><li>Tenho medo de pronunciar errado.</li><li>Tento traduzir tudo mentalmente.</li><li>Entendo perguntas, mas demoro para responder.</li><li>Sinto vergonha de pedir para repetir.</li><li>Já estudei gramática, mas não tenho conversação.</li><li>Quero inglês para carreira, mas travo em situações reais.</li></ul>",
+                    "<p>Se você marcou vários itens, seu problema não é falta de base. É falta de ativação da fala.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Brasileiros entendem inglês escrito, mas travam na fala porque leitura e conversação exigem habilidades diferentes. A leitura permite pausa, contexto e reconhecimento. A fala exige produção, escuta, resposta rápida, pronúncia e confiança. Se você treinou mais leitura do que conversação, é natural que sua compreensão esteja mais avançada que sua fala.</p>",
+                    "<p>A boa notícia é que isso tem solução. Você não precisa jogar fora o que já aprendeu. Precisa ativar. Transforme vocabulário passivo em ativo, pratique perguntas e respostas, grave sua voz, reduza a tradução mental e entre em situações de conversação com correção.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo, com professor real, conversação, plano por nível CEFR e sem contrato de fidelidade. Você fica porque evolui, não porque está preso.</p>",
+                    "<p>Faça seu teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra como transformar o inglês que você entende no inglês que você consegue falar.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/quando-usar-do-does-e-did-sem-confundir-na-conversa\">Quando usar do, does e did sem confundir na conversa</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Por que eu entendo inglês escrito, mas não consigo falar?",
+                "a": "Porque leitura é reconhecimento e fala é produção. Para falar, você precisa ativar vocabulário, praticar resposta em tempo real e receber correção."
+            },
+            {
+                "q": "Isso significa que meu inglês é ruim?",
+                "a": "Não. Significa que suas habilidades estão desequilibradas. Sua leitura pode estar melhor que sua conversação, e isso pode ser corrigido com prática oral."
+            },
+            {
+                "q": "Como destravar a fala em inglês?",
+                "a": "Pratique perguntas e respostas, fale em voz alta, grave sua voz, aprenda blocos prontos, reduza tradução mental e treine conversação com professor ao vivo."
+            },
+            {
+                "q": "O nível CEFR ajuda nesse diagnóstico?",
+                "a": "Sim. O CEFR ajuda a identificar se sua leitura, fala, escuta e escrita estão em níveis diferentes e orienta o próximo passo de estudo."
+            },
+            {
+                "q": "A Vedium ajuda quem entende inglês, mas trava para falar?",
+                "a": "Sim. A Vedium oferece inglês online ao vivo com conversação, correção, teste de nível e plano por etapa para transformar compreensão em fala."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "portugues-brasileno-para-trabajar-y-vivir-en-brasil": {
+        "title": "Portugués brasileño para trabajar y vivir en Brasil",
+        "meta_description": "Aprende portugués brasileño para trabajar y vivir en Brasil con vocabulario práctico, cultura y clases en vivo.",
+        "h1": "Portugués brasileño para trabajar y vivir en Brasil",
+        "date": "2025-04-16",
+        "date_display": "16 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1779357807571-38fe0a8cb983?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Arquitetura tradicional da Africa Ocidental, em Gana",
+        "tag": "Portugués brasileño",
+        "lang": "es",
+        "category": "portugues-brasileno",
+        "lead": "Aprender portugués brasileño para trabajar y vivir en Brasil significa preparar el idioma para situaciones reales: reuniones, entrevistas, mensajes de WhatsApp, alquiler, transporte, compras, salud, trámites, conversaciones con vecinos, comunicación con compañeros de trabajo y adaptación cultural. Para una persona hispanohablante, el portugués puede parecer cercano al principio, pero esa cercanía no elimina la necesidad de estudiar con método, práctica oral y contexto brasileño.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Muchos hablantes de español sienten que “entienden bastante” cuando leen portugués o escuchan frases simples. Esto puede ser una ventaja inicial, pero también una trampa. La similitud entre español y portugués ayuda a reconocer palabras, pero no garantiza que puedas hablar con naturalidad, pronunciar correctamente, evitar falsos cognados, comprender la velocidad brasileña o responder en una situación profesional. Vivir en Brasil exige un portugués que funcione fuera del libro.</p>",
+                    "<p>Si trabajas en Brasil, estudias allí, te mudas por motivos personales o necesitas integrarte a un equipo brasileño, pronto descubrirás que el idioma aparece en momentos muy concretos. Puede que tengas que preguntar por un documento, confirmar una reunión, explicar un problema en tu apartamento, hablar con la portería, pedir comida, usar una aplicación de transporte, ir a una farmacia o participar en una conversación informal antes de una reunión. En esos momentos, no basta con “parecerse al español”. Necesitas frases prácticas, seguridad y escucha.</p>",
+                    "<p>Un buen curso de portugués brasileño para extranjeros debe enseñar el idioma como herramienta de vida. No debe limitarse a gramática aislada ni a listas de palabras. Debe preparar al estudiante para los contextos reales de Brasil: trabajo, vivienda, movilidad, servicios, cultura, pronunciación y comunicación cotidiana. Las clases en vivo son especialmente útiles porque el profesor puede corregir tu pronunciación, ayudarte a evitar interferencias del español y practicar diálogos que realmente vas a usar.</p>",
+                    "<p>En esta guía verás qué portugués necesitas para trabajar y vivir en Brasil, qué vocabulario estudiar primero, cómo practicar situaciones reales y por qué las clases en vivo pueden acelerar tu adaptación.</p>"
+                ]
+            },
+            {
+                "heading": "Respuesta directa: ¿por qué aprender portugués brasileño para trabajar y vivir en Brasil?",
+                "body": [
+                    "<p>Debes aprender portugués brasileño para trabajar y vivir en Brasil porque gran parte de la vida cotidiana y profesional ocurre en portugués: reuniones, alquiler, transporte, salud, compras, mensajes, servicios, convivencia y relaciones sociales. Aunque el español ayuda al inicio, no sustituye la práctica real del portugués de Brasil.</p>",
+                    "<p>El portugués brasileño te ayuda a:</p>",
+                    "<ul><li>presentarte en un contexto profesional;</li><li>participar en reuniones;</li><li>escribir mensajes claros por WhatsApp;</li><li>hablar con compañeros y clientes brasileños;</li><li>entender instrucciones y horarios;</li><li>buscar vivienda;</li><li>conversar con propietarios o administradores;</li><li>pedir ayuda en una farmacia o clínica;</li><li>usar transporte y aplicaciones de viaje;</li><li>hacer compras y resolver problemas cotidianos;</li><li>entender diferencias culturales;</li><li>ganar autonomía en Brasil.</li></ul>",
+                    "<p>El objetivo inicial no es hablar perfecto. El objetivo es comunicarte con claridad, pedir repetición cuando sea necesario y resolver situaciones reales con más confianza.</p>",
+                    "<p>Si quieres saber por dónde empezar según tu nivel, reserva una prueba de nivel gratuita en <a href=\"/es/portugues-para-extranjeros\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Situación real de uso: llegar a Brasil y necesitar portugués desde el primer día",
+                "body": [
+                    "<p>Al llegar a Brasil, el portugués aparece antes de lo que muchos extranjeros esperan. Desde el aeropuerto hasta el apartamento, cada interacción puede exigir una frase simple pero importante.</p>",
+                    "<p>Frases útiles para los primeros días:</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>Olá, tudo bem?</td><td>Hola, ¿todo bien?</td></tr><tr><td>Eu estou aprendendo português.</td><td>Estoy aprendiendo portugués.</td></tr><tr><td>Pode repetir, por favor?</td><td>¿Puede repetir, por favor?</td></tr><tr><td>Pode falar mais devagar?</td><td>¿Puede hablar más despacio?</td></tr><tr><td>Preciso de ajuda.</td><td>Necesito ayuda.</td></tr><tr><td>Este é o endereço.</td><td>Esta es la dirección.</td></tr><tr><td>Onde fica...?</td><td>¿Dónde queda...?</td></tr><tr><td>Quanto custa?</td><td>¿Cuánto cuesta?</td></tr><tr><td>Aceita cartão?</td><td>¿Acepta tarjeta?</td></tr><tr><td>Obrigado / obrigada.</td><td>Gracias.</td></tr></tbody></table>",
+                    "<p>Una frase especialmente útil es:</p>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
+                    "<p>En español:</p>",
+                    "<p>Disculpa, todavía estoy aprendiendo portugués. ¿Puedes hablar más despacio?</p>",
+                    "<p>Esta frase te permite continuar la conversación en lugar de bloquearte. También muestra respeto y disposición para comunicarte en la lengua local.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulario clave para trabajar en Brasil",
+                "body": [
+                    "<p>El portugués para el trabajo debe empezar por palabras y frases que se usan en reuniones, mensajes, presentaciones, proyectos y conversaciones con compañeros. No necesitas comenzar con vocabulario técnico avanzado si todavía no puedes confirmar un horario o hacer una pregunta sencilla.</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>trabalho</td><td>trabajo</td></tr><tr><td>empresa</td><td>empresa</td></tr><tr><td>equipe</td><td>equipo</td></tr><tr><td>reunião</td><td>reunión</td></tr><tr><td>projeto</td><td>proyecto</td></tr><tr><td>prazo</td><td>plazo</td></tr><tr><td>relatório</td><td>informe</td></tr><tr><td>cliente</td><td>cliente</td></tr><tr><td>apresentação</td><td>presentación</td></tr><tr><td>dúvida</td><td>duda / pregunta</td></tr><tr><td>horário</td><td>horario</td></tr><tr><td>mensagem</td><td>mensaje</td></tr><tr><td>responsável</td><td>responsable</td></tr><tr><td>combinado</td><td>acordado</td></tr></tbody></table>",
+                    "<p>Frases útiles:</p>",
+                    "<ul><li><strong>Eu trabalho com tecnologia.</strong> — Trabajo en tecnología.</li><li><strong>Tenho uma reunião hoje.</strong> — Tengo una reunión hoy.</li><li><strong>Qual é o prazo?</strong> — ¿Cuál es el plazo?</li><li><strong>Tenho uma dúvida.</strong> — Tengo una duda.</li><li><strong>Você pode explicar de novo?</strong> — ¿Puedes explicarlo otra vez?</li><li><strong>Vou enviar o relatório amanhã.</strong> — Voy a enviar el informe mañana.</li><li><strong>Só para confirmar...</strong> — Solo para confirmar...</li><li><strong>Combinado.</strong> — De acuerdo / queda acordado.</li></ul>",
+                    "<p>La expresión <strong>“Só para confirmar...”</strong> es muy útil en ambientes profesionales. Permite verificar información de forma educada y natural.</p>"
+                ]
+            },
+            {
+                "heading": "Portugués para reuniones y comunicación profesional",
+                "body": [
+                    "<p>En el trabajo, muchas situaciones requieren frases cortas y claras. Los hispanohablantes pueden entender una reunión de forma parcial, pero participar activamente es otro nivel. Para hablar, necesitas estructuras listas.</p>",
+                    "<p>Frases para reuniones:</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>Posso fazer uma pergunta?</td><td>¿Puedo hacer una pregunta?</td></tr><tr><td>Eu tenho uma dúvida.</td><td>Tengo una duda.</td></tr><tr><td>Não entendi essa parte.</td><td>No entendí esa parte.</td></tr><tr><td>Pode repetir, por favor?</td><td>¿Puede repetir, por favor?</td></tr><tr><td>Concordo com você.</td><td>Estoy de acuerdo contigo.</td></tr><tr><td>Tenho outro ponto de vista.</td><td>Tengo otro punto de vista.</td></tr><tr><td>Podemos revisar o prazo?</td><td>¿Podemos revisar el plazo?</td></tr><tr><td>Vou verificar e te aviso.</td><td>Voy a verificarlo y te aviso.</td></tr><tr><td>Faz sentido para mim.</td><td>Tiene sentido para mí.</td></tr><tr><td>Podemos marcar outra reunião?</td><td>¿Podemos agendar otra reunión?</td></tr></tbody></table>",
+                    "<p>Ejemplo de participación simple:</p>",
+                    "<p><strong>Tenho uma dúvida sobre o prazo. Podemos revisar essa parte?</strong></p>",
+                    "<p>En español:</p>",
+                    "<p>Tengo una duda sobre el plazo. ¿Podemos revisar esa parte?</p>",
+                    "<p>Este tipo de frase te permite participar sin necesidad de construir discursos largos.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulario clave para vivir en Brasil",
+                "body": [
+                    "<p>Vivir en Brasil exige vocabulario de vivienda, servicios, transporte, compras, salud y convivencia. Estas palabras aparecen en anuncios, contratos, mensajes, conversaciones y problemas diarios.</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>apartamento</td><td>apartamento</td></tr><tr><td>aluguel</td><td>alquiler</td></tr><tr><td>contrato</td><td>contrato</td></tr><tr><td>condomínio</td><td>cuota del edificio / gastos comunes</td></tr><tr><td>contas</td><td>cuentas / servicios</td></tr><tr><td>portaria</td><td>recepción o portería del edificio</td></tr><tr><td>porteiro / porteira</td><td>portero / portera</td></tr><tr><td>encomenda</td><td>paquete</td></tr><tr><td>entrega</td><td>entrega</td></tr><tr><td>manutenção</td><td>mantenimiento</td></tr><tr><td>bairro</td><td>barrio</td></tr><tr><td>endereço</td><td>dirección</td></tr><tr><td>chave</td><td>llave</td></tr><tr><td>vizinho / vizinha</td><td>vecino / vecina</td></tr></tbody></table>",
+                    "<p>Frases útiles:</p>",
+                    "<ul><li><strong>Estou procurando um apartamento.</strong> — Estoy buscando un apartamento.</li><li><strong>O aluguel inclui condomínio?</strong> — ¿El alquiler incluye la cuota del edificio?</li><li><strong>As contas estão incluídas?</strong> — ¿Los servicios están incluidos?</li><li><strong>Pode deixar na portaria.</strong> — Puede dejarlo en la portería.</li><li><strong>Chegou alguma encomenda para mim?</strong> — ¿Llegó algún paquete para mí?</li><li><strong>Tenho um problema no apartamento.</strong> — Tengo un problema en el apartamento.</li><li><strong>Preciso de manutenção.</strong> — Necesito mantenimiento.</li><li><strong>Qual é o endereço completo?</strong> — ¿Cuál es la dirección completa?</li></ul>",
+                    "<p>Para muchos extranjeros, <strong>portaria</strong> es una palabra nueva e importante. En muchos edificios brasileños, la portería organiza entregas, visitas, mensajes y seguridad. Aprender este vocabulario te ayuda a vivir con más autonomía.</p>"
+                ]
+            },
+            {
+                "heading": "Cuidado con la similitud entre español y portugués",
+                "body": [
+                    "<p>Para hispanohablantes, el portugués brasileño parece cercano, pero no es español con otra pronunciación. Hay diferencias de sonido, ritmo, vocabulario, falsos amigos y uso cultural. Esta cercanía puede hacer que el estudiante hable “portuñol” durante mucho tiempo si no recibe corrección.</p>",
+                    "<p>Ejemplos de confusión:</p>",
+                    "<table><thead><tr><th>Portugués</th><th>Español correcto</th><th>Atención</th></tr></thead><tbody><tr><td>escritório</td><td>oficina / despacho</td><td>no significa “escritorio” como mueble</td></tr><tr><td>borracha</td><td>goma de borrar</td><td>en español puede sonar a “borracha” como mujer ebria</td></tr><tr><td>apelido</td><td>apodo</td><td>no significa apellido</td></tr><tr><td>sobrenome</td><td>apellido</td><td>palabra importante en formularios</td></tr><tr><td>almoço</td><td>almuerzo</td><td>no es “almoço” en español, pero se reconoce por contexto</td></tr><tr><td>ônibus</td><td>autobús</td><td>palabra muy usada en Brasil</td></tr><tr><td>banheiro</td><td>baño</td><td>esencial para el día a día</td></tr><tr><td>endereço</td><td>dirección</td><td>no confundir con “enderezar”</td></tr></tbody></table>",
+                    "<p>También hay diferencias de pronunciación. Palabras como <strong>não</strong>, <strong>trabalho</strong>, <strong>reunião</strong>, <strong>dinheiro</strong>, <strong>endereço</strong> y <strong>obrigado</strong> deben practicarse con escucha real. Leerlas como si fueran español puede dificultar la comprensión.</p>"
+                ]
+            },
+            {
+                "heading": "Portugués para WhatsApp en Brasil",
+                "body": [
+                    "<p>WhatsApp es una herramienta central en Brasil. Se usa para trabajo, vivienda, entregas, clases, servicios, consultas, grupos de vecinos y comunicación informal. Por eso, aprender a escribir mensajes cortos en portugués es parte esencial del aprendizaje.</p>",
+                    "<p>Mensajes útiles:</p>",
+                    "<h3>Para confirmar una reunión</h3>",
+                    "<p><strong>Olá, tudo bem? Só para confirmar: a reunião é hoje às 15h?</strong></p>",
+                    "<p>Hola, ¿todo bien? Solo para confirmar: ¿la reunión es hoy a las 15h?</p>",
+                    "<h3>Para hablar con la portería</h3>",
+                    "<p><strong>Olá, chegou alguma encomenda para mim?</strong></p>",
+                    "<p>Hola, ¿llegó algún paquete para mí?</p>",
+                    "<h3>Para una entrega</h3>",
+                    "<p><strong>Pode deixar na portaria, por favor. Apartamento 802.</strong></p>",
+                    "<p>Puede dejarlo en la portería, por favor. Apartamento 802.</p>",
+                    "<h3>Para pedir información</h3>",
+                    "<p><strong>Gostaria de saber mais informações sobre o apartamento.</strong></p>",
+                    "<p>Me gustaría saber más información sobre el apartamento.</p>",
+                    "<h3>Para pedir paciencia</h3>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode explicar de novo?</strong></p>",
+                    "<p>Disculpa, todavía estoy aprendiendo portugués. ¿Puedes explicarlo otra vez?</p>",
+                    "<p>Practicar este tipo de mensaje en clase en vivo ayuda a evitar traducciones literales desde el español.</p>"
+                ]
+            },
+            {
+                "heading": "Portugués para servicios, salud y transporte",
+                "body": [
+                    "<p>La vida en Brasil también incluye servicios cotidianos. Aunque trabajes en un entorno internacional, tarde o temprano necesitarás usar portugués para resolver situaciones fuera del trabajo.</p>",
+                    "<table><thead><tr><th>Situación</th><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>Farmacia</td><td>Preciso de um remédio para dor de cabeça.</td><td>Necesito un medicamento para dolor de cabeza.</td></tr><tr><td>Médico</td><td>Quero marcar uma consulta.</td><td>Quiero agendar una consulta.</td></tr><tr><td>Transporte</td><td>Qual é a estação mais próxima?</td><td>¿Cuál es la estación más cercana?</td></tr><tr><td>Aplicación de viaje</td><td>Estou na portaria.</td><td>Estoy en la portería.</td></tr><tr><td>Restaurante</td><td>A conta, por favor.</td><td>La cuenta, por favor.</td></tr><tr><td>Supermercado</td><td>Aceita cartão?</td><td>¿Acepta tarjeta?</td></tr><tr><td>Banco</td><td>Preciso abrir uma conta.</td><td>Necesito abrir una cuenta.</td></tr><tr><td>Gimnasio</td><td>Quero fazer uma matrícula.</td><td>Quiero inscribirme.</td></tr></tbody></table>",
+                    "<p>Estas frases son simples, pero tienen impacto inmediato. Te ayudan a dejar de depender de traducciones improvisadas.</p>"
+                ]
+            },
+            {
+                "heading": "Práctica en clase en vivo: situaciones de trabajo y vida real",
+                "body": [
+                    "<p>La clase en vivo es valiosa porque convierte vocabulario en reacción. El profesor puede hacer preguntas, corregir tu respuesta, ajustar tu pronunciación y simular situaciones reales de Brasil.</p>",
+                    "<h3>Ejercicio 1: presentarse profesionalmente</h3>",
+                    "<p>Profesor pregunta:</p>",
+                    "<p><strong>Você trabalha com o quê?</strong></p>",
+                    "<p>Estudiante responde:</p>",
+                    "<p><strong>Eu trabalho com marketing e moro no Brasil.</strong></p>",
+                    "<p>Objetivo: presentarse con claridad.</p>",
+                    "<h3>Ejercicio 2: confirmar una reunión</h3>",
+                    "<p>Profesor dice:</p>",
+                    "<p><strong>A reunião mudou para amanhã.</strong></p>",
+                    "<p>Estudiante responde:</p>",
+                    "<p><strong>Só para confirmar: a reunião é amanhã às dez?</strong></p>",
+                    "<p>Objetivo: confirmar información.</p>",
+                    "<h3>Ejercicio 3: hablar con la portería</h3>",
+                    "<p>Profesor dice:</p>",
+                    "<p><strong>Chegou uma encomenda para você.</strong></p>",
+                    "<p>Estudiante responde:</p>",
+                    "<p><strong>Obrigado / obrigada. Vou pegar agora.</strong></p>",
+                    "<p>Objetivo: practicar la vida diaria.</p>",
+                    "<h3>Ejercicio 4: pedir repetición</h3>",
+                    "<p>Profesor habla rápido. Estudiante responde:</p>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode repetir, por favor?</strong></p>",
+                    "<p>Objetivo: mantener la conversación.</p>",
+                    "<h3>Ejercicio 5: resolver un problema de vivienda</h3>",
+                    "<p>Profesor pregunta:</p>",
+                    "<p><strong>Qual é o problema no apartamento?</strong></p>",
+                    "<p>Estudiante responde:</p>",
+                    "<p><strong>A internet não está funcionando. Preciso de ajuda.</strong></p>",
+                    "<p>Objetivo: explicar problemas de forma práctica.</p>",
+                    "<p>Estas simulaciones reducen la ansiedad porque preparan al estudiante para situaciones que realmente pueden ocurrir.</p>"
+                ]
+            },
+            {
+                "heading": "Cómo estudiar portugués brasileño paso a paso",
+                "body": [
+                    "<p>Para estudiar portugués brasileño de forma eficiente, organiza el aprendizaje por situaciones. No empieces intentando memorizar todo el idioma. Empieza por lo que vas a necesitar en Brasil.</p>",
+                    "<h3>Paso 1: define tu objetivo</h3>",
+                    "<p>Pregúntate:</p>",
+                    "<ul><li>¿voy a trabajar en Brasil?</li><li>¿voy a estudiar en Brasil?</li><li>¿voy a vivir con brasileños?</li><li>¿necesito portugués para reuniones?</li><li>¿necesito portugués para trámites y servicios?</li><li>¿quiero hablar con más naturalidad?</li></ul>",
+                    "<h3>Paso 2: aprende frases de supervivencia</h3>",
+                    "<p>Empieza con:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Estou aprendendo português.</strong></li><li><strong>Tenho uma dúvida.</strong></li><li><strong>Preciso de ajuda.</strong></li></ul>",
+                    "<h3>Paso 3: estudia por contexto</h3>",
+                    "<p>Elige un tema por semana:</p>",
+                    "<ul><li>trabajo;</li><li>vivienda;</li><li>transporte;</li><li>comida;</li><li>salud;</li><li>WhatsApp;</li><li>compras;</li><li>small talk.</li></ul>",
+                    "<h3>Paso 4: practica en voz alta</h3>",
+                    "<p>Leer no es suficiente. Di las frases en voz alta, graba tu voz y repite.</p>",
+                    "<h3>Paso 5: recibe corrección</h3>",
+                    "<p>Un profesor en vivo puede corregir pronunciación, ritmo, interferencias del español y frases poco naturales.</p>",
+                    "<h3>Paso 6: usa una frase real cada día</h3>",
+                    "<p>El aprendizaje crece cuando llevas la frase al mundo real.</p>"
+                ]
+            },
+            {
+                "heading": "Cómo elegir un curso de portugués brasileño para extranjeros",
+                "body": [
+                    "<p>Un buen Brazilian Portuguese course para extranjeros debe ayudarte a vivir mejor en Brasil. No debe enfocarse solo en teoría. Debe desarrollar comunicación práctica.</p>",
+                    "<p>Busca un curso que ofrezca:</p>",
+                    "<ul><li>clases en vivo;</li><li>portugués brasileño, no solo portugués genérico;</li><li>práctica oral;</li><li>corrección de pronunciación;</li><li>situaciones de trabajo;</li><li>situaciones de vida cotidiana;</li><li>mensajes de WhatsApp;</li><li>vocabulario de vivienda y transporte;</li><li>cultura brasileña;</li><li>prueba de nivel;</li><li>flexibilidad;</li><li>ausencia de contrato de fidelidad.</li></ul>",
+                    "<p>Si eres hispanohablante, también es importante que el curso trabaje las diferencias entre español y portugués. La cercanía entre los idiomas debe usarse como ventaja, no como excusa para quedarse en el portuñol.</p>",
+                    "<p>Vedium ofrece clases en vivo de portugués brasileño para extranjeros, con foco en situaciones reales, cultura, conversación y progreso práctico.</p>",
+                    "<p>Reserva una prueba de nivel gratuita en <a href=\"/es/portugues-para-extranjeros\">https://vediums.com/</a> y descubre qué necesitas aprender primero para trabajar y vivir en Brasil.</p>"
+                ]
+            },
+            {
+                "heading": "Errores comunes de hispanohablantes al aprender portugués brasileño",
+                "body": [
+                    "<p>Los hispanohablantes tienen una ventaja inicial, pero también cometen errores específicos.</p>",
+                    "<h3>Error 1: confiar demasiado en la similitud</h3>",
+                    "<p>Entender algunas palabras no significa dominar la comunicación.</p>",
+                    "<h3>Error 2: hablar portuñol sin corregir</h3>",
+                    "<p>El portuñol puede ayudar en emergencias, pero no debe ser tu objetivo final.</p>",
+                    "<h3>Error 3: ignorar la pronunciación</h3>",
+                    "<p>El portugués brasileño tiene sonidos que no existen igual en español, como nasalizaciones y ciertos ritmos.</p>",
+                    "<h3>Error 4: traducir frases literalmente</h3>",
+                    "<p>Una frase correcta en español puede sonar extraña en portugués.</p>",
+                    "<h3>Error 5: estudiar solo con aplicaciones</h3>",
+                    "<p>Las apps ayudan, pero no sustituyen la interacción, la corrección y la práctica cultural.</p>"
+                ]
+            },
+            {
+                "heading": "Plan de 30 días para empezar",
+                "body": [
+                    "<p>Un plan de 30 días no garantiza fluidez, pero puede crear una base útil para Brasil.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Enfoque</th><th>Objetivo</th></tr></thead><tbody><tr><td>Semana 1</td><td>saludos, ayuda y repetición</td><td>iniciar conversaciones simples</td></tr><tr><td>Semana 2</td><td>trabajo y WhatsApp</td><td>comunicarte en situaciones profesionales básicas</td></tr><tr><td>Semana 3</td><td>vivienda, transporte y servicios</td><td>resolver problemas cotidianos</td></tr><tr><td>Semana 4</td><td>pronunciación, small talk y revisión</td><td>ganar confianza en conversaciones reales</td></tr></tbody></table>",
+                    "<p>Rutina diaria:</p>",
+                    "<ul><li>5 minutos de vocabulario;</li><li>5 minutos de frases en voz alta;</li><li>5 minutos escribiendo un mensaje;</li><li>5 minutos escuchando portugués brasileño;</li><li>1 frase usada en una situación real;</li><li>1 duda para llevar a la clase en vivo.</li></ul>",
+                    "<p>La constancia es más importante que estudiar muchas horas una sola vez.</p>"
+                ]
+            },
+            {
+                "heading": "Cómo Vedium ayuda a extranjeros a vivir y trabajar en Brasil",
+                "body": [
+                    "<p>Vedium ayuda a extranjeros a aprender portugués brasileño con clases online en vivo, práctica real y contexto cultural. El foco está en la comunicación que necesitas para Brasil: trabajo, vida diaria, vivienda, transporte, servicios, WhatsApp, pronunciación y adaptación cultural.</p>",
+                    "<p>En las clases de Vedium puedes practicar:</p>",
+                    "<ul><li>presentarte profesionalmente;</li><li>participar en reuniones;</li><li>escribir mensajes en portugués;</li><li>hablar con la portería;</li><li>pedir comida;</li><li>usar transporte;</li><li>resolver problemas de vivienda;</li><li>hacer preguntas en servicios;</li><li>conversar con brasileños;</li><li>mejorar pronunciación;</li><li>evitar interferencias del español;</li><li>ganar confianza para hablar.</li></ul>",
+                    "<p>Vedium no trabaja con contratos largos de fidelidad. Continúas porque notas el avance, no porque estás obligado. Esa libertad es importante para extranjeros con rutinas cambiantes y necesidades reales.</p>"
+                ]
+            },
+            {
+                "heading": "Lista práctica: ¿estás preparado para trabajar y vivir en Brasil?",
+                "body": [
+                    "<p>Usa esta lista para evaluar tu portugués actual:</p>",
+                    "<ul><li>Sé presentarme en portugués.</li><li>Puedo decir que estoy aprendiendo portugués.</li><li>Puedo pedir que alguien repita.</li><li>Puedo confirmar una reunión.</li><li>Puedo escribir un mensaje simple por WhatsApp.</li><li>Puedo hablar con la portería.</li><li>Puedo pedir información sobre un apartamento.</li><li>Puedo pedir ayuda en una farmacia.</li><li>Puedo usar frases básicas de transporte.</li><li>Puedo explicar un problema simple.</li></ul>",
+                    "<p>Si varios puntos todavía son difíciles, no significa que estés lejos. Significa que ya tienes un mapa claro de lo que debes practicar primero.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusión con CTA fuerte",
+                "body": [
+                    "<p>El portugués brasileño para trabajar y vivir en Brasil es una herramienta de autonomía. Te ayuda a participar en reuniones, escribir mensajes, resolver problemas cotidianos, entender la cultura local y sentirte menos dependiente de traducciones improvisadas. Para hispanohablantes, la cercanía con el español es una ventaja, pero también exige cuidado: pronunciación, falsos amigos, ritmo y uso real deben practicarse.</p>",
+                    "<p>Empieza por frases útiles: <strong>Pode repetir, por favor?</strong>, <strong>Tenho uma dúvida</strong>, <strong>Só para confirmar...</strong>, <strong>Estou aprendendo português</strong>, <strong>Pode deixar na portaria</strong>, <strong>Preciso de ajuda</strong> y <strong>Qual é o endereço?</strong>. Después, practica esas frases en situaciones reales y en clases en vivo.</p>",
+                    "<p>Vedium ofrece portugués brasileño para extranjeros con clases online en vivo, práctica cultural, conversación y foco en la vida real en Brasil. Sin contratos largos de fidelidad: sigues porque el idioma empieza a funcionar en tu día a día.</p>",
+                    "<p>Reserva tu prueba de nivel gratuita en <a href=\"/es/portugues-para-extranjeros\">https://vediums.com/</a> y empieza a aprender portugués brasileño para trabajar, vivir y comunicarte mejor en Brasil.</p>",
+                    "<p>Para seguir aprendiendo, consulta también <a href=\"/es/blog/portugues-brasileno/aprender-portugues-de-brasil-con-clases-en-vivo-y-practica-real\">Aprender portugués de Brasil con clases en vivo y práctica real</a> o conoce el <a href=\"/es/portugues-para-extranjeros\">curso de portugués brasileño</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "¿Necesito portugués para trabajar en Brasil si hablo español?",
+                "a": "Sí. El español ayuda al inicio, pero para trabajar y vivir en Brasil necesitas portugués brasileño para reuniones, mensajes, servicios, vivienda y vida diaria."
+            },
+            {
+                "q": "¿El portugués brasileño es fácil para hispanohablantes?",
+                "a": "Puede ser más accesible al principio por la similitud con el español, pero la pronunciación, los falsos amigos y el uso real requieren práctica."
+            },
+            {
+                "q": "¿Qué frases debo aprender primero para vivir en Brasil?",
+                "a": "Empieza con Pode repetir, por favor?, Estou aprendendo português, Preciso de ajuda, Tenho uma dúvida y Pode falar mais devagar?"
+            },
+            {
+                "q": "¿Por qué son importantes las clases en vivo?",
+                "a": "Porque permiten practicar conversación real, recibir corrección de pronunciación y aprender frases útiles para situaciones concretas en Brasil."
+            },
+            {
+                "q": "¿Vedium ofrece portugués brasileño para extranjeros?",
+                "a": "Sí. Vedium ofrece clases online en vivo de portugués brasileño para extranjeros, con práctica para trabajo, vida diaria, cultura y comunicación real."
+            }
+        ],
+        "cta_title": "¿Quieres saber tu nivel real de portugués?",
+        "cta_text": "Haz la prueba de nivel gratuita de Vedium y descubre por dónde empezar.",
+        "cta_label": "Reservar una prueba de nivel gratuita",
+        "cta_url": "/es/portugues-para-extranjeros"
+    },
+    "portuguese-for-remote-workers-living-in-brazil": {
+        "title": "Portuguese for remote workers living in Brazil",
+        "meta_description": "Learn Portuguese for remote workers living in Brazil with practical phrases, daily-life vocabulary and live-class practice.",
+        "h1": "Portuguese for remote workers living in Brazil",
+        "date": "2025-04-15",
+        "date_display": "April 15, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1636222162402-baf473def2f6?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Percussionista tocando tambor africano",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "Portuguese for remote workers living in Brazil is not only about learning grammar. It is about being able to live independently while working online: finding housing, talking to the building doorman, explaining internet problems, using ride apps, ordering food, going to the pharmacy, handling deliveries, asking for help, joining coworking spaces, making local connections and understanding the cultural rhythm around you. If your job is remote but your life is in Brazil, Brazilian Portuguese quickly becomes part of your daily success.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Many remote workers arrive in Brazil thinking that English will be enough because their work happens online with international clients, teams or companies. That may be true during meetings with your employer, but it is rarely true outside the screen. Your apartment, neighborhood, supermarket, gym, delivery driver, bank, transportation, maintenance requests and casual conversations usually require Portuguese. The language becomes the difference between depending on translation apps and actually feeling at home.</p>",
+                    "<p>Remote workers also face a specific challenge: they may spend many hours working in English or another language and then need Portuguese only in short, practical, sometimes stressful moments. For example, the internet stops working before a meeting. A package arrives at the building entrance. A neighbor asks something in the elevator. A ride-app driver calls you. The coworking receptionist asks for your document. A landlord sends a WhatsApp message. These moments require quick phrases, not abstract textbook knowledge.</p>",
+                    "<p>A strong Brazilian Portuguese course for foreigners should prepare remote workers for real life in Brazil. It should include practical vocabulary, pronunciation, WhatsApp messages, service interactions, housing conversations and cultural context. Live Portuguese classes are especially helpful because a teacher can simulate the situations you actually face and correct your speaking in real time. In this guide, you will learn what Portuguese remote workers need first, which phrases to practice, how to study by situation and why live classes can make your life in Brazil easier.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: what Portuguese do remote workers need in Brazil?",
+                "body": [
+                    "<p>Remote workers in Brazil need practical Brazilian Portuguese for housing, internet, deliveries, transportation, coworking spaces, daily errands, healthcare, social interaction and asking for help. The goal is not to speak perfectly at first. The goal is to solve real-life situations clearly and politely.</p>",
+                    "<p>The most useful areas are:</p>",
+                    "<ul><li>introducing yourself as someone living in Brazil;</li><li>explaining that you work remotely;</li><li>asking about internet and Wi-Fi;</li><li>handling apartment and building issues;</li><li>talking to the doorman or building staff;</li><li>ordering food and receiving deliveries;</li><li>asking for directions;</li><li>using ride apps and public transportation;</li><li>joining coworking spaces;</li><li>going to the pharmacy or doctor;</li><li>making small talk with Brazilians;</li><li>writing short WhatsApp messages.</li></ul>",
+                    "<p>A remote worker should start with phrases that protect their routine: <strong>“A internet não está funcionando”</strong>, <strong>“Tenho uma reunião agora”</strong>, <strong>“Pode deixar na portaria”</strong>, <strong>“Estou trabalhando de casa”</strong> and <strong>“Pode repetir, por favor?”</strong></p>",
+                    "<p>If you want to prepare your Portuguese for real life as a remote worker in Brazil, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: working from home in Brazil",
+                "body": [
+                    "<p>Working from home in Brazil requires more Portuguese than many foreigners expect. You may need to talk about internet, noise, maintenance, deliveries, building access and schedule conflicts.</p>",
+                    "<p>Essential phrases:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Eu trabalho remotamente.</td><td>I work remotely.</td></tr><tr><td>Eu trabalho de casa.</td><td>I work from home.</td></tr><tr><td>Tenho uma reunião agora.</td><td>I have a meeting now.</td></tr><tr><td>A internet não está funcionando.</td><td>The internet is not working.</td></tr><tr><td>O Wi-Fi está instável.</td><td>The Wi-Fi is unstable.</td></tr><tr><td>Preciso de manutenção.</td><td>I need maintenance.</td></tr><tr><td>Pode vir mais tarde?</td><td>Can you come later?</td></tr><tr><td>Estou em uma chamada.</td><td>I am on a call.</td></tr><tr><td>Pode fazer menos barulho, por favor?</td><td>Can you make less noise, please?</td></tr><tr><td>Qual é o horário da visita técnica?</td><td>What is the time of the technical visit?</td></tr></tbody></table>",
+                    "<p>Example:</p>",
+                    "<p><strong>Olá, tudo bem? A internet não está funcionando e tenho uma reunião em uma hora. Você pode verificar, por favor?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, how are you? The internet is not working and I have a meeting in one hour. Can you check, please?</p>",
+                    "<p>This is the kind of sentence that makes Portuguese immediately useful for remote workers.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for remote workers",
+                "body": [
+                    "<p>Remote workers should learn vocabulary connected to technology, housing, schedule, communication and daily services. This vocabulary helps you explain problems and ask for solutions.</p>",
+                    "<h3>Work and technology</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>trabalho remoto</td><td>remote work</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>chamada</td><td>call</td></tr><tr><td>videochamada</td><td>video call</td></tr><tr><td>internet</td><td>internet</td></tr><tr><td>Wi-Fi</td><td>Wi-Fi</td></tr><tr><td>conexão</td><td>connection</td></tr><tr><td>instável</td><td>unstable</td></tr><tr><td>lento / lenta</td><td>slow</td></tr><tr><td>computador</td><td>computer</td></tr><tr><td>carregador</td><td>charger</td></tr><tr><td>tomada</td><td>power outlet</td></tr><tr><td>fone de ouvido</td><td>headphones</td></tr><tr><td>tela</td><td>screen</td></tr><tr><td>microfone</td><td>microphone</td></tr><tr><td>câmera</td><td>camera</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Minha conexão está instável.</strong> — My connection is unstable.</li><li><strong>A internet está lenta.</strong> — The internet is slow.</li><li><strong>Preciso de uma tomada.</strong> — I need a power outlet.</li><li><strong>Tenho uma videochamada às duas.</strong> — I have a video call at two.</li><li><strong>Você sabe a senha do Wi-Fi?</strong> — Do you know the Wi-Fi password?</li><li><strong>O microfone não está funcionando.</strong> — The microphone is not working.</li></ul>",
+                    "<h3>Housing and building vocabulary</h3>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>apartamento</td><td>apartment</td></tr><tr><td>prédio</td><td>building</td></tr><tr><td>portaria</td><td>building entrance / doorman area</td></tr><tr><td>porteiro / porteira</td><td>doorman / doorwoman</td></tr><tr><td>encomenda</td><td>package</td></tr><tr><td>entrega</td><td>delivery</td></tr><tr><td>manutenção</td><td>maintenance</td></tr><tr><td>barulho</td><td>noise</td></tr><tr><td>vizinho / vizinha</td><td>neighbor</td></tr><tr><td>aluguel</td><td>rent</td></tr><tr><td>contrato</td><td>contract</td></tr><tr><td>condomínio</td><td>building fee</td></tr><tr><td>chave</td><td>key</td></tr><tr><td>endereço</td><td>address</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Chegou alguma encomenda para mim?</strong> — Did a package arrive for me?</li><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building entrance.</li><li><strong>Tenho um problema no apartamento.</strong> — I have a problem in the apartment.</li><li><strong>O vizinho está fazendo muito barulho.</strong> — The neighbor is making a lot of noise.</li><li><strong>Preciso falar com a administração.</strong> — I need to talk to the administration.</li></ul>"
+                ]
+            },
+            {
+                "heading": "Portuguese for coworking spaces",
+                "body": [
+                    "<p>Many remote workers in Brazil use coworking spaces, cafés or shared offices. These places may have English-speaking staff in some cities, but Portuguese is still useful for check-in, payment, reservations, Wi-Fi, meeting rooms and basic rules.</p>",
+                    "<p>Useful vocabulary:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>coworking</td><td>coworking space</td></tr><tr><td>mesa</td><td>desk / table</td></tr><tr><td>sala de reunião</td><td>meeting room</td></tr><tr><td>reserva</td><td>booking / reservation</td></tr><tr><td>plano mensal</td><td>monthly plan</td></tr><tr><td>diária</td><td>day pass</td></tr><tr><td>horário de funcionamento</td><td>opening hours</td></tr><tr><td>recepção</td><td>reception</td></tr><tr><td>senha do Wi-Fi</td><td>Wi-Fi password</td></tr><tr><td>tomada</td><td>power outlet</td></tr><tr><td>impressão</td><td>printing</td></tr><tr><td>café</td><td>coffee</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Vocês têm diária?</strong> — Do you have a day pass?</li><li><strong>Qual é o valor do plano mensal?</strong> — What is the price of the monthly plan?</li><li><strong>Preciso reservar uma sala de reunião.</strong> — I need to book a meeting room.</li><li><strong>Qual é a senha do Wi-Fi?</strong> — What is the Wi-Fi password?</li><li><strong>Tem tomada perto dessa mesa?</strong> — Is there a power outlet near this desk?</li><li><strong>Até que horas vocês ficam abertos?</strong> — Until what time are you open?</li><li><strong>Posso fazer uma videochamada aqui?</strong> — Can I have a video call here?</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Olá, tudo bem? Eu trabalho remotamente e preciso de uma mesa por um dia. Vocês têm diária?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, how are you? I work remotely and need a desk for one day. Do you have a day pass?</p>",
+                    "<p>A live class can help you practice this conversation before using a coworking space.</p>"
+                ]
+            },
+            {
+                "heading": "Portuguese for WhatsApp messages in Brazil",
+                "body": [
+                    "<p>WhatsApp is one of the most important communication tools in Brazil. Remote workers often use it to talk to landlords, building staff, delivery drivers, service providers, coworking spaces, dentists, doctors, gyms and local contacts.</p>",
+                    "<p>Useful message patterns:</p>",
+                    "<h3>Asking for information</h3>",
+                    "<p><strong>Olá, tudo bem? Gostaria de saber o valor do plano mensal.</strong></p>",
+                    "<p>Hello, how are you? I would like to know the price of the monthly plan.</p>",
+                    "<h3>Confirming a time</h3>",
+                    "<p><strong>Só para confirmar: a visita técnica é hoje às 14h?</strong></p>",
+                    "<p>Just to confirm: is the technical visit today at 2 p.m.?</p>",
+                    "<h3>Explaining a problem</h3>",
+                    "<p><strong>A internet está instável desde ontem. Você pode verificar, por favor?</strong></p>",
+                    "<p>The internet has been unstable since yesterday. Can you check, please?</p>",
+                    "<h3>Talking to a delivery driver</h3>",
+                    "<p><strong>Pode deixar na portaria, por favor. Apartamento 802.</strong></p>",
+                    "<p>You can leave it at the building entrance, please. Apartment 802.</p>",
+                    "<h3>Asking for patience</h3>",
+                    "<p><strong>Desculpa, ainda estou aprendendo português. Pode explicar de novo?</strong></p>",
+                    "<p>Sorry, I am still learning Portuguese. Can you explain again?</p>",
+                    "<p>These short messages are extremely useful. They help you participate in Brazilian life without waiting until your Portuguese is advanced.</p>"
+                ]
+            },
+            {
+                "heading": "Portuguese for daily errands",
+                "body": [
+                    "<p>Remote workers may have flexible jobs, but they still need to handle daily errands: supermarket, pharmacy, gym, laundry, bank, transportation and restaurants.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<table><thead><tr><th>Situation</th><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Supermarket</td><td>Aceita cartão?</td><td>Do you accept card?</td></tr><tr><td>Pharmacy</td><td>Preciso de um remédio para dor de cabeça.</td><td>I need medicine for a headache.</td></tr><tr><td>Laundry</td><td>Quanto tempo demora?</td><td>How long does it take?</td></tr><tr><td>Gym</td><td>Quero fazer uma matrícula.</td><td>I want to sign up.</td></tr><tr><td>Restaurant</td><td>A conta, por favor.</td><td>The bill, please.</td></tr><tr><td>Transport</td><td>Qual é a estação mais próxima?</td><td>What is the nearest station?</td></tr><tr><td>Ride app</td><td>Estou na portaria.</td><td>I am at the building entrance.</td></tr><tr><td>Bank</td><td>Preciso abrir uma conta.</td><td>I need to open an account.</td></tr></tbody></table>",
+                    "<p>Remote workers often have to solve these situations between meetings. Practical Portuguese reduces stress and saves time.</p>"
+                ]
+            },
+            {
+                "heading": "Small talk for remote workers",
+                "body": [
+                    "<p>Remote work can be isolating, especially in a new country. Small talk in Portuguese helps you connect with neighbors, people in cafés, coworking staff, classmates, gym staff and local friends.</p>",
+                    "<p>Common small-talk questions:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Você é de onde?</td><td>Where are you from?</td></tr><tr><td>Você trabalha com o quê?</td><td>What do you do for work?</td></tr><tr><td>Você trabalha de casa?</td><td>Do you work from home?</td></tr><tr><td>Está gostando do Brasil?</td><td>Are you enjoying Brazil?</td></tr><tr><td>Você mora aqui perto?</td><td>Do you live nearby?</td></tr><tr><td>Como foi o fim de semana?</td><td>How was your weekend?</td></tr><tr><td>Muito trabalho hoje?</td><td>A lot of work today?</td></tr></tbody></table>",
+                    "<p>Useful answers:</p>",
+                    "<ul><li><strong>Sou do Canadá.</strong> — I am from Canada.</li><li><strong>Trabalho remotamente.</strong> — I work remotely.</li><li><strong>Trabalho com tecnologia.</strong> — I work in technology.</li><li><strong>Estou gostando muito do Brasil.</strong> — I am really enjoying Brazil.</li><li><strong>Moro aqui perto.</strong> — I live nearby.</li><li><strong>Foi bom, obrigado. E o seu?</strong> — It was good, thanks. And yours?</li><li><strong>Sim, bastante trabalho hoje.</strong> — Yes, a lot of work today.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Brazilian:</strong> Você trabalha com o quê?<br><strong>You:</strong> Trabalho remotamente com marketing. E você?</p>",
+                    "<p>Translation:</p>",
+                    "<p>Brazilian: What do you do for work?<br>You: I work remotely in marketing. And you?</p>",
+                    "<p>Small talk does not need to be long. It needs to be warm and natural.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: learn Portuguese as a remote worker in Brazil",
+                "body": [
+                    "<p>To learn Portuguese as a remote worker in Brazil, study by situation. Your Portuguese should match the problems and conversations you actually face.</p>",
+                    "<h3>Step 1: identify your weekly situations</h3>",
+                    "<p>Make a list of situations you face every week:</p>",
+                    "<ul><li>apartment;</li><li>internet;</li><li>coworking;</li><li>delivery;</li><li>supermarket;</li><li>transportation;</li><li>food;</li><li>gym;</li><li>pharmacy;</li><li>small talk.</li></ul>",
+                    "<h3>Step 2: choose 10 survival phrases</h3>",
+                    "<p>Start with phrases such as:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Estou aprendendo português.</strong></li><li><strong>Preciso de ajuda.</strong></li><li><strong>A internet não está funcionando.</strong></li><li><strong>Tenho uma reunião agora.</strong></li><li><strong>Pode deixar na portaria.</strong></li><li><strong>Qual é a senha do Wi-Fi?</strong></li><li><strong>Quanto custa?</strong></li><li><strong>Aceita cartão?</strong></li><li><strong>Você pode explicar de novo?</strong></li></ul>",
+                    "<h3>Step 3: practice aloud</h3>",
+                    "<p>Remote workers may read a lot, but speaking requires the mouth. Say each sentence aloud and record yourself.</p>",
+                    "<h3>Step 4: write WhatsApp messages</h3>",
+                    "<p>Write short messages for real situations. Ask a teacher to correct them.</p>",
+                    "<h3>Step 5: simulate conversations in live class</h3>",
+                    "<p>Practice calls with a delivery driver, coworking receptionist, landlord or building doorman.</p>",
+                    "<h3>Step 6: use one phrase per day</h3>",
+                    "<p>Choose one phrase and use it in a real situation. Small daily wins build confidence.</p>",
+                    "<h3>Step 7: review weekly</h3>",
+                    "<p>Keep a list of phrases that helped you. Review and expand them with your teacher.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: remote worker situations",
+                "body": [
+                    "<p>Live classes are especially useful because remote workers need quick responses in real situations. A teacher can simulate the exact moments when you might freeze.</p>",
+                    "<h3>Exercise 1: internet problem</h3>",
+                    "<p>Teacher plays the internet provider.</p>",
+                    "<p><strong>Teacher:</strong> Qual é o problema?<br><strong>Student:</strong> A internet está instável e eu tenho uma reunião em uma hora.</p>",
+                    "<p>Goal: explain urgency clearly.</p>",
+                    "<h3>Exercise 2: coworking check-in</h3>",
+                    "<p>Teacher plays the receptionist.</p>",
+                    "<p><strong>Teacher:</strong> Você quer diária ou plano mensal?<br><strong>Student:</strong> Quero uma diária, por favor. Preciso de uma mesa com tomada.</p>",
+                    "<p>Goal: use coworking vocabulary.</p>",
+                    "<h3>Exercise 3: delivery message</h3>",
+                    "<p>Student practices:</p>",
+                    "<p><strong>Pode deixar na portaria, por favor. Apartamento 802.</strong></p>",
+                    "<p>Goal: handle delivery in Brazil.</p>",
+                    "<h3>Exercise 4: building maintenance</h3>",
+                    "<p>Teacher asks:</p>",
+                    "<p><strong>Qual é o problema no apartamento?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>O ar-condicionado não está funcionando. Preciso de manutenção.</strong></p>",
+                    "<p>Goal: explain apartment problems.</p>",
+                    "<h3>Exercise 5: small talk</h3>",
+                    "<p>Teacher asks:</p>",
+                    "<p><strong>Você trabalha com o quê?</strong></p>",
+                    "<p>Student answers:</p>",
+                    "<p><strong>Trabalho remotamente com design. Estou morando no Brasil há dois meses.</strong></p>",
+                    "<p>Goal: combine work and life in a natural way.</p>",
+                    "<p>These exercises turn vocabulary into speaking confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Course decision: why remote workers need live Portuguese classes",
+                "body": [
+                    "<p>If you are choosing a Brazilian Portuguese course as a remote worker, look for live practice. Recorded lessons can explain vocabulary, but they cannot fully prepare you for fast, unpredictable daily conversations.</p>",
+                    "<p>A good course should include:</p>",
+                    "<ul><li>live speaking practice;</li><li>Brazilian Portuguese for real life;</li><li>pronunciation correction;</li><li>WhatsApp message practice;</li><li>housing and building vocabulary;</li><li>delivery and ride-app situations;</li><li>coworking and work-from-home phrases;</li><li>small talk;</li><li>cultural context;</li><li>flexible schedule;</li><li>level check;</li><li>no long-term loyalty contract.</li></ul>",
+                    "<p>Remote workers need Portuguese that works outside the lesson. You should leave class with phrases you can use the same week.</p>",
+                    "<p>Vedium focuses on live classes and practical communication. The goal is not to make you memorize grammar in isolation, but to help you live, work and connect in Brazil with more confidence.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and discover which Portuguese skills you need first as a remote worker in Brazil.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes remote workers make",
+                "body": [
+                    "<p>Remote workers often delay Portuguese because their job does not require it. But daily life does. This creates avoidable stress.</p>",
+                    "<h3>Mistake 1: waiting until Portuguese becomes urgent</h3>",
+                    "<p>If you wait until the internet breaks or a landlord problem appears, you will need language under pressure. Start earlier.</p>",
+                    "<h3>Mistake 2: learning only formal Portuguese</h3>",
+                    "<p>Daily Brazil requires practical phrases, informal listening and WhatsApp-style communication.</p>",
+                    "<h3>Mistake 3: relying only on translation apps</h3>",
+                    "<p>Translation apps help, but they do not build listening, pronunciation or confidence.</p>",
+                    "<h3>Mistake 4: not practicing phone calls</h3>",
+                    "<p>Drivers, service providers and building staff may call you. Practice short spoken answers.</p>",
+                    "<h3>Mistake 5: avoiding small talk</h3>",
+                    "<p>Small talk helps reduce isolation and build relationships in Brazil. Learn short, natural responses.</p>"
+                ]
+            },
+            {
+                "heading": "30-day plan for remote workers",
+                "body": [
+                    "<p>A 30-day plan will not make you fluent, but it can make daily life easier.</p>",
+                    "<table><thead><tr><th>Week</th><th>Focus</th><th>Goal</th></tr></thead><tbody><tr><td>Week 1</td><td>survival phrases and greetings</td><td>ask for help and respond politely</td></tr><tr><td>Week 2</td><td>housing, delivery and internet</td><td>handle apartment and work-from-home issues</td></tr><tr><td>Week 3</td><td>coworking, transportation and errands</td><td>move around and use services</td></tr><tr><td>Week 4</td><td>small talk and review</td><td>connect with people and gain confidence</td></tr></tbody></table>",
+                    "<p>Daily routine:</p>",
+                    "<ul><li>5 minutes reviewing vocabulary;</li><li>5 minutes saying phrases aloud;</li><li>5 minutes writing a WhatsApp message;</li><li>5 minutes listening to Brazilian Portuguese;</li><li>1 real-life phrase used during the day;</li><li>1 question saved for live class.</li></ul>",
+                    "<p>Consistency matters more than long study sessions.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps remote workers in Brazil",
+                "body": [
+                    "<p>Vedium helps remote workers learn Brazilian Portuguese through live online classes focused on real situations, cultural context and speaking confidence. The classes are useful for people who work online but live offline in Brazil.</p>",
+                    "<p>In Vedium’s live classes, you can practice:</p>",
+                    "<ul><li>explaining remote work;</li><li>talking about internet problems;</li><li>coworking conversations;</li><li>delivery messages;</li><li>apartment and maintenance issues;</li><li>building and doorman communication;</li><li>restaurant and pharmacy phrases;</li><li>transportation and ride apps;</li><li>small talk;</li><li>pronunciation;</li><li>listening to natural Brazilian speech;</li><li>WhatsApp writing.</li></ul>",
+                    "<p>The live format matters because your needs are specific. A remote worker in São Paulo, Rio de Janeiro, Florianópolis, Salvador or Belo Horizonte may face different routines, accents and services. A teacher can adapt the practice to your reality.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because Portuguese becomes useful in your daily life.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist for remote workers in Brazil",
+                "body": [
+                    "<p>Use this checklist to assess your current Portuguese needs:</p>",
+                    "<ul><li>I can say I work remotely.</li><li>I can explain that I work from home.</li><li>I can say the internet is not working.</li><li>I can ask for the Wi-Fi password.</li><li>I can ask for a coworking day pass.</li><li>I can talk to a delivery driver.</li><li>I can ask the doorman about a package.</li><li>I can request apartment maintenance.</li><li>I can order food and pay.</li><li>I can make small talk about work and Brazil.</li></ul>",
+                    "<p>If several items are difficult, those are your first topics for live Portuguese practice.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Portuguese for remote workers living in Brazil is practical, urgent and deeply connected to daily independence. Even if your job is online and international, your life in Brazil happens through Portuguese: housing, deliveries, internet, transportation, coworking, errands, small talk and services.</p>",
+                    "<p>Start with the phrases that protect your routine: <strong>Eu trabalho remotamente</strong>, <strong>A internet não está funcionando</strong>, <strong>Tenho uma reunião agora</strong>, <strong>Pode deixar na portaria</strong>, <strong>Qual é a senha do Wi-Fi?</strong>, <strong>Preciso de manutenção</strong> and <strong>Pode repetir, por favor?</strong> Then practice real conversations in live classes so the language becomes usable under pressure.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, students and remote workers who need the language for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because Portuguese becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start learning Brazilian Portuguese for remote work and daily life in Brazil.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/portuguese-for-ride-apps-taxis-and-public-transportation-in-brazil\">Portuguese for ride apps, taxis and public transportation in Brazil</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Do remote workers need Portuguese in Brazil?",
+                "a": "Yes. Even if your job is in English, daily life in Brazil often requires Portuguese for housing, deliveries, transportation, services, internet issues and social interaction."
+            },
+            {
+                "q": "What Portuguese phrases should remote workers learn first?",
+                "a": "Start with phrases like “Eu trabalho remotamente”, “A internet não está funcionando”, “Tenho uma reunião agora” and “Pode deixar na portaria.”"
+            },
+            {
+                "q": "Is Brazilian Portuguese useful for coworking spaces?",
+                "a": "Yes. You may need Portuguese to ask about day passes, monthly plans, Wi-Fi, meeting rooms, power outlets, printing and opening hours."
+            },
+            {
+                "q": "Can I learn Portuguese while working full-time remotely?",
+                "a": "Yes. A practical routine with short daily practice and live classes can help you learn phrases you can use immediately in Brazil."
+            },
+            {
+                "q": "Does Vedium teach Portuguese for remote workers in Brazil?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, including remote-work vocabulary, housing, delivery, coworking, transportation and small-talk practice."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "portuguese-for-ride-apps-taxis-and-public-transportation-in-brazil": {
+        "title": "Portuguese for ride apps, taxis and public transportation in Brazil",
+        "meta_description": "Learn Portuguese for ride apps, taxis and public transportation in Brazil with practical phrases and live-class practice.",
+        "h1": "Portuguese for ride apps, taxis and public transportation in Brazil",
+        "date": "2025-04-01",
+        "date_display": "April 1, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Estudo do alfabeto ioruba na Vedium",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "Portuguese for ride apps, taxis and public transportation in Brazil is essential for foreigners who want to move around the country with more confidence. You need practical phrases to confirm your destination, ask where to wait, explain an address, talk to a driver, understand transportation signs, buy a ticket, ask about routes, deal with delays and solve small problems without depending completely on English.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For expats, international students and professionals in Brazil, transportation is one of the first areas where Brazilian Portuguese becomes part of daily life. Even if you use a ride app, you may still need to answer a driver’s call, explain where you are, say the building entrance is on another street, ask the driver to wait a minute or confirm that you are at the right pickup point. In taxis, you may need to give directions. On buses, subways and trains, you may need to understand stops, stations, ticket cards and route changes.</p>",
+                    "<p>The challenge is that transportation conversations are usually fast and practical. People do not always speak slowly. Drivers may use local words, abbreviations or informal expressions. Public transportation announcements may be short. A bus sign may not show the full route. A ride-app driver may send a WhatsApp message like <strong>“Já cheguei”</strong> or <strong>“Onde você está?”</strong>. If you are not ready for these phrases, a simple trip can become stressful.</p>",
+                    "<p>A strong Brazilian Portuguese course for foreigners should prepare you for these real situations. It should not only teach grammar in isolation. It should help you practice the exact language you need for life in Brazil: addresses, directions, ride apps, taxis, buses, subway, trains, payment, delays and safety-related phrases. In this guide, you will learn essential vocabulary, real-life phrases, common scenarios and live-class practice ideas so you can move around Brazil with more confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Direct answer: what Portuguese do you need for transportation in Brazil?",
+                "body": [
+                    "<p>You need Portuguese for addresses, pickup points, directions, payment, routes, stops, delays and clarification. The most useful phrases include <strong>“Este é o endereço”</strong>, <strong>“Estou na portaria”</strong>, <strong>“Pode me esperar um minuto?”</strong>, <strong>“Quanto custa?”</strong>, <strong>“Onde fica o ponto de ônibus?”</strong>, <strong>“Qual é a estação mais próxima?”</strong> and <strong>“Pode repetir, por favor?”</strong></p>",
+                    "<p>Transportation Portuguese helps you:</p>",
+                    "<ul><li>confirm a pickup location;</li><li>talk to ride-app drivers;</li><li>give your address clearly;</li><li>ask the driver to wait;</li><li>explain building entrances;</li><li>ask where a bus stop is;</li><li>buy or recharge a transport card;</li><li>ask which bus or subway line to take;</li><li>understand delays and changes;</li><li>ask someone to repeat;</li><li>explain that you are still learning Portuguese;</li><li>feel less dependent on translation apps.</li></ul>",
+                    "<p>The goal is not to speak perfect Portuguese. The goal is to solve real transportation situations clearly and politely.</p>",
+                    "<p>If you want to practice Brazilian Portuguese for real daily life in Brazil, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: using ride apps in Brazil",
+                "body": [
+                    "<p>Ride apps are common in Brazil, but using an app does not eliminate the need for Portuguese. Drivers may call you, send messages, ask where you are or request a clearer pickup point. You need short, practical phrases that can be spoken or written quickly.</p>",
+                    "<p>Common ride-app phrases:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Estou aqui.</td><td>I am here.</td></tr><tr><td>Estou na portaria.</td><td>I am at the building entrance / doorman area.</td></tr><tr><td>Estou em frente ao prédio.</td><td>I am in front of the building.</td></tr><tr><td>Estou na esquina.</td><td>I am on the corner.</td></tr><tr><td>Pode me esperar um minuto?</td><td>Can you wait one minute?</td></tr><tr><td>Já estou descendo.</td><td>I am coming downstairs now.</td></tr><tr><td>O endereço está correto.</td><td>The address is correct.</td></tr><tr><td>A entrada é pela outra rua.</td><td>The entrance is on the other street.</td></tr><tr><td>Pode parar aqui.</td><td>You can stop here.</td></tr><tr><td>Obrigado / obrigada.</td><td>Thank you.</td></tr></tbody></table>",
+                    "<p>A common WhatsApp or app-message exchange:</p>",
+                    "<p><strong>Driver:</strong> Onde você está?<br><strong>You:</strong> Estou na portaria. Já estou descendo.</p>",
+                    "<p>Translation:</p>",
+                    "<p>Driver: Where are you?<br>You: I am at the building entrance. I am coming downstairs now.</p>",
+                    "<p>Another useful message:</p>",
+                    "<p><strong>A entrada é pela Rua das Flores, não pela Avenida Brasil.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>The entrance is on Rua das Flores, not on Avenida Brasil.</p>",
+                    "<p>This is very practical in Brazil, where buildings may have entrances on side streets or GPS may point to the wrong location.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for ride apps and taxis",
+                "body": [
+                    "<p>Essential ride-app and taxi vocabulary should focus on pickup, destination, route, waiting and payment. These are the words you are most likely to hear or use.</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>motorista</td><td>driver</td></tr><tr><td>carro</td><td>car</td></tr><tr><td>corrida</td><td>ride</td></tr><tr><td>destino</td><td>destination</td></tr><tr><td>endereço</td><td>address</td></tr><tr><td>entrada</td><td>entrance</td></tr><tr><td>saída</td><td>exit</td></tr><tr><td>portaria</td><td>building entrance / doorman area</td></tr><tr><td>prédio</td><td>building</td></tr><tr><td>rua</td><td>street</td></tr><tr><td>avenida</td><td>avenue</td></tr><tr><td>esquina</td><td>corner</td></tr><tr><td>em frente</td><td>in front</td></tr><tr><td>perto</td><td>near</td></tr><tr><td>longe</td><td>far</td></tr><tr><td>trânsito</td><td>traffic</td></tr><tr><td>caminho</td><td>way / route</td></tr><tr><td>pagamento</td><td>payment</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Este é o endereço.</strong> — This is the address.</li><li><strong>O destino está correto.</strong> — The destination is correct.</li><li><strong>Pode seguir pelo aplicativo.</strong> — You can follow the app.</li><li><strong>Tem muito trânsito?</strong> — Is there a lot of traffic?</li><li><strong>Pode ir por outro caminho?</strong> — Can you take another route?</li><li><strong>Pode parar aqui, por favor?</strong> — Can you stop here, please?</li><li><strong>Vou pagar pelo aplicativo.</strong> — I will pay through the app.</li><li><strong>Aceita cartão?</strong> — Do you accept card?</li><li><strong>Quanto ficou?</strong> — How much was it?</li></ul>",
+                    "<p>The phrase <strong>“Pode parar aqui, por favor?”</strong> is one of the most useful phrases for taxi or ride-app situations.</p>"
+                ]
+            },
+            {
+                "heading": "How to give directions in Portuguese",
+                "body": [
+                    "<p>Giving directions in Portuguese can feel difficult because you need location words, verbs and confidence. Start with simple phrases and short instructions.</p>",
+                    "<p>Direction vocabulary:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>direita</td><td>right</td></tr><tr><td>esquerda</td><td>left</td></tr><tr><td>reto</td><td>straight</td></tr><tr><td>aqui</td><td>here</td></tr><tr><td>ali</td><td>there</td></tr><tr><td>lá</td><td>over there</td></tr><tr><td>perto</td><td>near</td></tr><tr><td>longe</td><td>far</td></tr><tr><td>antes de</td><td>before</td></tr><tr><td>depois de</td><td>after</td></tr><tr><td>no final da rua</td><td>at the end of the street</td></tr><tr><td>na esquina</td><td>on the corner</td></tr><tr><td>em frente a</td><td>in front of</td></tr><tr><td>ao lado de</td><td>next to</td></tr></tbody></table>",
+                    "<p>Useful direction phrases:</p>",
+                    "<ul><li><strong>Vire à direita.</strong> — Turn right.</li><li><strong>Vire à esquerda.</strong> — Turn left.</li><li><strong>Siga reto.</strong> — Go straight.</li><li><strong>Pode parar aqui.</strong> — You can stop here.</li><li><strong>É ali na frente.</strong> — It is there ahead.</li><li><strong>É depois do mercado.</strong> — It is after the supermarket.</li><li><strong>É antes da farmácia.</strong> — It is before the pharmacy.</li><li><strong>Fica ao lado do banco.</strong> — It is next to the bank.</li><li><strong>Fica em frente ao prédio azul.</strong> — It is in front of the blue building.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Pode seguir reto e virar à direita depois da farmácia. O prédio fica em frente ao mercado.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>You can go straight and turn right after the pharmacy. The building is in front of the supermarket.</p>",
+                    "<p>You do not need long sentences. Short, clear instructions work better.</p>"
+                ]
+            },
+            {
+                "heading": "Public transportation in Brazil: key words to know",
+                "body": [
+                    "<p>Public transportation vocabulary changes by city, but many words are useful across Brazil. You may use buses, subway, trains, light rail, vans or city-specific systems.</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>transporte público</td><td>public transportation</td></tr><tr><td>ônibus</td><td>bus</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>trem</td><td>train</td></tr><tr><td>estação</td><td>station</td></tr><tr><td>ponto de ônibus</td><td>bus stop</td></tr><tr><td>linha</td><td>line</td></tr><tr><td>integração</td><td>transfer / integrated fare</td></tr><tr><td>passagem</td><td>fare / ticket</td></tr><tr><td>cartão de transporte</td><td>transport card</td></tr><tr><td>bilhete</td><td>ticket</td></tr><tr><td>catraca</td><td>turnstile</td></tr><tr><td>plataforma</td><td>platform</td></tr><tr><td>sentido</td><td>direction</td></tr><tr><td>terminal</td><td>terminal</td></tr><tr><td>horário</td><td>schedule / time</td></tr><tr><td>atrasado</td><td>delayed</td></tr><tr><td>lotado</td><td>crowded</td></tr><tr><td>desembarque</td><td>getting off / disembarkation</td></tr><tr><td>embarque</td><td>boarding</td></tr></tbody></table>",
+                    "<p>Useful questions:</p>",
+                    "<ul><li><strong>Onde fica o ponto de ônibus?</strong> — Where is the bus stop?</li><li><strong>Qual ônibus vai para o centro?</strong> — Which bus goes downtown?</li><li><strong>Esse ônibus passa na universidade?</strong> — Does this bus go by the university?</li><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li><li><strong>Preciso trocar de linha?</strong> — Do I need to change lines?</li><li><strong>Onde eu compro o cartão de transporte?</strong> — Where do I buy the transport card?</li><li><strong>Quanto custa a passagem?</strong> — How much is the fare?</li><li><strong>Esse trem vai para...?</strong> — Does this train go to...?</li></ul>",
+                    "<p>For foreigners, <strong>sentido</strong> is especially important. It means the direction of a line. In subway systems, you may need to know which <strong>sentido</strong> to take.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: taking the bus",
+                "body": [
+                    "<p>Taking the bus in Brazil can be confusing at first because routes, stops and payment systems vary by city. You may need to ask someone which bus to take or confirm if the bus passes near your destination.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Esse ônibus vai para o centro?</strong> — Does this bus go downtown?</li><li><strong>Esse ônibus passa perto da universidade?</strong> — Does this bus pass near the university?</li><li><strong>Você sabe qual ônibus eu devo pegar?</strong> — Do you know which bus I should take?</li><li><strong>Onde eu desço?</strong> — Where do I get off?</li><li><strong>Pode me avisar quando chegar?</strong> — Can you let me know when we arrive?</li><li><strong>A passagem é quanto?</strong> — How much is the fare?</li><li><strong>Aceita dinheiro?</strong> — Do you accept cash?</li><li><strong>Preciso de cartão?</strong> — Do I need a card?</li></ul>",
+                    "<p>A useful exchange:</p>",
+                    "<p><strong>You:</strong> Esse ônibus passa perto da Avenida Paulista?<br><strong>Person:</strong> Passa sim. Você pode descer no próximo ponto depois do metrô.<br><strong>You:</strong> Obrigado / obrigada.</p>",
+                    "<p>Translation:</p>",
+                    "<p>You: Does this bus pass near Avenida Paulista?<br>Person: Yes, it does. You can get off at the next stop after the subway.<br>You: Thank you.</p>",
+                    "<p>The phrase <strong>“Onde eu desço?”</strong> is very practical and worth memorizing.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: using the subway or train",
+                "body": [
+                    "<p>Subways and trains may be easier than buses in some cities, but you still need Portuguese for stations, platforms, directions and line changes.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li><li><strong>Preciso trocar de linha?</strong> — Do I need to change lines?</li><li><strong>Qual é o sentido?</strong> — What is the direction?</li><li><strong>Onde fica a plataforma?</strong> — Where is the platform?</li><li><strong>Esse trem vai para o centro?</strong> — Does this train go downtown?</li><li><strong>Quantas estações faltam?</strong> — How many stations are left?</li><li><strong>A estação está fechada?</strong> — Is the station closed?</li><li><strong>Tem elevador?</strong> — Is there an elevator?</li><li><strong>Onde é a saída?</strong> — Where is the exit?</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Preciso ir para a estação Paulista. Qual linha eu pego?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I need to go to Paulista station. Which line do I take?</p>",
+                    "<p>Another useful phrase:</p>",
+                    "<p><strong>Preciso trocar de linha ou é direto?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Do I need to change lines or is it direct?</p>",
+                    "<p>These phrases help you avoid taking the wrong direction.</p>"
+                ]
+            },
+            {
+                "heading": "How to ask for clarification when you do not understand",
+                "body": [
+                    "<p>Clarification phrases are essential for transportation because people may answer quickly or use unfamiliar local terms.</p>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong> — Can you repeat, please?</li><li><strong>Pode falar mais devagar?</strong> — Can you speak more slowly?</li><li><strong>Não entendi.</strong> — I did not understand.</li><li><strong>Como assim?</strong> — What do you mean?</li><li><strong>Você pode explicar de novo?</strong> — Can you explain again?</li><li><strong>Pode mostrar no mapa?</strong> — Can you show me on the map?</li><li><strong>É perto ou longe?</strong> — Is it near or far?</li><li><strong>Eu ainda estou aprendendo português.</strong> — I am still learning Portuguese.</li></ul>",
+                    "<p>A strong phrase for real life:</p>",
+                    "<p><strong>Desculpa, eu ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Sorry, I am still learning Portuguese. Can you speak more slowly?</p>",
+                    "<p>This phrase helps you stay in the conversation instead of pretending to understand.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: use transportation in Brazil with practical Portuguese",
+                "body": [
+                    "<p>To use transportation in Brazil with practical Portuguese, prepare phrases for each stage of the trip: planning, pickup, route, payment and problem-solving.</p>",
+                    "<h3>Step 1: prepare your address</h3>",
+                    "<p>Know how to say:</p>",
+                    "<ul><li>street name;</li><li>building number;</li><li>apartment number;</li><li>neighborhood;</li><li>reference point.</li></ul>",
+                    "<p>Useful phrase:</p>",
+                    "<p><strong>Meu endereço é Rua das Flores, número 120, apartamento 802, no bairro Pinheiros.</strong></p>",
+                    "<h3>Step 2: prepare pickup phrases</h3>",
+                    "<p>For ride apps:</p>",
+                    "<ul><li><strong>Estou na portaria.</strong></li><li><strong>Já estou descendo.</strong></li><li><strong>A entrada é pela outra rua.</strong></li><li><strong>Pode me esperar um minuto?</strong></li></ul>",
+                    "<h3>Step 3: prepare direction phrases</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Vire à direita.</strong></li><li><strong>Vire à esquerda.</strong></li><li><strong>Siga reto.</strong></li><li><strong>Pode parar aqui.</strong></li></ul>",
+                    "<h3>Step 4: prepare public transportation questions</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Qual ônibus eu pego?</strong></li><li><strong>Onde fica a estação?</strong></li><li><strong>Preciso trocar de linha?</strong></li><li><strong>Quanto custa a passagem?</strong></li></ul>",
+                    "<h3>Step 5: prepare clarification phrases</h3>",
+                    "<p>Use:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Pode mostrar no mapa?</strong></li></ul>",
+                    "<h3>Step 6: practice in a live class</h3>",
+                    "<p>Simulate a driver call, a bus-stop conversation and a subway question. A teacher can correct your pronunciation and make the situation realistic.</p>",
+                    "<h3>Step 7: reuse the same phrases in real life</h3>",
+                    "<p>After class, use the phrases in short messages or actual trips. Repetition turns phrases into confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: transportation role-plays",
+                "body": [
+                    "<p>Live-class practice is one of the best ways to learn transportation Portuguese because transportation requires fast, practical communication.</p>",
+                    "<h3>Exercise 1: ride-app driver call</h3>",
+                    "<p>Teacher plays the driver:</p>",
+                    "<p><strong>Teacher:</strong> Oi, onde você está?<br><strong>Student:</strong> Estou na portaria. Já estou descendo.</p>",
+                    "<p>Goal: answer quickly and clearly.</p>",
+                    "<h3>Exercise 2: wrong pickup point</h3>",
+                    "<p>Teacher says:</p>",
+                    "<p><strong>Teacher:</strong> Estou na Rua das Flores, mas não estou vendo você.<br><strong>Student:</strong> A entrada é pela outra rua. Pode me esperar um minuto?</p>",
+                    "<p>Goal: explain location problems.</p>",
+                    "<h3>Exercise 3: taxi directions</h3>",
+                    "<p>Student practices:</p>",
+                    "<p><strong>Pode seguir reto e virar à direita depois do mercado. Pode parar em frente ao prédio azul.</strong></p>",
+                    "<p>Goal: give directions.</p>",
+                    "<h3>Exercise 4: bus question</h3>",
+                    "<p>Student asks:</p>",
+                    "<p><strong>Esse ônibus passa perto da universidade? Onde eu desço?</strong></p>",
+                    "<p>Goal: use public transportation phrases.</p>",
+                    "<h3>Exercise 5: subway line change</h3>",
+                    "<p>Teacher gives a route. Student asks:</p>",
+                    "<p><strong>Preciso trocar de linha ou é direto?</strong></p>",
+                    "<p>Goal: understand subway and train directions.</p>",
+                    "<p>These role-plays turn vocabulary into real communication.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes foreigners make with transportation Portuguese",
+                "body": [
+                    "<p>Foreigners often make predictable mistakes with transportation in Brazil. These mistakes are normal, but they can create confusion if not corrected.</p>",
+                    "<h3>Mistake 1: not knowing how to say the pickup point</h3>",
+                    "<p>If you only know the address, but not <strong>portaria</strong>, <strong>esquina</strong> or <strong>em frente</strong>, it can be hard to find the driver.</p>",
+                    "<h3>Mistake 2: relying completely on the app</h3>",
+                    "<p>Apps help, but drivers may still call or message. You need basic Portuguese.</p>",
+                    "<h3>Mistake 3: not asking for repetition</h3>",
+                    "<p>If you do not understand, ask. It is better to say <strong>“Pode repetir, por favor?”</strong> than to go the wrong way.</p>",
+                    "<h3>Mistake 4: not learning direction words</h3>",
+                    "<p>Words like <strong>direita</strong>, <strong>esquerda</strong>, <strong>reto</strong>, <strong>perto</strong> and <strong>longe</strong> are essential.</p>",
+                    "<h3>Mistake 5: ignoring local transportation vocabulary</h3>",
+                    "<p>Each city has its own systems, but words like <strong>linha</strong>, <strong>estação</strong>, <strong>ponto</strong>, <strong>sentido</strong> and <strong>integração</strong> are widely useful.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps foreigners with transportation Portuguese",
+                "body": [
+                    "<p>Vedium helps foreigners learn transportation Portuguese through live Brazilian Portuguese classes focused on real-life situations. Instead of memorizing isolated words, you practice the phrases you will actually use in Brazil.</p>",
+                    "<p>In Vedium’s live classes, you can practice:</p>",
+                    "<ul><li>ride-app messages;</li><li>driver calls;</li><li>giving your address;</li><li>asking for directions;</li><li>taxi conversations;</li><li>bus-stop questions;</li><li>subway and train vocabulary;</li><li>transport card questions;</li><li>pronunciation of street names;</li><li>WhatsApp messages;</li><li>safety-related phrases;</li><li>listening to fast responses.</li></ul>",
+                    "<p>The live format matters because a teacher can simulate pressure. If a driver calls and speaks quickly, you need to respond. If you do not understand the route, you need to ask for clarification. Live practice helps you build those reflexes.</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the language becomes useful in daily life in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing Brazilian Portuguese for transportation, housing, work and real life.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist before moving around Brazil",
+                "body": [
+                    "<p>Use this checklist before using transportation in Brazil:</p>",
+                    "<ul><li>I can say my address.</li><li>I can say I am at the building entrance.</li><li>I can ask a driver to wait one minute.</li><li>I can say the entrance is on another street.</li><li>I can ask where the bus stop is.</li><li>I can ask which bus to take.</li><li>I can ask where to get off.</li><li>I can ask which subway line to take.</li><li>I can ask someone to repeat.</li><li>I can say I am still learning Portuguese.</li></ul>",
+                    "<p>If several items are difficult, these should be your first transportation topics in a live Portuguese class.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Portuguese for ride apps, taxis and public transportation in Brazil is a practical skill that helps foreigners move around with more confidence. You need more than an app. You need the language to confirm pickup points, explain addresses, ask for directions, understand routes, talk to drivers and handle small problems.</p>",
+                    "<p>Start with the phrases you will use most: <strong>Estou na portaria</strong>, <strong>Já estou descendo</strong>, <strong>Pode me esperar um minuto?</strong>, <strong>Onde fica o ponto de ônibus?</strong>, <strong>Qual é a estação mais próxima?</strong>, <strong>Preciso trocar de linha?</strong> and <strong>Pode repetir, por favor?</strong> These phrases make daily life easier immediately.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, students and professionals who need the language for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because Portuguese becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start learning Portuguese for transportation in Brazil with live support.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/portuguese-for-work-meetings-in-brazil-first-phrases-to-master\">Portuguese for work meetings in Brazil: first phrases to master</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "What Portuguese phrases are useful for ride apps in Brazil?",
+                "a": "Useful phrases include “Estou na portaria”, “Já estou descendo”, “Pode me esperar um minuto?”, “A entrada é pela outra rua” and “Pode parar aqui.”"
+            },
+            {
+                "q": "How do I ask where the bus stop is in Portuguese?",
+                "a": "Say “Onde fica o ponto de ônibus?” If you need to ask which bus to take, say “Qual ônibus eu devo pegar?”"
+            },
+            {
+                "q": "How do I ask a taxi driver to stop in Portuguese?",
+                "a": "Say “Pode parar aqui, por favor?” This means “Can you stop here, please?”"
+            },
+            {
+                "q": "What should I say if I do not understand transportation directions?",
+                "a": "Say “Pode repetir, por favor?”, “Pode falar mais devagar?” or “Pode mostrar no mapa?” These phrases help you clarify directions."
+            },
+            {
+                "q": "Does Vedium teach practical Portuguese for transportation in Brazil?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, including ride-app messages, taxi conversations, public transportation vocabulary and real-life practice."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "portuguese-for-work-meetings-in-brazil-first-phrases-to-master": {
+        "title": "Portuguese for work meetings in Brazil: first phrases to master",
+        "meta_description": "Learn practical Portuguese phrases for work meetings in Brazil with examples, vocabulary and live-class practice.",
+        "h1": "Portuguese for work meetings in Brazil: first phrases to master",
+        "date": "2025-03-04",
+        "date_display": "March 4, 2025",
+        "hero_image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Palestrante conduzindo apresentacao para uma turma em sala de treinamento",
+        "tag": "Brazilian Portuguese",
+        "lang": "en",
+        "category": "brazilian-portuguese",
+        "lead": "Portuguese for work meetings in Brazil starts with practical phrases that help you greet people, introduce yourself, ask for clarification, confirm deadlines, share updates, express agreement, disagree politely and close the conversation. You do not need perfect Portuguese to participate in your first meetings, but you do need a small set of phrases that keep you included in the conversation.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>For foreigners living, working or studying in Brazil, work meetings can be one of the most intimidating language situations. The conversation may move quickly, people may switch between formal and informal language, colleagues may use expressions that do not appear in textbooks, and important decisions may be discussed through a mix of spoken Portuguese, slides, chat messages and follow-up on WhatsApp or email.</p>",
+                    "<p>The good news is that meetings are predictable. Most meetings follow a pattern: greeting, agenda, updates, questions, decisions, responsibilities, deadlines and next steps. When you learn the Portuguese phrases for these parts, you gain much more confidence. Instead of trying to understand every word, you know what to listen for and how to respond.</p>",
+                    "<p>A strong Brazilian Portuguese course for foreigners should prepare you for these real work situations. It should not only teach grammar in isolation. It should help you speak in meetings, understand common questions, respond with polite phrases and practice real interactions through live classes. This guide gives you the first phrases to master, essential vocabulary and live-class practice ideas so you can participate more confidently in Brazilian work meetings.</p>"
+                ]
+            },
+            {
+                "heading": "Why work-meeting Portuguese matters for expats in Brazil",
+                "body": [
+                    "<p>Work-meeting Portuguese matters because professional credibility often depends on your ability to participate, clarify and respond. Even when your colleagues know you are still learning Portuguese, being able to say a few key phrases can change how included you feel in the workplace.</p>",
+                    "<p>You will use Portuguese in meetings to:</p>",
+                    "<ul><li>greet colleagues;</li><li>introduce yourself;</li><li>explain your role;</li><li>share a short update;</li><li>ask someone to repeat;</li><li>ask someone to speak more slowly;</li><li>confirm a deadline;</li><li>clarify who is responsible;</li><li>express agreement;</li><li>disagree politely;</li><li>ask about next steps;</li><li>follow up after the meeting;</li><li>send a short WhatsApp or email message.</li></ul>",
+                    "<p>In Brazil, work communication may be warm and relational, especially compared with more direct business cultures. A meeting may start with <strong>“Oi, tudo bem?”</strong>, <strong>“Bom dia, pessoal”</strong>, or a few informal comments before the agenda begins. Learning these social openings is part of learning Brazilian Portuguese for work.</p>",
+                    "<p>If you want Portuguese for real professional situations in Brazil, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start practicing with live classes.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: joining your first meeting in Brazil",
+                "body": [
+                    "<p>Your first work meeting in Portuguese does not require a long speech. It requires safe phrases that help you enter the conversation. Start with greetings, a short introduction and a phrase to explain your language level if needed.</p>",
+                    "<p>Useful greetings:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Bom dia.</td><td>Good morning.</td></tr><tr><td>Boa tarde.</td><td>Good afternoon.</td></tr><tr><td>Oi, tudo bem?</td><td>Hi, how are you?</td></tr><tr><td>Tudo bem com vocês?</td><td>How are you all?</td></tr><tr><td>Prazer em conhecer vocês.</td><td>Nice to meet you all.</td></tr><tr><td>Obrigado pelo convite.</td><td>Thank you for the invitation.</td></tr></tbody></table>",
+                    "<p>Short introduction:</p>",
+                    "<p><strong>Olá, bom dia. Meu nome é Anna. Eu trabalho na área de marketing e estou aprendendo português.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, good morning. My name is Anna. I work in marketing and I am learning Portuguese.</p>",
+                    "<p>If your Portuguese is still basic, say:</p>",
+                    "<p><strong>Eu ainda estou aprendendo português, então talvez eu peça para repetir algumas coisas.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am still learning Portuguese, so I may ask you to repeat some things.</p>",
+                    "<p>This phrase is powerful because it sets expectations politely. You are not apologizing for existing in the meeting. You are simply helping others communicate with you.</p>"
+                ]
+            },
+            {
+                "heading": "Essential vocabulary for work meetings in Brazil",
+                "body": [
+                    "<p>Essential meeting vocabulary should be learned in complete phrases, not only as isolated words. Recognition is useful, but your goal is to speak and respond.</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>reunião</td><td>meeting</td></tr><tr><td>pauta</td><td>agenda</td></tr><tr><td>assunto</td><td>topic</td></tr><tr><td>objetivo</td><td>objective</td></tr><tr><td>equipe</td><td>team</td></tr><tr><td>projeto</td><td>project</td></tr><tr><td>prazo</td><td>deadline</td></tr><tr><td>entrega</td><td>deliverable / delivery</td></tr><tr><td>responsável</td><td>person responsible</td></tr><tr><td>atualização</td><td>update</td></tr><tr><td>decisão</td><td>decision</td></tr><tr><td>próximos passos</td><td>next steps</td></tr><tr><td>dúvida</td><td>question</td></tr><tr><td>ponto</td><td>point / issue</td></tr><tr><td>alinhamento</td><td>alignment</td></tr><tr><td>cliente</td><td>client</td></tr><tr><td>relatório</td><td>report</td></tr><tr><td>apresentação</td><td>presentation</td></tr></tbody></table>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Qual é a pauta da reunião?</strong> — What is the meeting agenda?</li><li><strong>Qual é o objetivo da reunião?</strong> — What is the objective of the meeting?</li><li><strong>Quem é o responsável por isso?</strong> — Who is responsible for this?</li><li><strong>Qual é o prazo?</strong> — What is the deadline?</li><li><strong>Quais são os próximos passos?</strong> — What are the next steps?</li><li><strong>Tenho uma dúvida.</strong> — I have a question.</li><li><strong>Posso fazer uma pergunta?</strong> — Can I ask a question?</li><li><strong>Só para confirmar...</strong> — Just to confirm...</li><li><strong>Vou enviar o relatório.</strong> — I will send the report.</li><li><strong>Podemos alinhar isso depois?</strong> — Can we align on this later?</li></ul>",
+                    "<p>These phrases are practical because they appear in real meetings across industries.</p>"
+                ]
+            },
+            {
+                "heading": "First phrases to master before a Brazilian work meeting",
+                "body": [
+                    "<p>Before your next meeting, master a small group of functional phrases. These phrases help you participate even if you do not understand everything.</p>",
+                    "<h3>1. Asking for repetition</h3>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong> — Can you repeat, please?</li><li><strong>Desculpa, não entendi.</strong> — Sorry, I did not understand.</li><li><strong>Você pode falar mais devagar?</strong> — Can you speak more slowly?</li><li><strong>Você pode explicar de novo?</strong> — Can you explain again?</li></ul>",
+                    "<h3>2. Asking for clarification</h3>",
+                    "<ul><li><strong>O que isso significa?</strong> — What does that mean?</li><li><strong>Você pode dar um exemplo?</strong> — Can you give an example?</li><li><strong>Você pode explicar esse ponto?</strong> — Can you explain this point?</li><li><strong>Só para confirmar, você quer dizer que...?</strong> — Just to confirm, do you mean that...?</li></ul>",
+                    "<h3>3. Sharing your opinion</h3>",
+                    "<ul><li><strong>Na minha opinião...</strong> — In my opinion...</li><li><strong>Eu acho que...</strong> — I think that...</li><li><strong>Para mim, faz sentido.</strong> — To me, it makes sense.</li><li><strong>Concordo com esse ponto.</strong> — I agree with this point.</li></ul>",
+                    "<h3>4. Agreeing and disagreeing politely</h3>",
+                    "<ul><li><strong>Concordo.</strong> — I agree.</li><li><strong>Sim, faz sentido.</strong> — Yes, that makes sense.</li><li><strong>Entendo seu ponto, mas...</strong> — I understand your point, but...</li><li><strong>Talvez possamos considerar outra opção.</strong> — Maybe we can consider another option.</li></ul>",
+                    "<h3>5. Confirming next steps</h3>",
+                    "<ul><li><strong>Qual é o próximo passo?</strong> — What is the next step?</li><li><strong>Quem vai cuidar disso?</strong> — Who will take care of this?</li><li><strong>Qual é o prazo final?</strong> — What is the final deadline?</li><li><strong>Eu posso enviar isso até amanhã.</strong> — I can send this by tomorrow.</li></ul>",
+                    "<p>These phrases allow you to stay active in the meeting instead of becoming silent.</p>"
+                ]
+            },
+            {
+                "heading": "How to sound polite and natural in Brazilian work meetings",
+                "body": [
+                    "<p>To sound polite and natural in Brazil, use warm openings, soft clarification phrases and respectful transitions. Brazilian workplace communication is often professional but relational. Directness is possible, but it is usually softened by tone and wording.</p>",
+                    "<p>Compare:</p>",
+                    "<p>Less natural for many Brazilian contexts:</p>",
+                    "<p><strong>Não entendi. Repete.</strong></p>",
+                    "<p>More natural:</p>",
+                    "<p><strong>Desculpa, não entendi. Pode repetir, por favor?</strong></p>",
+                    "<p>Less natural:</p>",
+                    "<p><strong>Isso está errado.</strong></p>",
+                    "<p>More natural:</p>",
+                    "<p><strong>Entendo seu ponto, mas talvez possamos revisar essa parte.</strong></p>",
+                    "<p>Less natural:</p>",
+                    "<p><strong>Quero o relatório hoje.</strong></p>",
+                    "<p>More natural:</p>",
+                    "<p><strong>Você consegue me enviar o relatório hoje, por favor?</strong></p>",
+                    "<p>Polite language does not mean weak communication. It means clear communication with social awareness.</p>",
+                    "<p>Useful softeners:</p>",
+                    "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>por favor</td><td>please</td></tr><tr><td>desculpa</td><td>sorry / excuse me</td></tr><tr><td>talvez</td><td>maybe</td></tr><tr><td>acho que</td><td>I think that</td></tr><tr><td>podemos</td><td>we can / can we</td></tr><tr><td>você consegue...?</td><td>are you able to...?</td></tr><tr><td>só para confirmar</td><td>just to confirm</td></tr><tr><td>se possível</td><td>if possible</td></tr></tbody></table>",
+                    "<p>These expressions help you sound more natural in professional Brazilian Portuguese.</p>"
+                ]
+            },
+            {
+                "heading": "HowTo: prepare for a work meeting in Portuguese",
+                "body": [
+                    "<p>The best way to prepare for a work meeting in Portuguese is to anticipate the meeting structure and prepare phrases for each part. Do not try to memorize a long script. Prepare building blocks.</p>",
+                    "<h3>Step 1: Identify the type of meeting</h3>",
+                    "<p>Ask yourself what kind of meeting it is:</p>",
+                    "<ul><li>project update;</li><li>client meeting;</li><li>team check-in;</li><li>interview;</li><li>planning meeting;</li><li>performance review;</li><li>academic meeting;</li><li>onboarding session;</li><li>problem-solving discussion.</li></ul>",
+                    "<p>The type of meeting determines the vocabulary you need.</p>",
+                    "<h3>Step 2: Prepare your introduction</h3>",
+                    "<p>Write a short version of who you are and your role.</p>",
+                    "<p>Example:</p>",
+                    "<p><strong>Olá, meu nome é James. Eu trabalho na equipe de produto e vou acompanhar esse projeto.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, my name is James. I work on the product team and I will follow this project.</p>",
+                    "<h3>Step 3: Prepare three update phrases</h3>",
+                    "<p>Use simple structures:</p>",
+                    "<ul><li><strong>Eu estou trabalhando em...</strong> — I am working on...</li><li><strong>Já terminamos...</strong> — We have already finished...</li><li><strong>Ainda precisamos revisar...</strong> — We still need to review...</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Eu estou trabalhando no relatório. Já terminamos a primeira parte, mas ainda precisamos revisar os dados.</strong></p>",
+                    "<h3>Step 4: Prepare clarification phrases</h3>",
+                    "<p>Keep these ready:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Você pode explicar de novo?</strong></li><li><strong>Só para confirmar...</strong></li><li><strong>Qual é o prazo?</strong></li></ul>",
+                    "<h3>Step 5: Prepare your closing phrase</h3>",
+                    "<p>At the end, confirm next steps:</p>",
+                    "<p><strong>Só para confirmar, eu vou enviar o relatório até sexta-feira.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Just to confirm, I will send the report by Friday.</p>",
+                    "<h3>Step 6: Practice aloud before the meeting</h3>",
+                    "<p>Reading silently is not enough. Say the phrases out loud. In a live class, practice with a teacher who can correct your pronunciation and make the situation more realistic.</p>",
+                    "<p>This preparation helps you enter the meeting with confidence instead of improvising everything under pressure.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: giving a short update",
+                "body": [
+                    "<p>Giving a short update is one of the most common meeting tasks. You do not need complex Portuguese. You need clear, organized phrases.</p>",
+                    "<p>Useful structure:</p>",
+                    "<p>1. What you are working on.<br>2. What is done.<br>3. What is still pending.<br>4. What support you need.</p>",
+                    "<p>Example:</p>",
+                    "<p><strong>Eu estou trabalhando na apresentação para o cliente. Já terminei a primeira versão. Ainda preciso revisar os dados com a equipe. Preciso de confirmação até amanhã.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I am working on the presentation for the client. I have already finished the first version. I still need to review the data with the team. I need confirmation by tomorrow.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Eu estou trabalhando em...</strong> — I am working on...</li><li><strong>Já terminei...</strong> — I have already finished...</li><li><strong>Ainda estou revisando...</strong> — I am still reviewing...</li><li><strong>Preciso de ajuda com...</strong> — I need help with...</li><li><strong>O prazo é...</strong> — The deadline is...</li><li><strong>Vou enviar até...</strong> — I will send it by...</li></ul>",
+                    "<p>This is practical Portuguese for work, not abstract grammar.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: asking about deadlines and responsibilities",
+                "body": [
+                    "<p>Deadlines and responsibilities are essential in meetings. If you miss this part, you may leave without knowing what to do.</p>",
+                    "<p>Useful deadline phrases:</p>",
+                    "<ul><li><strong>Qual é o prazo?</strong> — What is the deadline?</li><li><strong>Qual é o prazo final?</strong> — What is the final deadline?</li><li><strong>Precisa ser entregue até quando?</strong> — When does it need to be delivered?</li><li><strong>Posso enviar amanhã?</strong> — Can I send it tomorrow?</li><li><strong>Vou enviar até sexta-feira.</strong> — I will send it by Friday.</li><li><strong>Precisamos revisar antes do prazo.</strong> — We need to review it before the deadline.</li></ul>",
+                    "<p>Useful responsibility phrases:</p>",
+                    "<ul><li><strong>Quem é o responsável por isso?</strong> — Who is responsible for this?</li><li><strong>Eu posso cuidar dessa parte.</strong> — I can take care of this part.</li><li><strong>A equipe de marketing vai cuidar disso.</strong> — The marketing team will take care of this.</li><li><strong>Podemos dividir as tarefas.</strong> — We can divide the tasks.</li><li><strong>Você consegue acompanhar esse ponto?</strong> — Can you follow up on this point?</li></ul>",
+                    "<p>In Brazilian work settings, <strong>responsável</strong> is a very useful word. It can mean the person responsible, owner of the task or person in charge.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: disagreeing politely",
+                "body": [
+                    "<p>Disagreeing politely is important in professional Portuguese. You may need to show that you understand someone while offering another perspective.</p>",
+                    "<p>Useful phrases:</p>",
+                    "<ul><li><strong>Entendo seu ponto, mas...</strong> — I understand your point, but...</li><li><strong>Concordo em parte.</strong> — I partly agree.</li><li><strong>Acho que precisamos considerar outro ponto.</strong> — I think we need to consider another point.</li><li><strong>Talvez essa opção não seja ideal.</strong> — Maybe this option is not ideal.</li><li><strong>Podemos avaliar outra alternativa?</strong> — Can we evaluate another alternative?</li><li><strong>Tenho uma preocupação sobre esse prazo.</strong> — I have a concern about this deadline.</li></ul>",
+                    "<p>Example:</p>",
+                    "<p><strong>Entendo seu ponto, mas acho que precisamos revisar os dados antes de tomar uma decisão.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>I understand your point, but I think we need to review the data before making a decision.</p>",
+                    "<p>This phrase is useful because it is clear, respectful and professional.</p>"
+                ]
+            },
+            {
+                "heading": "Real-life situation: closing the meeting and next steps",
+                "body": [
+                    "<p>Many meetings end with responsibilities and next steps. This is where you should confirm what was decided.</p>",
+                    "<p>Useful closing phrases:</p>",
+                    "<ul><li><strong>Quais são os próximos passos?</strong> — What are the next steps?</li><li><strong>Só para confirmar, eu fico responsável por isso?</strong> — Just to confirm, am I responsible for this?</li><li><strong>Eu vou enviar o documento até amanhã.</strong> — I will send the document by tomorrow.</li><li><strong>Podemos marcar uma nova reunião?</strong> — Can we schedule a new meeting?</li><li><strong>Obrigado pela reunião.</strong> — Thank you for the meeting.</li><li><strong>Obrigado pelo alinhamento.</strong> — Thank you for the alignment.</li><li><strong>Depois eu envio um resumo por e-mail.</strong> — I will send a summary by email later.</li></ul>",
+                    "<p>A useful final statement:</p>",
+                    "<p><strong>Só para confirmar os próximos passos: eu vou revisar o relatório e enviar a versão final até sexta-feira.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Just to confirm the next steps: I will review the report and send the final version by Friday.</p>",
+                    "<p>This helps you avoid misunderstandings and sound organized.</p>"
+                ]
+            },
+            {
+                "heading": "Live-class practice: how to train work meetings in Portuguese",
+                "body": [
+                    "<p>Live-class practice is ideal for work meetings because meetings require listening, timing, reaction and confidence. You cannot fully develop these skills by memorizing phrases alone.</p>",
+                    "<h3>Exercise 1: meeting opening</h3>",
+                    "<p>The teacher plays a colleague starting a meeting. The student practices greetings, introduction and a short explanation of their role.</p>",
+                    "<p>Student goal:</p>",
+                    "<ul><li>greet naturally;</li><li>introduce role;</li><li>explain language level if needed.</li></ul>",
+                    "<h3>Exercise 2: update round</h3>",
+                    "<p>The student gives a short project update using:</p>",
+                    "<ul><li><strong>Estou trabalhando em...</strong></li><li><strong>Já terminamos...</strong></li><li><strong>Ainda precisamos...</strong></li><li><strong>O prazo é...</strong></li></ul>",
+                    "<p>Teacher corrects grammar, vocabulary and natural phrasing.</p>",
+                    "<h3>Exercise 3: clarification practice</h3>",
+                    "<p>The teacher speaks quickly or uses a common meeting phrase. The student must ask for repetition or clarification.</p>",
+                    "<p>Useful responses:</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Você pode explicar de novo?</strong></li><li><strong>Só para confirmar...</strong></li></ul>",
+                    "<h3>Exercise 4: deadline negotiation</h3>",
+                    "<p>The student practices asking for a deadline, explaining a delay or confirming delivery.</p>",
+                    "<p>Example:</p>",
+                    "<p><strong>Tenho uma preocupação sobre o prazo. Podemos revisar a data de entrega?</strong></p>",
+                    "<h3>Exercise 5: polite disagreement</h3>",
+                    "<p>The teacher gives an opinion. The student responds respectfully with another perspective.</p>",
+                    "<p>Example:</p>",
+                    "<p><strong>Entendo seu ponto, mas acho que precisamos considerar o orçamento.</strong></p>",
+                    "<p>These exercises turn phrases into usable communication.</p>"
+                ]
+            },
+            {
+                "heading": "Common mistakes foreigners make in Brazilian work meetings",
+                "body": [
+                    "<p>Foreigners often make mistakes not because they lack intelligence, but because they apply patterns from their first language. Meeting Portuguese has its own rhythm.</p>",
+                    "<h3>Mistake 1: being too direct</h3>",
+                    "<p>In some cultures, direct language sounds efficient. In Brazil, overly direct language can sound cold or harsh. Use polite softeners.</p>",
+                    "<h3>Mistake 2: pretending to understand</h3>",
+                    "<p>If you do not understand, ask. Saying <strong>“Pode repetir, por favor?”</strong> is better than missing the decision.</p>",
+                    "<h3>Mistake 3: translating word by word</h3>",
+                    "<p>Direct translation may produce unnatural phrases. Learn complete chunks like <strong>“Tenho uma dúvida”</strong> and <strong>“Só para confirmar.”</strong></p>",
+                    "<h3>Mistake 4: ignoring WhatsApp follow-up</h3>",
+                    "<p>In Brazil, meeting follow-up may happen through WhatsApp as well as email. Learn short written phrases.</p>",
+                    "<h3>Mistake 5: not practicing aloud</h3>",
+                    "<p>Reading phrases is not enough. You need to say them, hear correction and repeat.</p>"
+                ]
+            },
+            {
+                "heading": "WhatsApp and email follow-up after a meeting",
+                "body": [
+                    "<p>After a meeting, you may need to send a short message. This is an important part of professional Portuguese in Brazil.</p>",
+                    "<h3>WhatsApp follow-up</h3>",
+                    "<p><strong>Olá, tudo bem? Só para confirmar, eu vou revisar o relatório e enviar a versão final até sexta-feira. Obrigado.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, how are you? Just to confirm, I will review the report and send the final version by Friday. Thank you.</p>",
+                    "<h3>Email follow-up</h3>",
+                    "<p><strong>Olá, pessoal. Obrigado pela reunião. Segue um resumo dos próximos passos: eu vou revisar o relatório, a equipe de produto vai confirmar os dados e vamos marcar uma nova reunião na próxima semana.</strong></p>",
+                    "<p>Translation:</p>",
+                    "<p>Hello, everyone. Thank you for the meeting. Here is a summary of the next steps: I will review the report, the product team will confirm the data, and we will schedule a new meeting next week.</p>",
+                    "<p>Useful follow-up phrases:</p>",
+                    "<ul><li><strong>Segue um resumo...</strong> — Here is a summary...</li><li><strong>Conforme conversamos...</strong> — As we discussed...</li><li><strong>Só para confirmar...</strong> — Just to confirm...</li><li><strong>Fico à disposição.</strong> — I remain available / Let me know if needed.</li><li><strong>Obrigado pela reunião.</strong> — Thank you for the meeting.</li></ul>",
+                    "<p>These phrases help you sound organized and professional.</p>"
+                ]
+            },
+            {
+                "heading": "How Vedium helps with Portuguese for work meetings",
+                "body": [
+                    "<p>Vedium helps foreigners practice Portuguese for work meetings through live classes focused on real communication. The goal is not only to memorize vocabulary, but to use Portuguese in situations you may actually face in Brazil.</p>",
+                    "<p>In Vedium’s live Portuguese classes, you can practice:</p>",
+                    "<ul><li>meeting greetings;</li><li>introductions;</li><li>project updates;</li><li>clarification phrases;</li><li>deadlines;</li><li>responsibilities;</li><li>polite disagreement;</li><li>WhatsApp follow-up;</li><li>pronunciation;</li><li>listening to natural speech;</li><li>role-plays with teacher feedback.</li></ul>",
+                    "<p>The live format matters because a teacher can hear how you speak, correct your phrasing, adjust the pace and simulate workplace pressure in a safe environment. That is how you move from “I understand some Portuguese” to “I can participate in the meeting.”</p>",
+                    "<p>Vedium has no long-term loyalty contracts. You continue because the classes help you communicate better in Brazil.</p>",
+                    "<p>Book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start learning Brazilian Portuguese for work, meetings and real professional communication.</p>"
+                ]
+            },
+            {
+                "heading": "Practical checklist before your next meeting",
+                "body": [
+                    "<p>Use this checklist before a work meeting in Portuguese:</p>",
+                    "<ul><li>I can greet the group.</li><li>I can introduce myself and my role.</li><li>I can say I am still learning Portuguese.</li><li>I can ask someone to repeat.</li><li>I can ask for clarification.</li><li>I can share a short update.</li><li>I can ask about the deadline.</li><li>I can ask who is responsible.</li><li>I can agree or disagree politely.</li><li>I can confirm next steps.</li></ul>",
+                    "<p>Choose five phrases from this article and say them aloud before the meeting. The goal is not to sound perfect. The goal is to participate with more confidence.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusion with strong CTA",
+                "body": [
+                    "<p>Portuguese for work meetings in Brazil is a practical skill that helps foreigners participate more confidently in professional life. You do not need advanced Portuguese to start. You need the first phrases that help you greet people, ask for repetition, share updates, confirm deadlines, clarify responsibilities and close the meeting with clear next steps.</p>",
+                    "<p>The best way to learn is through real situations. Study meeting vocabulary in complete phrases, practice aloud, prepare before meetings and use live classes to simulate workplace conversations. Live feedback helps you sound clearer, more polite and more natural in Brazilian Portuguese.</p>",
+                    "<p>Vedium offers live Brazilian Portuguese classes for foreigners, expats, international students and professionals who need Portuguese for real life in Brazil. The classes are practical, cultural and focused on speaking confidence. No long-term loyalty contracts: you continue because the language becomes useful.</p>",
+                    "<p>Book your free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> and start preparing for work meetings in Brazil with live Portuguese classes.</p>",
+                    "<p>To keep learning, check out <a href=\"/en/blog/brazilian-portuguese/brazilian-portuguese-for-international-students-choosing-a-city-in-brazil\">Brazilian Portuguese for international students choosing a city in Brazil</a> or explore the <a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "What Portuguese phrases should I learn first for work meetings in Brazil?",
+                "a": "Start with greetings, clarification phrases, deadline questions and next-step confirmations, such as “Pode repetir, por favor?”, “Qual é o prazo?” and “Só para confirmar...”."
+            },
+            {
+                "q": "How do I say “I have a question” in Portuguese?",
+                "a": "You can say “Tenho uma dúvida” or “Posso fazer uma pergunta?” Both are useful and natural in Brazilian work meetings."
+            },
+            {
+                "q": "How can I politely disagree in a Brazilian work meeting?",
+                "a": "Use phrases like “Entendo seu ponto, mas...” or “Concordo em parte.” They help you disagree respectfully while keeping a professional tone."
+            },
+            {
+                "q": "Do I need fluent Portuguese to join meetings in Brazil?",
+                "a": "No. You can start participating with basic phrases for greeting, clarification, updates and next steps. Fluency grows with practice and correction."
+            },
+            {
+                "q": "Does Vedium teach Portuguese for professional situations in Brazil?",
+                "a": "Yes. Vedium offers live Brazilian Portuguese classes for foreigners, including practical work situations such as meetings, emails, WhatsApp follow-up and professional communication."
+            }
+        ],
+        "cta_title": "Want to know your real Portuguese level?",
+        "cta_text": "Take Vedium's free placement test and find out where to start.",
+        "cta_label": "Book a free level check",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "quando-usar-do-does-e-did-sem-confundir-na-conversa": {
+        "title": "Quando usar do, does e did sem confundir na conversa",
+        "meta_description": "Entenda quando usar do, does e did no inglês sem travar na conversa, com exemplos práticos e aula ao vivo.",
+        "h1": "Quando usar do, does e did sem confundir na conversa",
+        "date": "2025-04-14",
+        "date_display": "14 de abril de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Close de maos apontando e digitando na tela de um notebook",
+        "tag": "Inglês",
+        "category": "ingles",
+        "lead": "Você usa do, does e did em inglês principalmente para fazer perguntas, negar frases e dar ênfase no presente e no passado simples. A diferença central é simples: do combina com I, you, we, they no presente; does combina com he, she, it no presente; e did serve para o passado com todos os sujeitos. O problema é que, na conversa, muitos brasileiros sabem essa regra, mas travam na hora de falar.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Isso acontece porque <strong>do, does e did</strong> não funcionam exatamente como palavras com tradução fixa para o português. Eles são auxiliares. Em muitas frases, não aparecem na tradução literal. Por exemplo, <strong>“Do you work here?”</strong> significa “Você trabalha aqui?”, mas não existe uma palavra equivalente a <strong>do</strong> na frase em português. Por isso, o aluno brasileiro tenta traduzir mentalmente e acaba perguntando errado, dizendo algo como <strong>“You work here?”</strong> em contextos em que deveria usar <strong>do</strong>.</p>",
+                    "<p>Outro ponto que confunde é a mudança do verbo principal. Em perguntas e negativas com <strong>does</strong> e <strong>did</strong>, o verbo volta para a forma base. Ou seja: <strong>Does she work?</strong>, não <strong>Does she works?</strong>; <strong>Did you go?</strong>, não <strong>Did you went?</strong>. Esse detalhe parece pequeno no papel, mas na fala rápida vira uma das principais fontes de insegurança.</p>",
+                    "<p>Para quem quer inglês para carreira, entrevistas, reuniões, viagens ou conversas reais, dominar <strong>do, does e did</strong> é essencial. Esses auxiliares aparecem o tempo todo em perguntas simples, follow-ups, dúvidas, confirmações, small talk e conversas profissionais. Neste artigo, você vai entender por que isso trava o aluno, quando usar cada forma, como praticar de maneira objetiva e por que uma aula de inglês online ao vivo ajuda a transformar regra em fala.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: quando usar do, does e did?",
+                "body": [
+                    "<p>Use <strong>do</strong> para perguntas e negativas no presente com <strong>I, you, we, they</strong>. Use <strong>does</strong> para perguntas e negativas no presente com <strong>he, she, it</strong>. Use <strong>did</strong> para perguntas e negativas no passado com todos os sujeitos.</p>",
+                    "<p>Veja a regra básica:</p>",
+                    "<table><thead><tr><th>Auxiliar</th><th>Tempo</th><th>Sujeitos</th><th>Exemplo</th></tr></thead><tbody><tr><td>do</td><td>presente</td><td>I, you, we, they</td><td>Do you work here?</td></tr><tr><td>does</td><td>presente</td><td>he, she, it</td><td>Does she work here?</td></tr><tr><td>did</td><td>passado</td><td>todos</td><td>Did you work here?</td></tr></tbody></table>",
+                    "<p>Na negativa:</p>",
+                    "<table><thead><tr><th>Auxiliar</th><th>Forma negativa</th><th>Exemplo</th></tr></thead><tbody><tr><td>do</td><td>do not / don’t</td><td>I don’t understand.</td></tr><tr><td>does</td><td>does not / doesn’t</td><td>She doesn’t work here.</td></tr><tr><td>did</td><td>did not / didn’t</td><td>They didn’t call me.</td></tr></tbody></table>",
+                    "<p>A grande regra de ouro é: depois de <strong>do</strong>, <strong>does</strong> e <strong>did</strong>, o verbo principal fica na forma base.</p>",
+                    "<ul><li><strong>Does he work?</strong> — correto.</li><li><strong>Does he works?</strong> — errado.</li><li><strong>Did you go?</strong> — correto.</li><li><strong>Did you went?</strong> — errado.</li></ul>",
+                    "<p>Quer descobrir seu nível e praticar essas estruturas em conversação real? Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Por que isso trava o aluno?",
+                "body": [
+                    "<p><strong>Do, does e did</strong> travam o aluno porque eles não têm uma tradução direta e constante em português. O brasileiro tenta montar a frase traduzindo palavra por palavra, mas o inglês usa auxiliares para organizar pergunta, negativa e ênfase.</p>",
+                    "<p>Em português, dizemos:</p>",
+                    "<p><strong>Você trabalha aqui?</strong></p>",
+                    "<p>Em inglês, a pergunta correta no presente simples é:</p>",
+                    "<p><strong>Do you work here?</strong></p>",
+                    "<p>O <strong>do</strong> não é traduzido como uma palavra isolada. Ele ajuda a frase a virar pergunta. Isso exige que o aluno pense em estrutura, não em tradução literal.</p>",
+                    "<p>As principais travas são:</p>",
+                    "<ul><li>tentar traduzir <strong>do</strong> como “fazer” em toda frase;</li><li>esquecer o auxiliar em perguntas;</li><li>usar <strong>does</strong> com verbo no plural;</li><li>usar <strong>did</strong> junto com verbo no passado;</li><li>confundir presente e passado;</li><li>não automatizar perguntas simples;</li><li>estudar apenas regra, sem fala;</li><li>ter medo de errar em conversação;</li><li>não praticar respostas curtas;</li><li>não receber correção em tempo real.</li></ul>",
+                    "<p>O aluno geralmente entende quando vê no livro, mas erra quando precisa responder rápido. Isso mostra que o problema não é inteligência nem memória. É falta de prática oral com feedback.</p>"
+                ]
+            },
+            {
+                "heading": "O que é o do em inglês?",
+                "body": [
+                    "<p>O <strong>do</strong> pode ser verbo principal ou auxiliar. Quando é verbo principal, significa “fazer”. Quando é auxiliar, ajuda a formar perguntas, negativas e ênfase.</p>",
+                    "<h3>Do como verbo principal</h3>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I do my homework.</strong> — Eu faço minha lição.</li><li><strong>They do business with international clients.</strong> — Eles fazem negócios com clientes internacionais.</li><li><strong>We do our best.</strong> — Nós fazemos o nosso melhor.</li></ul>",
+                    "<p>Aqui, <strong>do</strong> tem sentido de ação: fazer.</p>",
+                    "<h3>Do como auxiliar</h3>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>Do you speak English?</strong> — Você fala inglês?</li><li><strong>I don’t know.</strong> — Eu não sei.</li><li><strong>Do they work together?</strong> — Eles trabalham juntos?</li></ul>",
+                    "<p>Aqui, <strong>do</strong> não significa “fazer”. Ele organiza a estrutura da frase.</p>",
+                    "<p>Esse é um ponto essencial: nem todo <strong>do</strong> deve ser traduzido. Às vezes, ele é uma ferramenta gramatical.</p>"
+                ]
+            },
+            {
+                "heading": "Quando usar do no presente?",
+                "body": [
+                    "<p>Use <strong>do</strong> no presente simples com <strong>I, you, we, they</strong> para perguntas e negativas. Ele aparece muito em conversas de rotina, trabalho, estudo, viagem e atendimento.</p>",
+                    "<h3>Perguntas com do</h3>",
+                    "<p>Estrutura:</p>",
+                    "<p><strong>Do + sujeito + verbo base + complemento?</strong></p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>Do you speak English?</strong> — Você fala inglês?</li><li><strong>Do you work here?</strong> — Você trabalha aqui?</li><li><strong>Do they need help?</strong> — Eles precisam de ajuda?</li><li><strong>Do we have a meeting today?</strong> — Nós temos reunião hoje?</li><li><strong>Do you understand?</strong> — Você entende?</li><li><strong>Do you have time?</strong> — Você tem tempo?</li></ul>",
+                    "<h3>Negativas com do</h3>",
+                    "<p>Estrutura:</p>",
+                    "<p><strong>Sujeito + don’t + verbo base + complemento.</strong></p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I don’t understand.</strong> — Eu não entendo.</li><li><strong>You don’t need to worry.</strong> — Você não precisa se preocupar.</li><li><strong>They don’t work on Sundays.</strong> — Eles não trabalham aos domingos.</li><li><strong>We don’t have much time.</strong> — Nós não temos muito tempo.</li></ul>",
+                    "<p>Em conversação, a forma contraída <strong>don’t</strong> é muito mais comum que <strong>do not</strong>. A forma completa aparece quando você quer dar mais ênfase ou em contextos mais formais.</p>"
+                ]
+            },
+            {
+                "heading": "Quando usar does no presente?",
+                "body": [
+                    "<p>Use <strong>does</strong> no presente simples com <strong>he, she, it</strong> para perguntas e negativas. Esse é um dos pontos que mais gera erro porque o aluno esquece que o <strong>s</strong> do verbo desaparece quando <strong>does</strong> entra.</p>",
+                    "<h3>Perguntas com does</h3>",
+                    "<p>Estrutura:</p>",
+                    "<p><strong>Does + he/she/it + verbo base + complemento?</strong></p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>Does he speak English?</strong> — Ele fala inglês?</li><li><strong>Does she work here?</strong> — Ela trabalha aqui?</li><li><strong>Does it make sense?</strong> — Isso faz sentido?</li><li><strong>Does your manager know?</strong> — Seu gerente sabe?</li><li><strong>Does this system work?</strong> — Este sistema funciona?</li><li><strong>Does she need help?</strong> — Ela precisa de ajuda?</li></ul>",
+                    "<p>Observe:</p>",
+                    "<ul><li><strong>She works here.</strong> — afirmativa.</li><li><strong>Does she work here?</strong> — pergunta.</li></ul>",
+                    "<p>Na pergunta, usamos <strong>work</strong>, não <strong>works</strong>, porque o <strong>does</strong> já carrega a marca de terceira pessoa.</p>",
+                    "<h3>Negativas com does</h3>",
+                    "<p>Estrutura:</p>",
+                    "<p><strong>Sujeito + doesn’t + verbo base + complemento.</strong></p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>He doesn’t speak Spanish.</strong> — Ele não fala espanhol.</li><li><strong>She doesn’t work here anymore.</strong> — Ela não trabalha mais aqui.</li><li><strong>It doesn’t matter.</strong> — Isso não importa.</li><li><strong>This app doesn’t work.</strong> — Este aplicativo não funciona.</li><li><strong>My boss doesn’t know yet.</strong> — Meu chefe ainda não sabe.</li></ul>",
+                    "<p>Erro comum:</p>",
+                    "<p><strong>She doesn’t works here.</strong><br>Forma correta:</p>",
+                    "<p><strong>She doesn’t work here.</strong></p>",
+                    "<p>Esse erro é muito comum porque o aluno pensa na regra “he/she/it tem s”. Mas, em negativas e perguntas, o <strong>s</strong> vai para o auxiliar <strong>does</strong>, e o verbo principal volta para a base.</p>"
+                ]
+            },
+            {
+                "heading": "Quando usar did no passado?",
+                "body": [
+                    "<p>Use <strong>did</strong> para perguntas e negativas no passado simples com todos os sujeitos: <strong>I, you, he, she, it, we, they</strong>. A vantagem é que <strong>did</strong> não muda de acordo com a pessoa. A dificuldade é lembrar que o verbo principal volta para a forma base.</p>",
+                    "<h3>Perguntas com did</h3>",
+                    "<p>Estrutura:</p>",
+                    "<p><strong>Did + sujeito + verbo base + complemento?</strong></p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>Did you call me?</strong> — Você me ligou?</li><li><strong>Did he send the email?</strong> — Ele enviou o e-mail?</li><li><strong>Did she go to the meeting?</strong> — Ela foi à reunião?</li><li><strong>Did they finish the project?</strong> — Eles terminaram o projeto?</li><li><strong>Did we talk about this?</strong> — Nós falamos sobre isso?</li><li><strong>Did it work?</strong> — Funcionou?</li></ul>",
+                    "<p>Observe:</p>",
+                    "<ul><li><strong>She went to the meeting.</strong> — afirmativa.</li><li><strong>Did she go to the meeting?</strong> — pergunta.</li></ul>",
+                    "<p>Erro comum:</p>",
+                    "<p><strong>Did she went to the meeting?</strong><br>Forma correta:</p>",
+                    "<p><strong>Did she go to the meeting?</strong></p>",
+                    "<h3>Negativas com did</h3>",
+                    "<p>Estrutura:</p>",
+                    "<p><strong>Sujeito + didn’t + verbo base + complemento.</strong></p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I didn’t understand.</strong> — Eu não entendi.</li><li><strong>He didn’t answer.</strong> — Ele não respondeu.</li><li><strong>They didn’t finish the report.</strong> — Eles não terminaram o relatório.</li><li><strong>We didn’t have time.</strong> — Nós não tivemos tempo.</li><li><strong>She didn’t go to work yesterday.</strong> — Ela não foi trabalhar ontem.</li></ul>",
+                    "<p>Em conversa, <strong>didn’t</strong> aparece o tempo todo. Dominar essa forma ajuda muito em relatos, justificativas, reuniões e entrevistas.</p>"
+                ]
+            },
+            {
+                "heading": "Afirmativa: por que do, does e did quase não aparecem?",
+                "body": [
+                    "<p>No presente e no passado simples, <strong>do</strong>, <strong>does</strong> e <strong>did</strong> normalmente não aparecem em frases afirmativas comuns, porque a frase já tem o verbo principal conjugado.</p>",
+                    "<p>Exemplos afirmativos:</p>",
+                    "<ul><li><strong>I work here.</strong> — Eu trabalho aqui.</li><li><strong>She works here.</strong> — Ela trabalha aqui.</li><li><strong>They worked yesterday.</strong> — Eles trabalharam ontem.</li><li><strong>He called me.</strong> — Ele me ligou.</li></ul>",
+                    "<p>Mas <strong>do</strong>, <strong>does</strong> e <strong>did</strong> podem aparecer em afirmativas para dar ênfase.</p>",
+                    "<p>Exemplos:</p>",
+                    "<ul><li><strong>I do understand.</strong> — Eu entendo, sim.</li><li><strong>She does speak English.</strong> — Ela fala inglês, sim.</li><li><strong>They did call you.</strong> — Eles ligaram para você, sim.</li></ul>",
+                    "<p>Essa estrutura é útil quando alguém duvida ou quando você quer reforçar uma informação.</p>",
+                    "<p>Exemplo em diálogo:</p>",
+                    "<p><strong>A:</strong> You don’t understand.<br><strong>B:</strong> I do understand. I just need more time.</p>",
+                    "<p>Tradução:</p>",
+                    "<p>A: Você não entende.<br>B: Eu entendo, sim. Só preciso de mais tempo.</p>"
+                ]
+            },
+            {
+                "heading": "Respostas curtas com do, does e did",
+                "body": [
+                    "<p>Respostas curtas são fundamentais para conversação. Em inglês, muitas respostas usam o auxiliar da pergunta.</p>",
+                    "<h3>Com do</h3>",
+                    "<p><strong>Do you work here?</strong><br><strong>Yes, I do.</strong><br><strong>No, I don’t.</strong></p>",
+                    "<h3>Com does</h3>",
+                    "<p><strong>Does she speak English?</strong><br><strong>Yes, she does.</strong><br><strong>No, she doesn’t.</strong></p>",
+                    "<h3>Com did</h3>",
+                    "<p><strong>Did you call him?</strong><br><strong>Yes, I did.</strong><br><strong>No, I didn’t.</strong></p>",
+                    "<p>Brasileiros muitas vezes respondem apenas <strong>yes</strong> ou <strong>no</strong>. Isso funciona, mas pode soar seco ou incompleto em alguns contextos. Respostas curtas com auxiliar deixam a fala mais natural.</p>",
+                    "<p>Exercício rápido:</p>",
+                    "<ul><li><strong>Do you study English?</strong> — Yes, I do.</li><li><strong>Does your friend work today?</strong> — No, he doesn’t.</li><li><strong>Did you watch the video?</strong> — Yes, I did.</li><li><strong>Did they answer your message?</strong> — No, they didn’t.</li></ul>",
+                    "<p>Essas respostas precisam virar reflexo.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar de forma objetiva",
+                "body": [
+                    "<p>Para praticar <strong>do, does e did</strong> de forma objetiva, organize o estudo por função: pergunta, negativa, resposta curta e conversa real. Não estude apenas tabelas. Transforme a regra em fala.</p>",
+                    "<h3>Passo 1: escolha um tempo verbal</h3>",
+                    "<p>Comece pelo presente com <strong>do/does</strong>. Depois pratique o passado com <strong>did</strong>. Misturar tudo no começo pode gerar confusão.</p>",
+                    "<h3>Passo 2: escolha um tema</h3>",
+                    "<p>Use temas reais:</p>",
+                    "<ul><li>trabalho;</li><li>rotina;</li><li>reunião;</li><li>viagem;</li><li>entrevista;</li><li>estudos;</li><li>tecnologia;</li><li>atendimento.</li></ul>",
+                    "<h3>Passo 3: crie perguntas simples</h3>",
+                    "<p>Tema: trabalho.</p>",
+                    "<ul><li><strong>Do you work from home?</strong></li><li><strong>Does your manager speak English?</strong></li><li><strong>Did you have a meeting yesterday?</strong></li></ul>",
+                    "<h3>Passo 4: responda com resposta curta</h3>",
+                    "<ul><li><strong>Yes, I do.</strong></li><li><strong>No, she doesn’t.</strong></li><li><strong>Yes, I did.</strong></li></ul>",
+                    "<h3>Passo 5: expanda a resposta</h3>",
+                    "<ul><li><strong>Yes, I do. I work from home three days a week.</strong></li><li><strong>No, she doesn’t. She speaks Spanish.</strong></li><li><strong>Yes, I did. It was a long meeting.</strong></li></ul>",
+                    "<h3>Passo 6: pratique em voz alta</h3>",
+                    "<p>A estrutura precisa sair da boca, não apenas do caderno. Leia, grave e repita.</p>",
+                    "<h3>Passo 7: leve para aula ao vivo</h3>",
+                    "<p>Peça ao professor para fazer perguntas rápidas. O objetivo é responder sem traduzir mentalmente.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: perguntas rápidas",
+                "body": [
+                    "<p>Este exercício é ideal para transformar regra em conversação.</p>",
+                    "<h3>Rodada 1: do</h3>",
+                    "<p>Professor pergunta:</p>",
+                    "<ul><li><strong>Do you work today?</strong></li><li><strong>Do you study English every week?</strong></li><li><strong>Do you use English at work?</strong></li><li><strong>Do you have meetings in English?</strong></li></ul>",
+                    "<p>Aluno responde com:</p>",
+                    "<ul><li><strong>Yes, I do.</strong></li><li><strong>No, I don’t.</strong></li><li>resposta expandida.</li></ul>",
+                    "<h3>Rodada 2: does</h3>",
+                    "<p>Professor pergunta:</p>",
+                    "<ul><li><strong>Does your company work with international clients?</strong></li><li><strong>Does your manager speak English?</strong></li><li><strong>Does this app work well?</strong></li><li><strong>Does your team have meetings every day?</strong></li></ul>",
+                    "<p>Aluno responde com:</p>",
+                    "<ul><li><strong>Yes, it does.</strong></li><li><strong>No, he doesn’t.</strong></li><li>resposta expandida.</li></ul>",
+                    "<h3>Rodada 3: did</h3>",
+                    "<p>Professor pergunta:</p>",
+                    "<ul><li><strong>Did you study yesterday?</strong></li><li><strong>Did you send the email?</strong></li><li><strong>Did you understand the last meeting?</strong></li><li><strong>Did they answer your message?</strong></li></ul>",
+                    "<p>Aluno responde com:</p>",
+                    "<ul><li><strong>Yes, I did.</strong></li><li><strong>No, I didn’t.</strong></li><li>resposta expandida.</li></ul>",
+                    "<h3>Rodada 4: correção imediata</h3>",
+                    "<p>O professor corrige erros como:</p>",
+                    "<ul><li><strong>Does she works?</strong></li><li><strong>Did you went?</strong></li><li><strong>He don’t know.</strong></li><li><strong>She didn’t answered.</strong></li></ul>",
+                    "<p>Depois o aluno repete a forma correta.</p>",
+                    "<p>Essa repetição com feedback é o que torna a estrutura automática.</p>"
+                ]
+            },
+            {
+                "heading": "Próximo passo no curso ao vivo",
+                "body": [
+                    "<p>O próximo passo no curso ao vivo é praticar <strong>do, does e did</strong> dentro de conversas reais, não como exercício isolado. Um professor pode transformar a regra em perguntas de entrevista, reunião, viagem, atendimento e rotina.</p>",
+                    "<p>Em uma aula de inglês online ao vivo, você pode praticar:</p>",
+                    "<ul><li>perguntas no presente;</li><li>perguntas no passado;</li><li>respostas curtas;</li><li>negativas;</li><li>follow-up questions;</li><li>correção de terceira pessoa;</li><li>entrevistas de emprego;</li><li>reuniões;</li><li>small talk;</li><li>conversação por nível CEFR;</li><li>pronúncia e ritmo;</li><li>velocidade de resposta.</li></ul>",
+                    "<p>Essa prática é importante porque o aluno pode saber a regra e ainda errar ao falar. A fala exige rapidez. O professor ajuda a construir essa rapidez com segurança.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e descubra como praticar gramática dentro da conversação real.</p>"
+                ]
+            },
+            {
+                "heading": "Do, does e did por nível CEFR",
+                "body": [
+                    "<p>O nível CEFR ajuda a entender quando essas estruturas devem ser dominadas. Elas aparecem cedo, mas continuam sendo importantes em níveis intermediários porque sustentam perguntas e conversas.</p>",
+                    "<table><thead><tr><th>Nível</th><th>Objetivo com do, does e did</th></tr></thead><tbody><tr><td>A1</td><td>reconhecer perguntas simples com do e respostas curtas</td></tr><tr><td>A2</td><td>usar do/does em rotina e did para passado básico</td></tr><tr><td>B1</td><td>fazer perguntas espontâneas em conversas e entrevistas</td></tr><tr><td>B2</td><td>usar com naturalidade em reuniões, follow-ups e discussões</td></tr><tr><td>C1</td><td>usar ênfase com do/does/did e nuances de tom</td></tr></tbody></table>",
+                    "<p>Exemplos:</p>",
+                    "<p>A1:<br><strong>Do you speak English?</strong></p>",
+                    "<p>A2:<br><strong>Did you go to work yesterday?</strong></p>",
+                    "<p>B1:<br><strong>Does this solution make sense for the client?</strong></p>",
+                    "<p>B2:<br><strong>Did we discuss the deadline in the last meeting?</strong></p>",
+                    "<p>C1:<br><strong>I do see your point, but I disagree with the conclusion.</strong></p>",
+                    "<p>Mesmo alunos intermediários podem precisar revisar essas estruturas para ganhar velocidade e precisão.</p>"
+                ]
+            },
+            {
+                "heading": "Erros comuns com do, does e did",
+                "body": [
+                    "<p>Os erros mais comuns acontecem porque o aluno mistura regra do afirmativo com pergunta e negativa.</p>",
+                    "<h3>Erro 1: esquecer o auxiliar</h3>",
+                    "<p>Errado:</p>",
+                    "<p><strong>You work here?</strong></p>",
+                    "<p>Melhor:</p>",
+                    "<p><strong>Do you work here?</strong></p>",
+                    "<p>Em fala informal, nativos às vezes usam entonação para perguntar, mas para aprender com clareza, pratique a estrutura completa.</p>",
+                    "<h3>Erro 2: usar does com verbo no s</h3>",
+                    "<p>Errado:</p>",
+                    "<p><strong>Does she works here?</strong></p>",
+                    "<p>Correto:</p>",
+                    "<p><strong>Does she work here?</strong></p>",
+                    "<h3>Erro 3: usar did com verbo no passado</h3>",
+                    "<p>Errado:</p>",
+                    "<p><strong>Did you went?</strong></p>",
+                    "<p>Correto:</p>",
+                    "<p><strong>Did you go?</strong></p>",
+                    "<h3>Erro 4: usar don’t com he/she/it</h3>",
+                    "<p>Errado:</p>",
+                    "<p><strong>He don’t know.</strong></p>",
+                    "<p>Correto:</p>",
+                    "<p><strong>He doesn’t know.</strong></p>",
+                    "<h3>Erro 5: responder sem auxiliar</h3>",
+                    "<p>Pergunta:</p>",
+                    "<p><strong>Did you understand?</strong></p>",
+                    "<p>Resposta mais natural:</p>",
+                    "<p><strong>Yes, I did.</strong></p>",
+                    "<p>Não apenas:</p>",
+                    "<p><strong>Yes.</strong></p>",
+                    "<p>Esses erros são normais. O importante é praticar até a forma correta sair sem esforço.</p>"
+                ]
+            },
+            {
+                "heading": "Frases úteis para trabalho e entrevistas",
+                "body": [
+                    "<p>Para profissionais brasileiros, <strong>do, does e did</strong> aparecem muito em entrevistas, reuniões e conversas com clientes.</p>",
+                    "<h3>Entrevista</h3>",
+                    "<ul><li><strong>Do you have experience with international clients?</strong></li><li><strong>Do you speak English every day?</strong></li><li><strong>Did you manage a team in your last job?</strong></li><li><strong>Did you work with this tool before?</strong></li><li><strong>Does your current role involve presentations?</strong></li></ul>",
+                    "<h3>Reuniões</h3>",
+                    "<ul><li><strong>Do we have time for one more question?</strong></li><li><strong>Does this make sense?</strong></li><li><strong>Did we confirm the deadline?</strong></li><li><strong>Did the client approve the proposal?</strong></li><li><strong>Do you need anything else?</strong></li></ul>",
+                    "<h3>Atendimento</h3>",
+                    "<ul><li><strong>Do you have your order number?</strong></li><li><strong>Does the app show an error message?</strong></li><li><strong>Did you receive the email?</strong></li><li><strong>Did you try to log in again?</strong></li><li><strong>Do you want me to check that for you?</strong></li></ul>",
+                    "<p>Essas frases são muito mais úteis do que decorar a regra de forma abstrata.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse aprendizado",
+                "body": [
+                    "<p>A Vedium ajuda brasileiros a dominar <strong>do, does e did</strong> porque trabalha inglês online ao vivo com conversação, correção e plano por nível. A estrutura não fica presa no livro. Ela aparece em perguntas reais, respostas rápidas e simulações de fala.</p>",
+                    "<p>Nas aulas da Vedium, você pode praticar:</p>",
+                    "<ul><li>gramática aplicada à conversação;</li><li>perguntas com do, does e did;</li><li>respostas curtas;</li><li>inglês para entrevistas;</li><li>inglês para reuniões;</li><li>inglês para atendimento;</li><li>conversação por nível CEFR;</li><li>correção de erros comuns;</li><li>fluidez;</li><li>ritmo;</li><li>segurança para falar.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. Você continua porque sente evolução, não porque está preso. Para quem já estudou inglês antes e ainda trava na fala, esse modelo ajuda a transformar conhecimento passivo em comunicação real.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: já sei usar do, does e did na conversa?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Sei usar <strong>do</strong> com I, you, we e they.</li><li>Sei usar <strong>does</strong> com he, she e it.</li><li>Sei usar <strong>did</strong> para passado com todos os sujeitos.</li><li>Lembro que depois de <strong>does</strong> o verbo fica na base.</li><li>Lembro que depois de <strong>did</strong> o verbo fica na base.</li><li>Sei fazer perguntas simples.</li><li>Sei fazer negativas.</li><li>Sei responder com <strong>Yes, I do</strong> / <strong>No, I don’t</strong>.</li><li>Consigo usar em temas de trabalho.</li><li>Consigo responder sem traduzir mentalmente.</li></ul>",
+                    "<p>Se muitos itens ainda travam, seu próximo passo é prática oral guiada.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>Saber quando usar <strong>do, does e did</strong> é essencial para fazer perguntas, negar frases, responder com naturalidade e participar de conversas em inglês. A regra é simples: <strong>do</strong> no presente com <strong>I, you, we, they</strong>; <strong>does</strong> no presente com <strong>he, she, it</strong>; <strong>did</strong> no passado com todos os sujeitos. A parte mais importante é lembrar que o verbo principal volta para a forma base depois desses auxiliares.</p>",
+                    "<p>Mas saber a regra não basta. Você precisa praticar em voz alta, fazer perguntas reais, responder rápido, corrigir erros e usar as estruturas em situações de trabalho, estudo, viagem e conversa. É assim que a gramática vira fluência prática.</p>",
+                    "<p>A Vedium oferece inglês online ao vivo, com professor, conversação, plano por nível CEFR e sem contrato de fidelidade. Você fica porque evolui, não porque está preso.</p>",
+                    "<p>Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a> e comece a praticar <strong>do, does e did</strong> em conversas reais, com correção e confiança.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ingles/aula-de-ingles-online-ao-vivo-como-funciona-e-para-quem-vale-a-pena\">Aula de inglês online ao vivo: como funciona e para quem vale a pena</a> ou conheça o <a href=\"/curso-de-ingles-online\">curso de inglês online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Quando usar do em inglês?",
+                "a": "Use do no presente simples com I, you, we e they para perguntas e negativas, como Do you work? e I don’t know."
+            },
+            {
+                "q": "Quando usar does em inglês?",
+                "a": "Use does no presente simples com he, she e it, como Does she speak English? e He doesn’t work here."
+            },
+            {
+                "q": "Quando usar did em inglês?",
+                "a": "Use did para perguntas e negativas no passado com todos os sujeitos, como Did you call? e They didn’t answer."
+            },
+            {
+                "q": "Por que não posso dizer “Does she works”?",
+                "a": "Porque o does já marca a terceira pessoa. Depois dele, o verbo principal volta para a forma base: Does she work?"
+            },
+            {
+                "q": "A Vedium ajuda a praticar do, does e did em conversação?",
+                "a": "Sim. A Vedium oferece aulas de inglês online ao vivo com conversação, correção, prática por nível CEFR e foco em uso real."
+            }
+        ],
+        "cta_title": "Quer saber seu nível real de inglês?",
+        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
+        "cta_label": "Fazer teste de nível grátis",
+        "cta_url": "/curso-de-ingles-online"
+    },
+    "ple-zh-012": {
+        "title": "通过真人直播课学习巴西葡萄牙语",
+        "meta_description": "了解如何通过真人直播课学习巴西葡萄牙语，掌握巴西生活、工作和学习中的真实表达。",
+        "h1": "通过真人直播课学习巴西葡萄牙语",
+        "date": "2025-03-19",
+        "date_display": "2025年3月19日",
+        "hero_image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Duas profissionais sorrindo durante uma reuniao de trabalho",
+        "tag": "中文",
+        "lang": "zh-CN",
+        "lead": "通过真人直播课学习巴西葡萄牙语，最重要的价值不是“看懂一节课”，而是能在真实情境中开口说、听懂回应、提出问题、得到纠正，并逐步建立在巴西生活、工作和学习的沟通能力。对于准备去巴西、已经在巴西生活、需要与巴西团队合作，或希望更好融入当地文化的中文母语者来说，巴西葡萄牙语不是只靠背单词和看录播就能真正掌握的语言。",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>很多学习者一开始会问：“我可以先用手机软件学吗？”当然可以。应用、词汇表、录播课和语法书都能帮助你建立基础。但是，当你真正到达巴西，你会发现生活中的葡萄牙语更快、更自然，也更依赖语境。你可能需要和公寓门卫沟通、在药店说明症状、在公司会议中介绍自己、在大学课堂上提问、通过 WhatsApp 联系房东、向司机说明地址，或者在银行办理手续。这些场景不是单纯背单词能解决的。</p>",
+                    "<p>真人直播课的优势在于互动。老师可以听到你的发音，发现你是不是把葡萄牙语读成了中文或英语的节奏；老师可以纠正你的句子，告诉你哪些表达在巴西更自然；老师还可以根据你的目标调整内容，比如工作会议、租房、学习、旅行、医疗、日常购物或文化适应。学习者不再只是“接收知识”，而是在课堂里真正使用语言。</p>",
+                    "<p>本文将用中文说明：为什么学习 Portuguese for Brazil 应该重视真人直播课，巴西真实生活中最先需要哪些表达，核心词汇怎么学，直播课如何练习，以及为什么 Vedium 的巴西葡萄牙语课程适合希望在巴西真实沟通的外国学习者。</p>"
+                ]
+            },
+            {
+                "heading": "直接回答：为什么要通过真人直播课学习巴西葡萄牙语？",
+                "body": [
+                    "<p>通过真人直播课学习巴西葡萄牙语，是因为真实沟通需要即时反应、发音纠正、听力适应和文化理解。录播课可以讲解知识，但真人直播课能让你开口、犯错、被纠正，然后再次尝试。</p>",
+                    "<p>真人直播课能帮助学习者：</p>",
+                    "<ul><li>练习真实对话；</li><li>改善发音；</li><li>适应巴西人的语速；</li><li>学会在不懂时请求重复；</li><li>掌握工作、学习和生活场景表达；</li><li>避免只会读不会说；</li><li>了解巴西文化语境；</li><li>根据个人目标调整学习内容；</li><li>形成持续学习节奏；</li><li>在安全环境中建立开口信心。</li></ul>",
+                    "<p>对于中文母语者来说，巴西葡萄牙语的发音、重音、鼻化音、动词变化和句子节奏都需要练习。如果没有老师实时纠正，错误容易变成习惯。真人直播课可以更早发现问题，让学习更有效。</p>",
+                    "<p>CTA：如果你想知道自己现在适合从哪里开始，可以在 <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> 预约 Vedium 的免费水平测试。</p>"
+                ]
+            },
+            {
+                "heading": "真实使用场景：在巴西生活第一周会遇到什么？",
+                "body": [
+                    "<p>在巴西生活的第一周，学习者最需要的是“能解决问题的葡萄牙语”。你不需要马上说得很复杂，但需要会打招呼、请求帮助、说明地址、确认信息、听懂基本问题。</p>",
+                    "<p>常见场景包括：</p>",
+                    "<ul><li>到达机场；</li><li>去酒店或公寓；</li><li>和门卫沟通；</li><li>买电话卡或使用应用；</li><li>去超市；</li><li>去药店；</li><li>打车或使用交通软件；</li><li>找地址；</li><li>联系房东；</li><li>在 WhatsApp 上发消息；</li><li>参加第一次会议或课程；</li><li>介绍自己。</li></ul>",
+                    "<p>基础词汇：</p>",
+                    "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>aeroporto</td><td>机场</td></tr><tr><td>endereço</td><td>地址</td></tr><tr><td>ajuda</td><td>帮助</td></tr><tr><td>documento</td><td>文件 / 证件</td></tr><tr><td>hotel</td><td>酒店</td></tr><tr><td>apartamento</td><td>公寓</td></tr><tr><td>portaria</td><td>公寓入口 / 门卫处</td></tr><tr><td>mercado</td><td>超市 / 市场</td></tr><tr><td>farmácia</td><td>药店</td></tr><tr><td>reunião</td><td>会议</td></tr><tr><td>aula</td><td>课程</td></tr><tr><td>trabalho</td><td>工作</td></tr><tr><td>cartão</td><td>银行卡 / 卡</td></tr><tr><td>dinheiro</td><td>现金 / 钱</td></tr><tr><td>horário</td><td>时间 / 时间表</td></tr></tbody></table>",
+                    "<p>非常实用的句子：</p>",
+                    "<ul><li><strong>Você pode me ajudar?</strong> — 你可以帮我吗？</li><li><strong>Pode repetir, por favor?</strong> — 可以请你重复一遍吗？</li><li><strong>Pode falar mais devagar?</strong> — 可以说慢一点吗？</li><li><strong>Eu estou aprendendo português.</strong> — 我正在学习葡萄牙语。</li><li><strong>Este é o endereço.</strong> — 这是地址。</li><li><strong>Onde fica a farmácia?</strong> — 药店在哪里？</li><li><strong>Tenho uma reunião hoje.</strong> — 我今天有一个会议。</li><li><strong>Preciso de ajuda.</strong> — 我需要帮助。</li></ul>",
+                    "<p>这些表达可以让你在真实环境中先“活下来”，再慢慢提高准确度和自然度。</p>"
+                ]
+            },
+            {
+                "heading": "为什么要学巴西葡萄牙语，而不是泛泛地学葡萄牙语？",
+                "body": [
+                    "<p>如果你的目标是去巴西生活、工作或学习，就应该重点学习巴西葡萄牙语。葡萄牙语在不同国家和地区有发音、词汇和表达习惯的差异。巴西的日常沟通方式、语气、WhatsApp 使用习惯和生活场景，都需要针对性学习。</p>",
+                    "<p>例如，在巴西你会经常遇到：</p>",
+                    "<ul><li><strong>Tudo bem?</strong> — 你好吗？/ 最近怎么样？</li><li><strong>Combinado.</strong> — 就这么定了。</li><li><strong>Pode deixar.</strong> — 放心 / 交给我。</li><li><strong>Só um minutinho.</strong> — 稍等一下。</li><li><strong>Deixa eu ver.</strong> — 我看一下。</li><li><strong>Tá bom.</strong> — 好的。</li><li><strong>Qual é o prazo?</strong> — 截止时间是什么时候？</li><li><strong>Pode deixar na portaria.</strong> — 可以放在门卫处。</li></ul>",
+                    "<p>这些表达在真实生活中非常常见，但很多传统教材不会优先讲。一个面向外国人的 Brazilian Portuguese course 应该把这些现实场景放进课程里，而不只是从抽象语法开始。</p>"
+                ]
+            },
+            {
+                "heading": "核心词汇：工作、学习和生活最先学什么？",
+                "body": [
+                    "<p>核心词汇应该按照场景学习，而不是只背单词表。对于准备在巴西使用葡萄牙语的人来说，最好的方法是学习“词汇 + 句子 + 场景”。</p>",
+                    "<h3>工作场景</h3>",
+                    "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>reunião</td><td>会议</td></tr><tr><td>equipe</td><td>团队</td></tr><tr><td>projeto</td><td>项目</td></tr><tr><td>prazo</td><td>截止时间</td></tr><tr><td>relatório</td><td>报告</td></tr><tr><td>cliente</td><td>客户</td></tr><tr><td>apresentação</td><td>演示 / 汇报</td></tr><tr><td>responsável</td><td>负责人</td></tr></tbody></table>",
+                    "<p>实用句子：</p>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — 我今天有会议。</li><li><strong>Qual é o prazo?</strong> — 截止时间是什么时候？</li><li><strong>Quem é o responsável?</strong> — 谁负责？</li><li><strong>Tenho uma dúvida.</strong> — 我有一个问题。</li><li><strong>Você pode explicar de novo?</strong> — 你可以再解释一遍吗？</li><li><strong>Vou enviar o relatório.</strong> — 我会发送报告。</li></ul>",
+                    "<h3>学习场景</h3>",
+                    "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>aula</td><td>课程</td></tr><tr><td>professor / professora</td><td>老师</td></tr><tr><td>atividade</td><td>作业 / 活动</td></tr><tr><td>prova</td><td>考试</td></tr><tr><td>inscrição</td><td>报名</td></tr><tr><td>matrícula</td><td>注册</td></tr><tr><td>dúvida</td><td>问题 / 疑问</td></tr><tr><td>horário</td><td>时间</td></tr></tbody></table>",
+                    "<p>实用句子：</p>",
+                    "<ul><li><strong>Qual é o horário da aula?</strong> — 课程几点开始？</li><li><strong>Tenho uma dúvida sobre a atividade.</strong> — 我对作业有一个问题。</li><li><strong>Quando é a prova?</strong> — 考试是什么时候？</li><li><strong>Preciso fazer a inscrição.</strong> — 我需要报名。</li><li><strong>Você pode repetir?</strong> — 你可以重复吗？</li></ul>",
+                    "<h3>生活场景</h3>",
+                    "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>mercado</td><td>超市</td></tr><tr><td>farmácia</td><td>药店</td></tr><tr><td>ônibus</td><td>公交车</td></tr><tr><td>aplicativo</td><td>应用程序</td></tr><tr><td>entrega</td><td>配送</td></tr><tr><td>encomenda</td><td>包裹</td></tr><tr><td>chave</td><td>钥匙</td></tr><tr><td>banheiro</td><td>洗手间</td></tr></tbody></table>",
+                    "<p>实用句子：</p>",
+                    "<ul><li><strong>Onde fica o banheiro?</strong> — 洗手间在哪里？</li><li><strong>Aceita cartão?</strong> — 可以刷卡吗？</li><li><strong>Chegou uma encomenda para mim?</strong> — 有我的包裹吗？</li><li><strong>Pode deixar na portaria.</strong> — 可以放在门卫处。</li><li><strong>Preciso comprar remédio.</strong> — 我需要买药。</li></ul>"
+                ]
+            },
+            {
+                "heading": "直播课练习：怎样把词汇变成真实沟通？",
+                "body": [
+                    "<p>直播课练习的重点是把词汇放进真实对话。只背 <strong>reunião</strong>、<strong>trabalho</strong>、<strong>endereço</strong> 这些词，不代表你能在巴西开口。你需要练习完整句子，并在老师的追问下反应。</p>",
+                    "<h3>练习 1：自我介绍</h3>",
+                    "<p>老师问：</p>",
+                    "<p><strong>Qual é o seu nome?</strong><br>你叫什么名字？</p>",
+                    "<p>学生回答：</p>",
+                    "<p><strong>Meu nome é Li Wei.</strong><br>我叫李伟。</p>",
+                    "<p>老师继续问：</p>",
+                    "<p><strong>Você é de onde?</strong><br>你来自哪里？</p>",
+                    "<p>学生回答：</p>",
+                    "<p><strong>Eu sou da China.</strong><br>我来自中国。</p>",
+                    "<p>然后加入工作或学习：</p>",
+                    "<p><strong>Eu sou da China e estou no Brasil para trabalhar.</strong><br>我来自中国，现在在巴西工作。</p>",
+                    "<h3>练习 2：请求重复</h3>",
+                    "<p>学生必须练习在听不懂时继续沟通，而不是沉默。</p>",
+                    "<p>常用表达：</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Você pode explicar de novo?</strong></li></ul>",
+                    "<p>这些句子非常重要，因为它们帮助你维持对话。</p>",
+                    "<h3>练习 3：工作会议</h3>",
+                    "<p>老师模拟会议场景，学生练习：</p>",
+                    "<ul><li><strong>Tenho uma dúvida.</strong></li><li><strong>Qual é o prazo?</strong></li><li><strong>Quem é o responsável?</strong></li><li><strong>Só para confirmar...</strong></li><li><strong>Vou enviar até amanhã.</strong></li></ul>",
+                    "<p>这种练习帮助学习者从“认识单词”进入“参与会议”。</p>",
+                    "<h3>练习 4：WhatsApp 消息</h3>",
+                    "<p>在巴西，WhatsApp 是非常重要的沟通工具，用于工作、租房、课程、配送和日常联系。</p>",
+                    "<p>示例消息：</p>",
+                    "<p><strong>Olá, tudo bem? Tenho uma dúvida sobre o horário da reunião. Você pode confirmar, por favor? Obrigado.</strong></p>",
+                    "<p>中文意思：你好，最近好吗？我对会议时间有一个问题。你可以确认一下吗？谢谢。</p>",
+                    "<p>直播课可以帮助你把消息写得更自然，而不是中文直译。</p>"
+                ]
+            },
+            {
+                "heading": "发音：中文母语者常见难点",
+                "body": [
+                    "<p>巴西葡萄牙语的发音对中文母语者来说有几个常见难点。学习者不需要追求“完全没有口音”，但需要说得清楚，让巴西人能理解。</p>",
+                    "<p>常见难点包括：</p>",
+                    "<ul><li>鼻化音，如 <strong>não</strong>, <strong>pão</strong>, <strong>mãe</strong>；</li><li><strong>lh</strong> 音，如 <strong>trabalho</strong>；</li><li><strong>nh</strong> 音，如 <strong>dinheiro</strong>, <strong>manhã</strong>；</li><li>单词重音；</li><li>句子节奏；</li><li>词尾 <strong>-e</strong> 和 <strong>-o</strong> 的实际发音；</li><li>巴西葡萄牙语中的 <strong>r</strong>；</li><li>快速口语中的连读和弱化。</li></ul>",
+                    "<p>实用练习词：</p>",
+                    "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>não</td><td>不 / 没有</td></tr><tr><td>obrigado / obrigada</td><td>谢谢</td></tr><tr><td>trabalho</td><td>工作</td></tr><tr><td>dinheiro</td><td>钱</td></tr><tr><td>endereço</td><td>地址</td></tr><tr><td>reunião</td><td>会议</td></tr><tr><td>manhã</td><td>早上 / 明天</td></tr><tr><td>informação</td><td>信息</td></tr><tr><td>banheiro</td><td>洗手间</td></tr></tbody></table>",
+                    "<p>直播课的优势在于老师能听出你具体卡在哪里。有的学生鼻化音困难，有的学生句子节奏困难，有的学生容易把葡萄牙语读成中文拼音式节奏。不同问题需要不同纠正方式。</p>"
+                ]
+            },
+            {
+                "heading": "如何避免“只会看，不会说”？",
+                "body": [
+                    "<p>避免只会看不会说，关键是从第一周开始开口。很多学习者喜欢先看课、背词、做题，觉得等自己准备好了再说。但语言不是这样形成的。开口本身就是学习的一部分。</p>",
+                    "<p>建议方法：</p>",
+                    "<p>1. 每天选 5 个实用句子；<br>2. 大声读出来；<br>3. 录一段自己的声音；<br>4. 在直播课上请老师纠正；<br>5. 把纠正后的句子再说 3 次；<br>6. 下次课用同一句子回答问题；<br>7. 把句子放到真实场景中。</p>",
+                    "<p>例如：</p>",
+                    "<p><strong>Tenho uma dúvida.</strong> — 我有一个问题。</p>",
+                    "<p>可以扩展为：</p>",
+                    "<ul><li><strong>Tenho uma dúvida sobre a aula.</strong></li><li><strong>Tenho uma dúvida sobre o horário.</strong></li><li><strong>Tenho uma dúvida sobre o projeto.</strong></li><li><strong>Tenho uma dúvida sobre o contrato.</strong></li></ul>",
+                    "<p>这样，一个简单句子就变成多个真实表达。</p>"
+                ]
+            },
+            {
+                "heading": "HowTo：通过真人直播课学习巴西葡萄牙语的步骤",
+                "body": [
+                    "<p>通过真人直播课学习巴西葡萄牙语，应该有清晰步骤。不要只随机上课，也不要只跟着教材走。最好把个人目标和真实场景结合起来。</p>",
+                    "<h3>第一步：明确你的目标</h3>",
+                    "<p>先问自己：</p>",
+                    "<ul><li>我是为了去巴西工作吗？</li><li>我是为了在巴西学习吗？</li><li>我需要葡萄牙语处理生活问题吗？</li><li>我需要参加会议吗？</li><li>我需要和巴西家庭、朋友或同事沟通吗？</li><li>我是为了短期旅行还是长期居住？</li></ul>",
+                    "<p>目标决定课程重点。</p>",
+                    "<h3>第二步：做水平测试</h3>",
+                    "<p>即使你是零基础，水平测试也有价值。它可以帮助老师了解你的发音、听力、表达能力和学习目标。这样课程不会太简单，也不会太难。</p>",
+                    "<h3>第三步：学习保命句</h3>",
+                    "<p>第一批句子应该帮助你维持对话：</p>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong></li><li><strong>Pode falar mais devagar?</strong></li><li><strong>Não entendi.</strong></li><li><strong>Como se diz...?</strong></li><li><strong>Preciso de ajuda.</strong></li><li><strong>Tenho uma dúvida.</strong></li></ul>",
+                    "<h3>第四步：每周练一个真实场景</h3>",
+                    "<p>比如：</p>",
+                    "<ul><li>机场；</li><li>公寓和门卫；</li><li>超市；</li><li>药店；</li><li>工作会议；</li><li>学校课堂；</li><li>WhatsApp；</li><li>银行；</li><li>医院；</li><li>交通。</li></ul>",
+                    "<h3>第五步：在课堂上模拟对话</h3>",
+                    "<p>老师扮演门卫、同事、房东、药店工作人员或会议主持人。学生回答问题，老师纠正，然后学生再说一次。</p>",
+                    "<h3>第六步：课后复习纠正内容</h3>",
+                    "<p>最有效的复习不是重新看一遍所有材料，而是重复老师纠正过的句子。错误被纠正后，必须通过重复变成新习惯。</p>"
+                ]
+            },
+            {
+                "heading": "30天入门计划",
+                "body": [
+                    "<p>30天不能保证流利，但可以建立实用基础。目标是让学习者开始说、开始听、开始处理简单场景。</p>",
+                    "<table><thead><tr><th>周次</th><th>重点</th><th>目标</th></tr></thead><tbody><tr><td>第1周</td><td>打招呼、自我介绍、请求重复</td><td>能开始简单对话</td></tr><tr><td>第2周</td><td>地址、公寓、门卫、配送</td><td>能处理基本生活场景</td></tr><tr><td>第3周</td><td>工作、学习、会议、WhatsApp</td><td>能参与基础沟通</td></tr><tr><td>第4周</td><td>超市、药店、交通、复习</td><td>提高生活独立性</td></tr></tbody></table>",
+                    "<p>每日练习建议：</p>",
+                    "<ul><li>10 分钟大声读句子；</li><li>5 分钟复习核心词汇；</li><li>写 1 条 WhatsApp 短消息；</li><li>录 1 段语音；</li><li>准备 1 个问题带到直播课；</li><li>复述老师纠正过的句子。</li></ul>",
+                    "<p>规律比一次学很久更重要。</p>"
+                ]
+            },
+            {
+                "heading": "如何选择 Brazilian Portuguese course？",
+                "body": [
+                    "<p>选择 Brazilian Portuguese course 时，最重要的是看课程是否服务于真实生活，而不是只讲抽象语法。外国人学葡萄牙语，尤其是为了巴西，应该学习能马上使用的语言。</p>",
+                    "<p>一个好的课程应该包括：</p>",
+                    "<ul><li>真人直播课；</li><li>真实对话练习；</li><li>巴西葡萄牙语，而不是泛泛葡萄牙语；</li><li>发音纠正；</li><li>工作和学习场景；</li><li>日常生活词汇；</li><li>WhatsApp 沟通；</li><li>文化语境；</li><li>免费或清晰的水平测试；</li><li>灵活学习方式；</li><li>不依赖长期捆绑合同。</li></ul>",
+                    "<p>要谨慎选择只提供录播、只背语法或承诺“几天流利”的课程。真正的沟通能力来自持续练习、纠正和真实使用。</p>"
+                ]
+            },
+            {
+                "heading": "Vedium 如何帮助外国人学习巴西葡萄牙语？",
+                "body": [
+                    "<p>Vedium 通过真人在线直播课帮助外国人学习巴西葡萄牙语。课程重点不是让学生孤立地背语法，而是帮助学习者在巴西真实生活中开口沟通。</p>",
+                    "<p>在 Vedium，你可以练习：</p>",
+                    "<ul><li>自我介绍；</li><li>生活场景；</li><li>工作会议；</li><li>学习场景；</li><li>WhatsApp 消息；</li><li>公寓和 portaria 沟通；</li><li>超市和药店；</li><li>地址和交通；</li><li>发音；</li><li>听力；</li><li>文化表达；</li><li>与老师进行真实对话。</li></ul>",
+                    "<p>Vedium 的课程没有长期忠诚合同。学生继续学习，是因为课程真的帮助他们在巴西更好地沟通，而不是因为被合同绑定。这一点对外国学习者很重要，因为每个人的节奏、目标和生活安排都不同。</p>",
+                    "<p>CTA：访问 <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> 预约免费水平测试，开始通过真人直播课学习巴西葡萄牙语。</p>"
+                ]
+            },
+            {
+                "heading": "实用检查清单：你准备好在巴西开口了吗？",
+                "body": [
+                    "<p>你可以用下面的清单检查自己：</p>",
+                    "<ul><li>我会用葡萄牙语介绍自己。</li><li>我会说自己正在学习葡萄牙语。</li><li>我会请别人重复。</li><li>我会请别人说慢一点。</li><li>我会说自己的地址。</li><li>我会问某个地方在哪里。</li><li>我会写一条简单 WhatsApp 消息。</li><li>我会在会议或课堂上说“我有问题”。</li><li>我会和公寓门卫进行简单沟通。</li><li>我能在老师纠正后再次说出句子。</li></ul>",
+                    "<p>如果很多项目还不会，不代表你不适合学习。它们正是你应该优先练习的内容。</p>"
+                ]
+            },
+            {
+                "heading": "结论与强力 CTA",
+                "body": [
+                    "<p>通过真人直播课学习巴西葡萄牙语，是面向真实生活的学习方式。对于想去巴西工作、学习、生活或建立关系的中文母语者来说，语言不应该停留在词汇表和录播课里。你需要能听懂、能回应、能提问、能纠正发音，并能在巴西真实场景中使用。</p>",
+                    "<p>最好的开始方式是学习高频场景：自我介绍、请求重复、地址、公寓、门卫、工作会议、课堂、WhatsApp、超市、药店和交通。每次学习都要把词汇变成句子，把句子变成对话，把对话带到直播课中练习。</p>",
+                    "<p>Vedium 提供面向外国人的巴西葡萄牙语真人在线课程，结合真实场景、文化理解、发音纠正和口语练习。没有长期忠诚合同：你继续学习，是因为你感受到进步。</p>",
+                    "<p>现在访问 <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a> 预约免费水平测试，通过真人直播课开始学习真正能在巴西使用的葡萄牙语。</p>",
+                    "<p>想继续学习，欢迎查看<a href=\"/blog/ple-zh-078\">90天建立巴西葡萄牙语基础的计划</a>，或者了解<a href=\"/en/learn-portuguese-brazil\">Brazilian Portuguese course</a>。</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "为什么要通过真人直播课学习巴西葡萄牙语？",
+                "a": "因为真人直播课可以让你开口练习、得到发音和表达纠正，并在真实生活、工作和学习场景中使用语言。"
+            },
+            {
+                "q": "中文母语者学习巴西葡萄牙语最难的是什么？",
+                "a": "常见难点包括发音、鼻化音、句子节奏、动词变化、听懂自然语速，以及把词汇变成真实对话。"
+            },
+            {
+                "q": "零基础可以学习巴西葡萄牙语直播课吗？",
+                "a": "可以。零基础可以从打招呼、自我介绍、请求重复、基本生活场景和发音开始，逐步建立沟通能力。"
+            },
+            {
+                "q": "只看录播课能学会葡萄牙语吗？",
+                "a": "录播课可以帮助理解知识，但很难纠正你的发音和口语反应。真正沟通需要直播练习和老师反馈。"
+            },
+            {
+                "q": "Vedium 提供面向外国人的巴西葡萄牙语课程吗？",
+                "a": "是的。Vedium 提供面向外国人的巴西葡萄牙语真人在线课程，包含真实场景练习、文化语境、口语训练和免费水平测试。"
+            }
+        ],
+        "cta_title": "准备好开始学习巴西葡萄牙语了吗？",
+        "cta_text": "预约免费水平测试，找到适合你的起点。",
+        "cta_label": "预约免费水平测试",
+        "cta_url": "/en/learn-portuguese-brazil"
+    },
+    "vocabulario-de-familia-em-ioruba-e-seu-valor-cultural": {
+        "title": "Vocabulário de família em iorubá e seu valor cultural",
+        "meta_description": "Conheça vocabulário de família em iorubá e entenda seu valor cultural com respeito, pronúncia e aula ao vivo.",
+        "h1": "Vocabulário de família em iorubá e seu valor cultural",
+        "date": "2025-03-21",
+        "date_display": "21 de março de 2025",
+        "hero_image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1100&h=560&fit=crop&q=80",
+        "hero_alt": "Pessoa gesticulando durante discussao de trabalho, notebook com graficos ao fundo",
+        "tag": "Iorubá",
+        "category": "ioruba",
+        "lead": "O vocabulário de família em iorubá importa porque palavras ligadas a mãe, pai, filhos, irmãos, mais velhos e comunidade não são apenas termos de parentesco. Elas carregam respeito, pertencimento, hierarquia afetiva, ancestralidade e formas de se relacionar. Para quem estuda iorubá no Brasil, especialmente em comunidades afro-diaspóricas, aprender essas palavras com cuidado ajuda a compreender melhor cantigas, saudações, rezas, nomes, histórias e vínculos culturais.",
+        "sections": [
+            {
+                "heading": "",
+                "body": [
+                    "<p>Em muitas línguas, palavras de família parecem simples no começo: mãe, pai, filho, irmão, avó, avô. Mas, quando olhamos com profundidade, percebemos que cada cultura organiza parentesco de uma forma. No iorubá, como em muitas tradições africanas, a família não deve ser entendida apenas como núcleo doméstico pequeno. Ela se relaciona com linhagem, senioridade, respeito aos mais velhos, coletividade, origem e responsabilidade.</p>",
+                    "<p>Por isso, estudar vocabulário de família em iorubá não é decorar uma lista fria. É entrar em uma forma de pensar relações. Quem é mais velho? Como se nomeia o vínculo? O que a palavra comunica além da tradução? Em que contexto ela aparece? Como pronunciar sem apagar tons e marcas? Essas perguntas tornam o aprendizado mais responsável.</p>",
+                    "<p>Neste artigo, você vai conhecer palavras iniciais de família em iorubá, entender por que elas têm valor cultural, aprender formas de praticar com respeito e ver como uma aula de iorubá ao vivo ajuda a corrigir pronúncia, contexto e uso. A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura e profundidade.</p>"
+                ]
+            },
+            {
+                "heading": "Resposta direta: por que o vocabulário de família em iorubá importa?",
+                "body": [
+                    "<p>O vocabulário de família em iorubá importa porque expressa pertencimento, respeito e continuidade. Palavras de parentesco não servem apenas para identificar pessoas; elas ajudam a entender como uma comunidade reconhece vínculos, senioridade, cuidado e ancestralidade.</p>",
+                    "<p>Para iniciantes, esse vocabulário ajuda a:</p>",
+                    "<ul><li>compreender saudações e expressões culturais;</li><li>reconhecer palavras em cantigas e rezas;</li><li>falar sobre origem e parentesco;</li><li>perceber o valor dos mais velhos;</li><li>entender a ideia de linhagem e pertencimento;</li><li>ampliar vocabulário básico com contexto;</li><li>estudar iorubá além da tradução literal;</li><li>praticar pronúncia com atenção aos tons;</li><li>evitar uso superficial de palavras sagradas ou culturais;</li><li>conectar idioma e memória.</li></ul>",
+                    "<p>A palavra traduzida como “família” pode não carregar exatamente o mesmo campo de sentido que no português. Por isso, o estudo precisa unir vocabulário, escuta, contexto e orientação. Quando a língua é aprendida com respeito, cada palavra deixa de ser apenas informação e passa a ser caminho de compreensão.</p>",
+                    "<p>Se você quer estudar iorubá com profundidade cultural e aula ao vivo, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Contexto cultural do tema",
+                "body": [
+                    "<p>Família, em uma perspectiva iorubá, pode envolver muito mais do que pai, mãe e filhos. O vocabulário se aproxima de ideias como casa, linhagem, origem, mais velhos, comunidade e continuidade. Para pessoas afro-diaspóricas no Brasil, esse tema pode tocar memória, identidade e reconstrução de vínculos que a história tentou interromper.</p>",
+                    "<p>Ao estudar esse campo de palavras, é importante evitar duas posturas:</p>",
+                    "<p>1. tratar o iorubá como curiosidade exótica;<br>2. reduzir a língua a traduções rápidas de internet.</p>",
+                    "<p>O caminho responsável é outro: escutar, perguntar, comparar com cuidado, aceitar correção, respeitar contexto e compreender que uma palavra pode carregar camadas culturais.</p>",
+                    "<p>O vocabulário de família também aparece em contextos religiosos e tradicionais. Por isso, nem sempre a tradução literal resolve. Algumas palavras podem ser usadas de modo cotidiano, ritual, afetivo ou comunitário. Um bom professor ajuda o aluno a perceber essas diferenças sem simplificar demais.</p>",
+                    "<p>A Vedium trabalha com a ideia de “fluência além das palavras”: aprender o idioma junto com cultura, contexto e respeito.</p>"
+                ]
+            },
+            {
+                "heading": "Palavras iniciais de família em iorubá",
+                "body": [
+                    "<p>As palavras abaixo são pontos de entrada para o estudo. A pronúncia deve ser praticada com orientação, porque tons, vogais e marcas podem mudar a forma correta de falar. Em iorubá, escrever sem sinais pode apagar informações importantes.</p>",
+                    "<table><thead><tr><th>Iorubá</th><th>Sentido em português</th><th>Observação cultural/didática</th></tr></thead><tbody><tr><td>ìdílé</td><td>família / linhagem / casa familiar</td><td>pode apontar para pertencimento e origem</td></tr><tr><td>ìyá</td><td>mãe</td><td>palavra central em relações de cuidado e respeito</td></tr><tr><td>bàbá</td><td>pai</td><td>também pode aparecer em usos de respeito, conforme contexto</td></tr><tr><td>ọmọ</td><td>filho, filha, criança</td><td>termo amplo e muito importante</td></tr><tr><td>arákùnrin</td><td>irmão / homem da mesma família</td><td>pode indicar relação masculina no parentesco</td></tr><tr><td>arábìnrin</td><td>irmã / mulher da mesma família</td><td>pode indicar relação feminina no parentesco</td></tr><tr><td>ọkọ</td><td>marido</td><td>também pode ter outros usos conforme contexto</td></tr><tr><td>aya</td><td>esposa</td><td>palavra ligada ao vínculo conjugal</td></tr><tr><td>àgbà</td><td>mais velho / ancião</td><td>aponta para senioridade e respeito</td></tr><tr><td>ẹbí</td><td>família / parentesco</td><td>termo usado em contextos de parentes e vínculo familiar</td></tr></tbody></table>",
+                    "<p>Essas traduções são portas de entrada, não explicações finais. A mesma palavra pode ganhar nuances de acordo com frase, situação, região, tradição oral e contexto de uso. Por isso, o aluno deve sempre estudar vocabulário com exemplos.</p>"
+                ]
+            },
+            {
+                "heading": "Mãe, pai e o cuidado com a tradução",
+                "body": [
+                    "<p>Palavras como <strong>ìyá</strong> e <strong>bàbá</strong> parecem simples quando traduzidas como mãe e pai. Porém, no estudo cultural, elas podem carregar mais do que função biológica. Podem aparecer como formas de respeito, referência afetiva, autoridade, cuidado ou relação com mais velhos, dependendo do contexto.</p>",
+                    "<p>Para o iniciante, o cuidado é não concluir rápido demais. Uma palavra de família pode ter sentido direto em uma frase cotidiana e sentido ampliado em outro contexto. Isso acontece em várias línguas. Em português, por exemplo, “mãe” pode ser pessoa biológica, figura de cuidado, tratamento afetivo ou símbolo. No iorubá, essa atenção ao contexto é ainda mais importante para quem estuda cultura e ancestralidade.</p>",
+                    "<p>Como praticar:</p>",
+                    "<ul><li>aprenda a palavra isolada;</li><li>ouça a pronúncia com atenção;</li><li>observe marcas e tons;</li><li>veja a palavra em frases;</li><li>pergunte sobre o contexto;</li><li>não use em cantigas ou rezas sem compreender;</li><li>revise com professor ao vivo.</li></ul>",
+                    "<p>Essa postura evita um aprendizado raso.</p>"
+                ]
+            },
+            {
+                "heading": "Filho, criança e pertencimento: o valor de ọmọ",
+                "body": [
+                    "<p>A palavra <strong>ọmọ</strong> costuma ser apresentada como filho, filha ou criança. Mas, em muitos contextos, ela também se conecta à ideia de pertencimento: ser filho de alguém, de uma casa, de uma linhagem, de uma comunidade, de uma origem. Isso torna o termo culturalmente muito relevante.</p>",
+                    "<p>Para brasileiros que estudam iorubá por ancestralidade, essa palavra pode despertar reflexões profundas. Não se trata apenas de “criança” como idade. Trata-se de vínculo. Quem pertence a quem? De onde vem? Qual relação é reconhecida? Qual história acompanha esse nome?</p>",
+                    "<p>Em aula, uma boa prática é trabalhar <strong>ọmọ</strong> em frases simples e depois discutir seus usos culturais com cuidado. O aluno pode observar como a palavra aparece em nomes, expressões, saudações ou referências culturais. Mas deve evitar interpretações soltas sem orientação.</p>",
+                    "<p>A língua não é só vocabulário; é forma de organizar pertencimentos.</p>"
+                ]
+            },
+            {
+                "heading": "Irmãos, irmãs e relações comunitárias",
+                "body": [
+                    "<p>Termos como <strong>arákùnrin</strong> e <strong>arábìnrin</strong> ajudam o estudante a perceber que o vocabulário de parentesco pode organizar relações por gênero, proximidade e pertencimento. Para iniciantes, eles são bons exemplos de como uma palavra pode parecer longa no início, mas se torna mais clara quando estudada por partes, som e contexto.</p>",
+                    "<p>Ao praticar essas palavras, o aluno deve prestar atenção a:</p>",
+                    "<ul><li>sílabas;</li><li>tons;</li><li>vogais;</li><li>marcas gráficas;</li><li>ritmo;</li><li>comparação entre palavras parecidas;</li><li>significado em frases.</li></ul>",
+                    "<p>Exercício simples:</p>",
+                    "<p>1. ouvir a palavra;<br>2. repetir lentamente;<br>3. identificar partes sonoras;<br>4. comparar com outra palavra;<br>5. colocar em uma frase curta;<br>6. receber correção;<br>7. repetir em voz alta.</p>",
+                    "<p>Esse processo impede que o aluno apenas “decore visualmente” sem conseguir falar.</p>"
+                ]
+            },
+            {
+                "heading": "Mais velhos, respeito e senioridade",
+                "body": [
+                    "<p>O vocabulário relacionado aos mais velhos é essencial para entender valores culturais. Em muitas tradições africanas, a senioridade não é detalhe social. Ela organiza respeito, escuta, autoridade, memória e transmissão de conhecimento. Termos ligados a mais velhos e anciãos devem ser aprendidos com atenção.</p>",
+                    "<p>A palavra <strong>àgbà</strong>, frequentemente associada a pessoa mais velha ou ancião, é um exemplo didático importante. Não deve ser tratada apenas como “velho”. Em português, “velho” pode soar neutro, afetivo ou até pejorativo, dependendo do contexto. Em uma perspectiva cultural de respeito, a ideia de mais velho pode carregar dignidade e autoridade.</p>",
+                    "<p>Ao estudar palavras desse campo, pergunte:</p>",
+                    "<ul><li>essa palavra é neutra, respeitosa ou informal?</li><li>em que contexto aparece?</li><li>pode ser usada para qualquer pessoa?</li><li>há uma forma mais adequada de tratamento?</li><li>como a pronúncia deve ser feita?</li></ul>",
+                    "<p>Essas perguntas mostram maturidade no aprendizado.</p>"
+                ]
+            },
+            {
+                "heading": "Como praticar com respeito?",
+                "body": [
+                    "<p>Praticar vocabulário de família em iorubá com respeito significa estudar som, sentido e contexto juntos. A palavra não deve ser retirada da cultura para virar apenas conteúdo decorativo.</p>",
+                    "<p>Boas práticas:</p>",
+                    "<ul><li>preserve os sinais gráficos;</li><li>estude tons desde o início;</li><li>ouça antes de repetir;</li><li>peça correção de pronúncia;</li><li>anote o contexto de uso;</li><li>não use palavras de cantigas sem orientação;</li><li>diferencie tradução literal de valor cultural;</li><li>revise com professor;</li><li>não transforme palavras em slogans;</li><li>reconheça que há camadas de significado.</li></ul>",
+                    "<p>O respeito também aparece na humildade. Aprender iorubá exige aceitar que nem tudo será entendido em uma busca rápida. Algumas palavras precisam de escuta, tempo, conversa e orientação.</p>",
+                    "<p>Para estudar vocabulário de iorubá com pronúncia e contexto cultural, fale com a Vedium sobre a próxima turma em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a>.</p>"
+                ]
+            },
+            {
+                "heading": "Exercício para aula ao vivo: árvore de família com contexto",
+                "body": [
+                    "<p>Um bom exercício para aula ao vivo é construir uma árvore de família simples em iorubá, mas sem transformar o tema em mera lista. O objetivo é praticar vocabulário, pronúncia e relação cultural.</p>",
+                    "<h3>Etapa 1: selecionar palavras</h3>",
+                    "<p>O professor escolhe um conjunto pequeno:</p>",
+                    "<ul><li>ìyá;</li><li>bàbá;</li><li>ọmọ;</li><li>arákùnrin;</li><li>arábìnrin;</li><li>ẹbí;</li><li>ìdílé;</li><li>àgbà.</li></ul>",
+                    "<h3>Etapa 2: ouvir antes de repetir</h3>",
+                    "<p>O aluno escuta cada palavra e observa marcas, vogais e tons.</p>",
+                    "<h3>Etapa 3: repetir com correção</h3>",
+                    "<p>O aluno repete palavra por palavra. O professor corrige pronúncia e ritmo.</p>",
+                    "<h3>Etapa 4: associar a vínculos</h3>",
+                    "<p>O aluno monta uma árvore simples com mãe, pai, filho, irmão e irmã.</p>",
+                    "<h3>Etapa 5: discutir contexto</h3>",
+                    "<p>O professor explica que tradução não esgota sentido. Algumas palavras podem carregar ideia de pertencimento, respeito e comunidade.</p>",
+                    "<h3>Etapa 6: criar frases simples</h3>",
+                    "<p>O aluno pratica frases curtas, adequadas ao nível, sem tentar forçar estruturas avançadas.</p>",
+                    "<h3>Etapa 7: revisar com escuta</h3>",
+                    "<p>No fim, o aluno ouve novamente as palavras e identifica quais ainda precisam de correção.</p>",
+                    "<p>Esse exercício une linguagem, memória e cuidado.</p>"
+                ]
+            },
+            {
+                "heading": "Como evitar erros comuns ao estudar esse vocabulário",
+                "body": [
+                    "<p>Os erros mais comuns acontecem quando o aluno tenta aprender rápido demais, sem escuta e sem contexto. O vocabulário de família parece simples, mas pode ser mal compreendido quando estudado apenas por tradução.</p>",
+                    "<p>Evite:</p>",
+                    "<ul><li>apagar acentos e marcas;</li><li>pronunciar como português;</li><li>ignorar tons;</li><li>usar palavras sem saber contexto;</li><li>confiar apenas em listas soltas;</li><li>misturar traduções de fontes diferentes sem orientação;</li><li>achar que uma palavra tem apenas um sentido;</li><li>publicar conteúdo sem revisão;</li><li>repetir cantigas sem compreender;</li><li>estudar sem professor ou referência responsável.</li></ul>",
+                    "<p>Melhor caminho:</p>",
+                    "<table><thead><tr><th>Em vez de...</th><th>Faça...</th></tr></thead><tbody><tr><td>decorar listas</td><td>aprenda por contexto</td></tr><tr><td>apagar sinais</td><td>preserve a grafia</td></tr><tr><td>repetir sem ouvir</td><td>escute e compare</td></tr><tr><td>traduzir literalmente</td><td>pergunte sobre uso</td></tr><tr><td>estudar sozinho sempre</td><td>leve dúvidas para aula</td></tr><tr><td>buscar rapidez</td><td>construa base com respeito</td></tr></tbody></table>",
+                    "<p>No iorubá, aprender devagar pode ser aprender melhor.</p>"
+                ]
+            },
+            {
+                "heading": "Vocabulário de família e cantigas: cuidado necessário",
+                "body": [
+                    "<p>Muitas pessoas encontram palavras de família em cantigas, rezas e expressões tradicionais. Esse contato pode despertar interesse legítimo, mas também exige cuidado. Uma cantiga não deve ser “desmontada” sem contexto, como se fosse apenas soma de palavras. Há ritmo, oralidade, tradição, função, memória e sentido.</p>",
+                    "<p>Ao estudar uma palavra encontrada em cantiga:</p>",
+                    "<p>1. anote a forma exata;<br>2. preserve marcas se estiverem disponíveis;<br>3. pergunte a alguém qualificado;<br>4. não force tradução literal;<br>5. observe repetição e contexto;<br>6. escute a pronúncia fora e dentro da melodia;<br>7. evite divulgar explicações sem confirmação.</p>",
+                    "<p>Esse cuidado protege o aluno e respeita a tradição.</p>"
+                ]
+            },
+            {
+                "heading": "Curso de iorubá online: o que observar antes de escolher",
+                "body": [
+                    "<p>Um bom curso de iorubá online deve trabalhar língua e cultura juntas. Para vocabulário de família, isso significa explicar palavras, pronúncia, tons, contexto e valor cultural, não apenas entregar uma tabela de traduções.</p>",
+                    "<p>Antes de escolher, observe se o curso:</p>",
+                    "<ul><li>tem aulas ao vivo;</li><li>corrige pronúncia;</li><li>trabalha oralidade;</li><li>respeita marcas gráficas;</li><li>explica contexto cultural;</li><li>evita promessas rápidas;</li><li>diferencia vocabulário cotidiano e uso tradicional;</li><li>permite perguntas;</li><li>orienta iniciantes;</li><li>trata cultura iorubá com seriedade.</li></ul>",
+                    "<p>A Vedium posiciona o ensino de iorubá como estudo vivo, com profundidade cultural. A proposta é aprender a língua com respeito à tradição, sem superficialidade.</p>"
+                ]
+            },
+            {
+                "heading": "Plano de 4 semanas para começar vocabulário de família",
+                "body": [
+                    "<p>Este plano ajuda iniciantes a estudar com organização.</p>",
+                    "<table><thead><tr><th>Semana</th><th>Foco</th><th>Prática</th></tr></thead><tbody><tr><td>Semana 1</td><td>escuta e pronúncia</td><td>ouvir e repetir palavras básicas de família</td></tr><tr><td>Semana 2</td><td>escrita e marcas</td><td>copiar palavras preservando sinais gráficos</td></tr><tr><td>Semana 3</td><td>contexto cultural</td><td>discutir pertencimento, senioridade e respeito</td></tr><tr><td>Semana 4</td><td>frases e revisão</td><td>criar frases simples e revisar pronúncia ao vivo</td></tr></tbody></table>",
+                    "<p>Rotina recomendada:</p>",
+                    "<ul><li>estudar 3 a 5 palavras por vez;</li><li>ouvir antes de repetir;</li><li>gravar a própria voz;</li><li>copiar com sinais;</li><li>anotar dúvidas;</li><li>revisar em aula ao vivo;</li><li>evitar avançar sem consolidar.</li></ul>",
+                    "<p>O vocabulário cresce melhor quando a base é respeitada.</p>"
+                ]
+            },
+            {
+                "heading": "Como a Vedium ajuda nesse caminho",
+                "body": [
+                    "<p>A Vedium ajuda estudantes de iorubá porque oferece aulas online ao vivo, com orientação, escuta, correção e profundidade cultural. Para temas como família, ancestralidade e pertencimento, esse acompanhamento é importante. A palavra precisa ser estudada com som, sentido e contexto.</p>",
+                    "<p>Nas aulas de iorubá da Vedium, o aluno pode praticar:</p>",
+                    "<ul><li>vocabulário básico;</li><li>pronúncia;</li><li>tons;</li><li>oralidade;</li><li>escuta guiada;</li><li>palavras de família;</li><li>saudações;</li><li>cantigas com cuidado;</li><li>contexto cultural;</li><li>dúvidas individuais;</li><li>aprendizado no próprio ritmo.</li></ul>",
+                    "<p>A Vedium não trabalha com contrato de fidelidade. O aluno continua porque sente que está aprendendo com seriedade e profundidade. Isso combina com um estudo que exige respeito, presença e constância.</p>"
+                ]
+            },
+            {
+                "heading": "Checklist: estou estudando vocabulário de família com responsabilidade?",
+                "body": [
+                    "<p>Use este checklist:</p>",
+                    "<ul><li>Estou preservando sinais gráficos.</li><li>Estou praticando pronúncia em voz alta.</li><li>Estou atento aos tons.</li><li>Sei que tradução literal não basta.</li><li>Pergunto sobre contexto cultural.</li><li>Não uso palavras sem entender o mínimo de sentido.</li><li>Escuto antes de repetir.</li><li>Aceito correção.</li><li>Estudo poucas palavras por vez.</li><li>Procuro orientação ao vivo quando tenho dúvidas.</li></ul>",
+                    "<p>Se você respondeu “não” a vários itens, esse é o ponto de partida para melhorar.</p>"
+                ]
+            },
+            {
+                "heading": "Conclusão com CTA forte",
+                "body": [
+                    "<p>O vocabulário de família em iorubá tem valor cultural porque fala de vínculo, origem, respeito, senioridade, pertencimento e continuidade. Palavras como <strong>ìyá</strong>, <strong>bàbá</strong>, <strong>ọmọ</strong>, <strong>ìdílé</strong>, <strong>ẹbí</strong>, <strong>arákùnrin</strong>, <strong>arábìnrin</strong> e <strong>àgbà</strong> não devem ser vistas apenas como equivalentes diretos de palavras em português. Elas precisam ser estudadas com pronúncia, contexto e escuta.</p>",
+                    "<p>Para quem busca iorubá por ancestralidade, cantigas, rezas, cultura ou memória, esse campo de vocabulário é um caminho de aprofundamento. Aprender com respeito significa preservar sinais, observar tons, ouvir antes de repetir e aceitar que a língua carrega camadas.</p>",
+                    "<p>A Vedium oferece curso de iorubá online e ao vivo, com foco em língua, cultura, oralidade e respeito à tradição. Sem contrato de fidelidade: você continua porque percebe profundidade no aprendizado.</p>",
+                    "<p>Fale com a Vedium sobre a próxima turma de Iorubá em <a href=\"/curso-de-ioruba-online\">https://vediums.com/</a> e comece a estudar vocabulário, pronúncia e cultura com orientação real.</p>",
+                    "<p>Para continuar estudando, veja também <a href=\"/blog/ioruba/como-perguntar-nome-origem-e-bem-estar-em-ioruba\">Como perguntar nome, origem e bem-estar em iorubá</a> ou conheça o <a href=\"/curso-de-ioruba-online\">curso de iorubá online</a>.</p>"
+                ]
+            }
+        ],
+        "faqs": [
+            {
+                "q": "Por que estudar vocabulário de família em iorubá?",
+                "a": "Porque palavras de família ajudam a entender vínculo, pertencimento, respeito aos mais velhos, ancestralidade e expressões culturais presentes no idioma."
+            },
+            {
+                "q": "Quais palavras de família em iorubá um iniciante pode aprender?",
+                "a": "Um iniciante pode começar por ìyá, bàbá, ọmọ, ìdílé, ẹbí, arákùnrin, arábìnrin, ọkọ, aya e àgbà, sempre com orientação de pronúncia."
+            },
+            {
+                "q": "Posso traduzir palavras de família em iorubá literalmente?",
+                "a": "A tradução ajuda no começo, mas não basta. Muitas palavras carregam contexto cultural, uso social e nuances que precisam ser explicadas."
+            },
+            {
+                "q": "Como praticar esse vocabulário com respeito?",
+                "a": "Preserve sinais gráficos, estude tons, ouça antes de repetir, peça correção, aprenda contexto e evite usar palavras culturalmente importantes sem orientação."
+            },
+            {
+                "q": "A Vedium oferece curso de iorubá com vocabulário e cultura?",
+                "a": "Sim. A Vedium oferece aulas de iorubá online e ao vivo, com vocabulário, pronúncia, oralidade, cultura e respeito à tradição."
+            }
+        ],
+        "cta_title": "Quer aprender iorubá com pronúncia correta desde o início?",
+        "cta_text": "Aulas ao vivo, do zero ao avançado, com foco em tons e conversação real.",
+        "cta_label": "Falar sobre a próxima turma de Iorubá",
+        "cta_url": "/curso-de-ioruba-online"
+    },
+})
+
 
 
 def _post_url(slug, post):
