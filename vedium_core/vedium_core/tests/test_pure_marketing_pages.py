@@ -3951,3 +3951,49 @@ def test_russian_course_translations_exist_for_yoruba_and_ple():
 
     hooks_src = (ROOT / "vedium_core" / "vedium_core" / "hooks.py").read_text(encoding="utf-8")
     assert '{"from_route": "/ru/curso/<course>", "to_route": "curso"}' in hooks_src
+
+
+def test_russian_carreiras_page_matches_pt_structure_with_reciprocal_hreflang():
+    """2026-07-15: ru/carreiras.html estava desatualizada (extends web.html +
+    frappe.call(), sem breadcrumb/title/description próprios). Reescrita no
+    mesmo padrão estrutural do par PT (fetch() nativo, hreflang de 6 idiomas,
+    BreadcrumbList, título/descrição via contexto) -- trava aqui pra não
+    regredir pro modelo antigo."""
+    ru_html = (WWW / "ru" / "carreiras.html").read_text(encoding="utf-8")
+    ru_py = (WWW / "ru" / "carreiras.py").read_text(encoding="utf-8")
+
+    assert '{% extends "templates/web.html" %}' not in ru_html
+    assert "frappe.call(" not in ru_html
+    assert '<html lang="ru">' in ru_html
+
+    for lang, prefix in (
+        ("pt-br", ""), ("en", "/en"), ("es", "/es"), ("fr", "/fr"),
+        ("de", "/de"), ("ru", "/ru"),
+    ):
+        assert f'hreflang="{lang}" href="https://vediums.com{prefix}/carreiras"' in ru_html
+    assert 'hreflang="x-default" href="https://vediums.com/carreiras"' in ru_html
+    assert '<link rel="canonical" href="https://vediums.com/ru/carreiras" />' in ru_html
+
+    assert '"item":"https://vediums.com/ru"' in ru_html
+    assert '"item":"https://vediums.com/ru/carreiras"' in ru_html
+
+    assert "vedium_core.careers.submit_candidatura" in ru_html
+    assert "fetch(" in ru_html
+    assert "X-Frappe-CSRF-Token" in ru_html
+
+    # rótulos/mensagens já traduzidos preservados
+    assert "Полное имя *" in ru_html
+    assert "Отправить заявку" in ru_html
+    assert "Заявка отправлена!" in ru_html
+    assert "Пожалуйста, заполните имя и email." in ru_html
+
+    # links internos novos apontando pro cluster ru já existente
+    assert 'href="/ru/sobre"' in ru_html
+    assert 'href="/ru/como-funciona"' in ru_html
+    assert 'href="/ru/faq"' in ru_html
+    assert 'href="/ru/contato"' in ru_html
+
+    assert 'set_careers_seo_context(context, "ru")' in ru_py
+    assert "context.title" in ru_py
+    assert "context.description" in ru_py
+    assert "Преподаватель йоруба" in ru_py

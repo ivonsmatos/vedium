@@ -6,6 +6,13 @@ no_cache = 1
 
 def get_context(context):
     context.no_cache = 1
+    set_careers_seo_context(context, "ru")
+    context.title = "Карьера - Vedium"
+    context.description = (
+        "Работайте в Vedium: вакансии для преподавателей английского, йоруба, "
+        "португальского для иностранцев, иврита, испанского и других языков, "
+        "а также специалистов по поддержке, маркетингу и продажам. Отправьте заявку."
+    )
     context.positions = [
         "Преподаватель английского языка",
         "Преподаватель йоруба",
@@ -19,4 +26,3 @@ def get_context(context):
         "Продажи",
         "Другое (укажите в сообщении)",
     ]
-    set_careers_seo_context(context, "ru")
