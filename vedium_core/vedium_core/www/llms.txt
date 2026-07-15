@@ -11,7 +11,7 @@
 
 ## Cursos
 - [Catálogo de cursos](https://vediums.com/cursos-de-idiomas-online): lista completa e atualizada, com níveis, preços e matrícula.
-- Inglês: [Beginner (A1)](https://vediums.com/curso/ingles-basico-a1), [Elementary (A2)](https://vediums.com/curso/ingles-elementar-a2), [Pré-Intermediário](https://vediums.com/curso/ingles-pre-intermediario), [Intermediário (B1)](https://vediums.com/curso/ingles-intermediario-b1), [Upper Intermediário (B2)](https://vediums.com/curso/ingles-intermediario-superior-b2) e [Avançado (C1)](https://vediums.com/curso/ingles-avancado-c1).
+- Inglês: [A1 – Iniciante](https://vediums.com/curso/ingles-basico-a1), [A2 – Básico](https://vediums.com/curso/ingles-elementar-a2), [B1 – Pré-Intermediário](https://vediums.com/curso/ingles-pre-intermediario), [B1+ – Intermediário](https://vediums.com/curso/ingles-intermediario-b1), [B2 – Intermediário Avançado](https://vediums.com/curso/ingles-intermediario-superior-b2) e [C1 – Avançado](https://vediums.com/curso/ingles-avancado-c1).
 - Espanhol: [básico](https://vediums.com/curso/espanhol-basico), [intermediário](https://vediums.com/curso/espanhol-intermediario) e [avançado](https://vediums.com/curso/espanhol-avancado).
 - Hebraico: [alfabetização](https://vediums.com/curso/hebraico-a0-alfabetizacao), [moderno A1](https://vediums.com/curso/hebraico-moderno-a1), [moderno A2-B1](https://vediums.com/curso/hebraico-moderno-a2-b1), [bíblico](https://vediums.com/curso/hebraico-biblico-leitura-guiada) e [particular](https://vediums.com/curso/hebraico-particular).
 - Iorubá: [básico](https://vediums.com/curso/ioruba-basico), [intermediário](https://vediums.com/curso/ioruba-intermediario) e [avançado](https://vediums.com/curso/ioruba-avancado).

@@ -1,22 +1,31 @@
 """Read-only catalog audits for production checks."""
 
-import re
-
 import frappe
 
 
+CEFR_CODES = ("A1", "A2", "B1+", "B2", "C1", "B1")
+
+
+def _found_levels(text):
+    """Detecta códigos CEFR literais no título/categoria do curso.
+
+    Desde a renomeação de 2026-07 ("Inglês - Beginner" -> "Inglês Online ao
+    Vivo A1 - Iniciante"), o título já traz o código CEFR explícito. "B1" é
+    substring de "B1+", então removemos o falso-positivo quando "B1+" já foi
+    encontrado.
+    """
+    found = [code for code in CEFR_CODES if code in text]
+    if "B1+" in found and "B1" in found:
+        found.remove("B1")
+    return found
+
+
 def _infer_expected_level(title, category=None):
-    text = f"{title or ''} {category or ''}".lower()
-    normalized = re.sub(r"\s+", " ", text)
-    if "ingl" not in normalized and "english" not in normalized:
+    text = f"{title or ''} {category or ''}"
+    if "ingl" not in text.lower() and "english" not in text.lower():
         return None
-    if "upper" in normalized or "intermediário superior" in normalized:
-        return "B2"
-    if "pré-intermedi" in normalized or "pre-intermedi" in normalized:
-        return "B1-"
-    if "intermedi" in normalized:
-        return "B1"
-    return None
+    found = _found_levels(text)
+    return found[0] if len(found) == 1 else None
 
 
 def audit_course_levels():
@@ -33,21 +42,19 @@ def audit_course_levels():
     checked = []
     issues = []
     for course in courses:
-        expected = _infer_expected_level(course.title, course.category)
-        if not expected:
+        text = f"{course.title or ''} {course.category or ''}"
+        if "ingl" not in text.lower() and "english" not in text.lower():
             continue
+        found = _found_levels(text)
         row = {
             "name": course.name,
             "title": course.title,
             "category": course.category,
-            "expected_level": expected,
+            "found_levels": found,
         }
         checked.append(row)
-        haystack = f"{course.title or ''} {course.category or ''}".lower()
-        if expected == "B2" and "b1" in haystack:
-            issues.append({**row, "issue": "Upper Intermediario appears with B1"})
-        if expected == "B1" and "upper" not in haystack and "b2" in haystack:
-            issues.append({**row, "issue": "Intermediario appears with B2"})
+        if len(found) != 1:
+            issues.append({**row, "issue": f"Ambiguous or missing CEFR level: {found}"})
 
     return {
         "ok": not issues,

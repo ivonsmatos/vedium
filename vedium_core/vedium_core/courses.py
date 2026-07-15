@@ -89,7 +89,7 @@ def get_published_courses(category_prefix=None, category_exact=None):
                     "LMS Category", course.category, "category"
                 )
 
-        level_order = {"A1": 1, "A2": 2, "B1-": 3, "B1": 4, "B2": 5, "C1": 6,
+        level_order = {"A1": 1, "A2": 2, "B1": 3, "B1+": 4, "B2": 5, "C1": 6,
                        "Básico": 10, "Intermediário": 11, "Avançado": 12}
         courses.sort(key=lambda c: level_order.get(c.get("level_badge", ""), 99))
 
@@ -129,14 +129,16 @@ def get_level_badge(title):
         if "Particular" in title:
             return "1:1"
         return "A1"
-    # Cursos CEFR (Inglês)
+    # Cursos CEFR (Inglês) — título já traz o código explícito (ex: "Inglês
+    # Online ao Vivo B1+ – Intermediário"); checar "B1+" antes de "B1" evita
+    # que o "+" seja perdido por match de substring.
     cefr = {
-        "Beginner": "A1",
-        "Elementary": "A2",
-        "Pré-Intermediário": "B1-",
-        "Upper Intermediário": "B2",
-        "Intermediário": "B1",
-        "Avançado": "C1",
+        "B1+": "B1+",
+        "A1": "A1",
+        "A2": "A2",
+        "B1": "B1",
+        "B2": "B2",
+        "C1": "C1",
     }
     for label, code in cefr.items():
         if label in title:

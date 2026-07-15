@@ -764,8 +764,8 @@ def test_production_catalog_audit_is_read_only_and_checks_b1_b2():
     assert "def audit_course_levels" in audit
     assert "frappe.get_all" in audit
     assert "filters={\"published\": 1}" in audit
-    assert "Upper Intermediario appears with B1" in audit
-    assert "Intermediario appears with B2" in audit
+    assert "Ambiguous or missing CEFR level" in audit
+    assert 'CEFR_CODES = ("A1", "A2", "B1+", "B2", "C1", "B1")' in audit
     assert ".save(" not in audit
     assert ".insert(" not in audit
     assert "frappe.db.set_value" not in audit
@@ -949,8 +949,8 @@ def test_rich_footer_matches_public_site_structure():
 
 def test_llms_txt_has_current_course_level_and_objective_pages():
     llms = (WWW / "llms.txt").read_text(encoding="utf-8")
-    assert "Upper Intermediário (B2)" in llms
-    assert "Upper Intermediário (B1)" not in llms
+    assert "B2 – Intermediário Avançado" in llms
+    assert "Upper Intermediário" not in llms
     for slug in SEO_SLUGS + COMMERCIAL_SLUGS + PUBLIC_INTENT_SLUGS:
         assert f"https://vediums.com/{slug}" in llms
     for slug in PLATFORM_SLUGS:
@@ -1429,8 +1429,10 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     for nginx in [nginx_primary, nginx_legacy]:
         assert "location = /" in nginx
         assert "return 302 /login;" in nginx
-    assert courses_py.index('"Upper Intermediário": "B2"') < courses_py.index('"Intermediário": "B1"')
-    assert index_py.index('"Upper Intermediário": "B2"') < index_py.index('"Intermediário": "B1"')
+    # "B1+" precisa ser checado antes de "B1" simples (senão o "+" se perde
+    # por match de substring: "B1" bate dentro de "B1+" também).
+    assert courses_py.index('"B1+": "B1+"') < courses_py.index('"B1": "B1"')
+    assert index_py.index('"B1+": "B1+"') < index_py.index('"B1": "B1"')
     assert "_dedupe_chapters" in curso_py
     assert "_dedupe_lessons" in curso_py
     assert "chapter.lessons = _dedupe_lessons" in curso_py

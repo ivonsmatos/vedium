@@ -143,13 +143,16 @@ def _enrich(course) -> dict:
 
 
 def _level_badge(title: str) -> str:
+    # Los títulos de curso ahora traen el código CEFR explícito (ej.
+    # "Inglês Online ao Vivo B1+ – Intermediário") — verificar "B1+" antes
+    # de "B1" evita perder el "+" por coincidencia de subcadena.
     BADGES = {
-        "Beginner": "A1",
-        "Elementary": "A2",
-        "Pré-Intermediário": "B1-",
-        "Upper Intermediário": "B2",
-        "Intermediário": "B1",
-        "Avançado": "C1",
+        "B1+": "B1+",
+        "A1": "A1",
+        "A2": "A2",
+        "B1": "B1",
+        "B2": "B2",
+        "C1": "C1",
     }
     for label, code in BADGES.items():
         if label in title:
