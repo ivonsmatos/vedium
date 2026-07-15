@@ -884,6 +884,26 @@ def test_public_pages_do_not_reintroduce_template_residue():
     assert not (WWW / "professor-busayo-frank-alonge.py").exists()
 
 
+def test_home_page_has_no_testimonials_section():
+    # Removido a pedido do usuário: depoimentos fabricados (nomes/citações
+    # inventados) não passam credibilidade e a Vediums não tem depoimentos
+    # reais para publicar.
+    forbidden = [
+        "vd-testimonials",
+        "testimonials-swiper",
+        "Histórias Reais",
+        "Nossos Alunos Dizem",
+        "Ana Lúcia S.",
+        "Kwame A.",
+        "Ifeoma O.",
+        "Adekunle B.",
+    ]
+    for lang in ("", "en", "es", "fr", "de", "ru"):
+        html = (WWW / lang / "index.html" if lang else WWW / "index.html").read_text(encoding="utf-8")
+        for item in forbidden:
+            assert item not in html, f"{item!r} ainda presente em {lang or 'pt-br'}/index.html"
+
+
 def test_company_legal_data_is_visible_without_touching_checkout():
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
     terms = (WWW / "termos.html").read_text(encoding="utf-8")
