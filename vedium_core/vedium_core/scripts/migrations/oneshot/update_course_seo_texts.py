@@ -13,10 +13,16 @@ pública (/curso/<slug>, ver www/curso.py) e meta_keywords a <meta
 name="keywords"> (ver www/curso.html) — campos nativos do doctype, sem
 overlay em código.
 
-Usa doc.save() (não frappe.db.set_value) para disparar o on_update de
-hooks.py (vedium_core.courses.bump_courses_cache_version) e invalidar o
-cache de /catalogo e das páginas de curso na hora, em vez de esperar os
-5 minutos do CACHE_TTL.
+Usa frappe.db.set_value (não doc.save()) -- alguns cursos em produção têm
+dado pré-existente inconsistente (paid_certificate + certificado de
+conclusão marcados juntos) que faz LMSCourse.validate_certification()
+lançar ValidationError em QUALQUER doc.save(), mesmo quando os campos
+alterados aqui não têm nada a ver com certificado. set_value grava só os
+4 campos direto no banco sem rodar validate() (mesmo padrão já usado em
+rename_english_course_titles.py, pelo mesmo motivo). Efeito colateral:
+doc_events (on_update -> vedium_core.courses.bump_courses_cache_version)
+não dispara -- rode `bench --site app.vediums.com clear-cache` logo depois
+pra não esperar os 5 minutos do CACHE_TTL.
 
 Rodar (idempotente — reaplica o mesmo valor, sem duplicar nada):
     bench --site app.vediums.com execute \
@@ -435,12 +441,12 @@ def run():
             missing.append(course_name)
             print(f"  AVISO: curso '{course_name}' não existe, pulando.")
             continue
-        doc = frappe.get_doc("LMS Course", course_name)
-        doc.meta_description = texts["meta_description"]
-        doc.meta_keywords = texts["meta_keywords"]
-        doc.short_introduction = texts["short_introduction"]
-        doc.description = texts["description"]
-        doc.save(ignore_permissions=True)
+        frappe.db.set_value("LMS Course", course_name, {
+            "meta_description": texts["meta_description"],
+            "meta_keywords": texts["meta_keywords"],
+            "short_introduction": texts["short_introduction"],
+            "description": texts["description"],
+        })
         updated += 1
         print(f"  ✓ '{course_name}' atualizado.")
 
