@@ -3386,6 +3386,29 @@ def test_aulas_ao_vivo_and_parcerias_pages_exist():
     assert "vd_footer_u.metodologia" in footer
 
 
+def test_institutional_pages_have_breadcrumb():
+    """2026-07-15: auditoria Semana 2 achou que só curso.html tinha
+    Schema.org BreadcrumbList; blog só tinha o visual, sem schema; e várias
+    páginas institucionais não tinham breadcrumb nenhum (nem visual, nem
+    schema). Trava BreadcrumbList nessas páginas pra não regredir."""
+    pages = [
+        "faq.html", "planos.html", "matricula.html", "aula-diagnostica.html",
+        "diferenciais.html", "metodologia.html", "aulas-ao-vivo.html",
+        "parcerias.html", "empresas.html", "carreiras.html", "blog.html",
+    ]
+    for slug in pages:
+        html = (WWW / slug).read_text(encoding="utf-8")
+        assert "BreadcrumbList" in html, f"{slug} sem Schema.org BreadcrumbList"
+
+    public_intent = (TPL / "public_intent_page.html").read_text(encoding="utf-8")
+    assert "BreadcrumbList" in public_intent
+
+    blog_post = (TPL / "blog_post.html").read_text(encoding="utf-8")
+    blog_category = (TPL / "blog_category.html").read_text(encoding="utf-8")
+    assert "BreadcrumbList" in blog_post
+    assert "BreadcrumbList" in blog_category
+
+
 def test_sobre_page_has_mission_vision_values():
     """2026-07-15: usuário apontou que /sobre era rasa demais -- faltava
     propósito, missão, visão e valores, baseados nos documentos internos
