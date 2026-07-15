@@ -80,6 +80,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 
+    <!-- LCP: a imagem do primeiro slide do hero é aplicada via CSS
+         background-image (não <img>), então o navegador só a descobre
+         depois de processar o CSS -- fetchpriority não existe pra
+         background-image, então precisamos do preload explícito pra
+         adiantar a busca dessa imagem específica (achado real via
+         PageSpeed Insights, 2026-07-15: LCP de 6,9s). -->
+    <link rel="preload" as="image" fetchpriority="high"
+        href="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80" />
+
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/animate.min.css" />
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/custom-animate.css" />

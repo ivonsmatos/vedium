@@ -33,11 +33,17 @@ tem licença paga diferente).
 Rodar (idempotente — reaplica o valor, sem duplicar nada):
     bench --site app.vediums.com execute \
         vedium_core.scripts.migrations.oneshot.set_course_cover_images.run
+
+2026-07-15: w reduzido de 1200 para 900 -- PageSpeed Insights (achado real,
+LCP de 6,9s na home) apontou essas imagens sendo entregues em ~1200px de
+largura para uma área exibida de ~669px (curso.html renderiza a capa numa
+coluna de conteúdo, não em tela cheia), desperdiçando ~383 KiB no total.
+900px cobre com folga até telas retina (2x) na largura real exibida.
 """
 
 import frappe
 
-_PARAMS = "?auto=format&fit=crop&w=1200&q=80"
+_PARAMS = "?auto=format&fit=crop&w=900&q=80"
 
 COURSE_IMAGES = {
     "espanhol-basico": f"https://images.unsplash.com/photo-1489945052260-4f21c52268b9{_PARAMS}",
