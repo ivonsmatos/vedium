@@ -92,12 +92,8 @@ def get_context(context):
         context.description = (desc[:155] if desc else
                                _fallback_desc[req_lang].format(title=context.course.title))
     else:
-        meta_description = (context.course.get("meta_description") or "").strip()
-        context.description = (
-            meta_description
-            or (desc[:155] if desc else f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
-        )
-    context.meta_keywords = (context.course.get("meta_keywords") or "").strip() if not translation else ""
+        context.description = (desc[:155] if desc else
+                               f"{context.course.title}: aulas ao vivo, professores e certificado. Matricule-se na Vedium.")
     context.canonical_url = (
         f"https://vediums.com{get_course_url(course_name, req_lang)}" if translation
         else f"https://vediums.com{get_course_url(course_name)}"

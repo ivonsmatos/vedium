@@ -1,24 +1,29 @@
 # -*- coding: utf-8 -*-
-"""Atualiza meta_description/meta_keywords/short_introduction/description
-(LMS Course, seção "Meta Tags" + "Sobre o curso" no formulário) dos 20
-cursos com os textos SEO/GEO preparados em Cliente/Vedium/Artigos/Publicar
-(arquivo "textos_seo_cursos_vedium_todos_niveis.md", 2026-07-15) —
-substitui as descrições antigas (foco em lista de conteúdo gramatical) por
-texto comercial "para quem é / o que aprende / resultado final", como já é
-o padrão usado em course_translations.py e nos cursos de Espanhol/PLE/
+"""Atualiza short_introduction/description (LMS Course, "Sobre o curso" no
+formulário) dos 20 cursos com os textos SEO/GEO preparados em
+Cliente/Vedium/Artigos/Publicar (arquivo
+"textos_seo_cursos_vedium_todos_niveis.md", 2026-07-15) — substitui as
+descrições antigas (foco em lista de conteúdo gramatical) por texto
+comercial "para quem é / o que aprende / resultado final", como já é o
+padrão usado em course_translations.py e nos cursos de Espanhol/PLE/
 Hebraico criados via oneshot.
 
-meta_description alimenta a <meta name="description"> real da página
-pública (/curso/<slug>, ver www/curso.py) e meta_keywords a <meta
-name="keywords"> (ver www/curso.html) — campos nativos do doctype, sem
-overlay em código.
+short_introduction também alimenta a <meta name="description"> real da
+página pública (/curso/<slug>, truncada em 155 caracteres — ver
+www/curso.py). O arquivo-fonte também tinha um texto de "Meta Description"
+dedicado e um de "Meta Keywords", mas LMS Course NÃO tem esses campos (a
+seção "Meta Tags" que aparece no formulário do Frappe é o doctype separado
+Website Route Meta, vinculado por URL da página, não pelo curso — e
+meta_keywords não tem efeito de SEO desde que o Google parou de usá-la,
+~2009). Não vale a complexidade de integrar Website Route Meta só por
+isso; ver decisão de 2026-07-15.
 
 Usa frappe.db.set_value (não doc.save()) -- alguns cursos em produção têm
 dado pré-existente inconsistente (paid_certificate + certificado de
 conclusão marcados juntos) que faz LMSCourse.validate_certification()
 lançar ValidationError em QUALQUER doc.save(), mesmo quando os campos
-alterados aqui não têm nada a ver com certificado. set_value grava só os
-4 campos direto no banco sem rodar validate() (mesmo padrão já usado em
+alterados aqui não têm nada a ver com certificado. set_value grava os
+campos direto no banco sem rodar validate() (mesmo padrão já usado em
 rename_english_course_titles.py, pelo mesmo motivo). Efeito colateral:
 doc_events (on_update -> vedium_core.courses.bump_courses_cache_version)
 não dispara -- rode `bench --site app.vediums.com clear-cache` logo depois
@@ -33,8 +38,6 @@ import frappe
 
 COURSE_TEXTS = {
     "ingl-s-beginner": {
-        "meta_description": "Inglês Online ao Vivo A1 para iniciantes. Comece do zero com vocabulário essencial, frases simples, pronúncia e prática oral com professor.",
-        "meta_keywords": "aula de inglês ao vivo, curso de inglês online A1, inglês iniciante online, inglês do zero, inglês para iniciantes, curso de inglês com professor, inglês básico",
         "short_introduction": "Para quem está começando do zero. Aprenda cumprimentos, vocabulário essencial, frases simples e primeiras conversas em inglês com professor ao vivo.",
         "description": (
             "<p>O curso <strong>Inglês Online ao Vivo A1 – Iniciante</strong> é destinado a quem "
@@ -53,8 +56,6 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-elementary": {
-        "meta_description": "Inglês Online ao Vivo A2 para consolidar a base. Pratique presente, passado, futuro, vocabulário cotidiano e conversação com professor.",
-        "meta_keywords": "curso de inglês online A2, inglês básico online, aula de inglês ao vivo, inglês com professor, conversação em inglês básico, curso de inglês para adultos",
         "short_introduction": "Para quem já conhece o básico e quer ganhar segurança. Consolide gramática, vocabulário cotidiano, escuta e conversação em inglês ao vivo.",
         "description": (
             "<p>O curso <strong>Inglês Online ao Vivo A2 – Básico</strong> é indicado para alunos "
@@ -73,8 +74,6 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-pr-intermedi-rio": {
-        "meta_description": "Inglês Online ao Vivo B1 para destravar a comunicação. Pratique conversas do dia a dia, tempos verbais, opiniões e fluência funcional.",
-        "meta_keywords": "curso de inglês online B1, inglês pré-intermediário, conversação em inglês, aula de inglês ao vivo, inglês para falar melhor, inglês funcional",
         "short_introduction": "Para quem já sabe o básico, mas trava ao falar. Desenvolva conversação, vocabulário, tempos verbais e comunicação funcional em inglês.",
         "description": (
             "<p>O curso <strong>Inglês Online ao Vivo B1 – Pré-Intermediário</strong> é destinado a "
@@ -93,8 +92,6 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-intermedi-rio": {
-        "meta_description": "Inglês Online ao Vivo B1+ para ganhar fluência intermediária. Pratique reported speech, conditionals, modais e conversas mais completas.",
-        "meta_keywords": "curso de inglês online intermediário, inglês B1+, inglês intermediário online, conversação em inglês, curso de inglês com professor, inglês ao vivo",
         "short_introduction": "Para quem já conversa, mas precisa falar com mais estrutura. Desenvolva fluência intermediária, vocabulário e comunicação em situações diversas.",
         "description": (
             "<p>O curso <strong>Inglês Online ao Vivo B1+ – Intermediário</strong> é ideal para quem "
@@ -113,8 +110,6 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-upper-intermedi-rio": {
-        "meta_description": "Inglês Online ao Vivo B2 para fluência profissional. Aprimore argumentação, hipóteses, vocabulário avançado e comunicação com segurança.",
-        "meta_keywords": "curso de inglês online B2, inglês intermediário avançado, inglês profissional, inglês para trabalho, conversação avançada em inglês, aula de inglês ao vivo",
         "short_introduction": "Para quem quer falar inglês com mais precisão e presença. Desenvolva argumentação, vocabulário profissional, escuta e fluência em nível B2.",
         "description": (
             "<p>O curso <strong>Inglês Online ao Vivo B2 – Intermediário Avançado</strong> é voltado "
@@ -133,8 +128,6 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-avan-ado": {
-        "meta_description": "Inglês Online ao Vivo C1 para fluência avançada. Aperfeiçoe discurso, precisão gramatical, vocabulário sofisticado e comunicação profissional.",
-        "meta_keywords": "curso de inglês online C1, inglês avançado online, fluência em inglês, inglês profissional avançado, conversação avançada, inglês para carreira",
         "short_introduction": "Para quem já fala inglês e quer refinamento. Aperfeiçoe fluência, precisão, discurso, vocabulário sofisticado e comunicação profissional.",
         "description": (
             "<p>O curso <strong>Inglês Online ao Vivo C1 – Avançado</strong> é indicado para alunos "
@@ -153,8 +146,6 @@ COURSE_TEXTS = {
         ),
     },
     "espanhol-basico": {
-        "meta_description": "Espanhol Online Básico A1-A2 para brasileiros. Comece do zero, saia do portunhol e pratique conversas reais com professor ao vivo.",
-        "meta_keywords": "curso de espanhol online, espanhol básico, espanhol para brasileiros, sair do portunhol, aula de espanhol ao vivo, espanhol A1 A2, espanhol para viagem",
         "short_introduction": "Para quem quer começar espanhol do jeito certo. Aprenda saudações, frases essenciais, pronúncia, vocabulário e conversas básicas sem cair no portunhol.",
         "description": (
             "<p>O curso <strong>Espanhol — Nível Básico (A1-A2)</strong> é destinado a brasileiros "
@@ -173,8 +164,6 @@ COURSE_TEXTS = {
         ),
     },
     "espanhol-intermediario": {
-        "meta_description": "Espanhol Online Intermediário B1-B2.1 para conversar com opinião, narrar experiências, corrigir o portunhol e ganhar fluência.",
-        "meta_keywords": "curso de espanhol intermediário, espanhol online B1, espanhol B2, conversação em espanhol, espanhol para trabalho, espanhol para brasileiros, portunhol",
         "short_introduction": "Para quem já entende espanhol, mas precisa falar melhor. Desenvolva conversação, narrativa, opinião, passado, subjuntivo e vocabulário mais natural.",
         "description": (
             "<p>O curso <strong>Espanhol — Nível Intermediário (B1-B2.1)</strong> é indicado para "
@@ -193,8 +182,6 @@ COURSE_TEXTS = {
         ),
     },
     "espanhol-avancado": {
-        "meta_description": "Espanhol Online Avançado B2.2-C1 para fluência, carreira e cultura. Aperfeiçoe argumentação, precisão e comunicação profissional.",
-        "meta_keywords": "curso de espanhol avançado, espanhol online C1, espanhol profissional, fluência em espanhol, espanhol para carreira, conversação avançada em espanhol",
         "short_introduction": "Para quem já fala espanhol e quer refinar fluência. Trabalhe precisão, argumentação, apresentações, cultura e comunicação profissional avançada.",
         "description": (
             "<p>O curso <strong>Espanhol — Nível Avançado (B2.2-C1)</strong> é voltado para alunos "
@@ -212,8 +199,6 @@ COURSE_TEXTS = {
         ),
     },
     "portugues-para-estrangeiros-basico": {
-        "meta_description": "Português para Estrangeiros Básico. Comece do zero com saudações, vocabulário essencial e comunicação real no Brasil.",
-        "meta_keywords": "português para estrangeiros, português brasileiro, PLE básico, curso de português online, português para iniciantes, Brazilian Portuguese, português do Brasil",
         "short_introduction": "Para quem está começando do zero. Aprenda saudações, vocabulário essencial e comunicação básica do português brasileiro com imersão cultural.",
         "description": (
             "<p>O curso <strong>Português para Estrangeiros — Nível Básico (PLE)</strong> é "
@@ -232,8 +217,6 @@ COURSE_TEXTS = {
         ),
     },
     "portugues-para-estrangeiros-intermediario": {
-        "meta_description": "Português para Estrangeiros Intermediário. Amplie vocabulário, domine tempos do passado e converse melhor em situações sociais e profissionais.",
-        "meta_keywords": "português para estrangeiros intermediário, PLE intermediário, português brasileiro online, Brazilian Portuguese B1, curso de português para estrangeiros, português no Brasil",
         "short_introduction": "Para estrangeiros que já têm base no português. Ganhe fluência em conversas sociais, profissionais e situações reais da vida no Brasil.",
         "description": (
             "<p>O curso <strong>Português para Estrangeiros — Nível Intermediário (PLE)</strong> é "
@@ -252,8 +235,6 @@ COURSE_TEXTS = {
         ),
     },
     "portugues-para-estrangeiros-avancado": {
-        "meta_description": "Português para Estrangeiros Avançado. Aperfeiçoe fluência, subjuntivo, textos autênticos e comunicação acadêmica e profissional no Brasil.",
-        "meta_keywords": "português para estrangeiros avançado, PLE avançado, português brasileiro avançado, Brazilian Portuguese C1, português profissional, português acadêmico",
         "short_introduction": "Para estrangeiros que já falam português e querem refinamento. Aperfeiçoe fluência, vocabulário, escrita, leitura e comunicação profissional.",
         "description": (
             "<p>O curso <strong>Português para Estrangeiros — Nível Avançado (PLE)</strong> é "
@@ -272,8 +253,6 @@ COURSE_TEXTS = {
         ),
     },
     "iorub-b-sico": {
-        "meta_description": "Curso de Iorubá Básico online. Aprenda saudações, alfabeto, tons, pronomes, numerais e diálogos iniciais com contexto cultural.",
-        "meta_keywords": "curso de iorubá online, iorubá básico, aprender iorubá, yorùbá online, língua iorubá, cultura iorubá, aula de iorubá ao vivo",
         "short_introduction": "Para quem quer começar iorubá com base sólida. Aprenda sons, tons, saudações, vocabulário essencial e frases iniciais com responsabilidade cultural.",
         "description": (
             "<p>O curso <strong>Iorubá — Básico</strong> é destinado a quem deseja iniciar o estudo "
@@ -292,8 +271,6 @@ COURSE_TEXTS = {
         ),
     },
     "iorub-intermedi-rio": {
-        "meta_description": "Curso de Iorubá Intermediário online. Aprofunde classes de palavras, verbos seriais, aspectos verbais, expressões e conversação.",
-        "meta_keywords": "iorubá intermediário, curso de iorubá online, aprender yorùbá, conversação em iorubá, gramática iorubá, aula de iorubá ao vivo",
         "short_introduction": "Para quem já tem base em iorubá. Aprofunde gramática, verbos, expressões, vocabulário cultural e conversação com orientação ao vivo.",
         "description": (
             "<p>O curso <strong>Iorubá — Intermediário</strong> é indicado para alunos que já "
@@ -312,8 +289,6 @@ COURSE_TEXTS = {
         ),
     },
     "iorub-avan-ado": {
-        "meta_description": "Curso de Iorubá Avançado online. Desenvolva fluência, gramática complexa, literatura, história, filosofia e uso cultural da língua.",
-        "meta_keywords": "iorubá avançado, curso avançado de iorubá, yorùbá avançado, literatura iorubá, cultura iorubá, língua iorubá online, conversação avançada",
         "short_introduction": "Para quem busca fluência e aprofundamento cultural. Estude gramática complexa, literatura, história, filosofia iorubá e conversação avançada.",
         "description": (
             "<p>O curso <strong>Iorubá — Avançado</strong> é voltado para estudantes que já dominam "
@@ -332,8 +307,6 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-a0-alfabetizacao": {
-        "meta_description": "Hebraico A0 Alfabetização online. Aprenda o alef-bet, reconheça sons, leia as primeiras palavras e comece com professor ao vivo.",
-        "meta_keywords": "hebraico A0, alfabetização em hebraico, alef-bet, alfabeto hebraico, curso de hebraico online, hebraico para iniciantes, aprender hebraico",
         "short_introduction": "Para quem nunca leu hebraico. Aprenda o alef-bet, reconheça letras e sons, leia palavras iniciais e dê o primeiro passo com segurança.",
         "description": (
             "<p>O curso <strong>Hebraico A0 — Alfabetização</strong> é destinado a quem nunca teve "
@@ -352,8 +325,6 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-moderno-a1": {
-        "meta_description": "Hebraico Moderno A1 online. Comece do zero com leitura inicial, pronúncia, frases do dia a dia e aulas ao vivo em turma pequena.",
-        "meta_keywords": "hebraico moderno A1, curso de hebraico online, aprender hebraico moderno, hebraico para iniciantes, aula de hebraico ao vivo, hebraico básico",
         "short_introduction": "Para começar no hebraico moderno. Desenvolva leitura inicial, pronúncia, vocabulário essencial e frases simples do cotidiano com professor ao vivo.",
         "description": (
             "<p>O curso <strong>Hebraico Moderno — Nível A1</strong> é indicado para quem quer "
@@ -372,8 +343,6 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-moderno-a2-b1": {
-        "meta_description": "Hebraico Moderno A2/B1 online. Amplie vocabulário, leitura e conversação para narrar experiências, falar de planos e ganhar autonomia.",
-        "meta_keywords": "hebraico moderno A2, hebraico B1, curso de hebraico online, conversação em hebraico, hebraico intermediário, aprender hebraico moderno",
         "short_introduction": "Para quem já tem base no hebraico. Amplie leitura, vocabulário, conversação e autonomia para falar de experiências, planos e situações reais.",
         "description": (
             "<p>O curso <strong>Hebraico Moderno — Nível A2/B1</strong> é voltado para alunos que já "
@@ -392,8 +361,6 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-biblico-leitura-guiada": {
-        "meta_description": "Hebraico Bíblico online com leitura guiada. Estude textos selecionados com base linguística, vocabulário, contexto e orientação responsável.",
-        "meta_keywords": "hebraico bíblico online, curso de hebraico bíblico, leitura bíblica em hebraico, hebraico antigo, textos hebraicos, hebraico com professor",
         "short_introduction": "Para quem deseja ler textos bíblicos com orientação. Estude vocabulário, estrutura, leitura guiada e contexto linguístico de forma responsável.",
         "description": (
             "<p>O curso <strong>Hebraico Bíblico — Leitura Guiada</strong> é destinado a estudantes "
@@ -412,8 +379,6 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-particular": {
-        "meta_description": "Aulas particulares de hebraico online. Plano 1:1 personalizado para alfabetização, hebraico moderno, leitura, conversação ou objetivos específicos.",
-        "meta_keywords": "aula particular de hebraico, hebraico online 1:1, professor de hebraico, curso particular de hebraico, hebraico personalizado, aula de hebraico ao vivo",
         "short_introduction": "Aulas 1:1 para quem precisa de um plano personalizado. Estude hebraico moderno, alfabetização, leitura ou conversação conforme seu objetivo.",
         "description": (
             "<p>O curso <strong>Hebraico Particular</strong> é destinado a alunos que preferem "
@@ -442,8 +407,6 @@ def run():
             print(f"  AVISO: curso '{course_name}' não existe, pulando.")
             continue
         frappe.db.set_value("LMS Course", course_name, {
-            "meta_description": texts["meta_description"],
-            "meta_keywords": texts["meta_keywords"],
             "short_introduction": texts["short_introduction"],
             "description": texts["description"],
         })
