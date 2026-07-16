@@ -839,9 +839,6 @@ function projectMasonaryLayout() {
   // window load event
 
   $(window).on("load", function () {
-    if ($(".preloader").length) {
-      $(".preloader").fadeOut();
-    }
     thmSwiperInit();
     thmTinyInit();
     thmTestimonialsThumbCarousel();
