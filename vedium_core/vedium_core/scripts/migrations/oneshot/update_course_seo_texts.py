@@ -1,19 +1,27 @@
 # -*- coding: utf-8 -*-
-"""Atualiza short_introduction/description (LMS Course, "Sobre o curso" no
-formulário) dos 20 cursos com os textos SEO/GEO preparados em
+"""Atualiza title/short_introduction/description (LMS Course, "Sobre o
+curso" no formulário) dos 20 cursos com os textos SEO/GEO preparados em
 Cliente/Vedium/Artigos/Publicar (arquivo
-"textos_seo_cursos_vedium_todos_niveis.md", 2026-07-15) — substitui as
+"textos_seo_cursos_vedium_todos_niveis.md", 2026-07-15), substituindo as
 descrições antigas (foco em lista de conteúdo gramatical) por texto
 comercial "para quem é / o que aprende / resultado final", como já é o
 padrão usado em course_translations.py e nos cursos de Espanhol/PLE/
 Hebraico criados via oneshot.
 
+Também remove travessão (– / —) dos títulos dos 20 cursos (achado de
+revisão do tom de voz, 2026-07-16: leitura em PT não usa travessão em
+título de forma natural). Troca por dois-pontos, ex. "Inglês Online ao
+Vivo A1 – Iniciante" vira "Inglês Online ao Vivo A1: Iniciante". Isso
+substitui o valor gravado por rename_english_course_titles.py (que tinha
+introduzido o travessão nos 6 títulos de Inglês horas antes) -- não rodar
+aquele script de novo depois deste, ou o travessão volta.
+
 short_introduction também alimenta a <meta name="description"> real da
-página pública (/curso/<slug>, truncada em 155 caracteres — ver
+página pública (/curso/<slug>, truncada em 155 caracteres, ver
 www/curso.py). O arquivo-fonte também tinha um texto de "Meta Description"
 dedicado e um de "Meta Keywords", mas LMS Course NÃO tem esses campos (a
 seção "Meta Tags" que aparece no formulário do Frappe é o doctype separado
-Website Route Meta, vinculado por URL da página, não pelo curso — e
+Website Route Meta, vinculado por URL da página, não pelo curso; e
 meta_keywords não tem efeito de SEO desde que o Google parou de usá-la,
 ~2009). Não vale a complexidade de integrar Website Route Meta só por
 isso; ver decisão de 2026-07-15.
@@ -23,13 +31,12 @@ dado pré-existente inconsistente (paid_certificate + certificado de
 conclusão marcados juntos) que faz LMSCourse.validate_certification()
 lançar ValidationError em QUALQUER doc.save(), mesmo quando os campos
 alterados aqui não têm nada a ver com certificado. set_value grava os
-campos direto no banco sem rodar validate() (mesmo padrão já usado em
-rename_english_course_titles.py, pelo mesmo motivo). Efeito colateral:
-doc_events (on_update -> vedium_core.courses.bump_courses_cache_version)
-não dispara -- rode `bench --site app.vediums.com clear-cache` logo depois
-pra não esperar os 5 minutos do CACHE_TTL.
+campos direto no banco sem rodar validate(). Efeito colateral: doc_events
+(on_update -> vedium_core.courses.bump_courses_cache_version) não dispara
+-- rode `bench --site app.vediums.com clear-cache` logo depois pra não
+esperar os 5 minutos do CACHE_TTL.
 
-Rodar (idempotente — reaplica o mesmo valor, sem duplicar nada):
+Rodar (idempotente, reaplica o mesmo valor, sem duplicar nada):
     bench --site app.vediums.com execute \
         vedium_core.scripts.migrations.oneshot.update_course_seo_texts.run
 """
@@ -38,9 +45,10 @@ import frappe
 
 COURSE_TEXTS = {
     "ingl-s-beginner": {
+        "title": "Inglês Online ao Vivo A1: Iniciante",
         "short_introduction": "Para quem está começando do zero. Aprenda cumprimentos, vocabulário essencial, frases simples e primeiras conversas em inglês com professor ao vivo.",
         "description": (
-            "<p>O curso <strong>Inglês Online ao Vivo A1 – Iniciante</strong> é destinado a quem "
+            "<p>O curso <strong>Inglês Online ao Vivo A1: Iniciante</strong> é destinado a quem "
             "nunca estudou inglês ou precisa recomeçar com uma base clara, segura e prática. Você "
             "aprenderá vocabulário essencial, frases simples, pronúncia inicial e estruturas básicas "
             "para se comunicar em situações do dia a dia.</p>"
@@ -56,9 +64,10 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-elementary": {
+        "title": "Inglês Online ao Vivo A2: Básico",
         "short_introduction": "Para quem já conhece o básico e quer ganhar segurança. Consolide gramática, vocabulário cotidiano, escuta e conversação em inglês ao vivo.",
         "description": (
-            "<p>O curso <strong>Inglês Online ao Vivo A2 – Básico</strong> é indicado para alunos "
+            "<p>O curso <strong>Inglês Online ao Vivo A2: Básico</strong> é indicado para alunos "
             "que já tiveram contato com o inglês, mas ainda precisam consolidar estruturas essenciais "
             "antes de avançar para conversas mais longas. O foco é transformar conhecimento solto em "
             "comunicação funcional.</p>"
@@ -74,9 +83,10 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-pr-intermedi-rio": {
+        "title": "Inglês Online ao Vivo B1: Pré-Intermediário",
         "short_introduction": "Para quem já sabe o básico, mas trava ao falar. Desenvolva conversação, vocabulário, tempos verbais e comunicação funcional em inglês.",
         "description": (
-            "<p>O curso <strong>Inglês Online ao Vivo B1 – Pré-Intermediário</strong> é destinado a "
+            "<p>O curso <strong>Inglês Online ao Vivo B1: Pré-Intermediário</strong> é destinado a "
             "quem já entende estruturas básicas, mas ainda sente dificuldade para falar com "
             "naturalidade. Você vai praticar conversas reais, organizar melhor as frases e ampliar "
             "sua capacidade de expressar ideias.</p>"
@@ -92,9 +102,10 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-intermedi-rio": {
+        "title": "Inglês Online ao Vivo B1+: Intermediário",
         "short_introduction": "Para quem já conversa, mas precisa falar com mais estrutura. Desenvolva fluência intermediária, vocabulário e comunicação em situações diversas.",
         "description": (
-            "<p>O curso <strong>Inglês Online ao Vivo B1+ – Intermediário</strong> é ideal para quem "
+            "<p>O curso <strong>Inglês Online ao Vivo B1+: Intermediário</strong> é ideal para quem "
             "já consegue se comunicar, mas ainda precisa organizar melhor ideias, narrar situações, "
             "explicar opiniões e sustentar conversas com mais autonomia. As aulas combinam prática "
             "oral, gramática em uso e correção ao vivo.</p>"
@@ -110,9 +121,10 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-upper-intermedi-rio": {
+        "title": "Inglês Online ao Vivo B2: Intermediário Avançado",
         "short_introduction": "Para quem quer falar inglês com mais precisão e presença. Desenvolva argumentação, vocabulário profissional, escuta e fluência em nível B2.",
         "description": (
-            "<p>O curso <strong>Inglês Online ao Vivo B2 – Intermediário Avançado</strong> é voltado "
+            "<p>O curso <strong>Inglês Online ao Vivo B2: Intermediário Avançado</strong> é voltado "
             "para alunos que já se comunicam em inglês, mas querem falar com mais precisão, "
             "naturalidade e maturidade. O foco é usar o idioma em contextos profissionais, acadêmicos "
             "e sociais com maior autonomia.</p>"
@@ -128,9 +140,10 @@ COURSE_TEXTS = {
         ),
     },
     "ingl-s-avan-ado": {
+        "title": "Inglês Online ao Vivo C1: Avançado",
         "short_introduction": "Para quem já fala inglês e quer refinamento. Aperfeiçoe fluência, precisão, discurso, vocabulário sofisticado e comunicação profissional.",
         "description": (
-            "<p>O curso <strong>Inglês Online ao Vivo C1 – Avançado</strong> é indicado para alunos "
+            "<p>O curso <strong>Inglês Online ao Vivo C1: Avançado</strong> é indicado para alunos "
             "que já têm boa fluência e desejam refinar o uso do inglês em contextos exigentes. O foco "
             "está em precisão, naturalidade, argumentação, vocabulário avançado e domínio de registros "
             "formais e informais.</p>"
@@ -146,9 +159,10 @@ COURSE_TEXTS = {
         ),
     },
     "espanhol-basico": {
+        "title": "Espanhol: Nível Básico (A1-A2)",
         "short_introduction": "Para quem quer começar espanhol do jeito certo. Aprenda saudações, frases essenciais, pronúncia, vocabulário e conversas básicas sem cair no portunhol.",
         "description": (
-            "<p>O curso <strong>Espanhol — Nível Básico (A1-A2)</strong> é destinado a brasileiros "
+            "<p>O curso <strong>Espanhol: Nível Básico (A1-A2)</strong> é destinado a brasileiros "
             "que querem começar do zero ou organizar uma base inicial sem depender do portunhol. Você "
             "aprenderá estruturas essenciais, vocabulário cotidiano, pronúncia e situações reais de "
             "comunicação.</p>"
@@ -164,9 +178,10 @@ COURSE_TEXTS = {
         ),
     },
     "espanhol-intermediario": {
+        "title": "Espanhol: Nível Intermediário (B1-B2.1)",
         "short_introduction": "Para quem já entende espanhol, mas precisa falar melhor. Desenvolva conversação, narrativa, opinião, passado, subjuntivo e vocabulário mais natural.",
         "description": (
-            "<p>O curso <strong>Espanhol — Nível Intermediário (B1-B2.1)</strong> é indicado para "
+            "<p>O curso <strong>Espanhol: Nível Intermediário (B1-B2.1)</strong> é indicado para "
             "quem já tem base no idioma, entende textos e conversas simples, mas precisa sustentar "
             "diálogos com mais autonomia. O foco é sair da comunicação básica para conversas com "
             "opinião, narrativa e nuance.</p>"
@@ -182,9 +197,10 @@ COURSE_TEXTS = {
         ),
     },
     "espanhol-avancado": {
+        "title": "Espanhol: Nível Avançado (B2.2-C1)",
         "short_introduction": "Para quem já fala espanhol e quer refinar fluência. Trabalhe precisão, argumentação, apresentações, cultura e comunicação profissional avançada.",
         "description": (
-            "<p>O curso <strong>Espanhol — Nível Avançado (B2.2-C1)</strong> é voltado para alunos "
+            "<p>O curso <strong>Espanhol: Nível Avançado (B2.2-C1)</strong> é voltado para alunos "
             "que já se comunicam bem em espanhol e desejam aprimorar precisão, fluência, vocabulário "
             "sofisticado e presença em contextos profissionais, acadêmicos e culturais.</p>"
             "<p><strong>Ao final do curso você será capaz de:</strong></p>"
@@ -199,9 +215,10 @@ COURSE_TEXTS = {
         ),
     },
     "portugues-para-estrangeiros-basico": {
+        "title": "Português para Estrangeiros: Nível Básico (PLE)",
         "short_introduction": "Para quem está começando do zero. Aprenda saudações, vocabulário essencial e comunicação básica do português brasileiro com imersão cultural.",
         "description": (
-            "<p>O curso <strong>Português para Estrangeiros — Nível Básico (PLE)</strong> é "
+            "<p>O curso <strong>Português para Estrangeiros: Nível Básico (PLE)</strong> é "
             "destinado a quem não tem nenhum conhecimento ou tem contato muito limitado com o "
             "português brasileiro. Você aprenderá estruturas essenciais e vocabulário necessário "
             "para se comunicar em situações do dia a dia no Brasil.</p>"
@@ -217,9 +234,10 @@ COURSE_TEXTS = {
         ),
     },
     "portugues-para-estrangeiros-intermediario": {
+        "title": "Português para Estrangeiros: Nível Intermediário (PLE)",
         "short_introduction": "Para estrangeiros que já têm base no português. Ganhe fluência em conversas sociais, profissionais e situações reais da vida no Brasil.",
         "description": (
-            "<p>O curso <strong>Português para Estrangeiros — Nível Intermediário (PLE)</strong> é "
+            "<p>O curso <strong>Português para Estrangeiros: Nível Intermediário (PLE)</strong> é "
             "indicado para quem já consegue se apresentar e formar frases simples, mas precisa "
             "ampliar vocabulário, melhorar escuta e falar com mais segurança em situações sociais e "
             "profissionais.</p>"
@@ -235,9 +253,10 @@ COURSE_TEXTS = {
         ),
     },
     "portugues-para-estrangeiros-avancado": {
+        "title": "Português para Estrangeiros: Nível Avançado (PLE)",
         "short_introduction": "Para estrangeiros que já falam português e querem refinamento. Aperfeiçoe fluência, vocabulário, escrita, leitura e comunicação profissional.",
         "description": (
-            "<p>O curso <strong>Português para Estrangeiros — Nível Avançado (PLE)</strong> é "
+            "<p>O curso <strong>Português para Estrangeiros: Nível Avançado (PLE)</strong> é "
             "voltado para quem já tem boa fluência e deseja aperfeiçoar precisão, vocabulário, "
             "compreensão de textos autênticos e comunicação em contextos acadêmicos, profissionais "
             "e culturais.</p>"
@@ -253,9 +272,10 @@ COURSE_TEXTS = {
         ),
     },
     "iorub-b-sico": {
+        "title": "Iorubá: Básico",
         "short_introduction": "Para quem quer começar iorubá com base sólida. Aprenda sons, tons, saudações, vocabulário essencial e frases iniciais com responsabilidade cultural.",
         "description": (
-            "<p>O curso <strong>Iorubá — Básico</strong> é destinado a quem deseja iniciar o estudo "
+            "<p>O curso <strong>Iorubá: Básico</strong> é destinado a quem deseja iniciar o estudo "
             "da língua iorubá com estrutura, pronúncia orientada e contexto cultural. O foco é "
             "construir uma base segura para entender sons, tons, saudações, vocabulário essencial e "
             "diálogos simples.</p>"
@@ -271,9 +291,10 @@ COURSE_TEXTS = {
         ),
     },
     "iorub-intermedi-rio": {
+        "title": "Iorubá: Intermediário",
         "short_introduction": "Para quem já tem base em iorubá. Aprofunde gramática, verbos, expressões, vocabulário cultural e conversação com orientação ao vivo.",
         "description": (
-            "<p>O curso <strong>Iorubá — Intermediário</strong> é indicado para alunos que já "
+            "<p>O curso <strong>Iorubá: Intermediário</strong> é indicado para alunos que já "
             "conhecem fundamentos da língua e desejam avançar para estruturas mais completas. As "
             "aulas trabalham classes de palavras, verbos, aspectos verbais, expressões idiomáticas e "
             "conversação guiada.</p>"
@@ -289,9 +310,10 @@ COURSE_TEXTS = {
         ),
     },
     "iorub-avan-ado": {
+        "title": "Iorubá: Avançado",
         "short_introduction": "Para quem busca fluência e aprofundamento cultural. Estude gramática complexa, literatura, história, filosofia iorubá e conversação avançada.",
         "description": (
-            "<p>O curso <strong>Iorubá — Avançado</strong> é voltado para estudantes que já dominam "
+            "<p>O curso <strong>Iorubá: Avançado</strong> é voltado para estudantes que já dominam "
             "estruturas intermediárias e desejam aprofundar fluência, leitura, interpretação cultural "
             "e uso mais sofisticado da língua. O curso integra gramática complexa, literatura, "
             "história, filosofia e prática oral.</p>"
@@ -307,9 +329,10 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-a0-alfabetizacao": {
+        "title": "Hebraico A0: Alfabetização",
         "short_introduction": "Para quem nunca leu hebraico. Aprenda o alef-bet, reconheça letras e sons, leia palavras iniciais e dê o primeiro passo com segurança.",
         "description": (
-            "<p>O curso <strong>Hebraico A0 — Alfabetização</strong> é destinado a quem nunca teve "
+            "<p>O curso <strong>Hebraico A0: Alfabetização</strong> é destinado a quem nunca teve "
             "contato com o alfabeto hebraico ou sente insegurança para reconhecer letras e sons. A "
             "proposta é criar uma base de leitura inicial antes de avançar para frases e comunicação "
             "em hebraico moderno.</p>"
@@ -325,9 +348,10 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-moderno-a1": {
+        "title": "Hebraico Moderno: Nível A1",
         "short_introduction": "Para começar no hebraico moderno. Desenvolva leitura inicial, pronúncia, vocabulário essencial e frases simples do cotidiano com professor ao vivo.",
         "description": (
-            "<p>O curso <strong>Hebraico Moderno — Nível A1</strong> é indicado para quem quer "
+            "<p>O curso <strong>Hebraico Moderno: Nível A1</strong> é indicado para quem quer "
             "iniciar o hebraico moderno como língua viva, com leitura inicial, pronúncia, vocabulário "
             "essencial e comunicação básica. As aulas são ao vivo e ajudam o aluno a evitar travas "
             "comuns no início.</p>"
@@ -343,9 +367,10 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-moderno-a2-b1": {
+        "title": "Hebraico Moderno: Nível A2/B1",
         "short_introduction": "Para quem já tem base no hebraico. Amplie leitura, vocabulário, conversação e autonomia para falar de experiências, planos e situações reais.",
         "description": (
-            "<p>O curso <strong>Hebraico Moderno — Nível A2/B1</strong> é voltado para alunos que já "
+            "<p>O curso <strong>Hebraico Moderno: Nível A2/B1</strong> é voltado para alunos que já "
             "conhecem o alfabeto e conseguem formar frases simples, mas precisam ampliar vocabulário, "
             "leitura, escuta e conversação. O objetivo é desenvolver autonomia básica no uso do "
             "hebraico moderno.</p>"
@@ -361,9 +386,10 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-biblico-leitura-guiada": {
+        "title": "Hebraico Bíblico: Leitura Guiada",
         "short_introduction": "Para quem deseja ler textos bíblicos com orientação. Estude vocabulário, estrutura, leitura guiada e contexto linguístico de forma responsável.",
         "description": (
-            "<p>O curso <strong>Hebraico Bíblico — Leitura Guiada</strong> é destinado a estudantes "
+            "<p>O curso <strong>Hebraico Bíblico: Leitura Guiada</strong> é destinado a estudantes "
             "interessados em ler textos selecionados em hebraico bíblico com base linguística, "
             "vocabulário, contexto e acompanhamento responsável. A proposta é priorizar leitura, "
             "compreensão e análise, sem prometer interpretações simplificadas.</p>"
@@ -379,6 +405,7 @@ COURSE_TEXTS = {
         ),
     },
     "hebraico-particular": {
+        "title": "Hebraico Particular",
         "short_introduction": "Aulas 1:1 para quem precisa de um plano personalizado. Estude hebraico moderno, alfabetização, leitura ou conversação conforme seu objetivo.",
         "description": (
             "<p>O curso <strong>Hebraico Particular</strong> é destinado a alunos que preferem "
@@ -407,6 +434,7 @@ def run():
             print(f"  AVISO: curso '{course_name}' não existe, pulando.")
             continue
         frappe.db.set_value("LMS Course", course_name, {
+            "title": texts["title"],
             "short_introduction": texts["short_introduction"],
             "description": texts["description"],
         })

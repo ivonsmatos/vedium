@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Renomeia o título (LMS Course.title) dos 6 cursos de Inglês, tirando os
+"""SUPERSEDIDO em 2026-07-16 por update_course_seo_texts.py, que grava os
+mesmos 6 títulos -- achado de revisão de tom de voz: travessão em título
+não lê natural em PT, então o separador "[CEFR]: [Nível]" abaixo usa
+dois-pontos, não travessão. NÃO rodar este script depois daquele, ou o
+travessão volta. Mantido só como registro histórico; COURSE_TITLES abaixo
+já foi atualizado pra não reintroduzir o problema se alguém rodar por
+engano.
+
+Renomeia o título (LMS Course.title) dos 6 cursos de Inglês, tirando os
 termos em inglês soltos no meio do nome ("Inglês - Beginner", "Inglês -
 Upper Intermediário" etc.) e adotando o padrão comercial: "[Idioma] Online
-ao Vivo [CEFR] - [Nível em português]".
+ao Vivo [CEFR]: [Nível em português]".
 
 Motivação (achado real do prompt-mestre de SEO/GEO, 2026-07): nomes de
 curso em português com palavra em inglês solta ("Beginner", "Elementary",
@@ -37,12 +45,12 @@ o TTL de 5 minutos expira sozinho.
 import frappe
 
 COURSE_TITLES = {
-    "ingl-s-beginner": "Inglês Online ao Vivo A1 – Iniciante",
-    "ingl-s-elementary": "Inglês Online ao Vivo A2 – Básico",
-    "ingl-s-pr-intermedi-rio": "Inglês Online ao Vivo B1 – Pré-Intermediário",
-    "ingl-s-intermedi-rio": "Inglês Online ao Vivo B1+ – Intermediário",
-    "ingl-s-upper-intermedi-rio": "Inglês Online ao Vivo B2 – Intermediário Avançado",
-    "ingl-s-avan-ado": "Inglês Online ao Vivo C1 – Avançado",
+    "ingl-s-beginner": "Inglês Online ao Vivo A1: Iniciante",
+    "ingl-s-elementary": "Inglês Online ao Vivo A2: Básico",
+    "ingl-s-pr-intermedi-rio": "Inglês Online ao Vivo B1: Pré-Intermediário",
+    "ingl-s-intermedi-rio": "Inglês Online ao Vivo B1+: Intermediário",
+    "ingl-s-upper-intermedi-rio": "Inglês Online ao Vivo B2: Intermediário Avançado",
+    "ingl-s-avan-ado": "Inglês Online ao Vivo C1: Avançado",
 }
 
 
