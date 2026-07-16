@@ -1,10 +1,10 @@
-"""Conteúdo do blog da Vedium — posts ricos (SEO/GEO) renderizados pelo
+"""Conteúdo do blog da Vedium: posts ricos (SEO/GEO) renderizados pelo
 template compartilhado templates/includes/blog_post.html.
 
 Há DUAS fontes de posts, e ambas caem no mesmo template:
-1. Este dict BLOG_POSTS — posts "de código" (SEO/GEO trabalhados a fundo,
+1. Este dict BLOG_POSTS: posts "de código" (SEO/GEO trabalhados a fundo,
    com várias seções), editados por nós via commit/deploy.
-2. O doctype "Vedium Blog Post" — posts que QUALQUER pessoa com acesso ao
+2. O doctype "Vedium Blog Post": posts que QUALQUER pessoa com acesso ao
    Frappe Desk publica sozinha, em /app/vedium-blog-post, sem precisar de
    código nem de deploy. É o caminho recomendado para conteúdo novo.
 
@@ -46,13 +46,13 @@ BLOG_POSTS = {
                 "body": [
                     "<p>O iorubá tem <strong>sete vogais orais</strong>, duas a mais que o português escrito. A diferença está nas vogais médias, que se dividem em abertas e fechadas:</p>",
                     "<ul>"
-                    "<li><strong>a</strong> — como em \"casa\";</li>"
-                    "<li><strong>e</strong> — fechado, como em \"você\";</li>"
-                    "<li><strong>ẹ</strong> (e com ponto) — aberto, como o \"é\" de \"pé\";</li>"
-                    "<li><strong>i</strong> — como em \"vida\";</li>"
-                    "<li><strong>o</strong> — fechado, como em \"avô\";</li>"
-                    "<li><strong>ọ</strong> (o com ponto) — aberto, como o \"ó\" de \"avó\";</li>"
-                    "<li><strong>u</strong> — como em \"luz\".</li>"
+                    "<li><strong>a</strong>: como em \"casa\";</li>"
+                    "<li><strong>e</strong>: fechado, como em \"você\";</li>"
+                    "<li><strong>ẹ</strong> (e com ponto): aberto, como o \"é\" de \"pé\";</li>"
+                    "<li><strong>i</strong>: como em \"vida\";</li>"
+                    "<li><strong>o</strong>: fechado, como em \"avô\";</li>"
+                    "<li><strong>ọ</strong> (o com ponto): aberto, como o \"ó\" de \"avó\";</li>"
+                    "<li><strong>u</strong>: como em \"luz\".</li>"
                     "</ul>",
                     "<p>O ponto embaixo do <strong>ẹ</strong> e do <strong>ọ</strong> é essencial: ele indica um som mais aberto e pode mudar completamente a palavra. Confundir <em>e</em> com <em>ẹ</em> é um dos primeiros pontos que um professor corrige nas aulas.</p>",
                 ],
@@ -60,7 +60,7 @@ BLOG_POSTS = {
             {
                 "heading": "Vogais nasais",
                 "body": [
-                    "<p>Além das vogais orais, o iorubá tem <strong>vogais nasais</strong> — sons em que o ar passa pelo nariz, parecidos com o que acontece em palavras portuguesas como \"sim\" e \"bom\". Na escrita, costumam aparecer seguidas de <strong>n</strong>, como em <em>an</em>, <em>ẹn</em>, <em>in</em>, <em>ọn</em> e <em>un</em>.</p>",
+                    "<p>Além das vogais orais, o iorubá tem <strong>vogais nasais</strong>: sons em que o ar passa pelo nariz, parecidos com o que acontece em palavras portuguesas como \"sim\" e \"bom\". Na escrita, costumam aparecer seguidas de <strong>n</strong>, como em <em>an</em>, <em>ẹn</em>, <em>in</em>, <em>ọn</em> e <em>un</em>.</p>",
                     "<p>Para o ouvido brasileiro, as vogais nasais são mais fáceis do que para falantes de inglês, justamente porque o português já tem nasalização. Ainda assim, a posição exata da nasal em iorubá precisa ser ouvida e repetida para soar natural.</p>",
                 ],
             },
@@ -69,9 +69,9 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Três sons costumam surpreender quem começa:</p>",
                     "<ul>"
-                    "<li><strong>gb</strong> — um som único, produzido com os dois lábios e a parte de trás da língua ao mesmo tempo. Não existe equivalente direto em português e precisa ser demonstrado;</li>"
-                    "<li><strong>p</strong> — em iorubá, a letra <em>p</em> sozinha soa como <strong>\"kp\"</strong>, e não como o \"p\" do português;</li>"
-                    "<li><strong>ṣ</strong> (s com ponto) — tem o som de <strong>\"x\"</strong>/\"sh\", como em \"chave\".</li>"
+                    "<li><strong>gb</strong>: um som único, produzido com os dois lábios e a parte de trás da língua ao mesmo tempo. Não existe equivalente direto em português e precisa ser demonstrado;</li>"
+                    "<li><strong>p</strong>: em iorubá, a letra <em>p</em> sozinha soa como <strong>\"kp\"</strong>, e não como o \"p\" do português;</li>"
+                    "<li><strong>ṣ</strong> (s com ponto): tem o som de <strong>\"x\"</strong>/\"sh\", como em \"chave\".</li>"
                     "</ul>",
                     "<p>Esses três sons são um bom exemplo de por que aprender iorubá só por listas escritas é arriscado: a letra não corresponde ao som que um falante de português esperaria.</p>",
                 ],
@@ -81,18 +81,18 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Esta é a característica que mais diferencia o iorubá das línguas europeias: ele é uma <strong>língua tonal</strong>, com três tons que mudam o significado da palavra. São eles:</p>",
                     "<ul>"
-                    "<li><strong>tom alto</strong> — marcado com acento agudo (´);</li>"
-                    "<li><strong>tom médio</strong> — sem acento;</li>"
-                    "<li><strong>tom baixo</strong> — marcado com acento grave (`).</li>"
+                    "<li><strong>tom alto</strong>: marcado com acento agudo (´);</li>"
+                    "<li><strong>tom médio</strong>: sem acento;</li>"
+                    "<li><strong>tom baixo</strong>: marcado com acento grave (`).</li>"
                     "</ul>",
-                    "<p>Na prática, isso significa que a mesma sequência de letras pode ter sentidos completamente diferentes dependendo do tom. Um exemplo clássico é a sílaba <em>ọkọ</em>, que muda de significado conforme a combinação de tons — podendo se referir a coisas tão distintas quanto \"marido\", \"enxada\" ou \"veículo\". É por isso que treinar tom desde o início, ouvindo e repetindo, é indispensável.</p>",
-                    "<p>Para um falante de português, que nunca usou o tom para mudar o significado de uma palavra, esse é o conceito mais novo do iorubá — e também o mais recompensador de dominar. A boa notícia é que o ouvido se acostuma com a prática: depois de algumas semanas escutando e repetindo, o cérebro começa a perceber as diferenças que no início pareciam invisíveis. Na escrita digital, vale lembrar de usar os acentos e os pontos subscritos sempre que possível, porque eles carregam informação real sobre o som.</p>",
+                    "<p>Na prática, isso significa que a mesma sequência de letras pode ter sentidos completamente diferentes dependendo do tom. Um exemplo clássico é a sílaba <em>ọkọ</em>, que muda de significado conforme a combinação de tons: podendo se referir a coisas tão distintas quanto \"marido\", \"enxada\" ou \"veículo\". É por isso que treinar tom desde o início, ouvindo e repetindo, é indispensável.</p>",
+                    "<p>Para um falante de português, que nunca usou o tom para mudar o significado de uma palavra, esse é o conceito mais novo do iorubá: e também o mais recompensador de dominar. A boa notícia é que o ouvido se acostuma com a prática: depois de algumas semanas escutando e repetindo, o cérebro começa a perceber as diferenças que no início pareciam invisíveis. Na escrita digital, vale lembrar de usar os acentos e os pontos subscritos sempre que possível, porque eles carregam informação real sobre o som.</p>",
                 ],
             },
             {
                 "heading": "Como treinar a pronúncia do iorubá",
                 "body": [
-                    "<p>O alfabeto iorubá é totalmente aprendível por iniciantes — mas a parte que faz a diferença (tons, vogais abertas e fechadas, sons como <em>gb</em> e <em>p</em>) depende de <strong>ouvir e ser corrigido</strong>. Um aplicativo mostra a letra; ele não percebe quando você produziu o tom errado. Por isso, a forma mais segura de começar é com áudio e prática guiada.</p>",
+                    "<p>O alfabeto iorubá é totalmente aprendível por iniciantes: mas a parte que faz a diferença (tons, vogais abertas e fechadas, sons como <em>gb</em> e <em>p</em>) depende de <strong>ouvir e ser corrigido</strong>. Um aplicativo mostra a letra; ele não percebe quando você produziu o tom errado. Por isso, a forma mais segura de começar é com áudio e prática guiada.</p>",
                     "<p>Na Vedium, o iorubá é ensinado em <a href=\"/curso-de-ioruba-online\">aulas ao vivo, do zero ao avançado</a>, começando exatamente por sons e tons, com correção em tempo real. Depois do alfabeto, os próximos passos naturais são as <a href=\"/blog/saudacoes-em-ioruba\">saudações em iorubá</a> e os <a href=\"/blog/numeros-em-ioruba\">números em iorubá</a>.</p>",
                 ],
             },
@@ -118,12 +118,12 @@ BLOG_POSTS = {
         "hero_image": "https://images.unsplash.com/photo-1636222162402-baf473def2f6?w=1100&h=560&fit=crop&q=80",
         "hero_alt": "Percussionista tocando tambor africano",
         "tag": "Iorubá",
-        "lead": "Na cultura iorubá, cumprimentar bem é mais do que educação: é um sinal de respeito, especialmente com pessoas mais velhas. Este guia reúne as saudações essenciais — bom dia, boa tarde, boa noite, como vai, obrigado e bem-vindo — e explica a diferença entre a forma respeitosa e a informal, que muda o jeito de falar.",
+        "lead": "Na cultura iorubá, cumprimentar bem é mais do que educação: é um sinal de respeito, especialmente com pessoas mais velhas. Este guia reúne as saudações essenciais (bom dia, boa tarde, boa noite, como vai, obrigado e bem-vindo) e explica a diferença entre a forma respeitosa e a informal, que muda o jeito de falar.",
         "sections": [
             {
                 "heading": "Por que as saudações são tão importantes no iorubá",
                 "body": [
-                    "<p>Entre os iorubás, a saudação ocupa um lugar central na convivência. Existem cumprimentos específicos para quase toda situação — para quem está trabalhando, comendo, voltando de viagem ou realizando uma tarefa. Cumprimentar de forma adequada demonstra <strong>respeito e boa educação</strong>, e deixar de fazê-lo pode soar frio.</p>",
+                    "<p>Entre os iorubás, a saudação ocupa um lugar central na convivência. Existem cumprimentos específicos para quase toda situação: para quem está trabalhando, comendo, voltando de viagem ou realizando uma tarefa. Cumprimentar de forma adequada demonstra <strong>respeito e boa educação</strong>, e deixar de fazê-lo pode soar frio.</p>",
                     "<p>Um detalhe muda tudo logo de início: o iorubá distingue a forma <strong>respeitosa/plural</strong> da <strong>informal/singular</strong>. A maioria das saudações começa com <strong>\"Ẹ\"</strong> quando você fala com alguém mais velho, com uma autoridade ou com mais de uma pessoa. Com amigos e pessoas da mesma idade, usa-se <strong>\"O\"</strong> ou simplesmente a forma curta.</p>",
                 ],
             },
@@ -132,12 +132,12 @@ BLOG_POSTS = {
                 "body": [
                     "<p>As saudações ligadas ao período do dia são as primeiras que todo iniciante aprende:</p>",
                     "<ul>"
-                    "<li><strong>Ẹ kàárọ̀</strong> — bom dia (de manhã);</li>"
-                    "<li><strong>Ẹ kàásàn</strong> — boa tarde;</li>"
-                    "<li><strong>Ẹ kúùrọ̀lẹ́</strong> — boa tarde/noitinha (fim de tarde);</li>"
-                    "<li><strong>Ẹ kúalẹ́</strong> — boa noite (à noite).</li>"
+                    "<li><strong>Ẹ kàárọ̀</strong>: bom dia (de manhã);</li>"
+                    "<li><strong>Ẹ kàásàn</strong>: boa tarde;</li>"
+                    "<li><strong>Ẹ kúùrọ̀lẹ́</strong>: boa tarde/noitinha (fim de tarde);</li>"
+                    "<li><strong>Ẹ kúalẹ́</strong>: boa noite (à noite).</li>"
                     "</ul>",
-                    "<p>Com amigos, você pode usar as mesmas expressões trocando o <em>Ẹ</em> respeitoso pela forma informal. Para se despedir à noite, no sentido de \"até amanhã\", usa-se <strong>O dàárọ̀</strong>. Como o iorubá é uma língua tonal, os acentos sobre as palavras marcam o tom — e o tom certo faz parte da saudação soar natural.</p>",
+                    "<p>Com amigos, você pode usar as mesmas expressões trocando o <em>Ẹ</em> respeitoso pela forma informal. Para se despedir à noite, no sentido de \"até amanhã\", usa-se <strong>O dàárọ̀</strong>. Como o iorubá é uma língua tonal, os acentos sobre as palavras marcam o tom: e o tom certo faz parte da saudação soar natural.</p>",
                 ],
             },
             {
@@ -145,9 +145,9 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Depois do cumprimento inicial, vem a pergunta sobre como a pessoa está:</p>",
                     "<ul>"
-                    "<li><strong>Báwo ni?</strong> — como vai? / tudo bem?;</li>"
-                    "<li><strong>Ṣé àlàáfíà ni?</strong> — está tudo em paz/bem?;</li>"
-                    "<li><strong>Ṣé dáadáa ni?</strong> — está tudo bem?</li>"
+                    "<li><strong>Báwo ni?</strong>: como vai? / tudo bem?;</li>"
+                    "<li><strong>Ṣé àlàáfíà ni?</strong>: está tudo em paz/bem?;</li>"
+                    "<li><strong>Ṣé dáadáa ni?</strong>: está tudo bem?</li>"
                     "</ul>",
                     "<p>Uma resposta comum e positiva é <strong>Mo wà dáadáa</strong> (\"estou bem\") ou simplesmente <strong>Àlàáfíà</strong> (\"paz\", no sentido de \"tudo em paz\"). A palavra <em>àlàáfíà</em>, aliás, aparece bastante: ela carrega a ideia de bem-estar e tranquilidade, e é usada tanto para cumprimentar quanto para responder.</p>",
                 ],
@@ -157,25 +157,25 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Estas três expressões completam o kit básico de cortesia:</p>",
                     "<ul>"
-                    "<li><strong>Ẹ ṣé</strong> — obrigado (respeitoso); com amigos, <strong>O ṣé</strong>;</li>"
-                    "<li><strong>Ẹ káàbọ̀</strong> — bem-vindo(a);</li>"
-                    "<li><strong>Ó dàbọ̀</strong> — adeus / até logo.</li>"
+                    "<li><strong>Ẹ ṣé</strong>: obrigado (respeitoso); com amigos, <strong>O ṣé</strong>;</li>"
+                    "<li><strong>Ẹ káàbọ̀</strong>: bem-vindo(a);</li>"
+                    "<li><strong>Ó dàbọ̀</strong>: adeus / até logo.</li>"
                     "</ul>",
-                    "<p>Há ainda saudações situacionais muito usadas, como <strong>Ẹ kú iṣẹ́</strong>, dita a quem está trabalhando, e variações para quem está realizando alguma atividade. Esse repertório de cumprimentos \"para cada ocasião\" é uma das marcas mais bonitas da língua — e mostra como o iorubá e a cultura andam juntos.</p>",
+                    "<p>Há ainda saudações situacionais muito usadas, como <strong>Ẹ kú iṣẹ́</strong>, dita a quem está trabalhando, e variações para quem está realizando alguma atividade. Esse repertório de cumprimentos \"para cada ocasião\" é uma das marcas mais bonitas da língua: e mostra como o iorubá e a cultura andam juntos.</p>",
                 ],
             },
             {
                 "heading": "Cumprimentar quem é mais velho: um gesto de respeito",
                 "body": [
-                    "<p>Na cultura iorubá, a forma de cumprimentar pessoas mais velhas vai além das palavras. Tradicionalmente, ao saudar um mais velho, os <strong>meninos e homens fazem o <em>ìdọ̀bálẹ̀</em></strong> (uma reverência inclinando-se ou deitando-se levemente), enquanto as <strong>meninas e mulheres fazem o <em>ìkúnlẹ̀</em></strong> (ajoelhar-se levemente). Em contextos urbanos e do dia a dia, esse gesto costuma ser simbólico — uma leve inclinação do corpo —, mas a intenção de respeito permanece muito presente.</p>",
+                    "<p>Na cultura iorubá, a forma de cumprimentar pessoas mais velhas vai além das palavras. Tradicionalmente, ao saudar um mais velho, os <strong>meninos e homens fazem o <em>ìdọ̀bálẹ̀</em></strong> (uma reverência inclinando-se ou deitando-se levemente), enquanto as <strong>meninas e mulheres fazem o <em>ìkúnlẹ̀</em></strong> (ajoelhar-se levemente). Em contextos urbanos e do dia a dia, esse gesto costuma ser simbólico, uma leve inclinação do corpo, mas a intenção de respeito permanece muito presente.</p>",
                     "<p>É por isso que a forma respeitosa com <strong>\"Ẹ\"</strong> importa tanto: usar o cumprimento certo com a pessoa certa demonstra que você entende não só a língua, mas também a cortesia iorubá. Tratar um mais velho pela forma informal pode soar como falta de educação, mesmo que a frase esteja \"correta\" gramaticalmente. Esse é um dos pontos em que aprender com um professor faz diferença: ele ensina não apenas o que dizer, mas <strong>com quem e como</strong> dizer.</p>",
                 ],
             },
             {
                 "heading": "Treinando as saudações com a pronúncia certa",
                 "body": [
-                    "<p>Você pode memorizar a lista acima hoje mesmo, mas a parte que faz a saudação soar natural — o <strong>tom</strong> e a diferença entre vogais abertas e fechadas — só se ganha ouvindo e repetindo. Antes das saudações, vale entender o <a href=\"/blog/alfabeto-ioruba\">alfabeto iorubá e seus tons</a>; depois, um bom próximo passo são os <a href=\"/blog/numeros-em-ioruba\">números em iorubá</a>.</p>",
-                    "<p>Na Vedium, as saudações entram já nas primeiras aulas de <a href=\"/curso-de-ioruba-online\">iorubá ao vivo</a>, com o professor corrigindo a pronúncia e o tom em tempo real — do jeito que se aprende a cumprimentar de verdade.</p>",
+                    "<p>Você pode memorizar a lista acima hoje mesmo, mas a parte que faz a saudação soar natural: o <strong>tom</strong> e a diferença entre vogais abertas e fechadas: só se ganha ouvindo e repetindo. Antes das saudações, vale entender o <a href=\"/blog/alfabeto-ioruba\">alfabeto iorubá e seus tons</a>; depois, um bom próximo passo são os <a href=\"/blog/numeros-em-ioruba\">números em iorubá</a>.</p>",
+                    "<p>Na Vedium, as saudações entram já nas primeiras aulas de <a href=\"/curso-de-ioruba-online\">iorubá ao vivo</a>, com o professor corrigindo a pronúncia e o tom em tempo real: do jeito que se aprende a cumprimentar de verdade.</p>",
                 ],
             },
         ],
@@ -200,23 +200,23 @@ BLOG_POSTS = {
         "hero_image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1100&h=560&fit=crop&q=80",
         "hero_alt": "Estudo do alfabeto ioruba na Vedium",
         "tag": "Iorubá",
-        "lead": "Contar em iorubá é mais interessante do que parece. O idioma usa um sistema vigesimal — de base 20 — e, a partir do 15, forma os números por subtração. Neste guia você aprende os números de 1 a 20, entende essa lógica e descobre por que a pronúncia precisa de prática.",
+        "lead": "Contar em iorubá é mais interessante do que parece. O idioma usa um sistema vigesimal (base 20) e, a partir do 15, forma os números por subtração. Neste guia você aprende os números de 1 a 20, entende essa lógica e descobre por que a pronúncia precisa de prática.",
         "sections": [
             {
                 "heading": "Números em iorubá de 1 a 10",
                 "body": [
                     "<p>A base de tudo são os dez primeiros números. Eles são a parte mais direta de aprender:</p>",
                     "<ul>"
-                    "<li>1 — <strong>ọ̀kan</strong></li>"
-                    "<li>2 — <strong>èjì</strong></li>"
-                    "<li>3 — <strong>ẹ̀ta</strong></li>"
-                    "<li>4 — <strong>ẹ̀rin</strong></li>"
-                    "<li>5 — <strong>àrún</strong></li>"
-                    "<li>6 — <strong>ẹ̀fà</strong></li>"
-                    "<li>7 — <strong>èje</strong></li>"
-                    "<li>8 — <strong>ẹ̀jọ</strong></li>"
-                    "<li>9 — <strong>ẹ̀sán</strong></li>"
-                    "<li>10 — <strong>ẹ̀wá</strong></li>"
+                    "<li>1: <strong>ọ̀kan</strong></li>"
+                    "<li>2: <strong>èjì</strong></li>"
+                    "<li>3: <strong>ẹ̀ta</strong></li>"
+                    "<li>4: <strong>ẹ̀rin</strong></li>"
+                    "<li>5: <strong>àrún</strong></li>"
+                    "<li>6: <strong>ẹ̀fà</strong></li>"
+                    "<li>7: <strong>èje</strong></li>"
+                    "<li>8: <strong>ẹ̀jọ</strong></li>"
+                    "<li>9: <strong>ẹ̀sán</strong></li>"
+                    "<li>10: <strong>ẹ̀wá</strong></li>"
                     "</ul>",
                     "<p>Vale repetir um alerta importante: os acentos não são enfeite. O iorubá é tonal, e o acento marca o tom de cada sílaba. Por isso, a grafia acima serve de guia, mas a pronúncia precisa ser ouvida para sair natural.</p>",
                 ],
@@ -226,10 +226,10 @@ BLOG_POSTS = {
                 "body": [
                     "<p>De 11 a 14, o iorubá soma sobre o dez, com um sufixo que significa \"a mais\" (relacionado a <em>-lá</em>):</p>",
                     "<ul>"
-                    "<li>11 — <strong>ọ̀kànlá</strong> (dez e um)</li>"
-                    "<li>12 — <strong>èjìlá</strong> (dez e dois)</li>"
-                    "<li>13 — <strong>ẹ̀talá</strong> (dez e três)</li>"
-                    "<li>14 — <strong>ẹ̀rìnlá</strong> (dez e quatro)</li>"
+                    "<li>11: <strong>ọ̀kànlá</strong> (dez e um)</li>"
+                    "<li>12: <strong>èjìlá</strong> (dez e dois)</li>"
+                    "<li>13: <strong>ẹ̀talá</strong> (dez e três)</li>"
+                    "<li>14: <strong>ẹ̀rìnlá</strong> (dez e quatro)</li>"
                     "</ul>",
                     "<p>Repare que você reconhece o número de base (èjì, ẹ̀ta, ẹ̀rin) dentro da palavra. Essa lógica de \"montar\" números a partir das raízes é o que torna o sistema iorubá organizado, mesmo sendo diferente do nosso.</p>",
                 ],
@@ -239,12 +239,12 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Aqui está a parte mais curiosa. A partir do 15, o iorubá tende a formar os números <strong>subtraindo a partir do vinte</strong>, em vez de somar a partir do dez. A palavra <em>dín</em> traz a ideia de \"menos\":</p>",
                     "<ul>"
-                    "<li>15 — <strong>ẹ̀ẹ́dógún</strong> (vinte menos cinco)</li>"
-                    "<li>16 — <strong>ẹ̀rìndínlógún</strong> (vinte menos quatro)</li>"
-                    "<li>17 — <strong>ẹ̀tàdínlógún</strong> (vinte menos três)</li>"
-                    "<li>18 — <strong>èjìdínlógún</strong> (vinte menos dois)</li>"
-                    "<li>19 — <strong>ọ̀kàndínlógún</strong> (vinte menos um)</li>"
-                    "<li>20 — <strong>ogún</strong></li>"
+                    "<li>15: <strong>ẹ̀ẹ́dógún</strong> (vinte menos cinco)</li>"
+                    "<li>16: <strong>ẹ̀rìndínlógún</strong> (vinte menos quatro)</li>"
+                    "<li>17: <strong>ẹ̀tàdínlógún</strong> (vinte menos três)</li>"
+                    "<li>18: <strong>èjìdínlógún</strong> (vinte menos dois)</li>"
+                    "<li>19: <strong>ọ̀kàndínlógún</strong> (vinte menos um)</li>"
+                    "<li>20: <strong>ogún</strong></li>"
                     "</ul>",
                     "<p>Ou seja, em vez de dizer \"dez e nove\" para 19, o iorubá diz algo como \"vinte menos um\". Esse é o coração do <strong>sistema vigesimal (base 20)</strong>, que organiza a contagem tradicional iorubá em torno de múltiplos de vinte.</p>",
                 ],
@@ -253,7 +253,7 @@ BLOG_POSTS = {
                 "heading": "Por que o iorubá conta de 20 em 20",
                 "body": [
                     "<p>Muitas culturas desenvolveram sistemas de contagem ligados ao corpo e ao comércio. O sistema vigesimal iorubá é um dos mais elaborados do mundo: números maiores são construídos a partir de vinte, com somas e subtrações encadeadas. Isso explica por que aprender a contar em iorubá é também uma pequena aula de <strong>raciocínio e cultura</strong>, não apenas de vocabulário.</p>",
-                    "<p>Para o dia a dia, os números de 1 a 20 já cobrem muitas situações — idade, quantidades, horários e preços simples. À medida que você avança, o professor mostra como os múltiplos de dez e de vinte se combinam para formar números maiores.</p>",
+                    "<p>Para o dia a dia, os números de 1 a 20 já cobrem muitas situações: idade, quantidades, horários e preços simples. À medida que você avança, o professor mostra como os múltiplos de dez e de vinte se combinam para formar números maiores.</p>",
                 ],
             },
             {
@@ -261,12 +261,12 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Depois do 20, a lógica de base 20 fica ainda mais visível nos múltiplos de dez. Vale conhecer os principais:</p>",
                     "<ul>"
-                    "<li>10 — <strong>ẹ̀wá</strong></li>"
-                    "<li>20 — <strong>ogún</strong></li>"
-                    "<li>30 — <strong>ọgbọ̀n</strong></li>"
-                    "<li>40 — <strong>ogójì</strong> (literalmente \"dois vintes\", ou seja, 2 × 20)</li>"
+                    "<li>10: <strong>ẹ̀wá</strong></li>"
+                    "<li>20: <strong>ogún</strong></li>"
+                    "<li>30: <strong>ọgbọ̀n</strong></li>"
+                    "<li>40: <strong>ogójì</strong> (literalmente \"dois vintes\", ou seja, 2 × 20)</li>"
                     "</ul>",
-                    "<p>Repare em algo interessante: enquanto o 30 (<em>ọgbọ̀n</em>) tem uma palavra própria, o 40 já é construído como <strong>\"dois vintes\"</strong>. A partir daí, os múltiplos maiores continuam girando em torno do vinte — 60 são \"três vintes\", e assim por diante. Esse encadeamento é o que dá ao sistema iorubá sua fama de engenhoso: com poucas raízes e duas operações (somar e subtrair), constrói-se toda a contagem.</p>",
+                    "<p>Repare em algo interessante: enquanto o 30 (<em>ọgbọ̀n</em>) tem uma palavra própria, o 40 já é construído como <strong>\"dois vintes\"</strong>. A partir daí, os múltiplos maiores continuam girando em torno do vinte: 60 são \"três vintes\", e assim por diante. Esse encadeamento é o que dá ao sistema iorubá sua fama de engenhoso: com poucas raízes e duas operações (somar e subtrair), constrói-se toda a contagem.</p>",
                     "<p>Para quem está começando, não é preciso dominar tudo de uma vez. Os números de 1 a 20 já resolvem a maior parte das situações do dia a dia, e os múltiplos de dez entram naturalmente conforme você avança.</p>",
                 ],
             },
@@ -274,7 +274,7 @@ BLOG_POSTS = {
                 "heading": "Como praticar os números em iorubá",
                 "body": [
                     "<p>Memorizar a lista é o primeiro passo; usar os números em frases (\"tenho X anos\", \"quero X\") é o que fixa de verdade. E, como sempre no iorubá, o <strong>tom</strong> precisa de treino com áudio. Se você ainda não viu, comece pelo <a href=\"/blog/alfabeto-ioruba\">alfabeto iorubá</a> e pelas <a href=\"/blog/saudacoes-em-ioruba\">saudações em iorubá</a>.</p>",
-                    "<p>Na Vedium, os números entram nas primeiras aulas de <a href=\"/curso-de-ioruba-online\">iorubá ao vivo</a>, com prática de pronúncia e uso em situações reais — do jeito que se aprende a contar e a conversar.</p>",
+                    "<p>Na Vedium, os números entram nas primeiras aulas de <a href=\"/curso-de-ioruba-online\">iorubá ao vivo</a>, com prática de pronúncia e uso em situações reais: do jeito que se aprende a contar e a conversar.</p>",
                 ],
             },
         ],
@@ -290,7 +290,7 @@ BLOG_POSTS = {
         "cta_url": "/curso-de-ioruba-online",
     },
     # --- Posts migrados de HTML standalone (2026-06-02) para este dict, sem
-    # reescrever o texto original — só reorganizados no formato de seções. ---
+    # reescrever o texto original: só reorganizados no formato de seções. ---
     "aprender-ioruba-lingua-e-cultura": {
         "alt": {"pt-BR": "aprender-ioruba-lingua-e-cultura", "en": "yoruba-language-and-culture"},
         "title": "Iorubá: conheça o idioma e por que aprendê-lo",
@@ -301,7 +301,7 @@ BLOG_POSTS = {
         "hero_image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1100&h=560&fit=crop&q=80",
         "hero_alt": "Pessoas se cumprimentando",
         "tag": "Iorubá",
-        "lead": "O iorubá é uma das línguas mais faladas da África Ocidental, com milhões de falantes na Nigéria, no Benim e no Togo, além de uma grande comunidade na diáspora — inclusive no Brasil. É um idioma vivo, com tom, ritmo e uma cultura riquíssima por trás.",
+        "lead": "O iorubá é uma das línguas mais faladas da África Ocidental, com milhões de falantes na Nigéria, no Benim e no Togo, além de uma grande comunidade na diáspora: inclusive no Brasil. É um idioma vivo, com tom, ritmo e uma cultura riquíssima por trás.",
         "sections": [
             {
                 "heading": "Uma língua ligada ao Brasil",
@@ -316,7 +316,7 @@ BLOG_POSTS = {
                     "<li>Reconexão com raízes culturais e religiosas;</li>"
                     "<li>Acesso a músicas, provérbios e literatura no original;</li>"
                     "<li>Comunicação com falantes na África e na diáspora;</li>"
-                    "<li>Um diferencial cultural e acadêmico — veja mais em <a href=\"/ioruba-cultura-e-ancestralidade\">iorubá, cultura e ancestralidade</a>.</li>"
+                    "<li>Um diferencial cultural e acadêmico: veja mais em <a href=\"/ioruba-cultura-e-ancestralidade\">iorubá, cultura e ancestralidade</a>.</li>"
                     "</ul>",
                 ],
             },
@@ -335,7 +335,7 @@ BLOG_POSTS = {
     },
 
     # =========================================================================
-    # English posts (real, server-rendered) — traduções dos 4 posts do
+    # English posts (real, server-rendered): traduções dos 4 posts do
     # cluster Iorubá acima. Público: diáspora / fora do Brasil, não fala PT.
     # Mesma URL flat /blog/<slug>, distinguidos pelo slug em inglês + "lang".
     # =========================================================================
@@ -364,13 +364,13 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Yoruba has <strong>seven oral vowels</strong>, two more than written English typically distinguishes. The difference lies in the mid vowels, which split into open and closed:</p>",
                     "<ul>"
-                    "<li><strong>a</strong> — as in \"father\";</li>"
-                    "<li><strong>e</strong> — closed, similar to the \"e\" in \"café\";</li>"
-                    "<li><strong>ẹ</strong> (e with a subdot) — open, closer to the \"e\" in \"bed\";</li>"
-                    "<li><strong>i</strong> — as in \"machine\";</li>"
-                    "<li><strong>o</strong> — closed, similar to the \"o\" in \"go\";</li>"
-                    "<li><strong>ọ</strong> (o with a subdot) — open, closer to the \"o\" in \"law\";</li>"
-                    "<li><strong>u</strong> — as in \"flute\".</li>"
+                    "<li><strong>a</strong>: as in \"father\";</li>"
+                    "<li><strong>e</strong>: closed, similar to the \"e\" in \"café\";</li>"
+                    "<li><strong>ẹ</strong> (e with a subdot): open, closer to the \"e\" in \"bed\";</li>"
+                    "<li><strong>i</strong>: as in \"machine\";</li>"
+                    "<li><strong>o</strong>: closed, similar to the \"o\" in \"go\";</li>"
+                    "<li><strong>ọ</strong> (o with a subdot): open, closer to the \"o\" in \"law\";</li>"
+                    "<li><strong>u</strong>: as in \"flute\".</li>"
                     "</ul>",
                     "<p>The dot under <strong>ẹ</strong> and <strong>ọ</strong> is essential: it marks a more open sound and can completely change a word's meaning. Confusing <em>e</em> with <em>ẹ</em> is one of the first things a teacher corrects in class.</p>",
                 ],
@@ -378,7 +378,7 @@ BLOG_POSTS = {
             {
                 "heading": "Nasal vowels",
                 "body": [
-                    "<p>Besides the oral vowels, Yoruba has <strong>nasal vowels</strong> — sounds where air passes through the nose, somewhat like the nasalized vowels found in French. In writing, they're usually followed by <strong>n</strong>, as in <em>an</em>, <em>ẹn</em>, <em>in</em>, <em>ọn</em> and <em>un</em>.</p>",
+                    "<p>Besides the oral vowels, Yoruba has <strong>nasal vowels</strong>: sounds where air passes through the nose, somewhat like the nasalized vowels found in French. In writing, they're usually followed by <strong>n</strong>, as in <em>an</em>, <em>ẹn</em>, <em>in</em>, <em>ọn</em> and <em>un</em>.</p>",
                     "<p>For English speakers, nasal vowels can take a bit more practice than for speakers of languages with built-in nasalization. Even so, the exact placement of the nasal sound in Yoruba needs to be heard and repeated to sound natural.</p>",
                 ],
             },
@@ -387,9 +387,9 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Three sounds tend to surprise beginners:</p>",
                     "<ul>"
-                    "<li><strong>gb</strong> — a unique sound, produced with both lips and the back of the tongue at the same time. There's no direct equivalent in English, and it needs to be demonstrated;</li>"
-                    "<li><strong>p</strong> — in Yoruba, the letter <em>p</em> on its own sounds like <strong>\"kp\"</strong>, not like the English \"p\";</li>"
-                    "<li><strong>ṣ</strong> (s with a subdot) — has the sound of <strong>\"sh\"</strong>, as in \"shoe\".</li>"
+                    "<li><strong>gb</strong>: a unique sound, produced with both lips and the back of the tongue at the same time. There's no direct equivalent in English, and it needs to be demonstrated;</li>"
+                    "<li><strong>p</strong>: in Yoruba, the letter <em>p</em> on its own sounds like <strong>\"kp\"</strong>, not like the English \"p\";</li>"
+                    "<li><strong>ṣ</strong> (s with a subdot): has the sound of <strong>\"sh\"</strong>, as in \"shoe\".</li>"
                     "</ul>",
                     "<p>These three sounds are a good example of why learning Yoruba from written word lists alone is risky: the letter doesn't correspond to the sound an English speaker would expect.</p>",
                 ],
@@ -399,18 +399,18 @@ BLOG_POSTS = {
                 "body": [
                     "<p>This is the feature that sets Yoruba apart the most from English: it's a <strong>tonal language</strong>, with three tones that change the meaning of a word. They are:</p>",
                     "<ul>"
-                    "<li><strong>high tone</strong> — marked with an acute accent (´);</li>"
-                    "<li><strong>mid tone</strong> — unmarked;</li>"
-                    "<li><strong>low tone</strong> — marked with a grave accent (`).</li>"
+                    "<li><strong>high tone</strong>: marked with an acute accent (´);</li>"
+                    "<li><strong>mid tone</strong>: unmarked;</li>"
+                    "<li><strong>low tone</strong>: marked with a grave accent (`).</li>"
                     "</ul>",
-                    "<p>In practice, this means the same sequence of letters can carry completely different meanings depending on the tone. A classic example is the syllable <em>ọkọ</em>, which changes meaning depending on the tone pattern — it can refer to things as different as \"husband,\" \"hoe,\" or \"vehicle.\" That's why training tone from the very start, by listening and repeating, is essential.</p>",
-                    "<p>For an English speaker, who has never used tone to change a word's meaning, this is the newest concept in Yoruba — and also the most rewarding to master. The good news is that your ear adjusts with practice: after a few weeks of listening and repeating, your brain starts to notice differences that seemed invisible at first. When typing in Yoruba, remember to use the accents and subdots whenever you can, since they carry real information about the sound.</p>",
+                    "<p>In practice, this means the same sequence of letters can carry completely different meanings depending on the tone. A classic example is the syllable <em>ọkọ</em>, which changes meaning depending on the tone pattern: it can refer to things as different as \"husband,\" \"hoe,\" or \"vehicle.\" That's why training tone from the very start, by listening and repeating, is essential.</p>",
+                    "<p>For an English speaker, who has never used tone to change a word's meaning, this is the newest concept in Yoruba: and also the most rewarding to master. The good news is that your ear adjusts with practice: after a few weeks of listening and repeating, your brain starts to notice differences that seemed invisible at first. When typing in Yoruba, remember to use the accents and subdots whenever you can, since they carry real information about the sound.</p>",
                 ],
             },
             {
                 "heading": "How to train your Yoruba pronunciation",
                 "body": [
-                    "<p>The Yoruba alphabet is entirely learnable by beginners — but the part that makes the real difference (tones, open and closed vowels, sounds like <em>gb</em> and <em>p</em>) depends on <strong>listening and being corrected</strong>. An app can show you the letter; it can't tell when you've produced the wrong tone. That's why the safest way to start is with audio and guided practice.</p>",
+                    "<p>The Yoruba alphabet is entirely learnable by beginners: but the part that makes the real difference (tones, open and closed vowels, sounds like <em>gb</em> and <em>p</em>) depends on <strong>listening and being corrected</strong>. An app can show you the letter; it can't tell when you've produced the wrong tone. That's why the safest way to start is with audio and guided practice.</p>",
                     "<p>At Vedium, Yoruba is taught in <a href=\"/en/learn-yoruba-online\">live classes, from scratch to advanced</a>, starting exactly with sounds and tones, with real-time correction. After the alphabet, the natural next steps are <a href=\"/blog/yoruba-greetings\">Yoruba greetings</a> and <a href=\"/blog/yoruba-numbers-1-to-20\">Yoruba numbers</a>.</p>",
                 ],
             },
@@ -430,19 +430,19 @@ BLOG_POSTS = {
         "lang": "en",
         "alt": {"pt-BR": "saudacoes-em-ioruba", "en": "yoruba-greetings"},
         "title": "Yoruba greetings: how to say good morning, thank you and more",
-        "meta_description": "Learn the essential Yoruba greetings: good morning, good afternoon, good evening, how are you, thank you and welcome — plus the respectful and informal forms.",
+        "meta_description": "Learn the essential Yoruba greetings: good morning, good afternoon, good evening, how are you, thank you and welcome: plus the respectful and informal forms.",
         "h1": "Yoruba greetings: good morning, thank you and everyday courtesies",
         "date": "2026-07-02",
         "date_display": "July 2, 2026",
         "hero_image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1100&h=560&fit=crop&q=80",
         "hero_alt": "Yoruba class: language and culture at Vedium",
         "tag": "Yoruba",
-        "lead": "In Yoruba culture, greeting someone well is more than politeness — it's a sign of respect, especially toward elders. This guide covers the essential greetings — good morning, good afternoon, good evening, how are you, thank you and welcome — and explains the difference between the respectful and informal forms, which changes how you speak.",
+        "lead": "In Yoruba culture, greeting someone well is more than politeness: it's a sign of respect, especially toward elders. This guide covers the essential greetings (good morning, good afternoon, good evening, how are you, thank you and welcome) and explains the difference between the respectful and informal forms, which changes how you speak.",
         "sections": [
             {
                 "heading": "Why greetings matter so much in Yoruba",
                 "body": [
-                    "<p>Among the Yoruba people, greeting holds a central place in daily life. There are specific greetings for almost every situation — for someone who is working, eating, returning from a trip, or carrying out a task. Greeting properly shows <strong>respect and good manners</strong>, and skipping it can come across as cold.</p>",
+                    "<p>Among the Yoruba people, greeting holds a central place in daily life. There are specific greetings for almost every situation: for someone who is working, eating, returning from a trip, or carrying out a task. Greeting properly shows <strong>respect and good manners</strong>, and skipping it can come across as cold.</p>",
                     "<p>One detail changes everything from the start: Yoruba distinguishes the <strong>respectful/plural</strong> form from the <strong>informal/singular</strong> one. Most greetings begin with <strong>\"Ẹ\"</strong> when you're speaking to someone older, to an authority figure, or to more than one person. With friends and peers, you use <strong>\"O\"</strong> or simply the short form.</p>",
                 ],
             },
@@ -451,12 +451,12 @@ BLOG_POSTS = {
                 "body": [
                     "<p>The greetings tied to the time of day are the first ones every beginner learns:</p>",
                     "<ul>"
-                    "<li><strong>Ẹ kàárọ̀</strong> — good morning;</li>"
-                    "<li><strong>Ẹ kàásàn</strong> — good afternoon;</li>"
-                    "<li><strong>Ẹ kúùrọ̀lẹ́</strong> — good (late) afternoon/early evening;</li>"
-                    "<li><strong>Ẹ kúalẹ́</strong> — good evening/good night.</li>"
+                    "<li><strong>Ẹ kàárọ̀</strong>: good morning;</li>"
+                    "<li><strong>Ẹ kàásàn</strong>: good afternoon;</li>"
+                    "<li><strong>Ẹ kúùrọ̀lẹ́</strong>: good (late) afternoon/early evening;</li>"
+                    "<li><strong>Ẹ kúalẹ́</strong>: good evening/good night.</li>"
                     "</ul>",
-                    "<p>With friends, you can use the same expressions, swapping the respectful <em>Ẹ</em> for the informal form. To say goodnight in the sense of \"see you tomorrow,\" you use <strong>O dàárọ̀</strong>. Since Yoruba is a tonal language, the accent marks over the words indicate the tone — and getting the tone right is part of what makes a greeting sound natural.</p>",
+                    "<p>With friends, you can use the same expressions, swapping the respectful <em>Ẹ</em> for the informal form. To say goodnight in the sense of \"see you tomorrow,\" you use <strong>O dàárọ̀</strong>. Since Yoruba is a tonal language, the accent marks over the words indicate the tone: and getting the tone right is part of what makes a greeting sound natural.</p>",
                 ],
             },
             {
@@ -464,9 +464,9 @@ BLOG_POSTS = {
                 "body": [
                     "<p>After the initial greeting comes the question about how the person is doing:</p>",
                     "<ul>"
-                    "<li><strong>Báwo ni?</strong> — how's it going? / how are you?;</li>"
-                    "<li><strong>Ṣé àlàáfíà ni?</strong> — is everything at peace/well?;</li>"
-                    "<li><strong>Ṣé dáadáa ni?</strong> — is everything okay?</li>"
+                    "<li><strong>Báwo ni?</strong>: how's it going? / how are you?;</li>"
+                    "<li><strong>Ṣé àlàáfíà ni?</strong>: is everything at peace/well?;</li>"
+                    "<li><strong>Ṣé dáadáa ni?</strong>: is everything okay?</li>"
                     "</ul>",
                     "<p>A common, positive answer is <strong>Mo wà dáadáa</strong> (\"I'm well\") or simply <strong>Àlàáfíà</strong> (\"peace,\" in the sense of \"all is well\"). The word <em>àlàáfíà</em>, in fact, comes up often: it carries the idea of well-being and calm, and is used both to greet and to respond.</p>",
                 ],
@@ -476,25 +476,25 @@ BLOG_POSTS = {
                 "body": [
                     "<p>These three expressions round out the basic courtesy kit:</p>",
                     "<ul>"
-                    "<li><strong>Ẹ ṣé</strong> — thank you (respectful); with friends, <strong>O ṣé</strong>;</li>"
-                    "<li><strong>Ẹ káàbọ̀</strong> — welcome;</li>"
-                    "<li><strong>Ó dàbọ̀</strong> — goodbye / see you later.</li>"
+                    "<li><strong>Ẹ ṣé</strong>: thank you (respectful); with friends, <strong>O ṣé</strong>;</li>"
+                    "<li><strong>Ẹ káàbọ̀</strong>: welcome;</li>"
+                    "<li><strong>Ó dàbọ̀</strong>: goodbye / see you later.</li>"
                     "</ul>",
-                    "<p>There are also widely used situational greetings, such as <strong>Ẹ kú iṣẹ́</strong>, said to someone who is working, with variations for someone carrying out other activities. This repertoire of \"a greeting for every occasion\" is one of the most beautiful traits of the language — and shows how closely Yoruba and its culture are intertwined.</p>",
+                    "<p>There are also widely used situational greetings, such as <strong>Ẹ kú iṣẹ́</strong>, said to someone who is working, with variations for someone carrying out other activities. This repertoire of \"a greeting for every occasion\" is one of the most beautiful traits of the language: and shows how closely Yoruba and its culture are intertwined.</p>",
                 ],
             },
             {
                 "heading": "Greeting elders: a gesture of respect",
                 "body": [
-                    "<p>In Yoruba culture, the way you greet elders goes beyond words. Traditionally, when greeting an elder, <strong>boys and men perform the <em>ìdọ̀bálẹ̀</em></strong> (a bow, prostrating or lying down slightly), while <strong>girls and women perform the <em>ìkúnlẹ̀</em></strong> (kneeling briefly). In urban, everyday contexts, this gesture is often symbolic — a slight bow of the body — but the intention of respect remains very much present.</p>",
-                    "<p>This is exactly why the respectful form with <strong>\"Ẹ\"</strong> matters so much: using the right greeting with the right person shows that you understand not just the language, but also Yoruba etiquette. Addressing an elder with the informal form can come across as impolite, even if the sentence is grammatically \"correct.\" This is one of the areas where learning with a teacher makes a real difference — they teach you not just what to say, but <strong>to whom and how</strong> to say it.</p>",
+                    "<p>In Yoruba culture, the way you greet elders goes beyond words. Traditionally, when greeting an elder, <strong>boys and men perform the <em>ìdọ̀bálẹ̀</em></strong> (a bow, prostrating or lying down slightly), while <strong>girls and women perform the <em>ìkúnlẹ̀</em></strong> (kneeling briefly). In urban, everyday contexts, this gesture is often symbolic (a slight bow of the body), but the intention of respect remains very much present.</p>",
+                    "<p>This is exactly why the respectful form with <strong>\"Ẹ\"</strong> matters so much: using the right greeting with the right person shows that you understand not just the language, but also Yoruba etiquette. Addressing an elder with the informal form can come across as impolite, even if the sentence is grammatically \"correct.\" This is one of the areas where learning with a teacher makes a real difference: they teach you not just what to say, but <strong>to whom and how</strong> to say it.</p>",
                 ],
             },
             {
                 "heading": "Practicing greetings with the right pronunciation",
                 "body": [
-                    "<p>You can memorize the list above today, but the part that makes a greeting sound natural — the <strong>tone</strong> and the difference between open and closed vowels — only comes from listening and repeating. Before greetings, it's worth understanding the <a href=\"/blog/yoruba-alphabet-guide\">Yoruba alphabet and its tones</a>; after that, a good next step is <a href=\"/blog/yoruba-numbers-1-to-20\">Yoruba numbers</a>.</p>",
-                    "<p>At Vedium, greetings come up right in the first classes of <a href=\"/en/learn-yoruba-online\">live Yoruba</a>, with the teacher correcting pronunciation and tone in real time — the way you actually learn to greet someone for real.</p>",
+                    "<p>You can memorize the list above today, but the part that makes a greeting sound natural: the <strong>tone</strong> and the difference between open and closed vowels: only comes from listening and repeating. Before greetings, it's worth understanding the <a href=\"/blog/yoruba-alphabet-guide\">Yoruba alphabet and its tones</a>; after that, a good next step is <a href=\"/blog/yoruba-numbers-1-to-20\">Yoruba numbers</a>.</p>",
+                    "<p>At Vedium, greetings come up right in the first classes of <a href=\"/en/learn-yoruba-online\">live Yoruba</a>, with the teacher correcting pronunciation and tone in real time: the way you actually learn to greet someone for real.</p>",
                 ],
             },
         ],
@@ -520,23 +520,23 @@ BLOG_POSTS = {
         "hero_image": "https://images.unsplash.com/photo-1779357807571-38fe0a8cb983?w=1100&h=560&fit=crop&q=80",
         "hero_alt": "Traditional West African architecture in Ghana",
         "tag": "Yoruba",
-        "lead": "Counting in Yoruba is more interesting than it sounds. The language uses a vigesimal system — base 20 — and, starting at 15, forms numbers through subtraction. In this guide, you'll learn the numbers from 1 to 20, understand that logic, and find out why the pronunciation takes practice.",
+        "lead": "Counting in Yoruba is more interesting than it sounds. The language uses a vigesimal system (base 20) and, starting at 15, forms numbers through subtraction. In this guide, you'll learn the numbers from 1 to 20, understand that logic, and find out why the pronunciation takes practice.",
         "sections": [
             {
                 "heading": "Yoruba numbers 1 to 10",
                 "body": [
                     "<p>The foundation for everything is the first ten numbers. They're the most straightforward part to learn:</p>",
                     "<ul>"
-                    "<li>1 — <strong>ọ̀kan</strong></li>"
-                    "<li>2 — <strong>èjì</strong></li>"
-                    "<li>3 — <strong>ẹ̀ta</strong></li>"
-                    "<li>4 — <strong>ẹ̀rin</strong></li>"
-                    "<li>5 — <strong>àrún</strong></li>"
-                    "<li>6 — <strong>ẹ̀fà</strong></li>"
-                    "<li>7 — <strong>èje</strong></li>"
-                    "<li>8 — <strong>ẹ̀jọ</strong></li>"
-                    "<li>9 — <strong>ẹ̀sán</strong></li>"
-                    "<li>10 — <strong>ẹ̀wá</strong></li>"
+                    "<li>1: <strong>ọ̀kan</strong></li>"
+                    "<li>2: <strong>èjì</strong></li>"
+                    "<li>3: <strong>ẹ̀ta</strong></li>"
+                    "<li>4: <strong>ẹ̀rin</strong></li>"
+                    "<li>5: <strong>àrún</strong></li>"
+                    "<li>6: <strong>ẹ̀fà</strong></li>"
+                    "<li>7: <strong>èje</strong></li>"
+                    "<li>8: <strong>ẹ̀jọ</strong></li>"
+                    "<li>9: <strong>ẹ̀sán</strong></li>"
+                    "<li>10: <strong>ẹ̀wá</strong></li>"
                     "</ul>",
                     "<p>Worth repeating: the accent marks aren't decoration. Yoruba is tonal, and the accent marks the tone of each syllable. So the spelling above is a guide, but the pronunciation needs to be heard to come out naturally.</p>",
                 ],
@@ -546,10 +546,10 @@ BLOG_POSTS = {
                 "body": [
                     "<p>From 11 to 14, Yoruba adds onto ten, with a suffix meaning \"plus\" (related to <em>-lá</em>):</p>",
                     "<ul>"
-                    "<li>11 — <strong>ọ̀kànlá</strong> (ten and one)</li>"
-                    "<li>12 — <strong>èjìlá</strong> (ten and two)</li>"
-                    "<li>13 — <strong>ẹ̀talá</strong> (ten and three)</li>"
-                    "<li>14 — <strong>ẹ̀rìnlá</strong> (ten and four)</li>"
+                    "<li>11: <strong>ọ̀kànlá</strong> (ten and one)</li>"
+                    "<li>12: <strong>èjìlá</strong> (ten and two)</li>"
+                    "<li>13: <strong>ẹ̀talá</strong> (ten and three)</li>"
+                    "<li>14: <strong>ẹ̀rìnlá</strong> (ten and four)</li>"
                     "</ul>",
                     "<p>Notice that you can recognize the base number (èjì, ẹ̀ta, ẹ̀rin) inside the word. This logic of \"building\" numbers from their roots is what makes the Yoruba system organized, even though it's different from what English speakers are used to.</p>",
                 ],
@@ -559,12 +559,12 @@ BLOG_POSTS = {
                 "body": [
                     "<p>Here's the most fascinating part. Starting at 15, Yoruba tends to form numbers by <strong>subtracting from twenty</strong>, instead of adding onto ten. The word <em>dín</em> carries the idea of \"minus\":</p>",
                     "<ul>"
-                    "<li>15 — <strong>ẹ̀ẹ́dógún</strong> (twenty minus five)</li>"
-                    "<li>16 — <strong>ẹ̀rìndínlógún</strong> (twenty minus four)</li>"
-                    "<li>17 — <strong>ẹ̀tàdínlógún</strong> (twenty minus three)</li>"
-                    "<li>18 — <strong>èjìdínlógún</strong> (twenty minus two)</li>"
-                    "<li>19 — <strong>ọ̀kàndínlógún</strong> (twenty minus one)</li>"
-                    "<li>20 — <strong>ogún</strong></li>"
+                    "<li>15: <strong>ẹ̀ẹ́dógún</strong> (twenty minus five)</li>"
+                    "<li>16: <strong>ẹ̀rìndínlógún</strong> (twenty minus four)</li>"
+                    "<li>17: <strong>ẹ̀tàdínlógún</strong> (twenty minus three)</li>"
+                    "<li>18: <strong>èjìdínlógún</strong> (twenty minus two)</li>"
+                    "<li>19: <strong>ọ̀kàndínlógún</strong> (twenty minus one)</li>"
+                    "<li>20: <strong>ogún</strong></li>"
                     "</ul>",
                     "<p>In other words, instead of saying \"ten and nine\" for 19, Yoruba says something like \"twenty minus one.\" That's the heart of the <strong>vigesimal (base-20) system</strong>, which organizes traditional Yoruba counting around multiples of twenty.</p>",
                 ],
@@ -573,7 +573,7 @@ BLOG_POSTS = {
                 "heading": "Why Yoruba counts in twenties",
                 "body": [
                     "<p>Many cultures developed counting systems tied to the body and to trade. The Yoruba vigesimal system is one of the most elaborate in the world: larger numbers are built from twenty, through chained addition and subtraction. That's why learning to count in Yoruba is also a small lesson in <strong>logic and culture</strong>, not just vocabulary.</p>",
-                    "<p>For everyday use, the numbers from 1 to 20 already cover plenty of situations — age, quantities, times and simple prices. As you progress, a teacher will show you how multiples of ten and twenty combine to form larger numbers.</p>",
+                    "<p>For everyday use, the numbers from 1 to 20 already cover plenty of situations: age, quantities, times and simple prices. As you progress, a teacher will show you how multiples of ten and twenty combine to form larger numbers.</p>",
                 ],
             },
             {
@@ -581,12 +581,12 @@ BLOG_POSTS = {
                 "body": [
                     "<p>After 20, the base-20 logic becomes even clearer in the multiples of ten. Worth knowing the main ones:</p>",
                     "<ul>"
-                    "<li>10 — <strong>ẹ̀wá</strong></li>"
-                    "<li>20 — <strong>ogún</strong></li>"
-                    "<li>30 — <strong>ọgbọ̀n</strong></li>"
-                    "<li>40 — <strong>ogójì</strong> (literally \"two twenties,\" i.e. 2 × 20)</li>"
+                    "<li>10: <strong>ẹ̀wá</strong></li>"
+                    "<li>20: <strong>ogún</strong></li>"
+                    "<li>30: <strong>ọgbọ̀n</strong></li>"
+                    "<li>40: <strong>ogójì</strong> (literally \"two twenties,\" i.e. 2 × 20)</li>"
                     "</ul>",
-                    "<p>Notice something interesting: while 30 (<em>ọgbọ̀n</em>) has its own word, 40 is already built as <strong>\"two twenties.\"</strong> From there, the larger multiples keep revolving around twenty — 60 is \"three twenties,\" and so on. This chaining is what gives the Yoruba system its reputation for ingenuity: with just a few roots and two operations (adding and subtracting), the whole counting system is built.</p>",
+                    "<p>Notice something interesting: while 30 (<em>ọgbọ̀n</em>) has its own word, 40 is already built as <strong>\"two twenties.\"</strong> From there, the larger multiples keep revolving around twenty: 60 is \"three twenties,\" and so on. This chaining is what gives the Yoruba system its reputation for ingenuity: with just a few roots and two operations (adding and subtracting), the whole counting system is built.</p>",
                     "<p>If you're just starting out, you don't need to master all of this at once. The numbers from 1 to 20 already handle most everyday situations, and the multiples of ten come naturally as you progress.</p>",
                 ],
             },
@@ -594,7 +594,7 @@ BLOG_POSTS = {
                 "heading": "How to practice Yoruba numbers",
                 "body": [
                     "<p>Memorizing the list is the first step; using the numbers in sentences (\"I am X years old,\" \"I want X\") is what really locks them in. And, as always in Yoruba, <strong>tone</strong> needs practice with audio. If you haven't already, start with the <a href=\"/blog/yoruba-alphabet-guide\">Yoruba alphabet</a> and <a href=\"/blog/yoruba-greetings\">Yoruba greetings</a>.</p>",
-                    "<p>At Vedium, numbers come up in the first classes of <a href=\"/en/learn-yoruba-online\">live Yoruba</a>, with pronunciation practice and use in real situations — the way you actually learn to count and to converse.</p>",
+                    "<p>At Vedium, numbers come up in the first classes of <a href=\"/en/learn-yoruba-online\">live Yoruba</a>, with pronunciation practice and use in real situations: the way you actually learn to count and to converse.</p>",
                 ],
             },
         ],
@@ -620,12 +620,12 @@ BLOG_POSTS = {
         "hero_image": "https://images.unsplash.com/photo-1636222162402-baf473def2f6?w=1100&h=560&fit=crop&q=80",
         "hero_alt": "Percussionist playing an African drum",
         "tag": "Yoruba",
-        "lead": "Yoruba is one of the most widely spoken languages in West Africa, with millions of speakers in Nigeria, Benin and Togo, plus a large diaspora community around the world — including in Brazil. It's a living language, with tone, rhythm and an incredibly rich culture behind it.",
+        "lead": "Yoruba is one of the most widely spoken languages in West Africa, with millions of speakers in Nigeria, Benin and Togo, plus a large diaspora community around the world: including in Brazil. It's a living language, with tone, rhythm and an incredibly rich culture behind it.",
         "sections": [
             {
                 "heading": "A language connected to the diaspora",
                 "body": [
-                    "<p>Yoruba's presence runs deep in the culture and traditions of the African diaspora, especially in music, cuisine and Afro-diasporic spiritual traditions found across the Americas — most visibly in Brazil. Learning the language is also a way to reconnect with that heritage and understand it at the source.</p>",
+                    "<p>Yoruba's presence runs deep in the culture and traditions of the African diaspora, especially in music, cuisine and Afro-diasporic spiritual traditions found across the Americas: most visibly in Brazil. Learning the language is also a way to reconnect with that heritage and understand it at the source.</p>",
                 ],
             },
             {
@@ -635,7 +635,7 @@ BLOG_POSTS = {
                     "<li>Reconnection with cultural and religious roots;</li>"
                     "<li>Access to music, proverbs and literature in the original language;</li>"
                     "<li>Communication with speakers across Africa and the diaspora;</li>"
-                    "<li>A cultural and academic differentiator — see more in <a href=\"/en/yoruba-culture-and-heritage\">Yoruba culture and heritage</a>.</li>"
+                    "<li>A cultural and academic differentiator: see more in <a href=\"/en/yoruba-culture-and-heritage\">Yoruba culture and heritage</a>.</li>"
                     "</ul>",
                 ],
             },
@@ -687,7 +687,7 @@ BLOG_POSTS = {
                             'mais fiel do seu ponto de partida.</p>',
                             '<p>Na Vedium, a lógica é simples: você não precisa se encaixar em uma '
                             'turma aleatória. Você precisa começar no lugar certo, com prática real, '
-                            'acompanhamento e liberdade para continuar porque percebe resultado — não '
+                            'acompanhamento e liberdade para continuar porque percebe resultado: não '
                             'porque ficou preso a um contrato longo.</p>']},
                   {'heading': 'Por que saber seu nível real de inglês trava tanta gente',
                    'body': ['<p>A maioria dos alunos trava porque confunde “conhecimento passivo” com '
@@ -708,8 +708,8 @@ BLOG_POSTS = {
                             'uma call internacional; pode entender apresentações, mas não conseguir '
                             'defender uma ideia; pode saber vocabulário técnico, mas não ter '
                             'naturalidade para small talk.</p>',
-                            '<p>É por isso que escolher um curso apenas pelo nome da turma — básico, '
-                            'intermediário ou avançado — pode ser uma armadilha. O ideal é identificar '
+                            '<p>É por isso que escolher um curso apenas pelo nome da turma (básico, '
+                            'intermediário ou avançado) pode ser uma armadilha. O ideal é identificar '
                             'o nível funcional: aquilo que você consegue fazer hoje e o que precisa '
                             'desenvolver para chegar ao próximo estágio.</p>']},
                   {'heading': 'O que é nível CEFR e por que ele ajuda na escolha do curso',
@@ -728,9 +728,9 @@ BLOG_POSTS = {
                             'fluidez, precisão e segurança em situações '
                             'complexas.</li><li><strong>C2:</strong> você tem domínio muito próximo ao '
                             'de um usuário altamente proficiente.</li></ul>',
-                            '<p>Para a maioria dos alunos adultos, especialmente a persona Bruno — '
+                            '<p>Para a maioria dos alunos adultos, especialmente a persona Bruno: '
                             'profissional em ascensão, com rotina cheia e desejo de crescer na '
-                            'carreira — o objetivo costuma ser sair da sensação de “eu entendo, mas '
+                            'carreira: o objetivo costuma ser sair da sensação de “eu entendo, mas '
                             'não falo” e avançar até um B1, B2 ou C1 funcional. O problema é que esse '
                             'caminho não acontece apenas assistindo vídeos ou fazendo exercícios '
                             'soltos. Ele exige prática, correção, repetição e situações reais de '
@@ -1143,9 +1143,9 @@ BLOG_POSTS = {
                             'conseguem escrever um e-mail simples. Há também quem tente falar sem '
                             'construir repertório suficiente de vocabulário e acaba repetindo sempre '
                             'as mesmas frases. O resultado é uma evolução desequilibrada.</p>',
-                            '<p>Para o Bruno — profissional que precisa de inglês de verdade para '
+                            '<p>Para o Bruno: profissional que precisa de inglês de verdade para '
                             'crescer na carreira, participar de reuniões, fazer entrevistas, viajar ou '
-                            'buscar oportunidades internacionais — o ideal é um plano integrado. Ele '
+                            'buscar oportunidades internacionais: o ideal é um plano integrado. Ele '
                             'não precisa escolher entre reading, listening, speaking e writing. '
                             'Precisa aprender a usar uma habilidade para fortalecer a outra.</p>',
                             '<p>Neste artigo, você vai entender por que integrar as quatro habilidades '
@@ -2209,7 +2209,7 @@ BLOG_POSTS = {
      'sections': [{'heading': 'Por que a comunicação escrita trava o aluno no inglês corporativo?',
                    'body': ['<p>A maior trava para o profissional brasileiro que precisa do inglês não '
                             'é a gramática complexa, mas a insegurança de não soar "natural" ou '
-                            '"profissional" o suficiente em comunicações rápidas — como e-mails, '
+                            '"profissional" o suficiente em comunicações rápidas: como e-mails, '
                             'mensagens de Slack ou Teams. Frequentemente, o aluno tenta traduzir '
                             'literalmente o pensamento do português para o inglês, o que resulta em '
                             'frases longas, excessivamente formais ou, pior, com falhas de clareza que '
@@ -2596,8 +2596,8 @@ BLOG_POSTS = {
                             'oralidade, nomes, cantigas, rezas, literatura e memória afro-diaspórica. '
                             'Quando alguém ensina sem contexto, pode gerar confusão, pronúncias '
                             'erradas e interpretações rasas.</p>',
-                            '<p>Para a persona Adá — quem deseja entender o que canta, reza ou '
-                            'pesquisa, honrando sua raiz — esse cuidado é ainda mais importante. '
+                            '<p>Para a persona Adá: quem deseja entender o que canta, reza ou '
+                            'pesquisa, honrando sua raiz: esse cuidado é ainda mais importante. '
                             'Aprender iorubá não é apenas “saber o significado” de uma palavra. É '
                             'compreender como ela soa, quando é usada, em que contexto aparece e qual '
                             'responsabilidade existe ao repeti-la.</p>',
@@ -4503,7 +4503,7 @@ BLOG_POSTS = {
                             'devem ser estudadas com escuta e orientação, especialmente por causa dos '
                             'tons. Use este glossário como porta de entrada, não como substituto de '
                             'uma aula.</p>',
-                            '<h3>Ẹ n lẹ́ — saudação geral</h3>',
+                            '<h3>Ẹ n lẹ́: saudação geral</h3>',
                             '<p><strong>Sentido aproximado:</strong> olá; cumprimento geral.</p>',
                             '<p>Esta é uma forma de saudação usada para iniciar contato de maneira '
                             'respeitosa. Para quem está começando, ela ajuda a treinar o som de “Ẹ”, '
@@ -4515,7 +4515,7 @@ BLOG_POSTS = {
                             '<p>Pessoa A: Ẹ n lẹ́.<br>Pessoa B: Ẹ n lẹ́.</p>',
                             '<p>Em aula, o professor pode mostrar variações, uso mais natural e '
                             'diferenças de contexto.</p>',
-                            '<h3>Ẹ káàárọ̀ — bom dia</h3>',
+                            '<h3>Ẹ káàárọ̀: bom dia</h3>',
                             '<p><strong>Sentido aproximado:</strong> bom dia.</p>',
                             '<p>Essa é uma saudação importante para o início do dia. Ela mostra como '
                             'uma expressão aparentemente simples pode exigir cuidado com tons e vogais '
@@ -4523,14 +4523,14 @@ BLOG_POSTS = {
                             '<p><strong>Como praticar:</strong> não transforme a palavra em uma '
                             'pronúncia “aportuguesada”. Escute, repita e peça correção. O objetivo não '
                             'é falar rápido; é falar com consciência.</p>',
-                            '<h3>Ẹ káàsán — boa tarde</h3>',
+                            '<h3>Ẹ káàsán: boa tarde</h3>',
                             '<p><strong>Sentido aproximado:</strong> boa tarde.</p>',
                             '<p>É uma saudação usada no período da tarde. Para quem está começando, '
                             'ela é útil para perceber como as saudações de tempo podem ter estruturas '
                             'semelhantes, mas sons diferentes.</p>',
                             '<p><strong>Como praticar:</strong> compare com “Ẹ káàárọ̀” e observe onde '
                             'a boca muda, onde o som se alonga e onde o tom se altera.</p>',
-                            '<h3>Ẹ káalẹ́ — boa noite / boa tarde-noite</h3>',
+                            '<h3>Ẹ káalẹ́: boa noite / boa tarde-noite</h3>',
                             '<p><strong>Sentido aproximado:</strong> boa noite ou cumprimento no fim '
                             'do dia, conforme contexto.</p>',
                             '<p>Essa expressão pode aparecer associada ao período da noite ou ao fim '
@@ -4540,16 +4540,16 @@ BLOG_POSTS = {
                             '<p><strong>Como praticar:</strong> imagine uma chegada a uma aula no '
                             'período da noite. Você cumprimenta o professor e a turma com calma, '
                             'ouvindo a resposta e repetindo.</p>',
-                            '<h3>Báwo ni? — como vai?</h3>',
+                            '<h3>Báwo ni?: como vai?</h3>',
                             '<p><strong>Sentido aproximado:</strong> como você está? / como vai?</p>',
                             '<p>Esta é uma expressão prática para iniciar uma conversa simples. Ela '
                             'aproxima o aprendizado da vida real porque permite sair da saudação única '
                             'e entrar em uma pequena interação.</p>',
                             '<p>Uma resposta inicial possível, em contexto básico de aula, é:</p>',
-                            '<p><strong>Mo wà dáadáa</strong> — estou bem.</p>',
+                            '<p><strong>Mo wà dáadáa</strong>: estou bem.</p>',
                             '<p>Aqui também é importante não estudar apenas por equivalência. A frase '
                             'precisa ser repetida com atenção à pronúncia.</p>',
-                            '<h3>Ẹ ṣé — obrigado(a)</h3>',
+                            '<h3>Ẹ ṣé: obrigado(a)</h3>',
                             '<p><strong>Sentido aproximado:</strong> obrigado(a).</p>',
                             '<p>Expressar agradecimento é parte fundamental de qualquer aprendizado '
                             'linguístico. “Ẹ ṣé” é uma expressão curta, mas exige atenção ao som '
@@ -4557,7 +4557,7 @@ BLOG_POSTS = {
                             '“s” comum do português.</p>',
                             '<p><strong>Como praticar:</strong> use após uma correção em aula, depois '
                             'de receber uma explicação ou ao encerrar uma interação simples.</p>',
-                            '<h3>Ó dáàbọ̀ — adeus / até logo</h3>',
+                            '<h3>Ó dáàbọ̀: adeus / até logo</h3>',
                             '<p><strong>Sentido aproximado:</strong> adeus; até logo.</p>',
                             '<p>Essa expressão pode aparecer em despedidas. Para o iniciante, ela '
                             'ajuda a formar uma sequência mínima de conversação: cumprimentar, '
@@ -5112,11 +5112,11 @@ BLOG_POSTS = {
                             'spell their name, share phone numbers, confirm addresses and say when '
                             'they do not understand.</p>',
                             '<p>Useful phrases include:</p>',
-                            '<ul><li>“Você pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Eu estou aprendendo português.” — I am learning '
-                            'Portuguese.</li><li>“Pode falar mais devagar?” — Can you speak more '
-                            'slowly?</li><li>“Como eu chego nesse endereço?” — How do I get to this '
-                            'address?</li><li>“Preciso de ajuda.” — I need help.</li></ul>',
+                            '<ul><li>“Você pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Eu estou aprendendo português.”: I am learning '
+                            'Portuguese.</li><li>“Pode falar mais devagar?”: Can you speak more '
+                            'slowly?</li><li>“Como eu chego nesse endereço?”: How do I get to this '
+                            'address?</li><li>“Preciso de ajuda.”: I need help.</li></ul>',
                             '<p>These phrases may look basic, but they are powerful. They give the '
                             'employee permission to participate instead of freezing.</p>',
                             '<h3>2. Workplace basics</h3>',
@@ -5139,11 +5139,11 @@ BLOG_POSTS = {
                             'deliveries, parking, bills and building access.</p>',
                             '<p>A practical Brazilian Portuguese course should teach words such '
                             'as:</p>',
-                            '<ul><li>aluguel — rent;</li><li>condomínio — building fee or '
-                            'condominium;</li><li>portaria — building reception/security '
-                            'desk;</li><li>entrega — delivery;</li><li>manutenção — '
-                            'maintenance;</li><li>boleto — payment slip;</li><li>comprovante — proof '
-                            'or receipt;</li><li>endereço — address;</li><li>bairro — '
+                            '<ul><li>aluguel: rent;</li><li>condomínio: building fee or '
+                            'condominium;</li><li>portaria: building reception/security '
+                            'desk;</li><li>entrega: delivery;</li><li>manutenção: '
+                            'maintenance;</li><li>boleto: payment slip;</li><li>comprovante: proof '
+                            'or receipt;</li><li>endereço: address;</li><li>bairro: '
                             'neighborhood.</li></ul>',
                             '<p>This vocabulary helps the employee understand local instructions '
                             'faster and reduces dependency on HR for simple issues.</p>',
@@ -5158,11 +5158,11 @@ BLOG_POSTS = {
                             'categories, Gov.br service pages for foreigner registration and CPF '
                             'guidance for non-Brazilian citizens.</p>',
                             '<p>Language training should help employees understand terms such as:</p>',
-                            '<ul><li>passaporte — passport;</li><li>visto — visa;</li><li>autorização '
-                            'de residência — residence authorization;</li><li>registro — '
-                            'registration;</li><li>CPF — individual taxpayer '
-                            'registry;</li><li>agendamento — appointment;</li><li>documento — '
-                            'document;</li><li>formulário — form;</li><li>assinatura — '
+                            '<ul><li>passaporte: passport;</li><li>visto: visa;</li><li>autorização '
+                            'de residência: residence authorization;</li><li>registro: '
+                            'registration;</li><li>CPF: individual taxpayer '
+                            'registry;</li><li>agendamento: appointment;</li><li>documento: '
+                            'document;</li><li>formulário: form;</li><li>assinatura: '
                             'signature.</li></ul>',
                             '<p>The employee does not need to master the system alone. They need to '
                             'understand what is being requested, what questions to ask and when to ask '
@@ -5174,10 +5174,10 @@ BLOG_POSTS = {
                             'need to understand confirmations, cancellations and support '
                             'conversations.</p>',
                             '<p>Useful vocabulary includes:</p>',
-                            '<ul><li>cartão — card;</li><li>dinheiro — cash;</li><li>nota fiscal — '
-                            'invoice or fiscal receipt;</li><li>recibo — receipt;</li><li>parcela — '
-                            'installment;</li><li>taxa — fee;</li><li>senha — password or '
-                            'PIN;</li><li>atendimento — customer service.</li></ul>',
+                            '<ul><li>cartão: card;</li><li>dinheiro: cash;</li><li>nota fiscal: '
+                            'invoice or fiscal receipt;</li><li>recibo: receipt;</li><li>parcela: '
+                            'installment;</li><li>taxa: fee;</li><li>senha: password or '
+                            'PIN;</li><li>atendimento: customer service.</li></ul>',
                             '<p>These words help employees navigate supermarkets, pharmacies, taxis, '
                             'restaurants, service providers and online purchases.</p>']},
                   {'heading': 'Real-life situations employees should practice',
@@ -5261,13 +5261,13 @@ BLOG_POSTS = {
                             'internal guidance or advising employees, teams should verify information '
                             'with official sources and qualified immigration support.</p>',
                             '<p>Useful official starting points include:</p>',
-                            '<ul><li>Brazilian Ministry of Foreign Affairs — visa information: '
-                            'https://www.gov.br/mre/pt-br/consulado-los-angeles/english/visas/types-of-visa</li><li>Gov.br '
-                            '— registration as a foreigner in Brazil: '
+                            '<ul><li>Brazilian Ministry of Foreign Affairs: visa information: '
+                            'https://www.gov.br/mre/pt-br/consulado-los-angeles/english/visas/types-of-visa</li><li>Gov.br'
+                            ': registration as a foreigner in Brazil: '
                             'https://www.gov.br/pt-br/servicos/registrar-se-como-estrangeiro-no-brasil</li><li>Ministry '
-                            'of Foreign Affairs — CPF for non-Brazilian citizens: '
+                            'of Foreign Affairs: CPF for non-Brazilian citizens: '
                             'https://www.gov.br/mre/pt-br/consulado-hartford/servicos-consulares-e-informacoes-uties/cpf-brasileiros-foreigners/cpf-foreigners</li><li>Brazilian '
-                            'Federal Police — migration FAQ: '
+                            'Federal Police: migration FAQ: '
                             'https://www.gov.br/pf/pt-br/assuntos/imigracao/en/duvidas</li></ul>',
                             '<p>Language training should support these processes by making employees '
                             'more prepared to understand instructions, ask questions and participate '
@@ -5395,23 +5395,23 @@ BLOG_POSTS = {
                             'parking, ask about water, internet or electricity, and understand '
                             'building rules.</p>',
                             '<p>Useful vocabulary includes:</p>',
-                            '<ul><li><strong>prédio</strong> — '
-                            'building;</li><li><strong>apartamento</strong> — '
-                            'apartment;</li><li><strong>portaria</strong> — front desk or building '
-                            'entrance;</li><li><strong>porteiro / porteira</strong> — doorman or front '
-                            'desk staff;</li><li><strong>entrega</strong> — '
-                            'delivery;</li><li><strong>encomenda</strong> — '
-                            'package;</li><li><strong>elevador</strong> — '
-                            'elevator;</li><li><strong>garagem</strong> — '
-                            'garage;</li><li><strong>chave</strong> — '
-                            'key;</li><li><strong>manutenção</strong> — maintenance.</li></ul>',
+                            '<ul><li><strong>prédio</strong>: '
+                            'building;</li><li><strong>apartamento</strong>: '
+                            'apartment;</li><li><strong>portaria</strong>: front desk or building '
+                            'entrance;</li><li><strong>porteiro / porteira</strong>: doorman or front '
+                            'desk staff;</li><li><strong>entrega</strong>: '
+                            'delivery;</li><li><strong>encomenda</strong>: '
+                            'package;</li><li><strong>elevador</strong>: '
+                            'elevator;</li><li><strong>garagem</strong>: '
+                            'garage;</li><li><strong>chave</strong>: '
+                            'key;</li><li><strong>manutenção</strong>: maintenance.</li></ul>',
                             '<p>Useful phrases include:</p>',
-                            '<ul><li>“Eu moro no apartamento ___.” — I live in apartment '
-                            '___.</li><li>“Chegou alguma encomenda para mim?” — Has any package '
-                            'arrived for me?</li><li>“Pode avisar quando a entrega chegar?” — Can you '
+                            '<ul><li>“Eu moro no apartamento ___.”: I live in apartment '
+                            '___.</li><li>“Chegou alguma encomenda para mim?”: Has any package '
+                            'arrived for me?</li><li>“Pode avisar quando a entrega chegar?”: Can you '
                             'let me know when the delivery arrives?</li><li>“O elevador está '
-                            'funcionando?” — Is the elevator working?</li><li>“Preciso falar com a '
-                            'administração.” — I need to speak with the administration.</li></ul>',
+                            'funcionando?”: Is the elevator working?</li><li>“Preciso falar com a '
+                            'administração.”: I need to speak with the administration.</li></ul>',
                             '<p>This kind of vocabulary is more urgent than memorizing long verb '
                             'tables. During your first month, the language you use around your home '
                             'directly affects your comfort. A practical Brazilian Portuguese course '
@@ -5427,21 +5427,21 @@ BLOG_POSTS = {
                             'after a bakery, cross the avenue or wait near the pharmacy. This is why '
                             'expats should learn location language early.</p>',
                             '<p>Essential words include:</p>',
-                            '<ul><li><strong>rua</strong> — street;</li><li><strong>avenida</strong> — '
-                            'avenue;</li><li><strong>esquina</strong> — '
-                            'corner;</li><li><strong>entrada</strong> — '
-                            'entrance;</li><li><strong>saída</strong> — '
-                            'exit;</li><li><strong>perto</strong> — '
-                            'near;</li><li><strong>longe</strong> — far;</li><li><strong>à '
-                            'direita</strong> — to the right;</li><li><strong>à esquerda</strong> — to '
-                            'the left;</li><li><strong>em frente</strong> — straight ahead or in '
+                            '<ul><li><strong>rua</strong>: street;</li><li><strong>avenida</strong>: '
+                            'avenue;</li><li><strong>esquina</strong>: '
+                            'corner;</li><li><strong>entrada</strong>: '
+                            'entrance;</li><li><strong>saída</strong>: '
+                            'exit;</li><li><strong>perto</strong>: '
+                            'near;</li><li><strong>longe</strong>: far;</li><li><strong>à '
+                            'direita</strong>: to the right;</li><li><strong>à esquerda</strong>: to '
+                            'the left;</li><li><strong>em frente</strong>: straight ahead or in '
                             'front.</li></ul>',
                             '<p>Practice phrases such as:</p>',
-                            '<ul><li>“Esse é o endereço certo?” — Is this the correct '
-                            'address?</li><li>“Pode me deixar na entrada principal?” — Can you drop me '
-                            'at the main entrance?</li><li>“Quanto tempo demora?” — How long does it '
-                            'take?</li><li>“É perto daqui?” — Is it near here?</li><li>“Eu preciso ir '
-                            'para este endereço.” — I need to go to this address.</li></ul>',
+                            '<ul><li>“Esse é o endereço certo?”: Is this the correct '
+                            'address?</li><li>“Pode me deixar na entrada principal?”: Can you drop me '
+                            'at the main entrance?</li><li>“Quanto tempo demora?”: How long does it '
+                            'take?</li><li>“É perto daqui?”: Is it near here?</li><li>“Eu preciso ir '
+                            'para este endereço.”: I need to go to this address.</li></ul>',
                             '<p>The cultural detail is important: Brazilians often give directions '
                             'using landmarks, not only street numbers. They may say something is “next '
                             'to the bakery”, “behind the mall” or “in front of the square”. A live '
@@ -5456,20 +5456,20 @@ BLOG_POSTS = {
                             'understand the difference between “débito” and “crédito”, or ask whether '
                             'a store accepts Pix or card.</p>',
                             '<p>Essential words include:</p>',
-                            '<ul><li><strong>cardápio</strong> — menu;</li><li><strong>conta</strong> '
-                            '— bill;</li><li><strong>nota fiscal</strong> — receipt or '
-                            'invoice;</li><li><strong>dinheiro</strong> — '
-                            'cash;</li><li><strong>cartão</strong> — '
-                            'card;</li><li><strong>débito</strong> — '
-                            'debit;</li><li><strong>crédito</strong> — credit;</li><li><strong>sem '
-                            'açúcar</strong> — without sugar;</li><li><strong>sem carne</strong> — '
-                            'without meat;</li><li><strong>água sem gás / com gás</strong> — still '
+                            '<ul><li><strong>cardápio</strong>: menu;</li><li><strong>conta</strong>'
+                            ': bill;</li><li><strong>nota fiscal</strong>: receipt or '
+                            'invoice;</li><li><strong>dinheiro</strong>: '
+                            'cash;</li><li><strong>cartão</strong>: '
+                            'card;</li><li><strong>débito</strong>: '
+                            'debit;</li><li><strong>crédito</strong>: credit;</li><li><strong>sem '
+                            'açúcar</strong>: without sugar;</li><li><strong>sem carne</strong>: '
+                            'without meat;</li><li><strong>água sem gás / com gás</strong>: still '
                             'water / sparkling water.</li></ul>',
                             '<p>Useful phrases include:</p>',
-                            '<ul><li>“Pode trazer o cardápio, por favor?” — Can you bring the menu, '
-                            'please?</li><li>“Eu tenho alergia a ___.” — I am allergic to '
-                            '___.</li><li>“Aceita cartão?” — Do you accept card?</li><li>“Pode ser no '
-                            'crédito?” — Can it be credit?</li><li>“A conta, por favor.” — The bill, '
+                            '<ul><li>“Pode trazer o cardápio, por favor?”: Can you bring the menu, '
+                            'please?</li><li>“Eu tenho alergia a ___.”: I am allergic to '
+                            '___.</li><li>“Aceita cartão?”: Do you accept card?</li><li>“Pode ser no '
+                            'crédito?”: Can it be credit?</li><li>“A conta, por favor.”: The bill, '
                             'please.</li></ul>',
                             '<p>This is also a good moment to learn Brazilian politeness. “Por favor”, '
                             '“obrigado/obrigada”, “com licença” and “desculpa” are simple, but they '
@@ -5486,12 +5486,12 @@ BLOG_POSTS = {
                             'facility requests, events and team relationships. Understanding these '
                             'interactions helps you feel included.</p>',
                             '<p>Start with phrases such as:</p>',
-                            '<ul><li>“Prazer em conhecer.” — Nice to meet you.</li><li>“Eu trabalho na '
-                            'área de ___.” — I work in the area of ___.</li><li>“Você pode me '
-                            'explicar?” — Can you explain it to me?</li><li>“Ainda estou aprendendo '
-                            'português.” — I am still learning Portuguese.</li><li>“Podemos marcar uma '
-                            'reunião?” — Can we schedule a meeting?</li><li>“Qual é o prazo?” — What '
-                            'is the deadline?</li><li>“Vou confirmar e te aviso.” — I will confirm and '
+                            '<ul><li>“Prazer em conhecer.”: Nice to meet you.</li><li>“Eu trabalho na '
+                            'área de ___.”: I work in the area of ___.</li><li>“Você pode me '
+                            'explicar?”: Can you explain it to me?</li><li>“Ainda estou aprendendo '
+                            'português.”: I am still learning Portuguese.</li><li>“Podemos marcar uma '
+                            'reunião?”: Can we schedule a meeting?</li><li>“Qual é o prazo?”: What '
+                            'is the deadline?</li><li>“Vou confirmar e te aviso.”: I will confirm and '
                             'let you know.</li></ul>',
                             '<p>The goal is not to sound perfect. The goal is to participate. When you '
                             'make the effort to speak Portuguese, many Brazilian colleagues appreciate '
@@ -5511,30 +5511,30 @@ BLOG_POSTS = {
                             '<p>You should be able to say your name, nationality, profession, address, '
                             'phone number and reason for being in Brazil.</p>',
                             '<p>Examples:</p>',
-                            '<ul><li>“Meu nome é ___.” — My name is ___.</li><li>“Eu sou de ___.” — I '
-                            'am from ___.</li><li>“Eu estou no Brasil a trabalho.” — I am in Brazil '
-                            'for work.</li><li>“Meu telefone é ___.” — My phone number is '
+                            '<ul><li>“Meu nome é ___.”: My name is ___.</li><li>“Eu sou de ___.”: I '
+                            'am from ___.</li><li>“Eu estou no Brasil a trabalho.”: I am in Brazil '
+                            'for work.</li><li>“Meu telefone é ___.”: My phone number is '
                             '___.</li></ul>',
                             '<h3>Help and clarification</h3>',
                             '<p>These phrases are essential because they keep the conversation open '
                             'when you do not understand.</p>',
-                            '<ul><li>“Pode repetir?” — Can you repeat?</li><li>“Pode falar mais '
-                            'devagar?” — Can you speak more slowly?</li><li>“Como se diz ___ em '
-                            'português?” — How do you say ___ in Portuguese?</li><li>“Eu não entendi.” '
-                            '— I did not understand.</li></ul>',
+                            '<ul><li>“Pode repetir?”: Can you repeat?</li><li>“Pode falar mais '
+                            'devagar?”: Can you speak more slowly?</li><li>“Como se diz ___ em '
+                            'português?”: How do you say ___ in Portuguese?</li><li>“Eu não entendi.”'
+                            ': I did not understand.</li></ul>',
                             '<h3>Time and appointments</h3>',
                             '<p>You will need time expressions for meetings, deliveries, classes, '
                             'services and appointments.</p>',
-                            '<ul><li><strong>hoje</strong> — today;</li><li><strong>amanhã</strong> — '
-                            'tomorrow;</li><li><strong>ontem</strong> — '
-                            'yesterday;</li><li><strong>agora</strong> — now;</li><li><strong>mais '
-                            'tarde</strong> — later;</li><li><strong>semana que vem</strong> — next '
+                            '<ul><li><strong>hoje</strong>: today;</li><li><strong>amanhã</strong>: '
+                            'tomorrow;</li><li><strong>ontem</strong>: '
+                            'yesterday;</li><li><strong>agora</strong>: now;</li><li><strong>mais '
+                            'tarde</strong>: later;</li><li><strong>semana que vem</strong>: next '
                             'week.</li></ul>',
                             '<h3>Problems and emergencies</h3>',
                             '<p>You should know how to express basic problems clearly.</p>',
-                            '<ul><li>“Preciso de ajuda.” — I need help.</li><li>“Perdi minha chave.” — '
-                            'I lost my key.</li><li>“Meu celular não está funcionando.” — My phone is '
-                            'not working.</li><li>“É urgente.” — It is urgent.</li></ul>',
+                            '<ul><li>“Preciso de ajuda.”: I need help.</li><li>“Perdi minha chave.”: '
+                            'I lost my key.</li><li>“Meu celular não está funcionando.”: My phone is '
+                            'not working.</li><li>“É urgente.”: It is urgent.</li></ul>',
                             '<p>This vocabulary creates a foundation. From there, you can expand into '
                             'grammar, conversation, pronunciation and cultural fluency.</p>']},
                   {'heading': 'How live classes help expats learn faster',
@@ -5570,7 +5570,7 @@ BLOG_POSTS = {
                             '<p><strong>Book a free level check with Vedium at <a '
                             'href="/en/portuguese-placement-test">https://vediums.com/</a> and start '
                             'learning Brazilian Portuguese for the life you are about to live in '
-                            'Brazil. Live classes, real situations and no long-term contracts — you '
+                            'Brazil. Live classes, real situations and no long-term contracts: you '
                             'stay because you feel the progress.</strong></p>']}],
      'faqs': [{'q': 'What Portuguese should expats learn before moving to Brazil?',
                'a': 'Expats should first learn greetings, personal information, addresses, '
@@ -5619,8 +5619,8 @@ BLOG_POSTS = {
                             'quickly you feel "at home."</p>',
                             '<p>Many expats make the mistake of relying solely on English or Spanish, '
                             'assuming they can "get by." While many Brazilians are welcoming, the '
-                            'heart of Brazilian culture—the nuance, the warmth, and the professional '
-                            'rapport—is locked behind the Portuguese language.</p>',
+                            'heart of Brazilian culture, the nuance, the warmth, and the professional '
+                            'rapport, is locked behind the Portuguese language.</p>',
                             '<p>At <a href="/en/portuguese-placement-test">Vedium</a>, we believe that '
                             'learning a language is not just about grammar; it is about '
                             '<em>Inteligência Cultural</em> (Cultural Intelligence). In these first 90 '
@@ -5658,7 +5658,7 @@ BLOG_POSTS = {
                             '<h3>Days 31-60: The Professional and Social Bridge</h3>',
                             '<p>By the second month, you should be moving toward small talk. This is '
                             'where cultural intelligence kicks in.<br><em>   <strong>Focus:</strong> '
-                            'Understanding </em>Jeitinho Brasileiro*—not as a negative, but as a '
+                            'Understanding </em>Jeitinho Brasileiro*, not as a negative, but as a '
                             'flexible way of solving problems.<br>*   <strong>Strategy:</strong> '
                             'Observe social hierarchies in your office. Learn when to use "você" '
                             '(formal/informal) and how to respond to common Brazilian '
@@ -5718,7 +5718,7 @@ BLOG_POSTS = {
                     'help you bridge that gap without confusing the two languages.'},
               {'q': 'Do I need to know grammar rules to live in Brazil?',
                'a': 'Not immediately. You need communication skills. We prioritize the "language of '
-                    'action"—giving you the phrases you need to get things done—and layer in the '
+                    'action", giving you the phrases you need to get things done, and layer in the '
                     'grammar as you advance.'},
               {'q': 'Why choose live classes over self-paced apps?',
                'a': 'Apps lack the feedback loop necessary for social and professional integration. In '
@@ -5757,7 +5757,7 @@ BLOG_POSTS = {
                             'integration. Understanding how to handle your own affairs is the fastest '
                             'route to true autonomy in your new home. Our approach to <em>Português '
                             'para Estrangeiros</em> focuses on <strong>Inteligência '
-                            'Cultural</strong>—giving you the functional language you need to resolve '
+                            'Cultural</strong>, giving you the functional language you need to resolve '
                             'real-life problems efficiently, without relying on intermediaries or '
                             'costly translation services.</p>']},
                   {'heading': 'Why "Burocracia" Traps the Expats',
@@ -5769,7 +5769,7 @@ BLOG_POSTS = {
                             'bank.</p>',
                             "<p>When you don't understand the specific social and professional scripts "
                             'used in Brazilian administrative offices, you lose confidence. You '
-                            'hesitate, you ask for English speakers—who may not be available—and you '
+                            'hesitate, you ask for English speakers, who may not be available, and you '
                             'become dependent. We believe that your autonomy starts with your ability '
                             'to articulate your needs clearly in Portuguese. This is where live, '
                             'interactive classes make the difference: we simulate these high-pressure '
@@ -5834,7 +5834,7 @@ BLOG_POSTS = {
                             "results. If you aren't evolving, we aren't doing our job. Our students "
                             'stay because they see real progress in their daily interactions, not '
                             'because they are tied down by fine print. You want to live your life in '
-                            'Brazil, not struggle through it—and we are here to ensure that '
+                            'Brazil, not struggle through it, and we are here to ensure that '
                             'happens.</p>']},
                   {'heading': 'Overcoming the "Expat Barrier" to Fluency',
                    'body': ['<p>The biggest barrier to fluency in Brazil is the "English Trap." '
@@ -5874,7 +5874,7 @@ BLOG_POSTS = {
                     'develop bad habits.'},
               {'q': 'Do I need to know formal grammar rules to handle bureaucracy?',
                'a': 'Not immediately. You need functional communication skills. We prioritize the '
-                    '"language of action"—giving you the phrases you need to get things done—and layer '
+                    '"language of action", giving you the phrases you need to get things done, and layer '
                     'in the formal grammar as you advance.'},
               {'q': 'Why choose live classes over self-paced apps?',
                'a': 'Apps lack the feedback loop necessary for navigating real-world social and '
@@ -5907,8 +5907,8 @@ BLOG_POSTS = {
                             'seems like the easiest part of the journey. After all, "sim," "não," and '
                             '"talvez" are among the first words any beginner learns. However, the true '
                             'challenge arises when you realize that in Brazilian Portuguese, these '
-                            'words are rarely used in isolation. To sound natural—and more '
-                            'importantly, to avoid misunderstandings—you must master the cultural '
+                            'words are rarely used in isolation. To sound natural, and more '
+                            'importantly, to avoid misunderstandings, you must master the cultural '
                             'nuance behind how Brazilians use these simple affirmations and '
                             'negations.</p>',
                             '<p>At <a href="/en/portuguese-placement-test">Vedium</a>, we know that '
@@ -5943,8 +5943,8 @@ BLOG_POSTS = {
                             'actually means "how can I help you?" or "certainly," rather than "of '
                             'course not") is a crucial skill to '
                             'distinguish.</li><li><strong>Enthusiasm:</strong> Brazilians value '
-                            'warmth. Adding a positive spin to your "yes"—like "Com certeza, vamos '
-                            'fazer isso!" (For sure, let\'s do this!)—builds a much stronger '
+                            'warmth. Adding a positive spin to your "yes", like "Com certeza, vamos '
+                            'fazer isso!" (For sure, let\'s do this!), builds a much stronger '
                             'connection than a curt "sim."</li></ul>',
                             '<p><strong>Practical Exercise:</strong> Next time you are in a situation '
                             'where you agree with someone, try using "Claro que sim" or "Pois não." '
@@ -6118,10 +6118,10 @@ BLOG_POSTS = {
                             'natural with small supporting words like “é que”, “mesmo”, “aqui”, “por '
                             'favor” and “você sabe”.</p>',
                             '<p>For example:</p>',
-                            '<ul><li>“Onde fica o banheiro?” — Where is the bathroom?</li><li>“Quanto '
-                            'custa?” — How much is it?</li><li>“Como eu faço para chegar lá?” — How do '
-                            'I get there?</li><li>“Qual é o melhor horário?” — What is the best '
-                            'time?</li><li>“Você sabe onde fica a recepção?” — Do you know where the '
+                            '<ul><li>“Onde fica o banheiro?”: Where is the bathroom?</li><li>“Quanto '
+                            'custa?”: How much is it?</li><li>“Como eu faço para chegar lá?”: How do '
+                            'I get there?</li><li>“Qual é o melhor horário?”: What is the best '
+                            'time?</li><li>“Você sabe onde fica a recepção?”: Do you know where the '
                             'reception is?</li></ul>',
                             '<p>The phrase “Você sabe...” is especially useful. It softens the '
                             'question and makes it sound natural: “Você sabe onde fica...?” means “Do '
@@ -6150,9 +6150,9 @@ BLOG_POSTS = {
                             'perfectly into English, but it softens a request. It can make a question '
                             'sound less demanding.</p>',
                             '<p>Examples:</p>',
-                            '<ul><li>“Será que você pode repetir?” — Could you maybe repeat '
-                            'that?</li><li>“Será que dá para pagar com cartão?” — Is it possible to '
-                            'pay by card?</li><li>“Será que você sabe onde fica a sala?” — Do you '
+                            '<ul><li>“Será que você pode repetir?”: Could you maybe repeat '
+                            'that?</li><li>“Será que dá para pagar com cartão?”: Is it possible to '
+                            'pay by card?</li><li>“Será que você sabe onde fica a sala?”: Do you '
                             'happen to know where the room is?</li></ul>',
                             '<p>For expats, this is important because direct translations from English '
                             'can sound too blunt. In English, “Can you help me?” is normal. In '
@@ -6164,46 +6164,46 @@ BLOG_POSTS = {
                             'give you independence in your first weeks.</p>',
                             '<h3>At a restaurant or café</h3>',
                             '<p>Use these questions to order and clarify:</p>',
-                            '<ul><li>“Tem mesa para duas pessoas?” — Do you have a table for '
-                            'two?</li><li>“Qual é o prato do dia?” — What is the dish of the '
-                            'day?</li><li>“Esse prato tem carne?” — Does this dish have '
-                            'meat?</li><li>“Posso pedir sem cebola?” — Can I order it without '
-                            'onion?</li><li>“A conta, por favor?” — The bill, please?</li><li>“Aceita '
-                            'cartão?” — Do you accept cards?</li></ul>',
+                            '<ul><li>“Tem mesa para duas pessoas?”: Do you have a table for '
+                            'two?</li><li>“Qual é o prato do dia?”: What is the dish of the '
+                            'day?</li><li>“Esse prato tem carne?”: Does this dish have '
+                            'meat?</li><li>“Posso pedir sem cebola?”: Can I order it without '
+                            'onion?</li><li>“A conta, por favor?”: The bill, please?</li><li>“Aceita '
+                            'cartão?”: Do you accept cards?</li></ul>',
                             '<p>In Brazil, “aceita cartão?” is extremely practical. You may also hear '
                             '“débito ou crédito?” when paying.</p>',
                             '<h3>In an apartment building</h3>',
                             '<p>Many expats interact with building staff, landlords, maintenance teams '
                             'and neighbors. Useful questions include:</p>',
-                            '<ul><li>“Você sabe se chegou uma entrega para mim?” — Do you know if a '
-                            'delivery arrived for me?</li><li>“Com quem eu falo sobre manutenção?” — '
+                            '<ul><li>“Você sabe se chegou uma entrega para mim?”: Do you know if a '
+                            'delivery arrived for me?</li><li>“Com quem eu falo sobre manutenção?”: '
                             'Who do I talk to about maintenance?</li><li>“Pode me avisar quando o '
-                            'técnico chegar?” — Can you let me know when the technician '
-                            'arrives?</li><li>“Onde fica a lixeira?” — Where is the trash '
-                            'area?</li><li>“Qual é o horário permitido para mudança?” — What is the '
+                            'técnico chegar?”: Can you let me know when the technician '
+                            'arrives?</li><li>“Onde fica a lixeira?”: Where is the trash '
+                            'area?</li><li>“Qual é o horário permitido para mudança?”: What is the '
                             'allowed time for moving?</li></ul>',
                             '<p>These questions are not only linguistic. They help you understand '
                             'Brazilian apartment culture, building rules and daily logistics.</p>',
                             '<h3>In transport</h3>',
                             '<p>For taxis, buses, metro and ride apps, learn:</p>',
-                            '<ul><li>“Esse ônibus vai para o centro?” — Does this bus go '
-                            'downtown?</li><li>“Quanto tempo demora?” — How long does it '
-                            'take?</li><li>“Pode me deixar aqui, por favor?” — Can you drop me off '
-                            'here, please?</li><li>“Este é o melhor caminho?” — Is this the best '
-                            'route?</li><li>“Onde eu pego o metrô?” — Where do I take the '
+                            '<ul><li>“Esse ônibus vai para o centro?”: Does this bus go '
+                            'downtown?</li><li>“Quanto tempo demora?”: How long does it '
+                            'take?</li><li>“Pode me deixar aqui, por favor?”: Can you drop me off '
+                            'here, please?</li><li>“Este é o melhor caminho?”: Is this the best '
+                            'route?</li><li>“Onde eu pego o metrô?”: Where do I take the '
                             'metro?</li></ul>',
                             '<p>Brazilian cities can be busy and unpredictable. Clear questions reduce '
                             'stress.</p>',
                             '<h3>At a pharmacy or clinic</h3>',
                             '<p>Health-related questions are essential:</p>',
-                            '<ul><li>“Preciso de receita?” — Do I need a prescription?</li><li>“Como '
-                            'eu tomo esse remédio?” — How do I take this medicine?</li><li>“Tem algum '
-                            'genérico?” — Is there a generic version?</li><li>“Vocês aceitam meu '
-                            'seguro?” — Do you accept my insurance?</li><li>“Qual é o horário de '
-                            'atendimento?” — What are the opening hours?</li></ul>',
+                            '<ul><li>“Preciso de receita?”: Do I need a prescription?</li><li>“Como '
+                            'eu tomo esse remédio?”: How do I take this medicine?</li><li>“Tem algum '
+                            'genérico?”: Is there a generic version?</li><li>“Vocês aceitam meu '
+                            'seguro?”: Do you accept my insurance?</li><li>“Qual é o horário de '
+                            'atendimento?”: What are the opening hours?</li></ul>',
                             '<p>If you are not confident, you can add:</p>',
-                            '<ul><li>“Meu português ainda é básico.” — My Portuguese is still '
-                            'basic.</li><li>“Pode falar mais devagar, por favor?” — Can you speak more '
+                            '<ul><li>“Meu português ainda é básico.”: My Portuguese is still '
+                            'basic.</li><li>“Pode falar mais devagar, por favor?”: Can you speak more '
                             'slowly, please?</li></ul>',
                             '<p>These phrases help people adjust their speech without making you feel '
                             'embarrassed.</p>']},
@@ -6214,31 +6214,31 @@ BLOG_POSTS = {
                             'useful questions.</p>',
                             '<h3>In meetings</h3>',
                             '<p>Use questions like:</p>',
-                            '<ul><li>“Você pode explicar esse ponto de novo?” — Can you explain this '
-                            'point again?</li><li>“Qual é o prazo?” — What is the '
-                            'deadline?</li><li>“Quem vai ficar responsável por isso?” — Who will be '
-                            'responsible for this?</li><li>“O que eu preciso entregar?” — What do I '
-                            'need to deliver?</li><li>“Podemos alinhar os próximos passos?” — Can we '
-                            'align the next steps?</li><li>“Só para confirmar, a reunião é às três?” — '
+                            '<ul><li>“Você pode explicar esse ponto de novo?”: Can you explain this '
+                            'point again?</li><li>“Qual é o prazo?”: What is the '
+                            'deadline?</li><li>“Quem vai ficar responsável por isso?”: Who will be '
+                            'responsible for this?</li><li>“O que eu preciso entregar?”: What do I '
+                            'need to deliver?</li><li>“Podemos alinhar os próximos passos?”: Can we '
+                            'align the next steps?</li><li>“Só para confirmar, a reunião é às três?”: '
                             'Just to confirm, is the meeting at three?</li></ul>',
                             '<p>“Só para confirmar...” is one of the most useful phrases in '
                             'professional Brazilian Portuguese. It is polite, natural and helps '
                             'prevent mistakes.</p>',
                             '<h3>At university or in class</h3>',
                             '<p>International students can use:</p>',
-                            '<ul><li>“Quando é a entrega do trabalho?” — When is the assignment '
-                            'due?</li><li>“Pode repetir a explicação?” — Can you repeat the '
-                            'explanation?</li><li>“Esse conteúdo vai cair na prova?” — Will this '
-                            'content be on the test?</li><li>“Posso entregar por e-mail?” — Can I '
-                            'submit it by email?</li><li>“Onde encontro o material da aula?” — Where '
+                            '<ul><li>“Quando é a entrega do trabalho?”: When is the assignment '
+                            'due?</li><li>“Pode repetir a explicação?”: Can you repeat the '
+                            'explanation?</li><li>“Esse conteúdo vai cair na prova?”: Will this '
+                            'content be on the test?</li><li>“Posso entregar por e-mail?”: Can I '
+                            'submit it by email?</li><li>“Onde encontro o material da aula?”: Where '
                             'can I find the class material?</li></ul>',
                             '<h3>With coworkers</h3>',
                             '<p>Workplace small talk is also part of communication:</p>',
-                            '<ul><li>“Como foi o fim de semana?” — How was your weekend?</li><li>“Você '
-                            'trabalha em qual área?” — Which area do you work in?</li><li>“Você sabe '
-                            'quem pode me ajudar com isso?” — Do you know who can help me with '
-                            'this?</li><li>“Vamos marcar um café?” — Shall we schedule a '
-                            'coffee?</li><li>“Você prefere falar por e-mail ou WhatsApp?” — Do you '
+                            '<ul><li>“Como foi o fim de semana?”: How was your weekend?</li><li>“Você '
+                            'trabalha em qual área?”: Which area do you work in?</li><li>“Você sabe '
+                            'quem pode me ajudar com isso?”: Do you know who can help me with '
+                            'this?</li><li>“Vamos marcar um café?”: Shall we schedule a '
+                            'coffee?</li><li>“Você prefere falar por e-mail ou WhatsApp?”: Do you '
                             'prefer email or WhatsApp?</li></ul>',
                             '<p>In Brazil, relationship-building often matters. Asking friendly '
                             'questions can help you integrate into teams.</p>']},
@@ -6248,11 +6248,11 @@ BLOG_POSTS = {
                             'follow-up questions, you show interest and keep the interaction '
                             'going.</p>',
                             '<p>Useful follow-up phrases include:</p>',
-                            '<ul><li>“Como assim?” — What do you mean?</li><li>“Pode me dar um '
-                            'exemplo?” — Can you give me an example?</li><li>“E depois?” — And after '
-                            'that?</li><li>“O que você recomenda?” — What do you '
-                            'recommend?</li><li>“Por quê?” — Why?</li><li>“Tem outra opção?” — Is '
-                            'there another option?</li><li>“Isso é comum no Brasil?” — Is this common '
+                            '<ul><li>“Como assim?”: What do you mean?</li><li>“Pode me dar um '
+                            'exemplo?”: Can you give me an example?</li><li>“E depois?”: And after '
+                            'that?</li><li>“O que você recomenda?”: What do you '
+                            'recommend?</li><li>“Por quê?”: Why?</li><li>“Tem outra opção?”: Is '
+                            'there another option?</li><li>“Isso é comum no Brasil?”: Is this common '
                             'in Brazil?</li></ul>',
                             '<p>“Como assim?” is very common, but tone matters. It can sound curious, '
                             'surprised or confused depending on how you say it. In live Portuguese '
@@ -6269,12 +6269,12 @@ BLOG_POSTS = {
                             'This is one of the most important survival skills for foreigners in '
                             'Brazil.</p>',
                             '<p>Learn these phrases early:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak more '
-                            'slowly?</li><li>“Desculpa, não entendi.” — Sorry, I did not '
-                            'understand.</li><li>“Como se escreve?” — How do you spell it?</li><li>“O '
-                            'que significa essa palavra?” — What does this word mean?</li><li>“Você '
-                            'pode explicar de outro jeito?” — Can you explain it another '
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak more '
+                            'slowly?</li><li>“Desculpa, não entendi.”: Sorry, I did not '
+                            'understand.</li><li>“Como se escreve?”: How do you spell it?</li><li>“O '
+                            'que significa essa palavra?”: What does this word mean?</li><li>“Você '
+                            'pode explicar de outro jeito?”: Can you explain it another '
                             'way?</li></ul>',
                             '<p>Do not be afraid to say you are learning. Many Brazilians will adjust '
                             'when they understand your level.</p>',
@@ -6500,15 +6500,15 @@ BLOG_POSTS = {
                             '<ul><li><strong>Oi</strong> sounds like “oy”.</li><li><strong>Tudo '
                             'bem?</strong> sounds approximately like “TOO-doo beng?”</li></ul>',
                             '<p>Common variations include:</p>',
-                            '<ul><li><strong>Oi, tudo bem?</strong> — Hi, how are '
-                            'you?</li><li><strong>Olá, tudo bem?</strong> — Hello, how are '
-                            'you?</li><li><strong>Tudo bom?</strong> — All good?</li><li><strong>Tudo '
-                            'certo?</strong> — Everything okay?</li><li><strong>Como vai?</strong> — '
+                            '<ul><li><strong>Oi, tudo bem?</strong>: Hi, how are '
+                            'you?</li><li><strong>Olá, tudo bem?</strong>: Hello, how are '
+                            'you?</li><li><strong>Tudo bom?</strong>: All good?</li><li><strong>Tudo '
+                            'certo?</strong>: Everything okay?</li><li><strong>Como vai?</strong>: '
                             'How are you? / How is it going?</li></ul>',
                             '<p>If someone asks you “Tudo bem?”, you can answer simply:</p>',
-                            '<ul><li><strong>Tudo bem, e você?</strong> — I’m good, and '
-                            'you?</li><li><strong>Tudo, obrigado/obrigada. E você?</strong> — All '
-                            'good, thank you. And you?</li><li><strong>Tudo certo.</strong> — '
+                            '<ul><li><strong>Tudo bem, e você?</strong>: I’m good, and '
+                            'you?</li><li><strong>Tudo, obrigado/obrigada. E você?</strong>: All '
+                            'good, thank you. And you?</li><li><strong>Tudo certo.</strong>: '
                             'Everything’s fine.</li></ul>',
                             '<p>A common mistake is to give a long answer every time someone asks '
                             '“Tudo bem?”. In Brazil, this phrase often works as a social greeting, not '
@@ -6520,8 +6520,8 @@ BLOG_POSTS = {
                             '<p>These expressions are very useful because they sound respectful '
                             'without being stiff. They are also easy to remember because they follow '
                             'the time of day:</p>',
-                            '<ul><li><strong>Bom dia</strong> — Good morning.</li><li><strong>Boa '
-                            'tarde</strong> — Good afternoon.</li><li><strong>Boa noite</strong> — '
+                            '<ul><li><strong>Bom dia</strong>: Good morning.</li><li><strong>Boa '
+                            'tarde</strong>: Good afternoon.</li><li><strong>Boa noite</strong>: '
                             'Good evening / Good night.</li></ul>',
                             '<p>In Brazil, “Boa noite” can be used when arriving at night and also '
                             'when saying goodbye at night. Context makes the meaning clear.</p>',
@@ -6545,12 +6545,12 @@ BLOG_POSTS = {
                             'sou...” followed by “Prazer”. These phrases are clear, friendly and '
                             'appropriate in most situations.</p>',
                             '<p>Useful phrases include:</p>',
-                            '<ul><li><strong>Meu nome é Anna.</strong> — My name is '
-                            'Anna.</li><li><strong>Eu sou o Michael.</strong> — I am '
-                            'Michael.</li><li><strong>Eu sou a Laura.</strong> — I am '
-                            'Laura.</li><li><strong>Prazer.</strong> — Nice to meet '
-                            'you.</li><li><strong>Prazer em conhecer.</strong> — Nice to meet '
-                            'you.</li><li><strong>Muito prazer.</strong> — Very nice to meet '
+                            '<ul><li><strong>Meu nome é Anna.</strong>: My name is '
+                            'Anna.</li><li><strong>Eu sou o Michael.</strong>: I am '
+                            'Michael.</li><li><strong>Eu sou a Laura.</strong>: I am '
+                            'Laura.</li><li><strong>Prazer.</strong>: Nice to meet '
+                            'you.</li><li><strong>Prazer em conhecer.</strong>: Nice to meet '
+                            'you.</li><li><strong>Muito prazer.</strong>: Very nice to meet '
                             'you.</li></ul>',
                             '<p>In spoken Brazilian Portuguese, people often use “Eu sou o...” for a '
                             'man and “Eu sou a...” for a woman before a first name. This may feel '
@@ -6576,10 +6576,10 @@ BLOG_POSTS = {
                             'but they may sound too casual in a bank, formal meeting, interview or '
                             'first interaction with an older person.</p>',
                             '<p>Here are useful casual greetings:</p>',
-                            '<ul><li><strong>E aí?</strong> — What’s '
-                            'up?</li><li><strong>Beleza?</strong> — All good?</li><li><strong>Tudo '
-                            'certo?</strong> — Everything okay?</li><li><strong>Fala!</strong> — Hey! '
-                            '/ What’s up?</li><li><strong>Oi, gente!</strong> — Hi, '
+                            '<ul><li><strong>E aí?</strong>: What’s '
+                            'up?</li><li><strong>Beleza?</strong>: All good?</li><li><strong>Tudo '
+                            'certo?</strong>: Everything okay?</li><li><strong>Fala!</strong>: Hey! '
+                            '/ What’s up?</li><li><strong>Oi, gente!</strong>: Hi, '
                             'everyone!</li></ul>',
                             '<p>A safe strategy is to understand these expressions before using them '
                             'heavily. When someone says “E aí?”, you can answer:</p>',
@@ -6597,10 +6597,10 @@ BLOG_POSTS = {
                             'to begin slightly more polite and adapt as you observe how others '
                             'speak.</p>',
                             '<p>For a meeting, you can say:</p>',
-                            '<ul><li>“Bom dia, pessoal. Tudo bem?” — Good morning, everyone. How are '
-                            'you?</li><li>“Boa tarde. Prazer em conhecer vocês.” — Good afternoon. '
+                            '<ul><li>“Bom dia, pessoal. Tudo bem?”: Good morning, everyone. How are '
+                            'you?</li><li>“Boa tarde. Prazer em conhecer vocês.”: Good afternoon. '
                             'Nice to meet you all.</li><li>“Olá, eu sou o Daniel, da equipe de '
-                            'produto.” — Hello, I’m Daniel, from the product team.</li></ul>',
+                            'produto.”: Hello, I’m Daniel, from the product team.</li></ul>',
                             '<p>For email or chat, you can write:</p>',
                             '<ul><li>“Olá, tudo bem?”</li><li>“Bom dia, Ana. Tudo bem?”</li><li>“Boa '
                             'tarde, equipe.”</li></ul>',
@@ -6609,10 +6609,10 @@ BLOG_POSTS = {
                             'can feel abrupt, especially when writing to someone for the first '
                             'time.</p>',
                             '<p>Also learn how to close conversations politely:</p>',
-                            '<ul><li><strong>Obrigado/obrigada.</strong> — Thank '
-                            'you.</li><li><strong>Até mais.</strong> — See you '
-                            'later.</li><li><strong>Até amanhã.</strong> — See you '
-                            'tomorrow.</li><li><strong>Bom trabalho.</strong> — Have a good '
+                            '<ul><li><strong>Obrigado/obrigada.</strong>: Thank '
+                            'you.</li><li><strong>Até mais.</strong>: See you '
+                            'later.</li><li><strong>Até amanhã.</strong>: See you '
+                            'tomorrow.</li><li><strong>Bom trabalho.</strong>: Have a good '
                             'workday.</li></ul>',
                             '<p>For relocation teams and international professionals, this type of '
                             'language improves integration. Employees who can greet colleagues '
@@ -6623,20 +6623,20 @@ BLOG_POSTS = {
                             '“Oi, tudo bem?” plus “por favor” is usually enough to sound friendly and '
                             'respectful.</p>',
                             '<p>Examples:</p>',
-                            '<ul><li>“Oi, tudo bem? Você pode me ajudar?” — Hi, how are you? Can you '
-                            'help me?</li><li>“Bom dia. Eu gostaria de um café, por favor.” — Good '
+                            '<ul><li>“Oi, tudo bem? Você pode me ajudar?”: Hi, how are you? Can you '
+                            'help me?</li><li>“Bom dia. Eu gostaria de um café, por favor.”: Good '
                             'morning. I would like a coffee, please.</li><li>“Boa tarde. Vocês aceitam '
-                            'cartão?” — Good afternoon. Do you accept card?</li><li>“Oi. Pode trazer o '
-                            'cardápio, por favor?” — Hi. Can you bring the menu, please?</li></ul>',
+                            'cartão?”: Good afternoon. Do you accept card?</li><li>“Oi. Pode trazer o '
+                            'cardápio, por favor?”: Hi. Can you bring the menu, please?</li></ul>',
                             '<p>In Brazil, service conversations often include small polite markers. '
                             'You do not need to overdo it, but using “por favor”, “obrigado/obrigada” '
                             'and “com licença” makes a difference.</p>',
                             '<p>Important words:</p>',
-                            '<ul><li><strong>por favor</strong> — '
-                            'please;</li><li><strong>obrigado</strong> — thank you, said by a '
-                            'man;</li><li><strong>obrigada</strong> — thank you, said by a '
-                            'woman;</li><li><strong>com licença</strong> — excuse '
-                            'me;</li><li><strong>desculpa</strong> — sorry / excuse me.</li></ul>',
+                            '<ul><li><strong>por favor</strong>: '
+                            'please;</li><li><strong>obrigado</strong>: thank you, said by a '
+                            'man;</li><li><strong>obrigada</strong>: thank you, said by a '
+                            'woman;</li><li><strong>com licença</strong>: excuse '
+                            'me;</li><li><strong>desculpa</strong>: sorry / excuse me.</li></ul>',
                             '<p>A practical class should help you say these phrases aloud. '
                             'Pronunciation matters because you will use them many times in real '
                             'life.</p>']},
@@ -6747,9 +6747,9 @@ BLOG_POSTS = {
                             'time.</p>',
                             '<p>This is especially common in Brazilian Portuguese for foreigners. A '
                             'learner may know phrases such as:</p>',
-                            '<ul><li>“Eu sou...” — I am...</li><li>“Eu moro em...” — I live '
-                            'in...</li><li>“Eu trabalho com...” — I work with...</li><li>“Pode '
-                            'repetir?” — Can you repeat?</li><li>“Quanto custa?” — How much is '
+                            '<ul><li>“Eu sou...”: I am...</li><li>“Eu moro em...”: I live '
+                            'in...</li><li>“Eu trabalho com...”: I work with...</li><li>“Pode '
+                            'repetir?”: Can you repeat?</li><li>“Quanto custa?”: How much is '
                             'it?</li></ul>',
                             '<p>But in a real interaction, the other person may speak fast, use '
                             'informal expressions, ask an unexpected question or answer with words the '
@@ -6807,10 +6807,10 @@ BLOG_POSTS = {
                             'confidence grows by speaking. Live classes give you controlled '
                             'opportunities to start small.</p>',
                             '<p>At the beginning, this may mean answering simple questions:</p>',
-                            '<ul><li>“Qual é o seu nome?” — What is your name?</li><li>“De onde você '
-                            'é?” — Where are you from?</li><li>“Onde você mora?” — Where do you '
-                            'live?</li><li>“Você trabalha ou estuda?” — Do you work or '
-                            'study?</li><li>“Por que você está aprendendo português?” — Why are you '
+                            '<ul><li>“Qual é o seu nome?”: What is your name?</li><li>“De onde você '
+                            'é?”: Where are you from?</li><li>“Onde você mora?”: Where do you '
+                            'live?</li><li>“Você trabalha ou estuda?”: Do you work or '
+                            'study?</li><li>“Por que você está aprendendo português?”: Why are you '
                             'learning Portuguese?</li></ul>',
                             '<p>These questions are simple, but they create a foundation. The student '
                             'learns to introduce themselves without panic.</p>',
@@ -6819,11 +6819,11 @@ BLOG_POSTS = {
                             'Live classes help you repeat high-value phrases in different '
                             'situations.</p>',
                             '<p>Examples:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak more '
-                            'slowly?</li><li>“Não entendi essa parte.” — I did not understand that '
-                            'part.</li><li>“Como se diz isso em português?” — How do you say this in '
-                            'Portuguese?</li><li>“Você pode me ajudar?” — Can you help me?</li></ul>',
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak more '
+                            'slowly?</li><li>“Não entendi essa parte.”: I did not understand that '
+                            'part.</li><li>“Como se diz isso em português?”: How do you say this in '
+                            'Portuguese?</li><li>“Você pode me ajudar?”: Can you help me?</li></ul>',
                             '<p>These phrases are not “extra.” They are survival tools. They help you '
                             'stay inside the conversation even when you do not understand '
                             'everything.</p>',
@@ -6865,42 +6865,42 @@ BLOG_POSTS = {
                             'your speaking practice should reflect that.</p>',
                             '<h3>Airport and arrival</h3>',
                             '<p>Practice:</p>',
-                            '<ul><li>“Onde fica a retirada de bagagem?” — Where is baggage '
-                            'claim?</li><li>“Onde eu pego o Uber?” — Where do I take the '
-                            'Uber?</li><li>“Pode me ajudar?” — Can you help me?</li><li>“Meu destino é '
-                            'este endereço.” — My destination is this address.</li></ul>',
+                            '<ul><li>“Onde fica a retirada de bagagem?”: Where is baggage '
+                            'claim?</li><li>“Onde eu pego o Uber?”: Where do I take the '
+                            'Uber?</li><li>“Pode me ajudar?”: Can you help me?</li><li>“Meu destino é '
+                            'este endereço.”: My destination is this address.</li></ul>',
                             '<p>This gives confidence for your first hours in the country.</p>',
                             '<h3>Apartment and building communication</h3>',
                             '<p>Practice:</p>',
-                            '<ul><li>“Chegou uma entrega para mim?” — Did a delivery arrive for '
-                            'me?</li><li>“A internet não está funcionando.” — The internet is not '
-                            'working.</li><li>“Preciso falar com a manutenção.” — I need to speak with '
-                            'maintenance.</li><li>“Onde fica a lixeira?” — Where is the trash '
+                            '<ul><li>“Chegou uma entrega para mim?”: Did a delivery arrive for '
+                            'me?</li><li>“A internet não está funcionando.”: The internet is not '
+                            'working.</li><li>“Preciso falar com a manutenção.”: I need to speak with '
+                            'maintenance.</li><li>“Onde fica a lixeira?”: Where is the trash '
                             'area?</li></ul>',
                             '<p>These phrases are highly relevant for expats living in Brazilian '
                             'apartment buildings.</p>',
                             '<h3>Restaurants and cafés</h3>',
                             '<p>Practice:</p>',
-                            '<ul><li>“Tem mesa para duas pessoas?” — Do you have a table for '
-                            'two?</li><li>“Qual é o prato do dia?” — What is the dish of the '
-                            'day?</li><li>“A conta, por favor.” — The bill, please.</li><li>“Aceita '
-                            'cartão?” — Do you accept cards?</li></ul>',
+                            '<ul><li>“Tem mesa para duas pessoas?”: Do you have a table for '
+                            'two?</li><li>“Qual é o prato do dia?”: What is the dish of the '
+                            'day?</li><li>“A conta, por favor.”: The bill, please.</li><li>“Aceita '
+                            'cartão?”: Do you accept cards?</li></ul>',
                             '<p>Food situations are excellent for building early confidence because '
                             'they repeat often.</p>',
                             '<h3>Work and study</h3>',
                             '<p>Practice:</p>',
-                            '<ul><li>“Qual é o prazo?” — What is the deadline?</li><li>“Podemos marcar '
-                            'uma reunião?” — Can we schedule a meeting?</li><li>“Só para confirmar...” '
-                            '— Just to confirm...</li><li>“Você pode explicar de novo?” — Can you '
-                            'explain again?</li><li>“Onde encontro o material da aula?” — Where can I '
+                            '<ul><li>“Qual é o prazo?”: What is the deadline?</li><li>“Podemos marcar '
+                            'uma reunião?”: Can we schedule a meeting?</li><li>“Só para confirmar...”'
+                            ': Just to confirm...</li><li>“Você pode explicar de novo?”: Can you '
+                            'explain again?</li><li>“Onde encontro o material da aula?”: Where can I '
                             'find the class material?</li></ul>',
                             '<p>For professionals and students, these phrases help you participate '
                             'rather than stay silent.</p>',
                             '<h3>Health and pharmacy</h3>',
                             '<p>Practice:</p>',
-                            '<ul><li>“Estou com dor de cabeça.” — I have a headache.</li><li>“Precisa '
-                            'de receita?” — Do I need a prescription?</li><li>“Como eu tomo esse '
-                            'remédio?” — How do I take this medicine?</li><li>“Tenho alergia a...” — I '
+                            '<ul><li>“Estou com dor de cabeça.”: I have a headache.</li><li>“Precisa '
+                            'de receita?”: Do I need a prescription?</li><li>“Como eu tomo esse '
+                            'remédio?”: How do I take this medicine?</li><li>“Tenho alergia a...”: I '
                             'am allergic to...</li></ul>',
                             '<p>Health vocabulary is not optional. It gives peace of mind.</p>']},
                   {'heading': 'Essential vocabulary for speaking confidence',
@@ -6915,11 +6915,11 @@ BLOG_POSTS = {
                             'schedule</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>trabalho</td><td>work</td></tr><tr><td>aula</td><td>class</td></tr><tr><td>entrega</td><td>delivery</td></tr><tr><td>documento</td><td>document</td></tr><tr><td>pagamento</td><td>payment</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr><tr><td>banheiro</td><td>bathroom</td></tr><tr><td>farmácia</td><td>pharmacy</td></tr><tr><td>mercado</td><td>market</td></tr><tr><td>restaurante</td><td>restaurant</td></tr><tr><td>problema</td><td>problem</td></tr><tr><td>devagar</td><td>slowly</td></tr><tr><td>de '
                             'novo</td><td>again</td></tr><tr><td>agora</td><td>now</td></tr><tr><td>amanhã</td><td>tomorrow</td></tr><tr><td>hoje</td><td>today</td></tr></tbody></table>',
                             '<p>Turn vocabulary into useful phrases:</p>',
-                            '<ul><li>“Preciso de ajuda.” — I need help.</li><li>“Tenho uma dúvida.” — '
-                            'I have a question.</li><li>“Qual é o endereço?” — What is the '
-                            'address?</li><li>“Qual é o horário?” — What is the time?</li><li>“Tenho '
-                            'uma reunião amanhã.” — I have a meeting tomorrow.</li><li>“Pode falar '
-                            'devagar?” — Can you speak slowly?</li><li>“Pode repetir de novo?” — Can '
+                            '<ul><li>“Preciso de ajuda.”: I need help.</li><li>“Tenho uma dúvida.”: '
+                            'I have a question.</li><li>“Qual é o endereço?”: What is the '
+                            'address?</li><li>“Qual é o horário?”: What is the time?</li><li>“Tenho '
+                            'uma reunião amanhã.”: I have a meeting tomorrow.</li><li>“Pode falar '
+                            'devagar?”: Can you speak slowly?</li><li>“Pode repetir de novo?”: Can '
                             'you repeat again?</li></ul>',
                             '<p>This is how vocabulary becomes speaking ability.</p>']},
                   {'heading': 'How to prepare before a live Portuguese class',
@@ -6998,11 +6998,11 @@ BLOG_POSTS = {
                             'too direct depending on the situation.</p>',
                             '<p>For example, in Brazilian Portuguese, you may hear and use expressions '
                             'like:</p>',
-                            '<ul><li>“Tudo bem?” — How are you?</li><li>“Com licença.” — Excuse '
-                            'me.</li><li>“Por favor.” — Please.</li><li>“Desculpa.” — Sorry / excuse '
-                            'me.</li><li>“Será que você pode...?” — Would it be possible for you '
-                            'to...?</li><li>“Só para confirmar...” — Just to '
-                            'confirm...</li><li>“Combinado.” — Agreed / deal.</li><li>“Pode deixar.” — '
+                            '<ul><li>“Tudo bem?”: How are you?</li><li>“Com licença.”: Excuse '
+                            'me.</li><li>“Por favor.”: Please.</li><li>“Desculpa.”: Sorry / excuse '
+                            'me.</li><li>“Será que você pode...?”: Would it be possible for you '
+                            'to...?</li><li>“Só para confirmar...”: Just to '
+                            'confirm...</li><li>“Combinado.”: Agreed / deal.</li><li>“Pode deixar.”: '
                             'Sure, leave it to me.</li></ul>',
                             '<p>These expressions carry cultural meaning. “Será que” softens a '
                             'request. “Só para confirmar” avoids misunderstanding politely. '
@@ -7186,19 +7186,19 @@ BLOG_POSTS = {
                             'tempo</td><td>how long</td></tr><tr><td>passagem de volta</td><td>return '
                             'ticket</td></tr></tbody></table>',
                             '<p>Possible questions you may hear:</p>',
-                            '<ul><li>“Qual é o motivo da viagem?” — What is the purpose of the '
-                            'trip?</li><li>“Quanto tempo você vai ficar no Brasil?” — How long will '
-                            'you stay in Brazil?</li><li>“Onde você vai ficar?” — Where will you '
-                            'stay?</li><li>“Você tem passagem de volta?” — Do you have a return '
-                            'ticket?</li><li>“Você vem a trabalho?” — Are you coming for '
-                            'work?</li><li>“Você vem a turismo?” — Are you coming for '
+                            '<ul><li>“Qual é o motivo da viagem?”: What is the purpose of the '
+                            'trip?</li><li>“Quanto tempo você vai ficar no Brasil?”: How long will '
+                            'you stay in Brazil?</li><li>“Onde você vai ficar?”: Where will you '
+                            'stay?</li><li>“Você tem passagem de volta?”: Do you have a return '
+                            'ticket?</li><li>“Você vem a trabalho?”: Are you coming for '
+                            'work?</li><li>“Você vem a turismo?”: Are you coming for '
                             'tourism?</li></ul>',
                             '<p>Simple answers:</p>',
-                            '<ul><li>“Turismo.” — Tourism.</li><li>“Trabalho.” — '
-                            'Work.</li><li>“Estudo.” — Study.</li><li>“Vou ficar duas semanas.” — I '
-                            'will stay for two weeks.</li><li>“Vou ficar neste hotel.” — I will stay '
-                            'at this hotel.</li><li>“Aqui está o endereço.” — Here is the '
-                            'address.</li><li>“Aqui está a reserva.” — Here is the '
+                            '<ul><li>“Turismo.”: Tourism.</li><li>“Trabalho.”: '
+                            'Work.</li><li>“Estudo.”: Study.</li><li>“Vou ficar duas semanas.”: I '
+                            'will stay for two weeks.</li><li>“Vou ficar neste hotel.”: I will stay '
+                            'at this hotel.</li><li>“Aqui está o endereço.”: Here is the '
+                            'address.</li><li>“Aqui está a reserva.”: Here is the '
                             'reservation.</li></ul>',
                             '<p>If you are relocating for work, you can say:</p>',
                             '<p><strong>“Eu venho a trabalho. Minha empresa fica em São '
@@ -7220,13 +7220,13 @@ BLOG_POSTS = {
                             'proof</td></tr><tr><td>etiqueta</td><td>tag</td></tr><tr><td>atendimento</td><td>service '
                             'desk</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Onde fica a retirada de bagagem?” — Where is baggage '
-                            'claim?</li><li>“Onde fica a esteira do voo de Miami?” — Where is the '
-                            'carousel for the flight from Miami?</li><li>“Minha mala não chegou.” — My '
-                            'suitcase did not arrive.</li><li>“Minha mala está danificada.” — My '
-                            'suitcase is damaged.</li><li>“Com quem eu posso falar?” — Who can I speak '
-                            'to?</li><li>“Aqui está a etiqueta da bagagem.” — Here is the baggage '
-                            'tag.</li><li>“Preciso registrar uma ocorrência.” — I need to file a '
+                            '<ul><li>“Onde fica a retirada de bagagem?”: Where is baggage '
+                            'claim?</li><li>“Onde fica a esteira do voo de Miami?”: Where is the '
+                            'carousel for the flight from Miami?</li><li>“Minha mala não chegou.”: My '
+                            'suitcase did not arrive.</li><li>“Minha mala está danificada.”: My '
+                            'suitcase is damaged.</li><li>“Com quem eu posso falar?”: Who can I speak '
+                            'to?</li><li>“Aqui está a etiqueta da bagagem.”: Here is the baggage '
+                            'tag.</li><li>“Preciso registrar uma ocorrência.”: I need to file a '
                             'report.</li></ul>',
                             '<p>If you are nervous, keep the sentence simple:</p>',
                             '<p><strong>“Minha mala não chegou. Você pode me ajudar?”</strong><br>My '
@@ -7242,12 +7242,12 @@ BLOG_POSTS = {
                             '/ pickup</td></tr><tr><td>desembarque</td><td>arrivals / '
                             'drop-off</td></tr><tr><td>preço</td><td>price</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr></tbody></table>',
                             '<p>Useful questions:</p>',
-                            '<ul><li>“Onde eu pego o Uber?” — Where do I take the Uber?</li><li>“Onde '
-                            'fica o ponto de táxi?” — Where is the taxi stand?</li><li>“Esse é o '
-                            'endereço?” — Is this the address?</li><li>“Quanto custa até o hotel?” — '
-                            'How much does it cost to the hotel?</li><li>“Aceita cartão?” — Do you '
-                            'accept cards?</li><li>“Pode me deixar na entrada do hotel?” — Can you '
-                            'drop me off at the hotel entrance?</li><li>“Quanto tempo demora?” — How '
+                            '<ul><li>“Onde eu pego o Uber?”: Where do I take the Uber?</li><li>“Onde '
+                            'fica o ponto de táxi?”: Where is the taxi stand?</li><li>“Esse é o '
+                            'endereço?”: Is this the address?</li><li>“Quanto custa até o hotel?”: '
+                            'How much does it cost to the hotel?</li><li>“Aceita cartão?”: Do you '
+                            'accept cards?</li><li>“Pode me deixar na entrada do hotel?”: Can you '
+                            'drop me off at the hotel entrance?</li><li>“Quanto tempo demora?”: How '
                             'long does it take?</li></ul>',
                             '<p>A practical phrase for drivers:</p>',
                             '<p><strong>“Meu destino é este endereço.”</strong><br>My destination is '
@@ -7272,15 +7272,15 @@ BLOG_POSTS = {
                             'password</td></tr><tr><td>elevador</td><td>elevator</td></tr><tr><td>recepção</td><td>reception</td></tr><tr><td>pagamento</td><td>payment</td></tr><tr><td>cartão '
                             'de crédito</td><td>credit card</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Tenho uma reserva.” — I have a reservation.</li><li>“A reserva '
-                            'está no nome de...” — The reservation is under the name...</li><li>“Aqui '
-                            'está meu passaporte.” — Here is my passport.</li><li>“O café da manhã '
-                            'está incluído?” — Is breakfast included?</li><li>“Qual é a senha do '
-                            'Wi-Fi?” — What is the Wi-Fi password?</li><li>“Qual é o horário do '
-                            'check-out?” — What time is check-out?</li><li>“Onde fica o elevador?” — '
-                            'Where is the elevator?</li><li>“Posso pagar com cartão?” — Can I pay by '
-                            'card?</li><li>“Vocês aceitam cartão internacional?” — Do you accept '
-                            'international cards?</li><li>“Posso deixar minha mala aqui?” — Can I '
+                            '<ul><li>“Tenho uma reserva.”: I have a reservation.</li><li>“A reserva '
+                            'está no nome de...”: The reservation is under the name...</li><li>“Aqui '
+                            'está meu passaporte.”: Here is my passport.</li><li>“O café da manhã '
+                            'está incluído?”: Is breakfast included?</li><li>“Qual é a senha do '
+                            'Wi-Fi?”: What is the Wi-Fi password?</li><li>“Qual é o horário do '
+                            'check-out?”: What time is check-out?</li><li>“Onde fica o elevador?”: '
+                            'Where is the elevator?</li><li>“Posso pagar com cartão?”: Can I pay by '
+                            'card?</li><li>“Vocês aceitam cartão internacional?”: Do you accept '
+                            'international cards?</li><li>“Posso deixar minha mala aqui?”: Can I '
                             'leave my suitcase here?</li></ul>',
                             '<p>A complete check-in phrase:</p>',
                             '<p><strong>“Boa noite. Tenho uma reserva no nome de Anna '
@@ -7295,16 +7295,16 @@ BLOG_POSTS = {
                             'many first-day questions. In Brazil, hotel reception can help with '
                             'transport, food, safety, directions and local recommendations.</p>',
                             '<p>Useful questions:</p>',
-                            '<ul><li>“Tem restaurante perto daqui?” — Is there a restaurant near '
-                            'here?</li><li>“É seguro andar a pé aqui à noite?” — Is it safe to walk '
-                            'here at night?</li><li>“Vocês chamam táxi?” — Can you call a '
-                            'taxi?</li><li>“Tem mercado por perto?” — Is there a market '
-                            'nearby?</li><li>“Como eu chego ao metrô?” — How do I get to the '
-                            'metro?</li><li>“Qual é o melhor jeito de ir para o aeroporto?” — What is '
-                            'the best way to go to the airport?</li><li>“Tem adaptador de tomada?” — '
-                            'Do you have a power adapter?</li><li>“Posso pedir comida por aplicativo?” '
-                            '— Can I order food through an app?</li><li>“Vocês têm serviço de '
-                            'lavanderia?” — Do you have laundry service?</li></ul>',
+                            '<ul><li>“Tem restaurante perto daqui?”: Is there a restaurant near '
+                            'here?</li><li>“É seguro andar a pé aqui à noite?”: Is it safe to walk '
+                            'here at night?</li><li>“Vocês chamam táxi?”: Can you call a '
+                            'taxi?</li><li>“Tem mercado por perto?”: Is there a market '
+                            'nearby?</li><li>“Como eu chego ao metrô?”: How do I get to the '
+                            'metro?</li><li>“Qual é o melhor jeito de ir para o aeroporto?”: What is '
+                            'the best way to go to the airport?</li><li>“Tem adaptador de tomada?”: '
+                            'Do you have a power adapter?</li><li>“Posso pedir comida por aplicativo?”'
+                            ': Can I order food through an app?</li><li>“Vocês têm serviço de '
+                            'lavanderia?”: Do you have laundry service?</li></ul>',
                             '<p>A very useful polite structure is:</p>',
                             '<p><strong>“Você pode me recomendar...?”</strong><br>Can you '
                             'recommend...?</p>',
@@ -7320,11 +7320,11 @@ BLOG_POSTS = {
                             'class="vd-table"><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>água</td><td>water</td></tr><tr><td>comida</td><td>food</td></tr><tr><td>banheiro</td><td>bathroom</td></tr><tr><td>quarto</td><td>room</td></tr><tr><td>chave</td><td>key</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr><tr><td>internet</td><td>internet</td></tr><tr><td>tomada</td><td>power '
                             'outlet</td></tr><tr><td>adaptador</td><td>adapter</td></tr><tr><td>farmácia</td><td>pharmacy</td></tr><tr><td>mercado</td><td>market</td></tr><tr><td>restaurante</td><td>restaurant</td></tr><tr><td>rua</td><td>street</td></tr><tr><td>entrada</td><td>entrance</td></tr><tr><td>saída</td><td>exit</td></tr><tr><td>ajuda</td><td>help</td></tr><tr><td>emergência</td><td>emergency</td></tr><tr><td>agora</td><td>now</td></tr><tr><td>amanhã</td><td>tomorrow</td></tr><tr><td>hoje</td><td>today</td></tr></tbody></table>',
                             '<p>Turn vocabulary into phrases:</p>',
-                            '<ul><li>“Preciso de água.” — I need water.</li><li>“Onde fica a '
-                            'farmácia?” — Where is the pharmacy?</li><li>“A chave não está '
-                            'funcionando.” — The key is not working.</li><li>“A internet não está '
-                            'funcionando.” — The internet is not working.</li><li>“Preciso de um '
-                            'adaptador.” — I need an adapter.</li><li>“Tem restaurante no hotel?” — Is '
+                            '<ul><li>“Preciso de água.”: I need water.</li><li>“Onde fica a '
+                            'farmácia?”: Where is the pharmacy?</li><li>“A chave não está '
+                            'funcionando.”: The key is not working.</li><li>“A internet não está '
+                            'funcionando.”: The internet is not working.</li><li>“Preciso de um '
+                            'adaptador.”: I need an adapter.</li><li>“Tem restaurante no hotel?”: Is '
                             'there a restaurant in the hotel?</li></ul>',
                             '<p>Vocabulary is useful only when you can use it in sentences. That is '
                             'why live-class practice matters.</p>']},
@@ -7367,12 +7367,12 @@ BLOG_POSTS = {
                             '“obrigado/obrigada.” You do not need complex grammar to sound '
                             'respectful.</p>',
                             '<p>Useful polite expressions:</p>',
-                            '<ul><li>“Com licença.” — Excuse me.</li><li>“Por favor.” — '
-                            'Please.</li><li>“Desculpa.” — Sorry / excuse me.</li><li>“Muito '
-                            'obrigado.” — Thank you very much. (said by men)</li><li>“Muito obrigada.” '
-                            '— Thank you very much. (said by women)</li><li>“Você pode me ajudar?” — '
-                            'Can you help me?</li><li>“Eu gostaria de...” — I would '
-                            'like...</li><li>“Será que você pode...?” — Would it be possible for you '
+                            '<ul><li>“Com licença.”: Excuse me.</li><li>“Por favor.”: '
+                            'Please.</li><li>“Desculpa.”: Sorry / excuse me.</li><li>“Muito '
+                            'obrigado.”: Thank you very much. (said by men)</li><li>“Muito obrigada.”'
+                            ': Thank you very much. (said by women)</li><li>“Você pode me ajudar?”: '
+                            'Can you help me?</li><li>“Eu gostaria de...”: I would '
+                            'like...</li><li>“Será que você pode...?”: Would it be possible for you '
                             'to...?</li></ul>',
                             '<p>“Será que” is very common in Brazil and softens a request. For '
                             'example:</p>',
@@ -7384,12 +7384,12 @@ BLOG_POSTS = {
                             'These are phrases that help fix communication when something breaks '
                             'down.</p>',
                             '<p>Memorize these:</p>',
-                            '<ul><li>“Desculpa, não entendi.” — Sorry, I did not '
-                            'understand.</li><li>“Pode repetir?” — Can you repeat?</li><li>“Pode falar '
-                            'mais devagar?” — Can you speak more slowly?</li><li>“Pode escrever?” — '
-                            'Can you write it down?</li><li>“Como se escreve?” — How do you spell '
-                            'it?</li><li>“Você pode mostrar no mapa?” — Can you show me on the '
-                            'map?</li><li>“Você pode mandar por WhatsApp?” — Can you send it by '
+                            '<ul><li>“Desculpa, não entendi.”: Sorry, I did not '
+                            'understand.</li><li>“Pode repetir?”: Can you repeat?</li><li>“Pode falar '
+                            'mais devagar?”: Can you speak more slowly?</li><li>“Pode escrever?”: '
+                            'Can you write it down?</li><li>“Como se escreve?”: How do you spell '
+                            'it?</li><li>“Você pode mostrar no mapa?”: Can you show me on the '
+                            'map?</li><li>“Você pode mandar por WhatsApp?”: Can you send it by '
                             'WhatsApp?</li></ul>',
                             '<p>These phrases are extremely useful because they keep the conversation '
                             'alive. You do not need to understand everything the first time.</p>']},
@@ -7557,7 +7557,7 @@ BLOG_POSTS = {
                             '<p>CTA: If you are preparing to live or work in Brazil, book a free level '
                             'check at <a href="/en/learn-portuguese-brazil">https://vediums.com/</a> '
                             'and understand where your Portuguese should start.</p>']},
-                  {'heading': 'Stage 1: A1 Portuguese for Brazil — building survival confidence',
+                  {'heading': 'Stage 1: A1 Portuguese for Brazil: building survival confidence',
                    'body': ['<p>A1 should give you your first layer of independence. The goal is not '
                             'complex conversation. The goal is to stop feeling completely dependent in '
                             'simple interactions.</p>',
@@ -7575,12 +7575,12 @@ BLOG_POSTS = {
                             '“no”, “maybe”, “now”, “later”;</li><li>saying you do not '
                             'understand;</li><li>asking someone to repeat.</li></ul>',
                             '<p>Useful phrases include:</p>',
-                            '<ul><li>“Oi, tudo bem?” — Hi, how are you?</li><li>“Eu sou dos Estados '
-                            'Unidos.” — I am from the United States.</li><li>“Eu não entendi.” — I did '
-                            'not understand.</li><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Quanto custa?” — How much is it?</li><li>“Onde fica o '
-                            'banheiro?” — Where is the bathroom?</li><li>“Eu estou aprendendo '
-                            'português.” — I am learning Portuguese.</li></ul>',
+                            '<ul><li>“Oi, tudo bem?”: Hi, how are you?</li><li>“Eu sou dos Estados '
+                            'Unidos.”: I am from the United States.</li><li>“Eu não entendi.”: I did '
+                            'not understand.</li><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Quanto custa?”: How much is it?</li><li>“Onde fica o '
+                            'banheiro?”: Where is the bathroom?</li><li>“Eu estou aprendendo '
+                            'português.”: I am learning Portuguese.</li></ul>',
                             '<p>At A1, pronunciation matters. Learners should practice nasal sounds, '
                             'open and closed vowels, the Brazilian “r” in different positions and the '
                             'rhythm of common phrases. This is one reason live classes help: a teacher '
@@ -7597,7 +7597,7 @@ BLOG_POSTS = {
                             '<ul><li>“Eu sou professor.”</li><li>“Eu estou no Brasil.”</li><li>“Ela é '
                             'brasileira.”</li><li>“Nós estamos em São Paulo.”</li></ul>',
                             '<p>This builds function, not just theory.</p>']},
-                  {'heading': 'Stage 2: A2 Portuguese for Brazil — handling daily life',
+                  {'heading': 'Stage 2: A2 Portuguese for Brazil: handling daily life',
                    'body': ['<p>A2 is where learners start feeling more capable. You can survive '
                             'simple situations at A1, but at A2 you begin to manage daily life with '
                             'less panic and more flexibility.</p>',
@@ -7618,13 +7618,13 @@ BLOG_POSTS = {
                             'professionals speak English in global companies, daily life outside work '
                             'often happens in Portuguese.</p>',
                             '<p>Useful A2 phrases include:</p>',
-                            '<ul><li>“Eu preciso marcar uma consulta.” — I need to schedule an '
-                            'appointment.</li><li>“Meu apartamento está com um problema.” — My '
-                            'apartment has a problem.</li><li>“Você pode me ajudar?” — Can you help '
-                            'me?</li><li>“Eu gostaria de pagar com cartão.” — I would like to pay by '
-                            'card.</li><li>“Qual é o melhor horário?” — What is the best '
-                            'time?</li><li>“Eu trabalho em uma empresa internacional.” — I work at an '
-                            'international company.</li><li>“Eu cheguei ao Brasil há pouco tempo.” — I '
+                            '<ul><li>“Eu preciso marcar uma consulta.”: I need to schedule an '
+                            'appointment.</li><li>“Meu apartamento está com um problema.”: My '
+                            'apartment has a problem.</li><li>“Você pode me ajudar?”: Can you help '
+                            'me?</li><li>“Eu gostaria de pagar com cartão.”: I would like to pay by '
+                            'card.</li><li>“Qual é o melhor horário?”: What is the best '
+                            'time?</li><li>“Eu trabalho em uma empresa internacional.”: I work at an '
+                            'international company.</li><li>“Eu cheguei ao Brasil há pouco tempo.”: I '
                             'arrived in Brazil recently.</li></ul>',
                             '<p>At this stage, you should also learn common Brazilian conversational '
                             'markers such as “então”, “tipo”, “né”, “tá bom”, “beleza”, “combinado” '
@@ -7646,7 +7646,7 @@ BLOG_POSTS = {
                             'mensagem.”</li></ul>',
                             '<p>These sentences are the bridge between beginner Portuguese and '
                             'real-life autonomy.</p>']},
-                  {'heading': 'Stage 3: B1 Portuguese for Brazil — becoming independent',
+                  {'heading': 'Stage 3: B1 Portuguese for Brazil: becoming independent',
                    'body': ['<p>B1 is the level where Portuguese begins to feel usable in a wider '
                             'range of situations. You still make mistakes, but you can keep going. You '
                             'can explain, ask, clarify and participate.</p>',
@@ -7663,12 +7663,12 @@ BLOG_POSTS = {
                             'schools, doctors or service providers;</li><li>handling misunderstandings '
                             'politely;</li><li>asking follow-up questions.</li></ul>',
                             '<p>Useful B1 phrases include:</p>',
-                            '<ul><li>“Na minha opinião...” — In my opinion...</li><li>“O principal '
-                            'problema é...” — The main problem is...</li><li>“Eu gostaria de entender '
-                            'melhor...” — I would like to understand better...</li><li>“Aconteceu um '
-                            'imprevisto.” — Something unexpected happened.</li><li>“Você pode me '
-                            'explicar como funciona?” — Can you explain how it works?</li><li>“Eu '
-                            'ainda estou aprendendo, mas consigo acompanhar.” — I am still learning, '
+                            '<ul><li>“Na minha opinião...”: In my opinion...</li><li>“O principal '
+                            'problema é...”: The main problem is...</li><li>“Eu gostaria de entender '
+                            'melhor...”: I would like to understand better...</li><li>“Aconteceu um '
+                            'imprevisto.”: Something unexpected happened.</li><li>“Você pode me '
+                            'explicar como funciona?”: Can you explain how it works?</li><li>“Eu '
+                            'ainda estou aprendendo, mas consigo acompanhar.”: I am still learning, '
                             'but I can follow.</li></ul>',
                             '<p>At B1, learners need guided conversation. This is where live classes '
                             'become even more valuable. You need correction, role-play, feedback and '
@@ -7894,13 +7894,13 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>aeroporto</td><td>aeropuerto</td></tr><tr><td>passaporte</td><td>pasaporte</td></tr><tr><td>visto</td><td>visa</td></tr><tr><td>bagagem</td><td>equipaje</td></tr><tr><td>mala</td><td>maleta</td></tr><tr><td>saída</td><td>salida</td></tr><tr><td>entrada</td><td>entrada</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>Uber</td><td>Uber</td></tr><tr><td>endereço</td><td>dirección</td></tr><tr><td>ajuda</td><td>ayuda</td></tr><tr><td>dinheiro</td><td>efectivo</td></tr><tr><td>cartão</td><td>tarjeta</td></tr></tbody></table>',
                             '<p>Frases útiles:</p>',
-                            '<ul><li>“Com licença.” — Disculpe.</li><li>“Você pode me ajudar?” — '
-                            '¿Puede ayudarme?</li><li>“Onde fica a retirada de bagagem?” — ¿Dónde está '
-                            'la recogida de equipaje?</li><li>“Minha mala não chegou.” — Mi maleta no '
-                            'llegó.</li><li>“Onde eu pego o Uber?” — ¿Dónde tomo el Uber?</li><li>“Meu '
-                            'destino é este endereço.” — Mi destino es esta dirección.</li><li>“Pode '
-                            'repetir, por favor?” — ¿Puede repetir, por favor?</li><li>“Eu falo pouco '
-                            'português.” — Hablo poco portugués.</li></ul>',
+                            '<ul><li>“Com licença.”: Disculpe.</li><li>“Você pode me ajudar?”: '
+                            '¿Puede ayudarme?</li><li>“Onde fica a retirada de bagagem?”: ¿Dónde está '
+                            'la recogida de equipaje?</li><li>“Minha mala não chegou.”: Mi maleta no '
+                            'llegó.</li><li>“Onde eu pego o Uber?”: ¿Dónde tomo el Uber?</li><li>“Meu '
+                            'destino é este endereço.”: Mi destino es esta dirección.</li><li>“Pode '
+                            'repetir, por favor?”: ¿Puede repetir, por favor?</li><li>“Eu falo pouco '
+                            'português.”: Hablo poco portugués.</li></ul>',
                             '<p>Una frase especialmente útil es:</p>',
                             '<p><strong>“Desculpa, eu falo pouco português. Pode falar mais '
                             'devagar?”</strong><br>Disculpa, hablo poco portugués. ¿Puede hablar más '
@@ -7921,15 +7921,15 @@ BLOG_POSTS = {
                             '/ '
                             'paquete</td></tr><tr><td>manutenção</td><td>mantenimiento</td></tr></tbody></table>',
                             '<p>Frases útiles:</p>',
-                            '<ul><li>“Tenho uma reserva.” — Tengo una reserva.</li><li>“A reserva está '
-                            'no nome de...” — La reserva está a nombre de...</li><li>“Aqui está meu '
-                            'passaporte.” — Aquí está mi pasaporte.</li><li>“Qual é a senha do Wi-Fi?” '
-                            '— ¿Cuál es la contraseña del Wi-Fi?</li><li>“O café da manhã está '
-                            'incluído?” — ¿El desayuno está incluido?</li><li>“Qual é o horário do '
-                            'check-out?” — ¿Cuál es el horario del check-out?</li><li>“A chave não '
-                            'está funcionando.” — La llave no está funcionando.</li><li>“A internet '
-                            'não está funcionando.” — Internet no funciona.</li><li>“Chegou uma '
-                            'entrega para mim?” — ¿Llegó una entrega para mí?</li></ul>',
+                            '<ul><li>“Tenho uma reserva.”: Tengo una reserva.</li><li>“A reserva está '
+                            'no nome de...”: La reserva está a nombre de...</li><li>“Aqui está meu '
+                            'passaporte.”: Aquí está mi pasaporte.</li><li>“Qual é a senha do Wi-Fi?”'
+                            ': ¿Cuál es la contraseña del Wi-Fi?</li><li>“O café da manhã está '
+                            'incluído?”: ¿El desayuno está incluido?</li><li>“Qual é o horário do '
+                            'check-out?”: ¿Cuál es el horario del check-out?</li><li>“A chave não '
+                            'está funcionando.”: La llave no está funcionando.</li><li>“A internet '
+                            'não está funcionando.”: Internet no funciona.</li><li>“Chegou uma '
+                            'entrega para mim?”: ¿Llegó una entrega para mí?</li></ul>',
                             '<p>Para quienes van a vivir en un edificio en Brasil, la palabra '
                             '<strong>portaria</strong> es muy importante. Se refiere a la recepción o '
                             'entrada del edificio, normalmente con un portero o equipo de control de '
@@ -7942,12 +7942,12 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>rua</td><td>calle</td></tr><tr><td>avenida</td><td>avenida</td></tr><tr><td>metrô</td><td>metro</td></tr><tr><td>ônibus</td><td>autobús</td></tr><tr><td>estação</td><td>estación</td></tr><tr><td>motorista</td><td>conductor</td></tr><tr><td>destino</td><td>destino</td></tr><tr><td>caminho</td><td>camino</td></tr><tr><td>perto</td><td>cerca</td></tr><tr><td>longe</td><td>lejos</td></tr><tr><td>direita</td><td>derecha</td></tr><tr><td>esquerda</td><td>izquierda</td></tr><tr><td>aqui</td><td>aquí</td></tr><tr><td>ali</td><td>allí</td></tr></tbody></table>',
                             '<p>Frases útiles:</p>',
-                            '<ul><li>“Como eu chego lá?” — ¿Cómo llego allí?</li><li>“É perto daqui?” '
-                            '— ¿Está cerca de aquí?</li><li>“É longe?” — ¿Está lejos?</li><li>“Esse '
-                            'ônibus vai para o centro?” — ¿Este autobús va al centro?</li><li>“Onde '
-                            'fica o metrô?” — ¿Dónde está el metro?</li><li>“Pode me deixar aqui, por '
-                            'favor?” — ¿Puede dejarme aquí, por favor?</li><li>“Quanto tempo demora?” '
-                            '— ¿Cuánto tarda?</li><li>“Este é o melhor caminho?” — ¿Este es el mejor '
+                            '<ul><li>“Como eu chego lá?”: ¿Cómo llego allí?</li><li>“É perto daqui?”'
+                            ': ¿Está cerca de aquí?</li><li>“É longe?”: ¿Está lejos?</li><li>“Esse '
+                            'ônibus vai para o centro?”: ¿Este autobús va al centro?</li><li>“Onde '
+                            'fica o metrô?”: ¿Dónde está el metro?</li><li>“Pode me deixar aqui, por '
+                            'favor?”: ¿Puede dejarme aquí, por favor?</li><li>“Quanto tempo demora?”'
+                            ': ¿Cuánto tarda?</li><li>“Este é o melhor caminho?”: ¿Este es el mejor '
                             'camino?</li></ul>',
                             '<p>Los hispanohablantes suelen entender algunas palabras escritas, pero '
                             'la pronunciación brasileña puede ser muy diferente. Por eso, practicar '
@@ -7962,13 +7962,13 @@ BLOG_POSTS = {
                             '/ '
                             'cafetería</td></tr><tr><td>café</td><td>café</td></tr><tr><td>água</td><td>agua</td></tr><tr><td>almoço</td><td>almuerzo</td></tr><tr><td>jantar</td><td>cena</td></tr><tr><td>cardápio</td><td>menú</td></tr><tr><td>conta</td><td>cuenta</td></tr><tr><td>cartão</td><td>tarjeta</td></tr><tr><td>dinheiro</td><td>efectivo</td></tr><tr><td>débito</td><td>débito</td></tr><tr><td>crédito</td><td>crédito</td></tr></tbody></table>',
                             '<p>Frases útiles:</p>',
-                            '<ul><li>“Tem mesa para duas pessoas?” — ¿Hay mesa para dos '
-                            'personas?</li><li>“Posso ver o cardápio?” — ¿Puedo ver el '
-                            'menú?</li><li>“Quero um café, por favor.” — Quiero un café, por '
-                            'favor.</li><li>“Esse prato tem carne?” — ¿Este plato tiene '
-                            'carne?</li><li>“A conta, por favor.” — La cuenta, por '
-                            'favor.</li><li>“Aceita cartão?” — ¿Aceptan tarjeta?</li><li>“É débito ou '
-                            'crédito?” — ¿Es débito o crédito?</li></ul>',
+                            '<ul><li>“Tem mesa para duas pessoas?”: ¿Hay mesa para dos '
+                            'personas?</li><li>“Posso ver o cardápio?”: ¿Puedo ver el '
+                            'menú?</li><li>“Quero um café, por favor.”: Quiero un café, por '
+                            'favor.</li><li>“Esse prato tem carne?”: ¿Este plato tiene '
+                            'carne?</li><li>“A conta, por favor.”: La cuenta, por '
+                            'favor.</li><li>“Aceita cartão?”: ¿Aceptan tarjeta?</li><li>“É débito ou '
+                            'crédito?”: ¿Es débito o crédito?</li></ul>',
                             '<p>En Brasil, al pagar con tarjeta, es muy común escuchar: '
                             '<strong>“débito ou crédito?”</strong>. Conviene reconocer esta pregunta '
                             'desde el principio.</p>']},
@@ -7981,13 +7981,13 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>trabalho</td><td>trabajo</td></tr><tr><td>reunião</td><td>reunión</td></tr><tr><td>equipe</td><td>equipo</td></tr><tr><td>prazo</td><td>plazo</td></tr><tr><td>projeto</td><td>proyecto</td></tr><tr><td>responsável</td><td>responsable</td></tr><tr><td>aula</td><td>clase</td></tr><tr><td>professor</td><td>profesor</td></tr><tr><td>material</td><td>material</td></tr><tr><td>inscrição</td><td>inscripción</td></tr><tr><td>prova</td><td>examen</td></tr><tr><td>mensagem</td><td>mensaje</td></tr></tbody></table>',
                             '<p>Frases útiles:</p>',
-                            '<ul><li>“Qual é o prazo?” — ¿Cuál es el plazo?</li><li>“Quem é o '
-                            'responsável?” — ¿Quién es el responsable?</li><li>“Podemos marcar uma '
-                            'reunião?” — ¿Podemos programar una reunión?</li><li>“Só para '
-                            'confirmar...” — Solo para confirmar...</li><li>“Você pode explicar de '
-                            'novo?” — ¿Puedes explicar de nuevo?</li><li>“Onde encontro o material da '
-                            'aula?” — ¿Dónde encuentro el material de la clase?</li><li>“Como faço a '
-                            'inscrição?” — ¿Cómo hago la inscripción?</li></ul>',
+                            '<ul><li>“Qual é o prazo?”: ¿Cuál es el plazo?</li><li>“Quem é o '
+                            'responsável?”: ¿Quién es el responsable?</li><li>“Podemos marcar uma '
+                            'reunião?”: ¿Podemos programar una reunión?</li><li>“Só para '
+                            'confirmar...”: Solo para confirmar...</li><li>“Você pode explicar de '
+                            'novo?”: ¿Puedes explicar de nuevo?</li><li>“Onde encontro o material da '
+                            'aula?”: ¿Dónde encuentro el material de la clase?</li><li>“Como faço a '
+                            'inscrição?”: ¿Cómo hago la inscripción?</li></ul>',
                             '<p>La frase <strong>“Só para confirmar...”</strong> es muy útil en '
                             'ambientes profesionales. Suena educada, clara y ayuda a evitar '
                             'malentendidos.</p>']},
@@ -8050,11 +8050,11 @@ BLOG_POSTS = {
                             'paquete</td></tr><tr><td>problema</td><td>problema</td></tr><tr><td>agora</td><td>ahora</td></tr><tr><td>hoje</td><td>hoy</td></tr><tr><td>amanhã</td><td>mañana</td></tr><tr><td>devagar</td><td>despacio</td></tr><tr><td>de '
                             'novo</td><td>de nuevo</td></tr></tbody></table>',
                             '<p>Convierte cada palabra en frase:</p>',
-                            '<ul><li>“Preciso de ajuda.” — Necesito ayuda.</li><li>“Onde fica o '
-                            'banheiro?” — ¿Dónde está el baño?</li><li>“Qual é o endereço?” — ¿Cuál es '
-                            'la dirección?</li><li>“Aceita cartão?” — ¿Aceptan tarjeta?</li><li>“Tenho '
-                            'uma reunião amanhã.” — Tengo una reunión mañana.</li><li>“Pode falar '
-                            'devagar?” — ¿Puede hablar despacio?</li><li>“Pode repetir de novo?” — '
+                            '<ul><li>“Preciso de ajuda.”: Necesito ayuda.</li><li>“Onde fica o '
+                            'banheiro?”: ¿Dónde está el baño?</li><li>“Qual é o endereço?”: ¿Cuál es '
+                            'la dirección?</li><li>“Aceita cartão?”: ¿Aceptan tarjeta?</li><li>“Tenho '
+                            'uma reunião amanhã.”: Tengo una reunión mañana.</li><li>“Pode falar '
+                            'devagar?”: ¿Puede hablar despacio?</li><li>“Pode repetir de novo?”: '
                             '¿Puede repetir de nuevo?</li></ul>',
                             '<p>El vocabulario funciona mejor cuando se convierte en acción.</p>']},
                   {'heading': 'Práctica en clase en vivo: escenarios recomendados',
@@ -8228,23 +8228,23 @@ BLOG_POSTS = {
                             'Hilfe brauchen? Selbst wenn jemand Englisch spricht, wirkt ein einfacher '
                             'portugiesischer Satz oft freundlich und respektvoll.</p>',
                             '<p>Nützliche Wörter und Sätze für die Ankunft:</p>',
-                            '<ul><li><strong>aeroporto</strong> — '
-                            'Flughafen;</li><li><strong>bagagem</strong> — '
-                            'Gepäck;</li><li><strong>saída</strong> — '
-                            'Ausgang;</li><li><strong>endereço</strong> — '
-                            'Adresse;</li><li><strong>motorista</strong> — Fahrer oder '
-                            'Fahrerin;</li><li><strong>cheguei agora</strong> — ich bin gerade '
-                            'angekommen;</li><li><strong>preciso de ajuda</strong> — ich brauche '
-                            'Hilfe;</li><li><strong>onde fica...?</strong> — wo befindet '
-                            'sich...?</li><li><strong>pode me ajudar, por favor?</strong> — können Sie '
+                            '<ul><li><strong>aeroporto</strong>: '
+                            'Flughafen;</li><li><strong>bagagem</strong>: '
+                            'Gepäck;</li><li><strong>saída</strong>: '
+                            'Ausgang;</li><li><strong>endereço</strong>: '
+                            'Adresse;</li><li><strong>motorista</strong>: Fahrer oder '
+                            'Fahrerin;</li><li><strong>cheguei agora</strong>: ich bin gerade '
+                            'angekommen;</li><li><strong>preciso de ajuda</strong>: ich brauche '
+                            'Hilfe;</li><li><strong>onde fica...?</strong>: wo befindet '
+                            'sich...?</li><li><strong>pode me ajudar, por favor?</strong>: können Sie '
                             'mir bitte helfen?</li></ul>',
                             '<p>Ein praktischer Dialog könnte so aussehen:</p>',
                             '<p><strong>Você:</strong> Oi, tudo bem? Onde fica a saída '
                             'principal?<br><strong>Pessoa:</strong> Fica ali, à '
                             'direita.<br><strong>Você:</strong> Obrigado. Meu motorista está esperando '
                             'lá.</p>',
-                            '<p>Auf Deutsch: „Hallo, alles gut? Wo ist der Hauptausgang?“ — „Dort '
-                            'rechts.“ — „Danke. Mein Fahrer wartet dort.“</p>',
+                            '<p>Auf Deutsch: „Hallo, alles gut? Wo ist der Hauptausgang?“<br>„Dort '
+                            'rechts.“<br>„Danke. Mein Fahrer wartet dort.“</p>',
                             '<p>Das ist kein komplexes Portugiesisch. Aber es gibt Ihnen Kontrolle. '
                             'Sie müssen nicht schweigen, zeigen oder nervös auf eine App tippen. Sie '
                             'können die erste Situation aktiv bewältigen.</p>',
@@ -8254,10 +8254,10 @@ BLOG_POSTS = {
                             'einem großen Wohnkomplex leben, kann die genaue Beschreibung wichtig '
                             'sein.</p>',
                             '<p>Praktische Sätze:</p>',
-                            '<ul><li><strong>Meu endereço é...</strong> — meine Adresse '
-                            'ist...;</li><li><strong>Moro no apartamento...</strong> — ich wohne in '
-                            'Apartment...;</li><li><strong>É perto de...</strong> — es ist in der Nähe '
-                            'von...;</li><li><strong>Pode me deixar na entrada?</strong> — können Sie '
+                            '<ul><li><strong>Meu endereço é...</strong>: meine Adresse '
+                            'ist...;</li><li><strong>Moro no apartamento...</strong>: ich wohne in '
+                            'Apartment...;</li><li><strong>É perto de...</strong>: es ist in der Nähe '
+                            'von...;</li><li><strong>Pode me deixar na entrada?</strong>: können Sie '
                             'mich am Eingang absetzen?</li></ul>',
                             '<p>Diese Grundlagen geben Ihnen Sicherheit vom ersten Tag an.</p>']},
                   {'heading': 'Wichtiger Wortschatz für Wohnen, Einkaufen und tägliche Erledigungen',
@@ -8272,31 +8272,31 @@ BLOG_POSTS = {
                             'Pförtnerbereich. Diese Funktion ist für viele deutschsprachige '
                             'Auswanderer ungewohnt, aber im Alltag sehr wichtig.</p>',
                             '<p>Nützliche Wörter rund ums Wohnen:</p>',
-                            '<ul><li><strong>apartamento</strong> — '
-                            'Wohnung;</li><li><strong>casa</strong> — '
-                            'Haus;</li><li><strong>aluguel</strong> — '
-                            'Miete;</li><li><strong>contrato</strong> — '
-                            'Vertrag;</li><li><strong>portaria</strong> — Empfang oder '
-                            'Pförtnerbereich;</li><li><strong>porteiro / porteira</strong> — Pförtner '
-                            'oder Pförtnerin;</li><li><strong>chave</strong> — '
-                            'Schlüssel;</li><li><strong>entrega</strong> — '
-                            'Lieferung;</li><li><strong>manutenção</strong> — Wartung oder '
-                            'Reparatur;</li><li><strong>vazamento</strong> — Leck oder '
+                            '<ul><li><strong>apartamento</strong>: '
+                            'Wohnung;</li><li><strong>casa</strong>: '
+                            'Haus;</li><li><strong>aluguel</strong>: '
+                            'Miete;</li><li><strong>contrato</strong>: '
+                            'Vertrag;</li><li><strong>portaria</strong>: Empfang oder '
+                            'Pförtnerbereich;</li><li><strong>porteiro / porteira</strong>: Pförtner '
+                            'oder Pförtnerin;</li><li><strong>chave</strong>: '
+                            'Schlüssel;</li><li><strong>entrega</strong>: '
+                            'Lieferung;</li><li><strong>manutenção</strong>: Wartung oder '
+                            'Reparatur;</li><li><strong>vazamento</strong>: Leck oder '
                             'Wasseraustritt.</li></ul>',
                             '<p>Praktische Sätze:</p>',
-                            '<ul><li><strong>Tem uma entrega para mim?</strong> — Gibt es eine '
+                            '<ul><li><strong>Tem uma entrega para mim?</strong>: Gibt es eine '
                             'Lieferung für mich?</li><li><strong>A internet não está '
-                            'funcionando.</strong> — Das Internet funktioniert '
-                            'nicht.</li><li><strong>Preciso falar com a manutenção.</strong> — Ich '
+                            'funcionando.</strong>: Das Internet funktioniert '
+                            'nicht.</li><li><strong>Preciso falar com a manutenção.</strong>: Ich '
                             'muss mit der Wartung sprechen.</li><li><strong>Perdi minha '
-                            'chave.</strong> — Ich habe meinen Schlüssel verloren.</li></ul>',
+                            'chave.</strong>: Ich habe meinen Schlüssel verloren.</li></ul>',
                             '<p>Für Einkäufe und tägliche Erledigungen brauchen Sie einfache, '
                             'wiederholbare Strukturen:</p>',
-                            '<ul><li><strong>Quanto custa?</strong> — Wie viel kostet '
-                            'das?</li><li><strong>Vocês aceitam cartão?</strong> — Akzeptieren Sie '
-                            'Karte?</li><li><strong>Preciso de uma sacola, por favor.</strong> — Ich '
-                            'brauche bitte eine Tasche.</li><li><strong>Onde fica a farmácia?</strong> '
-                            '— Wo ist die Apotheke?</li><li><strong>Estou procurando...</strong> — Ich '
+                            '<ul><li><strong>Quanto custa?</strong>: Wie viel kostet '
+                            'das?</li><li><strong>Vocês aceitam cartão?</strong>: Akzeptieren Sie '
+                            'Karte?</li><li><strong>Preciso de uma sacola, por favor.</strong>: Ich '
+                            'brauche bitte eine Tasche.</li><li><strong>Onde fica a farmácia?</strong>'
+                            ': Wo ist die Apotheke?</li><li><strong>Estou procurando...</strong>: Ich '
                             'suche...</li></ul>',
                             '<p>In der Apotheke ist Kommunikation besonders wichtig. Sie müssen '
                             'Symptome beschreiben, nach einem Produkt fragen oder erklären, dass Sie '
@@ -8304,10 +8304,10 @@ BLOG_POSTS = {
                             'keine medizinische Beratung. Aber einfache Sätze helfen Ihnen, die '
                             'Situation besser zu organisieren.</p>',
                             '<p>Beispiele:</p>',
-                            '<ul><li><strong>Estou com dor de cabeça.</strong> — Ich habe '
-                            'Kopfschmerzen.</li><li><strong>Estou com febre.</strong> — Ich habe '
-                            'Fieber.</li><li><strong>Você tem algo para...?</strong> — Haben Sie etwas '
-                            'gegen...?</li><li><strong>Preciso de orientação.</strong> — Ich brauche '
+                            '<ul><li><strong>Estou com dor de cabeça.</strong>: Ich habe '
+                            'Kopfschmerzen.</li><li><strong>Estou com febre.</strong>: Ich habe '
+                            'Fieber.</li><li><strong>Você tem algo para...?</strong>: Haben Sie etwas '
+                            'gegen...?</li><li><strong>Preciso de orientação.</strong>: Ich brauche '
                             'Beratung.</li></ul>',
                             '<p>Ein guter Kurs für brasilianisches Portugiesisch sollte diese '
                             'Alltagsszenarien aktiv trainieren. Nicht als Vokabelliste, sondern als '
@@ -8325,14 +8325,14 @@ BLOG_POSTS = {
                             'statt. Ein kurzes „Bom dia, tudo bem?“ vor einem Meeting oder ein '
                             'freundliches „obrigado“ im Büro kann Ihre Integration verbessern.</p>',
                             '<p>Nützliche Sätze für den Beruf:</p>',
-                            '<ul><li><strong>Eu trabalho na área de...</strong> — Ich arbeite im '
-                            'Bereich...;</li><li><strong>Sou responsável por...</strong> — Ich bin '
+                            '<ul><li><strong>Eu trabalho na área de...</strong>: Ich arbeite im '
+                            'Bereich...;</li><li><strong>Sou responsável por...</strong>: Ich bin '
                             'verantwortlich für...;</li><li><strong>Podemos marcar uma '
-                            'reunião?</strong> — Können wir ein Meeting planen?</li><li><strong>Qual é '
-                            'o prazo?</strong> — Was ist die Frist?</li><li><strong>Pode repetir, por '
-                            'favor?</strong> — Können Sie das bitte wiederholen?</li><li><strong>Pode '
-                            'falar mais devagar?</strong> — Können Sie langsamer '
-                            'sprechen?</li><li><strong>Vou verificar e te retorno.</strong> — Ich '
+                            'reunião?</strong>: Können wir ein Meeting planen?</li><li><strong>Qual é '
+                            'o prazo?</strong>: Was ist die Frist?</li><li><strong>Pode repetir, por '
+                            'favor?</strong>: Können Sie das bitte wiederholen?</li><li><strong>Pode '
+                            'falar mais devagar?</strong>: Können Sie langsamer '
+                            'sprechen?</li><li><strong>Vou verificar e te retorno.</strong>: Ich '
                             'prüfe das und melde mich zurück.</li></ul>',
                             '<p>Besonders wichtig ist der Satz: <strong>Pode repetir, por '
                             'favor?</strong> Viele Lernende haben Angst, um Wiederholung zu bitten. '
@@ -8471,7 +8471,7 @@ BLOG_POSTS = {
                             'wir, dass Führungskräfte keine Zeit für theoretische Grammatikübungen '
                             'haben, die keinen Praxisbezug bieten. Unser Ansatz basiert auf '
                             '<strong>Intelligenz durch kulturelle Tiefe</strong>. Wir bereiten Sie auf '
-                            'reale Situationen vor – von der Leitung eines Meetings über das Führen '
+                            'reale Situationen vor: von der Leitung eines Meetings über das Führen '
                             'von Verhandlungen bis hin zum Aufbau von Verbindungen zu Ihren '
                             'Mitarbeitern. Für Sie als Manager bedeutet dies: Sie lernen nicht nur '
                             '"Portugiesisch", sondern Sie lernen, wie Sie in Brasilien erfolgreich '
@@ -8485,8 +8485,8 @@ BLOG_POSTS = {
                             '<ul><li><strong>Vertrauensaufbau:</strong> Durch das Sprechen der '
                             'Landessprache zeigen Sie Ihren Mitarbeitern, dass Sie Teil des Teams sind '
                             'und nicht nur ein kurzzeitiger Gast.</li><li><strong>Kulturelle '
-                            'Intelligenz:</strong> Sie lernen das <em>Jeitinho Brasileiro</em> – die '
-                            'brasilianische Art, Probleme kreativ und flexibel zu lösen – zu verstehen '
+                            'Intelligenz:</strong> Sie lernen das <em>Jeitinho Brasileiro</em> (die '
+                            'brasilianische Art, Probleme kreativ und flexibel zu lösen) zu verstehen '
                             'und konstruktiv zu nutzen, statt sich daran zu '
                             'reiben.</li><li><strong>Präzision in der Führung:</strong> '
                             'Missverständnisse entstehen oft durch Nuancen, die in einer Übersetzung '
@@ -8525,7 +8525,7 @@ BLOG_POSTS = {
                             'darauf, dass unsere Ergebnisse Sie überzeugen. Sie bleiben bei uns, weil '
                             'Sie Ihren Fortschritt im Berufsalltag merken, nicht weil Sie einen '
                             'Vertrag unterschrieben haben.</li><li><strong>Maßgeschneiderte '
-                            'Inhalte:</strong> Ob IT, Finanzen oder Personalwesen – wir integrieren '
+                            'Inhalte:</strong> Ob IT, Finanzen oder Personalwesen: wir integrieren '
                             'Ihren Arbeitskontext direkt in den Unterricht, sodass Sie das Gelernte '
                             'sofort am nächsten Tag anwenden können.</li></ul>']},
                   {'heading': 'Wie Sie als Manager effizienter lernen',
@@ -8662,15 +8662,15 @@ BLOG_POSTS = {
                             'combien de temps vous êtes au Brésil. Dans un commerce, on peut vous '
                             'demander si vous avez besoin d’aide.</p>',
                             '<p>Voici des phrases utiles à connaître dès le début :</p>',
-                            '<ul><li><strong>Meu nome é...</strong> — Je '
+                            '<ul><li><strong>Meu nome é...</strong>: Je '
                             'm’appelle...</li><li><strong>Eu sou da França / da Bélgica / da Suíça / '
-                            'do Canadá.</strong> — Je viens de France / de Belgique / de Suisse / du '
-                            'Canada.</li><li><strong>Eu vou morar no Brasil.</strong> — Je vais vivre '
-                            'au Brésil.</li><li><strong>Eu trabalho com...</strong> — Je travaille '
-                            'dans...</li><li><strong>Estou aprendendo português.</strong> — J’apprends '
+                            'do Canadá.</strong>: Je viens de France / de Belgique / de Suisse / du '
+                            'Canada.</li><li><strong>Eu vou morar no Brasil.</strong>: Je vais vivre '
+                            'au Brésil.</li><li><strong>Eu trabalho com...</strong>: Je travaille '
+                            'dans...</li><li><strong>Estou aprendendo português.</strong>: J’apprends '
                             'le portugais.</li><li><strong>Você pode falar mais devagar, por '
-                            'favor?</strong> — Pouvez-vous parler plus lentement, s’il vous plaît '
-                            '?</li><li><strong>Não entendi. Pode repetir?</strong> — Je n’ai pas '
+                            'favor?</strong>: Pouvez-vous parler plus lentement, s’il vous plaît '
+                            '?</li><li><strong>Não entendi. Pode repetir?</strong>: Je n’ai pas '
                             'compris. Pouvez-vous répéter ?</li></ul>',
                             '<p>Ces phrases donnent immédiatement plus de sécurité. Elles montrent '
                             'aussi que vous faites l’effort de parler la langue locale, ce qui est '
@@ -8692,24 +8692,24 @@ BLOG_POSTS = {
                             'colis, laisser une information, confirmer l’arrivée d’un visiteur ou '
                             'demander de l’aide.</p>',
                             '<p>Mots essentiels :</p>',
-                            '<ul><li><strong>prédio</strong> — immeuble '
-                            ';</li><li><strong>apartamento</strong> — appartement '
-                            ';</li><li><strong>portaria</strong> — accueil / entrée de l’immeuble '
-                            ';</li><li><strong>porteiro / porteira</strong> — concierge / personne à '
-                            'l’accueil ;</li><li><strong>entrega</strong> — livraison '
-                            ';</li><li><strong>encomenda</strong> — colis '
-                            ';</li><li><strong>elevador</strong> — ascenseur '
-                            ';</li><li><strong>chave</strong> — clé ;</li><li><strong>garagem</strong> '
-                            '— garage ;</li><li><strong>manutenção</strong> — maintenance / '
+                            '<ul><li><strong>prédio</strong>: immeuble '
+                            ';</li><li><strong>apartamento</strong>: appartement '
+                            ';</li><li><strong>portaria</strong>: accueil / entrée de l’immeuble '
+                            ';</li><li><strong>porteiro / porteira</strong>: concierge / personne à '
+                            'l’accueil ;</li><li><strong>entrega</strong>: livraison '
+                            ';</li><li><strong>encomenda</strong>: colis '
+                            ';</li><li><strong>elevador</strong>: ascenseur '
+                            ';</li><li><strong>chave</strong>: clé ;</li><li><strong>garagem</strong>'
+                            ': garage ;</li><li><strong>manutenção</strong>: maintenance / '
                             'réparation.</li></ul>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Eu moro no apartamento...</strong> — J’habite dans '
+                            '<ul><li><strong>Eu moro no apartamento...</strong>: J’habite dans '
                             'l’appartement...</li><li><strong>Chegou alguma encomenda para '
-                            'mim?</strong> — Un colis est-il arrivé pour moi ?</li><li><strong>O '
-                            'elevador está funcionando?</strong> — L’ascenseur fonctionne-t-il '
-                            '?</li><li><strong>Preciso de ajuda com a internet.</strong> — J’ai besoin '
+                            'mim?</strong>: Un colis est-il arrivé pour moi ?</li><li><strong>O '
+                            'elevador está funcionando?</strong>: L’ascenseur fonctionne-t-il '
+                            '?</li><li><strong>Preciso de ajuda com a internet.</strong>: J’ai besoin '
                             'd’aide avec Internet.</li><li><strong>Pode avisar quando a entrega '
-                            'chegar?</strong> — Pouvez-vous me prévenir quand la livraison arrive '
+                            'chegar?</strong>: Pouvez-vous me prévenir quand la livraison arrive '
                             '?</li></ul>',
                             '<p>Ce vocabulaire peut sembler très pratique, presque banal. Pourtant, il '
                             'est essentiel. La maîtrise de ces mots permet d’éviter des blocages dans '
@@ -8728,22 +8728,22 @@ BLOG_POSTS = {
                             'arriver à un bureau. Un voisin peut vous indiquer un commerce à '
                             'proximité.</p>',
                             '<p>Vocabulaire utile :</p>',
-                            '<ul><li><strong>rua</strong> — rue ;</li><li><strong>avenida</strong> — '
-                            'avenue ;</li><li><strong>esquina</strong> — coin de rue '
-                            ';</li><li><strong>entrada</strong> — entrée '
-                            ';</li><li><strong>saída</strong> — sortie '
-                            ';</li><li><strong>perto</strong> — près ;</li><li><strong>longe</strong> '
-                            '— loin ;</li><li><strong>à direita</strong> — à droite '
-                            ';</li><li><strong>à esquerda</strong> — à gauche ;</li><li><strong>em '
-                            'frente</strong> — en face ;</li><li><strong>ao lado</strong> — à '
+                            '<ul><li><strong>rua</strong>: rue ;</li><li><strong>avenida</strong>: '
+                            'avenue ;</li><li><strong>esquina</strong>: coin de rue '
+                            ';</li><li><strong>entrada</strong>: entrée '
+                            ';</li><li><strong>saída</strong>: sortie '
+                            ';</li><li><strong>perto</strong>: près ;</li><li><strong>longe</strong>'
+                            ': loin ;</li><li><strong>à direita</strong>: à droite '
+                            ';</li><li><strong>à esquerda</strong>: à gauche ;</li><li><strong>em '
+                            'frente</strong>: en face ;</li><li><strong>ao lado</strong>: à '
                             'côté.</li></ul>',
                             '<p>Phrases à pratiquer :</p>',
-                            '<ul><li><strong>Onde fica...?</strong> — Où se trouve... '
-                            '?</li><li><strong>É perto daqui?</strong> — Est-ce près d’ici '
-                            '?</li><li><strong>Pode me deixar na entrada principal?</strong> — '
+                            '<ul><li><strong>Onde fica...?</strong>: Où se trouve... '
+                            '?</li><li><strong>É perto daqui?</strong>: Est-ce près d’ici '
+                            '?</li><li><strong>Pode me deixar na entrada principal?</strong>: '
                             'Pouvez-vous me déposer à l’entrée principale ?</li><li><strong>Estou '
-                            'chegando em cinco minutos.</strong> — J’arrive dans cinq '
-                            'minutes.</li><li><strong>Qual é o melhor caminho?</strong> — Quel est le '
+                            'chegando em cinco minutos.</strong>: J’arrive dans cinq '
+                            'minutes.</li><li><strong>Qual é o melhor caminho?</strong>: Quel est le '
                             'meilleur chemin ?</li></ul>',
                             '<p>La difficulté n’est pas seulement de connaître ces mots. Il faut aussi '
                             'les entendre rapidement dans une phrase naturelle. C’est ici que la '
@@ -8760,14 +8760,14 @@ BLOG_POSTS = {
                             'consigne, de demander un délai, de confirmer une information et '
                             'd’interagir avec politesse.</p>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Eu trabalho na área de...</strong> — Je travaille dans le '
-                            'domaine de...</li><li><strong>Sou responsável por...</strong> — Je suis '
-                            'responsable de...</li><li><strong>Pode me explicar de novo?</strong> — '
+                            '<ul><li><strong>Eu trabalho na área de...</strong>: Je travaille dans le '
+                            'domaine de...</li><li><strong>Sou responsável por...</strong>: Je suis '
+                            'responsable de...</li><li><strong>Pode me explicar de novo?</strong>: '
                             'Pouvez-vous me réexpliquer ?</li><li><strong>Vou verificar e te '
-                            'retorno.</strong> — Je vais vérifier et je vous '
-                            'reviens.</li><li><strong>Podemos marcar uma reunião?</strong> — '
+                            'retorno.</strong>: Je vais vérifier et je vous '
+                            'reviens.</li><li><strong>Podemos marcar uma reunião?</strong>: '
                             'Pouvons-nous planifier une réunion ?</li><li><strong>Qual é o '
-                            'prazo?</strong> — Quel est le délai ?</li></ul>',
+                            'prazo?</strong>: Quel est le délai ?</li></ul>',
                             '<p>Un point culturel important : dans de nombreuses situations '
                             'professionnelles au Brésil, la relation précède l’exécution. Les échanges '
                             'peuvent commencer par « tudo bem? », quelques mots personnels ou un ton '
@@ -9142,7 +9142,7 @@ BLOG_POSTS = {
                   {'heading': '90天学习计划总表',
                    'body': ['<p>下面是一个可执行的90天框架：</p>',
                             '<table '
-                            'class="vd-table"><thead><tr><th>阶段</th><th>时间</th><th>学习重点</th><th>目标</th></tr></thead><tbody><tr><td>第1阶段</td><td>第1—30天</td><td>发音、问候、数字、地点、价格、基础句</td><td>建立生存表达</td></tr><tr><td>第2阶段</td><td>第31—60天</td><td>住房、工作、学习、健康、服务场景</td><td>处理常见任务</td></tr><tr><td>第3阶段</td><td>第61—90天</td><td>小对话、追问、自然表达、复盘</td><td>提升独立沟通</td></tr></tbody></table>',
+                            'class="vd-table"><thead><tr><th>阶段</th><th>时间</th><th>学习重点</th><th>目标</th></tr></thead><tbody><tr><td>第1阶段</td><td>第1-30天</td><td>发音、问候、数字、地点、价格、基础句</td><td>建立生存表达</td></tr><tr><td>第2阶段</td><td>第31-60天</td><td>住房、工作、学习、健康、服务场景</td><td>处理常见任务</td></tr><tr><td>第3阶段</td><td>第61-90天</td><td>小对话、追问、自然表达、复盘</td><td>提升独立沟通</td></tr></tbody></table>',
                             '<p>每周建议安排：</p>',
                             '<ul><li>1到2次真人直播课；</li><li>3次短时间自学，每次15到30分钟；</li><li>1次真实场景练习；</li><li>1次复习和录音；</li><li>每周积累10到20个高频词。</li></ul>',
                             '<p>对忙碌的成年人来说，这样的节奏比每天硬背两小时更现实。语言学习靠持续接触，而不是一次性冲刺。</p>']},
@@ -9191,13 +9191,13 @@ BLOG_POSTS = {
              'ситуациях, задавать вопросы и чувствовать себя увереннее в повседневной жизни.',
      'sections': [{'heading': '',
                    'body': ['<p>Для русскоговорящих студентов, специалистов, релокационных команд и '
-                            'экспатов бразильский португальский — это не просто “еще один иностранный '
+                            'экспатов бразильский португальский: это не просто “еще один иностранный '
                             'язык”. Это инструмент адаптации. В Бразилии он помогает решать бытовые '
                             'задачи, строить рабочие отношения, понимать культуру общения и '
                             'чувствовать себя не гостем, который постоянно зависит от перевода, а '
                             'человеком, который постепенно входит в местную жизнь.</p>',
                             '<p>Важно изучать именно бразильский вариант португальского. Если ваша '
-                            'цель — жить, работать или учиться в Бразилии, вам нужны бразильское '
+                            'цель: жить, работать или учиться в Бразилии, вам нужны бразильское '
                             'произношение, местные выражения, реальные диалоги и культурные '
                             'особенности общения. Запросы вроде Portuguese for Brazil, Brazilian '
                             'Portuguese course и Portuguese for foreigners часто появляются именно '
@@ -9206,12 +9206,12 @@ BLOG_POSTS = {
                             '<p>Этот план на 90 дней показывает, что учить сначала, как распределить '
                             'темы по неделям и почему живые онлайн-уроки помогают быстрее перейти от '
                             '“я понимаю отдельные слова” к “я могу участвовать в разговоре”.</p>']},
-                  {'heading': 'Почему 90 дней — хороший срок для старта?',
-                   'body': ['<p>90 дней — хороший срок, потому что он достаточно длинный для '
+                  {'heading': 'Почему 90 дней: хороший срок для старта?',
+                   'body': ['<p>90 дней: хороший срок, потому что он достаточно длинный для '
                             'формирования привычки и достаточно короткий, чтобы сохранять фокус. За '
                             'этот период можно пройти путь от первых приветствий до простых разговоров '
                             'о жизни, работе, учебе и бытовых задачах.</p>',
-                            '<p>Главная ошибка новичков — пытаться выучить все сразу. Человек '
+                            '<p>Главная ошибка новичков: пытаться выучить все сразу. Человек '
                             'скачивает приложения, открывает видео, читает правила, выписывает сотни '
                             'слов, но не понимает, что именно ему нужно для первых месяцев в Бразилии. '
                             'В результате знания остаются разрозненными: слова есть, а говорить '
@@ -9234,7 +9234,7 @@ BLOG_POSTS = {
                             'href="/ru/portugalskiy-dlya-inostrantsev">https://vediums.com/</a> и '
                             'начните с понятного маршрута обучения.</p>']},
                   {'heading': 'Месяц 1: выживание, произношение и первые диалоги',
-                   'body': ['<p>Первый месяц нужен для базовой языковой безопасности. Ваша цель — не '
+                   'body': ['<p>Первый месяц нужен для базовой языковой безопасности. Ваша цель: не '
                             'говорить сложно, а перестать чувствовать полную беспомощность в простых '
                             'ситуациях.</p>',
                             '<p>Фокус первого месяца:</p>',
@@ -9274,10 +9274,10 @@ BLOG_POSTS = {
                             '/ который?</td></tr><tr><td>Por '
                             'quê?</td><td>Почему?</td></tr></tbody></table>',
                             '<p>Практические фразы:</p>',
-                            '<ul><li>“Onde fica o banheiro?” — Где находится туалет?</li><li>“Quanto '
-                            'custa?” — Сколько стоит?</li><li>“Como eu chego lá?” — Как мне туда '
-                            'добраться?</li><li>“Qual é o endereço?” — Какой адрес?</li><li>“Quando '
-                            'começa?” — Когда начинается?</li><li>“Pode repetir, por favor?” — Можете '
+                            '<ul><li>“Onde fica o banheiro?”: Где находится туалет?</li><li>“Quanto '
+                            'custa?”: Сколько стоит?</li><li>“Como eu chego lá?”: Как мне туда '
+                            'добраться?</li><li>“Qual é o endereço?”: Какой адрес?</li><li>“Quando '
+                            'começa?”: Когда начинается?</li><li>“Pode repetir, por favor?”: Можете '
                             'повторить, пожалуйста?</li></ul>',
                             '<p>На живом уроке важно тренировать не только сами вопросы, но и ответы. '
                             'В реальности человек может ответить быстро, с акцентом, с жестами или с '
@@ -9293,12 +9293,12 @@ BLOG_POSTS = {
                             '/ '
                             'рынок</td></tr><tr><td>cartão</td><td>карта</td></tr><tr><td>dinheiro</td><td>наличные</td></tr><tr><td>endereço</td><td>адрес</td></tr><tr><td>motorista</td><td>водитель</td></tr><tr><td>entrada</td><td>вход</td></tr><tr><td>saída</td><td>выход</td></tr></tbody></table>',
                             '<p>Фразы:</p>',
-                            '<ul><li>“Aceita cartão?” — Вы принимаете карту?</li><li>“Quero um café, '
-                            'por favor.” — Я хочу кофе, пожалуйста.</li><li>“A conta, por favor.” — '
-                            'Счет, пожалуйста.</li><li>“Onde eu pego o Uber?” — Где мне сесть в '
-                            'Uber?</li><li>“Pode me deixar aqui?” — Можете высадить меня '
-                            'здесь?</li><li>“Esse é o endereço?” — Это адрес?</li></ul>',
-                            '<p>Цель недели — научиться решать маленькие задачи. Даже если вы '
+                            '<ul><li>“Aceita cartão?”: Вы принимаете карту?</li><li>“Quero um café, '
+                            'por favor.”: Я хочу кофе, пожалуйста.</li><li>“A conta, por favor.”: '
+                            'Счет, пожалуйста.</li><li>“Onde eu pego o Uber?”: Где мне сесть в '
+                            'Uber?</li><li>“Pode me deixar aqui?”: Можете высадить меня '
+                            'здесь?</li><li>“Esse é o endereço?”: Это адрес?</li></ul>',
+                            '<p>Цель недели: научиться решать маленькие задачи. Даже если вы '
                             'ошибаетесь, вы уже начинаете взаимодействовать.</p>',
                             '<h3>Неделя 4: первая мини-разговорная практика</h3>',
                             '<p>На четвертой неделе соедините темы в простые сценарии. Например:</p>',
@@ -9328,7 +9328,7 @@ BLOG_POSTS = {
                             'встречи;</li><li>учеба;</li><li>сообщения;</li><li>прошедшее и будущее '
                             'время в простых фразах.</li></ul>',
                             '<h3>Неделя 5: жилье и бытовые проблемы</h3>',
-                            '<p>Если вы живете в Бразилии, вам часто придется говорить с porteiro — '
+                            '<p>Если вы живете в Бразилии, вам часто придется говорить с porteiro: '
                             'сотрудником на входе в здание, с владельцем квартиры, управляющим или '
                             'мастером.</p>',
                             '<p>Лексика:</p>',
@@ -9341,11 +9341,11 @@ BLOG_POSTS = {
                             '/ '
                             'электричество</td></tr><tr><td>internet</td><td>интернет</td></tr><tr><td>chave</td><td>ключ</td></tr></tbody></table>',
                             '<p>Фразы:</p>',
-                            '<ul><li>“Chegou uma entrega para mim?” — Мне пришла '
-                            'посылка?</li><li>“Estou com um problema no apartamento.” — У меня '
-                            'проблема в квартире.</li><li>“A internet não está funcionando.” — '
-                            'Интернет не работает.</li><li>“A chave não funciona.” — Ключ не '
-                            'работает.</li><li>“Preciso falar com a manutenção.” — Мне нужно '
+                            '<ul><li>“Chegou uma entrega para mim?”: Мне пришла '
+                            'посылка?</li><li>“Estou com um problema no apartamento.”: У меня '
+                            'проблема в квартире.</li><li>“A internet não está funcionando.”: '
+                            'Интернет не работает.</li><li>“A chave não funciona.”: Ключ не '
+                            'работает.</li><li>“Preciso falar com a manutenção.”: Мне нужно '
                             'поговорить с сервисной службой.</li></ul>',
                             '<p>Эти фразы дают реальную автономию. Вы можете не говорить идеально, но '
                             'вас поймут.</p>',
@@ -9361,11 +9361,11 @@ BLOG_POSTS = {
                             'почта</td></tr><tr><td>chamada</td><td>звонок / '
                             'видеозвонок</td></tr></tbody></table>',
                             '<p>Фразы:</p>',
-                            '<ul><li>“Qual é o prazo?” — Какой срок?</li><li>“Quem é o responsável?” — '
-                            'Кто ответственный?</li><li>“Podemos marcar uma reunião?” — Мы можем '
-                            'назначить встречу?</li><li>“Só para confirmar...” — Просто чтобы '
-                            'подтвердить...</li><li>“Eu não entendi essa parte.” — Я не понял эту '
-                            'часть.</li><li>“Você pode explicar de novo?” — Можете объяснить еще '
+                            '<ul><li>“Qual é o prazo?”: Какой срок?</li><li>“Quem é o responsável?”: '
+                            'Кто ответственный?</li><li>“Podemos marcar uma reunião?”: Мы можем '
+                            'назначить встречу?</li><li>“Só para confirmar...”: Просто чтобы '
+                            'подтвердить...</li><li>“Eu não entendi essa parte.”: Я не понял эту '
+                            'часть.</li><li>“Você pode explicar de novo?”: Можете объяснить еще '
                             'раз?</li></ul>',
                             '<p>Фраза “Só para confirmar...” очень полезна. Она звучит вежливо и '
                             'помогает избежать недопонимания.</p>',
@@ -9382,10 +9382,10 @@ BLOG_POSTS = {
                             '/ экзамен</td></tr><tr><td>trabalho</td><td>работа / '
                             'задание</td></tr><tr><td>prazo</td><td>срок</td></tr><tr><td>nota</td><td>оценка</td></tr><tr><td>inscrição</td><td>регистрация</td></tr><tr><td>curso</td><td>курс</td></tr></tbody></table>',
                             '<p>Фразы:</p>',
-                            '<ul><li>“Quando é a aula?” — Когда занятие?</li><li>“Onde encontro o '
-                            'material?” — Где найти материал?</li><li>“Quando é a entrega do '
-                            'trabalho?” — Когда сдавать работу?</li><li>“Esse conteúdo vai cair na '
-                            'prova?” — Это будет на тесте?</li><li>“Como faço a inscrição?” — Как '
+                            '<ul><li>“Quando é a aula?”: Когда занятие?</li><li>“Onde encontro o '
+                            'material?”: Где найти материал?</li><li>“Quando é a entrega do '
+                            'trabalho?”: Когда сдавать работу?</li><li>“Esse conteúdo vai cair na '
+                            'prova?”: Это будет на тесте?</li><li>“Como faço a inscrição?”: Как '
                             'зарегистрироваться?</li></ul>',
                             '<h3>Неделя 8: здоровье и аптека</h3>',
                             '<p>Медицинские ситуации нельзя откладывать до “когда-нибудь потом”. Даже '
@@ -9399,11 +9399,11 @@ BLOG_POSTS = {
                             'страховка</td></tr><tr><td>emergência</td><td>экстренная '
                             'ситуация</td></tr></tbody></table>',
                             '<p>Фразы:</p>',
-                            '<ul><li>“Estou com dor de cabeça.” — У меня болит голова.</li><li>“Estou '
-                            'com febre.” — У меня температура.</li><li>“Tenho alergia a...” — У меня '
-                            'аллергия на...</li><li>“Precisa de receita?” — Нужен '
-                            'рецепт?</li><li>“Como eu tomo esse remédio?” — Как принимать это '
-                            'лекарство?</li><li>“Vocês aceitam meu seguro?” — Вы принимаете мою '
+                            '<ul><li>“Estou com dor de cabeça.”: У меня болит голова.</li><li>“Estou '
+                            'com febre.”: У меня температура.</li><li>“Tenho alergia a...”: У меня '
+                            'аллергия на...</li><li>“Precisa de receita?”: Нужен '
+                            'рецепт?</li><li>“Como eu tomo esse remédio?”: Как принимать это '
+                            'лекарство?</li><li>“Vocês aceitam meu seguro?”: Вы принимаете мою '
                             'страховку?</li></ul>',
                             '<p>Живой урок здесь особенно полезен, потому что преподаватель может '
                             'проиграть ситуацию “аптека”, “регистратура”, “врач” и научить вас не '
@@ -9422,11 +9422,11 @@ BLOG_POSTS = {
                             '<h3>Неделя 9: уточняющие вопросы</h3>',
                             '<p>Уточняющие вопросы помогают поддерживать разговор и решать задачи.</p>',
                             '<p>Полезные фразы:</p>',
-                            '<ul><li>“Como assim?” — В каком смысле?</li><li>“Pode me dar um exemplo?” '
-                            '— Можете дать пример?</li><li>“E depois?” — А потом?</li><li>“Tem outra '
-                            'opção?” — Есть другой вариант?</li><li>“O que você recomenda?” — Что вы '
-                            'рекомендуете?</li><li>“Isso é comum no Brasil?” — Это обычно для '
-                            'Бразилии?</li><li>“Pode escrever?” — Можете написать?</li></ul>',
+                            '<ul><li>“Como assim?”: В каком смысле?</li><li>“Pode me dar um exemplo?”'
+                            ': Можете дать пример?</li><li>“E depois?”: А потом?</li><li>“Tem outra '
+                            'opção?”: Есть другой вариант?</li><li>“O que você recomenda?”: Что вы '
+                            'рекомендуете?</li><li>“Isso é comum no Brasil?”: Это обычно для '
+                            'Бразилии?</li><li>“Pode escrever?”: Можете написать?</li></ul>',
                             '<p>Эти фразы делают вас активным участником разговора. Вы не просто '
                             'слушаете, а уточняете и продвигаете диалог.</p>',
                             '<h3>Неделя 10: естественная речь бразильцев</h3>',
@@ -9449,16 +9449,16 @@ BLOG_POSTS = {
                             '<p>Чтобы общаться свободнее, вам нужно говорить не только “сейчас”, но и '
                             'о прошлом и будущем.</p>',
                             '<p>Практические фразы:</p>',
-                            '<ul><li>“Ontem eu fui ao mercado.” — Вчера я ходил(а) в '
-                            'магазин.</li><li>“Semana passada eu tive uma reunião.” — На прошлой '
-                            'неделе у меня была встреча.</li><li>“Amanhã eu vou trabalhar de casa.” — '
-                            'Завтра я буду работать из дома.</li><li>“No fim de semana eu vou viajar.” '
-                            '— На выходных я поеду в поездку.</li><li>“Eu cheguei ao Brasil há dois '
-                            'meses.” — Я приехал(а) в Бразилию два месяца назад.</li></ul>',
+                            '<ul><li>“Ontem eu fui ao mercado.”: Вчера я ходил(а) в '
+                            'магазин.</li><li>“Semana passada eu tive uma reunião.”: На прошлой '
+                            'неделе у меня была встреча.</li><li>“Amanhã eu vou trabalhar de casa.”: '
+                            'Завтра я буду работать из дома.</li><li>“No fim de semana eu vou viajar.”'
+                            ': На выходных я поеду в поездку.</li><li>“Eu cheguei ao Brasil há dois '
+                            'meses.”: Я приехал(а) в Бразилию два месяца назад.</li></ul>',
                             '<p>Не нужно сразу изучать всю систему времен идеально. Сначала выучите '
                             'самые полезные модели и используйте их в реальных историях.</p>',
                             '<h3>Неделя 12: итоговая практика и план следующего этапа</h3>',
-                            '<p>Последняя неделя — это не конец, а переход. Нужно понять, что уже '
+                            '<p>Последняя неделя: это не конец, а переход. Нужно понять, что уже '
                             'получается, а что требует дальнейшей работы.</p>',
                             '<p>Проверьте себя:</p>',
                             '<ul><li>Могу ли я представиться?</li><li>Могу ли я объяснить, что учу '
@@ -9468,7 +9468,7 @@ BLOG_POSTS = {
                             'попросить повторить или говорить медленнее?</li><li>Могу ли я рассказать '
                             'простую историю о прошлом?</li></ul>',
                             '<p>Если большая часть ответов “да, но с ошибками”, это хороший результат. '
-                            'Ошибки — часть процесса. Главное, что у вас появилась языковая база для '
+                            'Ошибки: часть процесса. Главное, что у вас появилась языковая база для '
                             'продолжения.</p>',
                             '<p>CTA: После 90 дней важно не останавливаться. Запишитесь на бесплатную '
                             'проверку уровня на <a '
@@ -9481,18 +9481,18 @@ BLOG_POSTS = {
                             '<p>Оптимальный вариант:</p>',
                             '<table '
                             'class="vd-table"><thead><tr><th>Активность</th><th>Частота</th></tr></thead><tbody><tr><td>Живой '
-                            'онлайн-урок</td><td>1–2 раза в неделю</td></tr><tr><td>Самостоятельная '
-                            'практика</td><td>3 раза в неделю по 15–30 '
-                            'минут</td></tr><tr><td>Повторение слов</td><td>5–10 минут в '
-                            'день</td></tr><tr><td>Практика вслух</td><td>3–4 раза в '
+                            'онлайн-урок</td><td>1-2 раза в неделю</td></tr><tr><td>Самостоятельная '
+                            'практика</td><td>3 раза в неделю по 15-30 '
+                            'минут</td></tr><tr><td>Повторение слов</td><td>5-10 минут в '
+                            'день</td></tr><tr><td>Практика вслух</td><td>3-4 раза в '
                             'неделю</td></tr><tr><td>Ролевая ситуация</td><td>1 раз в '
                             'неделю</td></tr><tr><td>Повторение и мини-тест</td><td>1 раз в '
                             'неделю</td></tr></tbody></table>',
-                            '<p>Главное — не просто “учить”, а использовать. Если вы выучили 10 слов, '
+                            '<p>Главное: не просто “учить”, а использовать. Если вы выучили 10 слов, '
                             'превратите их в 10 фраз. Если вы выучили 5 вопросов, задайте их вслух. '
                             'Если вы прошли тему “отель”, разыграйте регистрацию на ресепшене.</p>']},
                   {'heading': 'Почему живые уроки важны для бразильского португальского?',
-                   'body': ['<p>Живые уроки важны, потому что язык — это не только знание, но и '
+                   'body': ['<p>Живые уроки важны, потому что язык: это не только знание, но и '
                             'реакция. В Бразилии вам нужно будет слушать, отвечать, уточнять, просить '
                             'повторить, менять фразу и понимать культурный тон.</p>',
                             '<p>Приложения и видео могут помочь с лексикой, но у них есть ограничения. '
@@ -10029,7 +10029,7 @@ BLOG_POSTS = {
              'perguntar com humildade e estudar a língua de forma guiada. Para quem chega '
              'ao iorubá por ancestralidade, religiosidade, pesquisa, memória '
              'afro-diaspórica ou vivência comunitária, a escuta das cantigas pode ser uma '
-             'porta profunda de aprendizagem — mas também uma porta que pede '
+             'porta profunda de aprendizagem: mas também uma porta que pede '
              'responsabilidade.',
      'sections': [{'heading': '',
                    'body': ['<p>Muitas pessoas no Brasil entram em contato com o iorubá '
@@ -10130,7 +10130,7 @@ BLOG_POSTS = {
                             'acompanhadas de explicação. O problema está na tradução sem '
                             'contexto, sem escuta e sem orientação.</p>',
                             '<p>Uma boa prática é sempre marcar no caderno:</p>',
-                            '<p><strong>“Tradução aproximada — confirmar em '
+                            '<p><strong>“Tradução aproximada: confirmar em '
                             'aula.”</strong></p>',
                             '<p>Essa pequena frase protege o aluno de transformar uma '
                             'hipótese em certeza. Também cria uma pergunta melhor para o '
@@ -11218,9 +11218,9 @@ BLOG_POSTS = {
                             'reuniões, entrevistas, apresentações, viagens, conversas '
                             'profissionais e situações inesperadas. O inglês parece sempre '
                             '“quase suficiente”, mas nunca realmente pronto.</p>',
-                            '<p>Para a persona Bruno — profissional que busca evoluir do '
+                            '<p>Para a persona Bruno: profissional que busca evoluir do '
                             'A1 ao C1 para carreira, oportunidades internacionais, '
-                            'entrevistas e comunicação real — essa fase é decisiva. O '
+                            'entrevistas e comunicação real: essa fase é decisiva. O '
                             'intermediário pode ser uma ponte para autonomia ou uma zona '
                             'de conforto que dura anos. O que define a diferença é o '
                             'método.</p>',
@@ -11898,7 +11898,7 @@ BLOG_POSTS = {
                             'respostas possíveis</td><td>15 '
                             'min</td></tr><tr><td>Sexta</td><td>Revisar e gravar uma '
                             'resposta</td><td>10 min</td></tr><tr><td>Aula ao '
-                            'vivo</td><td>Simular situação de trabalho</td><td>50–60 '
+                            'vivo</td><td>Simular situação de trabalho</td><td>50-60 '
                             'min</td></tr></tbody></table>',
                             '<p>Essa rotina não exige horas por dia. Ela exige intenção. O '
                             'aluno que pratica listening conectado ao trabalho sente '
@@ -12091,12 +12091,12 @@ BLOG_POSTS = {
                             'problema é acreditar que dominar o <em>to be</em> significa '
                             'dominar o inglês inicial.</p>',
                             '<p>Frases com <em>to be</em>:</p>',
-                            '<ul><li><strong>I am Brazilian.</strong> — Eu sou '
-                            'brasileiro(a).</li><li><strong>I am tired.</strong> — Eu '
-                            'estou cansado(a).</li><li><strong>She is my teacher.</strong> '
-                            '— Ela é minha professora.</li><li><strong>They are at '
-                            'work.</strong> — Eles estão no trabalho.</li><li><strong>We '
-                            'are ready.</strong> — Nós estamos prontos.</li></ul>',
+                            '<ul><li><strong>I am Brazilian.</strong>: Eu sou '
+                            'brasileiro(a).</li><li><strong>I am tired.</strong>: Eu '
+                            'estou cansado(a).</li><li><strong>She is my teacher.</strong>'
+                            ': Ela é minha professora.</li><li><strong>They are at '
+                            'work.</strong>: Eles estão no trabalho.</li><li><strong>We '
+                            'are ready.</strong>: Nós estamos prontos.</li></ul>',
                             '<p>Essas frases são úteis. Mas elas não cobrem ações '
                             'importantes:</p>',
                             '<ul><li>trabalhar;</li><li>estudar;</li><li>precisar;</li><li>querer;</li><li>gostar;</li><li>ter;</li><li>ir;</li><li>comprar;</li><li>enviar;</li><li>falar;</li><li>entender;</li><li>aprender;</li><li>perguntar;</li><li>responder.</li></ul>',
@@ -12279,16 +12279,16 @@ BLOG_POSTS = {
                    'body': ['<p>Uma parte essencial do inglês inicial é saber pedir ajuda. '
                             'Isso evita que o aluno trave quando não entende algo.</p>',
                             '<p>Frases úteis:</p>',
-                            '<ul><li><strong>Can you help me?</strong> — Você pode me '
-                            'ajudar?</li><li><strong>I need help.</strong> — Eu preciso de '
-                            'ajuda.</li><li><strong>Can you repeat, please?</strong> — '
+                            '<ul><li><strong>Can you help me?</strong>: Você pode me '
+                            'ajudar?</li><li><strong>I need help.</strong>: Eu preciso de '
+                            'ajuda.</li><li><strong>Can you repeat, please?</strong>: '
                             'Você pode repetir, por favor?</li><li><strong>Can you speak '
-                            'more slowly?</strong> — Você pode falar mais '
-                            'devagar?</li><li><strong>I don’t understand.</strong> — Eu '
-                            'não entendo.</li><li><strong>I have a question.</strong> — Eu '
+                            'more slowly?</strong>: Você pode falar mais '
+                            'devagar?</li><li><strong>I don’t understand.</strong>: Eu '
+                            'não entendo.</li><li><strong>I have a question.</strong>: Eu '
                             'tenho uma pergunta.</li><li><strong>How do you '
-                            'say...?</strong> — Como se diz...?</li><li><strong>One '
-                            'moment, please.</strong> — Um momento, por favor.</li></ul>',
+                            'say...?</strong>: Como se diz...?</li><li><strong>One '
+                            'moment, please.</strong>: Um momento, por favor.</li></ul>',
                             '<p>Essas frases são fundamentais porque mantêm a conversa '
                             'viva. O aluno não precisa sair correndo quando não entende. '
                             'Ele pode pedir repetição, pedir ajuda e continuar.</p>']},
@@ -13603,7 +13603,7 @@ BLOG_POSTS = {
                             'próprias</td><td>15 min</td></tr><tr><td>Sexta</td><td>Gravar '
                             '1 minuto falando</td><td>10 '
                             'min</td></tr><tr><td>Sábado</td><td>Aula ao '
-                            'vivo</td><td>50–60 min</td></tr></tbody></table>',
+                            'vivo</td><td>50-60 min</td></tr></tbody></table>',
                             '<p>Essa rotina já cria um ciclo: ouvir, escrever, falar e '
                             'receber correção.</p>',
                             '<p>O erro é esperar uma rotina perfeita. O aluno pensa: '
@@ -13818,7 +13818,7 @@ BLOG_POSTS = {
                             'min</td></tr><tr><td>Bloco 2</td><td>Fala ou '
                             'escrita</td><td>20 min</td></tr><tr><td>Bloco '
                             '3</td><td>Revisão ativa</td><td>20 min</td></tr><tr><td>Aula '
-                            'ao vivo</td><td>Conversação e correção</td><td>50–60 '
+                            'ao vivo</td><td>Conversação e correção</td><td>50-60 '
                             'min</td></tr></tbody></table>',
                             '<p>Com esse formato, você já cria um ciclo completo:</p>',
                             '<ol><li>Entra em contato com conteúdo novo.</li><li>Usa esse '
@@ -13953,7 +13953,7 @@ BLOG_POSTS = {
                             'consumido em uma ação. Se ouviu, fale. Se leu, escreva. Se '
                             'aprendeu uma palavra, use em frase. Se assistiu a um vídeo, '
                             'resuma.</p>',
-                            '<p>Use a regra 1–1–1:</p>',
+                            '<p>Use a regra 1-1-1:</p>',
                             '<ul><li><strong>1 input:</strong> um áudio, texto ou vídeo '
                             'curto.</li><li><strong>1 output:</strong> uma fala, frase ou '
                             'parágrafo produzido por você.</li><li><strong>1 '
@@ -14550,17 +14550,17 @@ BLOG_POSTS = {
                             'cancel</td></tr><tr><td>paciente</td><td>patient</td></tr><tr><td>recepção</td><td>reception</td></tr><tr><td>atendente</td><td>receptionist '
                             '/ staff member</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Gostaria de marcar uma consulta.” — I would like to '
+                            '<ul><li>“Gostaria de marcar uma consulta.”: I would like to '
                             'schedule an appointment.</li><li>“Tem horário disponível '
-                            'hoje?” — Is there an available time today?</li><li>“Tem '
-                            'horário amanhã?” — Is there an available time '
-                            'tomorrow?</li><li>“Qual é o primeiro horário disponível?” — '
+                            'hoje?”: Is there an available time today?</li><li>“Tem '
+                            'horário amanhã?”: Is there an available time '
+                            'tomorrow?</li><li>“Qual é o primeiro horário disponível?”: '
                             'What is the first available time?</li><li>“Preciso remarcar '
-                            'minha consulta.” — I need to reschedule my '
-                            'appointment.</li><li>“Preciso cancelar minha consulta.” — I '
+                            'minha consulta.”: I need to reschedule my '
+                            'appointment.</li><li>“Preciso cancelar minha consulta.”: I '
                             'need to cancel my appointment.</li><li>“A consulta é '
-                            'presencial ou online?” — Is the appointment in person or '
-                            'online?</li><li>“Qual é o endereço da clínica?” — What is the '
+                            'presencial ou online?”: Is the appointment in person or '
+                            'online?</li><li>“Qual é o endereço da clínica?”: What is the '
                             'clinic address?</li></ul>',
                             '<p>Sample WhatsApp message:</p>',
                             '<p><strong>Olá, tudo bem? Gostaria de marcar uma consulta com '
@@ -14590,15 +14590,15 @@ BLOG_POSTS = {
                             'fiscal</td><td>receipt / tax '
                             'invoice</td></tr><tr><td>reembolso</td><td>reimbursement</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Vocês aceitam convênio?” — Do you accept health '
-                            'insurance?</li><li>“Vocês aceitam meu plano de saúde?” — Do '
+                            '<ul><li>“Vocês aceitam convênio?”: Do you accept health '
+                            'insurance?</li><li>“Vocês aceitam meu plano de saúde?”: Do '
                             'you accept my health insurance plan?</li><li>“Qual é o valor '
-                            'da consulta particular?” — What is the price for a private '
-                            'appointment?</li><li>“Posso pagar com cartão?” — Can I pay by '
-                            'card?</li><li>“Vocês emitem recibo?” — Do you issue a '
-                            'receipt?</li><li>“Preciso de recibo para reembolso.” — I need '
+                            'da consulta particular?”: What is the price for a private '
+                            'appointment?</li><li>“Posso pagar com cartão?”: Can I pay by '
+                            'card?</li><li>“Vocês emitem recibo?”: Do you issue a '
+                            'receipt?</li><li>“Preciso de recibo para reembolso.”: I need '
                             'a receipt for reimbursement.</li><li>“A consulta é coberta '
-                            'pelo convênio?” — Is the appointment covered by '
+                            'pelo convênio?”: Is the appointment covered by '
                             'insurance?</li></ul>',
                             '<p>A useful clarification phrase:</p>',
                             '<p><strong>“Só para confirmar, vocês aceitam meu '
@@ -14621,27 +14621,27 @@ BLOG_POSTS = {
                             'de ar</td><td>shortness of '
                             'breath</td></tr><tr><td>cansaço</td><td>tiredness</td></tr><tr><td>vômito</td><td>vomiting</td></tr><tr><td>diarreia</td><td>diarrhea</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Estou com dor de cabeça.” — I have a '
-                            'headache.</li><li>“Estou com febre.” — I have a '
-                            'fever.</li><li>“Estou com tosse.” — I have a '
-                            'cough.</li><li>“Estou com dor de garganta.” — I have a sore '
-                            'throat.</li><li>“Estou com tontura.” — I feel '
-                            'dizzy.</li><li>“Estou com enjoo.” — I feel '
-                            'nauseous.</li><li>“Estou com falta de ar.” — I have shortness '
-                            'of breath.</li><li>“Estou com dor no peito.” — I have chest '
-                            'pain.</li><li>“Estou com dor no estômago.” — I have stomach '
-                            'pain.</li><li>“Tenho alergia a...” — I am allergic '
+                            '<ul><li>“Estou com dor de cabeça.”: I have a '
+                            'headache.</li><li>“Estou com febre.”: I have a '
+                            'fever.</li><li>“Estou com tosse.”: I have a '
+                            'cough.</li><li>“Estou com dor de garganta.”: I have a sore '
+                            'throat.</li><li>“Estou com tontura.”: I feel '
+                            'dizzy.</li><li>“Estou com enjoo.”: I feel '
+                            'nauseous.</li><li>“Estou com falta de ar.”: I have shortness '
+                            'of breath.</li><li>“Estou com dor no peito.”: I have chest '
+                            'pain.</li><li>“Estou com dor no estômago.”: I have stomach '
+                            'pain.</li><li>“Tenho alergia a...”: I am allergic '
                             'to...</li></ul>',
                             '<p>You can add time:</p>',
-                            '<ul><li>“Começou hoje.” — It started today.</li><li>“Começou '
-                            'ontem.” — It started yesterday.</li><li>“Estou assim há dois '
-                            'dias.” — I have been like this for two days.</li><li>“Estou '
-                            'assim há uma semana.” — I have been like this for a '
+                            '<ul><li>“Começou hoje.”: It started today.</li><li>“Começou '
+                            'ontem.”: It started yesterday.</li><li>“Estou assim há dois '
+                            'dias.”: I have been like this for two days.</li><li>“Estou '
+                            'assim há uma semana.”: I have been like this for a '
                             'week.</li></ul>',
                             '<p>And intensity:</p>',
-                            '<ul><li>“É leve.” — It is mild.</li><li>“É forte.” — It is '
-                            'strong.</li><li>“Está piorando.” — It is getting '
-                            'worse.</li><li>“Está melhorando.” — It is getting '
+                            '<ul><li>“É leve.”: It is mild.</li><li>“É forte.”: It is '
+                            'strong.</li><li>“Está piorando.”: It is getting '
+                            'worse.</li><li>“Está melhorando.”: It is getting '
                             'better.</li></ul>']},
                   {'heading': 'How to describe pain clearly',
                    'body': ['<p>Describing pain clearly helps a doctor understand what is '
@@ -14665,10 +14665,10 @@ BLOG_POSTS = {
                             '<p>You can say this while pointing to the place. This is '
                             'useful when vocabulary is limited.</p>',
                             '<p>You can also say:</p>',
-                            '<ul><li>“Dói do lado direito.” — It hurts on the right '
-                            'side.</li><li>“Dói do lado esquerdo.” — It hurts on the left '
-                            'side.</li><li>“Dói quando eu respiro.” — It hurts when I '
-                            'breathe.</li><li>“Dói quando eu ando.” — It hurts when I '
+                            '<ul><li>“Dói do lado direito.”: It hurts on the right '
+                            'side.</li><li>“Dói do lado esquerdo.”: It hurts on the left '
+                            'side.</li><li>“Dói quando eu respiro.”: It hurts when I '
+                            'breathe.</li><li>“Dói quando eu ando.”: It hurts when I '
                             'walk.</li></ul>',
                             '<p>In a live class, practice pointing, explaining and '
                             'answering follow-up questions. Medical Portuguese is not only '
@@ -14696,14 +14696,14 @@ BLOG_POSTS = {
                             'worse?</td></tr><tr><td>Você tem convênio?</td><td>Do you '
                             'have health insurance?</td></tr></tbody></table>',
                             '<p>Useful answers:</p>',
-                            '<ul><li>“Começou ontem.” — It started yesterday.</li><li>“Não '
-                            'tenho febre.” — I do not have a fever.</li><li>“Estou '
-                            'tomando...” — I am taking...</li><li>“Não tenho alergia.” — I '
-                            'do not have allergies.</li><li>“Tenho alergia a...” — I am '
-                            'allergic to...</li><li>“Nunca tive isso antes.” — I have '
-                            'never had this before.</li><li>“Já tive isso antes.” — I have '
-                            'had this before.</li><li>“Está piorando.” — It is getting '
-                            'worse.</li><li>“Está melhorando.” — It is getting '
+                            '<ul><li>“Começou ontem.”: It started yesterday.</li><li>“Não '
+                            'tenho febre.”: I do not have a fever.</li><li>“Estou '
+                            'tomando...”: I am taking...</li><li>“Não tenho alergia.”: I '
+                            'do not have allergies.</li><li>“Tenho alergia a...”: I am '
+                            'allergic to...</li><li>“Nunca tive isso antes.”: I have '
+                            'never had this before.</li><li>“Já tive isso antes.”: I have '
+                            'had this before.</li><li>“Está piorando.”: It is getting '
+                            'worse.</li><li>“Está melhorando.”: It is getting '
                             'better.</li></ul>',
                             '<p>Practice both sides: questions and answers. If you only '
                             'learn what to say, but not what you may hear, you may '
@@ -14723,16 +14723,16 @@ BLOG_POSTS = {
                             'appointment</td></tr><tr><td>atestado médico</td><td>medical '
                             'certificate</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Preciso fazer exames?” — Do I need to do '
-                            'tests?</li><li>“Preciso estar em jejum?” — Do I need to '
-                            'fast?</li><li>“Quando sai o resultado?” — When will the '
-                            'result be ready?</li><li>“Como eu tomo esse remédio?” — How '
-                            'do I take this medicine?</li><li>“Quantas vezes por dia?” — '
-                            'How many times a day?</li><li>“Por quantos dias?” — For how '
-                            'many days?</li><li>“Preciso voltar para retorno?” — Do I need '
+                            '<ul><li>“Preciso fazer exames?”: Do I need to do '
+                            'tests?</li><li>“Preciso estar em jejum?”: Do I need to '
+                            'fast?</li><li>“Quando sai o resultado?”: When will the '
+                            'result be ready?</li><li>“Como eu tomo esse remédio?”: How '
+                            'do I take this medicine?</li><li>“Quantas vezes por dia?”: '
+                            'How many times a day?</li><li>“Por quantos dias?”: For how '
+                            'many days?</li><li>“Preciso voltar para retorno?”: Do I need '
                             'to come back for a follow-up?</li><li>“Você pode escrever as '
-                            'instruções?” — Can you write the '
-                            'instructions?</li><li>“Preciso de um atestado médico.” — I '
+                            'instruções?”: Can you write the '
+                            'instructions?</li><li>“Preciso de um atestado médico.”: I '
                             'need a medical certificate.</li></ul>',
                             '<p>A very important clarification phrase:</p>',
                             '<p><strong>“Pode escrever as instruções, por favor?”</strong> '
@@ -14744,15 +14744,15 @@ BLOG_POSTS = {
                             'Pharmacy Portuguese is closely connected to clinic '
                             'Portuguese.</p>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Tenho uma receita.” — I have a '
-                            'prescription.</li><li>“Você tem esse remédio?” — Do you have '
-                            'this medicine?</li><li>“Precisa de receita?” — Do I need a '
-                            'prescription?</li><li>“Tem genérico?” — Is there a generic '
-                            'version?</li><li>“Tem uma opção mais barata?” — Is there a '
-                            'cheaper option?</li><li>“Como eu tomo?” — How do I take '
-                            'it?</li><li>“Quantas vezes por dia?” — How many times a '
-                            'day?</li><li>“Esse remédio dá sono?” — Does this medicine '
-                            'make you sleepy?</li><li>“Tenho alergia a...” — I am allergic '
+                            '<ul><li>“Tenho uma receita.”: I have a '
+                            'prescription.</li><li>“Você tem esse remédio?”: Do you have '
+                            'this medicine?</li><li>“Precisa de receita?”: Do I need a '
+                            'prescription?</li><li>“Tem genérico?”: Is there a generic '
+                            'version?</li><li>“Tem uma opção mais barata?”: Is there a '
+                            'cheaper option?</li><li>“Como eu tomo?”: How do I take '
+                            'it?</li><li>“Quantas vezes por dia?”: How many times a '
+                            'day?</li><li>“Esse remédio dá sono?”: Does this medicine '
+                            'make you sleepy?</li><li>“Tenho alergia a...”: I am allergic '
                             'to...</li></ul>',
                             '<p>Useful vocabulary:</p>',
                             '<table '
@@ -14776,16 +14776,16 @@ BLOG_POSTS = {
                             'de ar</td><td>shortness of breath</td></tr><tr><td>dor no '
                             'peito</td><td>chest pain</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Preciso de ajuda.” — I need help.</li><li>“É uma '
-                            'emergência.” — It is an emergency.</li><li>“Chame uma '
-                            'ambulância.” — Call an ambulance.</li><li>“Preciso ir ao '
-                            'hospital.” — I need to go to the hospital.</li><li>“Onde fica '
-                            'o pronto-socorro?” — Where is the emergency '
-                            'room?</li><li>“Estou com falta de ar.” — I have shortness of '
-                            'breath.</li><li>“Estou com dor no peito.” — I have chest '
-                            'pain.</li><li>“Ele / ela desmaiou.” — He / she '
-                            'fainted.</li><li>“Está sangrando.” — It is '
-                            'bleeding.</li><li>“Houve um acidente.” — There was an '
+                            '<ul><li>“Preciso de ajuda.”: I need help.</li><li>“É uma '
+                            'emergência.”: It is an emergency.</li><li>“Chame uma '
+                            'ambulância.”: Call an ambulance.</li><li>“Preciso ir ao '
+                            'hospital.”: I need to go to the hospital.</li><li>“Onde fica '
+                            'o pronto-socorro?”: Where is the emergency '
+                            'room?</li><li>“Estou com falta de ar.”: I have shortness of '
+                            'breath.</li><li>“Estou com dor no peito.”: I have chest '
+                            'pain.</li><li>“Ele / ela desmaiou.”: He / she '
+                            'fainted.</li><li>“Está sangrando.”: It is '
+                            'bleeding.</li><li>“Houve um acidente.”: There was an '
                             'accident.</li></ul>',
                             '<p>Also learn:</p>',
                             '<p><strong>“Eu falo pouco português. Preciso de '
@@ -14796,16 +14796,16 @@ BLOG_POSTS = {
                             'healthcare. You should never pretend to understand '
                             'instructions when you are unsure.</p>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak '
-                            'more slowly?</li><li>“Não entendi essa parte.” — I did not '
-                            'understand that part.</li><li>“Pode explicar de outra forma?” '
-                            '— Can you explain another way?</li><li>“Pode escrever, por '
-                            'favor?” — Can you write it down, please?</li><li>“Só para '
-                            'confirmar...” — Just to confirm...</li><li>“Eu preciso tomar '
-                            'isso quantas vezes por dia?” — How many times a day do I need '
-                            'to take this?</li><li>“Eu preciso voltar?” — Do I need to '
-                            'come back?</li><li>“Isso é urgente?” — Is this '
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak '
+                            'more slowly?</li><li>“Não entendi essa parte.”: I did not '
+                            'understand that part.</li><li>“Pode explicar de outra forma?”'
+                            ': Can you explain another way?</li><li>“Pode escrever, por '
+                            'favor?”: Can you write it down, please?</li><li>“Só para '
+                            'confirmar...”: Just to confirm...</li><li>“Eu preciso tomar '
+                            'isso quantas vezes por dia?”: How many times a day do I need '
+                            'to take this?</li><li>“Eu preciso voltar?”: Do I need to '
+                            'come back?</li><li>“Isso é urgente?”: Is this '
                             'urgent?</li></ul>',
                             '<p>Example:</p>',
                             '<p><strong>“Só para confirmar, eu preciso tomar esse remédio '
@@ -15061,46 +15061,46 @@ BLOG_POSTS = {
                             'fiscal</td><td>receipt / tax '
                             'invoice</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Onde fica o arroz?” — Where is the '
-                            'rice?</li><li>“Você tem leite sem lactose?” — Do you have '
-                            'lactose-free milk?</li><li>“Quanto custa?” — How much does it '
-                            'cost?</li><li>“Está em promoção?” — Is it on '
-                            'sale?</li><li>“Onde fica o caixa?” — Where is the '
-                            'checkout?</li><li>“Preciso de uma sacola.” — I need a '
-                            'bag.</li><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Aceita cartão?” — Do you accept '
+                            '<ul><li>“Onde fica o arroz?”: Where is the '
+                            'rice?</li><li>“Você tem leite sem lactose?”: Do you have '
+                            'lactose-free milk?</li><li>“Quanto custa?”: How much does it '
+                            'cost?</li><li>“Está em promoção?”: Is it on '
+                            'sale?</li><li>“Onde fica o caixa?”: Where is the '
+                            'checkout?</li><li>“Preciso de uma sacola.”: I need a '
+                            'bag.</li><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Aceita cartão?”: Do you accept '
                             'cards?</li></ul>',
                             '<p>A very common cashier question is:</p>',
                             '<p><strong>“Débito ou crédito?”</strong> Debit or credit?</p>',
                             '<p>You can answer:</p>',
-                            '<ul><li>“Débito, por favor.” — Debit, '
-                            'please.</li><li>“Crédito, por favor.” — Credit, '
-                            'please.</li><li>“No dinheiro.” — In cash.</li></ul>',
+                            '<ul><li>“Débito, por favor.”: Debit, '
+                            'please.</li><li>“Crédito, por favor.”: Credit, '
+                            'please.</li><li>“No dinheiro.”: In cash.</li></ul>',
                             '<p>Another common question is:</p>',
                             '<p><strong>“CPF na nota?”</strong></p>',
                             '<p>This refers to adding a Brazilian taxpayer ID to the '
                             'receipt. If you do not have one or do not want to use it, you '
                             'can simply say:</p>',
-                            '<ul><li>“Não, obrigado.” — No, thank you.</li><li>“Não '
-                            'precisa.” — No need.</li></ul>',
+                            '<ul><li>“Não, obrigado.”: No, thank you.</li><li>“Não '
+                            'precisa.”: No need.</li></ul>',
                             '<p>These short phrases make checkout much easier.</p>']},
                   {'heading': 'Real-life situation: asking where something is',
                    'body': ['<p>Asking where something is may seem basic, but it is one of '
                             'the most useful skills for daily life. In Brazil, the phrase '
                             '“Onde fica...?” is extremely practical.</p>',
                             '<p>Examples:</p>',
-                            '<ul><li>“Onde fica o pão?” — Where is the '
-                            'bread?</li><li>“Onde fica a água?” — Where is the '
-                            'water?</li><li>“Onde fica a farmácia?” — Where is the '
-                            'pharmacy?</li><li>“Onde fica o banheiro?” — Where is the '
-                            'bathroom?</li><li>“Onde fica o caixa eletrônico?” — Where is '
+                            '<ul><li>“Onde fica o pão?”: Where is the '
+                            'bread?</li><li>“Onde fica a água?”: Where is the '
+                            'water?</li><li>“Onde fica a farmácia?”: Where is the '
+                            'pharmacy?</li><li>“Onde fica o banheiro?”: Where is the '
+                            'bathroom?</li><li>“Onde fica o caixa eletrônico?”: Where is '
                             'the ATM?</li></ul>',
                             '<p>You may also hear answers such as:</p>',
-                            '<ul><li>“No corredor dois.” — In aisle two.</li><li>“Lá no '
-                            'fundo.” — At the back.</li><li>“Do lado direito.” — On the '
-                            'right side.</li><li>“Do lado esquerdo.” — On the left '
-                            'side.</li><li>“Perto da entrada.” — Near the '
-                            'entrance.</li><li>“Ao lado da padaria.” — Next to the bakery '
+                            '<ul><li>“No corredor dois.”: In aisle two.</li><li>“Lá no '
+                            'fundo.”: At the back.</li><li>“Do lado direito.”: On the '
+                            'right side.</li><li>“Do lado esquerdo.”: On the left '
+                            'side.</li><li>“Perto da entrada.”: Near the '
+                            'entrance.</li><li>“Ao lado da padaria.”: Next to the bakery '
                             'section.</li></ul>',
                             '<p>For listening practice, do not only memorize the question. '
                             'Practice understanding the answer. In a live class, the '
@@ -15118,12 +15118,12 @@ BLOG_POSTS = {
                             'detergent</td></tr><tr><td>Household</td><td>lixo</td><td>trash</td></tr><tr><td>Payment</td><td>caixa</td><td>cashier</td></tr><tr><td>Payment</td><td>cartão</td><td>card</td></tr><tr><td>Payment</td><td>dinheiro</td><td>cash</td></tr><tr><td>Payment</td><td>nota '
                             'fiscal</td><td>receipt</td></tr></tbody></table>',
                             '<p>Turn vocabulary into phrases:</p>',
-                            '<ul><li>“Preciso comprar arroz e feijão.” — I need to buy '
-                            'rice and beans.</li><li>“Você tem queijo sem lactose?” — Do '
+                            '<ul><li>“Preciso comprar arroz e feijão.”: I need to buy '
+                            'rice and beans.</li><li>“Você tem queijo sem lactose?”: Do '
                             'you have lactose-free cheese?</li><li>“Onde fica o papel '
-                            'higiênico?” — Where is the toilet paper?</li><li>“Quero pagar '
-                            'no cartão.” — I want to pay by card.</li><li>“Pode me dar a '
-                            'nota fiscal?” — Can you give me the receipt?</li></ul>',
+                            'higiênico?”: Where is the toilet paper?</li><li>“Quero pagar '
+                            'no cartão.”: I want to pay by card.</li><li>“Pode me dar a '
+                            'nota fiscal?”: Can you give me the receipt?</li></ul>',
                             '<p>Vocabulary becomes useful when it becomes action.</p>']},
                   {'heading': 'Real-life situation: going to the pharmacy',
                    'body': ['<p>Pharmacy Portuguese is especially important because '
@@ -15139,15 +15139,15 @@ BLOG_POSTS = {
                             '/ '
                             'tablet</td></tr><tr><td>gotas</td><td>drops</td></tr><tr><td>pomada</td><td>ointment</td></tr><tr><td>dose</td><td>dose</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Estou com dor de cabeça.” — I have a '
-                            'headache.</li><li>“Estou com febre.” — I have a '
-                            'fever.</li><li>“Estou com dor de garganta.” — I have a sore '
-                            'throat.</li><li>“Tenho alergia a...” — I am allergic '
-                            'to...</li><li>“Precisa de receita?” — Do I need a '
-                            'prescription?</li><li>“Como eu tomo esse remédio?” — How do I '
-                            'take this medicine?</li><li>“Quantas vezes por dia?” — How '
-                            'many times a day?</li><li>“Tem uma opção mais barata?” — Is '
-                            'there a cheaper option?</li><li>“Você pode me ajudar?” — Can '
+                            '<ul><li>“Estou com dor de cabeça.”: I have a '
+                            'headache.</li><li>“Estou com febre.”: I have a '
+                            'fever.</li><li>“Estou com dor de garganta.”: I have a sore '
+                            'throat.</li><li>“Tenho alergia a...”: I am allergic '
+                            'to...</li><li>“Precisa de receita?”: Do I need a '
+                            'prescription?</li><li>“Como eu tomo esse remédio?”: How do I '
+                            'take this medicine?</li><li>“Quantas vezes por dia?”: How '
+                            'many times a day?</li><li>“Tem uma opção mais barata?”: Is '
+                            'there a cheaper option?</li><li>“Você pode me ajudar?”: Can '
                             'you help me?</li></ul>',
                             '<p>A pharmacy interaction may be short, but it requires '
                             'clarity. You should practice slowly and carefully.</p>']},
@@ -15168,14 +15168,14 @@ BLOG_POSTS = {
                             'com alergia.</td><td>I have an '
                             'allergy.</td></tr></tbody></table>',
                             '<p>You can add time:</p>',
-                            '<ul><li>“Estou assim desde ontem.” — I have been like this '
-                            'since yesterday.</li><li>“Estou assim há dois dias.” — I have '
-                            'been like this for two days.</li><li>“Começou hoje de manhã.” '
-                            '— It started this morning.</li></ul>',
+                            '<ul><li>“Estou assim desde ontem.”: I have been like this '
+                            'since yesterday.</li><li>“Estou assim há dois dias.”: I have '
+                            'been like this for two days.</li><li>“Começou hoje de manhã.”'
+                            ': It started this morning.</li></ul>',
                             '<p>And intensity:</p>',
-                            '<ul><li>“É leve.” — It is mild.</li><li>“É forte.” — It is '
-                            'strong.</li><li>“Está piorando.” — It is getting '
-                            'worse.</li><li>“Está melhorando.” — It is getting '
+                            '<ul><li>“É leve.”: It is mild.</li><li>“É forte.”: It is '
+                            'strong.</li><li>“Está piorando.”: It is getting '
+                            'worse.</li><li>“Está melhorando.”: It is getting '
                             'better.</li></ul>',
                             '<p>These phrases help you explain the situation more '
                             'clearly.</p>']},
@@ -15197,15 +15197,15 @@ BLOG_POSTS = {
                             'password</td></tr><tr><td>atendimento</td><td>service / '
                             'assistance</td></tr><tr><td>pagamento</td><td>payment</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Qual é o horário de funcionamento?” — What are the '
-                            'opening hours?</li><li>“Está aberto hoje?” — Is it open '
-                            'today?</li><li>“Onde eu retiro a encomenda?” — Where do I '
-                            'pick up the package?</li><li>“Preciso imprimir um documento.” '
-                            '— I need to print a document.</li><li>“Preciso tirar uma '
-                            'cópia.” — I need to make a copy.</li><li>“Onde fica o caixa '
-                            'eletrônico?” — Where is the ATM?</li><li>“Preciso pagar uma '
-                            'conta.” — I need to pay a bill.</li><li>“Tem fila?” — Is '
-                            'there a line?</li><li>“Preciso de atendimento.” — I need '
+                            '<ul><li>“Qual é o horário de funcionamento?”: What are the '
+                            'opening hours?</li><li>“Está aberto hoje?”: Is it open '
+                            'today?</li><li>“Onde eu retiro a encomenda?”: Where do I '
+                            'pick up the package?</li><li>“Preciso imprimir um documento.”'
+                            ': I need to print a document.</li><li>“Preciso tirar uma '
+                            'cópia.”: I need to make a copy.</li><li>“Onde fica o caixa '
+                            'eletrônico?”: Where is the ATM?</li><li>“Preciso pagar uma '
+                            'conta.”: I need to pay a bill.</li><li>“Tem fila?”: Is '
+                            'there a line?</li><li>“Preciso de atendimento.”: I need '
                             'assistance.</li></ul>',
                             '<p>These are practical phrases that make life easier in '
                             'Brazil.</p>']},
@@ -15215,14 +15215,14 @@ BLOG_POSTS = {
                             'understand everything immediately. You need to know how to '
                             'stay in the conversation.</p>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak '
-                            'more slowly?</li><li>“Não entendi.” — I did not '
-                            'understand.</li><li>“Não entendi essa parte.” — I did not '
-                            'understand that part.</li><li>“Como assim?” — What do you '
-                            'mean?</li><li>“Pode escrever?” — Can you write it '
-                            'down?</li><li>“Só para confirmar...” — Just to '
-                            'confirm...</li><li>“Desculpa, eu falo pouco português.” — '
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak '
+                            'more slowly?</li><li>“Não entendi.”: I did not '
+                            'understand.</li><li>“Não entendi essa parte.”: I did not '
+                            'understand that part.</li><li>“Como assim?”: What do you '
+                            'mean?</li><li>“Pode escrever?”: Can you write it '
+                            'down?</li><li>“Só para confirmar...”: Just to '
+                            'confirm...</li><li>“Desculpa, eu falo pouco português.”: '
                             'Sorry, I speak little Portuguese.</li></ul>',
                             '<p>This last phrase is especially useful:</p>',
                             '<p><strong>“Desculpa, eu falo pouco português. Pode falar '
@@ -15606,11 +15606,11 @@ BLOG_POSTS = {
                             'work, healthcare, banking, housing and daily communication. '
                             'The best way to learn them is in complete phrases.</p>',
                             '<p>Example:</p>',
-                            '<ul><li><strong>Preciso de uma receita médica.</strong> — I '
+                            '<ul><li><strong>Preciso de uma receita médica.</strong>: I '
                             'need a medical prescription.</li><li><strong>Essa é uma '
-                            'receita de bolo.</strong> — This is a cake '
+                            'receita de bolo.</strong>: This is a cake '
                             'recipe.</li><li><strong>A receita da empresa '
-                            'aumentou.</strong> — The company’s revenue '
+                            'aumentou.</strong>: The company’s revenue '
                             'increased.</li></ul>',
                             '<p>Same word, different contexts.</p>']},
                   {'heading': 'HowTo: learn Portuguese for Brazil as a Romance-language '
@@ -15705,14 +15705,14 @@ BLOG_POSTS = {
                             '<p>Hello, how are you? I am interested in the apartment. Can '
                             'you send me more information, please?</p>',
                             '<p>Useful WhatsApp phrases:</p>',
-                            '<ul><li><strong>Olá, tudo bem?</strong> — Hello, how are '
-                            'you?</li><li><strong>Tenho uma dúvida.</strong> — I have a '
-                            'question.</li><li><strong>Só para confirmar...</strong> — '
+                            '<ul><li><strong>Olá, tudo bem?</strong>: Hello, how are '
+                            'you?</li><li><strong>Tenho uma dúvida.</strong>: I have a '
+                            'question.</li><li><strong>Só para confirmar...</strong>: '
                             'Just to confirm...</li><li><strong>Você pode me enviar o '
-                            'endereço?</strong> — Can you send me the '
+                            'endereço?</strong>: Can you send me the '
                             'address?</li><li><strong>Pode me mandar por '
-                            'WhatsApp?</strong> — Can you send it to me on '
-                            'WhatsApp?</li><li><strong>Obrigado pela ajuda.</strong> — '
+                            'WhatsApp?</strong>: Can you send it to me on '
+                            'WhatsApp?</li><li><strong>Obrigado pela ajuda.</strong>: '
                             'Thank you for your help.</li></ul>',
                             '<p>Cultural tone matters. Brazilian Portuguese often uses '
                             'warmth and soft openings in daily written '
@@ -15728,17 +15728,17 @@ BLOG_POSTS = {
                             '/ '
                             'test</td></tr><tr><td>material</td><td>material</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li><strong>Podemos marcar uma reunião?</strong> — Can we '
-                            'schedule a meeting?</li><li><strong>Qual é o prazo?</strong> '
-                            '— What is the deadline?</li><li><strong>Quem é o '
-                            'responsável?</strong> — Who is '
+                            '<ul><li><strong>Podemos marcar uma reunião?</strong>: Can we '
+                            'schedule a meeting?</li><li><strong>Qual é o prazo?</strong>'
+                            ': What is the deadline?</li><li><strong>Quem é o '
+                            'responsável?</strong>: Who is '
                             'responsible?</li><li><strong>Tenho uma dúvida sobre a '
-                            'atividade.</strong> — I have a question about the '
+                            'atividade.</strong>: I have a question about the '
                             'assignment.</li><li><strong>Você pode explicar de '
-                            'novo?</strong> — Can you explain again?</li><li><strong>Vou '
-                            'enviar por e-mail.</strong> — I will send it by '
+                            'novo?</strong>: Can you explain again?</li><li><strong>Vou '
+                            'enviar por e-mail.</strong>: I will send it by '
                             'email.</li><li><strong>Só para confirmar, a reunião é '
-                            'amanhã?</strong> — Just to confirm, is the meeting '
+                            'amanhã?</strong>: Just to confirm, is the meeting '
                             'tomorrow?</li></ul>',
                             '<p>These phrases are more valuable than isolated vocabulary '
                             'because they prepare you to participate.</p>']},
@@ -16012,13 +16012,13 @@ BLOG_POSTS = {
                             'signal lifestyle, distance, safety, cost, transportation and '
                             'local identity.</p>',
                             '<p>You may hear:</p>',
-                            '<ul><li>“Em que bairro você mora?” — What neighborhood do you '
-                            'live in?</li><li>“Qual é o bairro?” — What is the '
-                            'neighborhood?</li><li>“Fica no bairro Pinheiros.” — It is in '
+                            '<ul><li>“Em que bairro você mora?”: What neighborhood do you '
+                            'live in?</li><li>“Qual é o bairro?”: What is the '
+                            'neighborhood?</li><li>“Fica no bairro Pinheiros.”: It is in '
                             'the Pinheiros neighborhood.</li><li>“Esse bairro é perto do '
-                            'centro?” — Is this neighborhood near downtown?</li><li>“É um '
-                            'bairro residencial.” — It is a residential '
-                            'neighborhood.</li><li>“É um bairro mais comercial.” — It is a '
+                            'centro?”: Is this neighborhood near downtown?</li><li>“É um '
+                            'bairro residencial.”: It is a residential '
+                            'neighborhood.</li><li>“É um bairro mais comercial.”: It is a '
                             'more commercial neighborhood.</li></ul>',
                             '<p>Useful neighborhood vocabulary:</p>',
                             '<table '
@@ -16057,14 +16057,14 @@ BLOG_POSTS = {
                             'floor</td></tr><tr><td>torre 1</td><td>tower '
                             '1</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Qual é o complemento?” — What is the additional '
-                            'address detail?</li><li>“O complemento é apartamento 802.” — '
-                            'The complement is apartment 802.</li><li>“Moro no bloco B.” — '
-                            'I live in block B.</li><li>“É na sala 305.” — It is in office '
-                            '/ room 305.</li><li>“Não tem complemento.” — There is no '
-                            'complement.</li><li>“O prédio tem duas torres.” — The '
+                            '<ul><li>“Qual é o complemento?”: What is the additional '
+                            'address detail?</li><li>“O complemento é apartamento 802.”: '
+                            'The complement is apartment 802.</li><li>“Moro no bloco B.”: '
+                            'I live in block B.</li><li>“É na sala 305.”: It is in office '
+                            '/ room 305.</li><li>“Não tem complemento.”: There is no '
+                            'complement.</li><li>“O prédio tem duas torres.”: The '
                             'building has two towers.</li><li>“A entrada é pela portaria '
-                            'principal.” — The entrance is through the main '
+                            'principal.”: The entrance is through the main '
                             'reception.</li></ul>',
                             '<p>This word is especially useful for deliveries. A delivery '
                             'person may know the street and building, but still need the '
@@ -16075,12 +16075,12 @@ BLOG_POSTS = {
                             'and online purchases. You may hear it pronounced as '
                             'individual letters: <strong>C-E-P</strong>.</p>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Qual é o CEP?” — What is the postal '
-                            'code?</li><li>“Você sabe o CEP?” — Do you know the postal '
-                            'code?</li><li>“Meu CEP é...” — My postal code '
-                            'is...</li><li>“Preciso informar o CEP.” — I need to provide '
-                            'the postal code.</li><li>“O CEP está correto?” — Is the '
-                            'postal code correct?</li><li>“Não sei o CEP.” — I do not know '
+                            '<ul><li>“Qual é o CEP?”: What is the postal '
+                            'code?</li><li>“Você sabe o CEP?”: Do you know the postal '
+                            'code?</li><li>“Meu CEP é...”: My postal code '
+                            'is...</li><li>“Preciso informar o CEP.”: I need to provide '
+                            'the postal code.</li><li>“O CEP está correto?”: Is the '
+                            'postal code correct?</li><li>“Não sei o CEP.”: I do not know '
                             'the postal code.</li></ul>',
                             '<p>Important language note: do not confuse '
                             '<strong>CEP</strong> with a street number. The CEP is the '
@@ -16097,21 +16097,21 @@ BLOG_POSTS = {
                             '<strong>“Onde fica...?”</strong> It means “Where is...?” or '
                             '“Where is it located?”</p>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Onde fica a farmácia?” — Where is the '
-                            'pharmacy?</li><li>“Onde fica o mercado?” — Where is the '
-                            'market?</li><li>“Onde fica a saída?” — Where is the '
-                            'exit?</li><li>“Onde fica o banheiro?” — Where is the '
-                            'bathroom?</li><li>“Onde fica a portaria?” — Where is the '
-                            'building reception?</li><li>“Onde fica a clínica?” — Where is '
-                            'the clinic?</li><li>“Onde fica a estação de metrô?” — Where '
-                            'is the subway station?</li><li>“Onde fica esse endereço?” — '
+                            '<ul><li>“Onde fica a farmácia?”: Where is the '
+                            'pharmacy?</li><li>“Onde fica o mercado?”: Where is the '
+                            'market?</li><li>“Onde fica a saída?”: Where is the '
+                            'exit?</li><li>“Onde fica o banheiro?”: Where is the '
+                            'bathroom?</li><li>“Onde fica a portaria?”: Where is the '
+                            'building reception?</li><li>“Onde fica a clínica?”: Where is '
+                            'the clinic?</li><li>“Onde fica a estação de metrô?”: Where '
+                            'is the subway station?</li><li>“Onde fica esse endereço?”: '
                             'Where is this address?</li></ul>',
                             '<p>You can also ask:</p>',
-                            '<ul><li>“É perto daqui?” — Is it near here?</li><li>“É '
-                            'longe?” — Is it far?</li><li>“Dá para ir a pé?” — Can I walk '
-                            'there?</li><li>“Preciso pegar ônibus?” — Do I need to take a '
-                            'bus?</li><li>“Preciso pegar metrô?” — Do I need to take the '
-                            'subway?</li><li>“Quanto tempo leva?” — How long does it '
+                            '<ul><li>“É perto daqui?”: Is it near here?</li><li>“É '
+                            'longe?”: Is it far?</li><li>“Dá para ir a pé?”: Can I walk '
+                            'there?</li><li>“Preciso pegar ônibus?”: Do I need to take a '
+                            'bus?</li><li>“Preciso pegar metrô?”: Do I need to take the '
+                            'subway?</li><li>“Quanto tempo leva?”: How long does it '
                             'take?</li></ul>',
                             '<p>A very practical beginner conversation:</p>',
                             '<p><strong>You:</strong> Desculpa, onde fica a farmácia? '
@@ -16135,15 +16135,15 @@ BLOG_POSTS = {
                             'sem saída</td><td>dead-end '
                             'street</td></tr><tr><td>entrada</td><td>entrance</td></tr><tr><td>saída</td><td>exit</td></tr></tbody></table>',
                             '<p>Useful direction phrases:</p>',
-                            '<ul><li>“Vire à direita.” — Turn right.</li><li>“Vire à '
-                            'esquerda.” — Turn left.</li><li>“Siga reto.” — Go '
-                            'straight.</li><li>“Fica na esquina.” — It is on the '
-                            'corner.</li><li>“Fica ao lado do mercado.” — It is next to '
-                            'the market.</li><li>“Fica em frente ao banco.” — It is in '
-                            'front of the bank.</li><li>“Fica atrás da escola.” — It is '
-                            'behind the school.</li><li>“É perto da estação.” — It is near '
-                            'the station.</li><li>“É longe daqui.” — It is far from '
-                            'here.</li><li>“Passe pelo sinal.” — Go past the traffic '
+                            '<ul><li>“Vire à direita.”: Turn right.</li><li>“Vire à '
+                            'esquerda.”: Turn left.</li><li>“Siga reto.”: Go '
+                            'straight.</li><li>“Fica na esquina.”: It is on the '
+                            'corner.</li><li>“Fica ao lado do mercado.”: It is next to '
+                            'the market.</li><li>“Fica em frente ao banco.”: It is in '
+                            'front of the bank.</li><li>“Fica atrás da escola.”: It is '
+                            'behind the school.</li><li>“É perto da estação.”: It is near '
+                            'the station.</li><li>“É longe daqui.”: It is far from '
+                            'here.</li><li>“Passe pelo sinal.”: Go past the traffic '
                             'light.</li></ul>',
                             '<p>In real life, people often combine directions with '
                             'reference points. That is why you should also learn local '
@@ -16161,14 +16161,14 @@ BLOG_POSTS = {
                             'de gasolina</td><td>gas '
                             'station</td></tr><tr><td>hospital</td><td>hospital</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Fica perto da padaria.” — It is near the '
-                            'bakery.</li><li>“Fica ao lado da farmácia.” — It is next to '
-                            'the pharmacy.</li><li>“Fica em frente ao banco.” — It is in '
-                            'front of the bank.</li><li>“Fica atrás da escola.” — It is '
-                            'behind the school.</li><li>“É perto do metrô.” — It is near '
-                            'the subway.</li><li>“É no final da rua.” — It is at the end '
-                            'of the street.</li><li>“É depois do mercado.” — It is after '
-                            'the market.</li><li>“É antes do sinal.” — It is before the '
+                            '<ul><li>“Fica perto da padaria.”: It is near the '
+                            'bakery.</li><li>“Fica ao lado da farmácia.”: It is next to '
+                            'the pharmacy.</li><li>“Fica em frente ao banco.”: It is in '
+                            'front of the bank.</li><li>“Fica atrás da escola.”: It is '
+                            'behind the school.</li><li>“É perto do metrô.”: It is near '
+                            'the subway.</li><li>“É no final da rua.”: It is at the end '
+                            'of the street.</li><li>“É depois do mercado.”: It is after '
+                            'the market.</li><li>“É antes do sinal.”: It is before the '
                             'traffic light.</li></ul>',
                             '<p>This is one reason why learning Portuguese through '
                             'real-life situations is more effective than memorizing '
@@ -16189,16 +16189,16 @@ BLOG_POSTS = {
                             'à frente</td><td>a little further '
                             'ahead</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Esse é o endereço.” — This is the '
-                            'address.</li><li>“Estou na portaria.” — I am at the building '
-                            'reception / gate.</li><li>“Estou na entrada principal.” — I '
-                            'am at the main entrance.</li><li>“Pode parar aqui.” — You can '
-                            'stop here.</li><li>“Pode parar mais à frente.” — You can stop '
-                            'a little further ahead.</li><li>“É aqui mesmo.” — It is right '
-                            'here.</li><li>“Ainda não cheguei.” — I have not arrived '
-                            'yet.</li><li>“Estou chegando.” — I am arriving.</li><li>“Você '
-                            'está perto?” — Are you close?</li><li>“Estou esperando na '
-                            'esquina.” — I am waiting on the corner.</li></ul>',
+                            '<ul><li>“Esse é o endereço.”: This is the '
+                            'address.</li><li>“Estou na portaria.”: I am at the building '
+                            'reception / gate.</li><li>“Estou na entrada principal.”: I '
+                            'am at the main entrance.</li><li>“Pode parar aqui.”: You can '
+                            'stop here.</li><li>“Pode parar mais à frente.”: You can stop '
+                            'a little further ahead.</li><li>“É aqui mesmo.”: It is right '
+                            'here.</li><li>“Ainda não cheguei.”: I have not arrived '
+                            'yet.</li><li>“Estou chegando.”: I am arriving.</li><li>“Você '
+                            'está perto?”: Are you close?</li><li>“Estou esperando na '
+                            'esquina.”: I am waiting on the corner.</li></ul>',
                             '<p>Sample chat message:</p>',
                             '<p><strong>Olá, estou na entrada principal do prédio, perto '
                             'da portaria. Pode parar aqui, por favor.</strong></p>',
@@ -16221,15 +16221,15 @@ BLOG_POSTS = {
                             'pick up</td></tr><tr><td>receber</td><td>to '
                             'receive</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Chegou uma encomenda para mim?” — Did a package '
-                            'arrive for me?</li><li>“Tenho uma entrega hoje.” — I have a '
-                            'delivery today.</li><li>“Pode deixar na portaria.” — You can '
-                            'leave it at reception.</li><li>“Moro no apartamento 802.” — I '
-                            'live in apartment 802.</li><li>“É no bloco B.” — It is in '
-                            'block B.</li><li>“Vou descer para pegar.” — I will come '
-                            'downstairs to get it.</li><li>“Pode tocar o interfone.” — You '
+                            '<ul><li>“Chegou uma encomenda para mim?”: Did a package '
+                            'arrive for me?</li><li>“Tenho uma entrega hoje.”: I have a '
+                            'delivery today.</li><li>“Pode deixar na portaria.”: You can '
+                            'leave it at reception.</li><li>“Moro no apartamento 802.”: I '
+                            'live in apartment 802.</li><li>“É no bloco B.”: It is in '
+                            'block B.</li><li>“Vou descer para pegar.”: I will come '
+                            'downstairs to get it.</li><li>“Pode tocar o interfone.”: You '
                             'can ring the intercom.</li><li>“A portaria está autorizada a '
-                            'receber.” — Reception is authorized to receive it.</li></ul>',
+                            'receber.”: Reception is authorized to receive it.</li></ul>',
                             '<p>This topic is perfect for live-class practice because the '
                             'conversation is short, repetitive and useful.</p>']},
                   {'heading': 'How to ask for repetition and confirmation',
@@ -16237,17 +16237,17 @@ BLOG_POSTS = {
                             'dealing with addresses and directions. A small mistake can '
                             'send you to the wrong place.</p>',
                             '<p>Useful clarification phrases:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak '
-                            'more slowly?</li><li>“Não entendi o endereço.” — I did not '
-                            'understand the address.</li><li>“Pode escrever o endereço?” — '
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak '
+                            'more slowly?</li><li>“Não entendi o endereço.”: I did not '
+                            'understand the address.</li><li>“Pode escrever o endereço?”: '
                             'Can you write the address?</li><li>“Pode mandar por '
-                            'WhatsApp?” — Can you send it by WhatsApp?</li><li>“Só para '
-                            'confirmar...” — Just to confirm...</li><li>“É rua ou '
-                            'avenida?” — Is it a street or an avenue?</li><li>“Qual é o '
-                            'número?” — What is the number?</li><li>“Qual é o bairro?” — '
-                            'What is the neighborhood?</li><li>“Qual é o complemento?” — '
-                            'What is the complement?</li><li>“É perto de quê?” — What is '
+                            'WhatsApp?”: Can you send it by WhatsApp?</li><li>“Só para '
+                            'confirmar...”: Just to confirm...</li><li>“É rua ou '
+                            'avenida?”: Is it a street or an avenue?</li><li>“Qual é o '
+                            'número?”: What is the number?</li><li>“Qual é o bairro?”: '
+                            'What is the neighborhood?</li><li>“Qual é o complemento?”: '
+                            'What is the complement?</li><li>“É perto de quê?”: What is '
                             'it near?</li></ul>',
                             '<p>A strong confirmation model:</p>',
                             '<p><strong>“Só para confirmar: é Rua das Flores, número 245, '
@@ -16567,14 +16567,14 @@ BLOG_POSTS = {
                             'need to know how to stay in the conversation when you miss '
                             'something.</p>',
                             '<p>Essential phrases:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak '
-                            'more slowly?</li><li>“Não entendi.” — I did not '
-                            'understand.</li><li>“Não entendi essa parte.” — I did not '
-                            'understand that part.</li><li>“Como assim?” — What do you '
-                            'mean?</li><li>“Só para confirmar...” — Just to '
-                            'confirm...</li><li>“Você pode escrever?” — Can you write it '
-                            'down?</li><li>“Desculpa, eu falo pouco português.” — Sorry, I '
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak '
+                            'more slowly?</li><li>“Não entendi.”: I did not '
+                            'understand.</li><li>“Não entendi essa parte.”: I did not '
+                            'understand that part.</li><li>“Como assim?”: What do you '
+                            'mean?</li><li>“Só para confirmar...”: Just to '
+                            'confirm...</li><li>“Você pode escrever?”: Can you write it '
+                            'down?</li><li>“Desculpa, eu falo pouco português.”: Sorry, I '
                             'speak little Portuguese.</li></ul>',
                             '<p>A powerful beginner sentence is:</p>',
                             '<p><strong>“Desculpa, eu falo pouco português. Pode falar '
@@ -16595,14 +16595,14 @@ BLOG_POSTS = {
                             'invoice</td></tr><tr><td>promoção</td><td>sale / '
                             'promotion</td></tr></tbody></table>',
                             '<p>Common phrases:</p>',
-                            '<ul><li>“Onde fica o arroz?” — Where is the '
-                            'rice?</li><li>“Quanto custa?” — How much does it '
-                            'cost?</li><li>“Está em promoção?” — Is it on '
-                            'sale?</li><li>“Aceita cartão?” — Do you accept '
-                            'cards?</li><li>“Débito, por favor.” — Debit, '
-                            'please.</li><li>“Crédito, por favor.” — Credit, '
-                            'please.</li><li>“Preciso de uma sacola.” — I need a '
-                            'bag.</li><li>“Não, obrigado.” — No, thank you.</li></ul>',
+                            '<ul><li>“Onde fica o arroz?”: Where is the '
+                            'rice?</li><li>“Quanto custa?”: How much does it '
+                            'cost?</li><li>“Está em promoção?”: Is it on '
+                            'sale?</li><li>“Aceita cartão?”: Do you accept '
+                            'cards?</li><li>“Débito, por favor.”: Debit, '
+                            'please.</li><li>“Crédito, por favor.”: Credit, '
+                            'please.</li><li>“Preciso de uma sacola.”: I need a '
+                            'bag.</li><li>“Não, obrigado.”: No, thank you.</li></ul>',
                             '<p>A very common cashier question is:</p>',
                             '<p><strong>“CPF na nota?”</strong></p>',
                             '<p>The cashier is asking whether you want to include a '
@@ -16626,15 +16626,15 @@ BLOG_POSTS = {
                             'manager</td></tr><tr><td>vizinho / '
                             'vizinha</td><td>neighbor</td></tr><tr><td>encomenda</td><td>package</td></tr><tr><td>entrega</td><td>delivery</td></tr><tr><td>manutenção</td><td>maintenance</td></tr><tr><td>elevador</td><td>elevator</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Chegou uma encomenda para mim?” — Did a package '
-                            'arrive for me?</li><li>“Vou receber uma visita hoje.” — I '
+                            '<ul><li>“Chegou uma encomenda para mim?”: Did a package '
+                            'arrive for me?</li><li>“Vou receber uma visita hoje.”: I '
                             'will have a visitor today.</li><li>“Pode liberar a entrada, '
-                            'por favor?” — Can you allow entry, please?</li><li>“O '
-                            'elevador não está funcionando.” — The elevator is not '
-                            'working.</li><li>“Preciso falar com o síndico.” — I need to '
+                            'por favor?”: Can you allow entry, please?</li><li>“O '
+                            'elevador não está funcionando.”: The elevator is not '
+                            'working.</li><li>“Preciso falar com o síndico.”: I need to '
                             'speak with the building manager.</li><li>“Desculpa '
-                            'incomodar.” — Sorry to bother you.</li><li>“O som está um '
-                            'pouco alto.” — The music / sound is a little loud.</li></ul>',
+                            'incomodar.”: Sorry to bother you.</li><li>“O som está um '
+                            'pouco alto.”: The music / sound is a little loud.</li></ul>',
                             '<p>Notice the phrase <strong>“Desculpa incomodar”</strong>. '
                             'It is useful when asking a neighbor or building staff for '
                             'something that may interrupt them. This is cultural tone in '
@@ -16657,13 +16657,13 @@ BLOG_POSTS = {
                             'exam</td></tr><tr><td>inscrição</td><td>registration</td></tr><tr><td>horário</td><td>schedule '
                             '/ time</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Podemos marcar uma reunião?” — Can we schedule a '
-                            'meeting?</li><li>“Qual é o prazo?” — What is the '
-                            'deadline?</li><li>“Só para confirmar...” — Just to '
-                            'confirm...</li><li>“Você pode explicar de novo?” — Can you '
-                            'explain again?</li><li>“Onde encontro o material da aula?” — '
+                            '<ul><li>“Podemos marcar uma reunião?”: Can we schedule a '
+                            'meeting?</li><li>“Qual é o prazo?”: What is the '
+                            'deadline?</li><li>“Só para confirmar...”: Just to '
+                            'confirm...</li><li>“Você pode explicar de novo?”: Can you '
+                            'explain again?</li><li>“Onde encontro o material da aula?”: '
                             'Where can I find the class material?</li><li>“Tenho uma '
-                            'dúvida sobre a atividade.” — I have a question about the '
+                            'dúvida sobre a atividade.”: I have a question about the '
                             'assignment.</li></ul>',
                             '<p>These sentences help you participate earlier, even before '
                             'reaching an advanced level.</p>']},
@@ -16714,11 +16714,11 @@ BLOG_POSTS = {
                             'staff, landlords and professionals</td></tr></tbody></table>',
                             '<p>For example, the verb <strong>precisar</strong> becomes '
                             'useful when connected to real life:</p>',
-                            '<ul><li>“Preciso de ajuda.” — I need help.</li><li>“Preciso '
-                            'falar com o gerente.” — I need to speak with the '
-                            'manager.</li><li>“Preciso marcar uma consulta.” — I need to '
-                            'schedule an appointment.</li><li>“Preciso de um comprovante.” '
-                            '— I need proof / a receipt / a document.</li></ul>',
+                            '<ul><li>“Preciso de ajuda.”: I need help.</li><li>“Preciso '
+                            'falar com o gerente.”: I need to speak with the '
+                            'manager.</li><li>“Preciso marcar uma consulta.”: I need to '
+                            'schedule an appointment.</li><li>“Preciso de um comprovante.”'
+                            ': I need proof / a receipt / a document.</li></ul>',
                             '<p>This is grammar in context. It is easier to remember '
                             'because it has purpose.</p>']},
                   {'heading': 'Live-class practice: how to train cultural situations',
@@ -16969,17 +16969,17 @@ BLOG_POSTS = {
                             'assistance</td></tr><tr><td>gerente</td><td>manager</td></tr><tr><td>agência</td><td>bank '
                             'branch</td></tr><tr><td>aplicativo</td><td>app</td></tr><tr><td>cadastro</td><td>registration</td></tr><tr><td>cliente</td><td>customer</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Gostaria de abrir uma conta.” — I would like to open '
-                            'an account.</li><li>“Quais documentos são necessários?” — '
+                            '<ul><li>“Gostaria de abrir uma conta.”: I would like to open '
+                            'an account.</li><li>“Quais documentos são necessários?”: '
                             'Which documents are required?</li><li>“Sou estrangeiro / '
-                            'estrangeira.” — I am a foreigner.</li><li>“Estou morando no '
-                            'Brasil.” — I am living in Brazil.</li><li>“Estou estudando no '
-                            'Brasil.” — I am studying in Brazil.</li><li>“Estou '
-                            'trabalhando no Brasil.” — I am working in '
-                            'Brazil.</li><li>“Vocês atendem estrangeiros?” — Do you assist '
-                            'foreigners?</li><li>“Posso abrir a conta pelo aplicativo?” — '
+                            'estrangeira.”: I am a foreigner.</li><li>“Estou morando no '
+                            'Brasil.”: I am living in Brazil.</li><li>“Estou estudando no '
+                            'Brasil.”: I am studying in Brazil.</li><li>“Estou '
+                            'trabalhando no Brasil.”: I am working in '
+                            'Brazil.</li><li>“Vocês atendem estrangeiros?”: Do you assist '
+                            'foreigners?</li><li>“Posso abrir a conta pelo aplicativo?”: '
                             'Can I open the account through the app?</li><li>“Preciso ir à '
-                            'agência?” — Do I need to go to the branch?</li></ul>',
+                            'agência?”: Do I need to go to the branch?</li></ul>',
                             '<p>Sample dialogue:</p>',
                             '<p><strong>You:</strong> Bom dia. Gostaria de abrir uma '
                             'conta. <strong>Bank employee:</strong> Você já tem CPF? '
@@ -17012,16 +17012,16 @@ BLOG_POSTS = {
                             '/ '
                             'validity</td></tr><tr><td>assinatura</td><td>signature</td></tr></tbody></table>',
                             '<p>Useful questions:</p>',
-                            '<ul><li>“Quais documentos preciso apresentar?” — Which '
-                            'documents do I need to present?</li><li>“Preciso de CPF?” — '
-                            'Do I need a CPF?</li><li>“Posso usar meu passaporte?” — Can I '
+                            '<ul><li>“Quais documentos preciso apresentar?”: Which '
+                            'documents do I need to present?</li><li>“Preciso de CPF?”: '
+                            'Do I need a CPF?</li><li>“Posso usar meu passaporte?”: Can I '
                             'use my passport?</li><li>“Preciso de comprovante de '
-                            'endereço?” — Do I need proof of address?</li><li>“Este '
-                            'documento serve?” — Does this document work?</li><li>“Preciso '
-                            'trazer o documento original?” — Do I need to bring the '
-                            'original document?</li><li>“Pode ser uma cópia digital?” — '
+                            'endereço?”: Do I need proof of address?</li><li>“Este '
+                            'documento serve?”: Does this document work?</li><li>“Preciso '
+                            'trazer o documento original?”: Do I need to bring the '
+                            'original document?</li><li>“Pode ser uma cópia digital?”: '
                             'Can it be a digital copy?</li><li>“O documento precisa estar '
-                            'em meu nome?” — Does the document need to be in my '
+                            'em meu nome?”: Does the document need to be in my '
                             'name?</li></ul>',
                             '<p>A very useful phrase is:</p>',
                             '<p><strong>“Este documento serve?”</strong> Does this '
@@ -17035,12 +17035,12 @@ BLOG_POSTS = {
                             'phone services, purchases, contracts and many forms of '
                             'registration.</p>',
                             '<p>Useful CPF phrases:</p>',
-                            '<ul><li>“Eu tenho CPF.” — I have a CPF.</li><li>“Ainda não '
-                            'tenho CPF.” — I do not have a CPF yet.</li><li>“Preciso '
-                            'informar meu CPF?” — Do I need to provide my '
-                            'CPF?</li><li>“Meu CPF está regular.” — My CPF is regular / in '
-                            'good standing.</li><li>“O número do meu CPF é...” — My CPF '
-                            'number is...</li><li>“Como posso atualizar meu cadastro?” — '
+                            '<ul><li>“Eu tenho CPF.”: I have a CPF.</li><li>“Ainda não '
+                            'tenho CPF.”: I do not have a CPF yet.</li><li>“Preciso '
+                            'informar meu CPF?”: Do I need to provide my '
+                            'CPF?</li><li>“Meu CPF está regular.”: My CPF is regular / in '
+                            'good standing.</li><li>“O número do meu CPF é...”: My CPF '
+                            'number is...</li><li>“Como posso atualizar meu cadastro?”: '
                             'How can I update my registration?</li></ul>',
                             '<p>Important language note: when someone asks '
                             '<strong>“CPF?”</strong> in Brazil, they may not explain the '
@@ -17070,15 +17070,15 @@ BLOG_POSTS = {
                             'exempt from '
                             'fee</td></tr><tr><td>limite</td><td>limit</td></tr><tr><td>saldo</td><td>balance</td></tr><tr><td>extrato</td><td>statement</td></tr><tr><td>transferência</td><td>transfer</td></tr></tbody></table>',
                             '<p>Useful questions:</p>',
-                            '<ul><li>“Qual tipo de conta é melhor para mim?” — Which type '
+                            '<ul><li>“Qual tipo de conta é melhor para mim?”: Which type '
                             'of account is best for me?</li><li>“Essa conta tem tarifa '
-                            'mensal?” — Does this account have a monthly '
-                            'fee?</li><li>“Existe uma opção sem tarifa?” — Is there a '
-                            'fee-free option?</li><li>“A conta inclui cartão de débito?” — '
+                            'mensal?”: Does this account have a monthly '
+                            'fee?</li><li>“Existe uma opção sem tarifa?”: Is there a '
+                            'fee-free option?</li><li>“A conta inclui cartão de débito?”: '
                             'Does the account include a debit card?</li><li>“Posso receber '
-                            'salário nessa conta?” — Can I receive salary in this '
-                            'account?</li><li>“Qual é o limite de transferência?” — What '
-                            'is the transfer limit?</li><li>“Como vejo o extrato?” — How '
+                            'salário nessa conta?”: Can I receive salary in this '
+                            'account?</li><li>“Qual é o limite de transferência?”: What '
+                            'is the transfer limit?</li><li>“Como vejo o extrato?”: How '
                             'do I see the statement?</li></ul>',
                             '<p>The phrase <strong>“Essa conta tem tarifa '
                             'mensal?”</strong> is very important. It helps you understand '
@@ -17101,15 +17101,15 @@ BLOG_POSTS = {
                             'eletrônico</td><td>ATM</td></tr><tr><td>saque</td><td>cash '
                             'withdrawal</td></tr><tr><td>depósito</td><td>deposit</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Como acesso o aplicativo?” — How do I access the '
-                            'app?</li><li>“Como crio uma senha?” — How do I create a '
-                            'password?</li><li>“Meu cartão chegou?” — Did my card '
-                            'arrive?</li><li>“Preciso desbloquear o cartão.” — I need to '
-                            'unlock the card.</li><li>“Perdi meu cartão.” — I lost my '
-                            'card.</li><li>“Quero bloquear meu cartão.” — I want to block '
-                            'my card.</li><li>“Onde fica o caixa eletrônico?” — Where is '
-                            'the ATM?</li><li>“Posso sacar dinheiro aqui?” — Can I '
-                            'withdraw cash here?</li><li>“Qual é o limite do cartão?” — '
+                            '<ul><li>“Como acesso o aplicativo?”: How do I access the '
+                            'app?</li><li>“Como crio uma senha?”: How do I create a '
+                            'password?</li><li>“Meu cartão chegou?”: Did my card '
+                            'arrive?</li><li>“Preciso desbloquear o cartão.”: I need to '
+                            'unlock the card.</li><li>“Perdi meu cartão.”: I lost my '
+                            'card.</li><li>“Quero bloquear meu cartão.”: I want to block '
+                            'my card.</li><li>“Onde fica o caixa eletrônico?”: Where is '
+                            'the ATM?</li><li>“Posso sacar dinheiro aqui?”: Can I '
+                            'withdraw cash here?</li><li>“Qual é o limite do cartão?”: '
                             'What is the card limit?</li></ul>',
                             '<p>For live practice, simulate a situation where the banking '
                             'app does not work or the card is blocked. These are common '
@@ -17130,14 +17130,14 @@ BLOG_POSTS = {
                             'proof</td></tr><tr><td>valor</td><td>amount</td></tr><tr><td>cobrança</td><td>charge '
                             '/ payment request</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Você aceita Pix?” — Do you accept '
-                            'Pix?</li><li>“Posso pagar por Pix?” — Can I pay by '
-                            'Pix?</li><li>“Qual é a chave Pix?” — What is the Pix '
-                            'key?</li><li>“Vou fazer a transferência agora.” — I will make '
-                            'the transfer now.</li><li>“Pode me enviar o comprovante?” — '
-                            'Can you send me the receipt?</li><li>“Já enviei o Pix.” — I '
-                            'already sent the Pix.</li><li>“Você recebeu?” — Did you '
-                            'receive it?</li><li>“Qual é o valor?” — What is the '
+                            '<ul><li>“Você aceita Pix?”: Do you accept '
+                            'Pix?</li><li>“Posso pagar por Pix?”: Can I pay by '
+                            'Pix?</li><li>“Qual é a chave Pix?”: What is the Pix '
+                            'key?</li><li>“Vou fazer a transferência agora.”: I will make '
+                            'the transfer now.</li><li>“Pode me enviar o comprovante?”: '
+                            'Can you send me the receipt?</li><li>“Já enviei o Pix.”: I '
+                            'already sent the Pix.</li><li>“Você recebeu?”: Did you '
+                            'receive it?</li><li>“Qual é o valor?”: What is the '
                             'amount?</li></ul>',
                             '<p>Pix vocabulary is useful beyond banking. You may use it '
                             'for rent, services, restaurants, small purchases, deliveries '
@@ -17155,15 +17155,15 @@ BLOG_POSTS = {
                             'da conta</td><td>account '
                             'maintenance</td></tr><tr><td>gratuito</td><td>free</td></tr><tr><td>cobrança</td><td>charge</td></tr><tr><td>pacote</td><td>package</td></tr></tbody></table>',
                             '<p>Useful questions:</p>',
-                            '<ul><li>“Existe tarifa mensal?” — Is there a monthly '
-                            'fee?</li><li>“Quais serviços estão incluídos?” — Which '
+                            '<ul><li>“Existe tarifa mensal?”: Is there a monthly '
+                            'fee?</li><li>“Quais serviços estão incluídos?”: Which '
                             'services are included?</li><li>“Há cobrança para '
-                            'transferência?” — Is there a charge for '
-                            'transfers?</li><li>“Qual é o limite de saque?” — What is the '
-                            'withdrawal limit?</li><li>“Qual é o limite de Pix?” — What is '
-                            'the Pix limit?</li><li>“O cartão tem anuidade?” — Does the '
-                            'card have an annual fee?</li><li>“Posso alterar o limite?” — '
-                            'Can I change the limit?</li><li>“Como vejo as tarifas?” — How '
+                            'transferência?”: Is there a charge for '
+                            'transfers?</li><li>“Qual é o limite de saque?”: What is the '
+                            'withdrawal limit?</li><li>“Qual é o limite de Pix?”: What is '
+                            'the Pix limit?</li><li>“O cartão tem anuidade?”: Does the '
+                            'card have an annual fee?</li><li>“Posso alterar o limite?”: '
+                            'Can I change the limit?</li><li>“Como vejo as tarifas?”: How '
                             'do I see the fees?</li></ul>',
                             '<p>A helpful phrase:</p>',
                             '<p><strong>“Quero entender todos os custos antes de abrir a '
@@ -17175,17 +17175,17 @@ BLOG_POSTS = {
                             'can be fast and technical, and you do not need to pretend you '
                             'understand everything.</p>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Pode repetir, por favor?” — Can you repeat, '
-                            'please?</li><li>“Pode falar mais devagar?” — Can you speak '
-                            'more slowly?</li><li>“Não entendi essa parte.” — I did not '
-                            'understand that part.</li><li>“Pode explicar de outra forma?” '
-                            '— Can you explain it another way?</li><li>“Só para '
-                            'confirmar...” — Just to confirm...</li><li>“Você pode '
-                            'escrever isso?” — Can you write that down?</li><li>“Pode me '
-                            'enviar por e-mail?” — Can you send it to me by '
-                            'email?</li><li>“Existe uma versão em inglês?” — Is there an '
-                            'English version?</li><li>“Quero confirmar antes de assinar.” '
-                            '— I want to confirm before signing.</li></ul>',
+                            '<ul><li>“Pode repetir, por favor?”: Can you repeat, '
+                            'please?</li><li>“Pode falar mais devagar?”: Can you speak '
+                            'more slowly?</li><li>“Não entendi essa parte.”: I did not '
+                            'understand that part.</li><li>“Pode explicar de outra forma?”'
+                            ': Can you explain it another way?</li><li>“Só para '
+                            'confirmar...”: Just to confirm...</li><li>“Você pode '
+                            'escrever isso?”: Can you write that down?</li><li>“Pode me '
+                            'enviar por e-mail?”: Can you send it to me by '
+                            'email?</li><li>“Existe uma versão em inglês?”: Is there an '
+                            'English version?</li><li>“Quero confirmar antes de assinar.”'
+                            ': I want to confirm before signing.</li></ul>',
                             '<p>The phrase <strong>“Só para confirmar...”</strong> is '
                             'especially useful in Brazil. It is polite and helps prevent '
                             'misunderstandings.</p>',
@@ -17452,14 +17452,14 @@ BLOG_POSTS = {
                             'estate agent</td></tr><tr><td>visita</td><td>visit / '
                             'viewing</td></tr><tr><td>disponível</td><td>available</td></tr><tr><td>endereço</td><td>address</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Olá, tudo bem?” — Hello, how are you?</li><li>“Tenho '
-                            'interesse no apartamento.” — I am interested in the '
-                            'apartment.</li><li>“O imóvel ainda está disponível?” — Is the '
+                            '<ul><li>“Olá, tudo bem?”: Hello, how are you?</li><li>“Tenho '
+                            'interesse no apartamento.”: I am interested in the '
+                            'apartment.</li><li>“O imóvel ainda está disponível?”: Is the '
                             'property still available?</li><li>“Gostaria de agendar uma '
-                            'visita.” — I would like to schedule a viewing.</li><li>“Qual '
-                            'é o endereço?” — What is the address?</li><li>“Pode me enviar '
-                            'mais fotos?” — Can you send me more photos?</li><li>“O '
-                            'aluguel é negociável?” — Is the rent negotiable?</li></ul>',
+                            'visita.”: I would like to schedule a viewing.</li><li>“Qual '
+                            'é o endereço?”: What is the address?</li><li>“Pode me enviar '
+                            'mais fotos?”: Can you send me more photos?</li><li>“O '
+                            'aluguel é negociável?”: Is the rent negotiable?</li></ul>',
                             '<p>Sample WhatsApp message:</p>',
                             '<p><strong>Olá, tudo bem? Tenho interesse no apartamento '
                             'anunciado. O imóvel ainda está disponível? Gostaria de saber '
@@ -17502,15 +17502,15 @@ BLOG_POSTS = {
                             'gas</td></tr><tr><td>internet</td><td>internet</td><td>Usually '
                             'contracted separately</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Qual é o valor do aluguel?” — What is the rent '
-                            'amount?</li><li>“O condomínio está incluído?” — Is the '
+                            '<ul><li>“Qual é o valor do aluguel?”: What is the rent '
+                            'amount?</li><li>“O condomínio está incluído?”: Is the '
                             'condominium fee included?</li><li>“O IPTU está incluído no '
-                            'valor?” — Is the property tax included in the '
-                            'amount?</li><li>“Quais contas estão incluídas?” — Which bills '
-                            'are included?</li><li>“Preciso pagar caução?” — Do I need to '
-                            'pay a deposit?</li><li>“Aceita seguro-fiança?” — Do you '
+                            'valor?”: Is the property tax included in the '
+                            'amount?</li><li>“Quais contas estão incluídas?”: Which bills '
+                            'are included?</li><li>“Preciso pagar caução?”: Do I need to '
+                            'pay a deposit?</li><li>“Aceita seguro-fiança?”: Do you '
                             'accept rental guarantee insurance?</li><li>“Qual é o valor '
-                            'total por mês?” — What is the total monthly amount?</li></ul>',
+                            'total por mês?”: What is the total monthly amount?</li></ul>',
                             '<p>The phrase “valor total por mês” is very useful. It helps '
                             'you avoid focusing only on the rent and forgetting other '
                             'charges.</p>']},
@@ -17530,13 +17530,13 @@ BLOG_POSTS = {
                             'closet</td></tr><tr><td>vaga de garagem</td><td>parking '
                             'space</td></tr></tbody></table>',
                             '<p>Useful questions:</p>',
-                            '<ul><li>“O apartamento é mobiliado?” — Is the apartment '
-                            'furnished?</li><li>“Tem geladeira?” — Is there a '
-                            'refrigerator?</li><li>“Tem máquina de lavar?” — Is there a '
-                            'washing machine?</li><li>“Tem ar-condicionado?” — Is there '
-                            'air conditioning?</li><li>“Quantos quartos tem?” — How many '
-                            'bedrooms does it have?</li><li>“Tem vaga de garagem?” — Is '
-                            'there a parking space?</li><li>“O prédio tem elevador?” — '
+                            '<ul><li>“O apartamento é mobiliado?”: Is the apartment '
+                            'furnished?</li><li>“Tem geladeira?”: Is there a '
+                            'refrigerator?</li><li>“Tem máquina de lavar?”: Is there a '
+                            'washing machine?</li><li>“Tem ar-condicionado?”: Is there '
+                            'air conditioning?</li><li>“Quantos quartos tem?”: How many '
+                            'bedrooms does it have?</li><li>“Tem vaga de garagem?”: Is '
+                            'there a parking space?</li><li>“O prédio tem elevador?”: '
                             'Does the building have an elevator?</li></ul>',
                             '<p>These questions are simple but powerful. They help you '
                             'compare options and avoid assumptions.</p>']},
@@ -17556,15 +17556,15 @@ BLOG_POSTS = {
                             'confirm</td></tr><tr><td>cancelar</td><td>to '
                             'cancel</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Podemos agendar uma visita?” — Can we schedule a '
-                            'viewing?</li><li>“Qual horário está disponível?” — What time '
-                            'is available?</li><li>“Posso visitar amanhã?” — Can I visit '
-                            'tomorrow?</li><li>“Só para confirmar, a visita é às 10h?” — '
+                            '<ul><li>“Podemos agendar uma visita?”: Can we schedule a '
+                            'viewing?</li><li>“Qual horário está disponível?”: What time '
+                            'is available?</li><li>“Posso visitar amanhã?”: Can I visit '
+                            'tomorrow?</li><li>“Só para confirmar, a visita é às 10h?”: '
                             'Just to confirm, the visit is at 10?</li><li>“Vou chegar 10 '
-                            'minutos atrasado.” — I will arrive 10 minutes '
-                            'late.</li><li>“Preciso cancelar a visita.” — I need to cancel '
-                            'the visit.</li><li>“Gostei do apartamento.” — I liked the '
-                            'apartment.</li><li>“Vou pensar e retorno.” — I will think '
+                            'minutos atrasado.”: I will arrive 10 minutes '
+                            'late.</li><li>“Preciso cancelar a visita.”: I need to cancel '
+                            'the visit.</li><li>“Gostei do apartamento.”: I liked the '
+                            'apartment.</li><li>“Vou pensar e retorno.”: I will think '
                             'about it and get back to you.</li></ul>',
                             '<p>In Brazilian communication, “Só para confirmar...” is a '
                             'very useful softener. It sounds polite and helps prevent '
@@ -17585,16 +17585,16 @@ BLOG_POSTS = {
                             '/ penalty</td></tr><tr><td>entrada</td><td>initial '
                             'payment</td></tr><tr><td>cópia</td><td>copy</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Quais documentos são necessários?” — Which documents '
-                            'are required?</li><li>“Posso usar meu passaporte?” — Can I '
-                            'use my passport?</li><li>“Preciso de CPF?” — Do I need a '
-                            'CPF?</li><li>“Pode me enviar o contrato?” — Can you send me '
-                            'the contract?</li><li>“Qual é a duração do contrato?” — What '
+                            '<ul><li>“Quais documentos são necessários?”: Which documents '
+                            'are required?</li><li>“Posso usar meu passaporte?”: Can I '
+                            'use my passport?</li><li>“Preciso de CPF?”: Do I need a '
+                            'CPF?</li><li>“Pode me enviar o contrato?”: Can you send me '
+                            'the contract?</li><li>“Qual é a duração do contrato?”: What '
                             'is the contract duration?</li><li>“Existe multa para sair '
-                            'antes?” — Is there a fine for leaving early?</li><li>“Posso '
-                            'ler o contrato antes de assinar?” — Can I read the contract '
+                            'antes?”: Is there a fine for leaving early?</li><li>“Posso '
+                            'ler o contrato antes de assinar?”: Can I read the contract '
                             'before signing?</li><li>“Preciso enviar uma cópia do '
-                            'documento?” — Do I need to send a copy of the '
+                            'documento?”: Do I need to send a copy of the '
                             'document?</li></ul>',
                             '<p>This is a good example of why live Portuguese classes help '
                             'foreigners. You can practice polite but clear questions '
@@ -17614,13 +17614,13 @@ BLOG_POSTS = {
                             'day</td></tr><tr><td>lixo</td><td>trash</td></tr><tr><td>regras '
                             'do prédio</td><td>building rules</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“Chegou uma entrega para mim?” — Did a delivery '
-                            'arrive for me?</li><li>“Posso deixar uma chave na portaria?” '
-                            '— Can I leave a key at reception?</li><li>“Qual é o horário '
-                            'permitido para mudança?” — What is the allowed moving '
-                            'time?</li><li>“Onde fica a lixeira?” — Where is the trash '
-                            'area?</li><li>“Quem é o síndico?” — Who is the building '
-                            'manager?</li><li>“Preciso falar com o zelador.” — I need to '
+                            '<ul><li>“Chegou uma entrega para mim?”: Did a delivery '
+                            'arrive for me?</li><li>“Posso deixar uma chave na portaria?”'
+                            ': Can I leave a key at reception?</li><li>“Qual é o horário '
+                            'permitido para mudança?”: What is the allowed moving '
+                            'time?</li><li>“Onde fica a lixeira?”: Where is the trash '
+                            'area?</li><li>“Quem é o síndico?”: Who is the building '
+                            'manager?</li><li>“Preciso falar com o zelador.”: I need to '
                             'speak with the caretaker.</li></ul>',
                             '<p>For expats, this vocabulary can be more useful than '
                             'advanced grammar in the first weeks. It helps you '
@@ -17634,15 +17634,15 @@ BLOG_POSTS = {
                             'está funcionando</td><td>not '
                             'working</td></tr><tr><td>urgente</td><td>urgent</td></tr><tr><td>barulho</td><td>noise</td></tr><tr><td>mofo</td><td>mold</td></tr></tbody></table>',
                             '<p>Useful phrases:</p>',
-                            '<ul><li>“A internet não está funcionando.” — The internet is '
-                            'not working.</li><li>“O chuveiro não está funcionando.” — The '
+                            '<ul><li>“A internet não está funcionando.”: The internet is '
+                            'not working.</li><li>“O chuveiro não está funcionando.”: The '
                             'shower is not working.</li><li>“Tem um vazamento no '
-                            'banheiro.” — There is a leak in the bathroom.</li><li>“A '
-                            'chave não abre a porta.” — The key does not open the '
-                            'door.</li><li>“O ar-condicionado está quebrado.” — The air '
-                            'conditioning is broken.</li><li>“Preciso de manutenção.” — I '
-                            'need maintenance.</li><li>“É urgente?” — Is it '
-                            'urgent?</li><li>“Quando alguém pode vir?” — When can someone '
+                            'banheiro.”: There is a leak in the bathroom.</li><li>“A '
+                            'chave não abre a porta.”: The key does not open the '
+                            'door.</li><li>“O ar-condicionado está quebrado.”: The air '
+                            'conditioning is broken.</li><li>“Preciso de manutenção.”: I '
+                            'need maintenance.</li><li>“É urgente?”: Is it '
+                            'urgent?</li><li>“Quando alguém pode vir?”: When can someone '
                             'come?</li></ul>',
                             '<p>A structured course should train these situations with '
                             'role-play. The goal is not only vocabulary recognition. It is '
@@ -17908,13 +17908,13 @@ BLOG_POSTS = {
                             'situations;</li><li>workplace and study contexts in '
                             'Brazil.</li></ul>',
                             '<p>For example, you should learn phrases like:</p>',
-                            '<ul><li>“Tudo bem?” — How are you?</li><li>“Pode repetir, por '
-                            'favor?” — Can you repeat, please?</li><li>“Aceita cartão?” — '
-                            'Do you accept cards?</li><li>“Só para confirmar...” — Just to '
-                            'confirm...</li><li>“Qual é o prazo?” — What is the '
-                            'deadline?</li><li>“Chegou uma entrega para mim?” — Did a '
+                            '<ul><li>“Tudo bem?”: How are you?</li><li>“Pode repetir, por '
+                            'favor?”: Can you repeat, please?</li><li>“Aceita cartão?”: '
+                            'Do you accept cards?</li><li>“Só para confirmar...”: Just to '
+                            'confirm...</li><li>“Qual é o prazo?”: What is the '
+                            'deadline?</li><li>“Chegou uma entrega para mim?”: Did a '
                             'delivery arrive for me?</li><li>“A internet não está '
-                            'funcionando.” — The internet is not working.</li></ul>',
+                            'funcionando.”: The internet is not working.</li></ul>',
                             '<p>These are not random sentences. They are practical tools '
                             'for life in Brazil.</p>',
                             '<p>A course that teaches Portuguese only as abstract grammar '
@@ -18073,7 +18073,7 @@ BLOG_POSTS = {
                             'structured course should not overwhelm beginners with '
                             'abstract rules before they can communicate. Instead, grammar '
                             'should appear inside useful phrases and real situations.</p>',
-                            '<p>For example, when learning the verb “precisar” — to need — '
+                            '<p>For example, when learning the verb “precisar” (to need), '
                             'you can practice:</p>',
                             '<ul><li>“Eu preciso de ajuda.”</li><li>“Eu preciso falar com '
                             'a recepção.”</li><li>“Você precisa de '
@@ -18451,10 +18451,10 @@ BLOG_POSTS = {
                             'longe?</td></tr><tr><td>¿Queda cerca?</td><td>Fica '
                             'perto?</td></tr></tbody></table>',
                             '<p>Frases útiles:</p>',
-                            '<ul><li>“Onde fica o banheiro?” — ¿Dónde está el '
-                            'baño?</li><li>“Onde fica a farmácia mais próxima?” — ¿Dónde '
-                            'queda la farmacia más cercana?</li><li>“Fica perto daqui?” — '
-                            '¿Queda cerca de aquí?</li><li>“Fica longe?” — ¿Queda '
+                            '<ul><li>“Onde fica o banheiro?”: ¿Dónde está el '
+                            'baño?</li><li>“Onde fica a farmácia mais próxima?”: ¿Dónde '
+                            'queda la farmacia más cercana?</li><li>“Fica perto daqui?”: '
+                            '¿Queda cerca de aquí?</li><li>“Fica longe?”: ¿Queda '
                             'lejos?</li></ul>',
                             '<p>Este es un excelente ejemplo de error pequeño con impacto '
                             'diario. Lo usarás en transporte, hoteles, restaurantes, '
@@ -18478,11 +18478,11 @@ BLOG_POSTS = {
                             'ficar em São Paulo.</td><td>Voy a quedarme en São '
                             'Paulo.</td></tr></tbody></table>',
                             '<p>Frases muy útiles en Brasil:</p>',
-                            '<ul><li>“Pode ficar tranquilo.” — Puede estar tranquilo / no '
-                            'se preocupe.</li><li>“Vou ficar aqui por três meses.” — Voy a '
-                            'quedarme aquí por tres meses.</li><li>“Onde fica a portaria?” '
-                            '— ¿Dónde está la portería?</li><li>“O restaurante fica perto '
-                            'daqui.” — El restaurante queda cerca de aquí.</li></ul>',
+                            '<ul><li>“Pode ficar tranquilo.”: Puede estar tranquilo / no '
+                            'se preocupe.</li><li>“Vou ficar aqui por três meses.”: Voy a '
+                            'quedarme aquí por tres meses.</li><li>“Onde fica a portaria?”'
+                            ': ¿Dónde está la portería?</li><li>“O restaurante fica perto '
+                            'daqui.”: El restaurante queda cerca de aquí.</li></ul>',
                             '<p>En clases en vivo, conviene practicar “ficar” con mapas, '
                             'alojamiento, emociones y planes. Es un verbo clave para sonar '
                             'más natural.</p>']},
@@ -18547,7 +18547,7 @@ BLOG_POSTS = {
                             'situaciones reales. Puedes saber decir “Quanto custa?”, pero '
                             'si no entiendes la respuesta, la comunicación se rompe.</p>',
                             '<p>Ejemplo:</p>',
-                            '<p>Pregunta: <strong>“Quanto custa?”</strong> — ¿Cuánto '
+                            '<p>Pregunta: <strong>“Quanto custa?”</strong>: ¿Cuánto '
                             'cuesta?</p>',
                             '<p>Respuestas posibles:</p>',
                             '<ul><li>“Custa cinquenta reais.”</li><li>“Fica cinquenta '
@@ -18583,12 +18583,12 @@ BLOG_POSTS = {
                             'comunes</td></tr><tr><td>aluguel</td><td>alquiler</td></tr><tr><td>caução</td><td>depósito</td></tr><tr><td>farmácia</td><td>farmacia</td></tr><tr><td>receita</td><td>receta '
                             'médica</td></tr><tr><td>cartão</td><td>tarjeta</td></tr><tr><td>débito</td><td>débito</td></tr><tr><td>crédito</td><td>crédito</td></tr><tr><td>prazo</td><td>plazo</td></tr><tr><td>reunião</td><td>reunión</td></tr><tr><td>mensagem</td><td>mensaje</td></tr></tbody></table>',
                             '<p>Frases reales:</p>',
-                            '<ul><li>“Chegou uma entrega para mim?” — ¿Llegó una entrega '
-                            'para mí?</li><li>“Qual é o valor do condomínio?” — ¿Cuál es '
+                            '<ul><li>“Chegou uma entrega para mim?”: ¿Llegó una entrega '
+                            'para mí?</li><li>“Qual é o valor do condomínio?”: ¿Cuál es '
                             'el valor de los gastos del edificio?</li><li>“Preciso marcar '
-                            'uma consulta.” — Necesito agendar una consulta.</li><li>“Qual '
-                            'é o prazo?” — ¿Cuál es el plazo?</li><li>“Podemos marcar uma '
-                            'reunião?” — ¿Podemos programar una reunión?</li></ul>',
+                            'uma consulta.”: Necesito agendar una consulta.</li><li>“Qual '
+                            'é o prazo?”: ¿Cuál es el plazo?</li><li>“Podemos marcar uma '
+                            'reunião?”: ¿Podemos programar una reunión?</li></ul>',
                             '<p>Este vocabulario es mucho más útil para vivir en Brasil '
                             'que listas desconectadas de la realidad.</p>',
                             '<p>CTA: Si tu objetivo es vivir, trabajar o estudiar en '
@@ -18828,16 +18828,16 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugais</th><th>Français</th></tr></thead><tbody><tr><td>aeroporto</td><td>aéroport</td></tr><tr><td>passaporte</td><td>passeport</td></tr><tr><td>bagagem</td><td>bagage</td></tr><tr><td>mala</td><td>valise</td></tr><tr><td>saída</td><td>sortie</td></tr><tr><td>entrada</td><td>entrée</td></tr><tr><td>endereço</td><td>adresse</td></tr><tr><td>ajuda</td><td>aide</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>Uber</td><td>Uber</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Onde fica a saída?</strong> — Où est la '
-                            'sortie ?</li><li><strong>Onde eu pego o Uber?</strong> — Où '
+                            '<ul><li><strong>Onde fica a saída?</strong>: Où est la '
+                            'sortie ?</li><li><strong>Onde eu pego o Uber?</strong>: Où '
                             'puis-je prendre un Uber ?</li><li><strong>Este é o '
-                            'endereço.</strong> — Voici l’adresse.</li><li><strong>Você '
-                            'pode me ajudar?</strong> — Pouvez-vous m’aider '
-                            '?</li><li><strong>Pode repetir, por favor?</strong> — '
+                            'endereço.</strong>: Voici l’adresse.</li><li><strong>Você '
+                            'pode me ajudar?</strong>: Pouvez-vous m’aider '
+                            '?</li><li><strong>Pode repetir, por favor?</strong>: '
                             'Pouvez-vous répéter, s’il vous plaît ?</li><li><strong>Pode '
-                            'falar mais devagar?</strong> — Pouvez-vous parler plus '
-                            'lentement ?</li><li><strong>Eu falo pouco português.</strong> '
-                            '— Je parle peu portugais.</li></ul>',
+                            'falar mais devagar?</strong>: Pouvez-vous parler plus '
+                            'lentement ?</li><li><strong>Eu falo pouco português.</strong>'
+                            ': Je parle peu portugais.</li></ul>',
                             '<p>Une phrase très utile pour les débutants est :</p>',
                             '<p><strong>“Desculpa, eu falo pouco português. Pode falar '
                             'mais devagar?”</strong></p>',
@@ -18865,18 +18865,18 @@ BLOG_POSTS = {
                             'voisine</td></tr><tr><td>encomenda</td><td>colis</td></tr><tr><td>entrega</td><td>livraison</td></tr><tr><td>manutenção</td><td>maintenance '
                             '/ réparation</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Gostaria de alugar um apartamento.</strong> — '
+                            '<ul><li><strong>Gostaria de alugar um apartamento.</strong>: '
                             'Je voudrais louer un appartement.</li><li><strong>Qual é o '
-                            'valor do aluguel?</strong> — Quel est le montant du loyer '
-                            '?</li><li><strong>O condomínio está incluído?</strong> — Les '
+                            'valor do aluguel?</strong>: Quel est le montant du loyer '
+                            '?</li><li><strong>O condomínio está incluído?</strong>: Les '
                             'charges de copropriété sont-elles incluses '
-                            '?</li><li><strong>Chegou uma encomenda para mim?</strong> — '
+                            '?</li><li><strong>Chegou uma encomenda para mim?</strong>: '
                             'Un colis est-il arrivé pour moi ?</li><li><strong>A internet '
-                            'não está funcionando.</strong> — Internet ne fonctionne '
-                            'pas.</li><li><strong>Preciso falar com o síndico.</strong> — '
+                            'não está funcionando.</strong>: Internet ne fonctionne '
+                            'pas.</li><li><strong>Preciso falar com o síndico.</strong>: '
                             'J’ai besoin de parler au responsable de '
-                            'l’immeuble.</li><li><strong>Moro no apartamento 502.</strong> '
-                            '— J’habite dans l’appartement 502.</li></ul>',
+                            'l’immeuble.</li><li><strong>Moro no apartamento 502.</strong>'
+                            ': J’habite dans l’appartement 502.</li></ul>',
                             '<p>Ces phrases sont plus importantes qu’elles ne paraissent. '
                             'Elles vous donnent de l’autonomie dans les premiers jours ou '
                             'les premières semaines au Brésil.</p>']},
@@ -18895,15 +18895,15 @@ BLOG_POSTS = {
                             'fiscal</td><td>reçu / '
                             'facture</td></tr><tr><td>promoção</td><td>promotion</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Onde fica o arroz?</strong> — Où se trouve le '
-                            'riz ?</li><li><strong>Quanto custa?</strong> — Combien ça '
-                            'coûte ?</li><li><strong>Está em promoção?</strong> — Est-ce '
-                            'en promotion ?</li><li><strong>Aceita cartão?</strong> — '
+                            '<ul><li><strong>Onde fica o arroz?</strong>: Où se trouve le '
+                            'riz ?</li><li><strong>Quanto custa?</strong>: Combien ça '
+                            'coûte ?</li><li><strong>Está em promoção?</strong>: Est-ce '
+                            'en promotion ?</li><li><strong>Aceita cartão?</strong>: '
                             'Acceptez-vous la carte ?</li><li><strong>Débito, por '
-                            'favor.</strong> — Débit, s’il vous '
-                            'plaît.</li><li><strong>Crédito, por favor.</strong> — Crédit, '
+                            'favor.</strong>: Débit, s’il vous '
+                            'plaît.</li><li><strong>Crédito, por favor.</strong>: Crédit, '
                             's’il vous plaît.</li><li><strong>Preciso de uma '
-                            'sacola.</strong> — J’ai besoin d’un sac.</li></ul>',
+                            'sacola.</strong>: J’ai besoin d’un sac.</li></ul>',
                             '<p>Une question très fréquente à la caisse est :</p>',
                             '<p><strong>“CPF na nota?”</strong></p>',
                             '<p>Le caissier demande si vous voulez inclure un numéro '
@@ -18915,14 +18915,14 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugais</th><th>Français</th></tr></thead><tbody><tr><td>farmácia</td><td>pharmacie</td></tr><tr><td>remédio</td><td>médicament</td></tr><tr><td>receita</td><td>ordonnance</td></tr><tr><td>dor</td><td>douleur</td></tr><tr><td>febre</td><td>fièvre</td></tr><tr><td>tosse</td><td>toux</td></tr><tr><td>alergia</td><td>allergie</td></tr><tr><td>comprimido</td><td>comprimé</td></tr><tr><td>gotas</td><td>gouttes</td></tr><tr><td>pomada</td><td>pommade</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Estou com dor de cabeça.</strong> — J’ai mal '
-                            'à la tête.</li><li><strong>Estou com febre.</strong> — J’ai '
-                            'de la fièvre.</li><li><strong>Tenho alergia a...</strong> — '
+                            '<ul><li><strong>Estou com dor de cabeça.</strong>: J’ai mal '
+                            'à la tête.</li><li><strong>Estou com febre.</strong>: J’ai '
+                            'de la fièvre.</li><li><strong>Tenho alergia a...</strong>: '
                             'Je suis allergique à...</li><li><strong>Precisa de '
-                            'receita?</strong> — Faut-il une ordonnance '
-                            '?</li><li><strong>Como eu tomo esse remédio?</strong> — '
+                            'receita?</strong>: Faut-il une ordonnance '
+                            '?</li><li><strong>Como eu tomo esse remédio?</strong>: '
                             'Comment dois-je prendre ce médicament '
-                            '?</li><li><strong>Quantas vezes por dia?</strong> — Combien '
+                            '?</li><li><strong>Quantas vezes por dia?</strong>: Combien '
                             'de fois par jour ?</li></ul>',
                             '<p>Ces situations sont parfaites pour les cours en direct, '
                             'car le professeur peut simuler le caissier, le pharmacien ou '
@@ -18936,16 +18936,16 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugais</th><th>Français</th></tr></thead><tbody><tr><td>trabalho</td><td>travail</td></tr><tr><td>reunião</td><td>réunion</td></tr><tr><td>equipe</td><td>équipe</td></tr><tr><td>prazo</td><td>délai</td></tr><tr><td>projeto</td><td>projet</td></tr><tr><td>tarefa</td><td>tâche</td></tr><tr><td>responsável</td><td>responsable</td></tr><tr><td>mensagem</td><td>message</td></tr><tr><td>relatório</td><td>rapport</td></tr><tr><td>horário</td><td>horaire</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Podemos marcar uma reunião?</strong> — '
+                            '<ul><li><strong>Podemos marcar uma reunião?</strong>: '
                             'Pouvons-nous fixer une réunion ?</li><li><strong>Qual é o '
-                            'prazo?</strong> — Quel est le délai ?</li><li><strong>Quem é '
-                            'o responsável?</strong> — Qui est responsable '
-                            '?</li><li><strong>Tenho uma dúvida.</strong> — J’ai une '
+                            'prazo?</strong>: Quel est le délai ?</li><li><strong>Quem é '
+                            'o responsável?</strong>: Qui est responsable '
+                            '?</li><li><strong>Tenho uma dúvida.</strong>: J’ai une '
                             'question.</li><li><strong>Você pode explicar de '
-                            'novo?</strong> — Pouvez-vous expliquer encore une fois '
-                            '?</li><li><strong>Só para confirmar...</strong> — Juste pour '
-                            'confirmer...</li><li><strong>Vou enviar por e-mail.</strong> '
-                            '— Je vais l’envoyer par e-mail.</li></ul>',
+                            'novo?</strong>: Pouvez-vous expliquer encore une fois '
+                            '?</li><li><strong>Só para confirmar...</strong>: Juste pour '
+                            'confirmer...</li><li><strong>Vou enviar por e-mail.</strong>'
+                            ': Je vais l’envoyer par e-mail.</li></ul>',
                             '<p>Vocabulaire d’études :</p>',
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugais</th><th>Français</th></tr></thead><tbody><tr><td>aula</td><td>cours</td></tr><tr><td>professor '
@@ -18955,12 +18955,12 @@ BLOG_POSTS = {
                             'devoir</td></tr><tr><td>prova</td><td>examen</td></tr><tr><td>inscrição</td><td>inscription</td></tr><tr><td>turma</td><td>groupe '
                             '/ classe</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li><strong>Onde encontro o material da aula?</strong> — '
+                            '<ul><li><strong>Onde encontro o material da aula?</strong>: '
                             'Où puis-je trouver le support du cours '
-                            '?</li><li><strong>Quando é a prova?</strong> — Quand est '
-                            'l’examen ?</li><li><strong>Posso entregar amanhã?</strong> — '
+                            '?</li><li><strong>Quando é a prova?</strong>: Quand est '
+                            'l’examen ?</li><li><strong>Posso entregar amanhã?</strong>: '
                             'Puis-je rendre cela demain ?</li><li><strong>Tenho uma dúvida '
-                            'sobre a atividade.</strong> — J’ai une question sur '
+                            'sobre a atividade.</strong>: J’ai une question sur '
                             'l’activité.</li></ul>',
                             '<p>Un cours de portugais brésilien en direct permet de '
                             'pratiquer ces phrases avec des jeux de rôle adaptés à votre '
@@ -18976,13 +18976,13 @@ BLOG_POSTS = {
                             'entre l’orthographe et la prononciation réelle, ou encore la '
                             'musicalité de certaines phrases.</p>',
                             '<p>Exemples de points à travailler :</p>',
-                            '<ul><li><strong>não</strong> — nasalisation importante '
-                            ';</li><li><strong>pão</strong> — son nasal final '
-                            ';</li><li><strong>muito</strong> — prononciation différente '
+                            '<ul><li><strong>não</strong>: nasalisation importante '
+                            ';</li><li><strong>pão</strong>: son nasal final '
+                            ';</li><li><strong>muito</strong>: prononciation différente '
                             'de ce que l’on imagine à l’écrit '
-                            ';</li><li><strong>trabalho</strong> — combinaison de sons '
-                            'difficile ;</li><li><strong>obrigado / obrigada</strong> — '
-                            'rythme naturel ;</li><li><strong>desculpa</strong> — phrase '
+                            ';</li><li><strong>trabalho</strong>: combinaison de sons '
+                            'difficile ;</li><li><strong>obrigado / obrigada</strong>: '
+                            'rythme naturel ;</li><li><strong>desculpa</strong>: phrase '
                             'très fréquente à automatiser.</li></ul>',
                             '<p>Un professeur en direct peut écouter votre voix et dire '
                             'précisément ce qu’il faut ajuster. Cela évite de répéter '
@@ -19296,15 +19296,15 @@ BLOG_POSTS = {
                             'class="vd-table"><thead><tr><th>Portugais</th><th>Français</th></tr></thead><tbody><tr><td>aeroporto</td><td>aéroport</td></tr><tr><td>passaporte</td><td>passeport</td></tr><tr><td>bagagem</td><td>bagage</td></tr><tr><td>mala</td><td>valise</td></tr><tr><td>saída</td><td>sortie</td></tr><tr><td>entrada</td><td>entrée</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>endereço</td><td>adresse</td></tr><tr><td>ajuda</td><td>aide</td></tr><tr><td>cartão</td><td>carte '
                             'bancaire</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li>“Com licença.” — Excusez-moi.</li><li>“Você pode me '
-                            'ajudar?” — Pouvez-vous m’aider ?</li><li>“Onde fica a '
-                            'retirada de bagagem?” — Où se trouve la récupération des '
-                            'bagages ?</li><li>“Minha mala não chegou.” — Ma valise n’est '
-                            'pas arrivée.</li><li>“Onde eu pego o Uber?” — Où puis-je '
-                            'prendre l’Uber ?</li><li>“Este é o endereço.” — Voici '
-                            'l’adresse.</li><li>“Pode repetir, por favor?” — Pouvez-vous '
-                            'répéter, s’il vous plaît ?</li><li>“Eu falo pouco português.” '
-                            '— Je parle peu portugais.</li></ul>',
+                            '<ul><li>“Com licença.”: Excusez-moi.</li><li>“Você pode me '
+                            'ajudar?”: Pouvez-vous m’aider ?</li><li>“Onde fica a '
+                            'retirada de bagagem?”: Où se trouve la récupération des '
+                            'bagages ?</li><li>“Minha mala não chegou.”: Ma valise n’est '
+                            'pas arrivée.</li><li>“Onde eu pego o Uber?”: Où puis-je '
+                            'prendre l’Uber ?</li><li>“Este é o endereço.”: Voici '
+                            'l’adresse.</li><li>“Pode repetir, por favor?”: Pouvez-vous '
+                            'répéter, s’il vous plaît ?</li><li>“Eu falo pouco português.”'
+                            ': Je parle peu portugais.</li></ul>',
                             '<p>Ces phrases doivent être pratiquées à l’oral. Lire une '
                             'phrase ne suffit pas. En classe en direct, le professeur peut '
                             'jouer le rôle d’un agent, d’un chauffeur ou d’un '
@@ -19321,13 +19321,13 @@ BLOG_POSTS = {
                             'l’immeuble</td></tr><tr><td>porteiro</td><td>portier</td></tr><tr><td>chave</td><td>clé</td></tr><tr><td>entrega</td><td>livraison</td></tr><tr><td>manutenção</td><td>maintenance</td></tr><tr><td>internet</td><td>Internet</td></tr><tr><td>problema</td><td>problème</td></tr><tr><td>água</td><td>eau</td></tr><tr><td>luz</td><td>électricité '
                             '/ lumière</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li>“Chegou uma entrega para mim?” — Une livraison '
+                            '<ul><li>“Chegou uma entrega para mim?”: Une livraison '
                             'est-elle arrivée pour moi ?</li><li>“A chave não está '
-                            'funcionando.” — La clé ne fonctionne pas.</li><li>“A internet '
-                            'não está funcionando.” — Internet ne fonctionne '
-                            'pas.</li><li>“Preciso falar com a manutenção.” — J’ai besoin '
+                            'funcionando.”: La clé ne fonctionne pas.</li><li>“A internet '
+                            'não está funcionando.”: Internet ne fonctionne '
+                            'pas.</li><li>“Preciso falar com a manutenção.”: J’ai besoin '
                             'de parler à la maintenance.</li><li>“Estou com um problema no '
-                            'apartamento.” — J’ai un problème dans '
+                            'apartamento.”: J’ai un problème dans '
                             'l’appartement.</li></ul>',
                             '<p>Un cours structuré doit inclure ces situations, car elles '
                             'apparaissent rapidement dans la vie quotidienne. Elles '
@@ -19344,13 +19344,13 @@ BLOG_POSTS = {
                             '/ '
                             'contenu</td></tr><tr><td>inscrição</td><td>inscription</td></tr></tbody></table>',
                             '<p>Phrases utiles :</p>',
-                            '<ul><li>“Qual é o prazo?” — Quel est le délai '
-                            '?</li><li>“Podemos marcar uma reunião?” — Pouvons-nous fixer '
-                            'une réunion ?</li><li>“Quem é o responsável?” — Qui est '
-                            'responsable ?</li><li>“Só para confirmar...” — Juste pour '
-                            'confirmer...</li><li>“Você pode explicar de novo?” — '
+                            '<ul><li>“Qual é o prazo?”: Quel est le délai '
+                            '?</li><li>“Podemos marcar uma reunião?”: Pouvons-nous fixer '
+                            'une réunion ?</li><li>“Quem é o responsável?”: Qui est '
+                            'responsable ?</li><li>“Só para confirmar...”: Juste pour '
+                            'confirmer...</li><li>“Você pode explicar de novo?”: '
                             'Pouvez-vous expliquer encore une fois ?</li><li>“Onde '
-                            'encontro o material da aula?” — Où puis-je trouver le '
+                            'encontro o material da aula?”: Où puis-je trouver le '
                             'matériel du cours ?</li></ul>',
                             '<p>La phrase “Só para confirmar...” est très utile. Elle '
                             'permet de vérifier une information poliment, ce qui est '
@@ -19362,11 +19362,11 @@ BLOG_POSTS = {
                             'action.</p>',
                             '<p>Par exemple, apprendre que “endereço” signifie “adresse” '
                             'est utile, mais insuffisant. Il faut pratiquer :</p>',
-                            '<ul><li>“Qual é o endereço?” — Quelle est l’adresse '
-                            '?</li><li>“Este é o endereço correto?” — Est-ce la bonne '
-                            'adresse ?</li><li>“Pode confirmar o endereço?” — Pouvez-vous '
+                            '<ul><li>“Qual é o endereço?”: Quelle est l’adresse '
+                            '?</li><li>“Este é o endereço correto?”: Est-ce la bonne '
+                            'adresse ?</li><li>“Pode confirmar o endereço?”: Pouvez-vous '
                             'confirmer l’adresse ?</li><li>“Vou mandar o endereço por '
-                            'WhatsApp.” — Je vais envoyer l’adresse par '
+                            'WhatsApp.”: Je vais envoyer l’adresse par '
                             'WhatsApp.</li></ul>',
                             '<p>C’est cette transformation qui fait la différence. Le mot '
                             'devient une compétence.</p>',
@@ -19577,7 +19577,7 @@ BLOG_POSTS = {
                             'in Brasilien brauchen. Ein guter Brazilian Portuguese course '
                             'für Ausländer sollte nicht nur erklären, wie die Sprache '
                             'funktioniert. Er sollte Sie darauf vorbereiten, mit '
-                            'Brasilianerinnen und Brasilianern zu kommunizieren — klar, '
+                            'Brasilianerinnen und Brasilianern zu kommunizieren: klar, '
                             'freundlich und mit mehr Sicherheit.</p>',
                             '<p>In diesem Artikel erfahren Sie, warum Live-Unterricht für '
                             'Portuguese for Brazil so wirkungsvoll ist, welche '
@@ -19624,16 +19624,16 @@ BLOG_POSTS = {
                             '<table '
                             'class="vd-table"><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>aeroporto</td><td>Flughafen</td></tr><tr><td>passaporte</td><td>Reisepass</td></tr><tr><td>bagagem</td><td>Gepäck</td></tr><tr><td>mala</td><td>Koffer</td></tr><tr><td>saída</td><td>Ausgang</td></tr><tr><td>entrada</td><td>Eingang</td></tr><tr><td>endereço</td><td>Adresse</td></tr><tr><td>táxi</td><td>Taxi</td></tr><tr><td>Uber</td><td>Uber</td></tr><tr><td>ajuda</td><td>Hilfe</td></tr></tbody></table>',
                             '<p>Nützliche Sätze:</p>',
-                            '<ul><li><strong>Onde fica a saída?</strong> — Wo ist der '
-                            'Ausgang?</li><li><strong>Onde eu pego o Uber?</strong> — Wo '
+                            '<ul><li><strong>Onde fica a saída?</strong>: Wo ist der '
+                            'Ausgang?</li><li><strong>Onde eu pego o Uber?</strong>: Wo '
                             'nehme ich den Uber?</li><li><strong>Este é o '
-                            'endereço.</strong> — Das ist die '
-                            'Adresse.</li><li><strong>Você pode me ajudar?</strong> — '
+                            'endereço.</strong>: Das ist die '
+                            'Adresse.</li><li><strong>Você pode me ajudar?</strong>: '
                             'Können Sie mir helfen?</li><li><strong>Pode repetir, por '
-                            'favor?</strong> — Können Sie das bitte '
+                            'favor?</strong>: Können Sie das bitte '
                             'wiederholen?</li><li><strong>Pode falar mais '
-                            'devagar?</strong> — Können Sie langsamer '
-                            'sprechen?</li><li><strong>Eu falo pouco português.</strong> — '
+                            'devagar?</strong>: Können Sie langsamer '
+                            'sprechen?</li><li><strong>Eu falo pouco português.</strong>: '
                             'Ich spreche wenig Portugiesisch.</li></ul>',
                             '<p>Ein besonders nützlicher Satz für Anfänger ist:</p>',
                             '<p><strong>Desculpa, eu falo pouco português. Pode falar mais '
@@ -19660,18 +19660,18 @@ BLOG_POSTS = {
                             'Person</td></tr><tr><td>elevador</td><td>Aufzug</td></tr><tr><td>chave</td><td>Schlüssel</td></tr><tr><td>encomenda</td><td>Paket</td></tr><tr><td>entrega</td><td>Lieferung</td></tr><tr><td>manutenção</td><td>Wartung '
                             '/ Reparatur</td></tr></tbody></table>',
                             '<p>Nützliche Sätze:</p>',
-                            '<ul><li><strong>Moro no apartamento 802.</strong> — Ich wohne '
+                            '<ul><li><strong>Moro no apartamento 802.</strong>: Ich wohne '
                             'in Wohnung 802.</li><li><strong>Chegou uma encomenda para '
-                            'mim?</strong> — Ist ein Paket für mich '
-                            'angekommen?</li><li><strong>Pode deixar na portaria.</strong> '
-                            '— Sie können es an der Portaria lassen.</li><li><strong>A '
-                            'internet não está funcionando.</strong> — Das Internet '
+                            'mim?</strong>: Ist ein Paket für mich '
+                            'angekommen?</li><li><strong>Pode deixar na portaria.</strong>'
+                            ': Sie können es an der Portaria lassen.</li><li><strong>A '
+                            'internet não está funcionando.</strong>: Das Internet '
                             'funktioniert nicht.</li><li><strong>Preciso falar com o '
-                            'síndico.</strong> — Ich muss mit der Hausverwaltung '
+                            'síndico.</strong>: Ich muss mit der Hausverwaltung '
                             'sprechen.</li><li><strong>Vou receber uma visita '
-                            'hoje.</strong> — Ich bekomme heute '
+                            'hoje.</strong>: Ich bekomme heute '
                             'Besuch.</li><li><strong>Pode liberar a entrada, por '
-                            'favor?</strong> — Können Sie den Eingang bitte '
+                            'favor?</strong>: Können Sie den Eingang bitte '
                             'freigeben?</li></ul>',
                             '<p>Diese Sätze sind nicht kompliziert, aber sie geben Ihnen '
                             'Autonomie. Genau deshalb sollte ein Kurs für Brazilian '
@@ -19690,16 +19690,16 @@ BLOG_POSTS = {
                             'fiscal</td><td>Beleg / '
                             'Rechnung</td></tr><tr><td>promoção</td><td>Angebot</td></tr></tbody></table>',
                             '<p>Nützliche Sätze:</p>',
-                            '<ul><li><strong>Onde fica o arroz?</strong> — Wo ist der '
-                            'Reis?</li><li><strong>Quanto custa?</strong> — Wie viel '
-                            'kostet das?</li><li><strong>Está em promoção?</strong> — Ist '
-                            'das im Angebot?</li><li><strong>Aceita cartão?</strong> — '
+                            '<ul><li><strong>Onde fica o arroz?</strong>: Wo ist der '
+                            'Reis?</li><li><strong>Quanto custa?</strong>: Wie viel '
+                            'kostet das?</li><li><strong>Está em promoção?</strong>: Ist '
+                            'das im Angebot?</li><li><strong>Aceita cartão?</strong>: '
                             'Akzeptieren Sie Karte?</li><li><strong>Débito, por '
-                            'favor.</strong> — Debitkarte, bitte.</li><li><strong>Crédito, '
-                            'por favor.</strong> — Kreditkarte, '
-                            'bitte.</li><li><strong>Preciso de uma sacola.</strong> — Ich '
+                            'favor.</strong>: Debitkarte, bitte.</li><li><strong>Crédito, '
+                            'por favor.</strong>: Kreditkarte, '
+                            'bitte.</li><li><strong>Preciso de uma sacola.</strong>: Ich '
                             'brauche eine Tüte.</li><li><strong>Não, obrigado / '
-                            'obrigada.</strong> — Nein, danke.</li></ul>',
+                            'obrigada.</strong>: Nein, danke.</li></ul>',
                             '<p>Eine sehr häufige Frage an der Kasse ist:</p>',
                             '<p><strong>CPF na nota?</strong></p>',
                             '<p>Damit fragt die Kassiererin oder der Kassierer, ob eine '
@@ -19722,17 +19722,17 @@ BLOG_POSTS = {
                             'de cabeça</td><td>Kopfschmerzen</td></tr><tr><td>dor de '
                             'garganta</td><td>Halsschmerzen</td></tr><tr><td>comprimido</td><td>Tablette</td></tr></tbody></table>',
                             '<p>Nützliche Sätze:</p>',
-                            '<ul><li><strong>Estou com dor de cabeça.</strong> — Ich habe '
-                            'Kopfschmerzen.</li><li><strong>Estou com febre.</strong> — '
-                            'Ich habe Fieber.</li><li><strong>Estou com tosse.</strong> — '
+                            '<ul><li><strong>Estou com dor de cabeça.</strong>: Ich habe '
+                            'Kopfschmerzen.</li><li><strong>Estou com febre.</strong>: '
+                            'Ich habe Fieber.</li><li><strong>Estou com tosse.</strong>: '
                             'Ich habe Husten.</li><li><strong>Estou com dor de '
-                            'garganta.</strong> — Ich habe '
-                            'Halsschmerzen.</li><li><strong>Tenho alergia a...</strong> — '
+                            'garganta.</strong>: Ich habe '
+                            'Halsschmerzen.</li><li><strong>Tenho alergia a...</strong>: '
                             'Ich bin allergisch gegen ...</li><li><strong>Precisa de '
-                            'receita?</strong> — Braucht man ein '
-                            'Rezept?</li><li><strong>Como eu tomo esse remédio?</strong> — '
+                            'receita?</strong>: Braucht man ein '
+                            'Rezept?</li><li><strong>Como eu tomo esse remédio?</strong>: '
                             'Wie nehme ich dieses Medikament?</li><li><strong>Quantas '
-                            'vezes por dia?</strong> — Wie oft pro Tag?</li></ul>',
+                            'vezes por dia?</strong>: Wie oft pro Tag?</li></ul>',
                             '<p>In einem Live-Kurs kann diese Situation als Rollenspiel '
                             'geübt werden: Der Lehrer spielt den Apotheker, stellt '
                             'Rückfragen und korrigiert Ihre Antworten. So lernen Sie nicht '
@@ -19758,13 +19758,13 @@ BLOG_POSTS = {
                             'Sätze erzeugen Handlungsfähigkeit.</p>',
                             '<p>Ein guter Live-Unterricht hilft Ihnen, Sätze zu '
                             'erweitern:</p>',
-                            '<ul><li><strong>Tenho uma dúvida.</strong> — Ich habe eine '
+                            '<ul><li><strong>Tenho uma dúvida.</strong>: Ich habe eine '
                             'Frage.</li><li><strong>Tenho uma dúvida sobre o '
-                            'horário.</strong> — Ich habe eine Frage zur '
+                            'horário.</strong>: Ich habe eine Frage zur '
                             'Uhrzeit.</li><li><strong>Tenho uma dúvida sobre o horário da '
-                            'aula.</strong> — Ich habe eine Frage zur '
+                            'aula.</strong>: Ich habe eine Frage zur '
                             'Unterrichtszeit.</li><li><strong>Tenho uma dúvida sobre o '
-                            'horário da aula. Você pode confirmar, por favor?</strong> — '
+                            'horário da aula. Você pode confirmar, por favor?</strong>: '
                             'Ich habe eine Frage zur Unterrichtszeit. Können Sie das bitte '
                             'bestätigen?</li></ul>',
                             '<p>So entsteht echte Kommunikationsfähigkeit.</p>']},
@@ -19965,7 +19965,7 @@ BLOG_POSTS = {
                             '<p>Vedium arbeitet ohne langfristige Treueverträge. Sie '
                             'bleiben nicht wegen einer Bindung, sondern weil Sie '
                             'Fortschritt spüren. Das passt zur Markenidee: Fluência além '
-                            'das palavras — Sprachkompetenz jenseits einzelner Wörter.</p>',
+                            'das palavras: Sprachkompetenz jenseits einzelner Wörter.</p>',
                             '<p>CTA: Buchen Sie Ihren kostenlosen Einstufungstest unter <a '
                             'href="/de/portugiesisch-einstufungstest">https://vediums.com/</a> '
                             'und finden Sie heraus, wie Sie Portugiesisch für Ihr Leben in '
@@ -20084,7 +20084,7 @@ BLOG_POSTS.update({
                     "<p>Vocabulario inicial:</p>",
                     "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>aeroporto</td><td>aeropuerto</td></tr><tr><td>endereço</td><td>dirección</td></tr><tr><td>saída</td><td>salida</td></tr><tr><td>entrada</td><td>entrada</td></tr><tr><td>ajuda</td><td>ayuda</td></tr><tr><td>bagagem</td><td>equipaje</td></tr><tr><td>documento</td><td>documento</td></tr><tr><td>reserva</td><td>reserva</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>aplicativo</td><td>aplicación</td></tr></tbody></table>",
                     "<p>Frases útiles:</p>",
-                    "<ul><li><strong>Onde fica a saída?</strong> — ¿Dónde está la salida?</li><li><strong>Você pode me ajudar?</strong> — ¿Me puede ayudar?</li><li><strong>Eu tenho uma reserva.</strong> — Tengo una reserva.</li><li><strong>Este é o endereço.</strong> — Esta es la dirección.</li><li><strong>Pode repetir, por favor?</strong> — ¿Puede repetir, por favor?</li><li><strong>Pode falar mais devagar?</strong> — ¿Puede hablar más despacio?</li><li><strong>Eu falo pouco português.</strong> — Hablo poco portugués.</li></ul>",
+                    "<ul><li><strong>Onde fica a saída?</strong>: ¿Dónde está la salida?</li><li><strong>Você pode me ajudar?</strong>: ¿Me puede ayudar?</li><li><strong>Eu tenho uma reserva.</strong>: Tengo una reserva.</li><li><strong>Este é o endereço.</strong>: Esta es la dirección.</li><li><strong>Pode repetir, por favor?</strong>: ¿Puede repetir, por favor?</li><li><strong>Pode falar mais devagar?</strong>: ¿Puede hablar más despacio?</li><li><strong>Eu falo pouco português.</strong>: Hablo poco portugués.</li></ul>",
                     "<p>Una frase fundamental para principiantes es:</p>",
                     "<p><strong>Desculpa, eu ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
                     "<p>Esta frase reduce la presión y mantiene la conversación abierta. No necesitas fingir que entiendes todo. Necesitas saber pedir ayuda de forma natural.</p>"
@@ -20106,9 +20106,9 @@ BLOG_POSTS.update({
                     "<p>Para trabajar o estudiar en Brasil, conviene aprender primero el vocabulario que aparece en reuniones, clases, correos, mensajes y trámites. No basta con palabras sueltas. Lo ideal es aprender frases completas.</p>",
                     "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>reunião</td><td>reunión</td></tr><tr><td>trabalho</td><td>trabajo</td></tr><tr><td>equipe</td><td>equipo</td></tr><tr><td>prazo</td><td>plazo</td></tr><tr><td>projeto</td><td>proyecto</td></tr><tr><td>aula</td><td>clase</td></tr><tr><td>atividade</td><td>actividad / tarea</td></tr><tr><td>prova</td><td>examen</td></tr><tr><td>relatório</td><td>informe</td></tr><tr><td>apresentação</td><td>presentación</td></tr><tr><td>dúvida</td><td>duda / pregunta</td></tr><tr><td>horário</td><td>horario</td></tr><tr><td>documento</td><td>documento</td></tr><tr><td>matrícula</td><td>matrícula</td></tr><tr><td>inscrição</td><td>inscripción</td></tr></tbody></table>",
                     "<p>Frases útiles para trabajo:</p>",
-                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — Tengo una reunión hoy.</li><li><strong>Qual é o prazo?</strong> — ¿Cuál es el plazo?</li><li><strong>Tenho uma dúvida.</strong> — Tengo una duda.</li><li><strong>Você pode explicar de novo?</strong> — ¿Puede explicar de nuevo?</li><li><strong>Vou enviar o relatório.</strong> — Voy a enviar el informe.</li><li><strong>Podemos marcar uma reunião?</strong> — ¿Podemos agendar una reunión?</li></ul>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong>: Tengo una reunión hoy.</li><li><strong>Qual é o prazo?</strong>: ¿Cuál es el plazo?</li><li><strong>Tenho uma dúvida.</strong>: Tengo una duda.</li><li><strong>Você pode explicar de novo?</strong>: ¿Puede explicar de nuevo?</li><li><strong>Vou enviar o relatório.</strong>: Voy a enviar el informe.</li><li><strong>Podemos marcar uma reunião?</strong>: ¿Podemos agendar una reunión?</li></ul>",
                     "<p>Frases útiles para estudio:</p>",
-                    "<ul><li><strong>Onde é a aula?</strong> — ¿Dónde es la clase?</li><li><strong>Qual é o horário?</strong> — ¿Cuál es el horario?</li><li><strong>Preciso fazer a inscrição.</strong> — Necesito hacer la inscripción.</li><li><strong>Tenho uma dúvida sobre a atividade.</strong> — Tengo una duda sobre la actividad.</li><li><strong>Quando é a prova?</strong> — ¿Cuándo es el examen?</li></ul>",
+                    "<ul><li><strong>Onde é a aula?</strong>: ¿Dónde es la clase?</li><li><strong>Qual é o horário?</strong>: ¿Cuál es el horario?</li><li><strong>Preciso fazer a inscrição.</strong>: Necesito hacer la inscripción.</li><li><strong>Tenho uma dúvida sobre a atividade.</strong>: Tengo una duda sobre la actividad.</li><li><strong>Quando é a prova?</strong>: ¿Cuándo es el examen?</li></ul>",
                     "<p>Estas frases permiten actuar en contextos reales, no solo estudiar teoría.</p>"
                 ]
             },
@@ -20534,7 +20534,7 @@ BLOG_POSTS.update({
                     "<p>Portugiesisch für den Beruf sollte sich zuerst auf Situationen konzentrieren, die du tatsächlich erlebst: Begrüßung, Vorstellung, Meeting, Zeitplan, Projekt, Frist, Rückfrage, E-Mail und Follow-up. Es geht nicht darum, sofort komplizierte Präsentationen zu halten. Es geht darum, im Berufsalltag reagieren zu können.</p>",
                     "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>trabalho</td><td>Arbeit</td></tr><tr><td>empresa</td><td>Unternehmen</td></tr><tr><td>equipe</td><td>Team</td></tr><tr><td>reunião</td><td>Meeting</td></tr><tr><td>projeto</td><td>Projekt</td></tr><tr><td>prazo</td><td>Frist</td></tr><tr><td>relatório</td><td>Bericht</td></tr><tr><td>cliente</td><td>Kunde</td></tr><tr><td>apresentação</td><td>Präsentation</td></tr><tr><td>dúvida</td><td>Frage / Zweifel</td></tr><tr><td>horário</td><td>Uhrzeit / Zeitplan</td></tr><tr><td>e-mail</td><td>E-Mail</td></tr><tr><td>mensagem</td><td>Nachricht</td></tr><tr><td>responsável</td><td>verantwortlich / Verantwortliche Person</td></tr><tr><td>combinado</td><td>vereinbart</td></tr></tbody></table>",
                     "<p>Nützliche Sätze:</p>",
-                    "<ul><li><strong>Eu trabalho com tecnologia.</strong> — Ich arbeite im Bereich Technologie.</li><li><strong>Tenho uma reunião hoje.</strong> — Ich habe heute ein Meeting.</li><li><strong>Qual é o prazo?</strong> — Was ist die Frist?</li><li><strong>Tenho uma dúvida.</strong> — Ich habe eine Frage.</li><li><strong>Você pode explicar de novo?</strong> — Können Sie das noch einmal erklären?</li><li><strong>Vou enviar o relatório amanhã.</strong> — Ich werde den Bericht morgen senden.</li><li><strong>Combinado.</strong> — Abgemacht / So machen wir es.</li><li><strong>Só para confirmar...</strong> — Nur zur Bestätigung...</li></ul>",
+                    "<ul><li><strong>Eu trabalho com tecnologia.</strong>: Ich arbeite im Bereich Technologie.</li><li><strong>Tenho uma reunião hoje.</strong>: Ich habe heute ein Meeting.</li><li><strong>Qual é o prazo?</strong>: Was ist die Frist?</li><li><strong>Tenho uma dúvida.</strong>: Ich habe eine Frage.</li><li><strong>Você pode explicar de novo?</strong>: Können Sie das noch einmal erklären?</li><li><strong>Vou enviar o relatório amanhã.</strong>: Ich werde den Bericht morgen senden.</li><li><strong>Combinado.</strong>: Abgemacht / So machen wir es.</li><li><strong>Só para confirmar...</strong>: Nur zur Bestätigung...</li></ul>",
                     "<p>Gerade der Ausdruck <strong>“Só para confirmar...”</strong> ist im Berufsleben sehr nützlich. Er hilft dir, Informationen höflich zu überprüfen, ohne unsicher zu wirken.</p>"
                 ]
             },
@@ -20545,7 +20545,7 @@ BLOG_POSTS.update({
                     "<p>Typische Fragen:</p>",
                     "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>Como foi o fim de semana?</td><td>Wie war das Wochenende?</td></tr><tr><td>Você está gostando do Brasil?</td><td>Gefällt dir Brasilien?</td></tr><tr><td>Muito trabalho hoje?</td><td>Viel Arbeit heute?</td></tr><tr><td>Você já almoçou?</td><td>Hast du schon zu Mittag gegessen?</td></tr><tr><td>Pegou muito trânsito?</td><td>Hattest du viel Verkehr?</td></tr><tr><td>Está tudo certo?</td><td>Ist alles in Ordnung?</td></tr></tbody></table>",
                     "<p>Mögliche Antworten:</p>",
-                    "<ul><li><strong>Foi bom, obrigado. E o seu?</strong> — Es war gut, danke. Und deins?</li><li><strong>Estou gostando muito do Brasil.</strong> — Brasilien gefällt mir sehr.</li><li><strong>Sim, bastante trabalho hoje.</strong> — Ja, heute ist viel Arbeit.</li><li><strong>Ainda não almocei.</strong> — Ich habe noch nicht zu Mittag gegessen.</li><li><strong>Peguei um pouco de trânsito.</strong> — Ich hatte ein bisschen Verkehr.</li><li><strong>Está tudo certo, obrigado.</strong> — Alles ist in Ordnung, danke.</li></ul>",
+                    "<ul><li><strong>Foi bom, obrigado. E o seu?</strong>: Es war gut, danke. Und deins?</li><li><strong>Estou gostando muito do Brasil.</strong>: Brasilien gefällt mir sehr.</li><li><strong>Sim, bastante trabalho hoje.</strong>: Ja, heute ist viel Arbeit.</li><li><strong>Ainda não almocei.</strong>: Ich habe noch nicht zu Mittag gegessen.</li><li><strong>Peguei um pouco de trânsito.</strong>: Ich hatte ein bisschen Verkehr.</li><li><strong>Está tudo certo, obrigado.</strong>: Alles ist in Ordnung, danke.</li></ul>",
                     "<p>Small Talk ist nicht oberflächlich, wenn du in einem neuen Land lebst. Er hilft dir, Beziehungen aufzubauen und dich weniger isoliert zu fühlen.</p>"
                 ]
             },
@@ -20555,7 +20555,7 @@ BLOG_POSTS.update({
                     "<p>Wer in Brasilien lebt, braucht sehr früh Wörter für Wohnung, Gebäude, Pförtner, Lieferung, Miete, Vertrag und Nachbarschaft. Diese Wörter erscheinen in Gesprächen, Anzeigen, WhatsApp-Nachrichten und praktischen Problemen.</p>",
                     "<table><thead><tr><th>Portugiesisch</th><th>Deutsch</th></tr></thead><tbody><tr><td>apartamento</td><td>Wohnung</td></tr><tr><td>prédio</td><td>Gebäude</td></tr><tr><td>portaria</td><td>Pförtnerbereich / Empfang im Wohnhaus</td></tr><tr><td>porteiro / porteira</td><td>Pförtner / Pförtnerin</td></tr><tr><td>aluguel</td><td>Miete</td></tr><tr><td>contrato</td><td>Vertrag</td></tr><tr><td>condomínio</td><td>Wohngebühr / Hausgeld</td></tr><tr><td>contas</td><td>Rechnungen / Nebenkosten</td></tr><tr><td>chave</td><td>Schlüssel</td></tr><tr><td>encomenda</td><td>Paket</td></tr><tr><td>entrega</td><td>Lieferung</td></tr><tr><td>bairro</td><td>Stadtviertel</td></tr><tr><td>vizinho / vizinha</td><td>Nachbar / Nachbarin</td></tr><tr><td>manutenção</td><td>Wartung / Reparatur</td></tr><tr><td>endereço</td><td>Adresse</td></tr></tbody></table>",
                     "<p>Nützliche Sätze:</p>",
-                    "<ul><li><strong>Moro neste prédio.</strong> — Ich wohne in diesem Gebäude.</li><li><strong>Pode deixar na portaria.</strong> — Sie können es beim Pförtner abgeben.</li><li><strong>Chegou alguma encomenda para mim?</strong> — Ist ein Paket für mich angekommen?</li><li><strong>Tenho um problema no apartamento.</strong> — Ich habe ein Problem in der Wohnung.</li><li><strong>Preciso falar com a administração.</strong> — Ich muss mit der Verwaltung sprechen.</li><li><strong>O aluguel inclui condomínio?</strong> — Enthält die Miete die Wohngebühr?</li><li><strong>As contas estão incluídas?</strong> — Sind die Nebenkosten enthalten?</li><li><strong>Qual é o endereço completo?</strong> — Wie lautet die vollständige Adresse?</li></ul>",
+                    "<ul><li><strong>Moro neste prédio.</strong>: Ich wohne in diesem Gebäude.</li><li><strong>Pode deixar na portaria.</strong>: Sie können es beim Pförtner abgeben.</li><li><strong>Chegou alguma encomenda para mim?</strong>: Ist ein Paket für mich angekommen?</li><li><strong>Tenho um problema no apartamento.</strong>: Ich habe ein Problem in der Wohnung.</li><li><strong>Preciso falar com a administração.</strong>: Ich muss mit der Verwaltung sprechen.</li><li><strong>O aluguel inclui condomínio?</strong>: Enthält die Miete die Wohngebühr?</li><li><strong>As contas estão incluídas?</strong>: Sind die Nebenkosten enthalten?</li><li><strong>Qual é o endereço completo?</strong>: Wie lautet die vollständige Adresse?</li></ul>",
                     "<p>Für Expats ist <strong>portaria</strong> ein besonders wichtiges Wort, weil viele brasilianische Wohngebäude einen Pförtnerbereich haben. Lieferungen, Besucher, Nachrichten und Alltagsfragen laufen oft über diesen Ort.</p>"
                 ]
             },
@@ -20564,7 +20564,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>WhatsApp ist in Brasilien extrem wichtig für berufliche und private Kommunikation. Viele Gespräche mit Vermietern, Kollegen, Lehrern, Dienstleistern, Lieferfahrern, Nachbarn und Unternehmen laufen über kurze Nachrichten.</p>",
                     "<p>Nützliche WhatsApp-Sätze:</p>",
-                    "<ul><li><strong>Olá, tudo bem?</strong> — Hallo, alles gut?</li><li><strong>Tenho uma dúvida.</strong> — Ich habe eine Frage.</li><li><strong>Você pode confirmar o horário?</strong> — Kannst du die Uhrzeit bestätigen?</li><li><strong>Pode me enviar o endereço?</strong> — Kannst du mir die Adresse schicken?</li><li><strong>Estou chegando.</strong> — Ich komme gleich an.</li><li><strong>Já estou descendo.</strong> — Ich komme gerade runter.</li><li><strong>Pode deixar na portaria.</strong> — Du kannst es beim Pförtner abgeben.</li><li><strong>Obrigado pela ajuda.</strong> — Danke für die Hilfe.</li><li><strong>Desculpa a demora.</strong> — Entschuldigung für die Verzögerung.</li><li><strong>Combinado.</strong> — Abgemacht.</li></ul>",
+                    "<ul><li><strong>Olá, tudo bem?</strong>: Hallo, alles gut?</li><li><strong>Tenho uma dúvida.</strong>: Ich habe eine Frage.</li><li><strong>Você pode confirmar o horário?</strong>: Kannst du die Uhrzeit bestätigen?</li><li><strong>Pode me enviar o endereço?</strong>: Kannst du mir die Adresse schicken?</li><li><strong>Estou chegando.</strong>: Ich komme gleich an.</li><li><strong>Já estou descendo.</strong>: Ich komme gerade runter.</li><li><strong>Pode deixar na portaria.</strong>: Du kannst es beim Pförtner abgeben.</li><li><strong>Obrigado pela ajuda.</strong>: Danke für die Hilfe.</li><li><strong>Desculpa a demora.</strong>: Entschuldigung für die Verzögerung.</li><li><strong>Combinado.</strong>: Abgemacht.</li></ul>",
                     "<p>Beispielnachricht:</p>",
                     "<p><strong>Olá, tudo bem? Tenho uma dúvida sobre o horário da reunião. Você pode confirmar, por favor? Obrigado.</strong></p>",
                     "<p>Deutsch:</p>",
@@ -20787,11 +20787,11 @@ BLOG_POSTS.update({
                     "<h3>University and study vocabulary</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>universidade</td><td>university</td></tr><tr><td>faculdade</td><td>college / school within a university</td></tr><tr><td>curso</td><td>course / program</td></tr><tr><td>disciplina</td><td>subject / class</td></tr><tr><td>matrícula</td><td>enrollment</td></tr><tr><td>inscrição</td><td>application / registration</td></tr><tr><td>intercâmbio</td><td>exchange program</td></tr><tr><td>estudante estrangeiro</td><td>foreign student</td></tr><tr><td>estudante internacional</td><td>international student</td></tr><tr><td>calendário acadêmico</td><td>academic calendar</td></tr><tr><td>horário</td><td>schedule / time</td></tr><tr><td>aula</td><td>class</td></tr><tr><td>prova</td><td>exam</td></tr><tr><td>atividade</td><td>assignment / activity</td></tr><tr><td>biblioteca</td><td>library</td></tr><tr><td>secretaria</td><td>administrative office</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Sou estudante internacional.</strong> — I am an international student.</li><li><strong>Estou procurando informações sobre o curso.</strong> — I am looking for information about the program.</li><li><strong>Como faço a matrícula?</strong> — How do I enroll?</li><li><strong>Qual é o calendário acadêmico?</strong> — What is the academic calendar?</li><li><strong>Onde fica a secretaria?</strong> — Where is the administrative office?</li><li><strong>Tenho uma dúvida sobre a inscrição.</strong> — I have a question about the application.</li></ul>",
+                    "<ul><li><strong>Sou estudante internacional.</strong>: I am an international student.</li><li><strong>Estou procurando informações sobre o curso.</strong>: I am looking for information about the program.</li><li><strong>Como faço a matrícula?</strong>: How do I enroll?</li><li><strong>Qual é o calendário acadêmico?</strong>: What is the academic calendar?</li><li><strong>Onde fica a secretaria?</strong>: Where is the administrative office?</li><li><strong>Tenho uma dúvida sobre a inscrição.</strong>: I have a question about the application.</li></ul>",
                     "<h3>Housing vocabulary</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>aluguel</td><td>rent</td></tr><tr><td>apartamento</td><td>apartment</td></tr><tr><td>quarto</td><td>room</td></tr><tr><td>república</td><td>student shared house</td></tr><tr><td>contrato</td><td>contract</td></tr><tr><td>caução</td><td>deposit</td></tr><tr><td>mobiliado</td><td>furnished</td></tr><tr><td>condomínio</td><td>building fee / condo fee</td></tr><tr><td>contas</td><td>bills</td></tr><tr><td>internet</td><td>internet</td></tr><tr><td>localização</td><td>location</td></tr><tr><td>bairro</td><td>neighborhood</td></tr><tr><td>perto de</td><td>near</td></tr><tr><td>longe de</td><td>far from</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>O apartamento é mobiliado?</strong> — Is the apartment furnished?</li><li><strong>O aluguel inclui condomínio?</strong> — Does the rent include the building fee?</li><li><strong>As contas estão incluídas?</strong> — Are bills included?</li><li><strong>O quarto ainda está disponível?</strong> — Is the room still available?</li><li><strong>Fica perto da universidade?</strong> — Is it near the university?</li><li><strong>Posso visitar o apartamento?</strong> — Can I visit the apartment?</li></ul>"
+                    "<ul><li><strong>O apartamento é mobiliado?</strong>: Is the apartment furnished?</li><li><strong>O aluguel inclui condomínio?</strong>: Does the rent include the building fee?</li><li><strong>As contas estão incluídas?</strong>: Are bills included?</li><li><strong>O quarto ainda está disponível?</strong>: Is the room still available?</li><li><strong>Fica perto da universidade?</strong>: Is it near the university?</li><li><strong>Posso visitar o apartamento?</strong>: Can I visit the apartment?</li></ul>"
                 ]
             },
             {
@@ -20801,7 +20801,7 @@ BLOG_POSTS.update({
                     "<p>Useful words:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>bairro</td><td>neighborhood</td></tr><tr><td>centro</td><td>downtown / city center</td></tr><tr><td>perto</td><td>near</td></tr><tr><td>longe</td><td>far</td></tr><tr><td>seguro</td><td>safe</td></tr><tr><td>tranquilo</td><td>calm</td></tr><tr><td>movimentado</td><td>busy</td></tr><tr><td>transporte público</td><td>public transportation</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>ônibus</td><td>bus</td></tr><tr><td>mercado</td><td>supermarket</td></tr><tr><td>farmácia</td><td>pharmacy</td></tr><tr><td>universidade</td><td>university</td></tr></tbody></table>",
                     "<p>Useful questions:</p>",
-                    "<ul><li><strong>Esse bairro é seguro?</strong> — Is this neighborhood safe?</li><li><strong>Esse bairro é bom para estudantes?</strong> — Is this neighborhood good for students?</li><li><strong>É perto da universidade?</strong> — Is it near the university?</li><li><strong>Tem mercado e farmácia por perto?</strong> — Are there a supermarket and pharmacy nearby?</li><li><strong>Tem metrô ou ônibus perto?</strong> — Is there subway or bus nearby?</li><li><strong>Quanto tempo leva até a universidade?</strong> — How long does it take to get to the university?</li><li><strong>É uma região tranquila?</strong> — Is it a calm area?</li></ul>",
+                    "<ul><li><strong>Esse bairro é seguro?</strong>: Is this neighborhood safe?</li><li><strong>Esse bairro é bom para estudantes?</strong>: Is this neighborhood good for students?</li><li><strong>É perto da universidade?</strong>: Is it near the university?</li><li><strong>Tem mercado e farmácia por perto?</strong>: Are there a supermarket and pharmacy nearby?</li><li><strong>Tem metrô ou ônibus perto?</strong>: Is there subway or bus nearby?</li><li><strong>Quanto tempo leva até a universidade?</strong>: How long does it take to get to the university?</li><li><strong>É uma região tranquila?</strong>: Is it a calm area?</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Estou procurando um bairro perto da universidade, com transporte público e mercado por perto. Você recomenda alguma região?</strong></p>",
                     "<p>Translation:</p>",
@@ -20816,7 +20816,7 @@ BLOG_POSTS.update({
                     "<p>Important vocabulary:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>ônibus</td><td>bus</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>trem</td><td>train</td></tr><tr><td>ponto de ônibus</td><td>bus stop</td></tr><tr><td>estação</td><td>station</td></tr><tr><td>passagem</td><td>fare / ticket</td></tr><tr><td>cartão de transporte</td><td>transport card</td></tr><tr><td>integração</td><td>transfer / integrated fare</td></tr><tr><td>aplicativo</td><td>app</td></tr><tr><td>trânsito</td><td>traffic</td></tr><tr><td>trajeto</td><td>route</td></tr><tr><td>demora</td><td>delay / takes time</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Como eu chego à universidade?</strong> — How do I get to the university?</li><li><strong>Tem ônibus direto?</strong> — Is there a direct bus?</li><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li><li><strong>Quanto tempo demora?</strong> — How long does it take?</li><li><strong>Preciso pegar metrô?</strong> — Do I need to take the subway?</li><li><strong>Onde compro o cartão de transporte?</strong> — Where do I buy the transport card?</li><li><strong>O trânsito é muito ruim nesse horário?</strong> — Is traffic very bad at this time?</li></ul>",
+                    "<ul><li><strong>Como eu chego à universidade?</strong>: How do I get to the university?</li><li><strong>Tem ônibus direto?</strong>: Is there a direct bus?</li><li><strong>Qual é a estação mais próxima?</strong>: What is the nearest station?</li><li><strong>Quanto tempo demora?</strong>: How long does it take?</li><li><strong>Preciso pegar metrô?</strong>: Do I need to take the subway?</li><li><strong>Onde compro o cartão de transporte?</strong>: Where do I buy the transport card?</li><li><strong>O trânsito é muito ruim nesse horário?</strong>: Is traffic very bad at this time?</li></ul>",
                     "<p>For student life, transportation Portuguese is not optional. It helps you arrive on time, avoid confusion and understand local routines.</p>"
                 ]
             },
@@ -20859,7 +20859,7 @@ BLOG_POSTS.update({
                     "<p>Translation:</p>",
                     "<p>Hello, how are you? My name is Emma, I am an international student and I am interested in the International Relations program. I would like to know which documents are required for the application and whether there is support for foreign students. Thank you.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Tenho interesse no curso de...</strong> — I am interested in the program of...</li><li><strong>Gostaria de saber...</strong> — I would like to know...</li><li><strong>Quais documentos são necessários?</strong> — Which documents are required?</li><li><strong>Existe suporte para estudantes estrangeiros?</strong> — Is there support for foreign students?</li><li><strong>Como funciona o processo de inscrição?</strong> — How does the application process work?</li></ul>",
+                    "<ul><li><strong>Tenho interesse no curso de...</strong>: I am interested in the program of...</li><li><strong>Gostaria de saber...</strong>: I would like to know...</li><li><strong>Quais documentos são necessários?</strong>: Which documents are required?</li><li><strong>Existe suporte para estudantes estrangeiros?</strong>: Is there support for foreign students?</li><li><strong>Como funciona o processo de inscrição?</strong>: How does the application process work?</li></ul>",
                     "<p>These phrases sound polite and professional.</p>"
                 ]
             },
@@ -21004,7 +21004,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>The Brazilian Portuguese sounds that confuse English speakers most are nasal vowels, <strong>ão</strong>, <strong>lh</strong>, <strong>nh</strong>, final unstressed vowels, the different sounds of <strong>r</strong>, the letter <strong>x</strong>, open and closed vowels, and the rhythm of spoken Brazilian Portuguese. These sounds are confusing because English spelling and sound patterns do not prepare learners for them directly.</p>",
                     "<p>The most common challenges are:</p>",
-                    "<ul><li><strong>ã, õ, ãe, ão</strong> — nasal sounds, as in <strong>não</strong>, <strong>pão</strong>, <strong>mãe</strong>;</li><li><strong>lh</strong> — as in <strong>trabalho</strong>;</li><li><strong>nh</strong> — as in <strong>dinheiro</strong> and <strong>manhã</strong>;</li><li>final <strong>-e</strong> and <strong>-o</strong> — often sounding different from English expectations;</li><li>Brazilian <strong>r</strong> — changing by region and word position;</li><li><strong>x</strong> — with multiple possible sounds;</li><li>open and closed vowels — as in <strong>avó</strong> and <strong>avô</strong>;</li><li>word rhythm — smoother and more connected than many learners expect;</li><li>reduced everyday speech — natural shortcuts in fast conversation.</li></ul>",
+                    "<ul><li><strong>ã, õ, ãe, ão</strong>: nasal sounds, as in <strong>não</strong>, <strong>pão</strong>, <strong>mãe</strong>;</li><li><strong>lh</strong>: as in <strong>trabalho</strong>;</li><li><strong>nh</strong>: as in <strong>dinheiro</strong> and <strong>manhã</strong>;</li><li>final <strong>-e</strong> and <strong>-o</strong>: often sounding different from English expectations;</li><li>Brazilian <strong>r</strong>: changing by region and word position;</li><li><strong>x</strong>: with multiple possible sounds;</li><li>open and closed vowels: as in <strong>avó</strong> and <strong>avô</strong>;</li><li>word rhythm: smoother and more connected than many learners expect;</li><li>reduced everyday speech: natural shortcuts in fast conversation.</li></ul>",
                     "<p>The goal is not to erase your accent. The goal is to speak clearly enough to be understood and confident enough to participate in Brazilian life.</p>",
                     "<p>If you want a teacher to hear your pronunciation and guide your next step, book a free level check at <a href=\"/en/learn-portuguese-brazil\">https://vediums.com/</a>.</p>"
                 ]
@@ -21028,7 +21028,7 @@ BLOG_POSTS.update({
                     "<p>Common words with <strong>ão</strong>:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>não</td><td>no / not</td></tr><tr><td>pão</td><td>bread</td></tr><tr><td>mão</td><td>hand</td></tr><tr><td>informação</td><td>information</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>atenção</td><td>attention</td></tr><tr><td>coração</td><td>heart</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>avião</td><td>airplane</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Não entendi.</strong> — I did not understand.</li><li><strong>Tenho uma reunião hoje.</strong> — I have a meeting today.</li><li><strong>Preciso de informação.</strong> — I need information.</li><li><strong>Aceita cartão?</strong> — Do you accept card?</li><li><strong>Pode prestar atenção?</strong> — Can you pay attention?</li></ul>",
+                    "<ul><li><strong>Não entendi.</strong>: I did not understand.</li><li><strong>Tenho uma reunião hoje.</strong>: I have a meeting today.</li><li><strong>Preciso de informação.</strong>: I need information.</li><li><strong>Aceita cartão?</strong>: Do you accept card?</li><li><strong>Pode prestar atenção?</strong>: Can you pay attention?</li></ul>",
                     "<p>For foreigners, <strong>não</strong> is essential from the first week. It appears constantly in Brazilian Portuguese. If you pronounce it too much like the English “now,” you may still be understood in context, but it will not sound clear or natural.</p>",
                     "<p>How to practice:</p>",
                     "<p>1. listen to the word first;<br>2. notice the nasal quality;<br>3. say it slowly;<br>4. avoid adding a hard English “n” at the end;<br>5. repeat it in a sentence;<br>6. practice with a teacher who can correct the sound.</p>"
@@ -21041,7 +21041,7 @@ BLOG_POSTS.update({
                     "<p>Common words with <strong>lh</strong>:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>trabalho</td><td>work</td></tr><tr><td>filho / filha</td><td>son / daughter</td></tr><tr><td>mulher</td><td>woman / wife</td></tr><tr><td>melhor</td><td>better</td></tr><tr><td>velho / velha</td><td>old</td></tr><tr><td>olhar</td><td>to look</td></tr><tr><td>conselho</td><td>advice / council</td></tr><tr><td>detalhe</td><td>detail</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Eu trabalho com tecnologia.</strong> — I work with technology.</li><li><strong>Qual é o seu trabalho?</strong> — What is your job?</li><li><strong>Tenho uma filha.</strong> — I have a daughter.</li><li><strong>Você pode olhar isso?</strong> — Can you look at this?</li><li><strong>Preciso de um conselho.</strong> — I need advice.</li></ul>",
+                    "<ul><li><strong>Eu trabalho com tecnologia.</strong>: I work with technology.</li><li><strong>Qual é o seu trabalho?</strong>: What is your job?</li><li><strong>Tenho uma filha.</strong>: I have a daughter.</li><li><strong>Você pode olhar isso?</strong>: Can you look at this?</li><li><strong>Preciso de um conselho.</strong>: I need advice.</li></ul>",
                     "<p>English speakers may pronounce <strong>trabalho</strong> too close to “tra-ba-lo” or “tra-ba-lio.” The sound needs focused practice, especially because this word appears in introductions and professional conversations.</p>",
                     "<p>Live-class practice helps because the teacher can isolate the sound, then put it back into a useful phrase:</p>",
                     "<p><strong>Eu trabalho na área de marketing.</strong></p>",
@@ -21055,7 +21055,7 @@ BLOG_POSTS.update({
                     "<p>Common words with <strong>nh</strong>:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>dinheiro</td><td>money</td></tr><tr><td>manhã</td><td>morning</td></tr><tr><td>banheiro</td><td>bathroom</td></tr><tr><td>cozinha</td><td>kitchen</td></tr><tr><td>companhia</td><td>company / companionship</td></tr><tr><td>tamanho</td><td>size</td></tr><tr><td>sozinho / sozinha</td><td>alone</td></tr><tr><td>caminho</td><td>path / way</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Preciso de dinheiro.</strong> — I need money.</li><li><strong>A reunião é amanhã de manhã.</strong> — The meeting is tomorrow morning.</li><li><strong>Onde fica o banheiro?</strong> — Where is the bathroom?</li><li><strong>Qual é o tamanho?</strong> — What is the size?</li><li><strong>Estou sozinho aqui.</strong> — I am alone here.</li></ul>",
+                    "<ul><li><strong>Preciso de dinheiro.</strong>: I need money.</li><li><strong>A reunião é amanhã de manhã.</strong>: The meeting is tomorrow morning.</li><li><strong>Onde fica o banheiro?</strong>: Where is the bathroom?</li><li><strong>Qual é o tamanho?</strong>: What is the size?</li><li><strong>Estou sozinho aqui.</strong>: I am alone here.</li></ul>",
                     "<p>A very useful beginner phrase is:</p>",
                     "<p><strong>Onde fica o banheiro?</strong></p>",
                     "<p>This phrase is practical, but many English speakers struggle with <strong>banheiro</strong>. Practicing it in live class builds confidence for real situations.</p>"
@@ -21068,7 +21068,7 @@ BLOG_POSTS.update({
                     "<p>Examples:</p>",
                     "<table><thead><tr><th>Written word</th><th>Common spoken tendency</th></tr></thead><tbody><tr><td>cidade</td><td>sounds closer to “cidadi”</td></tr><tr><td>tarde</td><td>sounds closer to “tardi”</td></tr><tr><td>leite</td><td>sounds closer to “leiti”</td></tr><tr><td>obrigado</td><td>final “o” may sound closer to “u”</td></tr><tr><td>tudo</td><td>final “o” may sound closer to “u”</td></tr><tr><td>cinco</td><td>final “o” may sound closer to “u”</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Boa tarde.</strong> — Good afternoon.</li><li><strong>Obrigado.</strong> — Thank you.</li><li><strong>Tudo bem?</strong> — How are you?</li><li><strong>Eu moro nesta cidade.</strong> — I live in this city.</li><li><strong>Quero leite.</strong> — I want milk.</li></ul>",
+                    "<ul><li><strong>Boa tarde.</strong>: Good afternoon.</li><li><strong>Obrigado.</strong>: Thank you.</li><li><strong>Tudo bem?</strong>: How are you?</li><li><strong>Eu moro nesta cidade.</strong>: I live in this city.</li><li><strong>Quero leite.</strong>: I want milk.</li></ul>",
                     "<p>This does not mean you should exaggerate these sounds. The key is to hear how Brazilians pronounce everyday words so you do not rely only on spelling.</p>"
                 ]
             },
@@ -21079,7 +21079,7 @@ BLOG_POSTS.update({
                     "<p>Examples:</p>",
                     "<table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td>rua</td><td>street</td></tr><tr><td>Rio</td><td>Rio</td></tr><tr><td>carro</td><td>car</td></tr><tr><td>correto</td><td>correct</td></tr><tr><td>trabalho</td><td>work</td></tr><tr><td>porta</td><td>door</td></tr><tr><td>mercado</td><td>market</td></tr><tr><td>problema</td><td>problem</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Qual é a rua?</strong> — What is the street?</li><li><strong>Eu moro no Rio.</strong> — I live in Rio.</li><li><strong>Tenho um carro.</strong> — I have a car.</li><li><strong>Está correto.</strong> — It is correct.</li><li><strong>Tenho um problema.</strong> — I have a problem.</li></ul>",
+                    "<ul><li><strong>Qual é a rua?</strong>: What is the street?</li><li><strong>Eu moro no Rio.</strong>: I live in Rio.</li><li><strong>Tenho um carro.</strong>: I have a car.</li><li><strong>Está correto.</strong>: It is correct.</li><li><strong>Tenho um problema.</strong>: I have a problem.</li></ul>",
                     "<p>Do not try to master every regional <strong>r</strong> at once. Start with clarity. Learn how people around you pronounce it, and practice the words you actually use in Brazil.</p>"
                 ]
             },
@@ -21090,7 +21090,7 @@ BLOG_POSTS.update({
                     "<p>Common examples:</p>",
                     "<table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td>exemplo</td><td>example</td></tr><tr><td>exercício</td><td>exercise</td></tr><tr><td>táxi</td><td>taxi</td></tr><tr><td>próximo</td><td>next / close</td></tr><tr><td>caixa</td><td>box / cashier</td></tr><tr><td>deixar</td><td>to leave / let</td></tr><tr><td>explicar</td><td>to explain</td></tr><tr><td>experiência</td><td>experience</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Pode dar um exemplo?</strong> — Can you give an example?</li><li><strong>Tenho um exercício.</strong> — I have an exercise.</li><li><strong>Vou chamar um táxi.</strong> — I will call a taxi.</li><li><strong>Qual é o próximo passo?</strong> — What is the next step?</li><li><strong>Você pode explicar de novo?</strong> — Can you explain again?</li></ul>",
+                    "<ul><li><strong>Pode dar um exemplo?</strong>: Can you give an example?</li><li><strong>Tenho um exercício.</strong>: I have an exercise.</li><li><strong>Vou chamar um táxi.</strong>: I will call a taxi.</li><li><strong>Qual é o próximo passo?</strong>: What is the next step?</li><li><strong>Você pode explicar de novo?</strong>: Can you explain again?</li></ul>",
                     "<p>Because <strong>x</strong> is not fully predictable for beginners, the best strategy is to learn common words with audio and teacher correction.</p>"
                 ]
             },
@@ -21328,22 +21328,22 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>A escolha dos phrasal verbs deve depender do seu objetivo. Um profissional que usa inglês em reuniões precisa de phrasal verbs diferentes de alguém que está se preparando para viagem. Um iniciante precisa de expressões mais frequentes e concretas. Um aluno B2 pode trabalhar usos mais abstratos.</p>",
                     "<h3>Para rotina</h3>",
-                    "<ul><li>get up — levantar;</li><li>wake up — acordar;</li><li>go out — sair;</li><li>come back — voltar;</li><li>clean up — limpar/organizar;</li><li>put on — vestir/colocar;</li><li>take off — tirar/remover;</li><li>sit down — sentar.</li></ul>",
+                    "<ul><li>get up: levantar;</li><li>wake up: acordar;</li><li>go out: sair;</li><li>come back: voltar;</li><li>clean up: limpar/organizar;</li><li>put on: vestir/colocar;</li><li>take off: tirar/remover;</li><li>sit down: sentar.</li></ul>",
                     "<p>Frases:</p>",
                     "<p><strong>I usually wake up at 6 a.m.</strong><br>Normalmente acordo às 6h.</p>",
                     "<p><strong>I’ll come back later.</strong><br>Vou voltar mais tarde.</p>",
                     "<h3>Para trabalho</h3>",
-                    "<ul><li>follow up — acompanhar/retomar;</li><li>bring up — mencionar;</li><li>set up — configurar/organizar;</li><li>put off — adiar;</li><li>carry out — realizar;</li><li>figure out — entender/descobrir;</li><li>get back to — retornar para alguém;</li><li>point out — apontar/destacar.</li></ul>",
+                    "<ul><li>follow up: acompanhar/retomar;</li><li>bring up: mencionar;</li><li>set up: configurar/organizar;</li><li>put off: adiar;</li><li>carry out: realizar;</li><li>figure out: entender/descobrir;</li><li>get back to: retornar para alguém;</li><li>point out: apontar/destacar.</li></ul>",
                     "<p>Frases:</p>",
                     "<p><strong>I’ll follow up with the client tomorrow.</strong><br>Vou retomar com o cliente amanhã.</p>",
                     "<p><strong>She brought up an important issue.</strong><br>Ela levantou um ponto importante.</p>",
                     "<h3>Para viagem</h3>",
-                    "<ul><li>check in — fazer check-in;</li><li>check out — fazer check-out;</li><li>get on — entrar em transporte;</li><li>get off — descer;</li><li>pick up — buscar/pegar;</li><li>drop off — deixar alguém em algum lugar;</li><li>look around — dar uma olhada;</li><li>run out of — ficar sem.</li></ul>",
+                    "<ul><li>check in: fazer check-in;</li><li>check out: fazer check-out;</li><li>get on: entrar em transporte;</li><li>get off: descer;</li><li>pick up: buscar/pegar;</li><li>drop off: deixar alguém em algum lugar;</li><li>look around: dar uma olhada;</li><li>run out of: ficar sem.</li></ul>",
                     "<p>Frases:</p>",
                     "<p><strong>What time can I check in?</strong><br>Que horas posso fazer check-in?</p>",
                     "<p><strong>Where should I get off?</strong><br>Onde devo descer?</p>",
                     "<h3>Para tecnologia</h3>",
-                    "<ul><li>log in — entrar/acessar;</li><li>log out — sair/desconectar;</li><li>set up — configurar;</li><li>back up — fazer backup;</li><li>plug in — conectar na tomada;</li><li>shut down — desligar;</li><li>scroll down — rolar para baixo;</li><li>fill out — preencher.</li></ul>",
+                    "<ul><li>log in: entrar/acessar;</li><li>log out: sair/desconectar;</li><li>set up: configurar;</li><li>back up: fazer backup;</li><li>plug in: conectar na tomada;</li><li>shut down: desligar;</li><li>scroll down: rolar para baixo;</li><li>fill out: preencher.</li></ul>",
                     "<p>Frases:</p>",
                     "<p><strong>I can’t log in to my account.</strong><br>Não consigo acessar minha conta.</p>",
                     "<p><strong>Please fill out this form.</strong><br>Por favor, preencha este formulário.</p>"
@@ -22965,7 +22965,7 @@ BLOG_POSTS.update({
                     "<table><thead><tr><th>Espanhol</th><th>Significado</th><th>Situação</th></tr></thead><tbody><tr><td>habitación</td><td>quarto</td><td>hotel</td></tr><tr><td>equipaje</td><td>bagagem</td><td>aeroporto</td></tr><tr><td>cena</td><td>jantar</td><td>restaurante</td></tr><tr><td>vaso</td><td>copo</td><td>restaurante</td></tr><tr><td>aceite</td><td>óleo</td><td>restaurante</td></tr><tr><td>dirección</td><td>endereço</td><td>táxi / hotel</td></tr><tr><td>tarjeta</td><td>cartão</td><td>pagamento</td></tr><tr><td>billete</td><td>passagem / cédula, conforme país</td><td>transporte</td></tr><tr><td>cola</td><td>fila / cauda</td><td>loja</td></tr><tr><td>baño</td><td>banheiro</td><td>vida diária</td></tr></tbody></table>",
                     "<p>Embora algumas dessas palavras não sejam falsos cognatos perfeitos, elas confundem brasileiros por semelhança, uso regional ou expectativa do português.</p>",
                     "<p>Frases úteis:</p>",
-                    "<ul><li><strong>¿Dónde está el baño?</strong> — Onde fica o banheiro?</li><li><strong>Quiero un vaso de agua.</strong> — Quero um copo de água.</li><li><strong>¿Cuál es la dirección del hotel?</strong> — Qual é o endereço do hotel?</li><li><strong>¿La cena está incluida?</strong> — O jantar está incluído?</li><li><strong>¿Puedo pagar con tarjeta?</strong> — Posso pagar com cartão?</li></ul>",
+                    "<ul><li><strong>¿Dónde está el baño?</strong>: Onde fica o banheiro?</li><li><strong>Quiero un vaso de agua.</strong>: Quero um copo de água.</li><li><strong>¿Cuál es la dirección del hotel?</strong>: Qual é o endereço do hotel?</li><li><strong>¿La cena está incluida?</strong>: O jantar está incluído?</li><li><strong>¿Puedo pagar con tarjeta?</strong>: Posso pagar com cartão?</li></ul>",
                     "<p>O espanhol para viagem fica muito mais seguro quando você aprende frases completas.</p>"
                 ]
             },
@@ -23238,7 +23238,7 @@ BLOG_POSTS.update({
                     "<h3>Trilha 1: Hebraico moderno para iniciantes</h3>",
                     "<p>Indicada para quem quer:</p>",
                     "<ul><li>falar frases básicas;</li><li>viajar;</li><li>conversar;</li><li>entender cultura contemporânea;</li><li>aprender saudações;</li><li>desenvolver escuta;</li><li>praticar com professor ao vivo.</li></ul>",
-                    "<h3>Trilha 2: Hebraico bíblico — leitura guiada</h3>",
+                    "<h3>Trilha 2: Hebraico bíblico: leitura guiada</h3>",
                     "<p>Indicada para quem quer:</p>",
                     "<ul><li>ler textos bíblicos;</li><li>estudar vocabulário antigo;</li><li>entender estruturas;</li><li>analisar palavras;</li><li>comparar traduções;</li><li>aprofundar estudo religioso, cultural ou acadêmico.</li></ul>",
                     "<h3>Trilha 3: Hebraico particular</h3>",
@@ -23364,7 +23364,7 @@ BLOG_POSTS.update({
                     "<p>Essential small-talk vocabulary should be practical and flexible. You need words for weather, work, study, weekends, transportation, food, city life and personal reactions.</p>",
                     "<table><thead><tr><th>Category</th><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Weather</td><td>calor</td><td>heat / hot weather</td></tr><tr><td>Weather</td><td>frio</td><td>cold</td></tr><tr><td>Weather</td><td>chuva</td><td>rain</td></tr><tr><td>Weather</td><td>tempo</td><td>weather / time</td></tr><tr><td>Work</td><td>trabalho</td><td>work</td></tr><tr><td>Work</td><td>reunião</td><td>meeting</td></tr><tr><td>Work</td><td>projeto</td><td>project</td></tr><tr><td>Study</td><td>aula</td><td>class</td></tr><tr><td>Study</td><td>universidade</td><td>university</td></tr><tr><td>Routine</td><td>fim de semana</td><td>weekend</td></tr><tr><td>Routine</td><td>almoço</td><td>lunch</td></tr><tr><td>Routine</td><td>trânsito</td><td>traffic</td></tr><tr><td>City</td><td>bairro</td><td>neighborhood</td></tr><tr><td>City</td><td>cidade</td><td>city</td></tr><tr><td>Reaction</td><td>legal</td><td>nice / cool</td></tr><tr><td>Reaction</td><td>interessante</td><td>interesting</td></tr><tr><td>Reaction</td><td>verdade</td><td>true</td></tr><tr><td>Reaction</td><td>pois é</td><td>yeah / that’s true</td></tr><tr><td>Reaction</td><td>nossa</td><td>wow / oh my</td></tr><tr><td>Reaction</td><td>que bom</td><td>that’s good</td></tr></tbody></table>",
                     "<p>Useful short reactions:</p>",
-                    "<ul><li><strong>Que legal!</strong> — That’s nice!</li><li><strong>Que bom!</strong> — That’s good!</li><li><strong>Nossa!</strong> — Wow! / Oh my!</li><li><strong>Verdade.</strong> — True.</li><li><strong>Pois é.</strong> — Yeah / That’s right.</li><li><strong>Entendi.</strong> — I understand.</li><li><strong>Interessante.</strong> — Interesting.</li><li><strong>Sério?</strong> — Really?</li><li><strong>Ah, sim.</strong> — Oh, yes.</li><li><strong>Com certeza.</strong> — Definitely.</li></ul>",
+                    "<ul><li><strong>Que legal!</strong>: That’s nice!</li><li><strong>Que bom!</strong>: That’s good!</li><li><strong>Nossa!</strong>: Wow! / Oh my!</li><li><strong>Verdade.</strong>: True.</li><li><strong>Pois é.</strong>: Yeah / That’s right.</li><li><strong>Entendi.</strong>: I understand.</li><li><strong>Interessante.</strong>: Interesting.</li><li><strong>Sério?</strong>: Really?</li><li><strong>Ah, sim.</strong>: Oh, yes.</li><li><strong>Com certeza.</strong>: Definitely.</li></ul>",
                     "<p>These reactions help you participate even when you cannot say a long sentence yet.</p>"
                 ]
             },
@@ -23375,7 +23375,7 @@ BLOG_POSTS.update({
                     "<p>Common work small-talk questions:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Como foi o fim de semana?</td><td>How was your weekend?</td></tr><tr><td>Como está o trabalho?</td><td>How is work?</td></tr><tr><td>Muito trabalho hoje?</td><td>A lot of work today?</td></tr><tr><td>Você já almoçou?</td><td>Have you had lunch?</td></tr><tr><td>Como está o projeto?</td><td>How is the project?</td></tr><tr><td>Você está gostando do Brasil?</td><td>Are you enjoying Brazil?</td></tr><tr><td>Você mora perto daqui?</td><td>Do you live near here?</td></tr><tr><td>Pegou muito trânsito?</td><td>Did you face a lot of traffic?</td></tr></tbody></table>",
                     "<p>Natural answers:</p>",
-                    "<ul><li><strong>Foi bom, obrigado. E o seu?</strong> — It was good, thanks. And yours?</li><li><strong>Sim, bastante trabalho hoje.</strong> — Yes, a lot of work today.</li><li><strong>Ainda não almocei.</strong> — I haven’t had lunch yet.</li><li><strong>O projeto está indo bem.</strong> — The project is going well.</li><li><strong>Estou gostando muito do Brasil.</strong> — I’m really enjoying Brazil.</li><li><strong>Moro um pouco longe.</strong> — I live a little far.</li><li><strong>Peguei um pouco de trânsito.</strong> — I hit a bit of traffic.</li></ul>",
+                    "<ul><li><strong>Foi bom, obrigado. E o seu?</strong>: It was good, thanks. And yours?</li><li><strong>Sim, bastante trabalho hoje.</strong>: Yes, a lot of work today.</li><li><strong>Ainda não almocei.</strong>: I haven’t had lunch yet.</li><li><strong>O projeto está indo bem.</strong>: The project is going well.</li><li><strong>Estou gostando muito do Brasil.</strong>: I’m really enjoying Brazil.</li><li><strong>Moro um pouco longe.</strong>: I live a little far.</li><li><strong>Peguei um pouco de trânsito.</strong>: I hit a bit of traffic.</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Coworker:</strong> Como foi o fim de semana?<br><strong>You:</strong> Foi bom, obrigado. Fui a um restaurante novo. E o seu?</p>",
                     "<p>Translation:</p>",
@@ -23388,9 +23388,9 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>For international students, small talk helps build friendships, understand class routines and feel less isolated. Brazilian classmates may ask casual questions before or after class.</p>",
                     "<p>Common student small-talk questions:</p>",
-                    "<ul><li><strong>Você é de onde?</strong> — Where are you from?</li><li><strong>Você está fazendo qual curso?</strong> — What program are you studying?</li><li><strong>Você entendeu a aula?</strong> — Did you understand the class?</li><li><strong>Você já fez a atividade?</strong> — Have you done the assignment?</li><li><strong>Você vai à aula amanhã?</strong> — Are you going to class tomorrow?</li><li><strong>Está gostando da universidade?</strong> — Are you enjoying the university?</li><li><strong>Você mora perto do campus?</strong> — Do you live near campus?</li></ul>",
+                    "<ul><li><strong>Você é de onde?</strong>: Where are you from?</li><li><strong>Você está fazendo qual curso?</strong>: What program are you studying?</li><li><strong>Você entendeu a aula?</strong>: Did you understand the class?</li><li><strong>Você já fez a atividade?</strong>: Have you done the assignment?</li><li><strong>Você vai à aula amanhã?</strong>: Are you going to class tomorrow?</li><li><strong>Está gostando da universidade?</strong>: Are you enjoying the university?</li><li><strong>Você mora perto do campus?</strong>: Do you live near campus?</li></ul>",
                     "<p>Useful answers:</p>",
-                    "<ul><li><strong>Eu sou dos Estados Unidos.</strong> — I am from the United States.</li><li><strong>Estou estudando Relações Internacionais.</strong> — I am studying International Relations.</li><li><strong>Entendi mais ou menos.</strong> — I understood more or less.</li><li><strong>Ainda não fiz a atividade.</strong> — I haven’t done the assignment yet.</li><li><strong>Sim, vou à aula amanhã.</strong> — Yes, I’m going to class tomorrow.</li><li><strong>Estou gostando bastante.</strong> — I’m enjoying it a lot.</li><li><strong>Moro perto do campus.</strong> — I live near campus.</li></ul>",
+                    "<ul><li><strong>Eu sou dos Estados Unidos.</strong>: I am from the United States.</li><li><strong>Estou estudando Relações Internacionais.</strong>: I am studying International Relations.</li><li><strong>Entendi mais ou menos.</strong>: I understood more or less.</li><li><strong>Ainda não fiz a atividade.</strong>: I haven’t done the assignment yet.</li><li><strong>Sim, vou à aula amanhã.</strong>: Yes, I’m going to class tomorrow.</li><li><strong>Estou gostando bastante.</strong>: I’m enjoying it a lot.</li><li><strong>Moro perto do campus.</strong>: I live near campus.</li></ul>",
                     "<p>A good phrase for international students:</p>",
                     "<p><strong>Ainda estou aprendendo português, mas estou tentando falar mais.</strong></p>",
                     "<p>Translation:</p>",
@@ -23405,7 +23405,7 @@ BLOG_POSTS.update({
                     "<p>Common phrases you may hear:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Bom dia, tudo bem?</td><td>Good morning, how are you?</td></tr><tr><td>Chegou encomenda para você.</td><td>A package arrived for you.</td></tr><tr><td>Vai chover hoje.</td><td>It’s going to rain today.</td></tr><tr><td>Muito calor hoje, né?</td><td>Very hot today, right?</td></tr><tr><td>Está tudo certo?</td><td>Is everything okay?</td></tr><tr><td>Já está descendo?</td><td>Are you coming down now?</td></tr><tr><td>Pode deixar aqui.</td><td>You can leave it here.</td></tr></tbody></table>",
                     "<p>Useful answers:</p>",
-                    "<ul><li><strong>Bom dia, tudo bem?</strong> — Good morning, how are you?</li><li><strong>Obrigado / obrigada.</strong> — Thank you.</li><li><strong>Pois é, muito calor.</strong> — Yeah, very hot.</li><li><strong>Está tudo certo, obrigado.</strong> — Everything is okay, thank you.</li><li><strong>Já estou descendo.</strong> — I am coming down now.</li><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building entrance/doorman area.</li></ul>",
+                    "<ul><li><strong>Bom dia, tudo bem?</strong>: Good morning, how are you?</li><li><strong>Obrigado / obrigada.</strong>: Thank you.</li><li><strong>Pois é, muito calor.</strong>: Yeah, very hot.</li><li><strong>Está tudo certo, obrigado.</strong>: Everything is okay, thank you.</li><li><strong>Já estou descendo.</strong>: I am coming down now.</li><li><strong>Pode deixar na portaria.</strong>: You can leave it at the building entrance/doorman area.</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Doorman:</strong> Chegou uma encomenda para você.<br><strong>You:</strong> Obrigado. Vou pegar agora.</p>",
                     "<p>Translation:</p>",
@@ -23418,7 +23418,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>To keep small talk going, use simple follow-up questions. You do not need advanced grammar. A few short questions can make you sound more natural.</p>",
                     "<p>Useful follow-up questions:</p>",
-                    "<ul><li><strong>E você?</strong> — And you?</li><li><strong>E o seu?</strong> — And yours?</li><li><strong>Você gosta daqui?</strong> — Do you like it here?</li><li><strong>Você mora perto?</strong> — Do you live nearby?</li><li><strong>Como foi?</strong> — How was it?</li><li><strong>Foi bom?</strong> — Was it good?</li><li><strong>Você recomenda?</strong> — Do you recommend it?</li><li><strong>Onde fica?</strong> — Where is it?</li><li><strong>Há quanto tempo você mora aqui?</strong> — How long have you lived here?</li><li><strong>O que você acha?</strong> — What do you think?</li></ul>",
+                    "<ul><li><strong>E você?</strong>: And you?</li><li><strong>E o seu?</strong>: And yours?</li><li><strong>Você gosta daqui?</strong>: Do you like it here?</li><li><strong>Você mora perto?</strong>: Do you live nearby?</li><li><strong>Como foi?</strong>: How was it?</li><li><strong>Foi bom?</strong>: Was it good?</li><li><strong>Você recomenda?</strong>: Do you recommend it?</li><li><strong>Onde fica?</strong>: Where is it?</li><li><strong>Há quanto tempo você mora aqui?</strong>: How long have you lived here?</li><li><strong>O que você acha?</strong>: What do you think?</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Brazilian:</strong> Fui à praia no fim de semana.<br><strong>You:</strong> Que legal! Onde fica?</p>",
                     "<p>Translation:</p>",
@@ -23628,7 +23628,7 @@ BLOG_POSTS.update({
                     "<p>Essential vocabulary should be learned in complete phrases. It is not enough to know the word <strong>trabalho</strong>. You need to say <strong>“Eu trabalho na área de...”</strong> or <strong>“Eu trabalho com...”</strong> in a natural way.</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>nome</td><td>name</td></tr><tr><td>profissão</td><td>profession</td></tr><tr><td>cargo</td><td>job title / position</td></tr><tr><td>área</td><td>area / field</td></tr><tr><td>empresa</td><td>company</td></tr><tr><td>equipe</td><td>team</td></tr><tr><td>projeto</td><td>project</td></tr><tr><td>cliente</td><td>client</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>experiência</td><td>experience</td></tr><tr><td>formação</td><td>educational background</td></tr><tr><td>objetivo</td><td>objective</td></tr><tr><td>responsável</td><td>responsible / person in charge</td></tr><tr><td>trabalho</td><td>work</td></tr><tr><td>estudo</td><td>study</td></tr><tr><td>universidade</td><td>university</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Meu nome é...</strong> — My name is...</li><li><strong>Eu sou de...</strong> — I am from...</li><li><strong>Eu trabalho na área de...</strong> — I work in the field of...</li><li><strong>Eu trabalho com...</strong> — I work with...</li><li><strong>Eu sou responsável por...</strong> — I am responsible for...</li><li><strong>Eu faço parte da equipe de...</strong> — I am part of the ... team.</li><li><strong>Estou no Brasil para...</strong> — I am in Brazil to...</li><li><strong>Tenho experiência com...</strong> — I have experience with...</li><li><strong>Estou aprendendo português.</strong> — I am learning Portuguese.</li><li><strong>Prazer em conhecer vocês.</strong> — Nice to meet you all.</li></ul>",
+                    "<ul><li><strong>Meu nome é...</strong>: My name is...</li><li><strong>Eu sou de...</strong>: I am from...</li><li><strong>Eu trabalho na área de...</strong>: I work in the field of...</li><li><strong>Eu trabalho com...</strong>: I work with...</li><li><strong>Eu sou responsável por...</strong>: I am responsible for...</li><li><strong>Eu faço parte da equipe de...</strong>: I am part of the ... team.</li><li><strong>Estou no Brasil para...</strong>: I am in Brazil to...</li><li><strong>Tenho experiência com...</strong>: I have experience with...</li><li><strong>Estou aprendendo português.</strong>: I am learning Portuguese.</li><li><strong>Prazer em conhecer vocês.</strong>: Nice to meet you all.</li></ul>",
                     "<p>These phrases are practical because they can be adapted to different professional contexts.</p>"
                 ]
             },
@@ -23684,7 +23684,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Mentioning your Portuguese level can be useful, especially if you are still learning. The key is to say it with confidence, not as an apology. You are setting expectations and inviting clearer communication.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Ainda estou aprendendo português.</strong> — I am still learning Portuguese.</li><li><strong>Eu falo um pouco de português.</strong> — I speak a little Portuguese.</li><li><strong>Meu português ainda é básico.</strong> — My Portuguese is still basic.</li><li><strong>Estou praticando português para o trabalho.</strong> — I am practicing Portuguese for work.</li><li><strong>Talvez eu peça para repetir algumas coisas.</strong> — I may ask you to repeat some things.</li><li><strong>Pode falar um pouco mais devagar, por favor?</strong> — Can you speak a little more slowly, please?</li></ul>",
+                    "<ul><li><strong>Ainda estou aprendendo português.</strong>: I am still learning Portuguese.</li><li><strong>Eu falo um pouco de português.</strong>: I speak a little Portuguese.</li><li><strong>Meu português ainda é básico.</strong>: My Portuguese is still basic.</li><li><strong>Estou praticando português para o trabalho.</strong>: I am practicing Portuguese for work.</li><li><strong>Talvez eu peça para repetir algumas coisas.</strong>: I may ask you to repeat some things.</li><li><strong>Pode falar um pouco mais devagar, por favor?</strong>: Can you speak a little more slowly, please?</li></ul>",
                     "<p>Professional example:</p>",
                     "<p><strong>Ainda estou aprendendo português, então talvez eu peça para repetir algumas coisas.</strong></p>",
                     "<p>This phrase is natural and respectful. It helps people understand how to support you in the conversation.</p>",
@@ -23956,15 +23956,15 @@ BLOG_POSTS.update({
                     "<h3>Housing and building</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>apartamento</td><td>apartment</td></tr><tr><td>prédio</td><td>building</td></tr><tr><td>portaria</td><td>building entrance / doorman area</td></tr><tr><td>porteiro / porteira</td><td>doorman / doorwoman</td></tr><tr><td>aluguel</td><td>rent</td></tr><tr><td>contrato</td><td>contract</td></tr><tr><td>encomenda</td><td>package</td></tr><tr><td>manutenção</td><td>maintenance</td></tr><tr><td>chave</td><td>key</td></tr><tr><td>endereço</td><td>address</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Moro neste prédio.</strong> — I live in this building.</li><li><strong>Chegou alguma encomenda para mim?</strong> — Did a package arrive for me?</li><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building entrance.</li><li><strong>Tenho um problema no apartamento.</strong> — I have a problem in the apartment.</li><li><strong>Preciso de manutenção.</strong> — I need maintenance.</li></ul>",
+                    "<ul><li><strong>Moro neste prédio.</strong>: I live in this building.</li><li><strong>Chegou alguma encomenda para mim?</strong>: Did a package arrive for me?</li><li><strong>Pode deixar na portaria.</strong>: You can leave it at the building entrance.</li><li><strong>Tenho um problema no apartamento.</strong>: I have a problem in the apartment.</li><li><strong>Preciso de manutenção.</strong>: I need maintenance.</li></ul>",
                     "<h3>Work and study</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>reunião</td><td>meeting</td></tr><tr><td>aula</td><td>class</td></tr><tr><td>dúvida</td><td>question / doubt</td></tr><tr><td>horário</td><td>schedule / time</td></tr><tr><td>projeto</td><td>project</td></tr><tr><td>prazo</td><td>deadline</td></tr><tr><td>equipe</td><td>team</td></tr><tr><td>professor / professora</td><td>teacher</td></tr><tr><td>colega</td><td>colleague / classmate</td></tr><tr><td>mensagem</td><td>message</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — I have a meeting today.</li><li><strong>Tenho uma dúvida.</strong> — I have a question.</li><li><strong>Pode repetir, por favor?</strong> — Can you repeat, please?</li><li><strong>Qual é o horário da aula?</strong> — What time is the class?</li><li><strong>Vou enviar a mensagem.</strong> — I will send the message.</li></ul>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong>: I have a meeting today.</li><li><strong>Tenho uma dúvida.</strong>: I have a question.</li><li><strong>Pode repetir, por favor?</strong>: Can you repeat, please?</li><li><strong>Qual é o horário da aula?</strong>: What time is the class?</li><li><strong>Vou enviar a mensagem.</strong>: I will send the message.</li></ul>",
                     "<h3>Daily errands</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>mercado</td><td>supermarket</td></tr><tr><td>farmácia</td><td>pharmacy</td></tr><tr><td>restaurante</td><td>restaurant</td></tr><tr><td>banco</td><td>bank</td></tr><tr><td>ônibus</td><td>bus</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr><tr><td>conta</td><td>bill</td></tr><tr><td>remédio</td><td>medicine</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Aceita cartão?</strong> — Do you accept card?</li><li><strong>A conta, por favor.</strong> — The bill, please.</li><li><strong>Onde fica a farmácia?</strong> — Where is the pharmacy?</li><li><strong>Preciso de um remédio.</strong> — I need medicine.</li><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li></ul>",
+                    "<ul><li><strong>Aceita cartão?</strong>: Do you accept card?</li><li><strong>A conta, por favor.</strong>: The bill, please.</li><li><strong>Onde fica a farmácia?</strong>: Where is the pharmacy?</li><li><strong>Preciso de um remédio.</strong>: I need medicine.</li><li><strong>Qual é a estação mais próxima?</strong>: What is the nearest station?</li></ul>",
                     "<p>This kind of vocabulary is more useful than random app words because it connects directly to your life.</p>"
                 ]
             },
@@ -23974,7 +23974,7 @@ BLOG_POSTS.update({
                     "<p>To turn app vocabulary into real speech, you need to take words out of the screen and place them into sentences, conversations and situations. Vocabulary becomes useful only when you can say it at the right moment.</p>",
                     "<h3>Step 1: choose one app word</h3>",
                     "<p>Example:</p>",
-                    "<p><strong>endereço</strong> — address</p>",
+                    "<p><strong>endereço</strong>: address</p>",
                     "<h3>Step 2: create a useful phrase</h3>",
                     "<p><strong>Este é o endereço.</strong><br>This is the address.</p>",
                     "<h3>Step 3: create a real-life situation</h3>",
@@ -24056,7 +24056,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Brazilian Portuguese is not only vocabulary and grammar. It also includes cultural behavior: how people greet, how direct or indirect a phrase sounds, when to use formal or informal language, how WhatsApp messages are written, how small talk works and how people soften requests.</p>",
                     "<p>For example, in English, a direct request may be normal in some contexts. In Brazil, you may often hear softer phrases:</p>",
-                    "<ul><li><strong>Você pode...?</strong> — Can you...?</li><li><strong>Por favor</strong> — Please.</li><li><strong>Só para confirmar...</strong> — Just to confirm...</li><li><strong>Desculpa incomodar...</strong> — Sorry to bother...</li><li><strong>Quando puder...</strong> — When you can...</li><li><strong>Tudo bem?</strong> — How are you? / All good?</li></ul>",
+                    "<ul><li><strong>Você pode...?</strong>: Can you...?</li><li><strong>Por favor</strong>: Please.</li><li><strong>Só para confirmar...</strong>: Just to confirm...</li><li><strong>Desculpa incomodar...</strong>: Sorry to bother...</li><li><strong>Quando puder...</strong>: When you can...</li><li><strong>Tudo bem?</strong>: How are you? / All good?</li></ul>",
                     "<p>These phrases help your Portuguese sound more natural and polite.</p>",
                     "<p>Example:</p>",
                     "<p>Too direct:</p>",
@@ -24222,7 +24222,7 @@ BLOG_POSTS.update({
                     "<p>Essential food vocabulary should be learned in complete phrases. Knowing the word <strong>água</strong> is useful, but knowing <strong>“Eu queria uma água sem gás”</strong> is much more practical.</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>cardápio</td><td>menu</td></tr><tr><td>garçom / garçonete</td><td>waiter / waitress</td></tr><tr><td>pedido</td><td>order</td></tr><tr><td>prato</td><td>dish / plate</td></tr><tr><td>prato do dia</td><td>dish of the day</td></tr><tr><td>entrada</td><td>appetizer / starter</td></tr><tr><td>sobremesa</td><td>dessert</td></tr><tr><td>bebida</td><td>drink</td></tr><tr><td>água com gás</td><td>sparkling water</td></tr><tr><td>água sem gás</td><td>still water</td></tr><tr><td>café</td><td>coffee</td></tr><tr><td>suco</td><td>juice</td></tr><tr><td>conta</td><td>bill / check</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr><tr><td>troco</td><td>change</td></tr><tr><td>gorjeta</td><td>tip</td></tr><tr><td>taxa de serviço</td><td>service charge</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Eu queria ver o cardápio.</strong> — I would like to see the menu.</li><li><strong>Qual é o prato do dia?</strong> — What is the dish of the day?</li><li><strong>O que você recomenda?</strong> — What do you recommend?</li><li><strong>Eu queria uma água sem gás.</strong> — I would like still water.</li><li><strong>Vou querer esse prato.</strong> — I’ll have this dish.</li><li><strong>A conta, por favor.</strong> — The bill, please.</li><li><strong>Posso pagar no cartão?</strong> — Can I pay by card?</li><li><strong>A taxa de serviço está incluída?</strong> — Is the service charge included?</li></ul>",
+                    "<ul><li><strong>Eu queria ver o cardápio.</strong>: I would like to see the menu.</li><li><strong>Qual é o prato do dia?</strong>: What is the dish of the day?</li><li><strong>O que você recomenda?</strong>: What do you recommend?</li><li><strong>Eu queria uma água sem gás.</strong>: I would like still water.</li><li><strong>Vou querer esse prato.</strong>: I’ll have this dish.</li><li><strong>A conta, por favor.</strong>: The bill, please.</li><li><strong>Posso pagar no cartão?</strong>: Can I pay by card?</li><li><strong>A taxa de serviço está incluída?</strong>: Is the service charge included?</li></ul>",
                     "<p>These phrases help you act in real situations without needing long explanations.</p>"
                 ]
             },
@@ -24231,7 +24231,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Asking questions about the menu is one of the most useful skills for foreigners in Brazil. Menus may include regional words, ingredients you do not know, abbreviations, daily specials or dishes that are familiar only to Brazilians.</p>",
                     "<p>Useful questions:</p>",
-                    "<ul><li><strong>O que vem nesse prato?</strong> — What comes in this dish?</li><li><strong>Esse prato tem carne?</strong> — Does this dish have meat?</li><li><strong>Esse prato tem frango?</strong> — Does this dish have chicken?</li><li><strong>Esse prato tem peixe?</strong> — Does this dish have fish?</li><li><strong>Esse prato tem queijo?</strong> — Does this dish have cheese?</li><li><strong>É muito apimentado?</strong> — Is it very spicy?</li><li><strong>Qual é a opção vegetariana?</strong> — What is the vegetarian option?</li><li><strong>Tem alguma opção sem glúten?</strong> — Is there any gluten-free option?</li><li><strong>Tem alguma opção sem lactose?</strong> — Is there any lactose-free option?</li><li><strong>Qual é o prato mais pedido?</strong> — What is the most ordered dish?</li></ul>",
+                    "<ul><li><strong>O que vem nesse prato?</strong>: What comes in this dish?</li><li><strong>Esse prato tem carne?</strong>: Does this dish have meat?</li><li><strong>Esse prato tem frango?</strong>: Does this dish have chicken?</li><li><strong>Esse prato tem peixe?</strong>: Does this dish have fish?</li><li><strong>Esse prato tem queijo?</strong>: Does this dish have cheese?</li><li><strong>É muito apimentado?</strong>: Is it very spicy?</li><li><strong>Qual é a opção vegetariana?</strong>: What is the vegetarian option?</li><li><strong>Tem alguma opção sem glúten?</strong>: Is there any gluten-free option?</li><li><strong>Tem alguma opção sem lactose?</strong>: Is there any lactose-free option?</li><li><strong>Qual é o prato mais pedido?</strong>: What is the most ordered dish?</li></ul>",
                     "<p>A practical exchange:</p>",
                     "<p><strong>You:</strong> O que vem nesse prato?<br><strong>Server:</strong> Vem arroz, feijão, salada e frango.<br><strong>You:</strong> Perfeito. Vou querer esse, por favor.</p>",
                     "<p>Translation:</p>",
@@ -24266,7 +24266,7 @@ BLOG_POSTS.update({
                     "<h3>Restaurante por quilo</h3>",
                     "<p>A <strong>restaurante por quilo</strong> is a pay-by-weight restaurant. You choose food from a buffet, weigh your plate and pay based on weight.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Onde eu peso o prato?</strong> — Where do I weigh the plate?</li><li><strong>Como funciona?</strong> — How does it work?</li><li><strong>Posso pagar no caixa?</strong> — Can I pay at the cashier?</li></ul>",
+                    "<ul><li><strong>Onde eu peso o prato?</strong>: Where do I weigh the plate?</li><li><strong>Como funciona?</strong>: How does it work?</li><li><strong>Posso pagar no caixa?</strong>: Can I pay at the cashier?</li></ul>",
                     "<h3>Prato feito</h3>",
                     "<p>A <strong>prato feito</strong>, often called <strong>PF</strong>, is a simple fixed plate, usually with rice, beans, meat, salad and sides.</p>",
                     "<p>Useful phrases:</p>",
@@ -24274,7 +24274,7 @@ BLOG_POSTS.update({
                     "<h3>Delivery</h3>",
                     "<p>Delivery in Brazil often involves app messages or WhatsApp communication.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building reception/doorman area.</li><li><strong>Meu apartamento é 802.</strong> — My apartment is 802.</li><li><strong>Estou descendo.</strong> — I am coming downstairs.</li><li><strong>O endereço está correto.</strong> — The address is correct.</li></ul>",
+                    "<ul><li><strong>Pode deixar na portaria.</strong>: You can leave it at the building reception/doorman area.</li><li><strong>Meu apartamento é 802.</strong>: My apartment is 802.</li><li><strong>Estou descendo.</strong>: I am coming downstairs.</li><li><strong>O endereço está correto.</strong>: The address is correct.</li></ul>",
                     "<p>These details are very Brazil-specific and useful for expats.</p>"
                 ]
             },
@@ -24342,7 +24342,7 @@ BLOG_POSTS.update({
                     "<p>Saying <strong>“água”</strong> may work, but <strong>“Eu queria uma água sem gás, por favor”</strong> sounds clearer and more polite.</p>",
                     "<h3>Mistake 2: not knowing “com gás” and “sem gás”</h3>",
                     "<p>Water in Brazil is often divided into sparkling and still:</p>",
-                    "<ul><li><strong>água com gás</strong> — sparkling water;</li><li><strong>água sem gás</strong> — still water.</li></ul>",
+                    "<ul><li><strong>água com gás</strong>: sparkling water;</li><li><strong>água sem gás</strong>: still water.</li></ul>",
                     "<h3>Mistake 3: not asking what comes in a dish</h3>",
                     "<p>Brazilian dishes often come with sides. Ask:</p>",
                     "<p><strong>O que vem nesse prato?</strong></p>",
@@ -24438,7 +24438,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Para fazer uma apresentação profissional em inglês em dois minutos, siga esta estrutura: nome e função, área de atuação, experiência principal, habilidade ou resultado relevante e objetivo profissional. Use frases curtas e conectores simples para manter clareza.</p>",
                     "<p>Um roteiro básico é:</p>",
-                    "<p>1. <strong>Greeting and name</strong> — cumprimento e nome;<br>2. <strong>Current role</strong> — cargo ou área atual;<br>3. <strong>Experience</strong> — experiência principal;<br>4. <strong>Strengths</strong> — pontos fortes;<br>5. <strong>Goal or contribution</strong> — objetivo ou contribuição;<br>6. <strong>Closing sentence</strong> — frase de encerramento.</p>",
+                    "<p>1. <strong>Greeting and name</strong>: cumprimento e nome;<br>2. <strong>Current role</strong>: cargo ou área atual;<br>3. <strong>Experience</strong>: experiência principal;<br>4. <strong>Strengths</strong>: pontos fortes;<br>5. <strong>Goal or contribution</strong>: objetivo ou contribuição;<br>6. <strong>Closing sentence</strong>: frase de encerramento.</p>",
                     "<p>Exemplo simples:</p>",
                     "<p><strong>Hi, my name is Bruno. I’m a marketing analyst from Brazil. I have experience with digital campaigns, content strategy and performance reports. In my current role, I work with social media, paid traffic and lead generation. I’m interested in improving my English because I want to communicate better with international teams and participate more actively in global projects.</strong></p>",
                     "<p>Tradução:</p>",
@@ -24993,7 +24993,7 @@ BLOG_POSTS.update({
                     "<ul><li>medo de não entender o atendente;</li><li>insegurança com pronúncia;</li><li>vocabulário solto, sem frases;</li><li>falta de prática de perguntas e respostas;</li><li>nervosismo na imigração;</li><li>dificuldade com números, horários e datas;</li><li>vergonha de pedir para repetir;</li><li>tentativa de falar perfeito;</li><li>dependência de tradutor no celular;</li><li>pouca experiência ouvindo inglês real.</li></ul>",
                     "<p>O aluno precisa entender que viajar não exige fluência avançada em todas as áreas. Exige um conjunto de frases de sobrevivência bem treinadas. Você precisa saber pedir repetição, confirmar informação, explicar sua necessidade e responder perguntas básicas.</p>",
                     "<p>Frases que destravam:</p>",
-                    "<ul><li><strong>Can you repeat, please?</strong> — Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong> — Você pode falar mais devagar?</li><li><strong>I don’t understand.</strong> — Eu não entendo.</li><li><strong>I need help.</strong> — Eu preciso de ajuda.</li><li><strong>Where is...?</strong> — Onde fica...?</li><li><strong>I have a reservation.</strong> — Eu tenho uma reserva.</li><li><strong>I’m traveling for vacation.</strong> — Estou viajando de férias.</li></ul>",
+                    "<ul><li><strong>Can you repeat, please?</strong>: Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong>: Você pode falar mais devagar?</li><li><strong>I don’t understand.</strong>: Eu não entendo.</li><li><strong>I need help.</strong>: Eu preciso de ajuda.</li><li><strong>Where is...?</strong>: Onde fica...?</li><li><strong>I have a reservation.</strong>: Eu tenho uma reserva.</li><li><strong>I’m traveling for vacation.</strong>: Estou viajando de férias.</li></ul>",
                     "<p>Essas frases mantêm a conversa viva.</p>"
                 ]
             },
@@ -25003,7 +25003,7 @@ BLOG_POSTS.update({
                     "<p>O vocabulário de aeroporto em inglês deve ser aprendido com frases de uso real. Palavras isoladas ajudam, mas frases completas preparam melhor para a viagem.</p>",
                     "<table><thead><tr><th>Inglês</th><th>Português</th></tr></thead><tbody><tr><td>airport</td><td>aeroporto</td></tr><tr><td>passport</td><td>passaporte</td></tr><tr><td>ticket</td><td>passagem</td></tr><tr><td>boarding pass</td><td>cartão de embarque</td></tr><tr><td>check-in counter</td><td>balcão de check-in</td></tr><tr><td>luggage / baggage</td><td>bagagem</td></tr><tr><td>carry-on bag</td><td>bagagem de mão</td></tr><tr><td>checked bag</td><td>bagagem despachada</td></tr><tr><td>gate</td><td>portão</td></tr><tr><td>boarding</td><td>embarque</td></tr><tr><td>flight</td><td>voo</td></tr><tr><td>departure</td><td>partida</td></tr><tr><td>arrival</td><td>chegada</td></tr><tr><td>delay</td><td>atraso</td></tr><tr><td>baggage claim</td><td>retirada de bagagem</td></tr><tr><td>customs</td><td>alfândega</td></tr><tr><td>immigration</td><td>imigração</td></tr><tr><td>connection</td><td>conexão</td></tr></tbody></table>",
                     "<p>Frases úteis no aeroporto:</p>",
-                    "<ul><li><strong>Where is the check-in counter?</strong> — Onde fica o balcão de check-in?</li><li><strong>I have a flight to New York.</strong> — Tenho um voo para Nova York.</li><li><strong>Can I see your passport?</strong> — Posso ver seu passaporte?</li><li><strong>Here is my passport.</strong> — Aqui está meu passaporte.</li><li><strong>Do you have any checked bags?</strong> — Você tem bagagem para despachar?</li><li><strong>I have one checked bag.</strong> — Tenho uma mala para despachar.</li><li><strong>I only have a carry-on bag.</strong> — Tenho apenas bagagem de mão.</li><li><strong>Where is gate 12?</strong> — Onde fica o portão 12?</li><li><strong>Is the flight delayed?</strong> — O voo está atrasado?</li><li><strong>Where is the baggage claim?</strong> — Onde fica a retirada de bagagem?</li></ul>",
+                    "<ul><li><strong>Where is the check-in counter?</strong>: Onde fica o balcão de check-in?</li><li><strong>I have a flight to New York.</strong>: Tenho um voo para Nova York.</li><li><strong>Can I see your passport?</strong>: Posso ver seu passaporte?</li><li><strong>Here is my passport.</strong>: Aqui está meu passaporte.</li><li><strong>Do you have any checked bags?</strong>: Você tem bagagem para despachar?</li><li><strong>I have one checked bag.</strong>: Tenho uma mala para despachar.</li><li><strong>I only have a carry-on bag.</strong>: Tenho apenas bagagem de mão.</li><li><strong>Where is gate 12?</strong>: Onde fica o portão 12?</li><li><strong>Is the flight delayed?</strong>: O voo está atrasado?</li><li><strong>Where is the baggage claim?</strong>: Onde fica a retirada de bagagem?</li></ul>",
                     "<p>Essas frases cobrem muitas situações comuns antes e depois do voo.</p>"
                 ]
             },
@@ -25014,7 +25014,7 @@ BLOG_POSTS.update({
                     "<p>Perguntas comuns:</p>",
                     "<table><thead><tr><th>Pergunta em inglês</th><th>Significado</th></tr></thead><tbody><tr><td>What is the purpose of your trip?</td><td>Qual é o motivo da sua viagem?</td></tr><tr><td>How long are you staying?</td><td>Quanto tempo você vai ficar?</td></tr><tr><td>Where are you staying?</td><td>Onde você vai ficar hospedado?</td></tr><tr><td>Are you traveling alone?</td><td>Você está viajando sozinho(a)?</td></tr><tr><td>Do you have a return ticket?</td><td>Você tem passagem de volta?</td></tr><tr><td>What do you do?</td><td>O que você faz / qual sua profissão?</td></tr></tbody></table>",
                     "<p>Respostas úteis:</p>",
-                    "<ul><li><strong>I’m here on vacation.</strong> — Estou aqui de férias.</li><li><strong>I’m here for business.</strong> — Estou aqui a trabalho.</li><li><strong>I’m staying for two weeks.</strong> — Vou ficar por duas semanas.</li><li><strong>I’m staying at a hotel.</strong> — Vou ficar em um hotel.</li><li><strong>I’m staying with friends.</strong> — Vou ficar com amigos.</li><li><strong>Yes, I have a return ticket.</strong> — Sim, tenho passagem de volta.</li><li><strong>I’m a marketing analyst.</strong> — Sou analista de marketing.</li></ul>",
+                    "<ul><li><strong>I’m here on vacation.</strong>: Estou aqui de férias.</li><li><strong>I’m here for business.</strong>: Estou aqui a trabalho.</li><li><strong>I’m staying for two weeks.</strong>: Vou ficar por duas semanas.</li><li><strong>I’m staying at a hotel.</strong>: Vou ficar em um hotel.</li><li><strong>I’m staying with friends.</strong>: Vou ficar com amigos.</li><li><strong>Yes, I have a return ticket.</strong>: Sim, tenho passagem de volta.</li><li><strong>I’m a marketing analyst.</strong>: Sou analista de marketing.</li></ul>",
                     "<p>Uma resposta curta é melhor do que uma explicação longa e confusa. O objetivo é clareza.</p>"
                 ]
             },
@@ -25024,7 +25024,7 @@ BLOG_POSTS.update({
                     "<p>No hotel, você precisa confirmar reserva, entender horários, pedir ajuda e resolver problemas. Esse vocabulário é muito útil mesmo para quem ainda está no nível A1 ou A2.</p>",
                     "<table><thead><tr><th>Inglês</th><th>Português</th></tr></thead><tbody><tr><td>hotel</td><td>hotel</td></tr><tr><td>reservation</td><td>reserva</td></tr><tr><td>front desk / reception</td><td>recepção</td></tr><tr><td>check-in</td><td>entrada / registro</td></tr><tr><td>check-out</td><td>saída</td></tr><tr><td>room</td><td>quarto</td></tr><tr><td>key card</td><td>cartão-chave</td></tr><tr><td>breakfast</td><td>café da manhã</td></tr><tr><td>elevator</td><td>elevador</td></tr><tr><td>towel</td><td>toalha</td></tr><tr><td>bathroom</td><td>banheiro</td></tr><tr><td>shower</td><td>chuveiro</td></tr><tr><td>air conditioning</td><td>ar-condicionado</td></tr><tr><td>Wi-Fi</td><td>Wi-Fi</td></tr><tr><td>payment</td><td>pagamento</td></tr><tr><td>receipt</td><td>recibo</td></tr><tr><td>luggage storage</td><td>guarda-volumes</td></tr></tbody></table>",
                     "<p>Frases úteis no hotel:</p>",
-                    "<ul><li><strong>I have a reservation.</strong> — Eu tenho uma reserva.</li><li><strong>My name is Ana Silva.</strong> — Meu nome é Ana Silva.</li><li><strong>Can I check in now?</strong> — Posso fazer check-in agora?</li><li><strong>What time is check-out?</strong> — Que horas é o check-out?</li><li><strong>Is breakfast included?</strong> — O café da manhã está incluído?</li><li><strong>What is the Wi-Fi password?</strong> — Qual é a senha do Wi-Fi?</li><li><strong>My key card is not working.</strong> — Meu cartão-chave não está funcionando.</li><li><strong>Can I have an extra towel?</strong> — Posso pedir uma toalha extra?</li><li><strong>The air conditioning is not working.</strong> — O ar-condicionado não está funcionando.</li><li><strong>Can I leave my luggage here?</strong> — Posso deixar minha bagagem aqui?</li></ul>",
+                    "<ul><li><strong>I have a reservation.</strong>: Eu tenho uma reserva.</li><li><strong>My name is Ana Silva.</strong>: Meu nome é Ana Silva.</li><li><strong>Can I check in now?</strong>: Posso fazer check-in agora?</li><li><strong>What time is check-out?</strong>: Que horas é o check-out?</li><li><strong>Is breakfast included?</strong>: O café da manhã está incluído?</li><li><strong>What is the Wi-Fi password?</strong>: Qual é a senha do Wi-Fi?</li><li><strong>My key card is not working.</strong>: Meu cartão-chave não está funcionando.</li><li><strong>Can I have an extra towel?</strong>: Posso pedir uma toalha extra?</li><li><strong>The air conditioning is not working.</strong>: O ar-condicionado não está funcionando.</li><li><strong>Can I leave my luggage here?</strong>: Posso deixar minha bagagem aqui?</li></ul>",
                     "<p>Essas frases resolvem a maior parte das interações básicas no hotel.</p>"
                 ]
             },
@@ -25187,7 +25187,7 @@ BLOG_POSTS.update({
         "hero_alt": "Colonial street in an Andean town, evoking a Spanish-speaking country",
         "tag": "Русский",
         "lang": "ru-RU",
-        "lead": "Учить португальский для Бразилии на живых занятиях стоит через реальные ситуации: знакомство, жильё, работа, учёба, WhatsApp, супермаркет, аптека, транспорт, банк, встречи и повседневные разговоры. Главная цель — не просто выучить правила, а научиться понимать бразильцев, отвечать вживую, просить повторить, задавать вопросы и чувствовать себя увереннее в реальной жизни в Бразилии.",
+        "lead": "Учить португальский для Бразилии на живых занятиях стоит через реальные ситуации: знакомство, жильё, работа, учёба, WhatsApp, супермаркет, аптека, транспорт, банк, встречи и повседневные разговоры. Главная цель: не просто выучить правила, а научиться понимать бразильцев, отвечать вживую, просить повторить, задавать вопросы и чувствовать себя увереннее в реальной жизни в Бразилии.",
         "sections": [
             {
                 "heading": "",
@@ -25214,7 +25214,7 @@ BLOG_POSTS.update({
                     "<p>Ключевая лексика:</p>",
                     "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>aeroporto</td><td>аэропорт</td></tr><tr><td>endereço</td><td>адрес</td></tr><tr><td>ajuda</td><td>помощь</td></tr><tr><td>documento</td><td>документ</td></tr><tr><td>bagagem</td><td>багаж</td></tr><tr><td>saída</td><td>выход</td></tr><tr><td>entrada</td><td>вход</td></tr><tr><td>hotel</td><td>отель</td></tr><tr><td>reserva</td><td>бронь</td></tr><tr><td>táxi</td><td>такси</td></tr><tr><td>aplicativo</td><td>приложение</td></tr><tr><td>dinheiro</td><td>деньги</td></tr><tr><td>cartão</td><td>карта</td></tr></tbody></table>",
                     "<p>Полезные фразы:</p>",
-                    "<ul><li><strong>Onde fica a saída?</strong> — Где выход?</li><li><strong>Você pode me ajudar?</strong> — Вы можете мне помочь?</li><li><strong>Este é o endereço.</strong> — Это адрес.</li><li><strong>Eu tenho uma reserva.</strong> — У меня есть бронь.</li><li><strong>Pode repetir, por favor?</strong> — Можете повторить, пожалуйста?</li><li><strong>Pode falar mais devagar?</strong> — Можете говорить медленнее?</li><li><strong>Eu falo pouco português.</strong> — Я немного говорю по-португальски.</li><li><strong>Estou aprendendo português.</strong> — Я учу португальский.</li></ul>",
+                    "<ul><li><strong>Onde fica a saída?</strong>: Где выход?</li><li><strong>Você pode me ajudar?</strong>: Вы можете мне помочь?</li><li><strong>Este é o endereço.</strong>: Это адрес.</li><li><strong>Eu tenho uma reserva.</strong>: У меня есть бронь.</li><li><strong>Pode repetir, por favor?</strong>: Можете повторить, пожалуйста?</li><li><strong>Pode falar mais devagar?</strong>: Можете говорить медленнее?</li><li><strong>Eu falo pouco português.</strong>: Я немного говорю по-португальски.</li><li><strong>Estou aprendendo português.</strong>: Я учу португальский.</li></ul>",
                     "<p>Одна из самых важных фраз для новичка:</p>",
                     "<p><strong>Desculpa, estou aprendendo português. Pode falar mais devagar?</strong></p>",
                     "<p>Перевод: Извините, я учу португальский. Можете говорить медленнее?</p>",
@@ -25224,7 +25224,7 @@ BLOG_POSTS.update({
             {
                 "heading": "Почему именно бразильский португальский, а не «просто португальский»?",
                 "body": [
-                    "<p>Для жизни в Бразилии нужно учить именно бразильский португальский, потому что произношение, повседневные выражения, ритм речи, культурный тон и некоторые слова отличаются от других вариантов португальского. Если ваша цель — Бразилия, учебные ситуации тоже должны быть бразильскими.</p>",
+                    "<p>Для жизни в Бразилии нужно учить именно бразильский португальский, потому что произношение, повседневные выражения, ритм речи, культурный тон и некоторые слова отличаются от других вариантов португальского. Если ваша цель: Бразилия, учебные ситуации тоже должны быть бразильскими.</p>",
                     "<p>В Бразилии вам понадобится язык для:</p>",
                     "<ul><li>общения с portaria в жилом доме;</li><li>переписки в WhatsApp;</li><li>покупки продуктов;</li><li>посещения аптеки;</li><li>записи к врачу;</li><li>открытия счёта;</li><li>работы и встреч;</li><li>учёбы;</li><li>доставки;</li><li>такси и приложений;</li><li>аренды квартиры;</li><li>объяснения проблем в быту.</li></ul>",
                     "<p>Например, слово <strong>portaria</strong> очень важно для жизни в бразильских многоквартирных домах. Это не просто “reception” в отеле. Это вход, охрана, консьерж или место, где принимают гостей и доставки. Если вы живёте в Бразилии, вы быстро столкнётесь с такими словами.</p>",
@@ -25238,15 +25238,15 @@ BLOG_POSTS.update({
                     "<h3>Жильё и дом</h3>",
                     "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>apartamento</td><td>квартира</td></tr><tr><td>prédio</td><td>здание</td></tr><tr><td>portaria</td><td>вход / стойка / консьерж в жилом доме</td></tr><tr><td>porteiro / porteira</td><td>консьерж / сотрудник входа</td></tr><tr><td>aluguel</td><td>аренда</td></tr><tr><td>contrato</td><td>договор</td></tr><tr><td>chave</td><td>ключ</td></tr><tr><td>encomenda</td><td>посылка</td></tr><tr><td>entrega</td><td>доставка</td></tr><tr><td>manutenção</td><td>ремонт / обслуживание</td></tr></tbody></table>",
                     "<p>Фразы:</p>",
-                    "<ul><li><strong>Moro no apartamento 802.</strong> — Я живу в квартире 802.</li><li><strong>Chegou uma encomenda para mim?</strong> — Для меня пришла посылка?</li><li><strong>Pode deixar na portaria.</strong> — Можно оставить на portaria.</li><li><strong>Preciso falar com o síndico.</strong> — Мне нужно поговорить с управляющим дома.</li><li><strong>A internet não está funcionando.</strong> — Интернет не работает.</li></ul>",
+                    "<ul><li><strong>Moro no apartamento 802.</strong>: Я живу в квартире 802.</li><li><strong>Chegou uma encomenda para mim?</strong>: Для меня пришла посылка?</li><li><strong>Pode deixar na portaria.</strong>: Можно оставить на portaria.</li><li><strong>Preciso falar com o síndico.</strong>: Мне нужно поговорить с управляющим дома.</li><li><strong>A internet não está funcionando.</strong>: Интернет не работает.</li></ul>",
                     "<h3>Работа и учёба</h3>",
                     "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>reunião</td><td>встреча / совещание</td></tr><tr><td>equipe</td><td>команда</td></tr><tr><td>projeto</td><td>проект</td></tr><tr><td>prazo</td><td>срок</td></tr><tr><td>relatório</td><td>отчёт</td></tr><tr><td>aula</td><td>занятие</td></tr><tr><td>atividade</td><td>задание</td></tr><tr><td>prova</td><td>тест / экзамен</td></tr><tr><td>dúvida</td><td>вопрос / сомнение</td></tr><tr><td>horário</td><td>расписание / время</td></tr></tbody></table>",
                     "<p>Фразы:</p>",
-                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — У меня сегодня встреча.</li><li><strong>Qual é o prazo?</strong> — Какой срок?</li><li><strong>Tenho uma dúvida.</strong> — У меня вопрос.</li><li><strong>Você pode explicar de novo?</strong> — Можете объяснить ещё раз?</li><li><strong>Vou enviar o relatório.</strong> — Я отправлю отчёт.</li><li><strong>Qual é o horário da aula?</strong> — Во сколько занятие?</li></ul>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong>: У меня сегодня встреча.</li><li><strong>Qual é o prazo?</strong>: Какой срок?</li><li><strong>Tenho uma dúvida.</strong>: У меня вопрос.</li><li><strong>Você pode explicar de novo?</strong>: Можете объяснить ещё раз?</li><li><strong>Vou enviar o relatório.</strong>: Я отправлю отчёт.</li><li><strong>Qual é o horário da aula?</strong>: Во сколько занятие?</li></ul>",
                     "<h3>Покупки и услуги</h3>",
                     "<table><thead><tr><th>Português</th><th>Русский</th></tr></thead><tbody><tr><td>mercado</td><td>магазин / рынок</td></tr><tr><td>farmácia</td><td>аптека</td></tr><tr><td>cartão</td><td>карта</td></tr><tr><td>dinheiro</td><td>наличные</td></tr><tr><td>nota fiscal</td><td>чек / налоговый документ</td></tr><tr><td>preço</td><td>цена</td></tr><tr><td>promoção</td><td>акция</td></tr><tr><td>sacola</td><td>пакет</td></tr></tbody></table>",
                     "<p>Фразы:</p>",
-                    "<ul><li><strong>Quanto custa?</strong> — Сколько стоит?</li><li><strong>Aceita cartão?</strong> — Вы принимаете карту?</li><li><strong>Preciso de uma sacola.</strong> — Мне нужен пакет.</li><li><strong>Onde fica a farmácia?</strong> — Где находится аптека?</li><li><strong>Preciso de ajuda.</strong> — Мне нужна помощь.</li></ul>"
+                    "<ul><li><strong>Quanto custa?</strong>: Сколько стоит?</li><li><strong>Aceita cartão?</strong>: Вы принимаете карту?</li><li><strong>Preciso de uma sacola.</strong>: Мне нужен пакет.</li><li><strong>Onde fica a farmácia?</strong>: Где находится аптека?</li><li><strong>Preciso de ajuda.</strong>: Мне нужна помощь.</li></ul>"
                 ]
             },
             {
@@ -25286,7 +25286,7 @@ BLOG_POSTS.update({
                     "<p>Живые занятия помогают с произношением, потому что преподаватель слышит, как вы говорите. Для русскоязычных студентов это особенно важно: бразильский португальский имеет носовые звуки, мягкий ритм, звуки <strong>lh</strong> и <strong>nh</strong>, а также различия между написанием и живой речью.</p>",
                     "<p>Слова, которые стоит тренировать с преподавателем:</p>",
                     "<ul><li><strong>não</strong></li><li><strong>pão</strong></li><li><strong>mãe</strong></li><li><strong>obrigado / obrigada</strong></li><li><strong>trabalho</strong></li><li><strong>dinheiro</strong></li><li><strong>endereço</strong></li><li><strong>reunião</strong></li><li><strong>manhã</strong></li><li><strong>informação</strong></li></ul>",
-                    "<p>Цель не в том, чтобы полностью убрать акцент. Цель — говорить понятно, уверенно и естественно для вашей ситуации. Акцент допустим. Непонимание из-за неправильных звуков — то, что можно и нужно исправлять.</p>",
+                    "<p>Цель не в том, чтобы полностью убрать акцент. Цель: говорить понятно, уверенно и естественно для вашей ситуации. Акцент допустим. Непонимание из-за неправильных звуков: то, что можно и нужно исправлять.</p>",
                     "<p>В живом уроке преподаватель может:</p>",
                     "<ul><li>попросить повторить слово;</li><li>показать разницу между похожими звуками;</li><li>исправить ударение;</li><li>замедлить фразу;</li><li>дать короткую тренировку;</li><li>поставить слово в реальный диалог.</li></ul>",
                     "<p>Так произношение перестаёт быть теорией.</p>"
@@ -25304,7 +25304,7 @@ BLOG_POSTS.update({
             {
                 "heading": "HowTo: пошаговый план изучения португальского для Бразилии",
                 "body": [
-                    "<p>Лучший способ учить португальский для Бразилии — соединить цель, реальные ситуации, живую практику и повторение. Ниже — пошаговый план.</p>",
+                    "<p>Лучший способ учить португальский для Бразилии: соединить цель, реальные ситуации, живую практику и повторение. Ниже: пошаговый план.</p>",
                     "<h3>Шаг 1: определите вашу главную цель</h3>",
                     "<p>Ответьте себе:</p>",
                     "<ul><li>Я переезжаю в Бразилию?</li><li>Мне нужен португальский для работы?</li><li>Я буду учиться в Бразилии?</li><li>Мне нужен язык для отношений или семьи?</li><li>Я хочу чувствовать себя увереннее в быту?</li><li>Я готовлюсь к поездке?</li></ul>",
@@ -25329,7 +25329,7 @@ BLOG_POSTS.update({
             {
                 "heading": "30-дневный план для старта",
                 "body": [
-                    "<p>Этот план не обещает свободное владение за месяц. Его цель — создать практическую базу для жизни в Бразилии.</p>",
+                    "<p>Этот план не обещает свободное владение за месяц. Его цель: создать практическую базу для жизни в Бразилии.</p>",
                     "<table><thead><tr><th>Неделя</th><th>Фокус</th><th>Результат</th></tr></thead><tbody><tr><td>1</td><td>приветствие, помощь, повторение, представление</td><td>начать простые разговоры</td></tr><tr><td>2</td><td>жильё, portaria, адреса, доставка</td><td>решать бытовые задачи</td></tr><tr><td>3</td><td>работа, учёба, встречи, WhatsApp</td><td>участвовать в базовой коммуникации</td></tr><tr><td>4</td><td>супермаркет, аптека, транспорт, повторение</td><td>чувствовать больше автономии</td></tr></tbody></table>",
                     "<p>Ежедневная практика:</p>",
                     "<ul><li>10 минут фраз вслух;</li><li>5 минут повторения слов;</li><li>1 короткое WhatsApp-сообщение;</li><li>1 мини-диалог;</li><li>1 список вопросов для урока.</li></ul>",
@@ -25366,7 +25366,7 @@ BLOG_POSTS.update({
             {
                 "heading": "Итог",
                 "body": [
-                    "<p>Учить португальский для Бразилии на живых занятиях — это практичный путь для тех, кто хочет жить, работать, учиться или чувствовать себя увереннее в бразильской среде. Вам нужен не только учебник. Вам нужны реальные фразы, живые диалоги, произношение, культурный контекст и способность реагировать в моменте.</p>",
+                    "<p>Учить португальский для Бразилии на живых занятиях: это практичный путь для тех, кто хочет жить, работать, учиться или чувствовать себя увереннее в бразильской среде. Вам нужен не только учебник. Вам нужны реальные фразы, живые диалоги, произношение, культурный контекст и способность реагировать в моменте.</p>",
                     "<p>Начинайте с простых ситуаций: представление, просьба повторить, адрес, жильё, работа, учёба, WhatsApp, покупки и аптека. Учите фразы целиком, говорите вслух, разыгрывайте диалоги и повторяйте исправления после урока. Так пассивное понимание превращается в активную речь.</p>",
                     "<p>Vedium предлагает живые онлайн-занятия по бразильскому португальскому для иностранцев: практические темы, культурная адаптация, разговорная уверенность и гибкий формат без долгих контрактов. Вы остаётесь, потому что язык становится полезным в вашей жизни.</p>",
                     "<p>Запишитесь на бесплатную проверку уровня на <a href=\"/ru/portugalskiy-dlya-inostrantsev\">https://vediums.com/</a> и начните изучать португальский для Бразилии с живой практикой и понятным планом.</p>",
@@ -25918,7 +25918,7 @@ BLOG_POSTS.update({
                     "<p>O medo de errar bloqueia a fala porque o aluno tenta controlar tudo antes de dizer qualquer coisa. Ele pensa na gramática, na pronúncia, na ordem das palavras, no sotaque e no julgamento da outra pessoa. Enquanto tenta controlar, perde velocidade.</p>",
                     "<p>Esse medo é comum, mas precisa ser trabalhado. Falar uma língua não significa produzir frases perfeitas o tempo todo. Significa se comunicar, ajustar e melhorar. Até falantes avançados cometem erros. A diferença é que eles continuam falando.</p>",
                     "<p>Frases que ajudam a reduzir a pressão:</p>",
-                    "<ul><li><strong>Let me try again.</strong> — Deixe-me tentar de novo.</li><li><strong>I’m still learning English.</strong> — Ainda estou aprendendo inglês.</li><li><strong>Can you repeat, please?</strong> — Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong> — Você pode falar mais devagar?</li><li><strong>I don’t know how to say this, but...</strong> — Eu não sei como dizer isso, mas...</li><li><strong>How do you say...?</strong> — Como se diz...?</li></ul>",
+                    "<ul><li><strong>Let me try again.</strong>: Deixe-me tentar de novo.</li><li><strong>I’m still learning English.</strong>: Ainda estou aprendendo inglês.</li><li><strong>Can you repeat, please?</strong>: Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong>: Você pode falar mais devagar?</li><li><strong>I don’t know how to say this, but...</strong>: Eu não sei como dizer isso, mas...</li><li><strong>How do you say...?</strong>: Como se diz...?</li></ul>",
                     "<p>Essas frases são poderosas porque mantêm a conversa viva. O aluno deixa de ver a trava como fim da comunicação e passa a ter ferramentas para continuar.</p>"
                 ]
             },
@@ -26104,7 +26104,7 @@ BLOG_POSTS.update({
                     "<p>El portugués para el trabajo debe empezar por palabras y frases que se usan en reuniones, mensajes, presentaciones, proyectos y conversaciones con compañeros. No necesitas comenzar con vocabulario técnico avanzado si todavía no puedes confirmar un horario o hacer una pregunta sencilla.</p>",
                     "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>trabalho</td><td>trabajo</td></tr><tr><td>empresa</td><td>empresa</td></tr><tr><td>equipe</td><td>equipo</td></tr><tr><td>reunião</td><td>reunión</td></tr><tr><td>projeto</td><td>proyecto</td></tr><tr><td>prazo</td><td>plazo</td></tr><tr><td>relatório</td><td>informe</td></tr><tr><td>cliente</td><td>cliente</td></tr><tr><td>apresentação</td><td>presentación</td></tr><tr><td>dúvida</td><td>duda / pregunta</td></tr><tr><td>horário</td><td>horario</td></tr><tr><td>mensagem</td><td>mensaje</td></tr><tr><td>responsável</td><td>responsable</td></tr><tr><td>combinado</td><td>acordado</td></tr></tbody></table>",
                     "<p>Frases útiles:</p>",
-                    "<ul><li><strong>Eu trabalho com tecnologia.</strong> — Trabajo en tecnología.</li><li><strong>Tenho uma reunião hoje.</strong> — Tengo una reunión hoy.</li><li><strong>Qual é o prazo?</strong> — ¿Cuál es el plazo?</li><li><strong>Tenho uma dúvida.</strong> — Tengo una duda.</li><li><strong>Você pode explicar de novo?</strong> — ¿Puedes explicarlo otra vez?</li><li><strong>Vou enviar o relatório amanhã.</strong> — Voy a enviar el informe mañana.</li><li><strong>Só para confirmar...</strong> — Solo para confirmar...</li><li><strong>Combinado.</strong> — De acuerdo / queda acordado.</li></ul>",
+                    "<ul><li><strong>Eu trabalho com tecnologia.</strong>: Trabajo en tecnología.</li><li><strong>Tenho uma reunião hoje.</strong>: Tengo una reunión hoy.</li><li><strong>Qual é o prazo?</strong>: ¿Cuál es el plazo?</li><li><strong>Tenho uma dúvida.</strong>: Tengo una duda.</li><li><strong>Você pode explicar de novo?</strong>: ¿Puedes explicarlo otra vez?</li><li><strong>Vou enviar o relatório amanhã.</strong>: Voy a enviar el informe mañana.</li><li><strong>Só para confirmar...</strong>: Solo para confirmar...</li><li><strong>Combinado.</strong>: De acuerdo / queda acordado.</li></ul>",
                     "<p>La expresión <strong>“Só para confirmar...”</strong> es muy útil en ambientes profesionales. Permite verificar información de forma educada y natural.</p>"
                 ]
             },
@@ -26127,7 +26127,7 @@ BLOG_POSTS.update({
                     "<p>Vivir en Brasil exige vocabulario de vivienda, servicios, transporte, compras, salud y convivencia. Estas palabras aparecen en anuncios, contratos, mensajes, conversaciones y problemas diarios.</p>",
                     "<table><thead><tr><th>Portugués</th><th>Español</th></tr></thead><tbody><tr><td>apartamento</td><td>apartamento</td></tr><tr><td>aluguel</td><td>alquiler</td></tr><tr><td>contrato</td><td>contrato</td></tr><tr><td>condomínio</td><td>cuota del edificio / gastos comunes</td></tr><tr><td>contas</td><td>cuentas / servicios</td></tr><tr><td>portaria</td><td>recepción o portería del edificio</td></tr><tr><td>porteiro / porteira</td><td>portero / portera</td></tr><tr><td>encomenda</td><td>paquete</td></tr><tr><td>entrega</td><td>entrega</td></tr><tr><td>manutenção</td><td>mantenimiento</td></tr><tr><td>bairro</td><td>barrio</td></tr><tr><td>endereço</td><td>dirección</td></tr><tr><td>chave</td><td>llave</td></tr><tr><td>vizinho / vizinha</td><td>vecino / vecina</td></tr></tbody></table>",
                     "<p>Frases útiles:</p>",
-                    "<ul><li><strong>Estou procurando um apartamento.</strong> — Estoy buscando un apartamento.</li><li><strong>O aluguel inclui condomínio?</strong> — ¿El alquiler incluye la cuota del edificio?</li><li><strong>As contas estão incluídas?</strong> — ¿Los servicios están incluidos?</li><li><strong>Pode deixar na portaria.</strong> — Puede dejarlo en la portería.</li><li><strong>Chegou alguma encomenda para mim?</strong> — ¿Llegó algún paquete para mí?</li><li><strong>Tenho um problema no apartamento.</strong> — Tengo un problema en el apartamento.</li><li><strong>Preciso de manutenção.</strong> — Necesito mantenimiento.</li><li><strong>Qual é o endereço completo?</strong> — ¿Cuál es la dirección completa?</li></ul>",
+                    "<ul><li><strong>Estou procurando um apartamento.</strong>: Estoy buscando un apartamento.</li><li><strong>O aluguel inclui condomínio?</strong>: ¿El alquiler incluye la cuota del edificio?</li><li><strong>As contas estão incluídas?</strong>: ¿Los servicios están incluidos?</li><li><strong>Pode deixar na portaria.</strong>: Puede dejarlo en la portería.</li><li><strong>Chegou alguma encomenda para mim?</strong>: ¿Llegó algún paquete para mí?</li><li><strong>Tenho um problema no apartamento.</strong>: Tengo un problema en el apartamento.</li><li><strong>Preciso de manutenção.</strong>: Necesito mantenimiento.</li><li><strong>Qual é o endereço completo?</strong>: ¿Cuál es la dirección completa?</li></ul>",
                     "<p>Para muchos extranjeros, <strong>portaria</strong> es una palabra nueva e importante. En muchos edificios brasileños, la portería organiza entregas, visitas, mensajes y seguridad. Aprender este vocabulario te ayuda a vivir con más autonomía.</p>"
                 ]
             },
@@ -26370,11 +26370,11 @@ BLOG_POSTS.update({
                     "<h3>Work and technology</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>trabalho remoto</td><td>remote work</td></tr><tr><td>reunião</td><td>meeting</td></tr><tr><td>chamada</td><td>call</td></tr><tr><td>videochamada</td><td>video call</td></tr><tr><td>internet</td><td>internet</td></tr><tr><td>Wi-Fi</td><td>Wi-Fi</td></tr><tr><td>conexão</td><td>connection</td></tr><tr><td>instável</td><td>unstable</td></tr><tr><td>lento / lenta</td><td>slow</td></tr><tr><td>computador</td><td>computer</td></tr><tr><td>carregador</td><td>charger</td></tr><tr><td>tomada</td><td>power outlet</td></tr><tr><td>fone de ouvido</td><td>headphones</td></tr><tr><td>tela</td><td>screen</td></tr><tr><td>microfone</td><td>microphone</td></tr><tr><td>câmera</td><td>camera</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Minha conexão está instável.</strong> — My connection is unstable.</li><li><strong>A internet está lenta.</strong> — The internet is slow.</li><li><strong>Preciso de uma tomada.</strong> — I need a power outlet.</li><li><strong>Tenho uma videochamada às duas.</strong> — I have a video call at two.</li><li><strong>Você sabe a senha do Wi-Fi?</strong> — Do you know the Wi-Fi password?</li><li><strong>O microfone não está funcionando.</strong> — The microphone is not working.</li></ul>",
+                    "<ul><li><strong>Minha conexão está instável.</strong>: My connection is unstable.</li><li><strong>A internet está lenta.</strong>: The internet is slow.</li><li><strong>Preciso de uma tomada.</strong>: I need a power outlet.</li><li><strong>Tenho uma videochamada às duas.</strong>: I have a video call at two.</li><li><strong>Você sabe a senha do Wi-Fi?</strong>: Do you know the Wi-Fi password?</li><li><strong>O microfone não está funcionando.</strong>: The microphone is not working.</li></ul>",
                     "<h3>Housing and building vocabulary</h3>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>apartamento</td><td>apartment</td></tr><tr><td>prédio</td><td>building</td></tr><tr><td>portaria</td><td>building entrance / doorman area</td></tr><tr><td>porteiro / porteira</td><td>doorman / doorwoman</td></tr><tr><td>encomenda</td><td>package</td></tr><tr><td>entrega</td><td>delivery</td></tr><tr><td>manutenção</td><td>maintenance</td></tr><tr><td>barulho</td><td>noise</td></tr><tr><td>vizinho / vizinha</td><td>neighbor</td></tr><tr><td>aluguel</td><td>rent</td></tr><tr><td>contrato</td><td>contract</td></tr><tr><td>condomínio</td><td>building fee</td></tr><tr><td>chave</td><td>key</td></tr><tr><td>endereço</td><td>address</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Chegou alguma encomenda para mim?</strong> — Did a package arrive for me?</li><li><strong>Pode deixar na portaria.</strong> — You can leave it at the building entrance.</li><li><strong>Tenho um problema no apartamento.</strong> — I have a problem in the apartment.</li><li><strong>O vizinho está fazendo muito barulho.</strong> — The neighbor is making a lot of noise.</li><li><strong>Preciso falar com a administração.</strong> — I need to talk to the administration.</li></ul>"
+                    "<ul><li><strong>Chegou alguma encomenda para mim?</strong>: Did a package arrive for me?</li><li><strong>Pode deixar na portaria.</strong>: You can leave it at the building entrance.</li><li><strong>Tenho um problema no apartamento.</strong>: I have a problem in the apartment.</li><li><strong>O vizinho está fazendo muito barulho.</strong>: The neighbor is making a lot of noise.</li><li><strong>Preciso falar com a administração.</strong>: I need to talk to the administration.</li></ul>"
                 ]
             },
             {
@@ -26384,7 +26384,7 @@ BLOG_POSTS.update({
                     "<p>Useful vocabulary:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>coworking</td><td>coworking space</td></tr><tr><td>mesa</td><td>desk / table</td></tr><tr><td>sala de reunião</td><td>meeting room</td></tr><tr><td>reserva</td><td>booking / reservation</td></tr><tr><td>plano mensal</td><td>monthly plan</td></tr><tr><td>diária</td><td>day pass</td></tr><tr><td>horário de funcionamento</td><td>opening hours</td></tr><tr><td>recepção</td><td>reception</td></tr><tr><td>senha do Wi-Fi</td><td>Wi-Fi password</td></tr><tr><td>tomada</td><td>power outlet</td></tr><tr><td>impressão</td><td>printing</td></tr><tr><td>café</td><td>coffee</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Vocês têm diária?</strong> — Do you have a day pass?</li><li><strong>Qual é o valor do plano mensal?</strong> — What is the price of the monthly plan?</li><li><strong>Preciso reservar uma sala de reunião.</strong> — I need to book a meeting room.</li><li><strong>Qual é a senha do Wi-Fi?</strong> — What is the Wi-Fi password?</li><li><strong>Tem tomada perto dessa mesa?</strong> — Is there a power outlet near this desk?</li><li><strong>Até que horas vocês ficam abertos?</strong> — Until what time are you open?</li><li><strong>Posso fazer uma videochamada aqui?</strong> — Can I have a video call here?</li></ul>",
+                    "<ul><li><strong>Vocês têm diária?</strong>: Do you have a day pass?</li><li><strong>Qual é o valor do plano mensal?</strong>: What is the price of the monthly plan?</li><li><strong>Preciso reservar uma sala de reunião.</strong>: I need to book a meeting room.</li><li><strong>Qual é a senha do Wi-Fi?</strong>: What is the Wi-Fi password?</li><li><strong>Tem tomada perto dessa mesa?</strong>: Is there a power outlet near this desk?</li><li><strong>Até que horas vocês ficam abertos?</strong>: Until what time are you open?</li><li><strong>Posso fazer uma videochamada aqui?</strong>: Can I have a video call here?</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Olá, tudo bem? Eu trabalho remotamente e preciso de uma mesa por um dia. Vocês têm diária?</strong></p>",
                     "<p>Translation:</p>",
@@ -26431,7 +26431,7 @@ BLOG_POSTS.update({
                     "<p>Common small-talk questions:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>Você é de onde?</td><td>Where are you from?</td></tr><tr><td>Você trabalha com o quê?</td><td>What do you do for work?</td></tr><tr><td>Você trabalha de casa?</td><td>Do you work from home?</td></tr><tr><td>Está gostando do Brasil?</td><td>Are you enjoying Brazil?</td></tr><tr><td>Você mora aqui perto?</td><td>Do you live nearby?</td></tr><tr><td>Como foi o fim de semana?</td><td>How was your weekend?</td></tr><tr><td>Muito trabalho hoje?</td><td>A lot of work today?</td></tr></tbody></table>",
                     "<p>Useful answers:</p>",
-                    "<ul><li><strong>Sou do Canadá.</strong> — I am from Canada.</li><li><strong>Trabalho remotamente.</strong> — I work remotely.</li><li><strong>Trabalho com tecnologia.</strong> — I work in technology.</li><li><strong>Estou gostando muito do Brasil.</strong> — I am really enjoying Brazil.</li><li><strong>Moro aqui perto.</strong> — I live nearby.</li><li><strong>Foi bom, obrigado. E o seu?</strong> — It was good, thanks. And yours?</li><li><strong>Sim, bastante trabalho hoje.</strong> — Yes, a lot of work today.</li></ul>",
+                    "<ul><li><strong>Sou do Canadá.</strong>: I am from Canada.</li><li><strong>Trabalho remotamente.</strong>: I work remotely.</li><li><strong>Trabalho com tecnologia.</strong>: I work in technology.</li><li><strong>Estou gostando muito do Brasil.</strong>: I am really enjoying Brazil.</li><li><strong>Moro aqui perto.</strong>: I live nearby.</li><li><strong>Foi bom, obrigado. E o seu?</strong>: It was good, thanks. And yours?</li><li><strong>Sim, bastante trabalho hoje.</strong>: Yes, a lot of work today.</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Brazilian:</strong> Você trabalha com o quê?<br><strong>You:</strong> Trabalho remotamente com marketing. E você?</p>",
                     "<p>Translation:</p>",
@@ -26639,7 +26639,7 @@ BLOG_POSTS.update({
                     "<p>Essential ride-app and taxi vocabulary should focus on pickup, destination, route, waiting and payment. These are the words you are most likely to hear or use.</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>motorista</td><td>driver</td></tr><tr><td>carro</td><td>car</td></tr><tr><td>corrida</td><td>ride</td></tr><tr><td>destino</td><td>destination</td></tr><tr><td>endereço</td><td>address</td></tr><tr><td>entrada</td><td>entrance</td></tr><tr><td>saída</td><td>exit</td></tr><tr><td>portaria</td><td>building entrance / doorman area</td></tr><tr><td>prédio</td><td>building</td></tr><tr><td>rua</td><td>street</td></tr><tr><td>avenida</td><td>avenue</td></tr><tr><td>esquina</td><td>corner</td></tr><tr><td>em frente</td><td>in front</td></tr><tr><td>perto</td><td>near</td></tr><tr><td>longe</td><td>far</td></tr><tr><td>trânsito</td><td>traffic</td></tr><tr><td>caminho</td><td>way / route</td></tr><tr><td>pagamento</td><td>payment</td></tr><tr><td>cartão</td><td>card</td></tr><tr><td>dinheiro</td><td>cash</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Este é o endereço.</strong> — This is the address.</li><li><strong>O destino está correto.</strong> — The destination is correct.</li><li><strong>Pode seguir pelo aplicativo.</strong> — You can follow the app.</li><li><strong>Tem muito trânsito?</strong> — Is there a lot of traffic?</li><li><strong>Pode ir por outro caminho?</strong> — Can you take another route?</li><li><strong>Pode parar aqui, por favor?</strong> — Can you stop here, please?</li><li><strong>Vou pagar pelo aplicativo.</strong> — I will pay through the app.</li><li><strong>Aceita cartão?</strong> — Do you accept card?</li><li><strong>Quanto ficou?</strong> — How much was it?</li></ul>",
+                    "<ul><li><strong>Este é o endereço.</strong>: This is the address.</li><li><strong>O destino está correto.</strong>: The destination is correct.</li><li><strong>Pode seguir pelo aplicativo.</strong>: You can follow the app.</li><li><strong>Tem muito trânsito?</strong>: Is there a lot of traffic?</li><li><strong>Pode ir por outro caminho?</strong>: Can you take another route?</li><li><strong>Pode parar aqui, por favor?</strong>: Can you stop here, please?</li><li><strong>Vou pagar pelo aplicativo.</strong>: I will pay through the app.</li><li><strong>Aceita cartão?</strong>: Do you accept card?</li><li><strong>Quanto ficou?</strong>: How much was it?</li></ul>",
                     "<p>The phrase <strong>“Pode parar aqui, por favor?”</strong> is one of the most useful phrases for taxi or ride-app situations.</p>"
                 ]
             },
@@ -26650,7 +26650,7 @@ BLOG_POSTS.update({
                     "<p>Direction vocabulary:</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>direita</td><td>right</td></tr><tr><td>esquerda</td><td>left</td></tr><tr><td>reto</td><td>straight</td></tr><tr><td>aqui</td><td>here</td></tr><tr><td>ali</td><td>there</td></tr><tr><td>lá</td><td>over there</td></tr><tr><td>perto</td><td>near</td></tr><tr><td>longe</td><td>far</td></tr><tr><td>antes de</td><td>before</td></tr><tr><td>depois de</td><td>after</td></tr><tr><td>no final da rua</td><td>at the end of the street</td></tr><tr><td>na esquina</td><td>on the corner</td></tr><tr><td>em frente a</td><td>in front of</td></tr><tr><td>ao lado de</td><td>next to</td></tr></tbody></table>",
                     "<p>Useful direction phrases:</p>",
-                    "<ul><li><strong>Vire à direita.</strong> — Turn right.</li><li><strong>Vire à esquerda.</strong> — Turn left.</li><li><strong>Siga reto.</strong> — Go straight.</li><li><strong>Pode parar aqui.</strong> — You can stop here.</li><li><strong>É ali na frente.</strong> — It is there ahead.</li><li><strong>É depois do mercado.</strong> — It is after the supermarket.</li><li><strong>É antes da farmácia.</strong> — It is before the pharmacy.</li><li><strong>Fica ao lado do banco.</strong> — It is next to the bank.</li><li><strong>Fica em frente ao prédio azul.</strong> — It is in front of the blue building.</li></ul>",
+                    "<ul><li><strong>Vire à direita.</strong>: Turn right.</li><li><strong>Vire à esquerda.</strong>: Turn left.</li><li><strong>Siga reto.</strong>: Go straight.</li><li><strong>Pode parar aqui.</strong>: You can stop here.</li><li><strong>É ali na frente.</strong>: It is there ahead.</li><li><strong>É depois do mercado.</strong>: It is after the supermarket.</li><li><strong>É antes da farmácia.</strong>: It is before the pharmacy.</li><li><strong>Fica ao lado do banco.</strong>: It is next to the bank.</li><li><strong>Fica em frente ao prédio azul.</strong>: It is in front of the blue building.</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Pode seguir reto e virar à direita depois da farmácia. O prédio fica em frente ao mercado.</strong></p>",
                     "<p>Translation:</p>",
@@ -26664,7 +26664,7 @@ BLOG_POSTS.update({
                     "<p>Public transportation vocabulary changes by city, but many words are useful across Brazil. You may use buses, subway, trains, light rail, vans or city-specific systems.</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>transporte público</td><td>public transportation</td></tr><tr><td>ônibus</td><td>bus</td></tr><tr><td>metrô</td><td>subway</td></tr><tr><td>trem</td><td>train</td></tr><tr><td>estação</td><td>station</td></tr><tr><td>ponto de ônibus</td><td>bus stop</td></tr><tr><td>linha</td><td>line</td></tr><tr><td>integração</td><td>transfer / integrated fare</td></tr><tr><td>passagem</td><td>fare / ticket</td></tr><tr><td>cartão de transporte</td><td>transport card</td></tr><tr><td>bilhete</td><td>ticket</td></tr><tr><td>catraca</td><td>turnstile</td></tr><tr><td>plataforma</td><td>platform</td></tr><tr><td>sentido</td><td>direction</td></tr><tr><td>terminal</td><td>terminal</td></tr><tr><td>horário</td><td>schedule / time</td></tr><tr><td>atrasado</td><td>delayed</td></tr><tr><td>lotado</td><td>crowded</td></tr><tr><td>desembarque</td><td>getting off / disembarkation</td></tr><tr><td>embarque</td><td>boarding</td></tr></tbody></table>",
                     "<p>Useful questions:</p>",
-                    "<ul><li><strong>Onde fica o ponto de ônibus?</strong> — Where is the bus stop?</li><li><strong>Qual ônibus vai para o centro?</strong> — Which bus goes downtown?</li><li><strong>Esse ônibus passa na universidade?</strong> — Does this bus go by the university?</li><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li><li><strong>Preciso trocar de linha?</strong> — Do I need to change lines?</li><li><strong>Onde eu compro o cartão de transporte?</strong> — Where do I buy the transport card?</li><li><strong>Quanto custa a passagem?</strong> — How much is the fare?</li><li><strong>Esse trem vai para...?</strong> — Does this train go to...?</li></ul>",
+                    "<ul><li><strong>Onde fica o ponto de ônibus?</strong>: Where is the bus stop?</li><li><strong>Qual ônibus vai para o centro?</strong>: Which bus goes downtown?</li><li><strong>Esse ônibus passa na universidade?</strong>: Does this bus go by the university?</li><li><strong>Qual é a estação mais próxima?</strong>: What is the nearest station?</li><li><strong>Preciso trocar de linha?</strong>: Do I need to change lines?</li><li><strong>Onde eu compro o cartão de transporte?</strong>: Where do I buy the transport card?</li><li><strong>Quanto custa a passagem?</strong>: How much is the fare?</li><li><strong>Esse trem vai para...?</strong>: Does this train go to...?</li></ul>",
                     "<p>For foreigners, <strong>sentido</strong> is especially important. It means the direction of a line. In subway systems, you may need to know which <strong>sentido</strong> to take.</p>"
                 ]
             },
@@ -26673,7 +26673,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Taking the bus in Brazil can be confusing at first because routes, stops and payment systems vary by city. You may need to ask someone which bus to take or confirm if the bus passes near your destination.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Esse ônibus vai para o centro?</strong> — Does this bus go downtown?</li><li><strong>Esse ônibus passa perto da universidade?</strong> — Does this bus pass near the university?</li><li><strong>Você sabe qual ônibus eu devo pegar?</strong> — Do you know which bus I should take?</li><li><strong>Onde eu desço?</strong> — Where do I get off?</li><li><strong>Pode me avisar quando chegar?</strong> — Can you let me know when we arrive?</li><li><strong>A passagem é quanto?</strong> — How much is the fare?</li><li><strong>Aceita dinheiro?</strong> — Do you accept cash?</li><li><strong>Preciso de cartão?</strong> — Do I need a card?</li></ul>",
+                    "<ul><li><strong>Esse ônibus vai para o centro?</strong>: Does this bus go downtown?</li><li><strong>Esse ônibus passa perto da universidade?</strong>: Does this bus pass near the university?</li><li><strong>Você sabe qual ônibus eu devo pegar?</strong>: Do you know which bus I should take?</li><li><strong>Onde eu desço?</strong>: Where do I get off?</li><li><strong>Pode me avisar quando chegar?</strong>: Can you let me know when we arrive?</li><li><strong>A passagem é quanto?</strong>: How much is the fare?</li><li><strong>Aceita dinheiro?</strong>: Do you accept cash?</li><li><strong>Preciso de cartão?</strong>: Do I need a card?</li></ul>",
                     "<p>A useful exchange:</p>",
                     "<p><strong>You:</strong> Esse ônibus passa perto da Avenida Paulista?<br><strong>Person:</strong> Passa sim. Você pode descer no próximo ponto depois do metrô.<br><strong>You:</strong> Obrigado / obrigada.</p>",
                     "<p>Translation:</p>",
@@ -26686,7 +26686,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Subways and trains may be easier than buses in some cities, but you still need Portuguese for stations, platforms, directions and line changes.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Qual é a estação mais próxima?</strong> — What is the nearest station?</li><li><strong>Preciso trocar de linha?</strong> — Do I need to change lines?</li><li><strong>Qual é o sentido?</strong> — What is the direction?</li><li><strong>Onde fica a plataforma?</strong> — Where is the platform?</li><li><strong>Esse trem vai para o centro?</strong> — Does this train go downtown?</li><li><strong>Quantas estações faltam?</strong> — How many stations are left?</li><li><strong>A estação está fechada?</strong> — Is the station closed?</li><li><strong>Tem elevador?</strong> — Is there an elevator?</li><li><strong>Onde é a saída?</strong> — Where is the exit?</li></ul>",
+                    "<ul><li><strong>Qual é a estação mais próxima?</strong>: What is the nearest station?</li><li><strong>Preciso trocar de linha?</strong>: Do I need to change lines?</li><li><strong>Qual é o sentido?</strong>: What is the direction?</li><li><strong>Onde fica a plataforma?</strong>: Where is the platform?</li><li><strong>Esse trem vai para o centro?</strong>: Does this train go downtown?</li><li><strong>Quantas estações faltam?</strong>: How many stations are left?</li><li><strong>A estação está fechada?</strong>: Is the station closed?</li><li><strong>Tem elevador?</strong>: Is there an elevator?</li><li><strong>Onde é a saída?</strong>: Where is the exit?</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Preciso ir para a estação Paulista. Qual linha eu pego?</strong></p>",
                     "<p>Translation:</p>",
@@ -26703,7 +26703,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Clarification phrases are essential for transportation because people may answer quickly or use unfamiliar local terms.</p>",
                     "<p>Use:</p>",
-                    "<ul><li><strong>Pode repetir, por favor?</strong> — Can you repeat, please?</li><li><strong>Pode falar mais devagar?</strong> — Can you speak more slowly?</li><li><strong>Não entendi.</strong> — I did not understand.</li><li><strong>Como assim?</strong> — What do you mean?</li><li><strong>Você pode explicar de novo?</strong> — Can you explain again?</li><li><strong>Pode mostrar no mapa?</strong> — Can you show me on the map?</li><li><strong>É perto ou longe?</strong> — Is it near or far?</li><li><strong>Eu ainda estou aprendendo português.</strong> — I am still learning Portuguese.</li></ul>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong>: Can you repeat, please?</li><li><strong>Pode falar mais devagar?</strong>: Can you speak more slowly?</li><li><strong>Não entendi.</strong>: I did not understand.</li><li><strong>Como assim?</strong>: What do you mean?</li><li><strong>Você pode explicar de novo?</strong>: Can you explain again?</li><li><strong>Pode mostrar no mapa?</strong>: Can you show me on the map?</li><li><strong>É perto ou longe?</strong>: Is it near or far?</li><li><strong>Eu ainda estou aprendendo português.</strong>: I am still learning Portuguese.</li></ul>",
                     "<p>A strong phrase for real life:</p>",
                     "<p><strong>Desculpa, eu ainda estou aprendendo português. Pode falar mais devagar?</strong></p>",
                     "<p>Translation:</p>",
@@ -26892,7 +26892,7 @@ BLOG_POSTS.update({
                     "<p>Essential meeting vocabulary should be learned in complete phrases, not only as isolated words. Recognition is useful, but your goal is to speak and respond.</p>",
                     "<table><thead><tr><th>Portuguese</th><th>English</th></tr></thead><tbody><tr><td>reunião</td><td>meeting</td></tr><tr><td>pauta</td><td>agenda</td></tr><tr><td>assunto</td><td>topic</td></tr><tr><td>objetivo</td><td>objective</td></tr><tr><td>equipe</td><td>team</td></tr><tr><td>projeto</td><td>project</td></tr><tr><td>prazo</td><td>deadline</td></tr><tr><td>entrega</td><td>deliverable / delivery</td></tr><tr><td>responsável</td><td>person responsible</td></tr><tr><td>atualização</td><td>update</td></tr><tr><td>decisão</td><td>decision</td></tr><tr><td>próximos passos</td><td>next steps</td></tr><tr><td>dúvida</td><td>question</td></tr><tr><td>ponto</td><td>point / issue</td></tr><tr><td>alinhamento</td><td>alignment</td></tr><tr><td>cliente</td><td>client</td></tr><tr><td>relatório</td><td>report</td></tr><tr><td>apresentação</td><td>presentation</td></tr></tbody></table>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Qual é a pauta da reunião?</strong> — What is the meeting agenda?</li><li><strong>Qual é o objetivo da reunião?</strong> — What is the objective of the meeting?</li><li><strong>Quem é o responsável por isso?</strong> — Who is responsible for this?</li><li><strong>Qual é o prazo?</strong> — What is the deadline?</li><li><strong>Quais são os próximos passos?</strong> — What are the next steps?</li><li><strong>Tenho uma dúvida.</strong> — I have a question.</li><li><strong>Posso fazer uma pergunta?</strong> — Can I ask a question?</li><li><strong>Só para confirmar...</strong> — Just to confirm...</li><li><strong>Vou enviar o relatório.</strong> — I will send the report.</li><li><strong>Podemos alinhar isso depois?</strong> — Can we align on this later?</li></ul>",
+                    "<ul><li><strong>Qual é a pauta da reunião?</strong>: What is the meeting agenda?</li><li><strong>Qual é o objetivo da reunião?</strong>: What is the objective of the meeting?</li><li><strong>Quem é o responsável por isso?</strong>: Who is responsible for this?</li><li><strong>Qual é o prazo?</strong>: What is the deadline?</li><li><strong>Quais são os próximos passos?</strong>: What are the next steps?</li><li><strong>Tenho uma dúvida.</strong>: I have a question.</li><li><strong>Posso fazer uma pergunta?</strong>: Can I ask a question?</li><li><strong>Só para confirmar...</strong>: Just to confirm...</li><li><strong>Vou enviar o relatório.</strong>: I will send the report.</li><li><strong>Podemos alinhar isso depois?</strong>: Can we align on this later?</li></ul>",
                     "<p>These phrases are practical because they appear in real meetings across industries.</p>"
                 ]
             },
@@ -26901,15 +26901,15 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Before your next meeting, master a small group of functional phrases. These phrases help you participate even if you do not understand everything.</p>",
                     "<h3>1. Asking for repetition</h3>",
-                    "<ul><li><strong>Pode repetir, por favor?</strong> — Can you repeat, please?</li><li><strong>Desculpa, não entendi.</strong> — Sorry, I did not understand.</li><li><strong>Você pode falar mais devagar?</strong> — Can you speak more slowly?</li><li><strong>Você pode explicar de novo?</strong> — Can you explain again?</li></ul>",
+                    "<ul><li><strong>Pode repetir, por favor?</strong>: Can you repeat, please?</li><li><strong>Desculpa, não entendi.</strong>: Sorry, I did not understand.</li><li><strong>Você pode falar mais devagar?</strong>: Can you speak more slowly?</li><li><strong>Você pode explicar de novo?</strong>: Can you explain again?</li></ul>",
                     "<h3>2. Asking for clarification</h3>",
-                    "<ul><li><strong>O que isso significa?</strong> — What does that mean?</li><li><strong>Você pode dar um exemplo?</strong> — Can you give an example?</li><li><strong>Você pode explicar esse ponto?</strong> — Can you explain this point?</li><li><strong>Só para confirmar, você quer dizer que...?</strong> — Just to confirm, do you mean that...?</li></ul>",
+                    "<ul><li><strong>O que isso significa?</strong>: What does that mean?</li><li><strong>Você pode dar um exemplo?</strong>: Can you give an example?</li><li><strong>Você pode explicar esse ponto?</strong>: Can you explain this point?</li><li><strong>Só para confirmar, você quer dizer que...?</strong>: Just to confirm, do you mean that...?</li></ul>",
                     "<h3>3. Sharing your opinion</h3>",
-                    "<ul><li><strong>Na minha opinião...</strong> — In my opinion...</li><li><strong>Eu acho que...</strong> — I think that...</li><li><strong>Para mim, faz sentido.</strong> — To me, it makes sense.</li><li><strong>Concordo com esse ponto.</strong> — I agree with this point.</li></ul>",
+                    "<ul><li><strong>Na minha opinião...</strong>: In my opinion...</li><li><strong>Eu acho que...</strong>: I think that...</li><li><strong>Para mim, faz sentido.</strong>: To me, it makes sense.</li><li><strong>Concordo com esse ponto.</strong>: I agree with this point.</li></ul>",
                     "<h3>4. Agreeing and disagreeing politely</h3>",
-                    "<ul><li><strong>Concordo.</strong> — I agree.</li><li><strong>Sim, faz sentido.</strong> — Yes, that makes sense.</li><li><strong>Entendo seu ponto, mas...</strong> — I understand your point, but...</li><li><strong>Talvez possamos considerar outra opção.</strong> — Maybe we can consider another option.</li></ul>",
+                    "<ul><li><strong>Concordo.</strong>: I agree.</li><li><strong>Sim, faz sentido.</strong>: Yes, that makes sense.</li><li><strong>Entendo seu ponto, mas...</strong>: I understand your point, but...</li><li><strong>Talvez possamos considerar outra opção.</strong>: Maybe we can consider another option.</li></ul>",
                     "<h3>5. Confirming next steps</h3>",
-                    "<ul><li><strong>Qual é o próximo passo?</strong> — What is the next step?</li><li><strong>Quem vai cuidar disso?</strong> — Who will take care of this?</li><li><strong>Qual é o prazo final?</strong> — What is the final deadline?</li><li><strong>Eu posso enviar isso até amanhã.</strong> — I can send this by tomorrow.</li></ul>",
+                    "<ul><li><strong>Qual é o próximo passo?</strong>: What is the next step?</li><li><strong>Quem vai cuidar disso?</strong>: Who will take care of this?</li><li><strong>Qual é o prazo final?</strong>: What is the final deadline?</li><li><strong>Eu posso enviar isso até amanhã.</strong>: I can send this by tomorrow.</li></ul>",
                     "<p>These phrases allow you to stay active in the meeting instead of becoming silent.</p>"
                 ]
             },
@@ -26952,7 +26952,7 @@ BLOG_POSTS.update({
                     "<p>Hello, my name is James. I work on the product team and I will follow this project.</p>",
                     "<h3>Step 3: Prepare three update phrases</h3>",
                     "<p>Use simple structures:</p>",
-                    "<ul><li><strong>Eu estou trabalhando em...</strong> — I am working on...</li><li><strong>Já terminamos...</strong> — We have already finished...</li><li><strong>Ainda precisamos revisar...</strong> — We still need to review...</li></ul>",
+                    "<ul><li><strong>Eu estou trabalhando em...</strong>: I am working on...</li><li><strong>Já terminamos...</strong>: We have already finished...</li><li><strong>Ainda precisamos revisar...</strong>: We still need to review...</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Eu estou trabalhando no relatório. Já terminamos a primeira parte, mas ainda precisamos revisar os dados.</strong></p>",
                     "<h3>Step 4: Prepare clarification phrases</h3>",
@@ -26979,7 +26979,7 @@ BLOG_POSTS.update({
                     "<p>Translation:</p>",
                     "<p>I am working on the presentation for the client. I have already finished the first version. I still need to review the data with the team. I need confirmation by tomorrow.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Eu estou trabalhando em...</strong> — I am working on...</li><li><strong>Já terminei...</strong> — I have already finished...</li><li><strong>Ainda estou revisando...</strong> — I am still reviewing...</li><li><strong>Preciso de ajuda com...</strong> — I need help with...</li><li><strong>O prazo é...</strong> — The deadline is...</li><li><strong>Vou enviar até...</strong> — I will send it by...</li></ul>",
+                    "<ul><li><strong>Eu estou trabalhando em...</strong>: I am working on...</li><li><strong>Já terminei...</strong>: I have already finished...</li><li><strong>Ainda estou revisando...</strong>: I am still reviewing...</li><li><strong>Preciso de ajuda com...</strong>: I need help with...</li><li><strong>O prazo é...</strong>: The deadline is...</li><li><strong>Vou enviar até...</strong>: I will send it by...</li></ul>",
                     "<p>This is practical Portuguese for work, not abstract grammar.</p>"
                 ]
             },
@@ -26988,9 +26988,9 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Deadlines and responsibilities are essential in meetings. If you miss this part, you may leave without knowing what to do.</p>",
                     "<p>Useful deadline phrases:</p>",
-                    "<ul><li><strong>Qual é o prazo?</strong> — What is the deadline?</li><li><strong>Qual é o prazo final?</strong> — What is the final deadline?</li><li><strong>Precisa ser entregue até quando?</strong> — When does it need to be delivered?</li><li><strong>Posso enviar amanhã?</strong> — Can I send it tomorrow?</li><li><strong>Vou enviar até sexta-feira.</strong> — I will send it by Friday.</li><li><strong>Precisamos revisar antes do prazo.</strong> — We need to review it before the deadline.</li></ul>",
+                    "<ul><li><strong>Qual é o prazo?</strong>: What is the deadline?</li><li><strong>Qual é o prazo final?</strong>: What is the final deadline?</li><li><strong>Precisa ser entregue até quando?</strong>: When does it need to be delivered?</li><li><strong>Posso enviar amanhã?</strong>: Can I send it tomorrow?</li><li><strong>Vou enviar até sexta-feira.</strong>: I will send it by Friday.</li><li><strong>Precisamos revisar antes do prazo.</strong>: We need to review it before the deadline.</li></ul>",
                     "<p>Useful responsibility phrases:</p>",
-                    "<ul><li><strong>Quem é o responsável por isso?</strong> — Who is responsible for this?</li><li><strong>Eu posso cuidar dessa parte.</strong> — I can take care of this part.</li><li><strong>A equipe de marketing vai cuidar disso.</strong> — The marketing team will take care of this.</li><li><strong>Podemos dividir as tarefas.</strong> — We can divide the tasks.</li><li><strong>Você consegue acompanhar esse ponto?</strong> — Can you follow up on this point?</li></ul>",
+                    "<ul><li><strong>Quem é o responsável por isso?</strong>: Who is responsible for this?</li><li><strong>Eu posso cuidar dessa parte.</strong>: I can take care of this part.</li><li><strong>A equipe de marketing vai cuidar disso.</strong>: The marketing team will take care of this.</li><li><strong>Podemos dividir as tarefas.</strong>: We can divide the tasks.</li><li><strong>Você consegue acompanhar esse ponto?</strong>: Can you follow up on this point?</li></ul>",
                     "<p>In Brazilian work settings, <strong>responsável</strong> is a very useful word. It can mean the person responsible, owner of the task or person in charge.</p>"
                 ]
             },
@@ -26999,7 +26999,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Disagreeing politely is important in professional Portuguese. You may need to show that you understand someone while offering another perspective.</p>",
                     "<p>Useful phrases:</p>",
-                    "<ul><li><strong>Entendo seu ponto, mas...</strong> — I understand your point, but...</li><li><strong>Concordo em parte.</strong> — I partly agree.</li><li><strong>Acho que precisamos considerar outro ponto.</strong> — I think we need to consider another point.</li><li><strong>Talvez essa opção não seja ideal.</strong> — Maybe this option is not ideal.</li><li><strong>Podemos avaliar outra alternativa?</strong> — Can we evaluate another alternative?</li><li><strong>Tenho uma preocupação sobre esse prazo.</strong> — I have a concern about this deadline.</li></ul>",
+                    "<ul><li><strong>Entendo seu ponto, mas...</strong>: I understand your point, but...</li><li><strong>Concordo em parte.</strong>: I partly agree.</li><li><strong>Acho que precisamos considerar outro ponto.</strong>: I think we need to consider another point.</li><li><strong>Talvez essa opção não seja ideal.</strong>: Maybe this option is not ideal.</li><li><strong>Podemos avaliar outra alternativa?</strong>: Can we evaluate another alternative?</li><li><strong>Tenho uma preocupação sobre esse prazo.</strong>: I have a concern about this deadline.</li></ul>",
                     "<p>Example:</p>",
                     "<p><strong>Entendo seu ponto, mas acho que precisamos revisar os dados antes de tomar uma decisão.</strong></p>",
                     "<p>Translation:</p>",
@@ -27012,7 +27012,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Many meetings end with responsibilities and next steps. This is where you should confirm what was decided.</p>",
                     "<p>Useful closing phrases:</p>",
-                    "<ul><li><strong>Quais são os próximos passos?</strong> — What are the next steps?</li><li><strong>Só para confirmar, eu fico responsável por isso?</strong> — Just to confirm, am I responsible for this?</li><li><strong>Eu vou enviar o documento até amanhã.</strong> — I will send the document by tomorrow.</li><li><strong>Podemos marcar uma nova reunião?</strong> — Can we schedule a new meeting?</li><li><strong>Obrigado pela reunião.</strong> — Thank you for the meeting.</li><li><strong>Obrigado pelo alinhamento.</strong> — Thank you for the alignment.</li><li><strong>Depois eu envio um resumo por e-mail.</strong> — I will send a summary by email later.</li></ul>",
+                    "<ul><li><strong>Quais são os próximos passos?</strong>: What are the next steps?</li><li><strong>Só para confirmar, eu fico responsável por isso?</strong>: Just to confirm, am I responsible for this?</li><li><strong>Eu vou enviar o documento até amanhã.</strong>: I will send the document by tomorrow.</li><li><strong>Podemos marcar uma nova reunião?</strong>: Can we schedule a new meeting?</li><li><strong>Obrigado pela reunião.</strong>: Thank you for the meeting.</li><li><strong>Obrigado pelo alinhamento.</strong>: Thank you for the alignment.</li><li><strong>Depois eu envio um resumo por e-mail.</strong>: I will send a summary by email later.</li></ul>",
                     "<p>A useful final statement:</p>",
                     "<p><strong>Só para confirmar os próximos passos: eu vou revisar o relatório e enviar a versão final até sexta-feira.</strong></p>",
                     "<p>Translation:</p>",
@@ -27076,7 +27076,7 @@ BLOG_POSTS.update({
                     "<p>Translation:</p>",
                     "<p>Hello, everyone. Thank you for the meeting. Here is a summary of the next steps: I will review the report, the product team will confirm the data, and we will schedule a new meeting next week.</p>",
                     "<p>Useful follow-up phrases:</p>",
-                    "<ul><li><strong>Segue um resumo...</strong> — Here is a summary...</li><li><strong>Conforme conversamos...</strong> — As we discussed...</li><li><strong>Só para confirmar...</strong> — Just to confirm...</li><li><strong>Fico à disposição.</strong> — I remain available / Let me know if needed.</li><li><strong>Obrigado pela reunião.</strong> — Thank you for the meeting.</li></ul>",
+                    "<ul><li><strong>Segue um resumo...</strong>: Here is a summary...</li><li><strong>Conforme conversamos...</strong>: As we discussed...</li><li><strong>Só para confirmar...</strong>: Just to confirm...</li><li><strong>Fico à disposição.</strong>: I remain available / Let me know if needed.</li><li><strong>Obrigado pela reunião.</strong>: Thank you for the meeting.</li></ul>",
                     "<p>These phrases help you sound organized and professional.</p>"
                 ]
             },
@@ -27166,7 +27166,7 @@ BLOG_POSTS.update({
                     "<p>Na negativa:</p>",
                     "<table><thead><tr><th>Auxiliar</th><th>Forma negativa</th><th>Exemplo</th></tr></thead><tbody><tr><td>do</td><td>do not / don’t</td><td>I don’t understand.</td></tr><tr><td>does</td><td>does not / doesn’t</td><td>She doesn’t work here.</td></tr><tr><td>did</td><td>did not / didn’t</td><td>They didn’t call me.</td></tr></tbody></table>",
                     "<p>A grande regra de ouro é: depois de <strong>do</strong>, <strong>does</strong> e <strong>did</strong>, o verbo principal fica na forma base.</p>",
-                    "<ul><li><strong>Does he work?</strong> — correto.</li><li><strong>Does he works?</strong> — errado.</li><li><strong>Did you go?</strong> — correto.</li><li><strong>Did you went?</strong> — errado.</li></ul>",
+                    "<ul><li><strong>Does he work?</strong>: correto.</li><li><strong>Does he works?</strong>: errado.</li><li><strong>Did you go?</strong>: correto.</li><li><strong>Did you went?</strong>: errado.</li></ul>",
                     "<p>Quer descobrir seu nível e praticar essas estruturas em conversação real? Faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
                 ]
             },
@@ -27190,11 +27190,11 @@ BLOG_POSTS.update({
                     "<p>O <strong>do</strong> pode ser verbo principal ou auxiliar. Quando é verbo principal, significa “fazer”. Quando é auxiliar, ajuda a formar perguntas, negativas e ênfase.</p>",
                     "<h3>Do como verbo principal</h3>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>I do my homework.</strong> — Eu faço minha lição.</li><li><strong>They do business with international clients.</strong> — Eles fazem negócios com clientes internacionais.</li><li><strong>We do our best.</strong> — Nós fazemos o nosso melhor.</li></ul>",
+                    "<ul><li><strong>I do my homework.</strong>: Eu faço minha lição.</li><li><strong>They do business with international clients.</strong>: Eles fazem negócios com clientes internacionais.</li><li><strong>We do our best.</strong>: Nós fazemos o nosso melhor.</li></ul>",
                     "<p>Aqui, <strong>do</strong> tem sentido de ação: fazer.</p>",
                     "<h3>Do como auxiliar</h3>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>Do you speak English?</strong> — Você fala inglês?</li><li><strong>I don’t know.</strong> — Eu não sei.</li><li><strong>Do they work together?</strong> — Eles trabalham juntos?</li></ul>",
+                    "<ul><li><strong>Do you speak English?</strong>: Você fala inglês?</li><li><strong>I don’t know.</strong>: Eu não sei.</li><li><strong>Do they work together?</strong>: Eles trabalham juntos?</li></ul>",
                     "<p>Aqui, <strong>do</strong> não significa “fazer”. Ele organiza a estrutura da frase.</p>",
                     "<p>Esse é um ponto essencial: nem todo <strong>do</strong> deve ser traduzido. Às vezes, ele é uma ferramenta gramatical.</p>"
                 ]
@@ -27207,12 +27207,12 @@ BLOG_POSTS.update({
                     "<p>Estrutura:</p>",
                     "<p><strong>Do + sujeito + verbo base + complemento?</strong></p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>Do you speak English?</strong> — Você fala inglês?</li><li><strong>Do you work here?</strong> — Você trabalha aqui?</li><li><strong>Do they need help?</strong> — Eles precisam de ajuda?</li><li><strong>Do we have a meeting today?</strong> — Nós temos reunião hoje?</li><li><strong>Do you understand?</strong> — Você entende?</li><li><strong>Do you have time?</strong> — Você tem tempo?</li></ul>",
+                    "<ul><li><strong>Do you speak English?</strong>: Você fala inglês?</li><li><strong>Do you work here?</strong>: Você trabalha aqui?</li><li><strong>Do they need help?</strong>: Eles precisam de ajuda?</li><li><strong>Do we have a meeting today?</strong>: Nós temos reunião hoje?</li><li><strong>Do you understand?</strong>: Você entende?</li><li><strong>Do you have time?</strong>: Você tem tempo?</li></ul>",
                     "<h3>Negativas com do</h3>",
                     "<p>Estrutura:</p>",
                     "<p><strong>Sujeito + don’t + verbo base + complemento.</strong></p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>I don’t understand.</strong> — Eu não entendo.</li><li><strong>You don’t need to worry.</strong> — Você não precisa se preocupar.</li><li><strong>They don’t work on Sundays.</strong> — Eles não trabalham aos domingos.</li><li><strong>We don’t have much time.</strong> — Nós não temos muito tempo.</li></ul>",
+                    "<ul><li><strong>I don’t understand.</strong>: Eu não entendo.</li><li><strong>You don’t need to worry.</strong>: Você não precisa se preocupar.</li><li><strong>They don’t work on Sundays.</strong>: Eles não trabalham aos domingos.</li><li><strong>We don’t have much time.</strong>: Nós não temos muito tempo.</li></ul>",
                     "<p>Em conversação, a forma contraída <strong>don’t</strong> é muito mais comum que <strong>do not</strong>. A forma completa aparece quando você quer dar mais ênfase ou em contextos mais formais.</p>"
                 ]
             },
@@ -27224,15 +27224,15 @@ BLOG_POSTS.update({
                     "<p>Estrutura:</p>",
                     "<p><strong>Does + he/she/it + verbo base + complemento?</strong></p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>Does he speak English?</strong> — Ele fala inglês?</li><li><strong>Does she work here?</strong> — Ela trabalha aqui?</li><li><strong>Does it make sense?</strong> — Isso faz sentido?</li><li><strong>Does your manager know?</strong> — Seu gerente sabe?</li><li><strong>Does this system work?</strong> — Este sistema funciona?</li><li><strong>Does she need help?</strong> — Ela precisa de ajuda?</li></ul>",
+                    "<ul><li><strong>Does he speak English?</strong>: Ele fala inglês?</li><li><strong>Does she work here?</strong>: Ela trabalha aqui?</li><li><strong>Does it make sense?</strong>: Isso faz sentido?</li><li><strong>Does your manager know?</strong>: Seu gerente sabe?</li><li><strong>Does this system work?</strong>: Este sistema funciona?</li><li><strong>Does she need help?</strong>: Ela precisa de ajuda?</li></ul>",
                     "<p>Observe:</p>",
-                    "<ul><li><strong>She works here.</strong> — afirmativa.</li><li><strong>Does she work here?</strong> — pergunta.</li></ul>",
+                    "<ul><li><strong>She works here.</strong>: afirmativa.</li><li><strong>Does she work here?</strong>: pergunta.</li></ul>",
                     "<p>Na pergunta, usamos <strong>work</strong>, não <strong>works</strong>, porque o <strong>does</strong> já carrega a marca de terceira pessoa.</p>",
                     "<h3>Negativas com does</h3>",
                     "<p>Estrutura:</p>",
                     "<p><strong>Sujeito + doesn’t + verbo base + complemento.</strong></p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>He doesn’t speak Spanish.</strong> — Ele não fala espanhol.</li><li><strong>She doesn’t work here anymore.</strong> — Ela não trabalha mais aqui.</li><li><strong>It doesn’t matter.</strong> — Isso não importa.</li><li><strong>This app doesn’t work.</strong> — Este aplicativo não funciona.</li><li><strong>My boss doesn’t know yet.</strong> — Meu chefe ainda não sabe.</li></ul>",
+                    "<ul><li><strong>He doesn’t speak Spanish.</strong>: Ele não fala espanhol.</li><li><strong>She doesn’t work here anymore.</strong>: Ela não trabalha mais aqui.</li><li><strong>It doesn’t matter.</strong>: Isso não importa.</li><li><strong>This app doesn’t work.</strong>: Este aplicativo não funciona.</li><li><strong>My boss doesn’t know yet.</strong>: Meu chefe ainda não sabe.</li></ul>",
                     "<p>Erro comum:</p>",
                     "<p><strong>She doesn’t works here.</strong><br>Forma correta:</p>",
                     "<p><strong>She doesn’t work here.</strong></p>",
@@ -27247,9 +27247,9 @@ BLOG_POSTS.update({
                     "<p>Estrutura:</p>",
                     "<p><strong>Did + sujeito + verbo base + complemento?</strong></p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>Did you call me?</strong> — Você me ligou?</li><li><strong>Did he send the email?</strong> — Ele enviou o e-mail?</li><li><strong>Did she go to the meeting?</strong> — Ela foi à reunião?</li><li><strong>Did they finish the project?</strong> — Eles terminaram o projeto?</li><li><strong>Did we talk about this?</strong> — Nós falamos sobre isso?</li><li><strong>Did it work?</strong> — Funcionou?</li></ul>",
+                    "<ul><li><strong>Did you call me?</strong>: Você me ligou?</li><li><strong>Did he send the email?</strong>: Ele enviou o e-mail?</li><li><strong>Did she go to the meeting?</strong>: Ela foi à reunião?</li><li><strong>Did they finish the project?</strong>: Eles terminaram o projeto?</li><li><strong>Did we talk about this?</strong>: Nós falamos sobre isso?</li><li><strong>Did it work?</strong>: Funcionou?</li></ul>",
                     "<p>Observe:</p>",
-                    "<ul><li><strong>She went to the meeting.</strong> — afirmativa.</li><li><strong>Did she go to the meeting?</strong> — pergunta.</li></ul>",
+                    "<ul><li><strong>She went to the meeting.</strong>: afirmativa.</li><li><strong>Did she go to the meeting?</strong>: pergunta.</li></ul>",
                     "<p>Erro comum:</p>",
                     "<p><strong>Did she went to the meeting?</strong><br>Forma correta:</p>",
                     "<p><strong>Did she go to the meeting?</strong></p>",
@@ -27257,7 +27257,7 @@ BLOG_POSTS.update({
                     "<p>Estrutura:</p>",
                     "<p><strong>Sujeito + didn’t + verbo base + complemento.</strong></p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>I didn’t understand.</strong> — Eu não entendi.</li><li><strong>He didn’t answer.</strong> — Ele não respondeu.</li><li><strong>They didn’t finish the report.</strong> — Eles não terminaram o relatório.</li><li><strong>We didn’t have time.</strong> — Nós não tivemos tempo.</li><li><strong>She didn’t go to work yesterday.</strong> — Ela não foi trabalhar ontem.</li></ul>",
+                    "<ul><li><strong>I didn’t understand.</strong>: Eu não entendi.</li><li><strong>He didn’t answer.</strong>: Ele não respondeu.</li><li><strong>They didn’t finish the report.</strong>: Eles não terminaram o relatório.</li><li><strong>We didn’t have time.</strong>: Nós não tivemos tempo.</li><li><strong>She didn’t go to work yesterday.</strong>: Ela não foi trabalhar ontem.</li></ul>",
                     "<p>Em conversa, <strong>didn’t</strong> aparece o tempo todo. Dominar essa forma ajuda muito em relatos, justificativas, reuniões e entrevistas.</p>"
                 ]
             },
@@ -27266,10 +27266,10 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>No presente e no passado simples, <strong>do</strong>, <strong>does</strong> e <strong>did</strong> normalmente não aparecem em frases afirmativas comuns, porque a frase já tem o verbo principal conjugado.</p>",
                     "<p>Exemplos afirmativos:</p>",
-                    "<ul><li><strong>I work here.</strong> — Eu trabalho aqui.</li><li><strong>She works here.</strong> — Ela trabalha aqui.</li><li><strong>They worked yesterday.</strong> — Eles trabalharam ontem.</li><li><strong>He called me.</strong> — Ele me ligou.</li></ul>",
+                    "<ul><li><strong>I work here.</strong>: Eu trabalho aqui.</li><li><strong>She works here.</strong>: Ela trabalha aqui.</li><li><strong>They worked yesterday.</strong>: Eles trabalharam ontem.</li><li><strong>He called me.</strong>: Ele me ligou.</li></ul>",
                     "<p>Mas <strong>do</strong>, <strong>does</strong> e <strong>did</strong> podem aparecer em afirmativas para dar ênfase.</p>",
                     "<p>Exemplos:</p>",
-                    "<ul><li><strong>I do understand.</strong> — Eu entendo, sim.</li><li><strong>She does speak English.</strong> — Ela fala inglês, sim.</li><li><strong>They did call you.</strong> — Eles ligaram para você, sim.</li></ul>",
+                    "<ul><li><strong>I do understand.</strong>: Eu entendo, sim.</li><li><strong>She does speak English.</strong>: Ela fala inglês, sim.</li><li><strong>They did call you.</strong>: Eles ligaram para você, sim.</li></ul>",
                     "<p>Essa estrutura é útil quando alguém duvida ou quando você quer reforçar uma informação.</p>",
                     "<p>Exemplo em diálogo:</p>",
                     "<p><strong>A:</strong> You don’t understand.<br><strong>B:</strong> I do understand. I just need more time.</p>",
@@ -27289,7 +27289,7 @@ BLOG_POSTS.update({
                     "<p><strong>Did you call him?</strong><br><strong>Yes, I did.</strong><br><strong>No, I didn’t.</strong></p>",
                     "<p>Brasileiros muitas vezes respondem apenas <strong>yes</strong> ou <strong>no</strong>. Isso funciona, mas pode soar seco ou incompleto em alguns contextos. Respostas curtas com auxiliar deixam a fala mais natural.</p>",
                     "<p>Exercício rápido:</p>",
-                    "<ul><li><strong>Do you study English?</strong> — Yes, I do.</li><li><strong>Does your friend work today?</strong> — No, he doesn’t.</li><li><strong>Did you watch the video?</strong> — Yes, I did.</li><li><strong>Did they answer your message?</strong> — No, they didn’t.</li></ul>",
+                    "<ul><li><strong>Do you study English?</strong>: Yes, I do.</li><li><strong>Does your friend work today?</strong>: No, he doesn’t.</li><li><strong>Did you watch the video?</strong>: Yes, I did.</li><li><strong>Did they answer your message?</strong>: No, they didn’t.</li></ul>",
                     "<p>Essas respostas precisam virar reflexo.</p>"
                 ]
             },
@@ -27507,7 +27507,7 @@ BLOG_POSTS.update({
                     "<p>基础词汇：</p>",
                     "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>aeroporto</td><td>机场</td></tr><tr><td>endereço</td><td>地址</td></tr><tr><td>ajuda</td><td>帮助</td></tr><tr><td>documento</td><td>文件 / 证件</td></tr><tr><td>hotel</td><td>酒店</td></tr><tr><td>apartamento</td><td>公寓</td></tr><tr><td>portaria</td><td>公寓入口 / 门卫处</td></tr><tr><td>mercado</td><td>超市 / 市场</td></tr><tr><td>farmácia</td><td>药店</td></tr><tr><td>reunião</td><td>会议</td></tr><tr><td>aula</td><td>课程</td></tr><tr><td>trabalho</td><td>工作</td></tr><tr><td>cartão</td><td>银行卡 / 卡</td></tr><tr><td>dinheiro</td><td>现金 / 钱</td></tr><tr><td>horário</td><td>时间 / 时间表</td></tr></tbody></table>",
                     "<p>非常实用的句子：</p>",
-                    "<ul><li><strong>Você pode me ajudar?</strong> — 你可以帮我吗？</li><li><strong>Pode repetir, por favor?</strong> — 可以请你重复一遍吗？</li><li><strong>Pode falar mais devagar?</strong> — 可以说慢一点吗？</li><li><strong>Eu estou aprendendo português.</strong> — 我正在学习葡萄牙语。</li><li><strong>Este é o endereço.</strong> — 这是地址。</li><li><strong>Onde fica a farmácia?</strong> — 药店在哪里？</li><li><strong>Tenho uma reunião hoje.</strong> — 我今天有一个会议。</li><li><strong>Preciso de ajuda.</strong> — 我需要帮助。</li></ul>",
+                    "<ul><li><strong>Você pode me ajudar?</strong>: 你可以帮我吗？</li><li><strong>Pode repetir, por favor?</strong>: 可以请你重复一遍吗？</li><li><strong>Pode falar mais devagar?</strong>: 可以说慢一点吗？</li><li><strong>Eu estou aprendendo português.</strong>: 我正在学习葡萄牙语。</li><li><strong>Este é o endereço.</strong>: 这是地址。</li><li><strong>Onde fica a farmácia?</strong>: 药店在哪里？</li><li><strong>Tenho uma reunião hoje.</strong>: 我今天有一个会议。</li><li><strong>Preciso de ajuda.</strong>: 我需要帮助。</li></ul>",
                     "<p>这些表达可以让你在真实环境中先“活下来”，再慢慢提高准确度和自然度。</p>"
                 ]
             },
@@ -27516,7 +27516,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>如果你的目标是去巴西生活、工作或学习，就应该重点学习巴西葡萄牙语。葡萄牙语在不同国家和地区有发音、词汇和表达习惯的差异。巴西的日常沟通方式、语气、WhatsApp 使用习惯和生活场景，都需要针对性学习。</p>",
                     "<p>例如，在巴西你会经常遇到：</p>",
-                    "<ul><li><strong>Tudo bem?</strong> — 你好吗？/ 最近怎么样？</li><li><strong>Combinado.</strong> — 就这么定了。</li><li><strong>Pode deixar.</strong> — 放心 / 交给我。</li><li><strong>Só um minutinho.</strong> — 稍等一下。</li><li><strong>Deixa eu ver.</strong> — 我看一下。</li><li><strong>Tá bom.</strong> — 好的。</li><li><strong>Qual é o prazo?</strong> — 截止时间是什么时候？</li><li><strong>Pode deixar na portaria.</strong> — 可以放在门卫处。</li></ul>",
+                    "<ul><li><strong>Tudo bem?</strong>: 你好吗？/ 最近怎么样？</li><li><strong>Combinado.</strong>: 就这么定了。</li><li><strong>Pode deixar.</strong>: 放心 / 交给我。</li><li><strong>Só um minutinho.</strong>: 稍等一下。</li><li><strong>Deixa eu ver.</strong>: 我看一下。</li><li><strong>Tá bom.</strong>: 好的。</li><li><strong>Qual é o prazo?</strong>: 截止时间是什么时候？</li><li><strong>Pode deixar na portaria.</strong>: 可以放在门卫处。</li></ul>",
                     "<p>这些表达在真实生活中非常常见，但很多传统教材不会优先讲。一个面向外国人的 Brazilian Portuguese course 应该把这些现实场景放进课程里，而不只是从抽象语法开始。</p>"
                 ]
             },
@@ -27527,15 +27527,15 @@ BLOG_POSTS.update({
                     "<h3>工作场景</h3>",
                     "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>reunião</td><td>会议</td></tr><tr><td>equipe</td><td>团队</td></tr><tr><td>projeto</td><td>项目</td></tr><tr><td>prazo</td><td>截止时间</td></tr><tr><td>relatório</td><td>报告</td></tr><tr><td>cliente</td><td>客户</td></tr><tr><td>apresentação</td><td>演示 / 汇报</td></tr><tr><td>responsável</td><td>负责人</td></tr></tbody></table>",
                     "<p>实用句子：</p>",
-                    "<ul><li><strong>Tenho uma reunião hoje.</strong> — 我今天有会议。</li><li><strong>Qual é o prazo?</strong> — 截止时间是什么时候？</li><li><strong>Quem é o responsável?</strong> — 谁负责？</li><li><strong>Tenho uma dúvida.</strong> — 我有一个问题。</li><li><strong>Você pode explicar de novo?</strong> — 你可以再解释一遍吗？</li><li><strong>Vou enviar o relatório.</strong> — 我会发送报告。</li></ul>",
+                    "<ul><li><strong>Tenho uma reunião hoje.</strong>: 我今天有会议。</li><li><strong>Qual é o prazo?</strong>: 截止时间是什么时候？</li><li><strong>Quem é o responsável?</strong>: 谁负责？</li><li><strong>Tenho uma dúvida.</strong>: 我有一个问题。</li><li><strong>Você pode explicar de novo?</strong>: 你可以再解释一遍吗？</li><li><strong>Vou enviar o relatório.</strong>: 我会发送报告。</li></ul>",
                     "<h3>学习场景</h3>",
                     "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>aula</td><td>课程</td></tr><tr><td>professor / professora</td><td>老师</td></tr><tr><td>atividade</td><td>作业 / 活动</td></tr><tr><td>prova</td><td>考试</td></tr><tr><td>inscrição</td><td>报名</td></tr><tr><td>matrícula</td><td>注册</td></tr><tr><td>dúvida</td><td>问题 / 疑问</td></tr><tr><td>horário</td><td>时间</td></tr></tbody></table>",
                     "<p>实用句子：</p>",
-                    "<ul><li><strong>Qual é o horário da aula?</strong> — 课程几点开始？</li><li><strong>Tenho uma dúvida sobre a atividade.</strong> — 我对作业有一个问题。</li><li><strong>Quando é a prova?</strong> — 考试是什么时候？</li><li><strong>Preciso fazer a inscrição.</strong> — 我需要报名。</li><li><strong>Você pode repetir?</strong> — 你可以重复吗？</li></ul>",
+                    "<ul><li><strong>Qual é o horário da aula?</strong>: 课程几点开始？</li><li><strong>Tenho uma dúvida sobre a atividade.</strong>: 我对作业有一个问题。</li><li><strong>Quando é a prova?</strong>: 考试是什么时候？</li><li><strong>Preciso fazer a inscrição.</strong>: 我需要报名。</li><li><strong>Você pode repetir?</strong>: 你可以重复吗？</li></ul>",
                     "<h3>生活场景</h3>",
                     "<table><thead><tr><th>葡萄牙语</th><th>中文</th></tr></thead><tbody><tr><td>mercado</td><td>超市</td></tr><tr><td>farmácia</td><td>药店</td></tr><tr><td>ônibus</td><td>公交车</td></tr><tr><td>aplicativo</td><td>应用程序</td></tr><tr><td>entrega</td><td>配送</td></tr><tr><td>encomenda</td><td>包裹</td></tr><tr><td>chave</td><td>钥匙</td></tr><tr><td>banheiro</td><td>洗手间</td></tr></tbody></table>",
                     "<p>实用句子：</p>",
-                    "<ul><li><strong>Onde fica o banheiro?</strong> — 洗手间在哪里？</li><li><strong>Aceita cartão?</strong> — 可以刷卡吗？</li><li><strong>Chegou uma encomenda para mim?</strong> — 有我的包裹吗？</li><li><strong>Pode deixar na portaria.</strong> — 可以放在门卫处。</li><li><strong>Preciso comprar remédio.</strong> — 我需要买药。</li></ul>"
+                    "<ul><li><strong>Onde fica o banheiro?</strong>: 洗手间在哪里？</li><li><strong>Aceita cartão?</strong>: 可以刷卡吗？</li><li><strong>Chegou uma encomenda para mim?</strong>: 有我的包裹吗？</li><li><strong>Pode deixar na portaria.</strong>: 可以放在门卫处。</li><li><strong>Preciso comprar remédio.</strong>: 我需要买药。</li></ul>"
                 ]
             },
             {
@@ -27588,7 +27588,7 @@ BLOG_POSTS.update({
                     "<p>建议方法：</p>",
                     "<p>1. 每天选 5 个实用句子；<br>2. 大声读出来；<br>3. 录一段自己的声音；<br>4. 在直播课上请老师纠正；<br>5. 把纠正后的句子再说 3 次；<br>6. 下次课用同一句子回答问题；<br>7. 把句子放到真实场景中。</p>",
                     "<p>例如：</p>",
-                    "<p><strong>Tenho uma dúvida.</strong> — 我有一个问题。</p>",
+                    "<p><strong>Tenho uma dúvida.</strong>: 我有一个问题。</p>",
                     "<p>可以扩展为：</p>",
                     "<ul><li><strong>Tenho uma dúvida sobre a aula.</strong></li><li><strong>Tenho uma dúvida sobre o horário.</strong></li><li><strong>Tenho uma dúvida sobre o projeto.</strong></li><li><strong>Tenho uma dúvida sobre o contrato.</strong></li></ul>",
                     "<p>这样，一个简单句子就变成多个真实表达。</p>"
@@ -27913,7 +27913,7 @@ BLOG_POSTS.update({
 def _post_url(slug, post):
     """URL do post: nova estrutura por categoria (/blog/<cat>/<slug> ou
     /<lang>/blog/<cat>/<slug>) se o post declarar "category"; senão, a URL
-    plana antiga (/blog/<slug>) — usada pelos 8 posts publicados antes da
+    plana antiga (/blog/<slug>): usada pelos 8 posts publicados antes da
     reestruturação de URL de 2026-07-14, que NÃO mudam de endereço."""
     category = post.get("category")
     if not category:
@@ -28017,7 +28017,7 @@ def get_blog_post_from_db(slug):
         "hero_alt": doc.hero_alt or "",
         "lead": doc.lead or "",
         "lang": doc.lang or "pt-BR",
-        # content é HTML de um Text Editor (rich text) — uma seção única sem
+        # content é HTML de um Text Editor (rich text): uma seção única sem
         # heading (o template pula o <h2> quando heading está vazio).
         "sections": [{"heading": "", "body": [doc.content or ""]}],
         "faqs": faqs,
@@ -28059,7 +28059,7 @@ def get_blog_categories(lang=None):
 
 def get_adjacent_posts(slug):
     """(anterior, próximo) na lista combinada ordenada por data (mais recente
-    primeiro) — "anterior" é o post mais recente que este, "próximo" o mais
+    primeiro): "anterior" é o post mais recente que este, "próximo" o mais
     antigo, espelhando a ordem em que aparecem no índice /blog."""
     posts = list_blog_posts()
     idx = next((i for i, p in enumerate(posts) if p["slug"] == slug), None)
@@ -28071,16 +28071,16 @@ def get_adjacent_posts(slug):
 
 
 # =============================================================================
-# Páginas de categoria do blog (2026-07-14) — cada frente do calendário
+# Páginas de categoria do blog (2026-07-14): cada frente do calendário
 # editorial (Cliente/Vedium/Artigos/vedium_calendario_editorial_seo_geo_318_posts.xlsx)
 # ganha uma página própria, ao mesmo tempo categoria (lista os posts daquele
-# tema) e página editorial (H1, introdução, blocos temáticos, FAQ e CTA) —
+# tema) e página editorial (H1, introdução, blocos temáticos, FAQ e CTA),
 # não uma lista automática pura. Chave = (lang, slug da categoria); lang "pt"
 # pras 4 frentes brasileiras (URL sem prefixo: /blog/<slug>), "en"/"es" pro
 # PLE internacional (URL com prefixo: /<lang>/blog/<slug>).
 #
 # "legacy_tag" é o valor de "tag" usado pelos posts publicados ANTES desta
-# reestruturação (ver BLOG_POSTS acima) — permite listar esses posts na
+# reestruturação (ver BLOG_POSTS acima): permite listar esses posts na
 # categoria certa sem mexer na URL deles (só ganham "category"/nested URL
 # os posts NOVOS, publicados depois de 2026-07-14).
 RESERVED_CATEGORY_SLUGS = {"ingles", "ioruba", "hebraico", "espanhol"}
@@ -28094,17 +28094,17 @@ CATEGORY_PAGES = {
     ("pt", "ingles"): {
         "h1": "Inglês para carreira, viagens e conversas reais",
         "meta_description": "Conteúdos para quem deseja aprender inglês com clareza, entender como o idioma funciona e evoluir nível a nível.",
-        "intro": "Conteúdos para quem deseja aprender inglês com clareza, entender como o idioma funciona e evoluir nível a nível — carreira, entrevistas, viagens e conversação real, sem enrolação.",
+        "intro": "Conteúdos para quem deseja aprender inglês com clareza, entender como o idioma funciona e evoluir nível a nível: carreira, entrevistas, viagens e conversação real, sem enrolação.",
         "blocks": [
             {"title": "Comece por aqui", "text": "Descubra seu nível real e o caminho recomendado antes de escolher um curso."},
             {"title": "Inglês para carreira", "text": "Entrevistas, e-mails corporativos, reuniões e vocabulário para o mercado de trabalho."},
             {"title": "Conversação", "text": "Como treinar speaking de verdade, sem depender só de aplicativo ou gramática decorada."},
             {"title": "Pronúncia", "text": "Sons que não existem em português, ritmo da fala e os erros mais comuns de brasileiros."},
-            {"title": "Gramática", "text": "Os pontos que mais confundem — tempos verbais, preposições e uso natural do idioma."},
+            {"title": "Gramática", "text": "Os pontos que mais confundem: tempos verbais, preposições e uso natural do idioma."},
             {"title": "Viagens", "text": "Frases e situações práticas para se virar bem em qualquer país de língua inglesa."},
         ],
         "faqs": [
-            {"q": "Preciso saber gramática antes de começar a falar inglês?", "a": "Não. Na Vedium, o foco é começar a falar desde a primeira aula, com a gramática entrando naturalmente como suporte — não como pré-requisito."},
+            {"q": "Preciso saber gramática antes de começar a falar inglês?", "a": "Não. Na Vedium, o foco é começar a falar desde a primeira aula, com a gramática entrando naturalmente como suporte: não como pré-requisito."},
             {"q": "Quanto tempo leva para ficar fluente em inglês?", "a": "Depende do nível inicial e da frequência de prática, mas aulas ao vivo regulares costumam mostrar evolução perceptível em poucos meses."},
         ],
         "cta_title": "Quer saber seu nível real de inglês?",
@@ -28117,7 +28117,7 @@ CATEGORY_PAGES = {
     },
     ("pt", "ioruba"): {
         "h1": "Iorubá: idioma, cultura e ancestralidade com respeito",
-        "meta_description": "Guias sobre o idioma iorubá — alfabeto, tons, saudações, números e cultura — pensados para quem está começando do zero.",
+        "meta_description": "Guias sobre o idioma iorubá (alfabeto, tons, saudações, números e cultura) pensados para quem está começando do zero.",
         "intro": "O iorubá é uma língua tonal riquíssima, com forte presença na cultura e na história brasileiras. Aqui você encontra guias práticos sobre pronúncia, vocabulário e cultura, sempre com respeito à ancestralidade do idioma.",
         "blocks": [
             {"title": "Comece por aqui", "text": "O que é o idioma iorubá e por que ele carrega cultura e memória."},
@@ -28150,7 +28150,7 @@ CATEGORY_PAGES = {
             {"title": "Pronúncia e leitura", "text": "Sons próprios do hebraico e como treinar a leitura com confiança."},
         ],
         "faqs": [
-            {"q": "Hebraico bíblico e hebraico moderno são o mesmo idioma?", "a": "Compartilham o alfabeto e boa parte da raiz, mas têm diferenças de vocabulário, gramática e uso — vale entender qual dos dois você quer aprender antes de começar."},
+            {"q": "Hebraico bíblico e hebraico moderno são o mesmo idioma?", "a": "Compartilham o alfabeto e boa parte da raiz, mas têm diferenças de vocabulário, gramática e uso: vale entender qual dos dois você quer aprender antes de começar."},
             {"q": "Preciso já saber ler hebraico para começar o curso?", "a": "Não. O curso da Vedium começa pelo alfabeto e pela leitura, do zero."},
         ],
         "cta_title": "Quer aprender a ler e entender hebraico desde o início?",
@@ -28163,8 +28163,8 @@ CATEGORY_PAGES = {
     },
     ("pt", "espanhol"): {
         "h1": "Espanhol para viagens, trabalho e o dia a dia",
-        "meta_description": "Guias práticos de espanhol — falsos cognatos, gramática essencial e espanhol para viagem — para brasileiros aprendendo o idioma.",
-        "intro": "O espanhol parece fácil pra quem fala português, mas é justamente essa proximidade que esconde as maiores armadilhas — os falsos cognatos, a pronúncia e as diferenças regionais. Os conteúdos aqui ajudam a aprender com precisão, não só por semelhança.",
+        "meta_description": "Guias práticos de espanhol (falsos cognatos, gramática essencial e espanhol para viagem) para brasileiros aprendendo o idioma.",
+        "intro": "O espanhol parece fácil pra quem fala português, mas é justamente essa proximidade que esconde as maiores armadilhas: os falsos cognatos, a pronúncia e as diferenças regionais. Os conteúdos aqui ajudam a aprender com precisão, não só por semelhança.",
         "blocks": [
             {"title": "Comece por aqui", "text": "Os primeiros passos e as armadilhas mais comuns de quem já fala português."},
             {"title": "Falsos cognatos", "text": "Palavras parecidas com o português que têm significados bem diferentes."},
@@ -28173,7 +28173,7 @@ CATEGORY_PAGES = {
             {"title": "Diferenças regionais", "text": "Como o espanhol muda entre Espanha e a América Latina."},
         ],
         "faqs": [
-            {"q": "Falar português ajuda a aprender espanhol mais rápido?", "a": "Ajuda na compreensão, mas também cria vícios — os falsos cognatos e a pronúncia exigem atenção específica, que o curso trabalha desde o início."},
+            {"q": "Falar português ajuda a aprender espanhol mais rápido?", "a": "Ajuda na compreensão, mas também cria vícios: os falsos cognatos e a pronúncia exigem atenção específica, que o curso trabalha desde o início."},
             {"q": "O curso ensina o espanhol da Espanha ou da América Latina?", "a": "O professor mostra as principais diferenças regionais, para você reconhecer variações e se comunicar bem em qualquer país hispanofalante."},
         ],
         "cta_title": "Quer aprender espanhol sem cair nas armadilhas do português?",
@@ -28186,8 +28186,8 @@ CATEGORY_PAGES = {
     },
     ("en", "brazilian-portuguese"): {
         "h1": "Brazilian Portuguese for people who actually need it",
-        "meta_description": "Practical guides to Brazilian Portuguese for expats, relocation and everyday life in Brazil — real situations, not just grammar.",
-        "intro": "Whether you're relocating to Brazil, working with a Brazilian team, or just visiting, these guides focus on the Portuguese you'll actually use — real-life situations, essential vocabulary and honest advice from Vedium's teachers.",
+        "meta_description": "Practical guides to Brazilian Portuguese for expats, relocation and everyday life in Brazil: real situations, not just grammar.",
+        "intro": "Whether you're relocating to Brazil, working with a Brazilian team, or just visiting, these guides focus on the Portuguese you'll actually use: real-life situations, essential vocabulary and honest advice from Vedium's teachers.",
         "blocks": [
             {"title": "Start here", "text": "What to learn before your first month in Brazil."},
             {"title": "Living in Brazil", "text": "Everyday bureaucracy, housing and getting around."},
@@ -28197,7 +28197,7 @@ CATEGORY_PAGES = {
         ],
         "faqs": [
             {"q": "Do I need to already speak Spanish or another Romance language to learn Portuguese?", "a": "No. Vedium's live classes start from zero, with a teacher guiding pronunciation and structure from day one."},
-            {"q": "Is Brazilian Portuguese very different from European Portuguese?", "a": "Yes — pronunciation, some vocabulary and everyday expressions differ. These guides focus specifically on the Brazilian variant."},
+            {"q": "Is Brazilian Portuguese very different from European Portuguese?", "a": "Yes: pronunciation, some vocabulary and everyday expressions differ. These guides focus specifically on the Brazilian variant."},
         ],
         "cta_title": "Want to know your real Portuguese level?",
         "cta_text": "Take Vedium's free placement test and find out where to start.",
@@ -28209,8 +28209,8 @@ CATEGORY_PAGES = {
     },
     ("es", "portugues-brasileno"): {
         "h1": "Português brasileño para quienes lo necesitan de verdad",
-        "meta_description": "Guías prácticas de portugués brasileño para expatriados y vida diaria en Brasil — situaciones reales, no solo gramática.",
-        "intro": "Si te mudas a Brasil, trabajas con un equipo brasileño o simplemente estás de viaje, estas guías se enfocan en el portugués que realmente vas a usar — situaciones reales, vocabulario esencial y consejos honestos de los profesores de Vedium.",
+        "meta_description": "Guías prácticas de portugués brasileño para expatriados y vida diaria en Brasil: situaciones reales, no solo gramática.",
+        "intro": "Si te mudas a Brasil, trabajas con un equipo brasileño o simplemente estás de viaje, estas guías se enfocan en el portugués que realmente vas a usar: situaciones reales, vocabulario esencial y consejos honestos de los profesores de Vedium.",
         "blocks": [
             {"title": "Empieza por aquí", "text": "Qué aprender antes de tu primer mes en Brasil."},
             {"title": "Vivir en Brasil", "text": "Trámites del día a día, vivienda y cómo moverte por la ciudad."},
@@ -28271,7 +28271,7 @@ def get_category_context(context, category, lang=None):
 
 BLOG_INDEX_COPY = {
     None: {
-        "title": "Blog da Vedium — idiomas, cultura e aprendizado",
+        "title": "Blog da Vedium: idiomas, cultura e aprendizado",
         "description": (
             "Conteúdos sobre inglês, espanhol, hebraico, iorubá e português para "
             "estrangeiros, com dicas práticas, cultura, aprendizagem online e "
@@ -28280,7 +28280,7 @@ BLOG_INDEX_COPY = {
         "search_placeholder": "Pesquisar artigos...",
     },
     "en": {
-        "title": "Vedium Blog — Brazilian Portuguese for expats and relocation",
+        "title": "Vedium Blog: Brazilian Portuguese for expats and relocation",
         "description": (
             "Free guides on Brazilian Portuguese for expats, relocation and everyday life "
             "in Brazil, written by Vedium's teaching team."
@@ -28288,7 +28288,7 @@ BLOG_INDEX_COPY = {
         "search_placeholder": "Search articles...",
     },
     "es": {
-        "title": "Blog de Vedium — Portugués brasileño para expatriados",
+        "title": "Blog de Vedium: Portugués brasileño para expatriados",
         "description": (
             "Guías gratuitas de portugués brasileño para expatriados y vida diaria en "
             "Brasil, escritas por el equipo de profesores de Vedium."
