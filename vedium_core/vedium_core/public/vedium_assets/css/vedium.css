@@ -282,8 +282,8 @@ ul {
     -webkit-appearance: none;
     border: none;
     outline: none !important;
-    background-color: var(--thm-base);
-    color: #ffffff;
+    background-color: #8c260f !important;
+    color: #ffffff !important;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -302,7 +302,7 @@ ul {
     left: 0;
     right: 0;
     height: 100%;
-    background: var(--thm-black);
+    background: #8c260f;
     transition-delay: .1s;
     transition-timing-function: ease-in-out;
     transition-duration: .5s;
@@ -321,6 +321,23 @@ ul {
 
 .thm-btn:hover {
     color: #ffffff;
+}
+
+.thm-btn[href*="wa.me"] {
+    background-color: #25d366 !important;
+    color: #ffffff !important;
+}
+
+.thm-btn[href*="wa.me"]::before {
+    content: "\f232";
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 400;
+    color: #ffffff;
+    margin-right: 8px;
+}
+
+.thm-btn[href*="wa.me"]::after {
+    background: #25d366;
 }
 
 

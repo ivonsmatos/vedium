@@ -99,7 +99,8 @@ body {
 }
 
 .tg-header .btn-primary {
-    background: var(--tg-primary);
+    background: #8c260f;
+    color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
     border-radius: 50px;
@@ -884,6 +885,12 @@ body {
     color: #fff;
 }
 
+.btn-primary {
+    background-color: #8c260f !important;
+    border-color: #8c260f !important;
+    color: #fff !important;
+}
+
 /* WhatsApp Floating Button */
 .whatsapp-float {
     position: fixed;
@@ -895,7 +902,7 @@ body {
     gap: 8px;
     padding: 13px 17px;
     border-radius: 999px;
-    background: #25D366;
+    background: #25d366;
     color: #fff;
     font-weight: 700;
     line-height: 1;
