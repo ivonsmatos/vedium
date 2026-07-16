@@ -2751,6 +2751,7 @@ ul {
     padding-bottom: 97px;
 }
 
+.page-header__title h1,
 .page-header__title h2 {
     font-size: 50px;
     color: #ffffff;
