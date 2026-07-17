@@ -1098,7 +1098,8 @@ def test_frappe_base_template_has_valid_brand_mobile_icon_language_and_canonical
     assert '{% if canonical_url %}<link rel="canonical" href="{{ canonical_url }}">' in base
     assert "/assets/vedium_core/vedium_assets/images/favicons/apple-touch-icon.png" in base
     assert '"brand_html": (' in hooks
-    assert "/assets/vedium_core/images/vedium-logo-reta-color.png" in hooks
+    assert "/assets/vedium_core/images/vedium-logo-reta.svg" in hooks
+    assert (ROOT / "vedium_core" / "vedium_core" / "public" / "images" / "vedium-logo-reta.svg").exists()
     assert 'context.splash_image = website_context["splash_image"]' in hooks
     assert '"app_logo": APP_LOGO' in install
     assert '"brand_html": BRAND_HTML' in install

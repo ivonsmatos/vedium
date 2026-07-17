@@ -3,7 +3,7 @@
 import frappe
 
 
-APP_LOGO = "/assets/vedium_core/images/vedium-logo-reta-color.png"
+APP_LOGO = "/assets/vedium_core/images/vedium-logo-reta.svg"
 SPLASH_IMAGE = "/assets/vedium_core/images/icon-192x192.png"
 FAVICON = "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png"
 BRAND_HTML = f'<img src="{APP_LOGO}" alt="Vedium" style="height:28px;">'

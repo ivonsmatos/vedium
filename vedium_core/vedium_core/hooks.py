@@ -333,7 +333,7 @@ website_redirects = [
 ]
 
 # App Logo
-app_logo_url = "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
+app_logo_url = "/assets/vedium_core/images/vedium-logo-reta.svg"
 
 # Website Favicon
 website_favicon = "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png"
@@ -386,7 +386,7 @@ website_context = {
     "favicon": "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png",
     "splash_image": "/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png",
     "brand_html": (
-        '<img alt="Vedium" src="/assets/vedium_core/images/vedium-logo-reta-color.png" '
+        '<img alt="Vedium" src="/assets/vedium_core/images/vedium-logo-reta.svg" '
         'style="height:28px;">'
     ),
 }
