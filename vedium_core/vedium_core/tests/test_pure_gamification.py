@@ -22,12 +22,16 @@ def test_quiz_and_certificate_events_are_wired_in_hooks():
     duplicado corrigido em 2026-07-06)."""
     assert (
         '"LMS Quiz Submission": {\n        "after_insert": '
-        '"vedium_core.gamification.Gamification.handle_quiz_submission"' in HOOKS
+        '"vedium_core.gamification.handle_quiz_submission"' in HOOKS
     )
     assert (
         '"LMS Certificate": {\n        "after_insert": '
-        '"vedium_core.gamification.Gamification.handle_certificate_issued"' in HOOKS
+        '"vedium_core.gamification.handle_certificate_issued"' in HOOKS
     )
+    assert "vedium_core.gamification.Gamification." not in HOOKS
+    assert "def handle_lesson_completion(doc, method=None):" in GAMIFICATION
+    assert "def handle_quiz_submission(doc, method=None):" in GAMIFICATION
+    assert "def handle_certificate_issued(doc, method=None):" in GAMIFICATION
 
 
 def test_quiz_points_only_on_first_pass():

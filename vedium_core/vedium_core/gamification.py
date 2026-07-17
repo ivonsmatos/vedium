@@ -123,6 +123,21 @@ class Gamification:
             )
 
 
+def handle_lesson_completion(doc, method=None):
+    """Hook importavel pelo Frappe para conclusao de licao."""
+    return Gamification.handle_lesson_completion(doc, method)
+
+
+def handle_quiz_submission(doc, method=None):
+    """Hook importavel pelo Frappe para submissao de quiz."""
+    return Gamification.handle_quiz_submission(doc, method)
+
+
+def handle_certificate_issued(doc, method=None):
+    """Hook importavel pelo Frappe para emissao de certificado."""
+    return Gamification.handle_certificate_issued(doc, method)
+
+
 def _grant_milestone_coupon(member, course_name):
     next_course = MILESTONE_NEXT_COURSE.get(course_name)
     if not next_course:

@@ -451,7 +451,7 @@ scheduler_events = {
 
 doc_events = {
     "LMS Course Progress": {
-        "on_update": "vedium_core.gamification.Gamification.handle_lesson_completion"
+        "on_update": "vedium_core.gamification.handle_lesson_completion"
     },
     "LMS Enrollment": {
         "after_insert": [
@@ -499,12 +499,12 @@ doc_events = {
     },
     # Gamificação: quiz aprovado (+25 / prova final +100, só na 1ª aprovação)
     "LMS Quiz Submission": {
-        "after_insert": "vedium_core.gamification.Gamification.handle_quiz_submission"
+        "after_insert": "vedium_core.gamification.handle_quiz_submission"
     },
     # Gamificação: certificado emitido (+200 + cupom de desconto pro próximo
     # nível PLE — ver MILESTONE_NEXT_COURSE em gamification.py)
     "LMS Certificate": {
-        "after_insert": "vedium_core.gamification.Gamification.handle_certificate_issued"
+        "after_insert": "vedium_core.gamification.handle_certificate_issued"
     },
     # Professor novo (ganhou a role "Vedium Professor") entra automaticamente
     # no Raven (usuário + membro do workspace) -- ver comunication.sync_new_professor.
