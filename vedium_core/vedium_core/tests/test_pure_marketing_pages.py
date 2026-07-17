@@ -1103,7 +1103,9 @@ def test_frappe_base_template_has_valid_brand_mobile_icon_language_and_canonical
     assert '"app_logo": APP_LOGO' in install
     assert '"brand_html": BRAND_HTML' in install
     assert 'frappe.db.set_single_value("Navbar Settings", "app_logo", APP_LOGO)' in install
-    assert "https://vediums.com/images/vedium-logo.png" not in install
+    assert '"https://vediums.com/images/vedium-logo.png": APP_LOGO' in install
+    assert '"https://vediums.com/images/vedium-icon.png": SPLASH_IMAGE' in install
+    assert 'UPDATE `tabSingles` SET `value` = %s WHERE `value` = %s' in install
 
 
 def test_sitemap_covers_russian_institutional_pages_and_every_marketing_landing():

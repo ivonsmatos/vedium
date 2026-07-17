@@ -82,6 +82,19 @@ def _clear_module_cache():
 def _ensure_branding():
     """Mantem login, navbar e PWA apontando para assets existentes."""
     try:
+        # Instalacoes antigas podem ter gravado estes caminhos em campos
+        # customizados de Single DocTypes. Eles apontam para o dominio
+        # institucional, onde /images nao e servido pelo Frappe.
+        legacy_assets = {
+            "https://vediums.com/images/vedium-logo.png": APP_LOGO,
+            "https://vediums.com/images/vedium-icon.png": SPLASH_IMAGE,
+        }
+        for old_value, new_value in legacy_assets.items():
+            frappe.db.sql(
+                "UPDATE `tabSingles` SET `value` = %s WHERE `value` = %s",
+                (new_value, old_value),
+            )
+
         website_fields = {
             "app_logo": APP_LOGO,
             "brand_html": BRAND_HTML,
