@@ -24,8 +24,10 @@ API = ROOT / "vedium_core" / "vedium_core" / "api.py"
 
 sys.path.insert(0, str(ROOT / "vedium_core"))
 from vedium_core.marketing_landing_content import (  # noqa: E402
+    EM_DASH_FREE_LANDINGS,
     LANDINGS,
     LANDING_COURSE_FILTERS,
+    _without_em_dashes,
 )
 from vedium_core.course_translations import COURSE_TRANSLATIONS  # noqa: E402
 from vedium_core.blog_content import BLOG_POSTS, get_blog_post  # noqa: E402
@@ -45,6 +47,34 @@ SEO_SLUGS = [
     "portugues-para-executivos",
     "preparatorio-celpe-bras",
 ]
+
+
+def test_selected_course_landings_render_without_em_dashes():
+    expected = {
+        "curso-de-ingles-online",
+        "curso-de-ioruba-online",
+        "curso-de-espanhol-online",
+        "portugues-para-estrangeiros",
+        "curso-de-hebraico-online",
+    }
+    assert EM_DASH_FREE_LANDINGS == expected
+
+    for slug in expected:
+        rendered_data = json.dumps(
+            _without_em_dashes(LANDINGS[slug]), ensure_ascii=False
+        )
+        assert "\u2014" not in rendered_data, f"travessão restante em {slug}"
+
+    shared_template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    landing_source = (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    assert "\u2014" not in shared_template
+    assert "Brasil —" not in footer
+    assert landing_source.index("landing = _without_em_dashes(landing)") > landing_source.index(
+        'landing["course_grid"] = course_grid'
+    )
 
 COMMERCIAL_SLUGS = [
     "como-funciona",

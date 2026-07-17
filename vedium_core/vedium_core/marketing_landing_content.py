@@ -4334,6 +4334,32 @@ LANDING_COURSE_FILTERS = {
     "portugalskiy-dlya-inostrantsev": {"category_exact": "Português para Estrangeiros"},
 }
 
+# A voz editorial destas páginas não usa travessão longo. O conteúdo é
+# dinâmico e aninhado, por isso a normalização acontece antes da renderização.
+EM_DASH_FREE_LANDINGS = frozenset({
+    "curso-de-ingles-online",
+    "curso-de-ioruba-online",
+    "curso-de-espanhol-online",
+    "portugues-para-estrangeiros",
+    "curso-de-hebraico-online",
+})
+
+
+def _without_em_dashes(value):
+    if isinstance(value, str):
+        return (
+            value.replace(" — Vedium", " | Vedium")
+            .replace(" — ", "; ")
+            .replace("—", "")
+        )
+    if isinstance(value, dict):
+        return {key: _without_em_dashes(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_without_em_dashes(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(_without_em_dashes(item) for item in value)
+    return value
+
 # Os níveis de PLE e Iorubá vêm do LMS em português. Nas landings traduzidas,
 # os títulos, resumos e links precisam acompanhar o idioma da página. O mapa
 # também corrige o selo de nível, que é calculado antes da tradução do título.
@@ -4411,6 +4437,9 @@ def get_marketing_landing(slug):
                 "href": _landing_url(x_default_slug, x_default_lang),
             })
     landing["alternates"] = alternates
+    if slug in EM_DASH_FREE_LANDINGS:
+        # Executa no fim para incluir também cursos carregados do LMS.
+        landing = _without_em_dashes(landing)
     return landing
 
 
