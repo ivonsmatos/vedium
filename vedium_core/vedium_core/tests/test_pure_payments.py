@@ -10,6 +10,12 @@ Arquivos test_*.py (sem o prefixo "pure") são para integração com bench.
 """
 
 from datetime import datetime, timedelta
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from vedium_core.payment_methods import get_stripe_payment_method_types  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -136,6 +142,17 @@ class TestCouponApplication:
         final, valid, _ = apply_coupon(320.00, coupon)
         assert final == 320.00
         assert valid is False
+
+
+class TestStripePaymentMethods:
+    def test_brl_accepts_card_and_boleto_without_pix(self):
+        methods = get_stripe_payment_method_types("BRL")
+
+        assert methods == ["card", "boleto"]
+        assert "pix" not in methods
+
+    def test_other_currencies_accept_only_card(self):
+        assert get_stripe_payment_method_types("USD") == ["card"]
 
 
 # ---------------------------------------------------------------------------

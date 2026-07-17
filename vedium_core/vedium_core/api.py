@@ -887,6 +887,7 @@ class StripeGateway(PaymentGateway):
         import stripe
 
         from vedium_core.currency import SUPPORTED_CURRENCIES, convert_amount
+        from vedium_core.payment_methods import get_stripe_payment_method_types
 
         stripe.api_key = self._get_api_key()
 
@@ -922,9 +923,7 @@ class StripeGateway(PaymentGateway):
 
         currency = charge_currency.lower()
         unit_amount = int(round(charge_price * 100))  # centavos/cents
-        payment_method_types = ["card"]
-        if currency == "brl":
-            payment_method_types.append("boleto")
+        payment_method_types = get_stripe_payment_method_types(currency)
 
         session = stripe.checkout.Session.create(
             payment_method_types=payment_method_types,
