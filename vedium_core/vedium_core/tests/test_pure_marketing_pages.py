@@ -2096,6 +2096,17 @@ def test_support_ticket_doctype_is_not_world_writable():
     assert perms_by_role["System Manager"]["delete"] == 1
 
 
+def test_home_pricing_ctas_have_equal_size_and_single_line_text():
+    html = (WWW / "index.html").read_text(encoding="utf-8")
+    css = (ROOT / "vedium_core" / "input.css").read_text(encoding="utf-8")
+
+    assert html.count('class="thm-btn vd-pricing-cta"') == 3
+    assert html.count('class="vd-pricing-cta vd-pricing-cta--featured"') == 1
+    assert "min-height: 56px" in css
+    assert "white-space: nowrap" in css
+    assert ".pricing-one .vd-pricing-cta--featured" in css
+
+
 def test_pricing_value_page_has_real_prices_and_no_stale_redirect():
     html_path = WWW / "quanto-custa-curso-de-idiomas.html"
     py_path = WWW / "quanto_custa_curso_de_idiomas.py"

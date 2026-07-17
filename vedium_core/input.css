@@ -145,3 +145,28 @@
     @apply bg-clip-text text-transparent bg-gradient-gold;
   }
 }
+
+/* Home pricing cards: all CTAs share the same footprint and stay on one line. */
+.pricing-one .vd-pricing-cta {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .04em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pricing-one .vd-pricing-cta--featured {
+  background: #fff;
+  color: #2563eb;
+  text-decoration: none;
+}
