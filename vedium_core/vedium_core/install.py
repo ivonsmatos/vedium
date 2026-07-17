@@ -3,6 +3,12 @@
 import frappe
 
 
+APP_LOGO = "/assets/vedium_core/images/vedium-logo-reta-color.png"
+SPLASH_IMAGE = "/assets/vedium_core/images/icon-192x192.png"
+FAVICON = "/assets/vedium_core/vedium_assets/images/logos/Icone-color.png"
+BRAND_HTML = f'<img src="{APP_LOGO}" alt="Vedium" style="height:28px;">'
+
+
 def before_install():
     pass
 
@@ -10,6 +16,7 @@ def before_install():
 def after_install():
     frappe.msgprint("Vedium Core Installed Successfully!")
     _ensure_custom_doctypes()
+    _ensure_branding()
     _remove_ai_tutor_artifacts()
 
 
@@ -17,6 +24,7 @@ def after_migrate():
     # Garante DocTypes criados dinamicamente (fora de doctype/*.json).
     # Mantém a mutação de schema no caminho de migração, não no de request.
     _ensure_custom_doctypes()
+    _ensure_branding()
     _remove_ai_tutor_artifacts()
     _clear_module_cache()
 
@@ -69,6 +77,29 @@ def _clear_module_cache():
         frappe.log_error(
             frappe.get_traceback(), "Vedium.install.clear_module_cache"
         )
+
+
+def _ensure_branding():
+    """Mantem login, navbar e PWA apontando para assets existentes."""
+    try:
+        website_fields = {
+            "app_logo": APP_LOGO,
+            "brand_html": BRAND_HTML,
+            "favicon": FAVICON,
+            "banner_image": SPLASH_IMAGE,
+        }
+        website_meta = frappe.get_meta("Website Settings")
+        for fieldname, value in website_fields.items():
+            if website_meta.has_field(fieldname):
+                frappe.db.set_single_value("Website Settings", fieldname, value)
+
+        if frappe.db.exists("DocType", "Navbar Settings"):
+            frappe.db.set_single_value("Navbar Settings", "app_logo", APP_LOGO)
+
+        frappe.clear_cache(doctype="Website Settings")
+        frappe.clear_cache(doctype="Navbar Settings")
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.install.ensure_branding")
 
 
 def _remove_ai_tutor_artifacts():

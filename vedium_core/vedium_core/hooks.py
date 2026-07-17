@@ -405,6 +405,7 @@ def get_web_context(context):
     # (/images/vedium-logo.png). Força o asset versionado em toda página
     # que usa templates/web.html, como Carreiras.
     context.brand_html = website_context["brand_html"]
+    context.splash_image = website_context["splash_image"]
     return context
 
 
