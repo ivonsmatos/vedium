@@ -2128,10 +2128,14 @@ def test_support_ticket_doctype_is_not_world_writable():
 
 def test_home_pricing_ctas_have_equal_size_and_single_line_text():
     html = (WWW / "index.html").read_text(encoding="utf-8")
-    css = (ROOT / "vedium_core" / "input.css").read_text(encoding="utf-8")
+    css = (
+        ROOT / "vedium_core" / "vedium_core" / "public"
+        / "vedium_assets" / "css" / "vedium.css"
+    ).read_text(encoding="utf-8")
 
     assert html.count('class="thm-btn vd-pricing-cta"') == 3
     assert html.count('class="vd-pricing-cta vd-pricing-cta--featured"') == 1
+    assert "vedium.css?v=pricing-cta-20260717" in html
     assert "min-height: 56px" in css
     assert "white-space: nowrap" in css
     assert ".pricing-one .vd-pricing-cta--featured" in css

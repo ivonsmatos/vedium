@@ -340,6 +340,31 @@ ul {
     background: #25d366;
 }
 
+/* Home pricing cards: equal-size CTAs with single-line labels. */
+.pricing-one .vd-pricing-cta {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 56px;
+    padding: 12px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .04em;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.pricing-one .vd-pricing-cta--featured {
+    background: #ffffff;
+    color: #2563eb;
+    text-decoration: none;
+}
+
 
 
 .section-title {
