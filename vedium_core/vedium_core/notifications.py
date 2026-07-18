@@ -214,10 +214,18 @@ def notify_teacher_application(doc, method=None):
         candidate_name = _field(doc, "candidate_name", "applicant_name") or "Novo candidato"
         email = _field(doc, "email", "email_id")
         phone = _field(doc, "phone", "phone_number", "mobile_no")
+        nationality = _field(doc, "nationality")
+        marital_status = _field(doc, "marital_status")
+        full_address = _field(doc, "full_address")
+        rate_expectation = _field(doc, "rate_expectation")
+        initial_availability = _field(doc, "initial_availability")
         position = _field(doc, "position", "job_title")
         resume_url = _field(doc, "resume_url", "resume_link")
         resume_attachment = _field(doc, "resume_attachment")
         message_text = _field(doc, "message", "cover_letter")
+        rate_display = _html(rate_expectation or "Nao informado")
+        availability_display = _html(initial_availability or "Nao informada")
+        resume_display = _html(resume_url or resume_attachment or "Nao informado")
 
         subject = f"[Vedium] Nova candidatura de professor: {_clean(candidate_name)}"
         form_url = _form_url(doc.doctype, doc.name)
@@ -228,8 +236,13 @@ def notify_teacher_application(doc, method=None):
                 <tr><td><strong>Nome</strong></td><td>{_html(candidate_name)}</td></tr>
                 <tr><td><strong>E-mail</strong></td><td>{_html(email)}</td></tr>
                 <tr><td><strong>Telefone</strong></td><td>{_html(phone or "Nao informado")}</td></tr>
+                <tr><td><strong>Nacionalidade</strong></td><td>{_html(nationality or "Nao informada")}</td></tr>
+                <tr><td><strong>Estado civil</strong></td><td>{_html(marital_status or "Nao informado")}</td></tr>
+                <tr><td><strong>Endereco completo</strong></td><td>{_html(full_address or "Nao informado")}</td></tr>
                 <tr><td><strong>Vaga/area</strong></td><td>{_html(position or "Nao informado")}</td></tr>
-                <tr><td><strong>Curriculo/link</strong></td><td>{_html(resume_url or resume_attachment or "Nao informado")}</td></tr>
+                <tr><td><strong>Valor por aula/hora</strong></td><td>{rate_display}</td></tr>
+                <tr><td><strong>Disponibilidade inicial</strong></td><td>{availability_display}</td></tr>
+                <tr><td><strong>Curriculo/link</strong></td><td>{resume_display}</td></tr>
             </table>
             <p><strong>Mensagem</strong></p>
             <p>{_html(message_text or "").replace(chr(10), "<br>") or "Nao informada"}</p>

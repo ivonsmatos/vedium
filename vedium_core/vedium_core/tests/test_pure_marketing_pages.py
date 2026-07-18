@@ -3658,6 +3658,32 @@ def test_candidatura_doctype_has_resume_attachment_field():
     assert "resume_attachment" in careers_py.split("def submit_candidatura")[1].split("\n\n")[0]
 
 
+def test_careers_form_collects_candidate_profile_and_availability():
+    """Os dados pedidos no formulario precisam chegar ao doctype e ao aviso
+    operacional, sem quebrar os formularios traduzidos que usam a mesma API."""
+    careers_py = (ROOT / "vedium_core" / "vedium_core" / "careers.py").read_text(encoding="utf-8")
+    careers_html = (WWW / "carreiras.html").read_text(encoding="utf-8")
+    notifications = (ROOT / "vedium_core" / "vedium_core" / "notifications.py").read_text(encoding="utf-8")
+    fields = {
+        "nationality": "Nacionalidade",
+        "marital_status": "Estado civil",
+        "full_address": "Endereço completo",
+        "rate_expectation": "Valor pretendido por aula ou hora",
+        "initial_availability": "Disponibilidade inicial",
+    }
+    submit_body = careers_py.split("def submit_candidatura")[1].split("FUNCAO_ROLES")[0]
+    for fieldname, label in fields.items():
+        assert f'("{fieldname}", "{label}"' in careers_py
+        assert f"doc.{fieldname} =" in submit_body
+        assert f"{fieldname}:" in careers_html
+        assert fieldname in notifications
+    for element_id in (
+        "f_nationality", "f_marital_status", "f_address", "f_rate", "f_availability",
+    ):
+        assert f'id="{element_id}"' in careers_html
+    assert "preencha todos os campos obrigatórios" in careers_html
+
+
 def test_referral_conversion_also_creates_crm_lead():
     """2026-07-04: usuário perguntou pra onde vai o programa de indicação
     e pediu visibilidade no CRM. O mecanismo de recompensa já sabia quem
@@ -3695,7 +3721,7 @@ def test_careers_form_also_creates_native_hrms_job_applicant():
     assert "applicant.job_title" in careers_py
     body = careers_py.split("def submit_candidatura")[1]
     assert "_create_hrms_job_applicant" in body.split("def _create_hrms_job_applicant")[0]
-    assert "except Exception" in body.split("_create_hrms_job_applicant(")[1][:200]
+    assert "except Exception" in body.split("_create_hrms_job_applicant(")[1][:500]
 
     oneshot = (
         ROOT / "vedium_core" / "vedium_core" / "scripts" / "migrations" / "oneshot"

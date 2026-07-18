@@ -28,6 +28,13 @@ CANDIDATURA_FIELDS = [
     ("candidate_name", "Nome completo", "Data", {"reqd": 1, "in_list_view": 1}),
     ("email", "E-mail", "Data", {"options": "Email", "reqd": 1, "in_list_view": 1}),
     ("phone", "Telefone / WhatsApp", "Data", {}),
+    ("nationality", "Nacionalidade", "Data", {}),
+    ("marital_status", "Estado civil", "Select", {
+        "options": "\nSolteiro(a)\nCasado(a)\nUnião estável\nDivorciado(a)\nViúvo(a)\nPrefiro não informar",
+    }),
+    ("full_address", "Endereço completo", "Small Text", {}),
+    ("rate_expectation", "Valor pretendido por aula ou hora", "Data", {}),
+    ("initial_availability", "Disponibilidade inicial", "Small Text", {}),
     ("position", "Vaga / Area de interesse", "Data", {"in_list_view": 1}),
     ("resume_url", "Link do curriculo (LinkedIn/Drive)", "Data", {}),
     ("resume_attachment", "Curriculo (arquivo)", "Attach", {}),
@@ -87,6 +94,8 @@ def ensure_candidatura_doctype():
 def submit_candidatura(
     candidate_name, email, position=None, phone=None, message=None,
     resume_url=None, resume_attachment=None,
+    nationality=None, marital_status=None, full_address=None,
+    rate_expectation=None, initial_availability=None,
 ):
     """Recebe a candidatura do formulario publico /carreiras e cria o registro."""
     from vedium_core.api import rate_limit_by_ip
@@ -105,6 +114,11 @@ def submit_candidatura(
     doc.candidate_name = candidate_name
     doc.email = email
     doc.phone = (phone or "").strip()
+    doc.nationality = (nationality or "").strip()
+    doc.marital_status = (marital_status or "").strip()
+    doc.full_address = (full_address or "").strip()
+    doc.rate_expectation = (rate_expectation or "").strip()
+    doc.initial_availability = (initial_availability or "").strip()
     doc.position = (position or "").strip()
     doc.resume_url = (resume_url or "").strip()
     doc.resume_attachment = (resume_attachment or "").strip()
@@ -125,7 +139,11 @@ def submit_candidatura(
     # se o app estiver instalado. Nunca quebra o fluxo acima (Candidatura
     # ja foi salva) se o hrms nao estiver la ou o schema for diferente.
     try:
-        _create_hrms_job_applicant(candidate_name, email, phone, position, message, resume_url, resume_attachment)
+        _create_hrms_job_applicant(
+            candidate_name, email, phone, position, message, resume_url,
+            resume_attachment, nationality, marital_status, full_address,
+            rate_expectation, initial_availability,
+        )
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar Job Applicant (hrms)")
 
@@ -193,7 +211,11 @@ def approve_candidatura_as_professor(candidatura_name, funcao):
     return {"ok": True, "user": user, "funcao": funcao, "role": role}
 
 
-def _create_hrms_job_applicant(candidate_name, email, phone, position, message, resume_url, resume_attachment):
+def _create_hrms_job_applicant(
+    candidate_name, email, phone, position, message, resume_url,
+    resume_attachment, nationality=None, marital_status=None,
+    full_address=None, rate_expectation=None, initial_availability=None,
+):
     """Espelha a candidatura no doctype nativo 'Job Applicant' do Frappe HR,
     ligando a vaga (job_title) ao Job Opening correspondente se existir
     (ver oneshot setup_hrms_job_openings.py)."""
@@ -211,8 +233,20 @@ def _create_hrms_job_applicant(candidate_name, email, phone, position, message, 
         applicant.phone_number = phone
     if job_opening:
         applicant.job_title = job_opening
-    if message:
-        applicant.cover_letter = message
+    profile_details = [
+        ("Nacionalidade", nationality),
+        ("Estado civil", marital_status),
+        ("Endereço completo", full_address),
+        ("Valor por aula/hora", rate_expectation),
+        ("Disponibilidade inicial", initial_availability),
+    ]
+    profile_text = "\n".join(
+        f"{label}: {str(value).strip()}"
+        for label, value in profile_details if value and str(value).strip()
+    )
+    applicant.cover_letter = "\n\n".join(
+        part for part in ((message or "").strip(), profile_text) if part
+    )
     if resume_url:
         applicant.resume_link = resume_url
     if resume_attachment:

@@ -27,8 +27,10 @@
   .vd-cand-box label{font-weight:600;display:block;margin-bottom:5px;color:#111827;}
   .vd-cand-box input,.vd-cand-box select,.vd-cand-box textarea{width:100%;padding:12px;border:1.5px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:15px;font-family:inherit;background:#fff;}
   .vd-cand-field{margin-bottom:16px;}
+  .vd-cand-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .vd-cand-submit{width:100%;padding:14px;background:#2E6DA4;color:#fff;border:none;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer;}
   .vd-cand-submit:disabled{opacity:.6;cursor:wait;}
+  @media(max-width:640px){.vd-cand-row{grid-template-columns:1fr;gap:0;}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://vediums.com/"},{"@type":"ListItem","position":2,"name":"Carreiras","item":"https://vediums.com/carreiras"}]}</script>
 </head>
@@ -44,8 +46,15 @@
     <div id="cand-box" class="vd-cand-box">
       <div class="vd-cand-field"><label for="f_name">Nome completo *</label><input id="f_name"></div>
       <div class="vd-cand-field"><label for="f_email">E-mail *</label><input id="f_email" type="email"></div>
+      <div class="vd-cand-row">
+        <div class="vd-cand-field"><label for="f_nationality">Nacionalidade *</label><input id="f_nationality" autocomplete="country-name" required></div>
+        <div class="vd-cand-field"><label for="f_marital_status">Estado civil *</label><select id="f_marital_status" required><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option><option>Prefiro não informar</option></select></div>
+      </div>
+      <div class="vd-cand-field"><label for="f_address">Endereço completo *</label><textarea id="f_address" rows="3" autocomplete="street-address" placeholder="Rua, número, complemento, bairro, cidade, estado e CEP" required></textarea></div>
       <div class="vd-cand-field"><label for="f_phone">Telefone / WhatsApp</label><input id="f_phone"></div>
       <div class="vd-cand-field"><label for="f_position">Vaga / Área de interesse</label><select id="f_position">{% for p in positions %}<option>{{ p }}</option>{% endfor %}</select></div>
+      <div class="vd-cand-field"><label for="f_rate">Valor pretendido por aula ou hora *</label><input id="f_rate" placeholder="Ex.: R$ 50 por hora ou R$ 60 por aula" required></div>
+      <div class="vd-cand-field"><label for="f_availability">Disponibilidade inicial *</label><textarea id="f_availability" rows="3" placeholder="Informe dias da semana, horários e quando pode começar" required></textarea></div>
       <div class="vd-cand-field"><label for="f_resume">Link do currículo (LinkedIn, Google Drive...)</label><input id="f_resume" placeholder="https://..."></div>
       <div class="vd-cand-field"><label for="f_msg">Mensagem / Apresentação</label><textarea id="f_msg" rows="4"></textarea></div>
       <button type="button" id="f_submit" class="vd-cand-submit">Enviar candidatura</button>
@@ -61,7 +70,14 @@ document.getElementById('f_submit').addEventListener('click', function () {
   var btn = this, st = document.getElementById('f_status');
   var name = (document.getElementById('f_name').value || '').trim();
   var email = (document.getElementById('f_email').value || '').trim();
-  if (!name || !email) { st.style.color = '#dc2626'; st.textContent = 'Por favor, preencha nome e e-mail.'; return; }
+  var nationality = (document.getElementById('f_nationality').value || '').trim();
+  var maritalStatus = (document.getElementById('f_marital_status').value || '').trim();
+  var fullAddress = (document.getElementById('f_address').value || '').trim();
+  var rateExpectation = (document.getElementById('f_rate').value || '').trim();
+  var initialAvailability = (document.getElementById('f_availability').value || '').trim();
+  if (!name || !email || !nationality || !maritalStatus || !fullAddress || !rateExpectation || !initialAvailability) {
+    st.style.color = '#dc2626'; st.textContent = 'Por favor, preencha todos os campos obrigatórios.'; return;
+  }
   btn.disabled = true; btn.textContent = 'Enviando...';
   fetch('/api/method/vedium_core.careers.submit_candidatura', {
     method: 'POST',
@@ -70,6 +86,11 @@ document.getElementById('f_submit').addEventListener('click', function () {
       candidate_name: name,
       email: email,
       phone: document.getElementById('f_phone').value,
+      nationality: nationality,
+      marital_status: maritalStatus,
+      full_address: fullAddress,
+      rate_expectation: rateExpectation,
+      initial_availability: initialAvailability,
       position: document.getElementById('f_position').value,
       resume_url: document.getElementById('f_resume').value,
       message: document.getElementById('f_msg').value
