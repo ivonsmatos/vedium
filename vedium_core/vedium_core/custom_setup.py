@@ -143,6 +143,24 @@ CUSTOM_FIELDS = {
             "read_only": 1,
         },
     ],
+    # Documentos brasileiros do professor/funcionário — o Employee nativo do
+    # Frappe HR não tem CPF nem RNM (só "Passport Number", que não é o
+    # documento correto pra estrangeiro com registro migratório). Ver
+    # scripts/migrations/oneshot/hire_guadalupe_hr_record.py.
+    "Employee": [
+        {
+            "fieldname": "custom_cpf",
+            "label": "CPF",
+            "fieldtype": "Data",
+            "insert_after": "passport_number",
+        },
+        {
+            "fieldname": "custom_rnm",
+            "label": "RNM (Registro Nacional Migratório)",
+            "fieldtype": "Data",
+            "insert_after": "custom_cpf",
+        },
+    ],
 }
 
 
