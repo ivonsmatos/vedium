@@ -63,110 +63,7 @@
 {%- set vd_footer_u = vd_footer_ru_urls if vd_footer_lang == "ru" else vd_footer_urls.get(vd_footer_lang, vd_footer_urls["pt-br"]) %}
 {%- set vd_footer_pt = vd_footer_urls["pt-br"] %}
 <footer class="footer-one vd-rich-footer">
-    <style>
-      .vd-rich-footer {
-        --vd-footer-bg: #164f86;
-        --vd-footer-bg-2: #226fa8;
-        --vd-footer-text: #ffffff;
-        --vd-footer-soft: rgba(255,255,255,.78);
-        --vd-footer-line: rgba(255,255,255,.22);
-        background: linear-gradient(135deg, var(--vd-footer-bg), var(--vd-footer-bg-2));
-        color: var(--vd-footer-text);
-      }
-      .vd-rich-footer .footer-one__bg,
-      .vd-rich-footer .footer-one__bottom { display: none; }
-      .vd-rich-footer .swiper-pagination,
-      .vd-rich-footer .owl-dots,
-      .vd-rich-footer .slick-dots,
-      .vd-rich-footer .carousel-indicators,
-      .vd-rich-footer + .swiper-pagination,
-      .vd-rich-footer + .owl-dots,
-      .vd-rich-footer + .slick-dots,
-      .vd-rich-footer + .carousel-indicators { display: none !important; }
-      .vd-rich-footer__inner { padding: 48px 0 28px; }
-      .vd-rich-footer a { color: var(--vd-footer-text); text-decoration: none; }
-      .vd-rich-footer a:hover { color: #f8fbff; text-decoration: underline; }
-      .vd-rich-footer h3 {
-        color: #fff;
-        font-size: 19px;
-        line-height: 1.25;
-        margin: 0 0 18px;
-        font-weight: 800;
-        letter-spacing: 0;
-      }
-      .vd-rich-footer ul { margin: 0; padding: 0; list-style: none; }
-      .vd-rich-footer li { margin: 0 0 12px; }
-      .vd-rich-footer p,
-      .vd-rich-footer li,
-      .vd-rich-footer small {
-        color: var(--vd-footer-soft);
-        font-size: 15px;
-        line-height: 1.6;
-      }
-      .vd-rich-footer__grid {
-        display: grid;
-        grid-template-columns: 1.25fr 1fr 1.25fr 1.25fr 1.15fr;
-        gap: 34px;
-      }
-      .vd-rich-footer__logo img { max-width: 146px; height: auto; margin-bottom: 14px; }
-      .vd-rich-footer__social {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 18px;
-        align-items: center;
-        margin: 16px 0 22px;
-      }
-      .vd-rich-footer__social a {
-        color: #fff;
-        font-size: 14px;
-        font-weight: 800;
-      }
-      .vd-rich-footer__social i { font-size: 16px; }
-      .vd-rich-footer__whatsapp {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        font-weight: 800;
-        margin: 8px 0 18px;
-      }
-      .vd-rich-footer__section {
-        border-top: 1px solid var(--vd-footer-line);
-        margin-top: 28px;
-        padding-top: 28px;
-      }
-      .vd-rich-footer__links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px 30px;
-      }
-      .vd-rich-footer__links a {
-        color: #fff;
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 1.4;
-      }
-      .vd-rich-footer__legal {
-        border-top: 1px solid var(--vd-footer-line);
-        margin-top: 30px;
-        padding-top: 22px;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .vd-rich-footer__legal p { margin: 0; font-size: 13px; }
-      @media (max-width: 1199px) {
-        .vd-rich-footer__grid { grid-template-columns: repeat(3, 1fr); }
-      }
-      @media (max-width: 767px) {
-        .vd-rich-footer__inner { padding: 38px 0 24px; }
-        .vd-rich-footer__grid { grid-template-columns: 1fr; gap: 24px; }
-        .vd-rich-footer__links { gap: 12px 20px; }
-        .vd-rich-footer__legal { display: block; }
-        .vd-rich-footer__legal p + p { margin-top: 10px; }
-      }
-    </style>
-    <div class="vd-rich-footer__inner">
+<div class="vd-rich-footer__inner">
         <div class="container">
             <div class="vd-rich-footer__grid">
                 <div>
@@ -286,5 +183,5 @@
   })(window,document,'script','dataLayer','GTM-P6Q2FXLK');
 </script>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6Q2FXLK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script src="/assets/vedium_core/js/vedium-language.js?v=v11-n-languages"></script>
-<script src="/assets/vedium_core/js/pwa-register.js?v=static-v4"></script>
+<script src="/assets/vedium_core/js/vedium-language.min.js?v=v11-n-languages"></script>
+<script src="/assets/vedium_core/js/pwa-register.min.js?v=static-v4"></script>

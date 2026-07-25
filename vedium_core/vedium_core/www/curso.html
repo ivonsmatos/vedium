@@ -61,19 +61,19 @@
     <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 
     <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link href="/assets/vedium_core/css/public-foundations.min.css?v=20260725" rel="stylesheet">
 
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/animate.min.css" />
-    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/custom-animate.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/animate/custom-animate.min.css" />
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.css">
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/icomoon-icons/style.min.css">
     <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/vendors/reey-font/stylesheet.css" />
 
     <!-- template styles -->
-    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.css?v=cta-brand-20260716" />
-    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.css" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium.min.css?v=cta-brand-20260716" />
+    <link rel="stylesheet" href="/assets/vedium_core/vedium_assets/css/vedium-responsive.min.css" />
 
     <style>
       img[src*="logo-color-reta"] { max-height: 46px !important; width: auto !important; }
@@ -108,21 +108,7 @@
             "name": "Vedium",
             "url": "https://vediums.com",
             "logo": "https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png"
-        },
-        "hasCourseInstance": {
-            "@type": "CourseInstance",
-            "courseMode": "Online",
-            "inLanguage": {{ vd_lang | tojson }}{% if course.instructors_list %},
-            "instructor": [{% for i in course.instructors_list %}{"@type": "Person", "name": {{ (i.full_name or "Vedium") | tojson }}}{% if not loop.last %},{% endif %}{% endfor %}]{% endif %}
-        }{% if course.paid_course and course.course_price %},
-        "offers": {
-            "@type": "Offer",
-            "price": "{{ course.course_price }}",
-            "priceCurrency": "{{ course.currency or 'BRL' }}",
-            "category": "Paid",
-            "availability": "https://schema.org/InStock",
-            "url": {{ canonical_url | tojson }}
-        }{% endif %}{% if course.average_rating and course.reviews %},
+        }{% if course.average_rating and course.reviews %},
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "{{ course.average_rating }}",
@@ -358,7 +344,7 @@
             <div class="logo-box"><a href="/" aria-label="logo"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" width="155" alt="Vedium" /></a></div>
             <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">
-                <li><i class="icon-letter"></i><a href="mailto:contato@vediums.com">contato@vediums.com</a></li>
+                <li><i class="icon-letter"></i><!--email_off--><a href="mailto:contato@vediums.com">contato@vediums.com</a><!--/email_off--></li>
             </ul>
         </div>
     </div>
@@ -372,8 +358,8 @@
     <script defer src="/assets/vedium_core/vedium_assets/vendors/jquery/jquery-3.5.1.min.js"></script>
     <script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script defer src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
-    <script defer src="/assets/vedium_core/vedium_assets/js/vedium.js"></script>
-    <script defer src="/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix"></script>
+    <script defer src="/assets/vedium_core/vedium_assets/js/vedium.min.js"></script>
+    <script defer src="/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix"></script>
 </body>
 
 </html>

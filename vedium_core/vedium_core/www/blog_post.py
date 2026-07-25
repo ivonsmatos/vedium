@@ -30,6 +30,12 @@ def get_context(context):
     category = frappe.form_dict.get("category")
     slug = frappe.form_dict.get("slug")
 
+    # A regra /blog/<slug> também recebe as páginas-pilar em PT. O Frappe
+    # entrega "ioruba", "ingles" etc. no parâmetro slug, por isso é preciso
+    # reconhecê-las antes de procurar um artigo com esse nome.
+    if not lang and not category and slug in RESERVED_CATEGORY_SLUGS:
+        return get_category_context(context, slug)
+
     if category and not slug:
         # /blog/<category> (PT) ou /<lang>/blog/<category> (PLE). Sob /blog/
         # sem prefixo, um valor que não é categoria reservada é, na
@@ -47,7 +53,7 @@ def get_context(context):
     if not post:
         frappe.local.flags.redirect_location = f"/{lang}/blog" if lang else "/blog"
         raise frappe.Redirect
-    context.title = post["title"]
+    context.title = post["seo_title"]
     context.description = post["meta_description"]
     context.post = post
     context.newer_post, context.older_post = get_adjacent_posts(slug)

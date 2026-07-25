@@ -27969,8 +27969,14 @@ def list_db_blog_posts():
 
 def list_blog_posts():
     """Lista combinada (posts do painel + posts de código), mais recente primeiro."""
-    cards = [_post_card(slug, post) for slug, post in BLOG_POSTS.items()]
-    cards += list_db_blog_posts()
+    # O deploy pode manter no banco cópias de posts que hoje são versionados
+    # em BLOG_POSTS. Nesses casos, a cópia do painel ainda usa a URL plana
+    # antiga e não pode voltar ao sitemap junto da URL canônica por categoria.
+    code_cards = [_post_card(slug, post) for slug, post in BLOG_POSTS.items()]
+    code_slugs = {card["slug"] for card in code_cards}
+    cards = code_cards + [
+        card for card in list_db_blog_posts() if card["slug"] not in code_slugs
+    ]
     cards.sort(key=lambda c: c["date"], reverse=True)
     return cards
 
@@ -27979,7 +27985,13 @@ def get_blog_post(slug):
     post = dict(BLOG_POSTS[slug])
     post["slug"] = slug
     post["url"] = f"{BASE_URL}{_post_url(slug, post)}"
+    post["seo_title"] = get_blog_seo_title(post["title"])
     return post
+
+
+def get_blog_seo_title(title):
+    """Keep the article H1 editorial while giving the browser title context."""
+    return f"{str(title or '').strip()} | Vedium"
 
 
 def get_blog_post_from_db(slug):
@@ -28008,6 +28020,7 @@ def get_blog_post_from_db(slug):
         "slug": slug,
         "url": f"{BASE_URL}/blog/{slug}",
         "title": doc.title,
+        "seo_title": get_blog_seo_title(doc.title),
         "h1": doc.title,
         "meta_description": doc.meta_description or "",
         "tag": doc.tag or "Vedium",
@@ -28029,18 +28042,15 @@ def get_blog_post_from_db(slug):
 
 
 def get_blog_post_any(slug):
-    """Procura o post primeiro no painel (banco), depois no dict de código."""
-    post = get_blog_post_from_db(slug)
-    if post:
-        return post
+    """Usa primeiro a versão canônica em código e depois o conteúdo do painel."""
     if slug in BLOG_POSTS:
         return get_blog_post(slug)
-    return None
+    return get_blog_post_from_db(slug)
 
 
 def apply_blog_context(context, slug):
     post = get_blog_post(slug)
-    context.title = post["title"]
+    context.title = post["seo_title"]
     context.description = post["meta_description"]
     context.post = post
 
@@ -28272,6 +28282,7 @@ def get_category_context(context, category, lang=None):
 BLOG_INDEX_COPY = {
     None: {
         "title": "Blog da Vedium: idiomas, cultura e aprendizado",
+        "seo_title": "Dicas de idiomas, cultura e aprendizado | Blog Vedium",
         "description": (
             "Conteúdos sobre inglês, espanhol, hebraico, iorubá e português para "
             "estrangeiros, com dicas práticas, cultura, aprendizagem online e "
@@ -28281,6 +28292,7 @@ BLOG_INDEX_COPY = {
     },
     "en": {
         "title": "Vedium Blog: Brazilian Portuguese for expats and relocation",
+        "seo_title": "Brazilian Portuguese guides for expats | Vedium Blog",
         "description": (
             "Free guides on Brazilian Portuguese for expats, relocation and everyday life "
             "in Brazil, written by Vedium's teaching team."
@@ -28289,6 +28301,7 @@ BLOG_INDEX_COPY = {
     },
     "es": {
         "title": "Blog de Vedium: Portugués brasileño para expatriados",
+        "seo_title": "Guías de portugués brasileño para expatriados | Vedium",
         "description": (
             "Guías gratuitas de portugués brasileño para expatriados y vida diaria en "
             "Brasil, escritas por el equipo de profesores de Vedium."
@@ -28325,6 +28338,7 @@ def get_blog_index_context(context, lang=None):
 
     copy = BLOG_INDEX_COPY.get(lang, BLOG_INDEX_COPY[None])
     context.title = copy["title"]
+    context.seo_title = copy["seo_title"]
     context.description = copy["description"]
     context.search_placeholder = copy["search_placeholder"]
     context.blog_lang = lang

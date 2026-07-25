@@ -146,7 +146,7 @@ LANGUAGE_ROUTE_RULES = (
 def _build_language_prefix_redirects():
     """As regras acima (LANGUAGE_ROUTE_RULES) servem a MESMA página em
     português sob um prefixo de outro idioma — isso dependia do JS
-    vedium-language.js traduzir o texto na hora. Esse JS foi desligado
+    vedium-language.min.js traduzir o texto na hora. Esse JS foi desligado
     (localizePage() virou no-op, travava o navegador) e nunca teve suporte
     pra espanhol/francês/alemão/russo/chinês. Resultado: /en-us/contato,
     /en/curso-de-ioruba-online etc. prometiam outro idioma na URL e
@@ -348,7 +348,7 @@ home_page = "index"
 # CSS Includes (loaded on every page)
 app_include_css = [
     "/assets/vedium_core/css/vedium.css",
-    "/assets/vedium_core/css/luxo_theme.css",
+    "/assets/vedium_core/css/luxo_theme.min.css",
 ]
 
 # JS Includes (loaded on every page)
@@ -357,15 +357,15 @@ app_include_js = []
 # Website CSS
 web_include_css = [
     "/assets/vedium_core/css/vedium.css",
-    "/assets/vedium_core/css/luxo_theme.css",
+    "/assets/vedium_core/css/luxo_theme.min.css",
 ]
 
 # Website JS
 web_include_js = [
-    "/assets/vedium_core/js/pwa-register.js?v=static-v4",
-    "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix",
-    "/assets/vedium_core/js/meta-pixel.js?v=consent-lgpd",
-    "/assets/vedium_core/js/push-notifications.js?v=1",
+    "/assets/vedium_core/js/pwa-register.min.js?v=static-v4",
+    "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix",
+    "/assets/vedium_core/js/meta-pixel.min.js?v=consent-lgpd",
+    "/assets/vedium_core/js/push-notifications.min.js?v=1",
 ]
 
 # =============================================================================

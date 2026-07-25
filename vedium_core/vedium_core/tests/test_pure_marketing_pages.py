@@ -110,9 +110,11 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
     assert "/teste-de-nivel-ingles" in template
     assert 'href="{{ landing_test_url }}" class="thm-btn"' in template
     assert "seo_landing_test_click" not in template
-    # Infra SEO/GEO: FAQPage schema, offers no Course, prosa longa e preço
+    # Infra SEO/GEO: FAQPage + Course no subconjunto aceito pelo Google.
     assert '"@type": "FAQPage"' in template
-    assert '"offers"' in template
+    assert '"@type": "Course"' in template
+    assert '"offers"' not in template
+    assert '"hasCourseInstance"' not in template
     assert "landing.seo_sections" in template
     assert "landing.price_display" in template
     # scripts com defer (performance no mobile)
@@ -660,11 +662,11 @@ def test_certificate_verification_page_and_public_funnel_endpoints_are_safe():
     assert "URLSearchParams(location.search)" in html
     assert "?code=" in html
     assert "vendors/fontawesome/css/all.min.css" in html
-    assert "vendors/icomoon-icons/style.css" in html
-    assert "vedium-responsive.css" in html
+    assert "vendors/icomoon-icons/style.min.css" in html
+    assert "vedium-responsive.min.css" in html
     assert 'img[src*="logo-color-reta"]' in html
     assert '.footer-one img[src*="logo-branca-reta"]' in html
-    assert "vedium.js" in html
+    assert "vedium.min.js" in html
     assert "get_context" in py
     assert "submit_public_intent" in funnel
     assert "request_diagnostic_class" in funnel
@@ -693,11 +695,11 @@ def test_public_interest_pages_create_support_tickets_without_checkout_touch():
     assert "public_intent_submit" in template
     assert "public_cta_click" in template
     assert "vendors/fontawesome/css/all.min.css" in template
-    assert "vendors/icomoon-icons/style.css" in template
-    assert "vedium-responsive.css" in template
+    assert "vendors/icomoon-icons/style.min.css" in template
+    assert "vedium-responsive.min.css" in template
     assert 'img[src*="logo-color-reta"]' in template
     assert '.footer-one img[src*="logo-branca-reta"]' in template
-    assert "vedium.js" in template
+    assert "vedium.min.js" in template
     assert "wa.me/5511911293075" in template
     assert "/teste-de-nivel" in template
     assert 'https://vediums.com/{{ page_slug }}' in template
@@ -950,12 +952,13 @@ def test_company_legal_data_is_visible_without_touching_checkout():
 
 def test_rich_footer_matches_public_site_structure():
     footer = (TPL / "site_footer.html").read_text(encoding="utf-8")
+    shell_css = (PUBLIC_CSS / "public-foundations.css").read_text(encoding="utf-8")
     assert "vd-rich-footer" in footer
-    assert "--vd-footer-bg: #164f86" in footer
+    assert "--vd-footer-bg: #164f86" in shell_css
     assert "vd-rich-footer__language" not in footer
-    assert ".vd-rich-footer .swiper-pagination" in footer
-    assert ".vd-rich-footer .owl-dots" in footer
-    assert "display: none !important" in footer
+    assert ".vd-rich-footer .swiper-pagination" in shell_css
+    assert ".vd-rich-footer .owl-dots" in shell_css
+    assert "display: none !important" in shell_css
     assert "Cursos de Idiomas" in footer
     assert "Objetivos" in footer
     assert "Vedium online para você" in footer
@@ -1711,10 +1714,10 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/us.png" in navbar
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
-    assert "vedium-language.js?v=v11-n-languages" in footer
-    assert "pwa-register.js?v=static-v4" in footer
-    assert "/assets/vedium_core/js/pwa-register.js?v=static-v4" in hooks
-    assert "/assets/vedium_core/js/cookie-consent.js?v=mobile-pwa-fix" in hooks
+    assert "vedium-language.min.js?v=v11-n-languages" in footer
+    assert "pwa-register.min.js?v=static-v4" in footer
+    assert "/assets/vedium_core/js/pwa-register.min.js?v=static-v4" in hooks
+    assert "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix" in hooks
     assert "vediumGoToLevelTest" not in footer
     assert "document.addEventListener('touchend'" not in footer
     assert "window.location.href = link.href" not in footer
@@ -1873,15 +1876,83 @@ def test_blog_has_self_service_panel_and_dynamic_route():
     assert "System Manager" in roles
     assert "All" not in roles  # publicação é só via Desk, não REST pública
 
-    # blog_post.py procura primeiro no painel (banco), depois no código
+    # A versão em código é canônica quando também existe uma cópia no painel.
     assert "get_blog_post_any" in blog_post_py
     assert "get_blog_post_from_db" in blog_content
     assert "def list_db_blog_posts" in blog_content
+    assert 'if slug in BLOG_POSTS:' in blog_content
+    assert 'if card["slug"] not in code_slugs' in blog_content
+    assert "slug in RESERVED_CATEGORY_SLUGS" in blog_post_py
     assert '{% include "templates/includes/blog_post.html" %}' in blog_post_html
 
     # Sitemap lista os posts dinamicamente (inclui os publicados pelo painel)
     assert "_blog_urls" in sitemap_py
     assert "list_blog_posts" in sitemap_py
+
+
+def test_semrush_seo_fixes_remain_wired():
+    """Protege as causas-raiz encontradas no Site Audit de 2026-07-25."""
+    marketing_template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    course_template = (WWW / "curso.html").read_text(encoding="utf-8")
+    landing_content = (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+
+    for template in (marketing_template, course_template):
+        assert '"hasCourseInstance"' not in template
+        assert '"courseSchedule"' not in template
+        assert '"courseWorkload"' not in template
+        assert '"offers"' not in template
+
+    assert "/ru/portugiesisch-einstufungstest" not in landing_content
+
+    for lang in ("", "en", "es", "fr", "de", "ru"):
+        prefix = WWW / lang if lang else WWW
+        for page_name in ("planos.html", "diferenciais.html"):
+            page = (prefix / page_name).read_text(encoding="utf-8")
+            assert '"@type":"ItemList"' not in page
+            assert '"@type":"WebPage"' in page
+
+        home = (prefix / "index.html").read_text(encoding="utf-8")
+        assert '"@type": "AggregateOffer"' not in home
+
+
+def test_blog_titles_are_distinct_from_h1_for_semrush():
+    """Artigos e índice mantêm H1 editorial, mas recebem title SEO próprio."""
+    from vedium_core.blog_content import BLOG_INDEX_COPY, get_blog_seo_title
+
+    for post in BLOG_POSTS.values():
+        seo_title = get_blog_seo_title(post["title"])
+        h1 = post.get("h1") or post["title"]
+        assert seo_title != h1
+        assert seo_title.endswith(" | Vedium")
+
+    for copy in BLOG_INDEX_COPY.values():
+        assert copy["seo_title"] != copy["title"]
+
+    post_template = (TPL / "blog_post.html").read_text(encoding="utf-8")
+    assert "<title>{{ post.seo_title }}</title>" in post_template
+    assert "<h1>{{ post.h1 or post.title }}</h1>" in post_template
+
+    index_template = (WWW / "blog.html").read_text(encoding="utf-8")
+    assert "<title>{{ seo_title }}" in index_template
+    assert "page > 1" in index_template
+    assert "{{ vd_bl_page_label }} {{ page }}" in index_template
+    assert "<h1>{{ title }}</h1>" in index_template
+
+
+def test_public_mailto_links_opt_out_of_cloudflare_obfuscation():
+    """Evita que Cloudflare injete o link interno 404 /cdn-cgi/l/email-protection."""
+    html_files = list(WWW.rglob("*.html")) + list(
+        (ROOT / "vedium_core" / "vedium_core" / "templates").rglob("*.html")
+    )
+    mailto_link = re.compile(r'<a\b[^>]*href=["\']mailto:[\s\S]*?</a>', re.I)
+    for path in html_files:
+        html = path.read_text(encoding="utf-8")
+        without_protected_links = re.sub(
+            r"<!--email_off-->[\s\S]*?<!--/email_off-->", "", html
+        )
+        assert not mailto_link.search(without_protected_links), path
 
 
 def test_yoruba_blog_cluster_has_english_translations():
@@ -2135,7 +2206,7 @@ def test_home_pricing_ctas_have_equal_size_and_single_line_text():
 
     assert html.count('class="thm-btn vd-pricing-cta"') == 3
     assert html.count('class="vd-pricing-cta vd-pricing-cta--featured"') == 1
-    assert "vedium.css?v=pricing-cta-20260717" in html
+    assert "vedium.min.css?v=pricing-cta-20260717" in html
     assert "min-height: 56px" in css
     assert "white-space: nowrap" in css
     assert ".pricing-one .vd-pricing-cta--featured" in css
@@ -3807,7 +3878,7 @@ def test_certificate_pdf_push_and_onboarding_are_wired_correctly():
         assert fieldname in custom_setup_py
 
     # push-notifications.js precisa estar carregado no site inteiro.
-    assert "js/push-notifications.js" in hooks_src
+    assert "js/push-notifications.min.js" in hooks_src
 
 
 def test_menu_links_respect_current_language_not_just_labels():
@@ -3936,6 +4007,7 @@ def test_footer_links_and_labels_respect_current_language():
 def test_translated_landings_translate_shared_chrome_and_keep_header_on_one_row():
     landing_tpl = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
     navbar = (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    shell_css = (PUBLIC_CSS / "public-foundations.css").read_text(encoding="utf-8")
 
     for lang in ("en", "es", "fr", "de", "ru"):
         assert f'"{lang}": {{' in landing_tpl
@@ -3955,8 +4027,8 @@ def test_translated_landings_translate_shared_chrome_and_keep_header_on_one_row(
     assert '"ru": {"home": "/ru/", "courses": "/ru/catalogo"}' in landing_tpl
 
     # Evita o CTA espanhol cair na segunda linha do cabeçalho desktop.
-    assert ".main-menu__inner { flex-wrap: nowrap; gap: 16px; }" in navbar
-    assert "margin-left: clamp(16px, 1.55vw, 30px)" in navbar
+    assert ".main-menu__inner { flex-wrap: nowrap; gap: 16px; }" in shell_css
+    assert "margin-left: clamp(16px, 1.55vw, 30px)" in shell_css
     assert '"ru": {"home": "Главная"' in navbar
 
     cookie_js = (ROOT / "vedium_core" / "vedium_core" / "public" / "js" / "cookie-consent.js").read_text(encoding="utf-8")
@@ -4101,3 +4173,42 @@ def test_russian_carreiras_page_matches_pt_structure_with_reciprocal_hreflang():
     assert "context.title" in ru_py
     assert "context.description" in ru_py
     assert "Преподаватель йоруба" in ru_py
+
+
+def test_public_shell_css_and_fonts_are_externalized_from_page_html():
+    """Cabeçalho, rodapé e Kumbh Sans não devem inflar cada resposta HTML."""
+    foundations = PUBLIC_CSS / "public-foundations.css"
+    foundations_min = PUBLIC_CSS / "public-foundations.min.css"
+    css = foundations.read_text(encoding="utf-8")
+
+    assert foundations_min.stat().st_size < foundations.stat().st_size
+    assert 'url("../fonts/kumbh-sans-latin.woff2")' in css
+    assert 'url("../fonts/playfair-display-latin-700.woff2")' in css
+
+    fonts = ROOT / "vedium_core" / "vedium_core" / "public" / "fonts"
+    for filename in (
+        "kumbh-sans-latin.woff2",
+        "kumbh-sans-latin-ext.woff2",
+        "playfair-display-latin-700.woff2",
+        "playfair-display-latin-ext-700.woff2",
+        "playfair-display-cyrillic-700.woff2",
+        "LICENSE-Kumbh-Sans.txt",
+        "LICENSE-Playfair-Display.txt",
+    ):
+        assert (fonts / filename).stat().st_size > 1_000
+
+    assert "<style" not in (TPL / "site_navbar.html").read_text(encoding="utf-8")
+    assert "<style" not in (TPL / "site_footer.html").read_text(encoding="utf-8")
+
+    page_templates = list(WWW.rglob("*.html")) + list(TPL.rglob("*.html"))
+    for path in page_templates:
+        html = path.read_text(encoding="utf-8")
+        assert "fonts.googleapis.com/css2?family=Kumbh" not in html
+        if (
+            path.name not in {"site_navbar.html", "site_footer.html"}
+            and (
+                'include "templates/includes/site_navbar.html"' in html
+                or 'include "templates/includes/site_footer.html"' in html
+            )
+        ):
+            assert "public-foundations.min.css?v=20260725" in html, path
