@@ -27923,6 +27923,20 @@ def _post_url(slug, post):
     return f"{prefix}/blog/{category}/{slug}"
 
 
+def legacy_blog_redirects():
+    """301s das rotas planas que duplicam posts com URL canônica categorizada.
+
+    Posts antigos sem ``category`` continuam em /blog/<slug>; portanto esta
+    lista não atinge conteúdo plano legítimo nem registros exclusivos do
+    painel.
+    """
+    return [
+        {"source": f"/blog/{slug}", "target": _post_url(slug, post)}
+        for slug, post in BLOG_POSTS.items()
+        if post.get("category")
+    ]
+
+
 def _post_card(slug, post):
     return {
         "slug": slug,

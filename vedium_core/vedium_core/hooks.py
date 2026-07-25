@@ -250,6 +250,7 @@ def _build_language_prefix_redirects():
 LANGUAGE_PREFIX_REDIRECTS = _build_language_prefix_redirects()
 
 from vedium_core.course_urls import legacy_course_redirects
+from vedium_core.blog_content import legacy_blog_redirects
 
 website_route_rules = [
     *LANGUAGE_ROUTE_RULES,
@@ -307,6 +308,7 @@ website_route_rules = [
 website_redirects = [
     *LANGUAGE_PREFIX_REDIRECTS,
     *legacy_course_redirects(),
+    *legacy_blog_redirects(),
     {"source": "/course-details", "target": "/cursos-de-idiomas-online"},
     {"source": "/course-details.html", "target": "/cursos-de-idiomas-online"},
     {"source": "/catalogo", "target": "/cursos-de-idiomas-online"},

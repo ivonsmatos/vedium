@@ -3663,6 +3663,31 @@ def test_blog_post_has_prev_next_navigation():
     assert "newer_post" in template and "older_post" in template
 
 
+def test_categorized_blog_posts_redirect_flat_duplicates():
+    """Posts categorizados têm uma URL única; posts legados planos permanecem."""
+    import vedium_core.blog_content as bc
+
+    redirects = bc.legacy_blog_redirects()
+    redirect_map = {row["source"]: row["target"] for row in redirects}
+    categorized = {
+        slug: post for slug, post in bc.BLOG_POSTS.items() if post.get("category")
+    }
+    legacy_flat = {
+        slug: post for slug, post in bc.BLOG_POSTS.items() if not post.get("category")
+    }
+
+    assert len(redirects) == len(categorized)
+    for slug, post in categorized.items():
+        assert redirect_map[f"/blog/{slug}"] == bc._post_url(slug, post)
+        assert redirect_map[f"/blog/{slug}"] != f"/blog/{slug}"
+    for slug in legacy_flat:
+        assert f"/blog/{slug}" not in redirect_map
+
+    blog_post_src = (WWW / "blog_post.py").read_text(encoding="utf-8")
+    assert "requested_path != canonical_path" in blog_post_src
+    assert "redirect_location = canonical_path" in blog_post_src
+
+
 def test_empresas_page_is_rich_and_wired_to_crm():
     """2026-07-04: /empresas era 12 linhas genéricas do template
     public_intent_page.html; usuário pediu conteúdo mais rico (inspirado

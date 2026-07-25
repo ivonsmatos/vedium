@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 import frappe
 
 from vedium_core.blog_content import (
@@ -21,6 +23,11 @@ def _requested_lang_prefix():
         if path.startswith(f"{prefix}/blog/"):
             return prefix
     return None
+
+
+def _normalized_path(value):
+    path = urlparse(value or "").path
+    return f"/{path.strip('/')}" if path.strip("/") else "/"
 
 
 def get_context(context):
@@ -53,6 +60,16 @@ def get_context(context):
     if not post:
         frappe.local.flags.redirect_location = f"/{lang}/blog" if lang else "/blog"
         raise frappe.Redirect
+
+    # Um artigo só pode responder na URL declarada pelo próprio conteúdo.
+    # Isso elimina aliases planos, categorias arbitrárias e prefixos de idioma
+    # incorretos sem afetar os posts antigos cuja canonical continua plana.
+    requested_path = _normalized_path(frappe.local.path)
+    canonical_path = _normalized_path(post["url"])
+    if requested_path != canonical_path:
+        frappe.local.flags.redirect_location = canonical_path
+        raise frappe.Redirect
+
     context.title = post["seo_title"]
     context.description = post["meta_description"]
     context.post = post
