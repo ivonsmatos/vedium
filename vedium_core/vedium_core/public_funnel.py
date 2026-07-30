@@ -219,6 +219,25 @@ def submit_public_intent():
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Vedium: erro ao criar CRM Lead do funil publico")
 
+    # O Brevo é sincronizado em background para não acrescentar latência à
+    # resposta pública. O atributo canônico do curso é COURSE.
+    try:
+        name_parts = name.split(" ", 1)
+        frappe.enqueue(
+            "vedium_core.brevo.sync_contact_to_brevo",
+            queue="short",
+            enqueue_after_commit=True,
+            email=email,
+            first_name=name_parts[0],
+            last_name=name_parts[1] if len(name_parts) > 1 else None,
+            course=course or None,
+        )
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(),
+            "Vedium: erro ao enfileirar sync Brevo do funil publico",
+        )
+
     return {"ok": True, "ticket": ticket.name}
 
 

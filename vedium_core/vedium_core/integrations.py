@@ -4,6 +4,8 @@
 
 import frappe
 
+from vedium_core.brevo import sync_contact_to_brevo
+
 
 def ensure_contact(email, first_name=None, last_name=None, mobile=None):
     """Garante um Contact (frappe core) para o e-mail.
@@ -46,7 +48,20 @@ def sync_student_to_crm(member, course=None):
         # 1) Contato unificador (Helpdesk liga tickets a ele; CRM também usa)
         ensure_contact(email, first_name, last_name, mobile)
 
-        # 2) CRM Lead (se o app CRM estiver instalado)
+        # 2) Brevo (opcional; sem API key ou com falha não interrompe o CRM)
+        course_title = None
+        if course:
+            course_title = (
+                frappe.db.get_value("LMS Course", course, "title") or course
+            )
+        sync_contact_to_brevo(
+            email,
+            first_name=first_name,
+            last_name=last_name,
+            course=course_title,
+        )
+
+        # 3) CRM Lead (se o app CRM estiver instalado)
         if not frappe.db.exists("DocType", "CRM Lead"):
             return
         existing_lead = frappe.db.get_value("CRM Lead", {"email": email}, "name")
