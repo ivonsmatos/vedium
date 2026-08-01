@@ -50,7 +50,8 @@ def test_creation_of_subscription_checkout_uses_exact_price():
 
 
 def test_course_links_both_contract_plans_and_validates_missing_price():
-    assert "custom_stripe_semestral_plan" in CUSTOM_SETUP
+    # plano semestral foi descontinuado (migrate_remove_semestral_add_monthly.py)
+    assert "custom_stripe_semestral_plan" not in CUSTOM_SETUP
     assert "custom_stripe_annual_plan" in CUSTOM_SETUP
     assert '"options": "Subscription Plan"' in CUSTOM_SETUP
     assert 'price_id.startswith("price_")' in BILLING
@@ -130,7 +131,9 @@ def test_access_reactivation_and_inactive_statuses():
 def test_minimum_term_and_early_cancellation():
     assert normalize_period("anual") == "annual"
     assert minimum_term_months("annual") == 12
-    assert minimum_term_months("semestral") == 6
+    # plano semestral foi descontinuado — normalize_period deve lançar exceção
+    with pytest.raises((AssertionError, Exception)):
+        minimum_term_months("semestral")
     assert cancellation_status(date(2027, 2, 1), date(2026, 8, 1)) == "Cancellation Requested"
     assert cancellation_status(date(2026, 7, 1), date(2026, 8, 1)) == "Cancelled"
     assert "request_subscription_cancellation" in BILLING
