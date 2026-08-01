@@ -98,7 +98,9 @@ def run(*args, **kwargs):
                         "billing_interval": "Month",
                         "billing_interval_count": 1,
                         "currency": course.currency,
-                        "cost": monthly_cost
+                        "cost": monthly_cost,
+                        "item": getattr(old_plan_doc, "item", None),
+                        "price_determination": getattr(old_plan_doc, "price_determination", "Fixed Rate")
                     })
                     new_plan.insert(ignore_permissions=True)
                     print(f"  [FRAPPE] Plano {new_monthly_name} criado.")
