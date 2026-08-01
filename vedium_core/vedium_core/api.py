@@ -634,24 +634,33 @@ def create_enrollment_if_paid(
     if frappe.db.exists("LMS Enrollment", {"course": course_name, "member": user}):
         return
 
-    enrollment = frappe.get_doc(
+    values = {
+        "doctype": "LMS Enrollment",
+        "course": course_name,
+        "member": user,
+        # O preço do Stripe ja inclui o certificado/avaliacao -- sem isso,
+        # o botao nativo "Get Certified" do LMS manda o aluno pra uma tela
+        # de cobranca separada do proprio LMS (paid_certificate), cobrando
+        # de novo por algo ja pago aqui. Ver docs/plataforma/04.
+        "purchased_certificate": 1,
+    }
+    optional_values = {
+        "custom_vedium_status": "Active",
+        "custom_vedium_status_changed_on": frappe.utils.now_datetime(),
+        "custom_payment_gateway": gateway,
+        "custom_payment_reference": payment_id,
+        "custom_payment_amount": amount,
+        "custom_payment_currency": currency,
+    }
+    enrollment_meta = frappe.get_meta("LMS Enrollment")
+    values.update(
         {
-            "doctype": "LMS Enrollment",
-            "course": course_name,
-            "member": user,
-            "status": "Active",  # Or whatever status means 'Enrolled'
-            "payment_gateway": gateway,
-            "payment_reference": payment_id,
-            "amount": amount,
-            "currency": currency,
-            "enrollment_date": frappe.utils.now_datetime(),
-            # O preço do Stripe ja inclui o certificado/avaliacao -- sem isso,
-            # o botao nativo "Get Certified" do LMS manda o aluno pra uma tela
-            # de cobranca separada do proprio LMS (paid_certificate), cobrando
-            # de novo por algo ja pago aqui. Ver docs/plataforma/04.
-            "purchased_certificate": 1,
+            fieldname: value
+            for fieldname, value in optional_values.items()
+            if enrollment_meta.has_field(fieldname)
         }
     )
+    enrollment = frappe.get_doc(values)
     enrollment.insert(ignore_permissions=True)
 
     if coupon_code and frappe.db.exists("Coupon", coupon_code):
@@ -891,7 +900,11 @@ class StripeGateway(PaymentGateway):
         from vedium_core.stripe_billing import create_subscription_checkout
 
         return create_subscription_checkout(
-            course, user, coupon_code=coupon_code, billing_period=billing_period
+            course,
+            user,
+            coupon_code=coupon_code,
+            billing_period=billing_period,
+            display_currency=display_currency,
         )
 
     def handle_webhook(self, event):
@@ -1084,20 +1097,22 @@ def stripe_webhook():
 
     try:
         if webhook_secret and sig_header:
-            event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
-        else:
-            event = stripe.Event.construct_from(
-                frappe.parse_json(payload), stripe.api_key
+            from vedium_core.stripe_webhook_security import construct_verified_event
+
+            event = construct_verified_event(
+                stripe, payload, sig_header, webhook_secret
             )
-    except stripe.error.SignatureVerificationError as e:
+        else:
+            event = stripe.Event.construct_from(frappe.parse_json(payload), stripe.api_key)
+    except stripe.error.SignatureVerificationError:
         frappe.log_error(
-            f"Stripe webhook signature inválida: {e}",
+            "Stripe webhook signature inválida",
             "Vedium.payments.stripe_webhook",
         )
         frappe.throw(_("Webhook signature inválida"), frappe.AuthenticationError)
-    except Exception as e:
+    except Exception as exc:
         frappe.log_error(
-            f"Stripe webhook parse error: {e}",
+            f"Stripe webhook rejeitado ({type(exc).__name__})",
             "Vedium.payments.stripe_webhook",
         )
         frappe.throw(_("Webhook inválido"), frappe.AuthenticationError)
@@ -1177,6 +1192,7 @@ def handle_payment_webhook(gateway=None):
     import hmac
 
     data = frappe.local.form_dict or {}
+    verified_event = None
     if not gateway:
         gateway = data.get("gateway")
     if not gateway:
@@ -1235,13 +1251,17 @@ def handle_payment_webhook(gateway=None):
             try:
                 import stripe
 
+                from vedium_core.stripe_webhook_security import construct_verified_event
+
                 payload = frappe.request.get_data(as_text=True)
-                stripe.Webhook.construct_event(payload, sig_header, stripe_secret)
+                verified_event = construct_verified_event(
+                    stripe, payload, sig_header, stripe_secret
+                )
             except frappe.AuthenticationError:
                 raise
-            except Exception as e:
+            except Exception as exc:
                 frappe.log_error(
-                    f"Stripe webhook signature check failed: {e}",
+                    f"Stripe webhook rejeitado ({type(exc).__name__})",
                     "Vedium.payments.stripe_webhook",
                 )
                 frappe.throw(
@@ -1265,7 +1285,7 @@ def handle_payment_webhook(gateway=None):
             )
 
     gateway_obj = get_gateway(gateway)
-    gateway_obj.handle_webhook(data)
+    gateway_obj.handle_webhook(verified_event if gateway == "stripe" else data)
     return {"status": "ok"}
 
 

@@ -21,7 +21,7 @@ import frappe
 
 WORKSPACE_NAME = "Vedium"
 STATUS_FIELD = "custom_vedium_status"
-ACTIVE_STATUSES = {"Active", "Trial"}
+ACTIVE_STATUSES = {"Active", "Trial", "Cancellation Requested", "Pending Review"}
 INACTIVE_STATUSES = {"Cancelled", "Ended", "Expired", "Suspended"}
 
 
