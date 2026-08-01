@@ -3,7 +3,7 @@ import stripe
 from frappe.utils import cint
 
 def run(*args, **kwargs):
-    dry_run = cint(kwargs.get("dry_run", 1))
+    dry_run = cint(kwargs.get("dry_run", 0))
     print(f"--- INICIANDO MIGRACAO (DRY RUN = {dry_run}) ---")
     
     stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY")
@@ -13,7 +13,7 @@ def run(*args, **kwargs):
     stripe_gateways = [g.name for g in gateways if "stripe" in g.gateway_controller.lower()]
     if not stripe_gateways:
         frappe.throw("Nenhum gateway Stripe valido encontrado!")
-    master_gateway = "Stripe-Stripe" if "Stripe-Stripe" in stripe_gateways else stripe_gateways[0]
+    master_gateway = stripe_gateways[0]
     
     # 2. Verificar se ha assinaturas ativas semestrais
     semestral_enrollments = frappe.get_all("LMS Enrollment", filters={"custom_billing_period": "semestral", "custom_vedium_status": ["in", ["Active", "Trial", "Pending Review"]]}, fields=["name", "member", "course"])
@@ -88,7 +88,7 @@ def run(*args, **kwargs):
                     new_plan = frappe.get_doc({
                         "doctype": "Subscription Plan",
                         "plan_name": new_monthly_name,
-                        "payment_gateway": master_gateway,
+                        "payment_gateway": old_plan_doc.payment_gateway,
                         "product_price_id": new_monthly_price,
                         "billing_interval": "Month",
                         "billing_interval_count": 1,
