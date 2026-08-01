@@ -100,6 +100,23 @@ CUSTOM_FIELDS = {
             "options": "LMS Course",
             "insert_after": "category",
         },
+        # IDs de preço Stripe para assinaturas recorrentes.
+        # Cadastre os Price IDs em app.vediums.com/desk para cada curso.
+        # Formato: price_XXXXXXXXXXXXXXXXXXXX (ID do Stripe)
+        {
+            "fieldname": "custom_stripe_price_id_semestral",
+            "label": "Stripe Price ID — Semestral (6 meses)",
+            "fieldtype": "Data",
+            "insert_after": "custom_prerequisite_course",
+            "description": "Price ID do Stripe para o plano semestral (mode=subscription). Ex: price_1AbCdEfGhIjK",
+        },
+        {
+            "fieldname": "custom_stripe_price_id_anual",
+            "label": "Stripe Price ID — Anual (12 meses)",
+            "fieldtype": "Data",
+            "insert_after": "custom_stripe_price_id_semestral",
+            "description": "Price ID do Stripe para o plano anual (mode=subscription). Ex: price_1AbCdEfGhIjK",
+        },
     ],
     # Fonte da verdade Vedium para acesso do aluno.
     # O DocType nativo "LMS Enrollment" do LMS não possui um campo status
@@ -141,6 +158,62 @@ CUSTOM_FIELDS = {
             "fieldtype": "Datetime",
             "insert_after": "custom_trial_start",
             "read_only": 1,
+        },
+        # Rastreamento de assinatura recorrente Stripe
+        {
+            "fieldname": "custom_stripe_subscription_id",
+            "label": "Stripe Subscription ID",
+            "fieldtype": "Data",
+            "insert_after": "custom_trial_end",
+            "read_only": 1,
+            "description": "ID da assinatura no Stripe (sub_XXXX). Preenchido automaticamente pelo webhook.",
+        },
+        {
+            "fieldname": "custom_billing_period",
+            "label": "Plano contratado",
+            "fieldtype": "Select",
+            "options": "monthly\nsemestral\nanual",
+            "insert_after": "custom_stripe_subscription_id",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "custom_contract_start",
+            "label": "Início do contrato",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_billing_period",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "custom_contract_end",
+            "label": "Fim da permanência mínima",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_contract_start",
+            "read_only": 1,
+            "description": "Data calculada automaticamente: semestral = +6 meses, anual = +12 meses.",
+        },
+        {
+            "fieldname": "custom_payment_failure_since",
+            "label": "Falha de pagamento desde",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_contract_end",
+            "read_only": 1,
+            "description": "Preenchido no primeiro invoice.payment_failed. Limpo quando invoice.paid.",
+        },
+        {
+            "fieldname": "custom_cancellation_requested_on",
+            "label": "Cancelamento solicitado em",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_payment_failure_since",
+            "read_only": 1,
+            "description": "Se solicitado antes da permanência mínima, cancela ao fim do contrato.",
+        },
+        {
+            "fieldname": "custom_last_invoice_id",
+            "label": "Último invoice Stripe",
+            "fieldtype": "Data",
+            "insert_after": "custom_cancellation_requested_on",
+            "read_only": 1,
+            "description": "ID do último invoice processado — usado para idempotência de webhooks.",
         },
     ],
     # Documentos brasileiros do professor/funcionário — o Employee nativo do

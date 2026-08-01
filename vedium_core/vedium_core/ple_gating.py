@@ -153,9 +153,14 @@ def _has_passed_quiz(member, course_name, quiz_title):
 
 
 def has_permission(doc, ptype, user):
-    """Hook genérico (hooks.py -> has_permission) pra LMS Course/Course
+    """Hook genérico (hooks.py → has_permission) pra LMS Course/Course
     Chapter/Course Lesson/LMS Quiz. Só atua em leitura; nunca bloqueia
     System Manager/Administrator (gestão do curso não pode travar).
+
+    Também bloqueia alunos com custom_vedium_status=Suspended ou Cancelled
+    para cursos pagos (assinatura recorrente Stripe).
+    O acesso é restaurado automaticamente quando invoice.paid chega e o
+    scheduler atualiza o status para Active.
     """
     if ptype != "read" or user in ("Administrator", None):
         return None
@@ -169,6 +174,24 @@ def has_permission(doc, ptype, user):
 
     if course_name in PLE_COURSES and _is_course_staff(user, course_name):
         return True if doc.doctype == "LMS Quiz" else None
+
+    # ── Bloqueio por status de assinatura ──────────────────────────────────
+    # Verificamos ANTES do gate de pré-requisito para evitar N consultas
+    # em cursos não-PLE onde o pré-req não existe.
+    _BLOCKED_STATUSES = ("Suspended", "Cancelled")
+    enrollment_data = frappe.db.get_value(
+        "LMS Enrollment",
+        {"member": user, "course": course_name},
+        ["name", "custom_vedium_status", "custom_stripe_subscription_id"],
+        as_dict=True,
+    )
+    if (
+        enrollment_data
+        and enrollment_data.get("custom_stripe_subscription_id")  # assinatura recorrente
+        and enrollment_data.get("custom_vedium_status") in _BLOCKED_STATUSES
+    ):
+        return False
+    # ────────────────────────────────────────────────────────────────────────
 
     prereq = _prerequisite_course(course_name)
     if prereq and not has_passed_course(user, prereq):

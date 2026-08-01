@@ -1151,7 +1151,15 @@ def stripe_webhook():
     Endpoint exclusivo para webhooks do Stripe.
     URL: /api/method/vedium_core.api.stripe_webhook
     Registrar no Stripe Dashboard → Developers → Webhooks.
-    Eventos: checkout.session.completed
+
+    Eventos suportados (7 no total — todos os do ciclo de vida de assinaturas):
+      checkout.session.completed   → cria matrícula
+      invoice.paid                 → reativa se suspenso
+      invoice.payment_failed       → registra início da inadimplência
+      customer.subscription.updated → sincroniza status
+      customer.subscription.deleted → cancela ou agenda cancelamento
+      charge.refunded              → suspende acesso
+      charge.dispute.created       → alerta admin
 
     Segurança: em produção (DEVELOPER_MODE=0), STRIPE_WEBHOOK_SECRET é
     obrigatório. Sem segredo configurado em produção → 401.
@@ -1161,11 +1169,13 @@ def stripe_webhook():
     stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY", "")
     payload = frappe.request.get_data(as_text=True)
     sig_header = frappe.request.headers.get("Stripe-Signature")
-    webhook_secret = frappe.conf.get("STRIPE_WEBHOOK_SECRET") or frappe.conf.get("stripe_webhook_secret")
+    webhook_secret = (
+        frappe.conf.get("STRIPE_WEBHOOK_SECRET")
+        or frappe.conf.get("stripe_webhook_secret")
+    )
     is_dev = bool(frappe.conf.get("developer_mode") or frappe.conf.get("DEVELOPER_MODE"))
 
     if not webhook_secret:
-        # Em produção, segredo ausente é falha de configuração crítica
         if not is_dev:
             frappe.log_error(
                 "STRIPE_WEBHOOK_SECRET ausente em produção — webhook rejeitado",
@@ -1175,7 +1185,6 @@ def stripe_webhook():
                 _("Webhook não configurado corretamente"),
                 frappe.AuthenticationError,
             )
-        # Em dev: aceita sem verificar, mas loga
         frappe.log_error(
             "STRIPE_WEBHOOK_SECRET ausente (DEV) — webhook não verificado",
             "Vedium.payments.stripe_webhook",
@@ -1207,9 +1216,56 @@ def stripe_webhook():
         )
         frappe.throw(_("Webhook inválido"), frappe.AuthenticationError)
 
-    gateway_obj = StripeGateway()
-    gateway_obj.handle_webhook(event)
+    # Despacha para o módulo de assinaturas (trata todos os 7 eventos)
+    from vedium_core.stripe_subscriptions import dispatch_stripe_event
+    event_dict = dict(event) if not isinstance(event, dict) else event
+    dispatch_stripe_event(event_dict)
     return {"status": "ok"}
+
+
+@frappe.whitelist()
+def create_subscription_checkout(
+    course_name, billing_period="semestral", coupon_code=None, display_currency=None
+):
+    """
+    Cria sessão Stripe Checkout em mode=subscription.
+
+    Usa o price_id cadastrado no campo
+    LMS Course.custom_stripe_price_id_semestral ou custom_stripe_price_id_anual.
+
+    billing_period: 'semestral' (6 meses) | 'anual' (12 meses)
+
+    URL: /api/method/vedium_core.api.create_subscription_checkout
+    """
+    rate_limit_by_ip("subscription_checkout", limit=10, window_sec=3600)
+
+    if frappe.session.user == "Guest":
+        frappe.throw(_("Por favor, faça login para assinar este curso"))
+
+    course = frappe.get_doc("LMS Course", course_name)
+    if not course.paid_course:
+        frappe.throw(_("Este curso é gratuito"))
+
+    # Não permite nova assinatura se já tiver enrollment ativo
+    existing = frappe.db.get_value(
+        "LMS Enrollment",
+        {"course": course_name, "member": frappe.session.user},
+        ["name", "custom_vedium_status"],
+        as_dict=True,
+    )
+    if existing and existing.get("custom_vedium_status") not in ("Cancelled", "Expired", None):
+        frappe.throw(_("Você já possui uma matrícula ativa neste curso"))
+
+    from vedium_core.stripe_subscriptions import create_subscription_checkout as _create
+
+    checkout_url = _create(
+        course_name=course_name,
+        user=frappe.session.user,
+        billing_period=billing_period,
+        display_currency=display_currency,
+        coupon_code=coupon_code,
+    )
+    return {"checkout_url": checkout_url, "billing_period": billing_period}
 
 
 # =====================

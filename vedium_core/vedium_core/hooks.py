@@ -540,6 +540,19 @@ has_permission = {
 }
 
 # =============================================================================
+# Scheduler
+# =============================================================================
+# Suspende matrículas Stripe com falha de pagamento há > 10 dias e
+# cancela matrículas onde o cancelamento foi solicitado e a permanência
+# mínima expirou. Executado diariamente às 03:00 UTC (horário de menor tráfego).
+
+scheduler_events = {
+    "daily": [
+        "vedium_core.stripe_subscriptions.suspend_overdue_subscriptions",
+    ],
+}
+
+# =============================================================================
 # Installation
 # =============================================================================
 
