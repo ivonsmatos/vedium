@@ -886,125 +886,18 @@ class StripeGateway(PaymentGateway):
     def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         import stripe
 
-        from vedium_core.currency import SUPPORTED_CURRENCIES, convert_amount
-        from vedium_core.payment_methods import get_stripe_payment_method_types
-
         stripe.api_key = self._get_api_key()
 
-        user_email = frappe.get_value("User", user, "email") or user
-        base_url = frappe.utils.get_url()
-        native_currency = (getattr(course, "currency", None) or "BRL").upper()
-        native_price = float(course.course_price or 0)
+        from vedium_core.stripe_billing import create_subscription_checkout
 
-        # Se o aluno escolheu uma moeda diferente da nativa do curso no
-        # seletor do site (ver vedium_core/currency.py), converte o valor
-        # em tempo real e cobra nessa moeda. Sem escolha, mantém o
-        # comportamento de sempre (moeda nativa do curso).
-        display_currency = (display_currency or "").upper() or None
-        if display_currency and display_currency in SUPPORTED_CURRENCIES:
-            charge_currency = display_currency
-            charge_price = convert_amount(native_price, native_currency, display_currency)
-        else:
-            charge_currency = native_currency
-            charge_price = native_price
-
-        billing_period = _normalize_billing_period(billing_period)
-        monthly_charge_price = charge_price
-        monthly_native_price = native_price
-        billing_months_charged = 1
-        billing_months_access = 1
-        product_suffix = _("Plano mensal")
-
-        if billing_period == "annual":
-            billing_months_charged = 10
-            billing_months_access = 12
-            charge_price = round(monthly_charge_price * billing_months_charged, 2)
-            product_suffix = _("Plano anual - 2 meses gratis")
-
-        currency = charge_currency.lower()
-        unit_amount = int(round(charge_price * 100))  # centavos/cents
-        payment_method_types = get_stripe_payment_method_types(currency)
-
-        session = stripe.checkout.Session.create(
-            payment_method_types=payment_method_types,
-            tax_id_collection={"enabled": currency == "brl"},
-            line_items=[
-                {
-                    "price_data": {
-                        "currency": currency,
-                        "product_data": {"name": f"{course.title} - {product_suffix}"},
-                        "unit_amount": unit_amount,
-                    },
-                    "quantity": 1,
-                }
-            ],
-            mode="payment",
-            customer_email=user_email,
-            client_reference_id=f"{course.name}|{user}",
-            success_url=(
-                f"{base_url}/lms/courses/{course.name}"
-                "?payment=success&session_id={CHECKOUT_SESSION_ID}"
-            ),
-            cancel_url=f"{base_url}/lms/courses/{course.name}?payment=cancelled",
-            metadata={
-                "course_name": str(course.name),
-                "user": str(user),
-                "site": str(frappe.local.site),
-                "coupon_code": coupon_code or "",
-                "native_currency": native_currency,
-                "native_monthly_price": str(round(monthly_native_price, 2)),
-                "native_price": str(round(monthly_native_price * billing_months_charged, 2)),
-                "charge_currency": charge_currency,
-                "charge_monthly_price": str(round(monthly_charge_price, 2)),
-                "charge_amount": str(unit_amount),
-                "billing_period": billing_period,
-                "billing_months_charged": str(billing_months_charged),
-                "billing_months_access": str(billing_months_access),
-            },
+        return create_subscription_checkout(
+            course, user, coupon_code=coupon_code, billing_period=billing_period
         )
-        return session.url
 
     def handle_webhook(self, event):
-        if event.get("type") == "checkout.session.completed":
-            session = event.get("data", {}).get("object", {})
-            ref = session.get("client_reference_id", "")
-            metadata = session.get("metadata") or {}
-            coupon_code = metadata.get("coupon_code") or None
-            try:
-                course_name, user = ref.split("|", 1)
-                if session.get("payment_status") != "paid":
-                    frappe.log_error(
-                        f"Stripe webhook ignorado: payment_status={session.get('payment_status')} session={session.get('id')}",
-                        "Vedium.payments.stripe_webhook",
-                    )
-                    return
-                if session.get("mode") != "payment":
-                    frappe.throw(_("Stripe session mode inválido"), frappe.AuthenticationError)
-                if metadata.get("site") and metadata.get("site") != frappe.local.site:
-                    frappe.throw(_("Stripe session site inválido"), frappe.AuthenticationError)
-                if metadata.get("course_name") and metadata.get("course_name") != course_name:
-                    frappe.throw(_("Stripe session course inválido"), frappe.AuthenticationError)
+        from vedium_core.stripe_billing import handle_stripe_event
 
-                expected_amount = int(metadata.get("charge_amount") or 0)
-                expected_currency = (metadata.get("charge_currency") or "").lower()
-                if expected_amount and int(session.get("amount_total") or 0) != expected_amount:
-                    frappe.throw(_("Stripe session amount inválido"), frappe.AuthenticationError)
-                if expected_currency and (session.get("currency") or "").lower() != expected_currency:
-                    frappe.throw(_("Stripe session currency inválida"), frappe.AuthenticationError)
-
-                create_enrollment_if_paid(
-                    course_name,
-                    user,
-                    "stripe",
-                    session.get("payment_intent") or session.get("id") or "",
-                    amount=(session.get("amount_total") or 0) / 100,
-                    currency=(session.get("currency") or "brl").upper(),
-                    coupon_code=coupon_code,
-                )
-            except ValueError:
-                frappe.log_error(
-                    f"Stripe webhook: client_reference_id inv\u00e1lido: {ref}"
-                )
+        return handle_stripe_event(event)
 
 
 class MercadoPagoGateway(PaymentGateway):
@@ -1151,7 +1044,9 @@ def stripe_webhook():
     Endpoint exclusivo para webhooks do Stripe.
     URL: /api/method/vedium_core.api.stripe_webhook
     Registrar no Stripe Dashboard → Developers → Webhooks.
-    Eventos: checkout.session.completed
+    Eventos: checkout.session.completed, invoice.paid, invoice.payment_failed,
+    customer.subscription.updated, customer.subscription.deleted,
+    charge.refunded e charge.dispute.created.
 
     Segurança: em produção (DEVELOPER_MODE=0), STRIPE_WEBHOOK_SECRET é
     obrigatório. Sem segredo configurado em produção → 401.
