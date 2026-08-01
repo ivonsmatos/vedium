@@ -33,7 +33,7 @@ def get_subscription_plan(course, period):
     field = (
         "custom_stripe_annual_plan"
         if period == "annual"
-        else "custom_stripe_semestral_plan"
+        else "custom_stripe_monthly_plan"
     )
     plan_name = getattr(course, field, None)
     if not plan_name:

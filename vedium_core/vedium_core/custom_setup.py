@@ -101,8 +101,8 @@ CUSTOM_FIELDS = {
             "insert_after": "category",
         },
         {
-            "fieldname": "custom_stripe_semestral_plan",
-            "label": "Plano Stripe semestral",
+            "fieldname": "custom_stripe_monthly_plan",
+            "label": "Plano Stripe mensal",
             "fieldtype": "Link",
             "options": "Subscription Plan",
             "insert_after": "custom_prerequisite_course",
@@ -112,7 +112,7 @@ CUSTOM_FIELDS = {
             "label": "Plano Stripe anual",
             "fieldtype": "Link",
             "options": "Subscription Plan",
-            "insert_after": "custom_stripe_semestral_plan",
+            "insert_after": "custom_stripe_monthly_plan",
         },
     ],
     # Fonte da verdade Vedium para acesso do aluno.
@@ -185,7 +185,7 @@ CUSTOM_FIELDS = {
             "fieldname": "custom_billing_period",
             "label": "Período contratual",
             "fieldtype": "Select",
-            "options": "semestral\nannual",
+            "options": "monthly\nannual",
             "insert_after": "custom_stripe_price_id",
             "read_only": 1,
         },

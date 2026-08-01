@@ -16,12 +16,15 @@ SUPPORTED_CURRENCIES = {"BRL", "USD"}
 
 
 def normalize_period(value=None) -> str:
-    value = (value or "semestral").strip().lower()
-    return "annual" if value in {"annual", "yearly", "anual"} else "semestral"
+    value = (value or "monthly").strip().lower()
+    if value in {"semestral", "semiannual", "semi-annual"}:
+        import frappe
+        frappe.throw("O plano semestral foi descontinuado. Escolha o Plano Mensal ou o Plano Anual.")
+    return "annual" if value in {"annual", "yearly", "anual"} else "monthly"
 
 
 def minimum_term_months(period) -> int:
-    return 12 if normalize_period(period) == "annual" else 6
+    return 12 if normalize_period(period) == "annual" else 0
 
 
 def is_active_enrollment_status(status) -> bool:
