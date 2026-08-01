@@ -46,9 +46,19 @@ def is_active_enrollment(enrollment) -> bool:
 def sync_enrollment(doc, method=None):
     """Hook de LMS Enrollment.
 
-    Mantém canais Raven coerentes com matrícula/status. Não lança exceção para
-    nunca quebrar checkout, migração ou edição administrativa de matrícula.
+    Mantém Brevo e Raven coerentes com matrícula/status. As duas integrações
+    são isoladas e nunca podem quebrar checkout, migração ou edição
+    administrativa de matrícula.
     """
+    # Brevo é independente do Raven. Precisa ser enfileirado mesmo quando o
+    # app de comunicação não está instalado ou está temporariamente fora.
+    try:
+        from vedium_core.brevo import on_enrollment as queue_brevo_sync
+
+        queue_brevo_sync(doc, method)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.brevo.queue_enrollment")
+
     if not raven_available():
         return
 

@@ -196,15 +196,18 @@ def expire_trials():
 
         if trial_start <= expired_cutoff:
             try:
-                frappe.db.set_value(
-                    "LMS Enrollment",
-                    e.name,
+                # Document.save é intencional: dispara os hooks de LMS
+                # Enrollment, mantendo Raven e Brevo sincronizados com a
+                # expiração do trial. db.set_value ignorava esses hooks.
+                enrollment = frappe.get_doc("LMS Enrollment", e.name)
+                enrollment.update(
                     {
                         STATUS_FIELD: EXPIRED_STATUS,
                         "custom_vedium_status_changed_on": now,
                         "custom_vedium_status_reason": "Trial expirado automaticamente",
-                    },
+                    }
                 )
+                enrollment.save(ignore_permissions=True)
                 count += 1
                 _send_trial_expiry_notice(e.member, e.course)
             except Exception as ex:
