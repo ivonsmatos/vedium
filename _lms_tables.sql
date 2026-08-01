@@ -1,0 +1,1 @@
+show tables like 'tabLMS%';

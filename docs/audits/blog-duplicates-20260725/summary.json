@@ -1,0 +1,31 @@
+{
+  "generated_at_utc": "2026-07-25T20:48:44.692412+00:00",
+  "mode": "read_only_dry_run",
+  "sources": {
+    "versioned_catalog": "vedium_core/vedium_core/blog_content.py",
+    "live_blog": "https://vediums.com/blog",
+    "live_sitemap": "https://vediums.com/sitemap.xml"
+  },
+  "access_gaps": [
+    "Database/bench unavailable: database IDs, unpublished records, and a database backup were not inspected.",
+    "Google Search Console unavailable: clicks, impressions, position, and index coverage were not inspected.",
+    "Backlink analytics unavailable: backlink authority was not used to choose canonical URLs."
+  ],
+  "counts": {
+    "versioned_articles": 97,
+    "live_cards": 130,
+    "live_unique_card_urls": 124,
+    "live_unique_card_titles": 100,
+    "duplicate_card_components": 31,
+    "duplicate_title_groups": 30,
+    "same_href_duplicate_groups": 6,
+    "extra_duplicate_cards": 31,
+    "live_blog_sitemap_urls": 133,
+    "catalog_title_anomalies": 3,
+    "exact_catalog_content_duplicate_groups": 0,
+    "near_duplicate_pairs_at_or_above_0_55": 0,
+    "cannibalization_groups_for_human_review": 4,
+    "internal_link_occurrences_to_noncanonical_duplicates": 0,
+    "planned_redirect_rows_blocked": 25
+  }
+}

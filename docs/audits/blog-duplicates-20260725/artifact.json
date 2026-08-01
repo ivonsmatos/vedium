@@ -1,0 +1,627 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Auditoria de duplicidade do blog Vedium",
+    "description": "Dry run técnico, reproduzível e sem alterações destrutivas.",
+    "generatedAt": "2026-07-25T20:48:44.692412+00:00",
+    "sources": [
+      {
+        "id": "audit-summary",
+        "label": "Resumo reproduzível da auditoria",
+        "path": "docs/audits/blog-duplicates-20260725/summary.json",
+        "query": {
+          "description": "Contagens consolidadas do catálogo versionado, listagem e sitemap ao vivo.",
+          "engine": "duckdb",
+          "language": "sql",
+          "executed_at": "2026-07-25T20:48:44.692412+00:00",
+          "sql": "SELECT counts.* FROM read_json_auto('docs/audits/blog-duplicates-20260725/summary.json');",
+          "tables_used": [
+            "docs/audits/blog-duplicates-20260725/summary.json"
+          ],
+          "filters": [
+            "Leitura somente; nenhuma alteração no banco ou no site"
+          ]
+        }
+      },
+      {
+        "id": "live-url-checks",
+        "label": "Verificação HTTP e canonical das URLs duplicadas",
+        "path": "docs/audits/blog-duplicates-20260725/duplicate_url_checks.csv",
+        "query": {
+          "description": "GET sem alteração de estado nas URLs encontradas na listagem ao vivo.",
+          "engine": "duckdb",
+          "language": "sql",
+          "executed_at": "2026-07-25T20:48:44.692412+00:00",
+          "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/duplicate_url_checks.csv', header = true);",
+          "tables_used": [
+            "docs/audits/blog-duplicates-20260725/duplicate_url_checks.csv"
+          ],
+          "filters": [
+            "Leitura somente; nenhuma alteração no banco ou no site"
+          ]
+        }
+      },
+      {
+        "id": "redirect-plan",
+        "label": "Plano de redirecionamento em dry run",
+        "path": "docs/audits/blog-duplicates-20260725/redirect_dry_run.csv",
+        "query": {
+          "description": "Mapeamento provisório baseado na arquitetura do catálogo versionado; não aplicado.",
+          "engine": "duckdb",
+          "language": "sql",
+          "executed_at": "2026-07-25T20:48:44.692412+00:00",
+          "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/redirect_dry_run.csv', header = true) WHERE action = 'planned_301_to_catalog_canonical';",
+          "tables_used": [
+            "docs/audits/blog-duplicates-20260725/redirect_dry_run.csv"
+          ],
+          "filters": [
+            "Leitura somente; nenhuma alteração no banco ou no site"
+          ]
+        }
+      },
+      {
+        "id": "catalog-audit",
+        "label": "Inventário e anomalias do catálogo versionado",
+        "path": "docs/audits/blog-duplicates-20260725/article_inventory.csv",
+        "query": {
+          "description": "Inventário dos artigos definidos em vedium_core/vedium_core/blog_content.py.",
+          "engine": "duckdb",
+          "language": "sql",
+          "executed_at": "2026-07-25T20:48:44.692412+00:00",
+          "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/article_inventory.csv', header = true);",
+          "tables_used": [
+            "docs/audits/blog-duplicates-20260725/article_inventory.csv"
+          ],
+          "filters": [
+            "Leitura somente; nenhuma alteração no banco ou no site"
+          ]
+        }
+      },
+      {
+        "id": "human-review",
+        "label": "Grupos de canibalização para revisão humana",
+        "path": "docs/audits/blog-duplicates-20260725/cannibalization_review.csv",
+        "query": {
+          "description": "Comparação dos quatro pares explicitamente protegidos contra consolidação automática.",
+          "engine": "duckdb",
+          "language": "sql",
+          "executed_at": "2026-07-25T20:48:44.692412+00:00",
+          "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/cannibalization_review.csv', header = true);",
+          "tables_used": [
+            "docs/audits/blog-duplicates-20260725/cannibalization_review.csv"
+          ],
+          "filters": [
+            "Leitura somente; nenhuma alteração no banco ou no site"
+          ]
+        }
+      }
+    ],
+    "cards": [
+      {
+        "id": "cards-live",
+        "description": "Total de cards coletados nas 11 páginas da listagem.",
+        "dataset": "headline_cards",
+        "sourceId": "audit-summary",
+        "metrics": [
+          {
+            "label": "Cards ao vivo",
+            "field": "value",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "duplicate-components",
+        "description": "Componentes ligados por título normalizado ou URL idêntica.",
+        "dataset": "headline_components",
+        "sourceId": "audit-summary",
+        "metrics": [
+          {
+            "label": "Grupos duplicados",
+            "field": "value",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "redirects-blocked",
+        "description": "Aliases candidatos a 301, ainda sem alteração de produção.",
+        "dataset": "headline_redirects",
+        "sourceId": "redirect-plan",
+        "metrics": [
+          {
+            "label": "301 bloqueados",
+            "field": "value",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "human-review-count",
+        "description": "Pares protegidos contra consolidação automática.",
+        "dataset": "headline_review",
+        "sourceId": "human-review",
+        "metrics": [
+          {
+            "label": "Revisões humanas",
+            "field": "value",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "listing-counts",
+        "title": "Contagens da listagem e do catálogo do blog",
+        "subtitle": "A diferença entre cards, URLs e títulos mostra duplicação visual e por rota.",
+        "intent": "comparison",
+        "question": "Quantos registros permanecem em cada nível de deduplicação?",
+        "rationale": "Barras simples permitem comparar as contagens categóricas no mesmo eixo.",
+        "comparisonContext": {
+          "grain": "contagem de registros",
+          "unit": "registros",
+          "denominator": "listagem ao vivo e catálogo versionado"
+        },
+        "type": "bar",
+        "dataset": "listing_metrics",
+        "sourceId": "audit-summary",
+        "encodings": {
+          "x": {
+            "field": "metric",
+            "type": "nominal",
+            "aggregate": "none",
+            "label": "Métrica"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "aggregate": "none",
+            "format": "number",
+            "label": "Quantidade"
+          }
+        },
+        "xAxisTitle": "",
+        "yAxisTitle": "Quantidade",
+        "valueFormat": "number",
+        "layout": "full"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Auditoria de duplicidade do blog Vedium\n\nDry run técnico para decisão antes de qualquer exclusão, alteração de banco ou redirecionamento.",
+        "layout": "full"
+      },
+      {
+        "id": "summary",
+        "type": "markdown",
+        "body": "## Resumo técnico\n\nA listagem ao vivo contém **130 cards**, **124 URLs únicas** e **100 títulos únicos**. Foram encontrados **31 componentes duplicados**, que representam **31 cards excedentes**. Os 56 endereços testados responderam 200; 50 não usam a canonical prevista pelo catálogo.",
+        "layout": "full",
+        "sourceId": "audit-summary"
+      },
+      {
+        "id": "headline",
+        "type": "metric-strip",
+        "cardIds": [
+          "cards-live",
+          "duplicate-components",
+          "redirects-blocked",
+          "human-review-count"
+        ],
+        "layout": "full"
+      },
+      {
+        "id": "visual-heading",
+        "type": "markdown",
+        "body": "## Evidência quantitativa\n\nA contagem progressiva separa repetição visual, aliases de URL e o catálogo controlado por código.",
+        "layout": "full"
+      },
+      {
+        "id": "visual",
+        "type": "chart",
+        "chartId": "listing-counts",
+        "layout": "full"
+      },
+      {
+        "id": "diagnosis",
+        "type": "markdown",
+        "body": "## Diagnóstico da causa\n\nO site é uma aplicação Frappe. O controlador de artigo consulta apenas o `slug` e não valida se idioma e categoria da rota correspondem ao artigo. Um teste com uma categoria inexistente retornou 200 e o mesmo H1. Nos 31 grupos, nenhuma comparação entre URLs apresentou hash renderizado divergente (0 grupos divergentes). A branch atual já prioriza registros versionados sobre cópias do banco na listagem, mas essa proteção ainda não está refletida no site auditado.",
+        "layout": "full",
+        "sourceId": "live-url-checks"
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "body": "## Escopo e método\n\nForam inventariados 97 artigos versionados; título, H1, idioma, categoria, URL e conteúdo normalizado foram registrados. O corpo foi convertido em texto, normalizado e resumido por SHA-256; proximidade foi medida por Jaccard de shingles de cinco palavras. A listagem paginada, o sitemap e cada URL duplicada foram consultados em modo somente leitura.",
+        "layout": "full",
+        "sourceId": "catalog-audit"
+      },
+      {
+        "id": "redirect-heading",
+        "type": "markdown",
+        "body": "## Plano de 301 — dry run\n\nHá 25 aliases candidatos a 301. Todos permanecem bloqueados até existir backup restaurável do banco e revisão de Search Console/backlinks. Nenhum redirecionamento foi aplicado.",
+        "layout": "full",
+        "sourceId": "redirect-plan"
+      },
+      {
+        "id": "anomaly-heading",
+        "type": "markdown",
+        "body": "## Títulos a corrigir\n\nTrês títulos do catálogo contêm prefixo de importação ou extensão de arquivo: um artigo em inglês com `Título SEO:` e dois artigos com sufixo `.md`. Os valores completos e os slugs estão no CSV de anomalias.",
+        "layout": "full",
+        "sourceId": "catalog-audit"
+      },
+      {
+        "id": "review-heading",
+        "type": "markdown",
+        "body": "## Canibalização\n\nOs grupos A, B, C e D permanecem como `REVISÃO HUMANA`; similaridade lexical isolada não autoriza fusão. A matriz completa está no CSV de canibalização.",
+        "layout": "full",
+        "sourceId": "human-review"
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitações e bloqueios\n\nO checkout não possui `bench`, configuração do site ou cliente MariaDB; o Docker local também está sem daemon. Portanto, não foi possível gerar backup do banco, exportar IDs internos nem confirmar registros não publicados. Google Search Console e dados de backlinks também não estão disponíveis. Essas lacunas são materiais para escolher a URL de maior valor.",
+        "layout": "full"
+      },
+      {
+        "id": "next",
+        "type": "markdown",
+        "body": "## Próximos passos recomendados\n\n1. Gerar e testar um backup completo do banco e exportar a tabela de artigos.\n2. Fornecer exportações de Search Console e backlinks por URL.\n3. Aprovar a matriz de URL principal e os quatro pares de canibalização.\n4. Implementar validação de rota e 301 direto, corrigir os três títulos e despublicar apenas cópias confirmadas.\n5. Regerar sitemap/cache e executar os testes de URL, conteúdo, SEO, listagem e paginação.",
+        "layout": "full"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-25T20:48:44.692412+00:00",
+    "status": "partial",
+    "datasets": {
+      "headline_cards": [
+        {
+          "value": 130
+        }
+      ],
+      "headline_components": [
+        {
+          "value": 31
+        }
+      ],
+      "headline_redirects": [
+        {
+          "value": 25
+        }
+      ],
+      "headline_review": [
+        {
+          "value": 4
+        }
+      ],
+      "listing_metrics": [
+        {
+          "metric": "Cards",
+          "value": 130
+        },
+        {
+          "metric": "URLs únicas",
+          "value": 124
+        },
+        {
+          "metric": "Títulos únicos",
+          "value": 100
+        },
+        {
+          "metric": "Catálogo",
+          "value": 97
+        }
+      ],
+      "redirects": [
+        {
+          "grupo": "live-title-001",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-002",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-003",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-004",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-005",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-007",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-008",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-009",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-011",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-012",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-013",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-014",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-015",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-017",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-018",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-019",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-021",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-022",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-024",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-025",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-026",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-028",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-029",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-030",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        },
+        {
+          "grupo": "live-title-031",
+          "tipo": "alias de rota",
+          "acao": "301 (bloqueado)",
+          "status": "bloqueado"
+        }
+      ],
+      "anomalies": [
+        {
+          "artigo": "Anomalia 1",
+          "titulo_atual": "Como escrever mensagens curtas e claras em inglês corporativo.md",
+          "problema": "metadado ou extensão importada"
+        },
+        {
+          "artigo": "Anomalia 2",
+          "titulo_atual": "Título SEO: Brazilian Portuguese for Cultural Adaptation: Your First 90 Days in Brazil",
+          "problema": "metadado ou extensão importada"
+        },
+        {
+          "artigo": "Anomalia 3",
+          "titulo_atual": "Portugais du Brésil pour familles qui s'installent au Brésil.md",
+          "problema": "metadado ou extensão importada"
+        }
+      ],
+      "human_review": [
+        {
+          "grupo": "A",
+          "similaridade": 0.0,
+          "recomendacao": "manter até revisão",
+          "status": "REVISÃO HUMANA"
+        },
+        {
+          "grupo": "B",
+          "similaridade": 0.0044,
+          "recomendacao": "comparar intenção e desempenho",
+          "status": "REVISÃO HUMANA"
+        },
+        {
+          "grupo": "C",
+          "similaridade": 0.0014,
+          "recomendacao": "comparar intenção e desempenho",
+          "status": "REVISÃO HUMANA"
+        },
+        {
+          "grupo": "D",
+          "similaridade": 0.002,
+          "recomendacao": "manter até revisão",
+          "status": "REVISÃO HUMANA"
+        }
+      ]
+    },
+    "accessIssues": [
+      {
+        "id": "database-unavailable",
+        "scope": "backup, IDs internos e registros de produção",
+        "message": "Banco/bench indisponível neste checkout; alterações destrutivas estão bloqueadas."
+      },
+      {
+        "id": "search-console-unavailable",
+        "scope": "escolha da URL principal",
+        "message": "Cliques, impressões, posição e cobertura não puderam ser comparados."
+      },
+      {
+        "id": "backlinks-unavailable",
+        "scope": "autoridade por URL",
+        "message": "Backlinks não puderam ser usados na decisão de canonical."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "audit-summary",
+      "label": "Resumo reproduzível da auditoria",
+      "path": "docs/audits/blog-duplicates-20260725/summary.json",
+      "query": {
+        "description": "Contagens consolidadas do catálogo versionado, listagem e sitemap ao vivo.",
+        "engine": "duckdb",
+        "language": "sql",
+        "executed_at": "2026-07-25T20:48:44.692412+00:00",
+        "sql": "SELECT counts.* FROM read_json_auto('docs/audits/blog-duplicates-20260725/summary.json');",
+        "tables_used": [
+          "docs/audits/blog-duplicates-20260725/summary.json"
+        ],
+        "filters": [
+          "Leitura somente; nenhuma alteração no banco ou no site"
+        ]
+      }
+    },
+    {
+      "id": "live-url-checks",
+      "label": "Verificação HTTP e canonical das URLs duplicadas",
+      "path": "docs/audits/blog-duplicates-20260725/duplicate_url_checks.csv",
+      "query": {
+        "description": "GET sem alteração de estado nas URLs encontradas na listagem ao vivo.",
+        "engine": "duckdb",
+        "language": "sql",
+        "executed_at": "2026-07-25T20:48:44.692412+00:00",
+        "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/duplicate_url_checks.csv', header = true);",
+        "tables_used": [
+          "docs/audits/blog-duplicates-20260725/duplicate_url_checks.csv"
+        ],
+        "filters": [
+          "Leitura somente; nenhuma alteração no banco ou no site"
+        ]
+      }
+    },
+    {
+      "id": "redirect-plan",
+      "label": "Plano de redirecionamento em dry run",
+      "path": "docs/audits/blog-duplicates-20260725/redirect_dry_run.csv",
+      "query": {
+        "description": "Mapeamento provisório baseado na arquitetura do catálogo versionado; não aplicado.",
+        "engine": "duckdb",
+        "language": "sql",
+        "executed_at": "2026-07-25T20:48:44.692412+00:00",
+        "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/redirect_dry_run.csv', header = true) WHERE action = 'planned_301_to_catalog_canonical';",
+        "tables_used": [
+          "docs/audits/blog-duplicates-20260725/redirect_dry_run.csv"
+        ],
+        "filters": [
+          "Leitura somente; nenhuma alteração no banco ou no site"
+        ]
+      }
+    },
+    {
+      "id": "catalog-audit",
+      "label": "Inventário e anomalias do catálogo versionado",
+      "path": "docs/audits/blog-duplicates-20260725/article_inventory.csv",
+      "query": {
+        "description": "Inventário dos artigos definidos em vedium_core/vedium_core/blog_content.py.",
+        "engine": "duckdb",
+        "language": "sql",
+        "executed_at": "2026-07-25T20:48:44.692412+00:00",
+        "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/article_inventory.csv', header = true);",
+        "tables_used": [
+          "docs/audits/blog-duplicates-20260725/article_inventory.csv"
+        ],
+        "filters": [
+          "Leitura somente; nenhuma alteração no banco ou no site"
+        ]
+      }
+    },
+    {
+      "id": "human-review",
+      "label": "Grupos de canibalização para revisão humana",
+      "path": "docs/audits/blog-duplicates-20260725/cannibalization_review.csv",
+      "query": {
+        "description": "Comparação dos quatro pares explicitamente protegidos contra consolidação automática.",
+        "engine": "duckdb",
+        "language": "sql",
+        "executed_at": "2026-07-25T20:48:44.692412+00:00",
+        "sql": "SELECT * FROM read_csv_auto('docs/audits/blog-duplicates-20260725/cannibalization_review.csv', header = true);",
+        "tables_used": [
+          "docs/audits/blog-duplicates-20260725/cannibalization_review.csv"
+        ],
+        "filters": [
+          "Leitura somente; nenhuma alteração no banco ou no site"
+        ]
+      }
+    }
+  ]
+}
