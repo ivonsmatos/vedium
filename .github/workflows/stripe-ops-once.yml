@@ -1,15 +1,12 @@
-name: Stripe Ops (one-shot dispatch)
-# Executa operações Stripe diretamente no servidor de produção.
-# A SECRET KEY é passada como input de dispatch (mascarada pelo GitHub).
-# Após o uso, este workflow pode ser removido do repositório.
+﻿name: Stripe Ops (one-shot dispatch)
+# Executa operacoes Stripe diretamente no servidor de producao.
+# Requer o secret STRIPE_OPS_KEY configurado via:
+#   gh secret set STRIPE_OPS_KEY   (le silenciosamente do terminal)
+# Apos o uso, remova o secret:
+#   gh secret delete STRIPE_OPS_KEY
 
 on:
   workflow_dispatch:
-    inputs:
-      stripe_key:
-        description: "Stripe Secret Key (sk_live_...)"
-        required: true
-        type: string
 
 jobs:
   stripe-ops:
@@ -18,9 +15,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Mask stripe key
-        run: echo "::add-mask::${{ inputs.stripe_key }}"
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd
@@ -45,43 +39,47 @@ jobs:
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          STRIPE_SECRET_KEY: ${{ inputs.stripe_key }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_OPS_KEY }}
         run: |
+          if [ -z "$STRIPE_SECRET_KEY" ]; then
+            echo "::error::Secret STRIPE_OPS_KEY nao configurado. Execute: gh secret set STRIPE_OPS_KEY"
+            exit 1
+          fi
           ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
           set -euo pipefail
-
-          # Instalar stripe SDK se necessário
           pip install stripe --quiet 2>/dev/null || pip3 install stripe --quiet 2>/dev/null || true
-
           export STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}"
           cd /opt/vedium
           python3 scripts/stripe_ops_env.py
           REMOTE
 
-      - name: Collect results
+      - name: Collect and display results
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
           scp "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/scripts/stripe_ops_result.json" \
-              stripe_ops_result.json 2>/dev/null || echo "Arquivo de resultado não encontrado."
+              stripe_ops_result.json 2>/dev/null || true
           if [ -f stripe_ops_result.json ]; then
-            echo "=== RESULTADO ==="
             python3 -c "
           import json
           with open('stripe_ops_result.json') as f:
               data = json.load(f)
           print('Timestamp:', data.get('timestamp'))
-          print('Sessões expiradas:', len(data.get('expired_sessions', [])))
-          print('Sessões open auditadas:', data.get('open_sessions_audited'))
-          print('Sessões open com problema:', data.get('open_sessions_with_issues'))
+          print('Sessoes expiradas:', len(data.get('expired_sessions', [])))
+          print('Sessoes open auditadas:', data.get('open_sessions_audited'))
+          print('Sessoes open com problema:', data.get('open_sessions_with_issues'))
           print('Portal:', data.get('portal'))
           total = len(data.get('checkout_tests', []))
           ok = sum(1 for r in data.get('checkout_tests', []) if r.get('ok'))
           print(f'Checkout tests: {ok}/{total} OK')
+          print()
           for r in data.get('checkout_tests', []):
-              status = '✅' if r.get('ok') else '❌'
-              print(f\"  {status} {r.get('produto','?')} [{r.get('plano','?')}] price={r.get('price_id','?')} valor={r.get('valor','?')} {r.get('moeda','?')}\")
-          print('VEREDITO:', data.get('verdict'))
+              status = 'OK' if r.get('ok') else 'FALHOU'
+              print(f\"{status} | {r.get('produto','?'):<25} | {r.get('plano','?'):<8} | {r.get('price_id','?'):<30} | {r.get('valor','?'):>8} {r.get('moeda','?')}\")
+          print()
+          print('VEREDITO FINAL:', data.get('verdict'))
           "
+          else
+            echo "Arquivo de resultado nao encontrado no servidor."
           fi
