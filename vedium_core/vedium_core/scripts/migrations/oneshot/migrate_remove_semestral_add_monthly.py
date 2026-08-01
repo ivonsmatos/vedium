@@ -83,12 +83,17 @@ def run(*args, **kwargs):
                 new_monthly_price = "price_dry_run_monthly"
                 
             if not dry_run:
+                # Encontrar o Payment Gateway Account correto para a moeda
+                gw_account = frappe.db.get_value("Payment Gateway Account", {"payment_gateway": "Stripe-Stripe", "currency": course.currency})
+                if not gw_account:
+                    gw_account = frappe.db.get_value("Payment Gateway Account", {"payment_gateway": "Stripe-Stripe"})
+                
                 # Criar novo Subscription Plan Mensal
                 if not frappe.db.exists("Subscription Plan", new_monthly_name):
                     new_plan = frappe.get_doc({
                         "doctype": "Subscription Plan",
                         "plan_name": new_monthly_name,
-                        "payment_gateway": old_plan_doc.payment_gateway,
+                        "payment_gateway": gw_account,
                         "product_price_id": new_monthly_price,
                         "billing_interval": "Month",
                         "billing_interval_count": 1,
