@@ -1,10 +1,15 @@
 name: Stripe Ops (one-shot dispatch)
 # Executa operações Stripe diretamente no servidor de produção.
-# A SECRET KEY nunca transita pelo GitHub — é lida do .env já presente no servidor.
+# A SECRET KEY é passada como input de dispatch (mascarada pelo GitHub).
 # Após o uso, este workflow pode ser removido do repositório.
 
 on:
   workflow_dispatch:
+    inputs:
+      stripe_key:
+        description: "Stripe Secret Key (sk_live_...)"
+        required: true
+        type: string
 
 jobs:
   stripe-ops:
@@ -13,6 +18,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Mask stripe key
+        run: echo "::add-mask::${{ inputs.stripe_key }}"
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd
@@ -24,9 +32,6 @@ jobs:
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
-
-      - name: Install stripe SDK on runner
-        run: pip install stripe --quiet
 
       - name: Copy scripts to server
         env:
@@ -40,28 +45,15 @@ jobs:
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          STRIPE_SECRET_KEY: ${{ inputs.stripe_key }}
         run: |
-          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << 'REMOTE'
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
           set -euo pipefail
 
-          ENV_FILE="/opt/vedium/deploy/.env"
-          if [ ! -f "$ENV_FILE" ]; then
-            echo "::error::$ENV_FILE não encontrado no servidor."
-            exit 1
-          fi
+          # Instalar stripe SDK se necessário
+          pip install stripe --quiet 2>/dev/null || pip3 install stripe --quiet 2>/dev/null || true
 
-          # Carregar apenas STRIPE_SECRET_KEY do .env (sem expor outros segredos)
-          STRIPE_SECRET_KEY=$(grep '^STRIPE_SECRET_KEY=' "$ENV_FILE" | cut -d= -f2- | tr -d '"' | tr -d "'")
-          if [ -z "$STRIPE_SECRET_KEY" ] || [ "$STRIPE_SECRET_KEY" = "" ]; then
-            echo "::error::STRIPE_SECRET_KEY vazia no .env do servidor."
-            exit 1
-          fi
-
-          # Instalar stripe SDK no servidor se necessário
-          pip install stripe --quiet 2>/dev/null || pip3 install stripe --quiet
-
-          # Executar operações
-          export STRIPE_SECRET_KEY
+          export STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}"
           cd /opt/vedium
           python3 scripts/stripe_ops_env.py
           REMOTE
@@ -71,14 +63,12 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          # Baixar resultado JSON (sem a chave)
           scp "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/scripts/stripe_ops_result.json" \
               stripe_ops_result.json 2>/dev/null || echo "Arquivo de resultado não encontrado."
           if [ -f stripe_ops_result.json ]; then
             echo "=== RESULTADO ==="
-            # Exibir tudo exceto campos que possam ter URLs de checkout (por segurança, mostrar só o veredito)
             python3 -c "
-          import json, sys
+          import json
           with open('stripe_ops_result.json') as f:
               data = json.load(f)
           print('Timestamp:', data.get('timestamp'))
@@ -86,9 +76,12 @@ jobs:
           print('Sessões open auditadas:', data.get('open_sessions_audited'))
           print('Sessões open com problema:', data.get('open_sessions_with_issues'))
           print('Portal:', data.get('portal'))
-          print('Total de testes de checkout:', len(data.get('checkout_tests', [])))
+          total = len(data.get('checkout_tests', []))
           ok = sum(1 for r in data.get('checkout_tests', []) if r.get('ok'))
-          print('Checkouts OK:', ok)
+          print(f'Checkout tests: {ok}/{total} OK')
+          for r in data.get('checkout_tests', []):
+              status = '✅' if r.get('ok') else '❌'
+              print(f\"  {status} {r.get('produto','?')} [{r.get('plano','?')}] price={r.get('price_id','?')} valor={r.get('valor','?')} {r.get('moeda','?')}\")
           print('VEREDITO:', data.get('verdict'))
           "
           fi
