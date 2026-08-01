@@ -28,6 +28,9 @@ wheels/
 *.pyc
 *.swp
 *.swo
+
+# Resultados de scripts operacionais (podem conter URLs de checkout, dados PII)
+scripts/*_result.json
 .DS_Store
 *.patch
 node_modules/
