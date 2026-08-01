@@ -59,9 +59,9 @@ def _course_name_for(doctype, docname):
 
 
 def _has_enrollment(member, course_name):
-    if not member or member == "Guest":
-        return False
-    return bool(frappe.db.exists("LMS Enrollment", {"member": member, "course": course_name}))
+    from vedium_core.access_control import has_active_enrollment
+
+    return has_active_enrollment(member, course_name)
 
 
 def _is_course_staff(member, course_name):
@@ -167,8 +167,15 @@ def has_permission(doc, ptype, user):
     if not course_name:
         return None
 
-    if course_name in PLE_COURSES and _is_course_staff(user, course_name):
+    if _is_course_staff(user, course_name):
         return True if doc.doctype == "LMS Quiz" else None
+
+    # Uma matrícula continua existindo para histórico financeiro, mas status
+    # inativo deve negar curso, capítulos, aulas e quizzes protegidos.
+    from vedium_core.access_control import has_inactive_enrollment
+
+    if has_inactive_enrollment(user, course_name):
+        return False
 
     prereq = _prerequisite_course(course_name)
     if prereq and not has_passed_course(user, prereq):

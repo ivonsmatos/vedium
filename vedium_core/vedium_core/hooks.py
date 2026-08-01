@@ -440,6 +440,7 @@ scheduler_events = {
     # Trial de 7 dias: expira matrículas Trial vencidas
     "daily": [
         "vedium_core.trial.expire_trials",
+        "vedium_core.stripe_billing.suspend_overdue_enrollments",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
@@ -515,6 +516,9 @@ doc_events = {
     "User": {
         "on_update": "vedium_core.communication.sync_new_professor",
     },
+    "Discussion Reply": {
+        "validate": "vedium_core.access_control.validate_discussion_reply",
+    },
 }
 
 # =============================================================================
@@ -536,7 +540,23 @@ has_permission = {
     "Course Chapter": "vedium_core.ple_gating.has_permission",
     "Course Lesson": "vedium_core.ple_gating.has_permission",
     "LMS Quiz": "vedium_core.ple_gating.has_permission",
+    "LMS Batch": "vedium_core.access_control.has_batch_permission",
+    "LMS Live Class": "vedium_core.access_control.has_live_class_permission",
     "Registro de Aula Vedium": "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.has_permission",
+}
+
+# Endpoints upstream que consultam apenas a existência da matrícula precisam
+# aplicar também o status financeiro Vedium, evitando bypass do gate DocType.
+override_whitelisted_methods = {
+    "lms.lms.doctype.course_lesson.course_lesson.save_progress": (
+        "vedium_core.access_control.save_progress"
+    ),
+    "lms.lms.utils.get_discussion_topics": (
+        "vedium_core.access_control.get_discussion_topics"
+    ),
+    "lms.lms.utils.get_discussion_replies": (
+        "vedium_core.access_control.get_discussion_replies"
+    ),
 }
 
 # =============================================================================

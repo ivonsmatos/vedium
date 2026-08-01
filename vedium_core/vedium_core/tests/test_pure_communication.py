@@ -16,7 +16,10 @@ def test_communication_layer_is_optional_until_raven_is_installed():
 
 def test_enrollment_status_is_source_of_truth_for_channel_membership():
     assert 'STATUS_FIELD = "custom_vedium_status"' in COMMUNICATION
-    assert 'ACTIVE_STATUSES = {"Active", "Trial"}' in COMMUNICATION
+    assert (
+        'ACTIVE_STATUSES = {"Active", "Trial", "Cancellation Requested", "Pending Review"}'
+        in COMMUNICATION
+    )
     for status in ["Cancelled", "Ended", "Expired", "Suspended"]:
         assert status in COMMUNICATION
     assert "_remove_channel_member" in COMMUNICATION
