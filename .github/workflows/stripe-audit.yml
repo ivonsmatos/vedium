@@ -1,7 +1,7 @@
-name: Stripe Audit — Matriz de Preos Vedium
-# Coleta dados do Frappe e Stripe, gera a matriz de preos.
-# Requer: gh secret set STRIPE_OPS_KEY
-# Executa em modo leitura — nao escreve nada.
+name: Stripe Audit -- Matriz de Precos Vedium
+# Coleta dados do Frappe e Stripe, gera a matriz de precos.
+# Extrai STRIPE_SECRET_KEY do Frappe site_config -- sem secret externo.
+# Executa em modo leitura -- nao escreve nada.
 
 on:
   workflow_dispatch:
@@ -96,13 +96,37 @@ jobs:
           wc -l frappe_stripe_config.json
 
       - name: Run Stripe audit (read-only)
+        id: stripe_audit
         env:
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_OPS_KEY }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          if [ -z "$STRIPE_SECRET_KEY" ]; then
-            echo "::error::Secret STRIPE_OPS_KEY nao configurado. Execute: gh secret set STRIPE_OPS_KEY"
+          # Extrair chave do Frappe site_config e mascarar imediatamente
+          STRIPE_KEY=$(ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            "docker exec -w /home/frappe/frappe-bench vedium-frappe \
+             python3 -c \"
+import sys
+sys.path.insert(0,'/home/frappe/frappe-bench/apps/frappe')
+import frappe
+frappe.init(site='app.vediums.com', sites_path='/home/frappe/frappe-bench/sites')
+frappe.connect()
+key = frappe.conf.get('STRIPE_SECRET_KEY') or ''
+if not key:
+    for k in ['stripe_secret_key','STRIPE_SECRET','stripe_key']:
+        key = frappe.conf.get(k) or ''
+        if key: break
+print(key)
+\"" 2>/dev/null || echo "")
+
+          if [ -z "\$STRIPE_KEY" ] || [ "\$STRIPE_KEY" = "False" ] || [ "\$STRIPE_KEY" = "None" ]; then
+            echo "::error::STRIPE_SECRET_KEY nao encontrada no Frappe site_config."
             exit 1
           fi
+          echo "::add-mask::\$STRIPE_KEY"
+          echo "Stripe key: encontrada (mascarada)"
+          echo "key_mode=\$([ \${STRIPE_KEY:3:4} = 'live' ] && echo live || echo test)" >> \$GITHUB_OUTPUT
+
+          export STRIPE_SECRET_KEY="\$STRIPE_KEY"
           python3 scripts/vedium_stripe_audit.py \
             --frappe-json frappe_stripe_config.json \
             --output stripe_audit_result.json
