@@ -5,12 +5,12 @@ import json
 def run(dry_run=True, apply=False):
     print(f"--- Iniciando sincronizacao final (dry_run={dry_run}, apply={apply}) ---")
     
+    stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY")
+    if not stripe.api_key:
+        print("STRIPE_SECRET_KEY não configurada!")
+        return
+        
     if apply and not dry_run:
-        stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY")
-        if not stripe.api_key:
-            print("STRIPE_SECRET_KEY não configurada!")
-            return
-            
         sessions_to_expire = [
             "cs_live_a1D8QLhiILDXUvUg7Kywy1cS27fDP9LaZ6MmOsV799dQHP2pFO9QyUQVHH",
             "cs_live_a1rOHgmGxflJTpaJKWDvvgATCbJqLdATHKsW89sHxqVPELnZyImfZuZcSj",
@@ -72,9 +72,8 @@ def run(dry_run=True, apply=False):
     all_items = {i.name: i for i in frappe.get_all('Item', fields=['name', 'item_name'])}
     
     existing_products = {}
-    if apply and not dry_run:
-        for p in stripe.Product.list(limit=100).auto_paging_iter():
-            existing_products[p.name] = p.id
+    for p in stripe.Product.list(limit=100).auto_paging_iter():
+        existing_products[p.name] = p.id
         
     dry_run_results = {
         "products_created": 0,
@@ -95,18 +94,19 @@ def run(dry_run=True, apply=False):
             
         currency = "usd" if "portugues" in c.name else "brl"
         
-        product_id = existing_products.get(c.title)
+        product_name = c.title
+        product_id = existing_products.get(product_name)
         if not product_id:
+            dry_run_results["products_created"] += 1
             if apply and not dry_run:
                 try:
-                    prod = stripe.Product.create(name=c.title, statement_descriptor="VEDIUM CURSO")
+                    prod = stripe.Product.create(name=product_name, statement_descriptor="VEDIUM CURSO")
                     product_id = prod.id
-                    existing_products[c.title] = product_id
+                    existing_products[product_name] = product_id
                 except Exception as e:
-                    print(f"Erro Product {c.title}: {e}")
+                    print(f"Erro Product {product_name}: {e}")
                     continue
             else:
-                dry_run_results["products_created"] += 1
                 product_id = "prod_dummy"
                 
         item_id = f"CURSO-{c.name.upper().replace(' ', '-')}"
@@ -141,16 +141,18 @@ def run(dry_run=True, apply=False):
         
         monthly_plan_name = f"Vedium — {c.title} — Mensal"
         try:
+            stripe_prices = stripe.Price.list(product=product_id, active=True, currency=currency)
+            monthly_price = next((p for p in stripe_prices.data if p.recurring.interval == 'month' and p.recurring.interval_count == 1 and p.unit_amount == monthly_cents), None)
             monthly_price_id = "price_dummy"
-            if apply and not dry_run:
-                stripe_prices = stripe.Price.list(product=product_id, active=True, currency=currency)
-                monthly_price = next((p for p in stripe_prices.data if p.recurring.interval == 'month' and p.recurring.interval_count == 1 and p.unit_amount == monthly_cents), None)
-                if not monthly_price:
-                    monthly_price = stripe.Price.create(product=product_id, unit_amount=monthly_cents, currency=currency, recurring={"interval": "month", "interval_count": 1}, nickname=monthly_plan_name)
-                monthly_price_id = monthly_price.id
-            else:
+            
+            if not monthly_price:
                 dry_run_results["prices_created"] += 1
-
+                if apply and not dry_run:
+                    monthly_price = stripe.Price.create(product=product_id, unit_amount=monthly_cents, currency=currency, recurring={"interval": "month", "interval_count": 1}, nickname=monthly_plan_name)
+                    monthly_price_id = monthly_price.id
+            else:
+                monthly_price_id = monthly_price.id
+                
             if not frappe.db.exists('Subscription Plan', monthly_plan_name):
                 dry_run_results["plans_created"].append(monthly_plan_name)
                 if apply and not dry_run:
@@ -165,9 +167,13 @@ def run(dry_run=True, apply=False):
                     doc.price_determination = "Fixed Rate"
                     doc.insert(ignore_permissions=True)
             else:
-                dry_run_results["plans_updated"].append(monthly_plan_name)
-                if apply and not dry_run:
-                    frappe.db.set_value('Subscription Plan', monthly_plan_name, {'product_price_id': monthly_price_id, 'cost': monthly_cents / 100, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate"})
+                # Check for diff
+                plan_doc = frappe.get_doc('Subscription Plan', monthly_plan_name)
+                cost = monthly_cents / 100
+                if plan_doc.product_price_id != monthly_price_id or float(plan_doc.cost) != float(cost) or plan_doc.item != item_id or plan_doc.price_determination != "Fixed Rate":
+                    dry_run_results["plans_updated"].append(monthly_plan_name)
+                    if apply and not dry_run:
+                        frappe.db.set_value('Subscription Plan', monthly_plan_name, {'product_price_id': monthly_price_id, 'cost': cost, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate"})
                     
             if c.custom_stripe_monthly_plan != monthly_plan_name:
                 dry_run_results["courses_linked"].append(f"{c.name} (Mensal)")
@@ -179,15 +185,17 @@ def run(dry_run=True, apply=False):
         annual_cents = int(monthly_cents * 10 / 12)
         annual_plan_name = f"Vedium — {c.title} — Anual"
         try:
+            stripe_prices = stripe.Price.list(product=product_id, active=True, currency=currency)
+            annual_price = next((p for p in stripe_prices.data if p.recurring.interval == 'month' and p.recurring.interval_count == 1 and p.unit_amount == annual_cents), None)
             annual_price_id = "price_dummy"
-            if apply and not dry_run:
-                stripe_prices = stripe.Price.list(product=product_id, active=True, currency=currency)
-                annual_price = next((p for p in stripe_prices.data if p.recurring.interval == 'month' and p.recurring.interval_count == 1 and p.unit_amount == annual_cents), None)
-                if not annual_price:
-                    annual_price = stripe.Price.create(product=product_id, unit_amount=annual_cents, currency=currency, recurring={"interval": "month", "interval_count": 1}, nickname=annual_plan_name)
-                annual_price_id = annual_price.id
-            else:
+            
+            if not annual_price:
                 dry_run_results["prices_created"] += 1
+                if apply and not dry_run:
+                    annual_price = stripe.Price.create(product=product_id, unit_amount=annual_cents, currency=currency, recurring={"interval": "month", "interval_count": 1}, nickname=annual_plan_name)
+                    annual_price_id = annual_price.id
+            else:
+                annual_price_id = annual_price.id
                 
             if not frappe.db.exists('Subscription Plan', annual_plan_name):
                 dry_run_results["plans_created"].append(annual_plan_name)
@@ -203,9 +211,13 @@ def run(dry_run=True, apply=False):
                     doc.price_determination = "Fixed Rate"
                     doc.insert(ignore_permissions=True)
             else:
-                dry_run_results["plans_updated"].append(annual_plan_name)
-                if apply and not dry_run:
-                    frappe.db.set_value('Subscription Plan', annual_plan_name, {'product_price_id': annual_price_id, 'cost': annual_cents / 100, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate"})
+                # Check for diff
+                plan_doc = frappe.get_doc('Subscription Plan', annual_plan_name)
+                cost = annual_cents / 100
+                if plan_doc.product_price_id != annual_price_id or float(plan_doc.cost) != float(cost) or plan_doc.item != item_id or plan_doc.price_determination != "Fixed Rate":
+                    dry_run_results["plans_updated"].append(annual_plan_name)
+                    if apply and not dry_run:
+                        frappe.db.set_value('Subscription Plan', annual_plan_name, {'product_price_id': annual_price_id, 'cost': cost, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate"})
                     
             if c.custom_stripe_annual_plan != annual_plan_name:
                 dry_run_results["courses_linked"].append(f"{c.name} (Anual)")
