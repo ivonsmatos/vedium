@@ -185,6 +185,12 @@ jobs:
               vedium_core.scripts.migrations.oneshot.create_ple_courses.run \
               || echo "⚠️ create_ple_courses falhou (não-crítico)"
 
+          echo "💳 Sincronizando preços finais do Stripe..."
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" execute \
+              vedium_core.scripts.migrations.oneshot.sync_stripe_prices.run \
+              || echo "⚠️ sync_stripe_prices falhou!"
+
           echo "✅ Deploy finalizado."
           REMOTE
 
