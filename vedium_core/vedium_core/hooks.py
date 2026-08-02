@@ -332,6 +332,7 @@ website_redirects = [
     {"source": "/admin", "target": "https://app.vediums.com/app"},
     {"source": "/rh", "target": "https://app.vediums.com/app/employee"},
     {"source": "/financeiro", "target": "https://app.vediums.com/app/accounts"},
+    {"source": "/stripe_checkout", "target": "/catalogo"},
 ]
 
 # App Logo
@@ -368,6 +369,7 @@ web_include_js = [
     "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix",
     "/assets/vedium_core/js/meta-pixel.min.js?v=consent-lgpd",
     "/assets/vedium_core/js/push-notifications.min.js?v=1",
+    "/assets/vedium_core/js/course_checkout_override.js",
 ]
 
 # =============================================================================

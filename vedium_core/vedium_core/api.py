@@ -795,6 +795,11 @@ def create_checkout_session(course_name, display_currency=None, billing_period=N
     rate_limit_by_ip("checkout_session", limit=20, window_sec=3600)
     billing_period = _normalize_billing_period(billing_period)
 
+    # Exige POST por segurança, evitando criação de checkout por cliques acidentais em links GET
+    if frappe.request and getattr(frappe.request, "method", "GET") != "POST":
+        if "create_checkout_session" in getattr(frappe.request, "path", ""):
+            frappe.throw(_("Método não permitido (exige POST)"), frappe.PermissionError)
+
     if frappe.session.user == "Guest":
         frappe.throw(_("Por favor, faça login para comprar este curso"))
 
@@ -870,6 +875,53 @@ def start_course_checkout(course_name, display_currency=None, billing_period=Non
 
     frappe.local.response["type"] = "redirect"
     frappe.local.response["location"] = checkout_url
+
+
+@frappe.whitelist(allow_guest=True)
+def get_course_purchase_options(course_name):
+    """
+    Retorna as opções de planos de assinatura (Mensal e Anual) do curso,
+    calculando a economia do plano anual. Exposto para desenhar o seletor frontend.
+    """
+    course = frappe.get_doc("LMS Course", course_name)
+    if not course.paid_course:
+        return {"is_paid": False}
+
+    monthly_plan_id = getattr(course, "custom_stripe_monthly_plan", None)
+    annual_plan_id = getattr(course, "custom_stripe_annual_plan", None)
+
+    options = {"is_paid": True, "plans": []}
+
+    monthly_amount = 0
+    if monthly_plan_id and frappe.db.exists("Subscription Plan", monthly_plan_id):
+        plan = frappe.get_doc("Subscription Plan", monthly_plan_id)
+        monthly_amount = plan.cost
+        options["plans"].append({
+            "billing_period": "monthly",
+            "amount": plan.cost,
+            "currency": plan.currency,
+            "title": "Mensal",
+            "plan_id": plan.name
+        })
+
+    if annual_plan_id and frappe.db.exists("Subscription Plan", annual_plan_id):
+        plan = frappe.get_doc("Subscription Plan", annual_plan_id)
+        savings = 0
+        if monthly_amount > 0:
+            expected_annual = monthly_amount * 12
+            if expected_annual > plan.cost:
+                savings = expected_annual - plan.cost
+
+        options["plans"].append({
+            "billing_period": "annual",
+            "amount": plan.cost,
+            "currency": plan.currency,
+            "title": "Anual",
+            "plan_id": plan.name,
+            "savings": savings
+        })
+
+    return options
 
 
 # =====================

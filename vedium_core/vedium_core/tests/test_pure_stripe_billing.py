@@ -194,3 +194,15 @@ def test_subscription_plan_gateway_is_resolved_by_account():
     assert '"stripe" not in controller.lower()' in BILLING
     assert 'account_currency.upper() != currency' in BILLING
 
+
+
+def test_create_checkout_session_requires_post():
+    assert "method" in API and "GET" in API and "POST" in API
+    assert "exige POST" in API
+
+
+def test_get_course_purchase_options_endpoint_exists():
+    assert "def get_course_purchase_options(" in API
+    assert "options = {\"is_paid\": True, \"plans\": []}" in API
+    assert "monthly_plan_id" in API
+    assert "annual_plan_id" in API
