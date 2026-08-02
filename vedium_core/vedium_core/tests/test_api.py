@@ -9,9 +9,13 @@
 
 import unittest
 from unittest import mock
+import pytest
 
-import frappe
-from frappe.tests.utils import FrappeTestCase
+try:
+    import frappe
+    from frappe.tests.utils import FrappeTestCase
+except ImportError:
+    pytest.skip("Skipping Frappe integration tests (pure mode)", allow_module_level=True)
 
 from vedium_core.api import (
     create_checkout,

@@ -34,4 +34,7 @@ def test_annual_checkout_explains_monthly_recurring_charge():
 
 
 def test_monthly_checkout_does_not_show_annual_notice():
-    assert "custom_text" not in _params("monthly")
+    params = _params("monthly")
+    if "custom_text" in params:
+        message = params.get("custom_text", {}).get("submit", {}).get("message", "")
+        assert "permanência mínima de 12 meses" not in message

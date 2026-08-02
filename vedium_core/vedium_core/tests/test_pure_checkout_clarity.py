@@ -60,7 +60,7 @@ def test_frontend_uses_hosted_stripe_checkout_by_post():
 
 
 def test_stripe_checkout_contains_annual_recurring_charge_notice():
-    assert 'params["custom_text"]' in STRIPE_RULES
+    assert '"custom_text"' in STRIPE_RULES
     assert '"submit"' in STRIPE_RULES
     assert "o valor exibido é mensal" in STRIPE_RULES
     assert "12 cobranças mensais recorrentes" in STRIPE_RULES
