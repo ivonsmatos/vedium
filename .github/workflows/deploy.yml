@@ -112,29 +112,13 @@ jobs:
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" migrate
 
-          echo "📜 Corrige colisão do doctype LMS Certificate (nativo vs custom)..."
-          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" execute \
-              vedium_core.scripts.migrations.oneshot.fix_certificate_collision.run \
-              || echo "⚠️ fix_certificate_collision falhou (revisar)"
 
-          echo "🖼️ Corrige ícone do PWA (chapéu de formatura padrão do LMS -> marca Vedium)..."
-          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" execute \
-              vedium_core.scripts.migrations.oneshot.fix_lms_pwa_icon.run \
-              || echo "⚠️ fix_lms_pwa_icon falhou (não-crítico)"
 
-          echo "✉️ Corrige nome de exibição do remetente (Vedium Resend -> Vedium)..."
+          echo "🎨 Assets (crítico — build do frontend)..."
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" execute \
-              vedium_core.scripts.migrations.oneshot.fix_email_sender_display_name.run \
-              || echo "⚠️ fix_email_sender_display_name falhou (não-crítico)"
-
-          echo "🎨 Assets (não-crítico — guardado para não abortar o deploy)..."
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund || echo "⚠️ npm install falhou (assets)"
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css || echo "⚠️ build-css falhou (assets)"
-          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" build --app vedium_core || echo "⚠️ bench build falhou (assets)"
+              bench --site "$SITE_NAME" build --app vedium_core
 
           echo "♻️ Limpando cache..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
@@ -167,7 +151,7 @@ jobs:
           # matrícula falhou com ModuleNotFoundError num worker desatualizado.
           echo "🔄 Reiniciando workers de fila e scheduler..."
           for WORKER in vedium-worker-short vedium-worker-long vedium-worker-default vedium-scheduler; do
-              docker restart "\$WORKER" || echo "⚠️ restart de \$WORKER falhou (revisar)"
+              docker restart "\$WORKER"
           done
           echo "⏳ Aguardando os workers voltarem saudáveis..."
           for WORKER in vedium-worker-short vedium-worker-long vedium-worker-default vedium-scheduler; do
@@ -179,17 +163,7 @@ jobs:
               echo "  \$WORKER: \$wstatus"
           done
 
-          echo "🌐 Criando cursos PLE (idempotente — pula se já existirem)..."
-          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" execute \
-              vedium_core.scripts.migrations.oneshot.create_ple_courses.run \
-              || echo "⚠️ create_ple_courses falhou (não-crítico)"
 
-          echo "💳 Sincronizando preços finais do Stripe..."
-          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" execute \
-              vedium_core.scripts.migrations.oneshot.sync_stripe_prices.run \
-              || echo "⚠️ sync_stripe_prices falhou!"
 
           echo "✅ Deploy finalizado."
           REMOTE
