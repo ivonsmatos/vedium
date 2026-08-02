@@ -13,6 +13,11 @@ ACTIVE_ENROLLMENT_STATUSES = {
     "pending review",
 }
 SUPPORTED_CURRENCIES = {"BRL", "USD"}
+ANNUAL_CHECKOUT_NOTICE = (
+    "Plano anual selecionado: o valor exibido é mensal. "
+    "Ao assinar, você autoriza 12 cobranças mensais recorrentes no método "
+    "de pagamento escolhido, com permanência mínima de 12 meses."
+)
 
 
 def normalize_period(value=None) -> str:
@@ -64,7 +69,7 @@ def refund_access_status(amount_refunded, amount) -> str:
 
 def build_checkout_params(price_id, email, reference, base_url, course_name, metadata):
     """Build the side-effect-free Stripe Checkout request."""
-    return {
+    params = {
         "mode": "subscription",
         "line_items": [{"price": price_id, "quantity": 1}],
         "customer_email": email,
@@ -77,3 +82,10 @@ def build_checkout_params(price_id, email, reference, base_url, course_name, met
         "metadata": metadata,
         "subscription_data": {"metadata": metadata},
     }
+    if normalize_period((metadata or {}).get("billing_period")) == "annual":
+        params["custom_text"] = {
+            "submit": {
+                "message": ANNUAL_CHECKOUT_NOTICE,
+            }
+        }
+    return params
