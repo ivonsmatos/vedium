@@ -101,33 +101,21 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          # Extrair chave do Frappe site_config e mascarar imediatamente
+          # Extrair chave do Frappe site_config (linha unica, sem quebra de indentacao YAML)
           STRIPE_KEY=$(ssh "$DEPLOY_USER@$DEPLOY_HOST" \
-            "docker exec -w /home/frappe/frappe-bench vedium-frappe \
-             python3 -c \"
-import sys
-sys.path.insert(0,'/home/frappe/frappe-bench/apps/frappe')
-import frappe
-frappe.init(site='app.vediums.com', sites_path='/home/frappe/frappe-bench/sites')
-frappe.connect()
-key = frappe.conf.get('STRIPE_SECRET_KEY') or ''
-if not key:
-    for k in ['stripe_secret_key','STRIPE_SECRET','stripe_key']:
-        key = frappe.conf.get(k) or ''
-        if key: break
-print(key)
-\"" 2>/dev/null || echo "")
-
-          if [ -z "\$STRIPE_KEY" ] || [ "\$STRIPE_KEY" = "False" ] || [ "\$STRIPE_KEY" = "None" ]; then
+            "docker exec -w /home/frappe/frappe-bench vedium-frappe python3 -c \
+            'import sys; sys.path.insert(0,chr(47).join([\"\",\"home\",\"frappe\",\"frappe-bench\",\"apps\",\"frappe\"])); import frappe; frappe.init(site=\"app.vediums.com\",sites_path=\"/home/frappe/frappe-bench/sites\"); frappe.connect(); print(frappe.conf.get(\"STRIPE_SECRET_KEY\") or \"\")'" \
+            2>/dev/null || echo "")
+          if [ -z "$STRIPE_KEY" ] || [ "$STRIPE_KEY" = "False" ] || [ "$STRIPE_KEY" = "None" ]; then
             echo "::error::STRIPE_SECRET_KEY nao encontrada no Frappe site_config."
             exit 1
           fi
-          echo "::add-mask::\$STRIPE_KEY"
+          echo "::add-mask::$STRIPE_KEY"
           echo "Stripe key: encontrada (mascarada)"
-          echo "key_mode=\$([ \${STRIPE_KEY:3:4} = 'live' ] && echo live || echo test)" >> \$GITHUB_OUTPUT
-
-          export STRIPE_SECRET_KEY="\$STRIPE_KEY"
+          export STRIPE_SECRET_KEY="$STRIPE_KEY"
           python3 scripts/vedium_stripe_audit.py \
+            --frappe-json frappe_stripe_config.json \
+            --output stripe_audit_result.json
             --frappe-json frappe_stripe_config.json \
             --output stripe_audit_result.json
 
