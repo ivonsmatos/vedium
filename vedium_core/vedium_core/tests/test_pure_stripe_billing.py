@@ -185,3 +185,12 @@ def test_status_changes_use_document_save_to_trigger_lms_hooks():
     )[0]
     assert "enrollment.save(ignore_permissions=True)" in block
     assert "frappe.db.set_value" not in block
+
+
+def test_subscription_plan_gateway_is_resolved_by_account():
+    assert 'meta.get_field("payment_gateway")' in BILLING
+    assert 'target_doctype == "Payment Gateway Account"' in BILLING
+    assert 'controller = frappe.db.get_value("Payment Gateway", acc.get("payment_gateway"), "gateway_controller")' in BILLING
+    assert '"stripe" not in controller.lower()' in BILLING
+    assert 'account_currency.upper() != currency' in BILLING
+

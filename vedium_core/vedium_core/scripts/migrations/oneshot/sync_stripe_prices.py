@@ -68,6 +68,47 @@ def run(dry_run=True, apply=False):
         if slug in prices: return prices[slug]
         return None
 
+    def get_stripe_gateway_reference(currency):
+        meta = frappe.get_meta("Subscription Plan")
+        field = meta.get_field("payment_gateway")
+        target_doctype = field.options if field else None
+        
+        gateways = frappe.get_all(
+            "Payment Gateway",
+            fields=["name", "gateway_controller"]
+        )
+        
+        stripe_gateways = [
+            row.name
+            for row in gateways
+            if "stripe" in (row.gateway_controller or "").lower()
+        ]
+        
+        if not stripe_gateways:
+            frappe.throw("Nenhum gateway Stripe encontrado no sistema.")
+            
+        if target_doctype == "Payment Gateway":
+            return stripe_gateways[0]
+            
+        if target_doctype == "Payment Gateway Account":
+            accounts = frappe.get_all(
+                "Payment Gateway Account",
+                filters={"payment_gateway": ["in", stripe_gateways]},
+                fields=["name", "currency"]
+            )
+            
+            valid = [
+                a for a in accounts
+                if not a.currency or a.currency.upper() == currency.upper()
+            ]
+            
+            if not valid:
+                frappe.throw(f"Conta Stripe para a moeda {currency} não encontrada de forma inequívoca.")
+                
+            return valid[0].name
+            
+        frappe.throw(f"Tipo inesperado em Subscription Plan.payment_gateway: {target_doctype}")
+
     courses = frappe.get_all('LMS Course', fields=['name', 'title', 'custom_stripe_monthly_plan', 'custom_stripe_annual_plan'])
     all_items = {i.name: i for i in frappe.get_all('Item', fields=['name', 'item_name'])}
     
@@ -165,15 +206,17 @@ def run(dry_run=True, apply=False):
                     doc.billing_interval_count = 1
                     doc.item = item_id
                     doc.price_determination = "Fixed Rate"
+                    doc.payment_gateway = get_stripe_gateway_reference(currency)
                     doc.insert(ignore_permissions=True)
             else:
                 # Check for diff
                 plan_doc = frappe.get_doc('Subscription Plan', monthly_plan_name)
                 cost = monthly_cents / 100
-                if plan_doc.product_price_id != monthly_price_id or float(plan_doc.cost) != float(cost) or plan_doc.item != item_id or plan_doc.price_determination != "Fixed Rate":
+                expected_gateway = get_stripe_gateway_reference(currency)
+                if plan_doc.product_price_id != monthly_price_id or float(plan_doc.cost) != float(cost) or plan_doc.item != item_id or plan_doc.price_determination != "Fixed Rate" or plan_doc.payment_gateway != expected_gateway:
                     dry_run_results["plans_updated"].append(monthly_plan_name)
                     if apply and not dry_run:
-                        frappe.db.set_value('Subscription Plan', monthly_plan_name, {'product_price_id': monthly_price_id, 'cost': cost, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate"})
+                        frappe.db.set_value('Subscription Plan', monthly_plan_name, {'product_price_id': monthly_price_id, 'cost': cost, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate", 'payment_gateway': expected_gateway})
                     
             if c.custom_stripe_monthly_plan != monthly_plan_name:
                 dry_run_results["courses_linked"].append(f"{c.name} (Mensal)")
@@ -209,15 +252,17 @@ def run(dry_run=True, apply=False):
                     doc.billing_interval_count = 1
                     doc.item = item_id
                     doc.price_determination = "Fixed Rate"
+                    doc.payment_gateway = get_stripe_gateway_reference(currency)
                     doc.insert(ignore_permissions=True)
             else:
                 # Check for diff
                 plan_doc = frappe.get_doc('Subscription Plan', annual_plan_name)
                 cost = annual_cents / 100
-                if plan_doc.product_price_id != annual_price_id or float(plan_doc.cost) != float(cost) or plan_doc.item != item_id or plan_doc.price_determination != "Fixed Rate":
+                expected_gateway = get_stripe_gateway_reference(currency)
+                if plan_doc.product_price_id != annual_price_id or float(plan_doc.cost) != float(cost) or plan_doc.item != item_id or plan_doc.price_determination != "Fixed Rate" or plan_doc.payment_gateway != expected_gateway:
                     dry_run_results["plans_updated"].append(annual_plan_name)
                     if apply and not dry_run:
-                        frappe.db.set_value('Subscription Plan', annual_plan_name, {'product_price_id': annual_price_id, 'cost': cost, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate"})
+                        frappe.db.set_value('Subscription Plan', annual_plan_name, {'product_price_id': annual_price_id, 'cost': cost, 'currency': currency.upper(), 'item': item_id, 'price_determination': "Fixed Rate", 'payment_gateway': expected_gateway})
                     
             if c.custom_stripe_annual_plan != annual_plan_name:
                 dry_run_results["courses_linked"].append(f"{c.name} (Anual)")

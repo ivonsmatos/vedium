@@ -54,11 +54,31 @@ def get_subscription_plan(course, period):
         frappe.throw(_("O plano {0} não está configurado para cobrança mensal.").format(plan_name))
 
     gateway = getattr(plan, "payment_gateway", None)
+    if not gateway:
+        frappe.throw(_("O plano {0} não possui um gateway de pagamento vinculado.").format(plan_name))
+
+    meta = frappe.get_meta("Subscription Plan")
+    field = meta.get_field("payment_gateway")
+    target_doctype = field.options if field else None
+
     controller = ""
-    if gateway:
+    account_currency = None
+    
+    if target_doctype == "Payment Gateway Account":
+        acc = frappe.db.get_value("Payment Gateway Account", gateway, ["payment_gateway", "currency"], as_dict=True)
+        if acc:
+            account_currency = acc.get("currency")
+            if acc.get("payment_gateway"):
+                controller = frappe.db.get_value("Payment Gateway", acc.get("payment_gateway"), "gateway_controller") or ""
+    elif target_doctype == "Payment Gateway":
         controller = frappe.db.get_value("Payment Gateway", gateway, "gateway_controller") or ""
-    if not gateway or "stripe" not in controller.lower():
-        frappe.throw(_("O plano {0} não está vinculado ao gateway Stripe.").format(plan_name))
+
+    if "stripe" not in controller.lower():
+        frappe.throw(_("O plano {0} não está vinculado a um gateway Stripe válido.").format(plan_name))
+        
+    if account_currency and account_currency.upper() != currency:
+        frappe.throw(_("O plano {0} usa um gateway Stripe configurado para a moeda incorreta.").format(plan_name))
+        
     return plan
 
 
