@@ -95,29 +95,42 @@ jobs:
           echo "Frappe data coletado:"
           wc -l frappe_stripe_config.json
 
-      - name: Run Stripe audit (read-only)
+      - name: Run Stripe audit inside container (key stays on server)
         id: stripe_audit
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          # Extrair chave do Frappe site_config (linha unica, sem quebra de indentacao YAML)
-          STRIPE_KEY=$(ssh "$DEPLOY_USER@$DEPLOY_HOST" \
-            "docker exec -w /home/frappe/frappe-bench vedium-frappe python3 -c \
-            'import sys; sys.path.insert(0,chr(47).join([\"\",\"home\",\"frappe\",\"frappe-bench\",\"apps\",\"frappe\"])); import frappe; frappe.init(site=\"app.vediums.com\",sites_path=\"/home/frappe/frappe-bench/sites\"); frappe.connect(); print(frappe.conf.get(\"STRIPE_SECRET_KEY\") or \"\")'" \
-            2>/dev/null || echo "")
-          if [ -z "$STRIPE_KEY" ] || [ "$STRIPE_KEY" = "False" ] || [ "$STRIPE_KEY" = "None" ]; then
-            echo "::error::STRIPE_SECRET_KEY nao encontrada no Frappe site_config."
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << 'REMOTE'
+          set -euo pipefail
+          CONTAINER=vedium-frappe
+
+          # Copiar scripts para dentro do container
+          docker cp /opt/vedium/scripts/vedium_stripe_audit.py "$CONTAINER":/opt/vedium/scripts/vedium_stripe_audit.py 2>/dev/null || \
+            (docker exec "$CONTAINER" mkdir -p /opt/vedium/scripts && \
+             docker cp /opt/vedium/scripts/vedium_stripe_audit.py "$CONTAINER":/opt/vedium/scripts/)
+          docker cp /opt/vedium/scripts/run_audit_inside.py "$CONTAINER":/tmp/run_audit_inside.py
+
+          # Instalar stripe SDK no container se necessario
+          docker exec "$CONTAINER" pip install stripe --quiet 2>/dev/null || true
+
+          # Executar auditoria dentro do container (key nunca sai)
+          docker exec "$CONTAINER" python3 /tmp/run_audit_inside.py
+
+          echo "Auditoria concluida"
+          REMOTE
+
+      - name: Download audit result from server
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          scp "$DEPLOY_USER@$DEPLOY_HOST:/tmp/stripe_audit_result.json" ./ || true
+          if [ ! -f stripe_audit_result.json ]; then
+            echo "::error::stripe_audit_result.json nao encontrado"
             exit 1
           fi
-          echo "::add-mask::$STRIPE_KEY"
-          echo "Stripe key: encontrada (mascarada)"
-          export STRIPE_SECRET_KEY="$STRIPE_KEY"
-          python3 scripts/vedium_stripe_audit.py \
-            --frappe-json frappe_stripe_config.json \
-            --output stripe_audit_result.json
-            --frappe-json frappe_stripe_config.json \
-            --output stripe_audit_result.json
+          echo "Resultado baixado: $(wc -l < stripe_audit_result.json) linhas"
 
       - name: Display matrix
         run: |
