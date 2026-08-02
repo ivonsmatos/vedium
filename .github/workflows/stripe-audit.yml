@@ -105,11 +105,12 @@ jobs:
           set -euo pipefail
           CONTAINER=vedium-frappe
 
-          # Copiar scripts para dentro do container
-          docker cp /opt/vedium/scripts/vedium_stripe_audit.py "$CONTAINER":/opt/vedium/scripts/vedium_stripe_audit.py 2>/dev/null || \
-            (docker exec "$CONTAINER" mkdir -p /opt/vedium/scripts && \
-             docker cp /opt/vedium/scripts/vedium_stripe_audit.py "$CONTAINER":/opt/vedium/scripts/)
+          # Copiar scripts para /tmp dentro do container
+          docker cp /opt/vedium/scripts/vedium_stripe_audit.py "$CONTAINER":/tmp/vedium_stripe_audit.py
           docker cp /opt/vedium/scripts/run_audit_inside.py "$CONTAINER":/tmp/run_audit_inside.py
+
+          # Atualizar run_audit_inside.py para usar /tmp
+          docker exec "$CONTAINER" sed -i 's|/opt/vedium/scripts/vedium_stripe_audit.py|/tmp/vedium_stripe_audit.py|g' /tmp/run_audit_inside.py
 
           # Instalar stripe SDK no container se necessario
           docker exec "$CONTAINER" pip install stripe --quiet 2>/dev/null || true
