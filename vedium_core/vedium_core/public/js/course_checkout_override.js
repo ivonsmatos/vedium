@@ -1,254 +1,430 @@
-(function() {
-    // 1. Redirecionamento forçado do billing interno (legado)
-    if (window.location.pathname.includes('/lms/billing/course/')) {
-        const courseName = window.location.pathname.split('/').pop();
-        window.location.href = `/lms/courses/${courseName}`;
-        return;
-    }
+(function () {
+    "use strict";
 
-    // Variáveis de controle
+    const CHECKOUT_OPTIONS_ENDPOINT =
+        "/api/method/vedium_core.checkout_options.get_course_purchase_options";
+    const CREATE_CHECKOUT_ENDPOINT =
+        "/api/method/vedium_core.api.create_checkout_session";
+    const HIGHLIGHT_COLOR = "#2E6DA4";
+
+    let activeCourse = null;
     let purchaseOptions = null;
-    let cardModified = false;
     let isFetching = false;
+    let mutationTimeout = null;
 
-    // A cor de destaque do site
-    const highlightColor = "#2E6DA4";
+    function isCoursePage() {
+        return window.location.pathname.includes("/lms/courses/");
+    }
 
     function getCourseName() {
-        return window.location.pathname.split('/').pop();
+        const parts = window.location.pathname.split("/").filter(Boolean);
+        return decodeURIComponent(parts[parts.length - 1] || "");
     }
 
-    async function fetchPurchaseOptions() {
-        if (isFetching || purchaseOptions) return;
-        isFetching = true;
-        
-        try {
-            const courseName = getCourseName();
-            const res = await fetch(`/api/method/vedium_core.api.get_course_purchase_options?course_name=${courseName}`);
-            const data = await res.json();
-            
-            if (data.message && data.message.is_paid && data.message.plans && data.message.plans.length > 0) {
-                purchaseOptions = data.message.plans;
-                modifyCourseCard();
+    function resetForRouteChange() {
+        const courseName = isCoursePage() ? getCourseName() : null;
+        if (courseName !== activeCourse) {
+            activeCourse = courseName;
+            purchaseOptions = null;
+            isFetching = false;
+        }
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function formatCurrency(amount, currency) {
+        const locale = currency === "USD" ? "en-US" : "pt-BR";
+        return new Intl.NumberFormat(locale, {
+            style: "currency",
+            currency,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        }).format(Number(amount || 0));
+    }
+
+    function getCourseCardBody() {
+        return document.querySelector(
+            ".border-2.rounded-md.min-w-80.max-w-sm .p-5"
+        );
+    }
+
+    function findLegacyPurchaseControl(cardBody) {
+        if (!cardBody) return null;
+
+        const links = cardBody.querySelectorAll("a");
+        for (const link of links) {
+            const href = link.getAttribute("href") || "";
+            if (
+                href.includes("/billing/") ||
+                href.includes("buy-this-course") ||
+                href.includes("/stripe_checkout")
+            ) {
+                return link;
             }
-        } catch (e) {
-            console.error("Erro ao buscar opções de compra:", e);
+        }
+
+        const controls = cardBody.querySelectorAll("button, a");
+        for (const control of controls) {
+            const text = (control.innerText || "").trim().toLowerCase();
+            if (
+                text.includes("buy this course") ||
+                text === "comprar" ||
+                text.includes("comprar este curso")
+            ) {
+                return control.closest("a") || control;
+            }
+        }
+
+        return null;
+    }
+
+    function removeExistingOverride(cardBody) {
+        cardBody
+            ?.querySelectorAll('[data-vedium-checkout="true"]')
+            .forEach((element) => element.remove());
+    }
+
+    function hideLegacyCheckout(cardBody) {
+        const legacyControl = findLegacyPurchaseControl(cardBody);
+        if (legacyControl) {
+            legacyControl.style.display = "none";
+            legacyControl.setAttribute("aria-hidden", "true");
+            legacyControl.setAttribute("tabindex", "-1");
+        }
+
+        const oldPrice = cardBody?.querySelector(
+            ".text-2xl.font-semibold.mb-3"
+        );
+        if (oldPrice) oldPrice.style.display = "none";
+    }
+
+    function planTerms(plan) {
+        if (plan.billing_period === "annual") {
+            return (
+                plan.terms ||
+                "12 cobranças mensais. Permanência mínima de 12 meses."
+            );
+        }
+        return plan.terms || "Cobrança mensal. Sem permanência mínima.";
+    }
+
+    function createPlanButton(plan) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className =
+            "w-full mb-3 text-left border rounded-md p-4 transition-all duration-200 hover:shadow-md";
+        button.style.borderColor = "#e2e8f0";
+        button.style.backgroundColor = "#ffffff";
+        button.style.cursor = "pointer";
+        button.setAttribute(
+            "aria-label",
+            `${plan.title}: ${formatCurrency(plan.amount, plan.currency)} por mês`
+        );
+
+        button.onmouseover = () => {
+            button.style.borderColor = HIGHLIGHT_COLOR;
+        };
+        button.onmouseout = () => {
+            button.style.borderColor = "#e2e8f0";
+        };
+
+        const amount = formatCurrency(plan.amount, plan.currency);
+        const savings = Number(plan.savings || 0);
+        const savingsHtml =
+            plan.billing_period === "annual" && savings > 0
+                ? `<div style="color:#047857;font-size:.85rem;font-weight:600;margin-top:6px;">Economia de ${escapeHtml(
+                      formatCurrency(savings, plan.currency)
+                  )} em 12 meses</div>`
+                : "";
+
+        button.innerHTML = `
+            <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;">
+                <div style="min-width:0;">
+                    <div style="font-weight:700;font-size:1.05rem;color:#1e293b;">
+                        ${escapeHtml(plan.title)}
+                    </div>
+                    <div style="color:#475569;font-size:.82rem;line-height:1.35;margin-top:5px;">
+                        ${escapeHtml(planTerms(plan))}
+                    </div>
+                    ${savingsHtml}
+                </div>
+                <div style="font-weight:700;font-size:1.05rem;color:${HIGHLIGHT_COLOR};white-space:nowrap;text-align:right;">
+                    ${escapeHtml(amount)}
+                    <div style="font-size:.75rem;font-weight:500;color:#64748b;margin-top:2px;">por mês</div>
+                </div>
+            </div>
+        `;
+
+        button.addEventListener("click", () => startCheckout(button, plan));
+        return button;
+    }
+
+    function setButtonLoading(button) {
+        button.disabled = true;
+        button.style.pointerEvents = "none";
+        button.style.opacity = "0.7";
+        button.innerHTML =
+            '<div style="text-align:center;font-size:.9rem;font-weight:600;padding:.5rem 0;color:#64748b;">Abrindo o pagamento seguro...</div>';
+    }
+
+    function isGuest() {
+        return (
+            !window.frappe ||
+            !window.frappe.session ||
+            window.frappe.session.user === "Guest"
+        );
+    }
+
+    async function startCheckout(button, plan) {
+        setButtonLoading(button);
+
+        if (isGuest()) {
+            localStorage.setItem("vedium_intent_course", getCourseName());
+            localStorage.setItem(
+                "vedium_intent_plan",
+                plan.billing_period
+            );
+            window.location.href = `/login?redirect-to=${encodeURIComponent(
+                window.location.pathname
+            )}`;
+            return;
+        }
+
+        try {
+            const response = await fetch(CREATE_CHECKOUT_ENDPOINT, {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Frappe-CSRF-Token":
+                        window.frappe?.csrf_token || "",
+                },
+                body: JSON.stringify({
+                    course_name: getCourseName(),
+                    billing_period: plan.billing_period,
+                }),
+            });
+
+            const data = await response.json();
+            if (
+                response.ok &&
+                data.message &&
+                data.message.checkout_url &&
+                data.message.checkout_url.startsWith("https://checkout.stripe.com/")
+            ) {
+                window.location.assign(data.message.checkout_url);
+                return;
+            }
+
+            throw new Error(extractServerMessage(data));
+        } catch (error) {
+            console.error("Vedium checkout error:", error);
+            alert(
+                error.message ||
+                    "Não foi possível abrir o pagamento. Tente novamente ou fale com a Vedium no WhatsApp."
+            );
+            window.location.reload();
+        }
+    }
+
+    function extractServerMessage(data) {
+        try {
+            if (data?._server_messages) {
+                const messages = JSON.parse(data._server_messages);
+                const parsed = JSON.parse(messages[0]);
+                if (parsed.message) return parsed.message;
+            }
+        } catch (error) {
+            console.warn("Não foi possível interpretar a mensagem do servidor", error);
+        }
+        return "Não foi possível abrir o pagamento. Tente novamente ou fale com a Vedium no WhatsApp.";
+    }
+
+    function renderLoading(cardBody) {
+        removeExistingOverride(cardBody);
+        hideLegacyCheckout(cardBody);
+
+        const container = document.createElement("div");
+        container.dataset.vediumCheckout = "true";
+        container.className = "mb-6 mt-4";
+        container.innerHTML = `
+            <div style="font-weight:700;font-size:1.125rem;margin-bottom:.75rem;color:#0f172a;">
+                Escolha seu plano
+            </div>
+            <div style="color:#64748b;font-size:.9rem;">Carregando condições...</div>
+        `;
+        insertBeforeFeatures(cardBody, container);
+    }
+
+    function renderError(cardBody) {
+        removeExistingOverride(cardBody);
+        hideLegacyCheckout(cardBody);
+
+        const container = document.createElement("div");
+        container.dataset.vediumCheckout = "true";
+        container.className = "mb-6 mt-4";
+        container.innerHTML = `
+            <div style="font-weight:700;font-size:1.05rem;color:#0f172a;margin-bottom:.5rem;">
+                Pagamento temporariamente indisponível
+            </div>
+            <div style="color:#64748b;font-size:.85rem;line-height:1.4;">
+                Fale com a Vedium no WhatsApp para receber orientação.
+            </div>
+        `;
+        insertBeforeFeatures(cardBody, container);
+    }
+
+    function insertBeforeFeatures(cardBody, container) {
+        const features = cardBody.querySelector(".space-y-3");
+        if (features) {
+            cardBody.insertBefore(container, features);
+        } else {
+            cardBody.appendChild(container);
+        }
+    }
+
+    function renderPurchaseOptions(cardBody) {
+        removeExistingOverride(cardBody);
+        hideLegacyCheckout(cardBody);
+
+        const container = document.createElement("div");
+        container.dataset.vediumCheckout = "true";
+        container.className = "mb-6 mt-4";
+        container.innerHTML = `
+            <div style="font-weight:700;font-size:1.125rem;margin-bottom:.35rem;color:#0f172a;">
+                Escolha seu plano
+            </div>
+            <div style="color:#64748b;font-size:.82rem;line-height:1.4;margin-bottom:1rem;">
+                O pagamento é concluído no ambiente seguro da Stripe.
+            </div>
+        `;
+
+        const monthlyPlan = purchaseOptions.find(
+            (plan) => plan.billing_period === "monthly"
+        );
+        const annualPlan = purchaseOptions.find(
+            (plan) => plan.billing_period === "annual"
+        );
+
+        if (monthlyPlan) container.appendChild(createPlanButton(monthlyPlan));
+        if (annualPlan) container.appendChild(createPlanButton(annualPlan));
+
+        insertBeforeFeatures(cardBody, container);
+    }
+
+    async function fetchPurchaseOptions(cardBody) {
+        if (isFetching || purchaseOptions || !activeCourse) return;
+        isFetching = true;
+        renderLoading(cardBody);
+
+        try {
+            const url = `${CHECKOUT_OPTIONS_ENDPOINT}?course_name=${encodeURIComponent(
+                activeCourse
+            )}`;
+            const response = await fetch(url, {
+                method: "GET",
+                credentials: "same-origin",
+                headers: { Accept: "application/json" },
+            });
+            const data = await response.json();
+
+            if (
+                !response.ok ||
+                !data.message?.is_paid ||
+                !Array.isArray(data.message.plans) ||
+                data.message.plans.length === 0
+            ) {
+                throw new Error("Planos indisponíveis");
+            }
+
+            purchaseOptions = data.message.plans;
+            renderPurchaseOptions(cardBody);
+        } catch (error) {
+            console.error("Erro ao buscar opções de compra:", error);
+            renderError(cardBody);
         } finally {
             isFetching = false;
         }
     }
 
-    function createPlanButton(plan) {
-        const btn = document.createElement('button');
-        // Estilo limpo e moderno, usando flex e cores suaves, com hover
-        btn.className = 'w-full mb-3 text-left border rounded-md p-4 transition-all duration-200 hover:shadow-md';
-        btn.style.borderColor = "#e2e8f0"; // slate-200
-        btn.style.backgroundColor = "#ffffff";
-        btn.style.cursor = 'pointer';
-        
-        btn.onmouseover = () => btn.style.borderColor = highlightColor;
-        btn.onmouseout = () => btn.style.borderColor = "#e2e8f0";
-
-        let savingsHtml = '';
-        if (plan.savings > 0) {
-            savingsHtml = `<div style="color: #10b981; font-size: 0.85rem; font-weight: 600; margin-top: 4px;">Economia de ${plan.currency} ${plan.savings.toFixed(2)} ao ano</div>`;
-        }
-
-        btn.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <div style="font-weight: 600; font-size: 1.1rem; color: #1e293b;">${plan.title}</div>
-                    ${savingsHtml}
-                </div>
-                <div style="font-weight: 700; font-size: 1.2rem; color: ${highlightColor};">
-                    ${plan.currency} ${plan.amount.toFixed(2)}
-                </div>
-            </div>
-        `;
-
-        btn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            btn.innerHTML = `<div style="text-align: center; font-size: 0.9rem; font-weight: 600; padding: 0.5rem 0; color: #64748b;">Processando...</div>`;
-            btn.style.pointerEvents = "none";
-            btn.style.opacity = "0.7";
-            
-            // Verifica se está logado (Frappe expõe window.frappe.session.user)
-            const isGuest = !window.frappe || !window.frappe.session || window.frappe.session.user === "Guest";
-            
-            if (isGuest) {
-                // Salva intenção e vai pro login
-                localStorage.setItem("vedium_intent_course", getCourseName());
-                localStorage.setItem("vedium_intent_plan", plan.billing_period);
-                window.location.href = `/login?redirect-to=${encodeURIComponent(window.location.pathname)}`;
-                return;
-            }
-
-            try {
-                // Post pro checkout
-                const resp = await fetch("/api/method/vedium_core.api.create_checkout_session", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-Frappe-CSRF-Token": window.frappe ? window.frappe.csrf_token : ""
-                    },
-                    body: JSON.stringify({
-                        course_name: getCourseName(),
-                        billing_period: plan.billing_period
-                    })
-                });
-                
-                const data = await resp.json();
-                if (data.message && data.message.checkout_url) {
-                    window.location.href = data.message.checkout_url;
-                } else if (data._server_messages) {
-                    const msg = JSON.parse(JSON.parse(data._server_messages)[0]).message;
-                    alert(msg);
-                    window.location.reload();
-                } else {
-                    alert("Erro ao gerar checkout");
-                    window.location.reload();
-                }
-            } catch (err) {
-                console.error(err);
-                alert("Ocorreu um erro de conexão.");
-                window.location.reload();
-            }
-        });
-
-        return btn;
-    }
-
-    function modifyCourseCard() {
-        if (cardModified || !purchaseOptions) return;
-        
-        // No DOM do LMS, o card do curso tem essa estrutura principal
-        const cardContainer = document.querySelector('.border-2.rounded-md.min-w-80.max-w-sm .p-5');
-        if (!cardContainer) return;
-
-        // Procura o botão original que leva para o billing
-        const actionLinks = cardContainer.querySelectorAll('a');
-        let legacyButtonLink = null;
-        for (let link of actionLinks) {
-            if (link.getAttribute('href') && (link.getAttribute('href').includes('/billing/') || link.getAttribute('href').includes('buy-this-course'))) {
-                legacyButtonLink = link;
-                break;
-            }
-        }
-        
-        // Outra heurística: procurar texto "Buy this course" no botão
-        if (!legacyButtonLink) {
-            const buttons = cardContainer.querySelectorAll('button');
-            for (let b of buttons) {
-                const text = (b.innerText || "").toLowerCase();
-                if (text.includes('buy this course') || text.includes('comprar')) {
-                    legacyButtonLink = b.closest('a') || b;
-                    break;
-                }
-            }
-        }
-
-        if (legacyButtonLink) {
-            // Esconde o botão original
-            legacyButtonLink.style.display = 'none';
-            
-            // Oculta também o preço solto antigo que ficava no topo do p-5 (se existir)
-            const priceDiv = cardContainer.querySelector('.text-2xl.font-semibold.mb-3');
-            if (priceDiv) priceDiv.style.display = 'none';
-
-            // Cria o nosso container de opções
-            const optionsContainer = document.createElement('div');
-            optionsContainer.className = "mb-6 mt-4";
-            optionsContainer.innerHTML = `<div style="font-weight: 600; font-size: 1.125rem; margin-bottom: 1rem; color: #0f172a;">Escolha seu plano</div>`;
-
-            // Garante que o mensal apareça primeiro, depois o anual
-            const monthlyPlan = purchaseOptions.find(p => p.billing_period === 'monthly');
-            const annualPlan = purchaseOptions.find(p => p.billing_period === 'annual');
-
-            if (monthlyPlan) optionsContainer.appendChild(createPlanButton(monthlyPlan));
-            if (annualPlan) optionsContainer.appendChild(createPlanButton(annualPlan));
-
-            // Insere antes das informações "This course has..." (espaçamento .space-y-3)
-            const featuresDiv = cardContainer.querySelector('.space-y-3');
-            if (featuresDiv) {
-                cardContainer.insertBefore(optionsContainer, featuresDiv);
-            } else {
-                cardContainer.appendChild(optionsContainer);
-            }
-
-            cardModified = true;
-        }
-
-        // Substituição dos textos estáticos em inglês que ficaram no LMS
-        translateStaticTexts(cardContainer);
-    }
-
-    function translateStaticTexts(cardContainer) {
-        // Usa TreeWalker para varrer apenas os nós de texto (mais seguro que innerHTML)
-        const walk = document.createTreeWalker(cardContainer, NodeFilter.SHOW_TEXT, null, false);
+    function translateStaticTexts(root) {
+        if (!root) return;
+        const walker = document.createTreeWalker(
+            root,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
         let node;
-        while (node = walk.nextNode()) {
-            let text = node.nodeValue;
-            let changed = false;
-            
-            if (text.includes("This course has:")) { text = text.replace("This course has:", "Este curso inclui:"); changed = true; }
-            if (text.includes("enrolled students")) { text = text.replace("enrolled students", "alunos matriculados"); changed = true; }
-            if (text.includes("enrolled student")) { text = text.replace("enrolled student", "aluno matriculado"); changed = true; }
-            if (text.includes("lessons")) { text = text.replace("lessons", "aulas"); changed = true; }
-            else if (text.includes("lesson")) { text = text.replace("lesson", "aula"); changed = true; }
-            if (text.includes("average rating")) { text = text.replace("average rating", "avaliação média"); changed = true; }
-            if (text.includes("Certificate of Completion")) { text = text.replace("Certificate of Completion", "Certificado de Conclusão"); changed = true; }
-            if (text.includes("Paid Certificate after Evaluation")) { text = text.replace("Paid Certificate after Evaluation", "Certificado com Validação (MEC)"); changed = true; }
-            
-            if (changed) {
-                node.nodeValue = text;
+        while ((node = walker.nextNode())) {
+            let text = node.nodeValue || "";
+            const replacements = [
+                ["This course has:", "Este curso inclui:"],
+                ["enrolled students", "alunos matriculados"],
+                ["enrolled student", "aluno matriculado"],
+                ["lessons", "aulas"],
+                ["lesson", "aula"],
+                ["average rating", "avaliação média"],
+                ["Certificate of Completion", "Certificado de Conclusão"],
+                ["Buy this course", "Escolher plano"],
+            ];
+            for (const [source, target] of replacements) {
+                text = text.replace(source, target);
             }
+            node.nodeValue = text;
         }
     }
 
-    // Função debounced para não trigar muito no MutationObserver
-    let mutationTimeout = null;
-    function handleMutations() {
-        if (!window.location.pathname.includes('/lms/courses/')) {
-            cardModified = false;
+    function handlePage() {
+        resetForRouteChange();
+        if (!isCoursePage() || !activeCourse) return;
+
+        const cardBody = getCourseCardBody();
+        if (!cardBody) return;
+
+        translateStaticTexts(cardBody);
+        hideLegacyCheckout(cardBody);
+
+        if (purchaseOptions) {
+            if (!cardBody.querySelector('[data-vedium-checkout="true"]')) {
+                renderPurchaseOptions(cardBody);
+            }
             return;
         }
-        
-        const card = document.querySelector('.border-2.rounded-md.min-w-80.max-w-sm');
-        if (card && !cardModified && !isFetching) {
-            // Se já tem as opções prontas, aplica logo
-            if (purchaseOptions) {
-                modifyCourseCard();
-            } else {
-                fetchPurchaseOptions();
-            }
-        }
+
+        if (!isFetching) fetchPurchaseOptions(cardBody);
     }
 
-    // Observa mudanças no DOM porque o Vue.js monta e atualiza o DOM client-side
-    const observer = new MutationObserver(() => {
-        if (mutationTimeout) clearTimeout(mutationTimeout);
-        mutationTimeout = setTimeout(handleMutations, 150);
-    });
+    if (window.location.pathname.includes("/lms/billing/course/")) {
+        const courseName = window.location.pathname.split("/").pop();
+        window.location.replace(`/lms/courses/${courseName}`);
+        return;
+    }
 
+    const observer = new MutationObserver(() => {
+        if (mutationTimeout) window.clearTimeout(mutationTimeout);
+        mutationTimeout = window.setTimeout(handlePage, 150);
+    });
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Restaura intenção pós-login (verifica se acabou de logar)
-    window.addEventListener('load', () => {
-        // Frappe LMS pode mudar URL via History API, então chamamos a heurística no boot também
-        handleMutations();
+    window.addEventListener("load", () => {
+        handlePage();
 
         const intentCourse = localStorage.getItem("vedium_intent_course");
         const intentPlan = localStorage.getItem("vedium_intent_plan");
-        
-        if (intentCourse && intentPlan && window.frappe && window.frappe.session && window.frappe.session.user !== "Guest") {
-            // Limpa intenção (ele já está logado e vai ver a página do curso de novo para clicar)
+        if (intentCourse && intentPlan && !isGuest()) {
             localStorage.removeItem("vedium_intent_course");
             localStorage.removeItem("vedium_intent_plan");
-            
             if (!window.location.pathname.includes(`/lms/courses/${intentCourse}`)) {
-                window.location.href = `/lms/courses/${intentCourse}`;
+                window.location.replace(`/lms/courses/${intentCourse}`);
             }
         }
     });
-
 })();

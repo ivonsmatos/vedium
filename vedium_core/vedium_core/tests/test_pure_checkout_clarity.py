@@ -1,0 +1,67 @@
+"""Pure tests for checkout pricing clarity and client contracts."""
+
+from decimal import Decimal
+from pathlib import Path
+import sys
+
+
+APP_ROOT = Path(__file__).resolve().parents[2]
+if str(APP_ROOT) not in sys.path:
+    sys.path.insert(0, str(APP_ROOT))
+
+from vedium_core.checkout_pricing_rules import (  # noqa: E402
+    annual_savings,
+    money,
+    twelve_month_total,
+)
+
+
+CORE = Path(__file__).resolve().parents[1]
+CHECKOUT_OPTIONS = (CORE / "checkout_options.py").read_text(encoding="utf-8")
+CHECKOUT_JS = (CORE / "public" / "js" / "course_checkout_override.js").read_text(
+    encoding="utf-8"
+)
+STRIPE_RULES = (CORE / "stripe_billing_rules.py").read_text(encoding="utf-8")
+
+
+def test_annual_savings_uses_monthly_difference_times_twelve():
+    assert annual_savings("397.00", "330.83") == Decimal("794.04")
+
+
+def test_annual_savings_never_returns_negative_amount():
+    assert annual_savings("300", "330") == Decimal("0.00")
+
+
+def test_twelve_month_total_is_rounded_as_money():
+    assert money("330.829") == Decimal("330.83")
+    assert twelve_month_total("330.83") == Decimal("3969.96")
+
+
+def test_purchase_options_explain_both_commercial_models():
+    assert "Cobrança mensal. Sem permanência mínima." in CHECKOUT_OPTIONS
+    assert "12 cobranças mensais. Permanência mínima de 12 meses." in CHECKOUT_OPTIONS
+    assert "annual_savings(monthly[\"amount\"], annual[\"amount\"])" in CHECKOUT_OPTIONS
+    assert '"plan_id"' not in CHECKOUT_OPTIONS
+
+
+def test_frontend_shows_monthly_frequency_and_annual_commitment():
+    assert "por mês" in CHECKOUT_JS
+    assert "Economia de" in CHECKOUT_JS
+    assert "em 12 meses" in CHECKOUT_JS
+    assert "Permanência mínima de 12 meses" in CHECKOUT_JS
+    assert "Sem permanência mínima" in CHECKOUT_JS
+
+
+def test_frontend_uses_hosted_stripe_checkout_by_post():
+    assert "vedium_core.checkout_options.get_course_purchase_options" in CHECKOUT_JS
+    assert "vedium_core.api.create_checkout_session" in CHECKOUT_JS
+    assert 'method: "POST"' in CHECKOUT_JS
+    assert 'startsWith("https://checkout.stripe.com/")' in CHECKOUT_JS
+
+
+def test_stripe_checkout_contains_annual_recurring_charge_notice():
+    assert 'params["custom_text"]' in STRIPE_RULES
+    assert '"submit"' in STRIPE_RULES
+    assert "o valor exibido é mensal" in STRIPE_RULES
+    assert "12 cobranças mensais recorrentes" in STRIPE_RULES
+    assert "permanência mínima de 12 meses" in STRIPE_RULES
