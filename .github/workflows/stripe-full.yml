@@ -1,4 +1,4 @@
-﻿name: Stripe Full Audit + Sync (server-side)
+name: Stripe Full Audit + Sync (server-side)
 # Extrai STRIPE_SECRET_KEY do Frappe site_config no servidor.
 # A chave nunca aparece em logs — e mascarada imediatamente.
 # Executa: auditoria completa -> matriz -> (se --apply) criacao de Prices.
