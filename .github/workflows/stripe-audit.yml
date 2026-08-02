@@ -1,0 +1,141 @@
+name: Stripe Audit — Matriz de Preos Vedium
+# Coleta dados do Frappe e Stripe, gera a matriz de preos.
+# Requer: gh secret set STRIPE_OPS_KEY
+# Executa em modo leitura — nao escreve nada.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Install dependencies on runner
+        run: pip install stripe --quiet
+
+      - name: Copy scripts to server
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          rsync -az \
+            scripts/vedium_stripe_audit.py \
+            scripts/vedium_stripe_sync.py \
+            scripts/stripe_ops.py \
+            scripts/stripe_ops_env.py \
+            "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/scripts/"
+          rsync -az \
+            vedium_core/vedium_core/scripts/oneshot/get_stripe_config.py \
+            "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/vedium_core/vedium_core/scripts/oneshot/"
+
+      - name: Get Frappe course+plan data via bench execute
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << 'REMOTE'
+          set -euo pipefail
+          CONTAINER=vedium-frappe
+          SITE=app.vediums.com
+
+          echo "Copiando script para o container..."
+          docker cp /opt/vedium/vedium_core/vedium_core/scripts/oneshot/get_stripe_config.py \
+            "$CONTAINER":/tmp/get_stripe_config.py
+
+          echo "Executando consulta no Frappe..."
+          docker exec -w /home/frappe/frappe-bench "$CONTAINER" \
+            bench --site "$SITE" execute \
+            vedium_core.scripts.oneshot.get_stripe_config.run \
+            > /tmp/frappe_stripe_config.json 2>&1
+
+          echo "=== Preview Frappe data ==="
+          python3 -c "
+          import json
+          with open('/tmp/frappe_stripe_config.json') as f:
+              content = f.read()
+          # bench execute wraps output in a message
+          # try to extract JSON
+          try:
+              data = json.loads(content)
+              courses = data.get('courses', [])
+              plans = data.get('plans', {})
+              print(f'Cursos: {len(courses)}')
+              print(f'Subscription Plans: {len(plans)}')
+          except:
+              print('RAW output:')
+              print(content[:500])
+          " 2>/dev/null || echo "Preview falhou, verificar output bruto"
+          REMOTE
+
+      - name: Download Frappe data
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          scp "$DEPLOY_USER@$DEPLOY_HOST:/tmp/frappe_stripe_config.json" ./ 2>/dev/null || true
+          if [ ! -f frappe_stripe_config.json ]; then
+            echo "::error::frappe_stripe_config.json nao encontrado"
+            exit 1
+          fi
+          echo "Frappe data coletado:"
+          wc -l frappe_stripe_config.json
+
+      - name: Run Stripe audit (read-only)
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_OPS_KEY }}
+        run: |
+          if [ -z "$STRIPE_SECRET_KEY" ]; then
+            echo "::error::Secret STRIPE_OPS_KEY nao configurado. Execute: gh secret set STRIPE_OPS_KEY"
+            exit 1
+          fi
+          python3 scripts/vedium_stripe_audit.py \
+            --frappe-json frappe_stripe_config.json \
+            --output stripe_audit_result.json
+
+      - name: Display matrix
+        run: |
+          python3 -c "
+          import json
+          with open('stripe_audit_result.json') as f:
+              data = json.load(f)
+          matrix = data.get('matrix', [])
+          print(f'Total de linhas na matriz: {len(matrix)}')
+          print()
+
+          # Agrupar por status
+          from collections import Counter
+          counts = Counter(r.get('status') for r in matrix)
+          for st, n in sorted(counts.items()):
+              print(f'  {st}: {n}')
+          print()
+
+          # Detalhar problemas
+          for r in matrix:
+              if r.get('status') not in ('APROVADO', 'NAO COMERCIAL'):
+                  issues = '; '.join(r.get('issues') or ['?'])
+                  print(f\"  [{r['status']}] {r.get('course_title','?')} / {r.get('period','?')}: {issues[:100]}\")
+          "
+
+      - name: Upload audit result as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stripe-audit-${{ github.run_id }}
+          path: |
+            stripe_audit_result.json
+            frappe_stripe_config.json
+          retention-days: 7
