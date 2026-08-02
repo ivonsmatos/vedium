@@ -114,11 +114,18 @@ jobs:
 
 
 
-          echo "🎨 Assets (crítico — build do frontend)..."
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund
-          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css
+          # Assets: npm/bench build são não-críticos — o CSS/JS já compilado
+          # no volume persiste entre deploys. Se o build falhar (ex: Node.js
+          # incompatível, esbuild segfault), o Python code novo ainda funciona.
+          # Isso evita que um erro de asset aborte o restart/healthcheck.
+          echo "🎨 Assets (não-crítico — build do frontend)..."
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm install --no-audit --no-fund \
+              || echo "⚠️ npm install falhou (assets — não-crítico)"
+          docker exec -w /home/frappe/frappe-bench/apps/vedium_core "\$CONTAINER" npm run build-css \
+              || echo "⚠️ build-css falhou (assets — não-crítico)"
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" build --app vedium_core
+              bench --site "$SITE_NAME" build --app vedium_core \
+              || echo "⚠️ bench build falhou (assets — não-crítico)"
 
           echo "♻️ Limpando cache..."
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
@@ -151,7 +158,7 @@ jobs:
           # matrícula falhou com ModuleNotFoundError num worker desatualizado.
           echo "🔄 Reiniciando workers de fila e scheduler..."
           for WORKER in vedium-worker-short vedium-worker-long vedium-worker-default vedium-scheduler; do
-              docker restart "\$WORKER"
+              docker restart "\$WORKER" || echo "⚠️ restart de $WORKER falhou (revisar)"
           done
           echo "⏳ Aguardando os workers voltarem saudáveis..."
           for WORKER in vedium-worker-short vedium-worker-long vedium-worker-default vedium-scheduler; do
