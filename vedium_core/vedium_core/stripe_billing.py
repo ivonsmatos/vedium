@@ -9,6 +9,12 @@ import frappe
 from frappe import _
 from frappe.utils import add_months, cint, get_datetime, getdate, now_datetime, today
 
+from vedium_core.frequency_pricing_rules import (
+    FREQUENCY_DISCOUNT_PERCENT,
+    frequency_discount_percent,
+    frequency_quote,
+    normalize_classes_per_week,
+)
 from vedium_core.stripe_billing_rules import (
     ACTIVE_ENROLLMENT_STATUSES,
     GRACE_DAYS,
@@ -26,6 +32,7 @@ ACTIVE_STRIPE_STATUSES = {"active", "trialing"}
 INACTIVE_STRIPE_STATUSES = {"canceled", "unpaid", "incomplete_expired", "paused"}
 EVENT_PROCESSING_TIMEOUT_MINUTES = 5
 EVENT_ID_PATTERN = re.compile(r"^evt_[A-Za-z0-9]+$")
+DEFAULT_FREQUENCY_COUPON_ID = "vedium-frequency-10"
 
 
 def get_subscription_plan(course, period):
@@ -63,22 +70,36 @@ def get_subscription_plan(course, period):
 
     controller = ""
     account_currency = None
-    
+
     if target_doctype == "Payment Gateway Account":
-        acc = frappe.db.get_value("Payment Gateway Account", gateway, ["payment_gateway", "currency"], as_dict=True)
+        acc = frappe.db.get_value(
+            "Payment Gateway Account",
+            gateway,
+            ["payment_gateway", "currency"],
+            as_dict=True,
+        )
         if acc:
             account_currency = acc.get("currency")
             if acc.get("payment_gateway"):
-                controller = frappe.db.get_value("Payment Gateway", acc.get("payment_gateway"), "gateway_controller") or ""
+                controller = (
+                    frappe.db.get_value(
+                        "Payment Gateway",
+                        acc.get("payment_gateway"),
+                        "gateway_controller",
+                    )
+                    or ""
+                )
     elif target_doctype == "Payment Gateway":
-        controller = frappe.db.get_value("Payment Gateway", gateway, "gateway_controller") or ""
+        controller = (
+            frappe.db.get_value("Payment Gateway", gateway, "gateway_controller") or ""
+        )
 
     if "stripe" not in controller.lower():
         frappe.throw(_("O plano {0} não está vinculado a um gateway Stripe válido.").format(plan_name))
-        
+
     if account_currency and account_currency.upper() != currency:
         frappe.throw(_("O plano {0} usa um gateway Stripe configurado para a moeda incorreta.").format(plan_name))
-        
+
     return plan
 
 
@@ -111,22 +132,64 @@ def _retrieve_and_validate_price(stripe, course, plan, display_currency=None):
     return price
 
 
+def _frequency_coupon_id(stripe):
+    """Return a reusable 10% forever coupon, creating it once per Stripe account."""
+    coupon_id = (
+        frappe.conf.get("STRIPE_FREQUENCY_COUPON_ID")
+        or frappe.conf.get("stripe_frequency_coupon_id")
+        or DEFAULT_FREQUENCY_COUPON_ID
+    )
+    try:
+        coupon = stripe.Coupon.retrieve(coupon_id)
+    except stripe.error.InvalidRequestError:
+        try:
+            coupon = stripe.Coupon.create(
+                id=coupon_id,
+                percent_off=float(FREQUENCY_DISCOUNT_PERCENT),
+                duration="forever",
+                name="Vedium 10% frequência",
+                metadata={
+                    "vedium_discount_type": "weekly_frequency",
+                    "site": frappe.local.site,
+                },
+            )
+        except stripe.error.InvalidRequestError:
+            # Handles a concurrent request that created the deterministic ID first.
+            coupon = stripe.Coupon.retrieve(coupon_id)
+
+    if (
+        not coupon.get("valid", True)
+        or coupon.get("duration") != "forever"
+        or float(coupon.get("percent_off") or 0) != float(FREQUENCY_DISCOUNT_PERCENT)
+    ):
+        frappe.throw(_("O cupom Stripe de frequência está configurado incorretamente."))
+    return coupon.id
+
+
 def create_subscription_checkout(
     course,
     user,
     coupon_code=None,
     billing_period=None,
     display_currency=None,
+    classes_per_week=1,
 ):
-    """Create a subscription Checkout using a validated Frappe-linked Price."""
+    """Create a validated subscription Checkout for 1 to 5 weekly classes."""
     import stripe
+
+    try:
+        frequency = normalize_classes_per_week(classes_per_week)
+    except ValueError as exc:
+        frappe.throw(_(str(exc)))
 
     period = normalize_period(billing_period)
     plan = get_subscription_plan(course, period)
-    _retrieve_and_validate_price(stripe, course, plan, display_currency)
+    price = _retrieve_and_validate_price(stripe, course, plan, display_currency)
     price_id = plan.product_price_id
     email = frappe.db.get_value("User", user, "email") or user
     base_url = frappe.utils.get_url()
+    quote = frequency_quote((price.get("unit_amount") or 0) / 100, frequency)
+    recurring_frequency_discount = float(frequency_discount_percent(frequency))
     metadata = {
         "course_name": str(course.name),
         "user": str(user),
@@ -135,6 +198,11 @@ def create_subscription_checkout(
         "billing_period": period,
         "minimum_term_months": str(minimum_term_months(period)),
         "price_id": price_id,
+        "classes_per_week": str(frequency),
+        "frequency_discount_percent": str(recurring_frequency_discount),
+        "unit_amount": str(quote["unit_amount"]),
+        "monthly_subtotal": str(quote["subtotal"]),
+        "monthly_final_amount": str(quote["amount"]),
     }
     params = build_checkout_params(
         price_id,
@@ -144,15 +212,27 @@ def create_subscription_checkout(
         course.name,
         metadata,
     )
-    discount = _discount_percent(coupon_code, user)
-    if discount:
+    params["line_items"][0]["quantity"] = frequency
+
+    promotional_discount = _discount_percent(coupon_code, user)
+    if recurring_frequency_discount and promotional_discount:
+        frappe.throw(
+            _(
+                "O desconto por frequência não é cumulativo com cupons promocionais. "
+                "Remova o cupom para continuar."
+            )
+        )
+    if recurring_frequency_discount:
+        params["discounts"] = [{"coupon": _frequency_coupon_id(stripe)}]
+    elif promotional_discount:
         stripe_coupon = stripe.Coupon.create(
-            percent_off=discount,
+            percent_off=promotional_discount,
             duration="once",
             name=f"Vedium {coupon_code}",
             metadata={"vedium_coupon_code": coupon_code, "site": frappe.local.site},
         )
         params["discounts"] = [{"coupon": stripe_coupon.id}]
+
     session = stripe.checkout.Session.create(**params)
     return session.url
 
@@ -296,6 +376,10 @@ def _checkout_completed(session):
     metadata = session.get("metadata") or {}
     course_name, user = _validated_reference(session, metadata)
     period = normalize_period(metadata.get("billing_period"))
+    try:
+        frequency = normalize_classes_per_week(metadata.get("classes_per_week"))
+    except ValueError as exc:
+        frappe.throw(_(str(exc)), frappe.AuthenticationError)
     course = frappe.get_doc("LMS Course", course_name)
     subscription_id = session.get("subscription")
     if not subscription_id:
@@ -330,6 +414,11 @@ def _checkout_completed(session):
             "custom_stripe_subscription_id": subscription_id,
             "custom_stripe_price_id": metadata.get("price_id"),
             "custom_billing_period": period,
+            "custom_classes_per_week": frequency,
+            "custom_frequency_discount_percent": float(
+                frequency_discount_percent(frequency)
+            ),
+            "custom_contract_monthly_amount": (session.get("amount_total") or 0) / 100,
             "custom_minimum_term_ends_on": add_months(today(), minimum_term_months(period)),
             "custom_payment_failed_on": None,
             "custom_vedium_status": "Active",
@@ -361,14 +450,24 @@ def _validate_subscription(subscription, session, course, user, period):
         frappe.throw(_("Cliente Stripe divergente"), frappe.AuthenticationError)
 
     metadata = subscription.get("metadata") or {}
+    try:
+        frequency = normalize_classes_per_week(metadata.get("classes_per_week"))
+    except ValueError as exc:
+        frappe.throw(_(str(exc)), frappe.AuthenticationError)
     expected = {
         "course_name": str(course.name),
         "user": str(user),
         "site": str(frappe.local.site),
         "billing_period": period,
+        "classes_per_week": str(frequency),
+        "frequency_discount_percent": str(float(frequency_discount_percent(frequency))),
     }
     if any(metadata.get(key) != value for key, value in expected.items()):
         frappe.throw(_("Metadados da assinatura Stripe inválidos"), frappe.AuthenticationError)
+
+    session_metadata = session.get("metadata") or {}
+    if any(session_metadata.get(key) != value for key, value in expected.items()):
+        frappe.throw(_("Metadados do Checkout Stripe inválidos"), frappe.AuthenticationError)
 
     plan = get_subscription_plan(course, period)
     items = ((subscription.get("items") or {}).get("data") or [])
@@ -377,8 +476,14 @@ def _validate_subscription(subscription, session, course, user, period):
         for item in items
         if isinstance(item.get("price"), dict)
     }
-    if price_ids != {plan.product_price_id} or metadata.get("price_id") != plan.product_price_id:
-        frappe.throw(_("Price da assinatura Stripe inválido"), frappe.AuthenticationError)
+    quantities = [int(item.get("quantity") or 0) for item in items]
+    if (
+        price_ids != {plan.product_price_id}
+        or metadata.get("price_id") != plan.product_price_id
+        or len(items) != 1
+        or quantities != [frequency]
+    ):
+        frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
 
 
 def _find_enrollment(subscription_id):
@@ -406,6 +511,16 @@ def _invoice_enrollment(invoice):
     }
     if line_price_ids and enrollment.custom_stripe_price_id not in line_price_ids:
         frappe.throw(_("Price da fatura Stripe inválido"), frappe.AuthenticationError)
+
+    expected_frequency = cint(getattr(enrollment, "custom_classes_per_week", 0) or 0)
+    matching_quantities = [
+        int(line.get("quantity") or 0)
+        for line in lines
+        if isinstance(line.get("price"), dict)
+        and (line.get("price") or {}).get("id") == enrollment.custom_stripe_price_id
+    ]
+    if expected_frequency and matching_quantities and expected_frequency not in matching_quantities:
+        frappe.throw(_("Quantidade da fatura Stripe inválida"), frappe.AuthenticationError)
     return enrollment
 
 
