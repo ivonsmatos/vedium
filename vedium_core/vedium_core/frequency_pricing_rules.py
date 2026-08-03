@@ -14,6 +14,10 @@ def normalize_classes_per_week(value=None) -> int:
     """Return a validated weekly class quantity between 1 and 5."""
     if value in (None, ""):
         return MIN_CLASSES_PER_WEEK
+    if isinstance(value, bool):
+        raise ValueError("A frequência deve ser um número inteiro entre 1 e 5.")
+    if isinstance(value, float) and not value.is_integer():
+        raise ValueError("A frequência deve ser um número inteiro entre 1 e 5.")
     try:
         classes = int(value)
     except (TypeError, ValueError) as exc:
