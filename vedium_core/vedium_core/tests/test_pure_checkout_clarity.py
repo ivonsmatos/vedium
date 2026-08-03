@@ -21,6 +21,9 @@ CHECKOUT_OPTIONS = (CORE / "checkout_options.py").read_text(encoding="utf-8")
 CHECKOUT_JS = (CORE / "public" / "js" / "course_checkout_override.js").read_text(
     encoding="utf-8"
 )
+PUBLIC_CHECKOUT = (CORE / "public_frequency_checkout.py").read_text(
+    encoding="utf-8"
+)
 STRIPE_RULES = (CORE / "stripe_billing_rules.py").read_text(encoding="utf-8")
 
 
@@ -40,11 +43,15 @@ def test_twelve_month_total_is_rounded_as_money():
 def test_purchase_options_explain_both_commercial_models():
     assert "Cobrança mensal. Sem permanência mínima." in CHECKOUT_OPTIONS
     assert "12 cobranças mensais. Permanência mínima de 12 meses." in CHECKOUT_OPTIONS
-    assert "annual_savings(monthly[\"amount\"], annual[\"amount\"])" in CHECKOUT_OPTIONS
+    assert "annual_savings(" in CHECKOUT_OPTIONS
+    assert '"frequency_options"' in CHECKOUT_OPTIONS
     assert '"plan_id"' not in CHECKOUT_OPTIONS
 
 
 def test_frontend_shows_monthly_frequency_and_annual_commitment():
+    assert "Quantas aulas por semana?" in CHECKOUT_JS
+    assert "De 2 a 5 aulas" in CHECKOUT_JS
+    assert "10% de desconto" in CHECKOUT_JS
     assert "por mês" in CHECKOUT_JS
     assert "Economia de" in CHECKOUT_JS
     assert "em 12 meses" in CHECKOUT_JS
@@ -52,11 +59,21 @@ def test_frontend_shows_monthly_frequency_and_annual_commitment():
     assert "Sem permanência mínima" in CHECKOUT_JS
 
 
-def test_frontend_uses_hosted_stripe_checkout_by_post():
+def test_frontend_supports_public_and_lms_checkout_paths():
     assert "vedium_core.checkout_options.get_course_purchase_options" in CHECKOUT_JS
-    assert "vedium_core.api.create_checkout_session" in CHECKOUT_JS
+    assert "vedium_core.frequency_checkout.create_checkout_session" in CHECKOUT_JS
+    assert "vedium_core.public_frequency_checkout.start" in CHECKOUT_JS
+    assert "classes_per_week" in CHECKOUT_JS
     assert 'method: "POST"' in CHECKOUT_JS
     assert 'startsWith("https://checkout.stripe.com/")' in CHECKOUT_JS
+
+
+def test_public_checkout_preserves_frequency_through_login():
+    assert "normalize_classes_per_week" in PUBLIC_CHECKOUT
+    assert 'classes_per_week={frequency}' in PUBLIC_CHECKOUT
+    assert 'frappe.session.user == "Guest"' in PUBLIC_CHECKOUT
+    assert 'frappe.local.response["type"] = "redirect"' in PUBLIC_CHECKOUT
+    assert "create_subscription_checkout" in PUBLIC_CHECKOUT
 
 
 def test_stripe_checkout_contains_annual_recurring_charge_notice():

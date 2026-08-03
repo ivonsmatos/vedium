@@ -22,7 +22,6 @@ CUSTOM_FIELDS = {
             "options": "Language",
             "insert_after": "vedium_points",
         },
-        # Onboarding wizard (/onboarding) — ver vedium_core/onboarding.py
         {
             "fieldname": "custom_preferred_language",
             "label": "Idioma de Interesse (Onboarding)",
@@ -48,7 +47,6 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_study_frequency",
         },
     ],
-    # Chaves VAPID pra Web Push — ver vedium_core/push_notifications.py
     "System Settings": [
         {
             "fieldname": "custom_vedium_vapid_public_key",
@@ -68,10 +66,6 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_vedium_vapid_private_key",
         },
     ],
-    # Extensões Vedium ao certificado NATIVO do LMS (LMS Certificate).
-    # Antes existia um doctype custom homônimo que sequestrava o nativo; foi
-    # removido. Estas duas colunas dão suporte à verificação pública em
-    # /certificado (api.issue_certificate / verify_certificate).
     "LMS Certificate": [
         {
             "fieldname": "verification_code",
@@ -89,9 +83,6 @@ CUSTOM_FIELDS = {
             "insert_after": "verification_code",
         },
     ],
-    # Gate entre níveis do curso PLE (Básico -> Intermediário -> Avançado):
-    # se setado, o aluno só enxerga o conteúdo deste curso depois de ter um
-    # LMS Certificate emitido pro curso pré-requisito. Ver vedium_core/ple_gating.py.
     "LMS Course": [
         {
             "fieldname": "custom_prerequisite_course",
@@ -115,10 +106,6 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_stripe_monthly_plan",
         },
     ],
-    # Fonte da verdade Vedium para acesso do aluno.
-    # O DocType nativo "LMS Enrollment" do LMS não possui um campo status
-    # canônico. Estes campos são usados por trial, cancelamento e pela futura
-    # sincronização de membros em canais de comunicação (Raven/Vedium).
     "LMS Enrollment": [
         {
             "fieldname": "custom_vedium_status",
@@ -190,10 +177,32 @@ CUSTOM_FIELDS = {
             "read_only": 1,
         },
         {
+            "fieldname": "custom_classes_per_week",
+            "label": "Aulas por semana",
+            "fieldtype": "Int",
+            "insert_after": "custom_billing_period",
+            "read_only": 1,
+            "in_list_view": 1,
+        },
+        {
+            "fieldname": "custom_frequency_discount_percent",
+            "label": "Desconto por frequência (%)",
+            "fieldtype": "Percent",
+            "insert_after": "custom_classes_per_week",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "custom_contract_monthly_amount",
+            "label": "Valor mensal contratado",
+            "fieldtype": "Currency",
+            "insert_after": "custom_frequency_discount_percent",
+            "read_only": 1,
+        },
+        {
             "fieldname": "custom_minimum_term_ends_on",
             "label": "Fim da permanência mínima",
             "fieldtype": "Date",
-            "insert_after": "custom_billing_period",
+            "insert_after": "custom_contract_monthly_amount",
             "read_only": 1,
         },
         {
@@ -247,8 +256,6 @@ CUSTOM_FIELDS = {
             "read_only": 1,
         },
     ],
-    # Integration Request guarda apenas ID/tipo/estado do evento. Payload,
-    # headers e dados pessoais nunca são persistidos no log de idempotência.
     "Integration Request": [
         {
             "fieldname": "custom_vedium_attempts",
@@ -265,10 +272,6 @@ CUSTOM_FIELDS = {
             "read_only": 1,
         },
     ],
-    # Documentos brasileiros do professor/funcionário — o Employee nativo do
-    # Frappe HR não tem CPF nem RNM (só "Passport Number", que não é o
-    # documento correto pra estrangeiro com registro migratório). Ver
-    # scripts/migrations/oneshot/hire_guadalupe_hr_record.py.
     "Employee": [
         {
             "fieldname": "custom_cpf",
