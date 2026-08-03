@@ -21,6 +21,12 @@ CHECKOUT_OPTIONS = (CORE / "checkout_options.py").read_text(encoding="utf-8")
 CHECKOUT_JS = (CORE / "public" / "js" / "course_checkout_override.js").read_text(
     encoding="utf-8"
 )
+PUBLIC_BOOTSTRAP = (CORE / "public" / "js" / "cookie-consent.js").read_text(
+    encoding="utf-8"
+)
+PUBLIC_BOOTSTRAP_MIN = (
+    CORE / "public" / "js" / "cookie-consent.min.js"
+).read_text(encoding="utf-8")
 PUBLIC_CHECKOUT = (CORE / "public_frequency_checkout.py").read_text(
     encoding="utf-8"
 )
@@ -66,6 +72,18 @@ def test_frontend_supports_public_and_lms_checkout_paths():
     assert "classes_per_week" in CHECKOUT_JS
     assert 'method: "POST"' in CHECKOUT_JS
     assert 'startsWith("https://checkout.stripe.com/")' in CHECKOUT_JS
+
+
+def test_public_course_bootstrap_loads_frequency_selector():
+    expected_asset = (
+        "/assets/vedium_core/js/course_checkout_override.js"
+        "?v=frequency-public-20260803-2"
+    )
+    assert expected_asset in PUBLIC_BOOTSTRAP
+    assert expected_asset in PUBLIC_BOOTSTRAP_MIN
+    assert "window.location.pathname" in PUBLIC_BOOTSTRAP
+    assert "vediumCourseCheckout" in PUBLIC_BOOTSTRAP
+    assert "data-vedium-course-checkout" in PUBLIC_BOOTSTRAP_MIN
 
 
 def test_public_checkout_preserves_frequency_through_login():
