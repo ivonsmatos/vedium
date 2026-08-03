@@ -6,6 +6,28 @@ import frappe
 from frappe import _
 
 from vedium_core.checkout_pricing_rules import annual_savings, money, twelve_month_total
+from vedium_core.frequency_pricing_rules import (
+    MAX_CLASSES_PER_WEEK,
+    MIN_CLASSES_PER_WEEK,
+    frequency_quote,
+)
+
+
+def _frequency_payloads(unit_amount) -> list[dict]:
+    options = []
+    for classes in range(MIN_CLASSES_PER_WEEK, MAX_CLASSES_PER_WEEK + 1):
+        quote = frequency_quote(unit_amount, classes)
+        options.append(
+            {
+                "classes_per_week": classes,
+                "unit_amount": float(quote["unit_amount"]),
+                "subtotal": float(quote["subtotal"]),
+                "discount_percent": float(quote["discount_percent"]),
+                "discount_amount": float(quote["discount_amount"]),
+                "amount": float(quote["amount"]),
+            }
+        )
+    return options
 
 
 def _plan_payload(plan_name: str, billing_period: str) -> dict | None:
@@ -19,37 +41,54 @@ def _plan_payload(plan_name: str, billing_period: str) -> dict | None:
     if amount <= 0 or currency not in {"BRL", "USD"}:
         return None
 
-    if billing_period == "annual":
-        return {
-            "billing_period": "annual",
-            "title": "Plano anual",
-            "amount": float(amount),
-            "currency": currency,
-            "charge_count": 12,
-            "billing_frequency": "monthly",
-            "minimum_term_months": 12,
-            "twelve_month_total": float(twelve_month_total(amount)),
-            "terms": (
-                "12 cobranças mensais. Permanência mínima de 12 meses."
-            ),
-        }
-
-    return {
-        "billing_period": "monthly",
-        "title": "Plano mensal",
+    payload = {
+        "billing_period": billing_period,
         "amount": float(amount),
         "currency": currency,
-        "charge_count": None,
         "billing_frequency": "monthly",
-        "minimum_term_months": 0,
-        "twelve_month_total": None,
-        "terms": "Cobrança mensal. Sem permanência mínima.",
+        "frequency_options": _frequency_payloads(amount),
     }
+
+    if billing_period == "annual":
+        payload.update(
+            {
+                "title": "Plano anual",
+                "charge_count": 12,
+                "minimum_term_months": 12,
+                "twelve_month_total": float(twelve_month_total(amount)),
+                "terms": "12 cobranças mensais. Permanência mínima de 12 meses.",
+            }
+        )
+        return payload
+
+    payload.update(
+        {
+            "title": "Plano mensal",
+            "charge_count": None,
+            "minimum_term_months": 0,
+            "twelve_month_total": None,
+            "terms": "Cobrança mensal. Sem permanência mínima.",
+        }
+    )
+    return payload
+
+
+def _add_annual_savings(monthly: dict, annual: dict) -> None:
+    monthly_by_frequency = {
+        item["classes_per_week"]: item for item in monthly["frequency_options"]
+    }
+    for annual_option in annual["frequency_options"]:
+        monthly_option = monthly_by_frequency[annual_option["classes_per_week"]]
+        saving = annual_savings(monthly_option["amount"], annual_option["amount"])
+        annual_option["savings"] = float(saving)
+        annual_option["savings_period_months"] = 12
+    annual["savings"] = annual["frequency_options"][0]["savings"]
+    annual["savings_period_months"] = 12
 
 
 @frappe.whitelist(allow_guest=True)
 def get_course_purchase_options(course_name):
-    """Return safe, display-only monthly and annual options for a course."""
+    """Return monthly/annual prices and 1-5 weekly-class quotes for a course."""
     if not course_name or not frappe.db.exists("LMS Course", course_name):
         frappe.throw(_("Curso não encontrado."), frappe.DoesNotExistError)
 
@@ -75,16 +114,23 @@ def get_course_purchase_options(course_name):
         frappe.throw(_("Os planos mensal e anual estão em moedas diferentes."))
 
     if monthly and annual:
-        saving = annual_savings(monthly["amount"], annual["amount"])
-        annual["savings"] = float(saving)
-        annual["savings_period_months"] = 12
+        _add_annual_savings(monthly, annual)
     elif annual:
         annual["savings"] = 0.0
         annual["savings_period_months"] = 12
+        for option in annual["frequency_options"]:
+            option["savings"] = 0.0
+            option["savings_period_months"] = 12
 
     return {
         "is_paid": True,
         "course_name": course.name,
         "course_title": getattr(course, "title", None) or course.name,
+        "frequency": {
+            "minimum": MIN_CLASSES_PER_WEEK,
+            "maximum": MAX_CLASSES_PER_WEEK,
+            "discount_from": 2,
+            "discount_percent": 10,
+        },
         "plans": plans,
     }
