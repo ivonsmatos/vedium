@@ -420,13 +420,9 @@
                 }),
             });
             const data = await response.json();
-            if (
-                response.ok &&
-                data.message?.checkout_url?.startsWith(
-                    "https://checkout.stripe.com/"
-                )
-            ) {
-                window.location.assign(data.message.checkout_url);
+            const checkoutUrl = data.message?.checkout_url || "";
+            if (response.ok && checkoutUrl.startsWith("https://checkout.stripe.com/")) {
+                window.location.assign(checkoutUrl);
                 return;
             }
             throw new Error("Não foi possível abrir o pagamento.");

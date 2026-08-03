@@ -81,14 +81,7 @@ def get_subscription_plan(course, period):
         if acc:
             account_currency = acc.get("currency")
             if acc.get("payment_gateway"):
-                controller = (
-                    frappe.db.get_value(
-                        "Payment Gateway",
-                        acc.get("payment_gateway"),
-                        "gateway_controller",
-                    )
-                    or ""
-                )
+                controller = frappe.db.get_value("Payment Gateway", acc.get("payment_gateway"), "gateway_controller") or ""
     elif target_doctype == "Payment Gateway":
         controller = (
             frappe.db.get_value("Payment Gateway", gateway, "gateway_controller") or ""
