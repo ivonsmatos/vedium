@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "description": "Manifesto inicial para completar os espaços restantes da Wiki Vedium.",
+  "spaces": [
+    {
+      "title": "Processos Administrativos",
+      "route": "processos-administrativos",
+      "published": 1,
+      "pages": [
+        {
+          "title": "Processos Administrativos",
+          "route": "processos-administrativos",
+          "order": 1,
+          "published": 1,
+          "content": "# Processos Administrativos\n\nEste espaço reúne os procedimentos administrativos da Vedium, incluindo cadastro, matrícula, pagamentos, contratos, comunicação operacional, organização de documentos e rotinas de atendimento.\n\n## Objetivo\n\nPadronizar as atividades administrativas, definir responsáveis, reduzir retrabalho e manter histórico claro das operações da escola.\n\n## Áreas abrangidas\n\n- cadastro de alunos e professores;\n- matrículas e alterações cadastrais;\n- contratos e documentos;\n- pagamentos e cobrança;\n- organização de turmas e agendas;\n- atendimento administrativo;\n- cancelamentos e remarcações;\n- relatórios e controles internos;\n- proteção de dados e acesso às informações.\n\nOs procedimentos detalhados devem ser publicados como páginas deste espaço e revisados sempre que houver mudança operacional."
+        }
+      ]
+    },
+    {
+      "title": "Políticas e Compliance",
+      "route": "politicas-compliance",
+      "published": 1,
+      "pages": [
+        {
+          "title": "Políticas e Compliance",
+          "route": "politicas-compliance",
+          "order": 1,
+          "published": 1,
+          "content": "# Políticas e Compliance\n\nEste espaço reúne as políticas institucionais da Vedium relacionadas à conduta, privacidade, proteção de dados, gravação de aulas, segurança da informação, direitos autorais e relacionamento com alunos, professores e parceiros.\n\n## Objetivo\n\nEstabelecer regras claras para a operação da escola e orientar decisões de professores, equipe administrativa, coordenação e prestadores.\n\n## Temas principais\n\n- Código de Conduta;\n- LGPD e privacidade;\n- gravação de aulas, imagem e voz;\n- segurança da informação;\n- direitos autorais;\n- atendimento a menores de idade;\n- uso aceitável das plataformas;\n- conflitos de interesse;\n- comunicação institucional;\n- registro e tratamento de incidentes.\n\nAs páginas deste espaço devem ser mantidas alinhadas aos documentos jurídicos oficiais da Vedium."
+        }
+      ]
+    },
+    {
+      "title": "FAQ Comercial e Financeiro",
+      "route": "faq-comercial-financeiro",
+      "published": 1,
+      "pages": [
+        {
+          "title": "FAQ Comercial e Financeiro",
+          "route": "faq-comercial-financeiro",
+          "order": 1,
+          "published": 1,
+          "content": "# FAQ Comercial e Financeiro\n\nEste espaço reúne respostas padronizadas para dúvidas comerciais e financeiras de alunos, responsáveis e interessados nos cursos da Vedium.\n\n## Temas principais\n\n- cursos, idiomas e modalidades;\n- aulas particulares e turmas;\n- professores e metodologia;\n- teste de nível e aula experimental;\n- planos e frequência de aulas;\n- pagamentos pela Stripe;\n- vencimentos e cobranças;\n- cancelamento e alteração de plano;\n- reembolso, quando aplicável;\n- contratos e comprovantes;\n- descontos e campanhas vigentes.\n\nAs respostas devem ser claras, objetivas e compatíveis com as condições comerciais efetivamente vigentes."
+        }
+      ]
+    },
+    {
+      "title": "FAQ Técnico",
+      "route": "faq-tecnico",
+      "published": 1,
+      "pages": [
+        {
+          "title": "FAQ Técnico",
+          "route": "faq-tecnico",
+          "order": 1,
+          "published": 1,
+          "content": "# FAQ Técnico\n\nEste espaço reúne orientações para acesso e uso da plataforma da Vedium, do Google Meet e dos canais oficiais de suporte.\n\n## Temas principais\n\n- criação e recuperação de acesso;\n- atualização de senha;\n- acesso à área do aluno;\n- abertura de cursos e atividades;\n- acesso às aulas pelo Google Meet;\n- problemas de câmera, microfone e áudio;\n- compatibilidade de navegador e dispositivo;\n- envio de atividades;\n- certificados e avaliações;\n- abertura de ticket;\n- erros comuns da plataforma.\n\nQuando a orientação não resolver o problema, o usuário deve abrir um ticket pelos canais oficiais da Vedium, informando mensagem de erro, data, horário e captura de tela quando possível."
+        }
+      ]
+    }
+  ]
+}
