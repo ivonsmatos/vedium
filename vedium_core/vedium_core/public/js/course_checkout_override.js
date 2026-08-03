@@ -4,11 +4,12 @@
     const CHECKOUT_OPTIONS_ENDPOINT =
         "/api/method/vedium_core.checkout_options.get_course_purchase_options";
     const CREATE_CHECKOUT_ENDPOINT =
-        "/api/method/vedium_core.api.create_checkout_session";
+        "/api/method/vedium_core.frequency_checkout.create_checkout_session";
     const HIGHLIGHT_COLOR = "#2E6DA4";
 
     let activeCourse = null;
     let purchaseOptions = null;
+    let selectedClassesPerWeek = 1;
     let isFetching = false;
     let mutationTimeout = null;
 
@@ -26,6 +27,7 @@
         if (courseName !== activeCourse) {
             activeCourse = courseName;
             purchaseOptions = null;
+            selectedClassesPerWeek = 1;
             isFetching = false;
         }
     }
@@ -81,7 +83,6 @@
                 return control.closest("a") || control;
             }
         }
-
         return null;
     }
 
@@ -115,7 +116,79 @@
         return plan.terms || "Cobrança mensal. Sem permanência mínima.";
     }
 
+    function frequencyOption(plan) {
+        const options = Array.isArray(plan.frequency_options)
+            ? plan.frequency_options
+            : [];
+        return (
+            options.find(
+                (option) =>
+                    Number(option.classes_per_week) ===
+                    Number(selectedClassesPerWeek)
+            ) || {
+                classes_per_week: 1,
+                subtotal: Number(plan.amount || 0),
+                discount_percent: 0,
+                discount_amount: 0,
+                amount: Number(plan.amount || 0),
+                savings: Number(plan.savings || 0),
+            }
+        );
+    }
+
+    function createFrequencySelector(container) {
+        const wrapper = document.createElement("div");
+        wrapper.style.marginBottom = "1rem";
+        wrapper.innerHTML = `
+            <div style="font-weight:700;font-size:.95rem;color:#1e293b;margin-bottom:.45rem;">
+                Quantas aulas por semana?
+            </div>
+            <div style="color:#64748b;font-size:.78rem;line-height:1.35;margin-bottom:.65rem;">
+                Escolha de 1 a 5 aulas. A partir de 2 aulas, o desconto recorrente de 10% é aplicado automaticamente.
+            </div>
+        `;
+
+        const grid = document.createElement("div");
+        grid.style.display = "grid";
+        grid.style.gridTemplateColumns = "repeat(5, minmax(0, 1fr))";
+        grid.style.gap = ".4rem";
+
+        for (let classes = 1; classes <= 5; classes += 1) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = String(classes);
+            button.setAttribute(
+                "aria-label",
+                `${classes} ${classes === 1 ? "aula" : "aulas"} por semana`
+            );
+            button.style.padding = ".55rem .25rem";
+            button.style.borderRadius = ".4rem";
+            button.style.fontWeight = "700";
+            button.style.cursor = "pointer";
+            button.style.border = `1px solid ${
+                classes === selectedClassesPerWeek
+                    ? HIGHLIGHT_COLOR
+                    : "#cbd5e1"
+            }`;
+            button.style.background =
+                classes === selectedClassesPerWeek ? "#eff6ff" : "#ffffff";
+            button.style.color =
+                classes === selectedClassesPerWeek
+                    ? HIGHLIGHT_COLOR
+                    : "#334155";
+            button.addEventListener("click", () => {
+                selectedClassesPerWeek = classes;
+                renderPurchaseOptions(getCourseCardBody());
+            });
+            grid.appendChild(button);
+        }
+
+        wrapper.appendChild(grid);
+        container.appendChild(wrapper);
+    }
+
     function createPlanButton(plan) {
+        const quote = frequencyOption(plan);
         const button = document.createElement("button");
         button.type = "button";
         button.className =
@@ -125,7 +198,10 @@
         button.style.cursor = "pointer";
         button.setAttribute(
             "aria-label",
-            `${plan.title}: ${formatCurrency(plan.amount, plan.currency)} por mês`
+            `${plan.title}: ${formatCurrency(
+                quote.amount,
+                plan.currency
+            )} por mês, ${selectedClassesPerWeek} aulas por semana`
         );
 
         button.onmouseover = () => {
@@ -135,11 +211,19 @@
             button.style.borderColor = "#e2e8f0";
         };
 
-        const amount = formatCurrency(plan.amount, plan.currency);
-        const savings = Number(plan.savings || 0);
+        const amount = formatCurrency(quote.amount, plan.currency);
+        const hasFrequencyDiscount = Number(quote.discount_percent || 0) > 0;
+        const subtotalHtml = hasFrequencyDiscount
+            ? `<div style="color:#64748b;font-size:.78rem;margin-top:5px;">
+                   De <span style="text-decoration:line-through;">${escapeHtml(
+                       formatCurrency(quote.subtotal, plan.currency)
+                   )}</span> · 10% de desconto
+               </div>`
+            : "";
+        const savings = Number(quote.savings || 0);
         const savingsHtml =
             plan.billing_period === "annual" && savings > 0
-                ? `<div style="color:#047857;font-size:.85rem;font-weight:600;margin-top:6px;">Economia de ${escapeHtml(
+                ? `<div style="color:#047857;font-size:.82rem;font-weight:600;margin-top:6px;">Economia de ${escapeHtml(
                       formatCurrency(savings, plan.currency)
                   )} em 12 meses</div>`
                 : "";
@@ -153,6 +237,14 @@
                     <div style="color:#475569;font-size:.82rem;line-height:1.35;margin-top:5px;">
                         ${escapeHtml(planTerms(plan))}
                     </div>
+                    <div style="color:#475569;font-size:.82rem;line-height:1.35;margin-top:5px;">
+                        ${escapeHtml(
+                            `${selectedClassesPerWeek} ${
+                                selectedClassesPerWeek === 1 ? "aula" : "aulas"
+                            } por semana`
+                        )}
+                    </div>
+                    ${subtotalHtml}
                     ${savingsHtml}
                 </div>
                 <div style="font-weight:700;font-size:1.05rem;color:${HIGHLIGHT_COLOR};white-space:nowrap;text-align:right;">
@@ -191,6 +283,10 @@
                 "vedium_intent_plan",
                 plan.billing_period
             );
+            localStorage.setItem(
+                "vedium_intent_frequency",
+                String(selectedClassesPerWeek)
+            );
             window.location.href = `/login?redirect-to=${encodeURIComponent(
                 window.location.pathname
             )}`;
@@ -209,6 +305,7 @@
                 body: JSON.stringify({
                     course_name: getCourseName(),
                     billing_period: plan.billing_period,
+                    classes_per_week: selectedClassesPerWeek,
                 }),
             });
 
@@ -282,6 +379,7 @@
     }
 
     function insertBeforeFeatures(cardBody, container) {
+        if (!cardBody) return;
         const features = cardBody.querySelector(".space-y-3");
         if (features) {
             cardBody.insertBefore(container, features);
@@ -291,6 +389,7 @@
     }
 
     function renderPurchaseOptions(cardBody) {
+        if (!cardBody || !purchaseOptions) return;
         removeExistingOverride(cardBody);
         hideLegacyCheckout(cardBody);
 
@@ -305,6 +404,8 @@
                 O pagamento é concluído no ambiente seguro da Stripe.
             </div>
         `;
+
+        createFrequencySelector(container);
 
         const monthlyPlan = purchaseOptions.find(
             (plan) => plan.billing_period === "monthly"
@@ -415,6 +516,12 @@
     observer.observe(document.body, { childList: true, subtree: true });
 
     window.addEventListener("load", () => {
+        const storedFrequency = Number(
+            localStorage.getItem("vedium_intent_frequency") || 1
+        );
+        if (storedFrequency >= 1 && storedFrequency <= 5) {
+            selectedClassesPerWeek = storedFrequency;
+        }
         handlePage();
 
         const intentCourse = localStorage.getItem("vedium_intent_course");
@@ -422,6 +529,7 @@
         if (intentCourse && intentPlan && !isGuest()) {
             localStorage.removeItem("vedium_intent_course");
             localStorage.removeItem("vedium_intent_plan");
+            localStorage.removeItem("vedium_intent_frequency");
             if (!window.location.pathname.includes(`/lms/courses/${intentCourse}`)) {
                 window.location.replace(`/lms/courses/${intentCourse}`);
             }
