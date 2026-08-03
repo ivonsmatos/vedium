@@ -91,6 +91,112 @@
       .course-details__curriculum-list-left-title { font-size: 16px !important; text-transform: none !important; letter-spacing: 0 !important; color: #374151 !important; font-weight: 500 !important; }
       .course-details__curriculum-list-left-icon { flex: 0 0 auto; margin-right: 14px; }
       .course-details__curriculum-single-title { font-size: 21px; }
+
+      /* Cursos relacionados: impede que imagem, titulo e preco se sobreponham. */
+      .course-details__new-courses {
+        overflow: hidden;
+      }
+      .course-details__new-courses-list {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .course-details__new-courses-list-item {
+        position: relative !important;
+        display: grid !important;
+        grid-template-columns: 96px minmax(0, 1fr);
+        align-items: center !important;
+        gap: 16px;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 104px;
+        margin: 0 !important;
+        padding: 14px 0 !important;
+        overflow: hidden;
+        background: transparent !important;
+      }
+      .course-details__new-courses-list-item + .course-details__new-courses-list-item {
+        border-top: 1px solid #e5e7eb;
+      }
+      .course-details__new-courses-list-item-img {
+        position: static !important;
+        width: 96px !important;
+        height: 76px !important;
+        min-width: 96px;
+        margin: 0 !important;
+        overflow: hidden;
+        border-radius: 9px;
+        background: #eef2f7;
+      }
+      .course-details__new-courses-list-item-img img {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        object-fit: cover !important;
+        transform: none !important;
+      }
+      .course-details__new-courses-list-item-content {
+        position: static !important;
+        inset: auto !important;
+        display: block !important;
+        min-width: 0;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        background: transparent !important;
+      }
+      .course-details__new-courses-list-item-content-title {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 16px !important;
+        line-height: 1.35 !important;
+        font-weight: 700 !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+      }
+      .course-details__new-courses-list-item-content-title a {
+        position: static !important;
+        display: block !important;
+        color: #172033 !important;
+        overflow-wrap: anywhere;
+        text-decoration: none !important;
+      }
+      .course-details__new-courses-list-item-content-title a:hover {
+        color: #2e6da4 !important;
+      }
+      .course-details__new-courses-price {
+        position: static !important;
+        display: block !important;
+        margin: 7px 0 0 !important;
+        padding: 0 !important;
+        color: #2e6da4 !important;
+        font-size: 15px !important;
+        line-height: 1.25 !important;
+        font-weight: 700 !important;
+        opacity: 1 !important;
+      }
+      @media (max-width: 480px) {
+        .course-details__new-courses-list-item {
+          grid-template-columns: 78px minmax(0, 1fr);
+          gap: 12px;
+          min-height: 92px;
+          padding: 12px 0 !important;
+        }
+        .course-details__new-courses-list-item-img {
+          width: 78px !important;
+          min-width: 78px;
+          height: 64px !important;
+        }
+        .course-details__new-courses-list-item-content-title {
+          font-size: 15px !important;
+        }
+      }
     </style>
 
     <!-- Schema.org Course (JSON-LD) -->
