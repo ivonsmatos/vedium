@@ -1,16 +1,9 @@
 name: "Wiki Deploy Once"
 
 on:
-  workflow_dispatch:
-    inputs:
-      dry_run:
-        description: "Dry run?"
-        required: true
-        default: "true"
-        type: choice
-        options:
-          - "true"
-          - "false"
+  push:
+    branches:
+      - main
 
 jobs:
   run-wiki-import:
@@ -34,11 +27,18 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           SITE_NAME: ${{ vars.SITE_NAME || 'app.vediums.com' }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: false
         run: |
           ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
           set -euo pipefail
           CONTAINER=vedium-frappe
+          
+          echo "=========================================================="
+          echo "Executando backup obrigatório..."
+          echo "=========================================================="
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" backup --with-files
+          
           echo "=========================================================="
           echo "Rodando import_manifest com dry_run=\${DRY_RUN}..."
           echo "=========================================================="
