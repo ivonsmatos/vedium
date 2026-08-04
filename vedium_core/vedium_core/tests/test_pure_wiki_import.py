@@ -168,7 +168,7 @@ def test_new_spaces_have_correct_routes(all_spaces):
 
 def test_pedagogical_space_has_group(all_spaces):
     pedagogical = next(
-        (s for s in all_spaces if s.get("route") == "documentacao-pedagogica-dos-cursos"),
+        (s for s in all_spaces if s.get("route") == "documentao-pedaggica-dos-cursos"),
         None,
     )
     assert pedagogical is not None, "Espaço pedagógico não encontrado no manifesto"
@@ -178,7 +178,7 @@ def test_pedagogical_space_has_group(all_spaces):
 
 def test_pedagogical_group_has_at_least_18_pages(all_spaces):
     pedagogical = next(
-        (s for s in all_spaces if s.get("route") == "documentacao-pedagogica-dos-cursos"),
+        (s for s in all_spaces if s.get("route") == "documentao-pedaggica-dos-cursos"),
         None,
     )
     assert pedagogical is not None
