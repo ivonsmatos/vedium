@@ -182,8 +182,14 @@ jobs:
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" execute \
               vedium_core.wiki_import.import_manifest \
-              --kwargs '{"manifest_path":"wiki_content/manifest.json","dry_run":False}'
-
+              --kwargs '{"manifest_path":"wiki_content/manifest.json","dry_run":False}' || true
+          
+          echo "=========================================================="
+          echo "Buscando os ultimos erros do Frappe no banco para debug:"
+          echo "=========================================================="
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" mariadb -e "SELECT creation, method, error FROM \`tabError Log\` ORDER BY creation DESC LIMIT 5;"
+              
           echo "✅ Deploy finalizado."
           REMOTE
 
