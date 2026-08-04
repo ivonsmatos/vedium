@@ -260,7 +260,9 @@ def _upsert_page(
     if group_field and group_name:
         doc.set(group_field, group_name)
     if published_field:
-        doc.set(published_field, cint(page.get("published", 1)))
+        has_pending_confirmation = "[A CONFIRMAR]" in content
+        should_publish = not has_pending_confirmation and cint(page.get("published", 1))
+        doc.set(published_field, 1 if should_publish else 0)
     if order_field and page.get("order") is not None:
         doc.set(order_field, cint(page["order"]))
 

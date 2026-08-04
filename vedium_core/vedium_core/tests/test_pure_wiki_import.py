@@ -298,7 +298,14 @@ def test_importer_logs_result():
     assert "frappe.logger" in source or "frappe.log_error" in source
 
 
+def test_importer_conditional_publishing():
+    source = IMPORTER_PATH.read_text(encoding="utf-8")
+    assert "has_pending_confirmation" in source
+    assert 'not has_pending_confirmation and cint(page.get("published", 1))' in source
+
+
 # ---------------------------------------------------------------------------
+
 # Lógica pura isolada (sem frappe)
 # ---------------------------------------------------------------------------
 
