@@ -11,6 +11,59 @@ from vedium_core.frequency_pricing_rules import (
     MIN_CLASSES_PER_WEEK,
     frequency_quote,
 )
+from vedium_core.catalog_pricing import is_catalog_complete, get_course_price
+
+
+def _catalog_plan_payload(course_name: str, billing_period: str) -> dict | None:
+    options = []
+    currency = "BRL"
+    for classes in range(MIN_CLASSES_PER_WEEK, MAX_CLASSES_PER_WEEK + 1):
+        price_doc = get_course_price(course_name, billing_period, classes, environment="live")
+        currency = price_doc.currency
+        options.append(
+            {
+                "classes_per_week": classes,
+                "amount": float(price_doc.amount),
+                "subtotal": float(price_doc.subtotal),
+                "discount_percent": float(price_doc.frequency_discount_percent or 0),
+                "stripe_catalog": True,
+            }
+        )
+    
+    # Define as prioridades do plano baseando-se no registro de 1 aula (ou o primeiro)
+    base_price = get_course_price(course_name, billing_period, 1, environment="live")
+    
+    payload = {
+        "billing_period": billing_period,
+        "amount": float(base_price.amount),
+        "currency": currency,
+        "billing_frequency": "monthly",
+        "frequency_options": options,
+    }
+
+    if billing_period == "annual":
+        payload.update(
+            {
+                "title": "Plano anual",
+                "charge_count": 12,
+                "minimum_term_months": 12,
+                "twelve_month_total": float(twelve_month_total(base_price.amount)),
+                "terms": "12 cobranças mensais. Permanência mínima de 12 meses.",
+            }
+        )
+        return payload
+
+    payload.update(
+        {
+            "title": "Plano mensal",
+            "charge_count": None,
+            "minimum_term_months": 0,
+            "twelve_month_total": None,
+            "terms": "Cobrança mensal. Sem permanência mínima.",
+        }
+    )
+    return payload
+
 
 
 def _frequency_payloads(unit_amount) -> list[dict]:
@@ -96,14 +149,22 @@ def get_course_purchase_options(course_name):
     if not getattr(course, "paid_course", False):
         return {"is_paid": False, "plans": []}
 
-    monthly = _plan_payload(
-        getattr(course, "custom_stripe_monthly_plan", None),
-        "monthly",
-    )
-    annual = _plan_payload(
-        getattr(course, "custom_stripe_annual_plan", None),
-        "annual",
-    )
+    catalog_status = is_catalog_complete(course.name, environment="live")
+    if catalog_status == "incomplete":
+        frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
+
+    if catalog_status is True:
+        monthly = _catalog_plan_payload(course.name, "monthly")
+        annual = _catalog_plan_payload(course.name, "annual")
+    else:
+        monthly = _plan_payload(
+            getattr(course, "custom_stripe_monthly_plan", None),
+            "monthly",
+        )
+        annual = _plan_payload(
+            getattr(course, "custom_stripe_annual_plan", None),
+            "annual",
+        )
 
     plans = [plan for plan in (monthly, annual) if plan]
     if not plans:

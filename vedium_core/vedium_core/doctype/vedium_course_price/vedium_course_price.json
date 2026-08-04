@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-04 18:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "course",
+  "commercial_name",
+  "catalog_key",
+  "catalog_version",
+  "enabled",
+  "column_break_1",
+  "billing_period",
+  "classes_per_week",
+  "currency",
+  "minimum_term_months",
+  "charge_count",
+  "section_break_financial",
+  "amount",
+  "unit_amount",
+  "subtotal",
+  "frequency_discount_percent",
+  "section_break_stripe",
+  "stripe_environment",
+  "stripe_product_id",
+  "stripe_price_id",
+  "stripe_lookup_key",
+  "column_break_stripe",
+  "stripe_validated",
+  "last_stripe_validation",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Curso",
+   "options": "LMS Course",
+   "reqd": 1
+  },
+  {
+   "fieldname": "commercial_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nome comercial",
+   "reqd": 1
+  },
+  {
+   "fieldname": "catalog_key",
+   "fieldtype": "Data",
+   "label": "C\u00f3digo do cat\u00e1logo",
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "catalog_version",
+   "fieldtype": "Int",
+   "label": "Vers\u00e3o",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Ativo"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "billing_period",
+   "fieldtype": "Select",
+   "label": "Per\u00edodo",
+   "options": "monthly\nannual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "classes_per_week",
+   "fieldtype": "Int",
+   "label": "Aulas por semana",
+   "reqd": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Moeda",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "minimum_term_months",
+   "fieldtype": "Int",
+   "label": "Compromisso m\u00ednimo (meses)"
+  },
+  {
+   "fieldname": "charge_count",
+   "fieldtype": "Int",
+   "label": "N\u00famero contratual de cobran\u00e7as"
+  },
+  {
+   "fieldname": "section_break_financial",
+   "fieldtype": "Section Break",
+   "label": "Valores"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Valor mensal (Final)",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_amount",
+   "fieldtype": "Currency",
+   "label": "Valor-base unit\u00e1rio",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subtotal",
+   "fieldtype": "Currency",
+   "label": "Subtotal sem desconto",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "frequency_discount_percent",
+   "fieldtype": "Percent",
+   "label": "Desconto de frequ\u00eancia"
+  },
+  {
+   "fieldname": "section_break_stripe",
+   "fieldtype": "Section Break",
+   "label": "Stripe"
+  },
+  {
+   "default": "live",
+   "fieldname": "stripe_environment",
+   "fieldtype": "Select",
+   "label": "Ambiente",
+   "options": "test\nlive",
+   "reqd": 1
+  },
+  {
+   "fieldname": "stripe_product_id",
+   "fieldtype": "Data",
+   "label": "Stripe Product ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "stripe_price_id",
+   "fieldtype": "Data",
+   "label": "Stripe Price ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "stripe_lookup_key",
+   "fieldtype": "Data",
+   "label": "Stripe Lookup Key",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_stripe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "stripe_validated",
+   "fieldtype": "Check",
+   "label": "Validado no Stripe",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_stripe_validation",
+   "fieldtype": "Datetime",
+   "label": "\u00daltima valida\u00e7\u00e3o",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Observa\u00e7\u00f5es"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Observa\u00e7\u00f5es"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-08-04 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Vedium Core",
+ "name": "Vedium Course Price",
+ "naming_rule": "Expression",
+ "autoname": "format:{catalog_key}",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "custom": 0
+}
