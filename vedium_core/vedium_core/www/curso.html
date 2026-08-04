@@ -84,22 +84,13 @@
       .course-details__content-text2 { margin-top: 12px; }
       .course-details__content-text2 p { margin-bottom: 12px; line-height: 1.75; }
       .courses-one__single.style2 .courses-one__single-img img { width: 100%; max-height: 380px; object-fit: cover; }
-      /* Sem foto do professor: remove o espaco reservado ao avatar */
       .courses-one__single.style2 .courses-one__single-content { padding-top: 28px !important; }
       .courses-one__single.style2 .courses-one__single-content-overlay-img { display: none !important; }
-      /* Texto das aulas: maior e legivel (estava minusculo/maiusculo) */
       .course-details__curriculum-list-left-title { font-size: 16px !important; text-transform: none !important; letter-spacing: 0 !important; color: #374151 !important; font-weight: 500 !important; }
       .course-details__curriculum-list-left-icon { flex: 0 0 auto; margin-right: 14px; }
       .course-details__curriculum-single-title { font-size: 21px; }
-
-      /* Cursos relacionados: impede que imagem, titulo e preco se sobreponham. */
-      .course-details__new-courses {
-        overflow: hidden;
-      }
-      .course-details__new-courses-list {
-        margin: 0 !important;
-        padding: 0 !important;
-      }
+      .course-details__new-courses { overflow: hidden; }
+      .course-details__new-courses-list { margin: 0 !important; padding: 0 !important; }
       .course-details__new-courses-list-item {
         position: relative !important;
         display: grid !important;
@@ -114,9 +105,7 @@
         overflow: hidden;
         background: transparent !important;
       }
-      .course-details__new-courses-list-item + .course-details__new-courses-list-item {
-        border-top: 1px solid #e5e7eb;
-      }
+      .course-details__new-courses-list-item + .course-details__new-courses-list-item { border-top: 1px solid #e5e7eb; }
       .course-details__new-courses-list-item-img {
         position: static !important;
         width: 96px !important;
@@ -167,9 +156,7 @@
         overflow-wrap: anywhere;
         text-decoration: none !important;
       }
-      .course-details__new-courses-list-item-content-title a:hover {
-        color: #2e6da4 !important;
-      }
+      .course-details__new-courses-list-item-content-title a:hover { color: #2e6da4 !important; }
       .course-details__new-courses-price {
         position: static !important;
         display: block !important;
@@ -193,13 +180,10 @@
           min-width: 78px;
           height: 64px !important;
         }
-        .course-details__new-courses-list-item-content-title {
-          font-size: 15px !important;
-        }
+        .course-details__new-courses-list-item-content-title { font-size: 15px !important; }
       }
     </style>
 
-    <!-- Schema.org Course (JSON-LD) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -224,7 +208,6 @@
     }
     </script>
 
-    <!-- Schema.org BreadcrumbList (JSON-LD) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -239,209 +222,131 @@
 </head>
 
 <body>
-    <!-- GTM (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6Q2FXLK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="page-wrapper">
-
         {% set vd_page = "cursos" %}
         {% include "templates/includes/site_navbar.html" %}
 
-        <!--Page Header Start-->
         <section class="page-header clearfix" style="background-image: linear-gradient(rgba(35,78,112,0.82), rgba(46,109,164,0.82)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="page-header__wrapper clearfix">
-                            <div class="page-header__title">
-                                <h2>{{ course.title }}</h2>
-                            </div>
-                            <div class="page-header__menu">
-                                <ul class="page-header__menu-list list-unstyled clearfix">
-                                    <li><a href="/">{{ ui.home }}</a></li>
-                                    <li><a href="/cursos-de-idiomas-online">{{ ui.courses }}</a></li>
-                                    <li class="active">{{ course.title }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container"><div class="row"><div class="col-xl-12"><div class="page-header__wrapper clearfix">
+                <div class="page-header__title"><h2>{{ course.title }}</h2></div>
+                <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix">
+                    <li><a href="/">{{ ui.home }}</a></li>
+                    <li><a href="/cursos-de-idiomas-online">{{ ui.courses }}</a></li>
+                    <li class="active">{{ course.title }}</li>
+                </ul></div>
+            </div></div></div></div>
         </section>
-        <!--Page Header End-->
 
-        <!--Course Details Start-->
         <section class="course-details">
-            <div class="container">
-                <div class="row">
-                    <!--Start Course Details Content-->
-                    <div class="col-xl-8 col-lg-8">
-                        <div class="course-details__content">
-                            <div class="courses-one__single style2">
-                                <div class="courses-one__single-img">
-                                    {% if course.image %}<img src="{{ course.image }}" alt="{{ course.title }}" />{% endif %}
-                                    <div class="overlay-text">
-                                        <p>{{ course.category_name or ui.course_word }}</p>
-                                    </div>
-                                </div>
-                                <div class="courses-one__single-content">
-                                    <h4 class="courses-one__single-content-title">{{ course.title }}</h4>
-                                    {% if course.short_introduction %}
-                                    <div class="course-details__content-text1">
-                                        <p>{{ course.short_introduction }}</p>
-                                    </div>
-                                    {% endif %}
-                                    {% if course.description %}
-                                    <div class="course-details__content-text2">{{ course.description | safe }}</div>
-                                    {% endif %}
-                                    <div class="course-details__content-list">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>{{ ui.live }}</p></div>
-                                            </li>
-                                            <li>
-                                                <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>{{ ui.teacher }}</p></div>
-                                            </li>
-                                            <li>
-                                                <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>{{ ui.cert }}</p></div>
-                                            </li>
-                                            <li>
-                                                <div class="icon"><span class="icon-confirmation"></span></div>
-                                                <div class="text"><p>{{ ui.anywhere }}</p></div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+            <div class="container"><div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="course-details__content">
+                        <div class="courses-one__single style2">
+                            <div class="courses-one__single-img">
+                                {% if course.image %}<img src="{{ course.image }}" alt="{{ course.title }}" />{% endif %}
+                                <div class="overlay-text"><p>{{ course.category_name or ui.course_word }}</p></div>
                             </div>
-
-                            {% if course.chapters_list %}
-                            <!--Start Course Details Curriculum-->
-                            <div class="course-details__curriculum">
-                                <h2 class="course-details__curriculum-title">{{ ui.content }}</h2>
-                                {% for chapter in course.chapters_list %}
-                                <div class="course-details__curriculum-single{% if loop.last %} mar-buttom0{% endif %}">
-                                    <h3 class="course-details__curriculum-single-title">{{ loop.index }}. {{ chapter.title }}</h3>
-                                    <ul class="course-details__curriculum-list list-unstyled">
-                                        {% for lesson in chapter.lessons %}
-                                        <li>
-                                            <div class="course-details__curriculum-list-left">
-                                                <div class="course-details__curriculum-list-left-icon">
-                                                    <i class="fa fa-play" aria-hidden="true"></i>
-                                                </div>
-                                                <span class="course-details__curriculum-list-left-title">{{ lesson.title }}</span>
-                                            </div>
-                                            {% if lesson.duration %}
-                                            <div class="course-details__curriculum-list-right">
-                                                <p>{{ lesson.duration }}</p>
-                                            </div>
-                                            {% endif %}
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                                {% endfor %}
+                            <div class="courses-one__single-content">
+                                <h4 class="courses-one__single-content-title">{{ course.title }}</h4>
+                                {% if course.short_introduction %}<div class="course-details__content-text1"><p>{{ course.short_introduction }}</p></div>{% endif %}
+                                {% if course.description %}<div class="course-details__content-text2">{{ course.description | safe }}</div>{% endif %}
+                                <div class="course-details__content-list"><ul class="list-unstyled">
+                                    <li><div class="icon"><span class="icon-confirmation"></span></div><div class="text"><p>{{ ui.live }}</p></div></li>
+                                    <li><div class="icon"><span class="icon-confirmation"></span></div><div class="text"><p>{{ ui.teacher }}</p></div></li>
+                                    <li><div class="icon"><span class="icon-confirmation"></span></div><div class="text"><p>{{ ui.cert }}</p></div></li>
+                                    <li><div class="icon"><span class="icon-confirmation"></span></div><div class="text"><p>{{ ui.anywhere }}</p></div></li>
+                                </ul></div>
                             </div>
-                            <!--End Course Details Curriculum-->
-                            {% endif %}
-
-                            <!--Start Course Details Helpful Links-->
-                            <div class="course-details__helpful-links" style="margin-top:28px;padding:22px 26px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
-                                <p style="margin:0 0 12px;font-weight:700;color:#111827;">{{ ui.learn_more_title }}</p>
-                                <p style="margin:0;line-height:2.1;">
-                                    <a href="{{ vd_level_test_url }}">{{ ui.link_level_test }}</a> ·
-                                    <a href="{{ vd_prefix }}/metodologia">{{ ui.link_methodology }}</a> ·
-                                    <a href="{{ vd_prefix }}/diferenciais">{{ ui.link_differentiators }}</a> ·
-                                    <a href="{{ vd_prefix }}/certificado">{{ ui.link_certificate }}</a> ·
-                                    <a href="{{ vd_prefix }}/planos">{{ ui.link_plans }}</a> ·
-                                    <a href="{{ vd_prefix }}/faq">{{ ui.link_faq }}</a>
-                                </p>
-                            </div>
-                            <!--End Course Details Helpful Links-->
                         </div>
-                    </div>
-                    <!--End Course Details Content-->
 
-                    <!--Start Course Details Sidebar-->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="course-details__sidebar">
-                            <div class="course-details__price wow fadeInUp animated" data-wow-delay="0.1s">
-                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ ui.per_month }}</span>{% endif %}</h2>
-                                <div class="course-details__price-btn">
-                                    {% if is_enrolled %}
-                                    <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.access }}</a>
-                                    {% else %}
-                                    <a href="{{ checkout_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'monthly',location:'course_detail'});">{{ ui.enroll }}</a>
-                                    {% if course.paid_course and annual_checkout_url and annual_price %}
-                                    <p class="course-details__annual-note">{{ ui.annual_note.replace("{price}", annual_price) }}</p>
-                                    <a href="{{ annual_checkout_url }}" class="course-details__annual-link" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'annual',location:'course_detail'});">{{ ui.enroll_annual }}</a>
-                                    {% endif %}
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                            <div class="course-details__sidebar-meta wow fadeInUp animated" data-wow-delay="0.3s">
-                                <ul class="course-details__sidebar-meta-list list-unstyled">
-                                    {% if course.total_lessons %}
-                                    <li class="course-details__sidebar-meta-list-item">
-                                        <div class="icon"><a><i class="far fa-folder-open"></i></a></div>
-                                        <div class="text"><p><a>{{ ui.lessons }}<span>{{ course.total_lessons }}</span></a></p></div>
-                                    </li>
-                                    {% endif %}
-                                    {% if course.enrollment_count %}
-                                    <li class="course-details__sidebar-meta-list-item">
-                                        <div class="icon"><a><i class="far fa-user-circle"></i></a></div>
-                                        <div class="text"><p><a>{{ ui.students }}<span>{{ course.enrollment_count }}</span></a></p></div>
-                                    </li>
-                                    {% endif %}
-                                    <li class="course-details__sidebar-meta-list-item">
-                                        <div class="icon"><a><i class="fas fa-video"></i></a></div>
-                                        <div class="text"><p><a>{{ ui.format_label }}<span>{{ ui.format_value }}</span></a></p></div>
-                                    </li>
-                                    {% if course.category_name %}
-                                    <li class="course-details__sidebar-meta-list-item">
-                                        <div class="icon"><a><i class="far fa-flag"></i></a></div>
-                                        <div class="text"><p><a>{{ ui.level_label }}<span>{{ course.category_name }}</span></a></p></div>
-                                    </li>
-                                    {% endif %}
-                                    <li class="course-details__sidebar-meta-list-item">
-                                        <div class="icon"><a><i class="fas fa-certificate"></i></a></div>
-                                        <div class="text"><p><a>{{ ui.cert_label }}<span>{{ ui.yes }}</span></a></p></div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {% if related_courses %}
-                            <div class="course-details__new-courses wow fadeInUp animated" data-wow-delay="0.5s">
-                                <h3 class="course-details__new-courses-title">{{ ui.related }}</h3>
-                                <ul class="course-details__new-courses-list list-unstyled">
-                                    {% for rc in related_courses %}
-                                    <li class="course-details__new-courses-list-item">
-                                        <div class="course-details__new-courses-list-item-img">
-                                            <img src="{{ rc.image }}" alt="{{ rc.title }}" loading="lazy" />
+                        {% if course.chapters_list %}
+                        <div class="course-details__curriculum">
+                            <h2 class="course-details__curriculum-title">{{ ui.content }}</h2>
+                            {% for chapter in course.chapters_list %}
+                            <div class="course-details__curriculum-single{% if loop.last %} mar-buttom0{% endif %}">
+                                <h3 class="course-details__curriculum-single-title">{{ loop.index }}. {{ chapter.title }}</h3>
+                                <ul class="course-details__curriculum-list list-unstyled">
+                                    {% for lesson in chapter.lessons %}
+                                    <li>
+                                        <div class="course-details__curriculum-list-left">
+                                            <div class="course-details__curriculum-list-left-icon"><i class="fa fa-play" aria-hidden="true"></i></div>
+                                            <span class="course-details__curriculum-list-left-title">{{ lesson.title }}</span>
                                         </div>
-                                        <div class="course-details__new-courses-list-item-content">
-                                            <h4 class="course-details__new-courses-list-item-content-title"><a href="{{ rc.url }}">{{ rc.title }}</a></h4>
-                                            <p class="course-details__new-courses-price">{{ rc.formatted_price }}</p>
-                                        </div>
+                                        {% if lesson.duration %}<div class="course-details__curriculum-list-right"><p>{{ lesson.duration }}</p></div>{% endif %}
                                     </li>
                                     {% endfor %}
                                 </ul>
                             </div>
-                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="course-details__helpful-links" style="margin-top:28px;padding:22px 26px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
+                            <p style="margin:0 0 12px;font-weight:700;color:#111827;">{{ ui.learn_more_title }}</p>
+                            <p style="margin:0;line-height:2.1;">
+                                <a href="{{ vd_level_test_url }}">{{ ui.link_level_test }}</a> ·
+                                <a href="{{ vd_prefix }}/metodologia">{{ ui.link_methodology }}</a> ·
+                                <a href="{{ vd_prefix }}/diferenciais">{{ ui.link_differentiators }}</a> ·
+                                <a href="{{ vd_prefix }}/certificado">{{ ui.link_certificate }}</a> ·
+                                <a href="{{ vd_prefix }}/planos">{{ ui.link_plans }}</a> ·
+                                <a href="{{ vd_prefix }}/faq">{{ ui.link_faq }}</a>
+                            </p>
                         </div>
                     </div>
-                    <!--End Course Details Sidebar-->
                 </div>
-            </div>
+
+                <div class="col-xl-4 col-lg-4">
+                    <div class="course-details__sidebar">
+                        <div class="course-details__price wow fadeInUp animated" data-wow-delay="0.1s">
+                            <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ ui.per_month }}</span>{% endif %}</h2>
+                            <div class="course-details__price-btn">
+                                {% if is_enrolled %}
+                                <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.access }}</a>
+                                {% else %}
+                                <a href="{{ checkout_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'monthly',location:'course_detail'});">{{ ui.enroll }}</a>
+                                {% if course.paid_course and annual_checkout_url and annual_price %}
+                                <p class="course-details__annual-note">{{ ui.annual_note.replace("{price}", annual_price) }}</p>
+                                <a href="{{ annual_checkout_url }}" class="course-details__annual-link" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_enrollment_intent_click',course:'{{ course.name }}',billing_period:'annual',location:'course_detail'});">{{ ui.enroll_annual }}</a>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="course-details__sidebar-meta wow fadeInUp animated" data-wow-delay="0.3s">
+                            <ul class="course-details__sidebar-meta-list list-unstyled">
+                                {% if course.total_lessons %}<li class="course-details__sidebar-meta-list-item"><div class="icon"><a><i class="far fa-folder-open"></i></a></div><div class="text"><p><a>{{ ui.lessons }}<span>{{ course.total_lessons }}</span></a></p></div></li>{% endif %}
+                                {% if course.enrollment_count %}<li class="course-details__sidebar-meta-list-item"><div class="icon"><a><i class="far fa-user-circle"></i></a></div><div class="text"><p><a>{{ ui.students }}<span>{{ course.enrollment_count }}</span></a></p></div></li>{% endif %}
+                                <li class="course-details__sidebar-meta-list-item"><div class="icon"><a><i class="fas fa-video"></i></a></div><div class="text"><p><a>{{ ui.format_label }}<span>{{ ui.format_value }}</span></a></p></div></li>
+                                {% if course.category_name %}<li class="course-details__sidebar-meta-list-item"><div class="icon"><a><i class="far fa-flag"></i></a></div><div class="text"><p><a>{{ ui.level_label }}<span>{{ course.category_name }}</span></a></p></div></li>{% endif %}
+                                <li class="course-details__sidebar-meta-list-item"><div class="icon"><a><i class="fas fa-certificate"></i></a></div><div class="text"><p><a>{{ ui.cert_label }}<span>{{ ui.yes }}</span></a></p></div></li>
+                            </ul>
+                        </div>
+
+                        {% if related_courses %}
+                        <div class="course-details__new-courses wow fadeInUp animated" data-wow-delay="0.5s">
+                            <h3 class="course-details__new-courses-title">{{ ui.related }}</h3>
+                            <ul class="course-details__new-courses-list list-unstyled">
+                                {% for rc in related_courses %}
+                                <li class="course-details__new-courses-list-item">
+                                    <div class="course-details__new-courses-list-item-img"><img src="{{ rc.image }}" alt="{{ rc.title }}" loading="lazy" /></div>
+                                    <div class="course-details__new-courses-list-item-content">
+                                        <h4 class="course-details__new-courses-list-item-content-title"><a href="{{ rc.url }}">{{ rc.title }}</a></h4>
+                                        <p class="course-details__new-courses-price">{{ rc.formatted_price }}</p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div></div>
         </section>
-        <!--Course Details End-->
 
         {% include "templates/includes/site_footer.html" %}
-
-    </div><!-- /.page-wrapper -->
+    </div>
 
     <div class="mobile-nav__wrapper">
         <div class="mobile-nav__overlay mobile-nav__toggler"></div>
@@ -449,9 +354,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
             <div class="logo-box"><a href="/" aria-label="logo"><img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" width="155" alt="Vedium" /></a></div>
             <div class="mobile-nav__container"></div>
-            <ul class="mobile-nav__contact list-unstyled">
-                <li><i class="icon-letter"></i><!--email_off--><a href="mailto:contato@vediums.com">contato@vediums.com</a><!--/email_off--></li>
-            </ul>
+            <ul class="mobile-nav__contact list-unstyled"><li><i class="icon-letter"></i><!--email_off--><a href="mailto:contato@vediums.com">contato@vediums.com</a><!--/email_off--></li></ul>
         </div>
     </div>
 
@@ -465,6 +368,7 @@
     <script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script defer src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
     <script defer src="/assets/vedium_core/vedium_assets/js/vedium.min.js"></script>
+    <script defer data-vedium-course-checkout="true" src="/assets/vedium_core/js/course_checkout_override.js?v=frequency-public-20260804-1"></script>
     <script defer src="/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix"></script>
 </body>
 
