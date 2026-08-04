@@ -1,0 +1,129 @@
+﻿{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 91937587012,
+      "run_id": 30892488998,
+      "workflow_name": "Deploy to Production",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/ivonsmatos/vedium/actions/runs/30892488998",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOQ45u4c8AAAAVZ-g_RA",
+      "head_sha": "49b1689826ab51d8619fad7bb84ae8b809bd61f3",
+      "url": "https://api.github.com/repos/ivonsmatos/vedium/actions/jobs/91937587012",
+      "html_url": "https://github.com/ivonsmatos/vedium/actions/runs/30892488998/job/91937587012",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-08-04T08:33:57Z",
+      "started_at": "2026-08-04T08:33:59Z",
+      "completed_at": "2026-08-04T08:38:54Z",
+      "name": "deploy",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-08-04T08:34:00Z",
+          "completed_at": "2026-08-04T08:34:02Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-08-04T08:34:02Z",
+          "completed_at": "2026-08-04T08:34:04Z"
+        },
+        {
+          "name": "Setup SSH",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-08-04T08:34:04Z",
+          "completed_at": "2026-08-04T08:34:04Z"
+        },
+        {
+          "name": "Add known hosts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-08-04T08:34:04Z",
+          "completed_at": "2026-08-04T08:34:04Z"
+        },
+        {
+          "name": "Sync code to server (app Frappe)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-08-04T08:34:04Z",
+          "completed_at": "2026-08-04T08:34:11Z"
+        },
+        {
+          "name": "Publish marketing site (vediums.com)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-08-04T08:34:11Z",
+          "completed_at": "2026-08-04T08:34:14Z"
+        },
+        {
+          "name": "Deploy .env to server",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-08-04T08:34:14Z",
+          "completed_at": "2026-08-04T08:34:16Z"
+        },
+        {
+          "name": "Run *** commands",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 8,
+          "started_at": "2026-08-04T08:34:16Z",
+          "completed_at": "2026-08-04T08:38:52Z"
+        },
+        {
+          "name": "Smoke test",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-08-04T08:38:52Z",
+          "completed_at": "2026-08-04T08:38:52Z"
+        },
+        {
+          "name": "Post Setup SSH",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-08-04T08:38:52Z",
+          "completed_at": "2026-08-04T08:38:52Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-08-04T08:38:52Z",
+          "completed_at": "2026-08-04T08:38:52Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-08-04T08:38:52Z",
+          "completed_at": "2026-08-04T08:38:52Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/ivonsmatos/vedium/check-runs/91937587012",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000005369,
+      "runner_name": "GitHub Actions 1000005369",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

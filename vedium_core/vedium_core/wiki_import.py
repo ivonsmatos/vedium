@@ -38,7 +38,7 @@ from frappe.utils import cint
 
 SPACE_DOCTYPE_CANDIDATES = ("Wiki Space", "WikiSpace")
 GROUP_DOCTYPE_CANDIDATES = ("Wiki Sidebar", "Wiki Group", "WikiSidebar", "WikiGroup")
-PAGE_DOCTYPE_CANDIDATES = ("Wiki Page", "WikiPage")
+PAGE_DOCTYPE_CANDIDATES = ("Wiki Document", "Wiki Page", "WikiPage")
 
 
 # ---------------------------------------------------------------------------
