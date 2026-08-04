@@ -174,14 +174,14 @@ def _upsert_group(
     if title_field:
         filters.append({title_field: title})
 
-    existing = _find_existing(group_doctype, filters)
+    existing = _find_existing(doctype, filters)
     action = "update" if existing else "create"
 
     if dry_run:
         counters["created" if not existing else "updated"] += 1
         return existing or f"dry:group:{title}", f"[DRY] {action} grupo: {space_route} / {title}"
 
-    doc = frappe.get_doc(group_doctype, existing) if existing else frappe.new_doc(group_doctype)
+    doc = frappe.get_doc(doctype, existing) if existing else frappe.new_doc(doctype)
     if title_field:
         doc.set(title_field, title)
     if space_field and space_name:
