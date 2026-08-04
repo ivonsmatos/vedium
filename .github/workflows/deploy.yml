@@ -182,7 +182,7 @@ jobs:
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
               bench --site "$SITE_NAME" execute \
               vedium_core.wiki_import.import_manifest \
-              --kwargs '{"manifest_path":"wiki_content/manifest.json","dry_run":false}'
+              --kwargs '{"manifest_path":"wiki_content/manifest.json","dry_run":False}'
 
           echo "✅ Deploy finalizado."
           REMOTE
