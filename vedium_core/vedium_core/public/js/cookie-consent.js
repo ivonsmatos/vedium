@@ -86,17 +86,3 @@
   }
 })();
 
-/* O template público /curso é standalone e não herda web_include_js do Frappe. */
-(function () {
-  var isPublicCourse = /\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?curso\//i.test(
-    window.location.pathname
-  );
-  if (!isPublicCourse) return;
-  if (document.querySelector('script[data-vedium-course-checkout="true"]')) return;
-
-  var script = document.createElement("script");
-  script.src = "/assets/vedium_core/js/course_checkout_override.js?v=frequency-public-20260803-2";
-  script.defer = true;
-  script.dataset.vediumCourseCheckout = "true";
-  document.head.appendChild(script);
-})();
