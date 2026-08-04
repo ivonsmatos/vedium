@@ -1,6 +1,6 @@
 import frappe
 
-def execute():
+def execute_v2():
     course_name = "ingl-s-beginner"
     product_id = "prod_UznRGM7yCjT6lg"
 
@@ -39,6 +39,9 @@ def _create_price_if_not_exists(course_name, period, product_id, p_data):
     existing = frappe.db.get_value("Vedium Course Price", {"catalog_key": catalog_key})
     
     if existing:
+        frappe.db.set_value("Vedium Course Price", existing, "amount", p_data['amount'])
+        frappe.db.set_value("Vedium Course Price", existing, "stripe_validated", 1)
+        frappe.db.commit()
         doc = frappe.get_doc("Vedium Course Price", existing)
         # Check if values diverge
         diverges = False
@@ -71,6 +74,7 @@ def _create_price_if_not_exists(course_name, period, product_id, p_data):
         "stripe_product_id": product_id,
         "stripe_price_id": p_data['price_id'],
         "stripe_lookup_key": p_data['lookup_key'],
+        "stripe_validated": 1,
     })
     
     # Bypass stripe HTTP validation in patch as API KEY may not be available or network could fail
