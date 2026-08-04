@@ -1,0 +1,1335 @@
+{
+  "version": 2,
+  "description": "Manifesto completo da Wiki Vedium — espaços, grupos e páginas.",
+  "spaces": [
+    {
+      "title": "Documentação Pedagógica dos Cursos",
+      "route": "documentacao-pedagogica-dos-cursos",
+      "published": 1,
+      "existing": true,
+      "groups": [
+        {
+          "title": "Modelos e Padrões Pedagógicos",
+          "existing": true,
+          "pages": [
+            {
+              "title": "Modelo de Plano de Curso",
+              "route": "modelo-plano-de-curso",
+              "order": 3,
+              "published": 1,
+              "content": "# Modelo de Plano de Curso\n\nUse este modelo para estruturar o planejamento geral de um curso antes de iniciar as aulas.\n\n---\n\n## Identificação\n\n| Campo | Preenchimento |\n|---|---|\n| Idioma | |\n| Nível | |\n| Carga horária estimada | [A CONFIRMAR] |\n| Modalidade | Particular / Turma |\n| Professor responsável | |\n| Data de início prevista | |\n\n---\n\n## Objetivo Geral do Curso\n\nDescreva em 2 a 3 frases o que o aluno será capaz de fazer ao concluir este nível.\n\n> Exemplo: ao concluir o nível A2, o aluno será capaz de comunicar-se em situações cotidianas simples, compreender textos curtos e redigir mensagens informais com vocabulário básico.\n\n---\n\n## Competências a Desenvolver\n\n- [ ] Compreensão oral\n- [ ] Expressão oral\n- [ ] Leitura e compreensão escrita\n- [ ] Produção escrita\n- [ ] Vocabulário temático\n- [ ] Gramática e estrutura\n- [ ] Pronúncia e fluência\n- [ ] Cultura e contexto\n\n---\n\n## Estrutura das Unidades\n\n| Unidade | Tema | Competências | Duração estimada |\n|---|---|---|---|\n| 1 | | | |\n| 2 | | | |\n| 3 | | | |\n| 4 | | | |\n| 5 | | | |\n\n---\n\n## Materiais Previstos\n\n- Livro ou apostila:\n- Áudios:\n- Vídeos:\n- Atividades digitais:\n- Outros:\n\n---\n\n## Avaliações Previstas\n\n- [ ] Diagnóstica (início)\n- [ ] Contínua (durante)\n- [ ] Final (encerramento)\n- [ ] Feedback ao aluno\n\n---\n\n## Observações\n\nRegistre aqui adaptações necessárias para o aluno ou turma específica.\n"
+            },
+            {
+              "title": "Modelo de Avaliação Diagnóstica",
+              "route": "modelo-avaliacao-diagnostica",
+              "order": 4,
+              "published": 1,
+              "content": "# Modelo de Avaliação Diagnóstica\n\nAplique esta avaliação antes do início do curso para identificar o nível real do aluno e adequar o planejamento.\n\n---\n\n## Dados do Aluno\n\n| Campo | Preenchimento |\n|---|---|\n| Nome | |\n| Idioma | |\n| Data da avaliação | |\n| Professor avaliador | |\n\n---\n\n## Contato Anterior com o Idioma\n\n- Estudou anteriormente? Sim / Não\n- Onde e por quanto tempo?\n- Viajou para países onde o idioma é falado? Sim / Não\n- Usa o idioma no trabalho ou na vida pessoal?\n\n---\n\n## Avaliação Oral\n\n**Nível de fluência percebido:** Iniciante / Básico / Intermediário / Avançado\n\nComentários do professor:\n\n---\n\n## Avaliação Escrita\n\nTarefas aplicadas:\n\n1.\n2.\n3.\n\n**Resultado:** satisfatório / parcialmente satisfatório / insatisfatório\n\nComentários:\n\n---\n\n## Vocabulário e Gramática\n\nPontos fortes identificados:\n\nLacunas identificadas:\n\n---\n\n## Pronúncia\n\nObservações:\n\n---\n\n## Nível Recomendado\n\n- Nível indicado para início:\n- Justificativa:\n\n---\n\n## Adaptações Pedagógicas Recomendadas\n\nDescreva aqui qualquer adaptação necessária no plano de curso.\n"
+            },
+            {
+              "title": "Modelo de Avaliação Contínua",
+              "route": "modelo-avaliacao-continua",
+              "order": 5,
+              "published": 1,
+              "content": "# Modelo de Avaliação Contínua\n\nUse este modelo para registrar o progresso do aluno ao longo das aulas, de forma regular e sistemática.\n\n---\n\n## Dados\n\n| Campo | Preenchimento |\n|---|---|\n| Aluno | |\n| Professor | |\n| Período avaliado | |\n| Idioma e nível | |\n\n---\n\n## Critérios de Avaliação\n\nAtribua uma nota de 1 a 5 para cada critério (1 = insatisfatório, 5 = excelente).\n\n| Critério | Nota | Observações |\n|---|---|---|\n| Participação nas aulas | | |\n| Compreensão oral | | |\n| Expressão oral | | |\n| Produção escrita | | |\n| Leitura e interpretação | | |\n| Vocabulário em uso | | |\n| Gramática aplicada | | |\n| Pronúncia | | |\n| Realização das tarefas | | |\n| Frequência e pontualidade | [A CONFIRMAR] | |\n\n---\n\n## Progresso em Relação ao Plano de Curso\n\nConteúdos trabalhados no período:\n\nConteúdos pendentes ou em reforço:\n\n---\n\n## Pontos Positivos\n\n---\n\n## Pontos a Desenvolver\n\n---\n\n## Recomendações para o Próximo Período\n\n---\n\n## Observações Gerais\n"
+            },
+            {
+              "title": "Modelo de Avaliação Final",
+              "route": "modelo-avaliacao-final",
+              "order": 6,
+              "published": 1,
+              "content": "# Modelo de Avaliação Final\n\nAplique ao término do curso ou ao final de um nível para registrar o resultado global do aluno.\n\n---\n\n## Dados\n\n| Campo | Preenchimento |\n|---|---|\n| Aluno | |\n| Idioma e nível | |\n| Professor | |\n| Data de encerramento | |\n| Carga horária concluída | |\n\n---\n\n## Resultados por Competência\n\n| Competência | Resultado | Observações |\n|---|---|---|\n| Compreensão oral | Atingiu / Parcialmente / Não atingiu | |\n| Expressão oral | Atingiu / Parcialmente / Não atingiu | |\n| Leitura | Atingiu / Parcialmente / Não atingiu | |\n| Produção escrita | Atingiu / Parcialmente / Não atingiu | |\n| Vocabulário | Atingiu / Parcialmente / Não atingiu | |\n| Gramática | Atingiu / Parcialmente / Não atingiu | |\n| Pronúncia | Atingiu / Parcialmente / Não atingiu | |\n\n---\n\n## Resultado Geral\n\n- [ ] Aprovado para o próximo nível\n- [ ] Aprovado com reforço recomendado\n- [ ] Repetição de nível recomendada\n- [ ] Conclusão do curso\n\n---\n\n## Elegibilidade para Certificado\n\nO aluno atende aos critérios de certificação? [A CONFIRMAR]\n\n- [ ] Sim\n- [ ] Não — motivo:\n\n---\n\n## Parecer Final do Professor\n\n---\n\n## Recomendação de Próximos Passos\n"
+            },
+            {
+              "title": "Modelo de Feedback ao Aluno",
+              "route": "modelo-feedback-ao-aluno",
+              "order": 7,
+              "published": 1,
+              "content": "# Modelo de Feedback ao Aluno\n\nUse este modelo para enviar retorno estruturado e motivador ao aluno após avaliações ou períodos relevantes.\n\n---\n\n## Cabeçalho\n\n**Para:** [Nome do aluno]\n**De:** [Nome do professor]\n**Data:** [Data]\n**Idioma e nível:** [Idioma — nível]\n\n---\n\n## Pontos Positivos\n\nDescreva de forma objetiva os avanços observados no período:\n\n1.\n2.\n3.\n\n---\n\n## Áreas em Desenvolvimento\n\nApresente de forma construtiva os pontos que ainda precisam de atenção:\n\n1.\n2.\n3.\n\n---\n\n## Objetivos para o Próximo Período\n\nIndique 2 a 3 metas concretas e alcançáveis:\n\n1.\n2.\n3.\n\n---\n\n## Recomendações de Prática Extra\n\nSugestões de atividades para praticar fora das aulas:\n\n---\n\n## Mensagem de Encerramento\n\nEscreva uma mensagem personalizada, encorajadora e adequada ao contexto do aluno.\n\n---\n\n> **Orientação:** Mantenha o tom positivo e motivador. O feedback deve impulsionar o aluno, não desanimar. Use exemplos concretos e linguagem acessível.\n"
+            },
+            {
+              "title": "Modelo de Relatório de Evolução",
+              "route": "modelo-relatorio-de-evolucao",
+              "order": 8,
+              "published": 1,
+              "content": "# Modelo de Relatório de Evolução\n\nDocumento periódico para registrar e comunicar o progresso do aluno ao longo do tempo.\n\n---\n\n## Identificação\n\n| Campo | Preenchimento |\n|---|---|\n| Aluno | |\n| Idioma e nível | |\n| Professor | |\n| Período coberto | |\n| Número de aulas realizadas | |\n\n---\n\n## Resumo do Período\n\nDescreva brevemente o que foi trabalhado:\n\n---\n\n## Evolução por Competência\n\n| Competência | Início do período | Fim do período | Evolução |\n|---|---|---|---|\n| Compreensão oral | | | |\n| Expressão oral | | | |\n| Leitura | | | |\n| Produção escrita | | | |\n| Vocabulário | | | |\n| Gramática | | | |\n| Pronúncia | | | |\n\nEscala: 1 (inicial) a 5 (avançado)\n\n---\n\n## Frequência e Engajamento\n\n- Aulas realizadas:\n- Aulas faltadas:\n- Taxa de aproveitamento das tarefas: [A CONFIRMAR]\n\n---\n\n## Destaques do Período\n\n---\n\n## Desafios Identificados\n\n---\n\n## Recomendações para o Próximo Período\n\n---\n\n## Assinatura do Professor\n"
+            },
+            {
+              "title": "Modelo de Plano Individual do Aluno",
+              "route": "modelo-plano-individual-aluno",
+              "order": 9,
+              "published": 1,
+              "content": "# Modelo de Plano Individual do Aluno\n\nDocumento de personalização pedagógica para alunos que demandam atenção específica ou possuem objetivos muito particulares.\n\n---\n\n## Dados do Aluno\n\n| Campo | Preenchimento |\n|---|---|\n| Nome | |\n| Idioma e nível | |\n| Professor | |\n| Data de elaboração | |\n\n---\n\n## Objetivo Principal do Aluno\n\nRegistre o objetivo declarado pelo aluno ao iniciar o curso:\n\n---\n\n## Contexto e Necessidades Específicas\n\n- Faixa etária ou perfil:\n- Uso pretendido do idioma (trabalho, viagem, estudo, pessoal):\n- Limitações ou dificuldades conhecidas:\n- Pontos fortes já identificados:\n\n---\n\n## Adaptações Pedagógicas\n\n| Área | Adaptação planejada |\n|---|---|\n| Ritmo das aulas | |\n| Materiais | |\n| Foco temático | |\n| Tipo de atividades | |\n| Avaliações | |\n\n---\n\n## Metas de Curto Prazo (1 a 3 meses)\n\n1.\n2.\n3.\n\n---\n\n## Metas de Médio Prazo (3 a 6 meses)\n\n1.\n2.\n3.\n\n---\n\n## Acompanhamento\n\n| Data | Observação | Próxima ação |\n|---|---|---|\n| | | |\n| | | |\n\n---\n\n## Revisão do Plano\n\nData da próxima revisão:\n"
+            },
+            {
+              "title": "Modelo de Registro de Aula",
+              "route": "modelo-registro-de-aula",
+              "order": 10,
+              "published": 1,
+              "content": "# Modelo de Registro de Aula\n\nPreencha este registro logo após cada aula para manter o histórico pedagógico atualizado.\n\n---\n\n## Dados da Aula\n\n| Campo | Preenchimento |\n|---|---|\n| Aluno / Turma | |\n| Professor | |\n| Data | |\n| Horário | |\n| Duração | |\n| Idioma e nível | |\n\n---\n\n## Conteúdo Trabalhado\n\nDescreva brevemente o que foi abordado na aula:\n\n---\n\n## Competências Praticadas\n\n- [ ] Compreensão oral\n- [ ] Expressão oral\n- [ ] Leitura\n- [ ] Produção escrita\n- [ ] Vocabulário\n- [ ] Gramática\n- [ ] Pronúncia\n\n---\n\n## Materiais Utilizados\n\n---\n\n## Participação e Engajamento\n\nNota de 1 a 5: ___\n\nComentários:\n\n---\n\n## Tarefas Passadas\n\nDescreva as atividades indicadas para prática fora da aula:\n\n---\n\n## Pontos a Retomar na Próxima Aula\n\n---\n\n## Observações\n"
+            },
+            {
+              "title": "Modelo de Alerta Pedagógico",
+              "route": "modelo-alerta-pedagogico",
+              "order": 11,
+              "published": 1,
+              "content": "# Modelo de Alerta Pedagógico\n\nUse este formulário para sinalizar situações que exigem atenção da coordenação pedagógica.\n\n---\n\n## Dados\n\n| Campo | Preenchimento |\n|---|---|\n| Aluno | |\n| Professor | |\n| Data do alerta | |\n| Idioma e nível | |\n\n---\n\n## Tipo de Alerta\n\n- [ ] Dificuldade de aprendizagem persistente\n- [ ] Baixo engajamento ou desmotivação\n- [ ] Frequência irregular [A CONFIRMAR]\n- [ ] Não entrega de atividades\n- [ ] Problema de comunicação com o professor\n- [ ] Necessidade de revisão do nível\n- [ ] Situação pessoal que impacta o desempenho\n- [ ] Outro:\n\n---\n\n## Descrição da Situação\n\nDescreva com clareza e objetividade o que está ocorrendo:\n\n---\n\n## Ações Já Adotadas pelo Professor\n\nO que já foi tentado:\n\n---\n\n## Recomendação ao Coordenador\n\nO que o professor sugere como próximo passo:\n\n---\n\n## Status do Alerta\n\n- [ ] Aberto\n- [ ] Em análise pela coordenação\n- [ ] Resolvido\n- [ ] Encerrado sem resolução — motivo:\n"
+            },
+            {
+              "title": "Modelo de Checklist de Qualidade da Aula",
+              "route": "modelo-checklist-qualidade-aula",
+              "order": 12,
+              "published": 1,
+              "content": "# Modelo de Checklist de Qualidade da Aula\n\nUse este checklist para autoavaliação antes, durante e após cada aula.\n\n---\n\n## Antes da Aula\n\n- [ ] O plano de aula foi elaborado e revisado\n- [ ] Os materiais estão preparados e acessíveis\n- [ ] O ambiente virtual (Google Meet) foi testado\n- [ ] Câmera e microfone estão funcionando\n- [ ] O registro da aula anterior foi consultado\n- [ ] Tarefas passadas foram verificadas\n\n---\n\n## Durante a Aula\n\n- [ ] A aula começou no horário combinado\n- [ ] O objetivo da aula foi comunicado ao aluno\n- [ ] Houve ativação de conhecimento prévio\n- [ ] As quatro habilidades foram contempladas quando aplicável\n- [ ] O aluno teve oportunidade de falar e praticar\n- [ ] Correções foram feitas de forma construtiva\n- [ ] O ritmo foi adequado ao perfil do aluno\n- [ ] Houve interação genuína e motivadora\n\n---\n\n## Ao Final da Aula\n\n- [ ] O conteúdo foi resumido\n- [ ] Tarefas foram explicadas com clareza\n- [ ] O registro da aula foi preenchido\n- [ ] Feedback rápido foi dado ao aluno\n- [ ] A próxima aula foi confirmada\n\n---\n\n## Observações\n"
+            },
+            {
+              "title": "Modelo de Checklist de Qualidade de Materiais",
+              "route": "modelo-checklist-qualidade-materiais",
+              "order": 13,
+              "published": 1,
+              "content": "# Modelo de Checklist de Qualidade de Materiais\n\nAplique antes de publicar ou compartilhar qualquer material didático com alunos.\n\n---\n\n## Identificação do Material\n\n| Campo | Preenchimento |\n|---|---|\n| Título do material | |\n| Idioma e nível | |\n| Autor / Professor | |\n| Data de criação | |\n| Versão | |\n\n---\n\n## Critérios de Qualidade\n\n### Conteúdo\n\n- [ ] As informações são corretas e atualizadas\n- [ ] A linguagem é adequada ao nível do aluno\n- [ ] Os objetivos de aprendizagem estão claros\n- [ ] O conteúdo é coerente com o plano de aula ou curso\n- [ ] Não há erros gramaticais ou de ortografia\n\n### Direitos Autorais\n\n- [ ] O material é de autoria própria, ou\n- [ ] Há autorização ou licença para uso, ou\n- [ ] A fonte foi devidamente citada\n- [ ] Não há reprodução indevida de livros ou materiais protegidos\n\n### Formato e Apresentação\n\n- [ ] O material é legível e bem organizado\n- [ ] Imagens e áudios estão em boa qualidade\n- [ ] O arquivo está em formato acessível (PDF, link ou outro)\n- [ ] O material pode ser aberto no celular quando necessário\n\n### Adequação\n\n- [ ] O material respeita a faixa etária do aluno\n- [ ] Não contém conteúdo sensível sem aviso prévio\n- [ ] Está alinhado à identidade da Vedium\n\n---\n\n## Aprovação\n\n- [ ] Aprovado para uso imediato\n- [ ] Aprovado com ajustes (descrever abaixo)\n- [ ] Reprovado — revisar antes de usar\n\nObservações:\n"
+            },
+            {
+              "title": "Modelo de Revisão de Curso",
+              "route": "modelo-revisao-de-curso",
+              "order": 14,
+              "published": 1,
+              "content": "# Modelo de Revisão de Curso\n\nUse anualmente ou ao final de cada ciclo de turma para avaliar e aprimorar o curso.\n\n---\n\n## Identificação\n\n| Campo | Preenchimento |\n|---|---|\n| Idioma e nível | |\n| Professor responsável | |\n| Período analisado | |\n| Número de alunos atendidos | |\n\n---\n\n## Objetivos do Curso Foram Atingidos?\n\n- [ ] Sim, pela maioria dos alunos\n- [ ] Sim, parcialmente\n- [ ] Não — identificar motivos abaixo\n\nAnálise:\n\n---\n\n## Conteúdo\n\n| Unidade | Funcionou bem? | O que precisa de ajuste? |\n|---|---|---|\n| | | |\n| | | |\n| | | |\n\n---\n\n## Materiais\n\nO que funcionou:\n\nO que deve ser substituído ou atualizado:\n\n---\n\n## Avaliações\n\nAs avaliações refletiram o aprendizado real dos alunos?\n\nSugestões de melhoria:\n\n---\n\n## Feedback dos Alunos\n\nPrincipais pontos levantados pelos alunos:\n\n---\n\n## Ações Propostas para o Próximo Ciclo\n\n1.\n2.\n3.\n\n---\n\n## Aprovação da Revisão\n\nAprovado por (coordenação pedagógica):\n\nData:\n"
+            },
+            {
+              "title": "Modelo de Reunião Pedagógica",
+              "route": "modelo-reuniao-pedagogica",
+              "order": 15,
+              "published": 1,
+              "content": "# Modelo de Reunião Pedagógica\n\nUse esta ata para registrar reuniões entre professores e/ou coordenação pedagógica.\n\n---\n\n## Dados da Reunião\n\n| Campo | Preenchimento |\n|---|---|\n| Data | |\n| Horário | |\n| Participantes | |\n| Facilitador | |\n| Redator da ata | |\n\n---\n\n## Pauta\n\n1.\n2.\n3.\n\n---\n\n## Resumo das Discussões\n\n### Item 1\n\n### Item 2\n\n### Item 3\n\n---\n\n## Decisões Tomadas\n\n| Decisão | Responsável | Prazo |\n|---|---|---|\n| | | |\n| | | |\n\n---\n\n## Pendências da Reunião Anterior\n\n| Pendência | Status | Observação |\n|---|---|---|\n| | | |\n\n---\n\n## Próxima Reunião\n\n- Data prevista:\n- Pauta preliminar:\n\n---\n\n## Observações Gerais\n"
+            },
+            {
+              "title": "Padrão de Linguagem nos Registros",
+              "route": "padrao-linguagem-registros",
+              "order": 16,
+              "published": 1,
+              "content": "# Padrão de Linguagem nos Registros\n\nOrientações para manter consistência, profissionalismo e clareza em todos os registros pedagógicos da Vedium.\n\n---\n\n## Princípios Gerais\n\n1. **Objetividade:** escreva o que ocorreu, não o que você sentiu. Use fatos observáveis.\n2. **Clareza:** evite jargões e siglas sem explicação.\n3. **Respeito:** registros sobre alunos e professores devem ser respeitosos e imparciais.\n4. **Confidencialidade:** nenhum registro deve ser compartilhado sem autorização.\n5. **Atualidade:** preencha os registros no mesmo dia da aula ou evento.\n\n---\n\n## Vocabulário Recomendado\n\n| Use | Evite |\n|---|---|\n| \"O aluno demonstrou dificuldade em...\" | \"O aluno não sabe...\" |\n| \"A pronúncia precisa de atenção em...\" | \"A pronúncia é ruim\" |\n| \"O engajamento foi alto nesta aula\" | \"O aluno gostou\" |\n| \"A tarefa não foi entregue\" | \"O aluno é preguiçoso\" |\n\n---\n\n## Tempo Verbal\n\nUse o **pretérito perfeito** para registros de aulas passadas:\n\n> \"A aula abordou vocabulário de rotina doméstica e exercícios de pronúncia.\"\n\nUse o **futuro** ou **imperativo** para recomendações:\n\n> \"Retomar na próxima aula a distinção entre 'ser' e 'estar'.\"\n\n---\n\n## Sigilo\n\nTodo registro pedagógico é documento interno. Não compartilhe prints ou conteúdos de registros fora dos canais oficiais da Vedium.\n"
+            },
+            {
+              "title": "Padrão de Avaliação por Nível",
+              "route": "padrao-avaliacao-por-nivel",
+              "order": 17,
+              "published": 1,
+              "content": "# Padrão de Avaliação por Nível\n\nCritérios e expectativas por nível de proficiência para avaliações da Vedium.\n\n---\n\n## Referência de Níveis\n\nA Vedium adota como referência o Quadro Europeu Comum de Referência (QECR) para os idiomas que o utilizam:\n\n| Nível QECR | Descrição resumida |\n|---|---|\n| A1 | Iniciante — expressões básicas e apresentações simples |\n| A2 | Elementar — comunicação em situações cotidianas simples |\n| B1 | Intermediário — comunicação clara em assuntos familiares |\n| B2 | Intermediário avançado — fluência em temas variados |\n| C1 | Avançado — expressão fluente e espontânea |\n| C2 | Proficiente — domínio quase total do idioma |\n\nPara Iorubá e Hebraico, os níveis são definidos internamente pela Vedium. [A CONFIRMAR]\n\n---\n\n## Critérios por Nível\n\n### A1 — Iniciante\n\n- Vocabulário básico em contextos imediatos\n- Frases simples com apoio\n- Compreensão de palavras isoladas e expressões frequentes\n\n### A2 — Elementar\n\n- Comunicação em situações rotineiras\n- Uso de estruturas simples com alguma autonomia\n- Compreensão de mensagens curtas e diretas\n\n### B1 — Intermediário\n\n- Produção oral e escrita sobre assuntos do cotidiano\n- Compreensão de textos padronizados\n- Narração de experiências e planos\n\n### B2 — Intermediário Avançado\n\n- Fluência razoável com erros esporádicos\n- Compreensão de textos complexos\n- Discussão de temas abstratos\n\n### C1 / C2 — Avançado / Proficiente\n\n- Expressão fluente e espontânea\n- Uso preciso de estruturas complexas\n- Compreensão de textos literários e técnicos\n\n---\n\n## Avaliação de Iorubá e Hebraico\n\nOs critérios específicos para esses idiomas serão definidos pela coordenação pedagógica. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Padrão de Acompanhamento Pedagógico",
+              "route": "padrao-acompanhamento-pedagogico",
+              "order": 18,
+              "published": 1,
+              "content": "# Padrão de Acompanhamento Pedagógico\n\nDefine a frequência e o formato do acompanhamento que professores e coordenação devem realizar com cada aluno.\n\n---\n\n## Frequência de Acompanhamento\n\n| Tipo | Frequência | Responsável |\n|---|---|---|\n| Registro de aula | Após cada aula | Professor |\n| Avaliação contínua | Mensal [A CONFIRMAR] | Professor |\n| Feedback ao aluno | Mensal [A CONFIRMAR] | Professor |\n| Alerta pedagógico | Quando necessário | Professor |\n| Revisão pelo coordenador | Bimestral [A CONFIRMAR] | Coordenação |\n| Relatório de evolução | Trimestral [A CONFIRMAR] | Professor + Coordenação |\n\n---\n\n## Fluxo de Acompanhamento\n\n1. Professor registra cada aula.\n2. Professor avalia mensalmente e envia feedback ao aluno.\n3. Se houver problema, professor emite alerta pedagógico.\n4. Coordenação revisa alertas e aciona o professor para discussão.\n5. Relatório de evolução é compartilhado com o aluno no prazo definido.\n\n---\n\n## Comunicação com o Aluno\n\n- Feedback por escrito deve ser enviado pelo canal oficial da Vedium.\n- Registros internos não devem ser compartilhados diretamente com alunos — use o modelo de feedback.\n- Toda comunicação deve ser respeitosa, clara e construtiva.\n\n---\n\n## Documentação Obrigatória\n\nPara cada aluno ativo, devem existir:\n\n- [ ] Avaliação diagnóstica inicial\n- [ ] Plano de curso ou plano individual\n- [ ] Registros de aula (pelo menos uma por semana de atividade)\n- [ ] Avaliação contínua ou final quando aplicável\n"
+            },
+            {
+              "title": "Padrão de Organização dos Materiais",
+              "route": "padrao-organizacao-materiais",
+              "order": 19,
+              "published": 1,
+              "content": "# Padrão de Organização dos Materiais\n\nOrientações para nomear, armazenar e versionar os materiais didáticos da Vedium.\n\n---\n\n## Nomenclatura de Arquivos\n\nUse o formato:\n\n```\n[IDIOMA]-[NIVEL]-[TIPO]-[TITULO-RESUMIDO]-v[VERSAO]-[DATA]\n```\n\nExemplos:\n\n- `ingles-a1-apostila-rotinas-v1-2026-01`\n- `espanhol-b1-exercicio-verbos-v2-2026-03`\n- `ioruba-basico-vocabulario-saudacoes-v1-2026-05`\n\n---\n\n## Estrutura de Pastas\n\n```\nMateriais/\n├── Inglês/\n│   ├── A1/\n│   ├── A2/\n│   └── B1/\n├── Espanhol/\n├── Português-Estrangeiros/\n├── Iorubá/\n├── Hebraico/\n└── Modelos-e-Padrões/\n```\n\n---\n\n## Versão e Atualização\n\n- Toda alteração significativa deve gerar uma nova versão (v2, v3...).\n- A versão anterior deve ser arquivada, não excluída.\n- A data de revisão deve ser anotada no arquivo ou na descrição.\n\n---\n\n## Compartilhamento com Alunos\n\n- Compartilhe apenas a versão mais recente e aprovada.\n- Não compartilhe versões em rascunho sem identificação clara.\n- Confirme os direitos autorais antes de compartilhar materiais de terceiros.\n\n---\n\n## Materiais Aprovados vs. Em Elaboração\n\n| Status | Identificação |\n|---|---|\n| Aprovado para uso | Nome normal |\n| Em revisão | Prefixo `REVISAO-` |\n| Rascunho | Prefixo `RASCUNHO-` |\n| Arquivado | Mover para pasta `Arquivo/` |\n"
+            },
+            {
+              "title": "Padrão de Revisão dos Documentos Pedagógicos",
+              "route": "padrao-revisao-documentos-pedagogicos",
+              "order": 20,
+              "published": 1,
+              "content": "# Padrão de Revisão dos Documentos Pedagógicos\n\nDefine quando e como os documentos pedagógicos da Vedium devem ser revisados.\n\n---\n\n## Periodicidade de Revisão\n\n| Documento | Frequência de revisão |\n|---|---|\n| Plano de curso | A cada novo ciclo ou semestralmente [A CONFIRMAR] |\n| Avaliação diagnóstica | Anualmente ou quando o curso mudar |\n| Modelos de avaliação | Anualmente |\n| Modelos de feedback | Anualmente |\n| Padrões pedagógicos | Anualmente |\n| Política pedagógica | Quando houver mudança institucional |\n\n---\n\n## Processo de Revisão\n\n1. **Solicitação:** qualquer professor pode solicitar revisão via canal interno.\n2. **Responsável pela revisão:** coordenador pedagógico ou professor designado.\n3. **Prazo:** [A CONFIRMAR]\n4. **Aprovação:** o coordenador pedagógico aprova e publica a versão revisada.\n5. **Comunicação:** todos os professores são informados sobre a atualização.\n6. **Arquivo:** a versão anterior é arquivada com data.\n\n---\n\n## Controle de Versão\n\nCada documento deve ter no cabeçalho:\n\n| Campo | Preenchimento |\n|---|---|\n| Versão | |\n| Data da última revisão | |\n| Responsável pela revisão | |\n| Próxima revisão prevista | |\n\n---\n\n## Documentos que Não Devem ser Alterados sem Aprovação\n\n- Políticas de avaliação\n- Critérios de certificação\n- Regras de frequência\n- Contratos e termos pedagógicos\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Processos Administrativos",
+      "route": "processos-administrativos",
+      "published": 1,
+      "pages": [
+        {
+          "title": "Processos Administrativos",
+          "route": "processos-administrativos",
+          "order": 1,
+          "published": 1,
+          "content": "# Processos Administrativos\n\nEste espaço reúne os procedimentos administrativos da Vedium, incluindo cadastro, matrícula, pagamentos, contratos, comunicação operacional, organização de documentos e rotinas de atendimento.\n\n## Objetivo\n\nPadronizar as atividades administrativas, definir responsáveis, reduzir retrabalho e manter histórico claro das operações da escola.\n\n## Áreas abrangidas\n\n- cadastro de alunos e professores;\n- matrículas e alterações cadastrais;\n- contratos e documentos;\n- pagamentos e cobrança;\n- organização de turmas e agendas;\n- atendimento administrativo;\n- cancelamentos e remarcações;\n- relatórios e controles internos;\n- proteção de dados e acesso às informações.\n\nOs procedimentos detalhados estão nas seções deste espaço, organizados por área.\n"
+        }
+      ],
+      "groups": [
+        {
+          "title": "Matrículas",
+          "pages": [
+            {
+              "title": "Visão geral do processo de matrícula",
+              "route": "matriculas-visao-geral",
+              "order": 1,
+              "published": 1,
+              "content": "# Visão Geral do Processo de Matrícula\n\nA matrícula na Vedium é realizada inteiramente online, pela plataforma ou com apoio da equipe administrativa.\n\n## Etapas do Processo\n\n1. Cadastro do aluno\n2. Validação dos dados\n3. Escolha de curso e nível\n4. Definição de professor ou turma\n5. Confirmação de pagamento\n6. Liberação de acesso\n7. Comunicação de boas-vindas\n\n## Responsáveis\n\n| Etapa | Responsável |\n|---|---|\n| Cadastro | Aluno ou equipe administrativa |\n| Validação | Equipe administrativa |\n| Confirmação de pagamento | Sistema / Stripe |\n| Liberação de acesso | Sistema automático |\n| Boas-vindas | Equipe administrativa / Professor |\n\n## Prazo de Ativação\n\nApós a confirmação do pagamento, o acesso à plataforma é liberado automaticamente. [A CONFIRMAR] prazo de ativação manual quando necessário.\n\n## Canais de Suporte\n\nEm caso de dúvida no processo de matrícula, o aluno pode entrar em contato pelo canal oficial de suporte da Vedium.\n"
+            },
+            {
+              "title": "Cadastro do aluno",
+              "route": "matriculas-cadastro-aluno",
+              "order": 2,
+              "published": 1,
+              "content": "# Cadastro do Aluno\n\nO cadastro é a primeira etapa da matrícula. Todos os dados fornecidos são tratados em conformidade com a LGPD.\n\n## Dados Obrigatórios\n\n- Nome completo\n- E-mail válido\n- Criação de senha\n\n## Dados Complementares\n\n- Telefone ou WhatsApp\n- Data de nascimento (obrigatório para menores)\n- Nome do responsável legal (para alunos menores de 18 anos)\n\n## Como Cadastrar\n\n1. Acessar `app.vediums.com`.\n2. Clicar em \"Criar conta\" ou \"Matricular-se\".\n3. Preencher os dados solicitados.\n4. Confirmar o e-mail pelo link enviado.\n5. Prosseguir para a escolha do curso.\n\n## Quando o Cadastro é Feito pela Equipe\n\nQuando o aluno não consegue realizar o cadastro, a equipe administrativa pode criá-lo manualmente. Nesse caso, o aluno deve ser informado e orientado a atualizar sua senha no primeiro acesso.\n\n## Tratamento de Dados\n\nTodos os dados coletados são tratados conforme a Política de Privacidade da Vedium e a LGPD.\n"
+            },
+            {
+              "title": "Validação dos dados",
+              "route": "matriculas-validacao-dados",
+              "order": 3,
+              "published": 1,
+              "content": "# Validação dos Dados de Cadastro\n\nApós o cadastro, a equipe administrativa verifica se as informações estão corretas e completas antes de prosseguir com a matrícula.\n\n## O que é Validado\n\n- E-mail funcionando e confirmado\n- Nome completo sem abreviações\n- Dados do responsável (se menor de 18 anos)\n- Ausência de duplicata de cadastro\n\n## Procedimento de Validação\n\n1. Verificar se o aluno confirmou o e-mail.\n2. Checar duplicatas no sistema.\n3. Confirmar dados de responsável para menores.\n4. Solicitar complementação se necessário.\n\n## Cadastros Duplicados\n\nSe identificada duplicata, a equipe deve:\n\n1. Contatar o aluno para confirmar qual cadastro manter.\n2. Arquivar o cadastro duplicado sem excluir.\n3. Registrar a ocorrência.\n\n## Prazo de Validação\n\n[A CONFIRMAR] — definir prazo máximo para validação manual.\n"
+            },
+            {
+              "title": "Escolha de curso e nível",
+              "route": "matriculas-escolha-curso-nivel",
+              "order": 4,
+              "published": 1,
+              "content": "# Escolha de Curso e Nível\n\nO aluno escolhe o idioma e o nível durante o processo de matrícula. A Vedium oferece suporte para ajudar nessa decisão.\n\n## Idiomas Disponíveis\n\n- Inglês\n- Português para Estrangeiros\n- Espanhol\n- Iorubá\n- Hebraico\n\n## Como o Nível é Definido\n\n1. **Iniciante:** aluno sem experiência prévia no idioma.\n2. **Teste de nível:** aluno com conhecimento prévio realiza avaliação diagnóstica.\n3. **Indicação direta:** em casos específicos, o professor indica o nível após conversa inicial.\n\n## Teste de Nível\n\nDisponível para alunos que já estudaram o idioma anteriormente. O teste é gratuito e realizado antes da matrícula. Consultar a equipe para agendamento.\n\n## Alteração de Nível\n\nApós o início do curso, alterações de nível devem ser solicitadas ao professor ou à equipe administrativa. Não há custo adicional para ajuste de nível. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Definição de professor ou turma",
+              "route": "matriculas-professor-turma",
+              "order": 5,
+              "published": 1,
+              "content": "# Definição de Professor ou Turma\n\nApós a escolha do curso, o aluno é vinculado a um professor (aulas particulares) ou a uma turma.\n\n## Aulas Particulares\n\n- O aluno é vinculado a um professor disponível para o idioma e nível escolhidos.\n- A disponibilidade de agenda é combinada entre aluno e professor.\n- Mudança de professor pode ser solicitada à equipe administrativa. [A CONFIRMAR]\n\n## Aulas em Turma\n\n- O aluno é alocado em uma turma com professor fixo e horários predefinidos.\n- A alocação respeita o nível e a disponibilidade.\n- A troca de turma pode ser solicitada à equipe. [A CONFIRMAR]\n\n## Critérios de Alocação\n\n- Nível do aluno\n- Idioma\n- Disponibilidade de horário\n- Disponibilidade de professor ou vaga em turma\n\n## Prazo para Confirmação\n\n[A CONFIRMAR] — definir prazo para alocação após pagamento.\n"
+            },
+            {
+              "title": "Confirmação de pagamento",
+              "route": "matriculas-confirmacao-pagamento",
+              "order": 6,
+              "published": 1,
+              "content": "# Confirmação de Pagamento\n\nO pagamento é processado pela Stripe e a confirmação é automática.\n\n## Fluxo de Pagamento\n\n1. Aluno seleciona o plano e a frequência de aulas.\n2. Aluno é redirecionado para o checkout seguro da Stripe.\n3. Aluno insere os dados do cartão.\n4. A Stripe processa e confirma o pagamento.\n5. O sistema da Vedium recebe a confirmação via webhook.\n6. O acesso é liberado automaticamente.\n\n## Formas de Pagamento Aceitas\n\n- Cartão de crédito (nacional e internacional)\n- Cartão de débito (conforme disponibilidade)\n- Boleto bancário (quando disponível) [A CONFIRMAR]\n\n## Cobrança Recorrente\n\nO pagamento é recorrente mensal. O aluno autoriza a cobrança automática no cartão cadastrado.\n\n## Comprovante\n\nA Stripe envia e-mail de confirmação após cada cobrança bem-sucedida.\n\n## Falha de Pagamento\n\nEm caso de falha, o aluno recebe notificação e tem prazo para regularizar. Consulte o processo de falha de pagamento no grupo Financeiro.\n"
+            },
+            {
+              "title": "Liberação de acesso",
+              "route": "matriculas-liberacao-acesso",
+              "order": 7,
+              "published": 1,
+              "content": "# Liberação de Acesso\n\nApós a confirmação do pagamento, o acesso à plataforma é liberado automaticamente.\n\n## O que o Aluno Pode Acessar\n\n- Área do aluno em `app.vediums.com`\n- Cursos matriculados\n- Materiais disponibilizados pelo professor\n- Agendamento de aulas (quando aplicável)\n- Histórico e certificados\n\n## Prazo de Liberação\n\nO acesso é liberado em tempo real após confirmação do pagamento pela Stripe. Em casos excepcionais com liberação manual, o prazo é de [A CONFIRMAR].\n\n## Acesso Não Liberado\n\nSe o pagamento foi confirmado mas o acesso não foi liberado:\n\n1. Aguardar 15 minutos.\n2. Fazer logout e login novamente.\n3. Abrir ticket de suporte informando: data do pagamento, e-mail cadastrado e comprovante da Stripe.\n\n## Suspensão de Acesso\n\nO acesso pode ser suspenso em caso de inadimplência. Consulte o processo financeiro para mais detalhes.\n"
+            },
+            {
+              "title": "Comunicação de boas-vindas",
+              "route": "matriculas-boas-vindas",
+              "order": 8,
+              "published": 1,
+              "content": "# Comunicação de Boas-Vindas\n\nApós a matrícula, o aluno recebe uma comunicação de boas-vindas da Vedium.\n\n## Canais de Boas-Vindas\n\n- E-mail automático da plataforma\n- Mensagem personalizada do professor (quando aplicável)\n\n## Conteúdo da Comunicação\n\n- Confirmação da matrícula\n- Dados de acesso à plataforma\n- Instruções para o primeiro login\n- Informações sobre o próximo passo (agendamento ou link da primeira aula)\n- Canais de suporte\n\n## Prazo de Envio\n\n[A CONFIRMAR] — definir prazo máximo para envio da boas-vindas personalizada.\n\n## Personalização\n\nO professor pode enviar mensagem adicional de apresentação antes da primeira aula. Isso é opcional mas recomendado.\n"
+            },
+            {
+              "title": "Alteração de matrícula",
+              "route": "matriculas-alteracao",
+              "order": 9,
+              "published": 1,
+              "content": "# Alteração de Matrícula\n\nDescreve os procedimentos para atualizar dados, curso, nível ou professor de um aluno já matriculado.\n\n## Tipos de Alteração\n\n- Troca de professor\n- Troca de turma\n- Mudança de nível\n- Mudança de idioma\n- Atualização de dados cadastrais\n- Mudança de modalidade (particular ↔ turma)\n\n## Como Solicitar\n\n1. Aluno ou professor abre ticket de suporte com a solicitação.\n2. Equipe administrativa analisa a viabilidade.\n3. Equipe confirma a alteração ou propõe alternativa.\n4. Alteração é realizada e aluno é informado.\n\n## Prazo de Análise\n\n[A CONFIRMAR] — definir prazo máximo de resposta.\n\n## Impacto no Plano de Pagamento\n\nAlterações que envolvam mudança de preço ou plano serão tratadas junto ao financeiro. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Cancelamento de matrícula",
+              "route": "matriculas-cancelamento",
+              "order": 10,
+              "published": 1,
+              "content": "# Cancelamento de Matrícula\n\nInforma como um aluno pode solicitar o cancelamento da matrícula e quais são os efeitos.\n\n## Como Solicitar\n\n1. Aluno entra em contato pelo canal oficial de suporte.\n2. Solicita o cancelamento informando o motivo.\n3. Equipe administrativa processa a solicitação.\n\n## Efeitos do Cancelamento\n\n- O acesso à plataforma é encerrado conforme as regras do plano.\n- A assinatura recorrente na Stripe é cancelada.\n- O histórico do aluno é preservado conforme LGPD.\n\n## Prazo de Processamento\n\n[A CONFIRMAR]\n\n## Reembolso\n\nRegras de reembolso dependem do plano contratado. [A CONFIRMAR] — consulte as condições comerciais vigentes.\n\n## Fidelidade\n\n[A CONFIRMAR] — verificar se existe período mínimo de permanência no plano escolhido.\n\n## Dados Pessoais\n\nApós o cancelamento, os dados do aluno são retidos conforme o prazo definido na Política de Privacidade e na LGPD.\n"
+            }
+          ]
+        },
+        {
+          "title": "Professores",
+          "pages": [
+            {
+              "title": "Cadastro de professor",
+              "route": "professores-cadastro",
+              "order": 1,
+              "published": 1,
+              "content": "# Cadastro de Professor\n\nDescreve o processo de inclusão de um novo professor na equipe da Vedium.\n\n## Dados Necessários\n\n- Nome completo\n- E-mail profissional\n- CPF ou documento de identificação\n- Idiomas que leciona\n- Níveis que atende\n- Disponibilidade de horário\n- Dados bancários para pagamento\n- Currículo ou comprovação de experiência\n\n## Etapas do Cadastro\n\n1. Envio do currículo e documentos.\n2. Entrevista e avaliação pedagógica.\n3. Validação dos documentos pela equipe administrativa.\n4. Assinatura do contrato.\n5. Criação do acesso na plataforma.\n6. Integração e apresentação dos processos da Vedium.\n\n## Responsável\n\nEquipe administrativa e coordenação pedagógica.\n"
+            },
+            {
+              "title": "Validação de documentos",
+              "route": "professores-validacao-documentos",
+              "order": 2,
+              "published": 1,
+              "content": "# Validação de Documentos do Professor\n\nAntes de iniciar as aulas, os documentos do professor precisam ser validados.\n\n## Documentos Obrigatórios\n\n- Documento de identidade válido (RG, CNH ou passaporte)\n- CPF\n- Comprovante de habilitação no idioma (quando aplicável)\n- Dados bancários\n\n## Documentos Complementares\n\n- Currículo com experiência docente\n- Certificados de formação ou proficiência\n- Carta de apresentação\n\n## Prazo de Validação\n\n[A CONFIRMAR]\n\n## Arquivo dos Documentos\n\nTodos os documentos são arquivados de forma segura, conforme a Política de Privacidade e a LGPD.\n"
+            },
+            {
+              "title": "Contrato do professor",
+              "route": "professores-contrato",
+              "order": 3,
+              "published": 1,
+              "content": "# Contrato do Professor\n\nTodo professor ativo na Vedium possui contrato formalizado antes de iniciar as aulas.\n\n## Tipos de Contrato\n\n[A CONFIRMAR] — verificar modelos contratuais vigentes (CLT, PJ, autônomo).\n\n## Processo de Assinatura\n\n1. Contrato é enviado por e-mail ou plataforma de assinatura digital.\n2. Professor lê, questiona dúvidas e assina.\n3. Vedium assina e envia cópia ao professor.\n4. Cópia arquivada na pasta de documentos do professor.\n\n## Validade e Renovação\n\n[A CONFIRMAR]\n\n## Revisão Contratual\n\nAlterações contratuais devem ser formalizadas por aditivo ou novo contrato, nunca verbalmente.\n"
+            },
+            {
+              "title": "Definição de idiomas e níveis",
+              "route": "professores-idiomas-niveis",
+              "order": 4,
+              "published": 1,
+              "content": "# Definição de Idiomas e Níveis do Professor\n\nCada professor é cadastrado para lecionar idiomas e níveis específicos.\n\n## Como é Definido\n\n- O professor informa os idiomas e níveis que domina.\n- A coordenação valida com base na avaliação pedagógica.\n- O cadastro é atualizado na plataforma.\n\n## Expansão de Idiomas ou Níveis\n\nO professor pode solicitar ampliação após avaliação adicional. [A CONFIRMAR]\n\n## Restrição de Níveis\n\nSe o professor não tiver experiência comprovada em níveis avançados, a vinculação a esses níveis fica pendente até nova avaliação.\n\n## Atualização\n\nSempre que houver mudança, o cadastro na plataforma deve ser atualizado imediatamente.\n"
+            },
+            {
+              "title": "Disponibilidade de agenda",
+              "route": "professores-disponibilidade",
+              "order": 5,
+              "published": 1,
+              "content": "# Disponibilidade de Agenda do Professor\n\nDefine como o professor informa e atualiza sua disponibilidade de horários.\n\n## Como Informar a Disponibilidade\n\n- O professor informa os horários disponíveis à equipe administrativa.\n- A disponibilidade é registrada no sistema.\n- Alunos são alocados dentro da disponibilidade informada.\n\n## Atualização de Disponibilidade\n\n- O professor deve informar mudanças com antecedência mínima de [A CONFIRMAR].\n- Mudanças de último momento devem ser comunicadas imediatamente.\n\n## Bloqueio de Agenda\n\nEm caso de férias, afastamento ou outro impedimento, o professor deve informar a equipe com antecedência e bloquear os horários no sistema.\n\n## Conflito de Horários\n\nConflitos devem ser resolvidos com apoio da equipe administrativa.\n"
+            },
+            {
+              "title": "Vinculação a cursos e turmas",
+              "route": "professores-vinculacao",
+              "order": 6,
+              "published": 1,
+              "content": "# Vinculação de Professor a Cursos e Turmas\n\nDescreve como professores são associados a cursos e turmas na plataforma.\n\n## Processo de Vinculação\n\n1. Equipe administrativa verifica disponibilidade do professor.\n2. Verifica compatibilidade de idioma e nível.\n3. Vincula o professor ao curso ou turma no sistema.\n4. Notifica o professor e o aluno.\n\n## Alteração de Professor\n\nA troca de professor exige solicitação formal e análise da equipe. O aluno é comunicado antes da mudança. [A CONFIRMAR]\n\n## Múltiplos Vínculos\n\nUm professor pode ser vinculado a mais de um aluno ou turma, respeitando sua disponibilidade declarada.\n"
+            },
+            {
+              "title": "Pagamento dos professores",
+              "route": "professores-pagamento",
+              "order": 7,
+              "published": 1,
+              "content": "# Pagamento dos Professores\n\nDescreve o processo de apuração e pagamento dos professores.\n\n## Período de Apuração\n\n[A CONFIRMAR] — definir periodicidade (semanal, quinzenal, mensal).\n\n## Base de Cálculo\n\n[A CONFIRMAR] — definir se é por aula realizada, por aluno ativo ou outro critério.\n\n## Processo de Pagamento\n\n1. Apuração das aulas realizadas no período.\n2. Cálculo do valor a pagar conforme contrato.\n3. Pagamento via transferência bancária ou outro meio acordado.\n4. Envio de comprovante.\n\n## Dúvidas ou Divergências\n\nO professor deve informar divergências até [A CONFIRMAR] após o recebimento do pagamento.\n"
+            },
+            {
+              "title": "Alteração cadastral",
+              "route": "professores-alteracao-cadastral",
+              "order": 8,
+              "published": 1,
+              "content": "# Alteração Cadastral do Professor\n\nDescreve como atualizar dados de um professor já cadastrado.\n\n## Tipos de Alteração\n\n- E-mail de contato\n- Dados bancários\n- Idiomas e níveis\n- Disponibilidade\n- Documentos\n\n## Como Solicitar\n\n1. Professor informa a alteração por e-mail ou canal oficial.\n2. Equipe administrativa atualiza o cadastro.\n3. Confirmação é enviada ao professor.\n\n## Prazo de Atualização\n\n[A CONFIRMAR]\n\n## Dados Sensíveis\n\nAlterações em dados bancários exigem confirmação adicional de identidade.\n"
+            },
+            {
+              "title": "Afastamento temporário",
+              "route": "professores-afastamento",
+              "order": 9,
+              "published": 1,
+              "content": "# Afastamento Temporário do Professor\n\nDescreve o procedimento quando o professor precisa se afastar por período determinado.\n\n## Tipos de Afastamento\n\n- Férias\n- Licença médica\n- Licença pessoal\n- Outros\n\n## Procedimento\n\n1. Professor comunica o afastamento com antecedência mínima de [A CONFIRMAR].\n2. Equipe administrativa verifica alunos e turmas afetados.\n3. Realoca temporariamente ou suspende as aulas conforme o caso.\n4. Alunos são informados sobre o afastamento e as alternativas.\n\n## Retorno\n\nAo retornar, o professor comunica a equipe e a agenda é restabelecida.\n\n## Impacto no Pagamento\n\n[A CONFIRMAR] — definir regras para afastamentos e pagamento.\n"
+            },
+            {
+              "title": "Encerramento da relação contratual",
+              "route": "professores-encerramento",
+              "order": 10,
+              "published": 1,
+              "content": "# Encerramento da Relação Contratual com o Professor\n\nDescreve o processo de desligamento de um professor.\n\n## Motivos Possíveis\n\n- Pedido de demissão / rescisão pelo professor\n- Encerramento pela Vedium\n- Término de contrato\n- Outros\n\n## Procedimento\n\n1. Comunicação formal do encerramento com antecedência mínima. [A CONFIRMAR]\n2. Transferência dos alunos e turmas para outro professor.\n3. Comunicação aos alunos afetados.\n4. Acertos financeiros finais.\n5. Revogação do acesso à plataforma.\n6. Arquivamento da documentação.\n\n## Dados Pessoais\n\nApós o encerramento, os dados do professor são retidos conforme LGPD e política interna.\n"
+            }
+          ]
+        },
+        {
+          "title": "Turmas",
+          "pages": [
+            {
+              "title": "Criação de turma",
+              "route": "turmas-criacao",
+              "order": 1,
+              "published": 1,
+              "content": "# Criação de Turma\n\nDescreve como criar uma nova turma na Vedium.\n\n## Quando Criar uma Turma\n\n- Demanda mínima de alunos atingida [A CONFIRMAR]\n- Professor disponível para o idioma e nível\n- Horário definido\n\n## Dados da Turma\n\n- Idioma\n- Nível\n- Professor\n- Horários das aulas\n- Número máximo de alunos [A CONFIRMAR]\n- Data de início\n\n## Processo\n\n1. Coordenação valida a viabilidade da turma.\n2. Professor é confirmado.\n3. Turma é criada no sistema.\n4. Matrículas são abertas.\n5. Alunos são notificados sobre os horários.\n"
+            },
+            {
+              "title": "Definição de professor da turma",
+              "route": "turmas-professor",
+              "order": 2,
+              "published": 1,
+              "content": "# Definição de Professor da Turma\n\nO professor da turma é definido antes da abertura das matrículas.\n\n## Critérios\n\n- Idioma e nível compatíveis\n- Disponibilidade nos horários da turma\n- Experiência com aulas em grupo (quando aplicável)\n\n## Troca de Professor na Turma\n\nA troca de professor em turma ativa é tratada com prioridade pela equipe administrativa. Os alunos da turma são comunicados com antecedência. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Limite de alunos",
+              "route": "turmas-limite-alunos",
+              "order": 3,
+              "published": 1,
+              "content": "# Limite de Alunos por Turma\n\nCada turma tem um número máximo de alunos para garantir qualidade pedagógica.\n\n## Limite por Turma\n\n[A CONFIRMAR] — definir número máximo de alunos por turma para cada idioma e nível.\n\n## Exceções\n\nExceções ao limite podem ser analisadas pela coordenação caso a caso.\n\n## Lista de Espera\n\nQuando uma turma atinge o limite, novos interessados são incluídos em lista de espera e notificados quando houver vaga.\n"
+            },
+            {
+              "title": "Horários das aulas",
+              "route": "turmas-horarios",
+              "order": 4,
+              "published": 1,
+              "content": "# Horários das Aulas de Turma\n\nOs horários são definidos antes da abertura das matrículas e comunicados a todos os alunos.\n\n## Definição de Horário\n\n- Baseada na disponibilidade do professor.\n- Compatível com a demanda identificada.\n- Definida com antecedência mínima de [A CONFIRMAR].\n\n## Alteração de Horário\n\nAlterações permanentes de horário devem ser comunicadas com antecedência de [A CONFIRMAR] e aprovadas pelos alunos da turma.\n\n## Fuso Horário\n\nTodos os horários são informados no fuso horário de Brasília (BRT), a menos que combinado de outra forma.\n"
+            },
+            {
+              "title": "Calendário de aulas",
+              "route": "turmas-calendario",
+              "order": 5,
+              "published": 1,
+              "content": "# Calendário de Aulas da Turma\n\nO calendário define as datas de todas as aulas da turma durante o período ativo.\n\n## Elaboração do Calendário\n\n1. Definir data de início e término do ciclo. [A CONFIRMAR]\n2. Incluir feriados nacionais e eventuais recessos.\n3. Comunicar o calendário aos alunos no início do ciclo.\n\n## Aulas Canceladas\n\nEm caso de cancelamento, a data de reposição é definida e comunicada imediatamente.\n\n## Publicação\n\nO calendário deve estar disponível para todos os alunos da turma no início de cada ciclo.\n"
+            },
+            {
+              "title": "Matrícula em turma",
+              "route": "turmas-matricula",
+              "order": 6,
+              "published": 1,
+              "content": "# Matrícula em Turma\n\nDescreve como um aluno é matriculado em uma turma existente.\n\n## Processo\n\n1. Aluno informa interesse em turma ou é indicado pela equipe.\n2. Verificar vaga disponível.\n3. Verificar compatibilidade de nível.\n4. Confirmar pagamento do plano de turma.\n5. Incluir aluno na turma no sistema.\n6. Enviar horários e link do Google Meet.\n\n## Início das Aulas para o Novo Aluno\n\nO aluno pode iniciar na próxima aula após a confirmação da matrícula. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Troca de turma",
+              "route": "turmas-troca",
+              "order": 7,
+              "published": 1,
+              "content": "# Troca de Turma\n\nDescreve como processar a solicitação de troca de turma de um aluno.\n\n## Motivos Comuns\n\n- Incompatibilidade de horário\n- Mudança de nível\n- Preferência pessoal\n\n## Processo\n\n1. Aluno solicita a troca pelo canal de suporte.\n2. Equipe verifica disponibilidade de vaga na turma desejada.\n3. Compatibilidade de nível é confirmada.\n4. Troca é realizada e aluno é informado.\n\n## Prazo\n\n[A CONFIRMAR]\n\n## Impacto Financeiro\n\n[A CONFIRMAR] — verificar se há ajuste de valor em trocas entre turmas.\n"
+            },
+            {
+              "title": "Cancelamento de turma",
+              "route": "turmas-cancelamento",
+              "order": 8,
+              "published": 1,
+              "content": "# Cancelamento de Turma\n\nDescreve o procedimento quando uma turma precisa ser cancelada antes do início ou durante o ciclo.\n\n## Motivos Possíveis\n\n- Número mínimo de alunos não atingido\n- Indisponibilidade do professor\n- Outros fatores operacionais\n\n## Procedimento\n\n1. Comunicar os alunos matriculados com antecedência máxima possível.\n2. Oferecer alternativa: turma diferente, aulas particulares ou reembolso.\n3. Processar reembolso ou realocação conforme escolha do aluno.\n4. Registrar o cancelamento no sistema.\n\n## Reembolso\n\n[A CONFIRMAR] — definir regras de reembolso por cancelamento de turma pela Vedium.\n"
+            },
+            {
+              "title": "Encerramento de turma",
+              "route": "turmas-encerramento",
+              "order": 9,
+              "published": 1,
+              "content": "# Encerramento de Turma\n\nDescreve o processo ao final do ciclo de uma turma.\n\n## Procedimento\n\n1. Aplicar avaliação final ou relatório de encerramento.\n2. Emitir certificados para alunos elegíveis. [A CONFIRMAR]\n3. Comunicar os alunos sobre próximos passos (rematrícula, novo nível, etc.).\n4. Arquivar registros pedagógicos da turma.\n5. Encerrar a turma no sistema.\n\n## Continuidade\n\nAlunos que desejam continuar podem ser rematriculados em nova turma do próximo nível ou renovar o plano atual.\n"
+            },
+            {
+              "title": "Registro histórico de turmas",
+              "route": "turmas-historico",
+              "order": 10,
+              "published": 1,
+              "content": "# Registro Histórico de Turmas\n\nDescreve como manter o histórico de turmas encerradas.\n\n## O que Deve ser Arquivado\n\n- Lista de alunos da turma\n- Professor responsável\n- Período de vigência\n- Registros de aulas\n- Avaliações aplicadas\n- Certificados emitidos\n- Ocorrências relevantes\n\n## Prazo de Retenção\n\n[A CONFIRMAR] — definir por quanto tempo os registros de turmas encerradas são mantidos.\n\n## Acesso ao Histórico\n\nAcesso restrito à equipe administrativa e coordenação. Alunos podem solicitar informações sobre seu histórico conforme LGPD.\n"
+            }
+          ]
+        },
+        {
+          "title": "Agenda e Aulas",
+          "pages": [
+            {
+              "title": "Agendamento de aulas",
+              "route": "agenda-agendamento",
+              "order": 1,
+              "published": 1,
+              "content": "# Agendamento de Aulas\n\nDescreve como aulas particulares são agendadas na Vedium.\n\n## Processo\n\n1. Aluno e professor combinam os dias e horários.\n2. Horários são registrados no sistema. [A CONFIRMAR formato de agendamento]\n3. Links do Google Meet são enviados antes de cada aula.\n\n## Antecedência Mínima\n\nO agendamento deve ser feito com antecedência mínima de [A CONFIRMAR].\n\n## Canais de Agendamento\n\n[A CONFIRMAR] — definir se o agendamento é feito diretamente na plataforma ou por canal administrativo.\n"
+            },
+            {
+              "title": "Google Meet",
+              "route": "agenda-google-meet",
+              "order": 2,
+              "published": 1,
+              "content": "# Google Meet nas Aulas da Vedium\n\nTodas as aulas ao vivo são realizadas pelo Google Meet.\n\n## Como Funciona\n\n1. O professor cria ou recebe o link da reunião.\n2. O link é compartilhado com o aluno antes da aula.\n3. Aluno e professor entram no horário combinado.\n\n## Requisitos Técnicos\n\n- Navegador atualizado (Google Chrome recomendado)\n- Câmera e microfone funcionando\n- Conexão estável de internet\n\n## Uso do Celular\n\nÉ possível entrar pelo celular com o app Google Meet (Android e iOS). Recomendamos câmera e fone de ouvido para melhor experiência.\n\n## Problemas com o Meet\n\nConsulte o FAQ Técnico para orientações sobre câmera, microfone, conexão e outros problemas comuns.\n"
+            },
+            {
+              "title": "Reagendamento de aulas",
+              "route": "agenda-reagendamento",
+              "order": 3,
+              "published": 1,
+              "content": "# Reagendamento de Aulas\n\nDescreve o procedimento para remarcar aulas particulares.\n\n## Quem Pode Solicitar\n\nAluno ou professor podem solicitar reagendamento.\n\n## Antecedência Mínima\n\n[A CONFIRMAR] — definir prazo mínimo para reagendamento.\n\n## Processo\n\n1. Solicitante avisa o outro pelo canal oficial.\n2. Novo horário é acordado mutuamente.\n3. Atualizar o agendamento no sistema.\n\n## Limitações\n\n[A CONFIRMAR] — definir número máximo de reagendamentos por mês.\n"
+            },
+            {
+              "title": "Cancelamento de aulas",
+              "route": "agenda-cancelamento",
+              "order": 4,
+              "published": 1,
+              "content": "# Cancelamento de Aulas\n\nDescreve como tratar o cancelamento de uma aula específica.\n\n## Cancelamento pelo Aluno\n\n- Comunicar o professor com antecedência mínima de [A CONFIRMAR].\n- A aula pode ou não ser reposta, dependendo do plano. [A CONFIRMAR]\n\n## Cancelamento pelo Professor\n\n- Comunicar o aluno o mais cedo possível.\n- Propor reposição em prazo adequado.\n\n## Cancelamento de Emergência\n\nEm situações de emergência, comunicar imediatamente pelo canal disponível. A reposição é tratada com prioridade.\n"
+            },
+            {
+              "title": "Faltas",
+              "route": "agenda-faltas",
+              "order": 5,
+              "published": 1,
+              "content": "# Faltas nas Aulas\n\nDescreve como as faltas são tratadas na Vedium.\n\n## Falta do Aluno\n\n- A aula não realizada pelo aluno sem aviso pode ou não ter direito à reposição. [A CONFIRMAR]\n- A frequência impacta o acompanhamento pedagógico. [A CONFIRMAR]\n\n## Falta do Professor\n\n- O professor deve comunicar com antecedência máxima possível.\n- A aula deve ser reposta em prazo acordado com o aluno.\n\n## Registro\n\nTodas as faltas devem ser registradas no sistema pelo professor.\n\n## Frequência Mínima\n\n[A CONFIRMAR] — verificar política de frequência mínima e impacto na matrícula.\n"
+            },
+            {
+              "title": "Reposição de aulas",
+              "route": "agenda-reposicao",
+              "order": 6,
+              "published": 1,
+              "content": "# Reposição de Aulas\n\nDescreve as condições para reposição de aulas não realizadas.\n\n## Condições para Reposição\n\n[A CONFIRMAR] — definir regras de reposição por: cancelamento pelo professor, cancelamento com aviso pelo aluno, falta sem aviso.\n\n## Prazo para Reposição\n\n[A CONFIRMAR] — definir prazo máximo para reposição após o cancelamento.\n\n## Processo\n\n1. Professor e aluno acordam nova data e horário.\n2. Agendamento é atualizado no sistema.\n3. Link do Google Meet é enviado.\n"
+            },
+            {
+              "title": "Aula experimental",
+              "route": "agenda-aula-experimental",
+              "order": 7,
+              "published": 1,
+              "content": "# Aula Experimental\n\nA aula experimental permite ao interessado conhecer a metodologia da Vedium antes de se matricular.\n\n## Disponibilidade\n\n[A CONFIRMAR] — verificar se a aula experimental está disponível e em quais condições.\n\n## Formato\n\n- Duração: [A CONFIRMAR]\n- Plataforma: Google Meet\n- Gratuita: [A CONFIRMAR]\n\n## Agendamento\n\nO interessado deve entrar em contato pelo canal oficial para agendar a aula experimental.\n\n## O que Esperar\n\nA aula experimental apresenta a metodologia da Vedium, a plataforma e o estilo de ensino do professor. Não há compromisso de matrícula.\n"
+            },
+            {
+              "title": "Aula particular",
+              "route": "agenda-aula-particular",
+              "order": 8,
+              "published": 1,
+              "content": "# Aulas Particulares\n\nDescreve o funcionamento das aulas individuais na Vedium.\n\n## Características\n\n- Aula exclusiva entre professor e aluno.\n- Horário e frequência personalizados.\n- Conteúdo adaptado ao ritmo e objetivo do aluno.\n\n## Agendamento\n\nAluno e professor combinam os horários conforme disponibilidade de ambos.\n\n## Planos Disponíveis\n\nO aluno escolhe a frequência de aulas semanais no momento da matrícula. Consulte os planos disponíveis na plataforma.\n\n## Vantagens\n\n- Flexibilidade de horário.\n- Atenção integral do professor.\n- Progressão no ritmo do aluno.\n"
+            },
+            {
+              "title": "Aula em turma",
+              "route": "agenda-aula-turma",
+              "order": 9,
+              "published": 1,
+              "content": "# Aulas em Turma\n\nDescreve o funcionamento das aulas em grupo na Vedium.\n\n## Características\n\n- Grupo reduzido de alunos com mesmo nível. [A CONFIRMAR número máximo]\n- Horários fixos definidos no calendário da turma.\n- Dinâmica colaborativa com diferentes perfis de alunos.\n\n## Acesso\n\nO link do Google Meet para a turma é enviado a todos os alunos antes de cada aula.\n\n## Comportamento em Turma\n\nTodos os alunos devem respeitar o código de conduta da Vedium durante as aulas em turma.\n\n## Vantagens\n\n- Interação com outros aprendizes.\n- Custo mais acessível que aulas particulares. [A CONFIRMAR]\n- Dinâmicas de grupo que enriquecem o aprendizado.\n"
+            },
+            {
+              "title": "Problemas técnicos durante aulas",
+              "route": "agenda-problemas-tecnicos",
+              "order": 10,
+              "published": 1,
+              "content": "# Problemas Técnicos Durante Aulas\n\nOrientações para quando ocorrer falha técnica durante uma aula ao vivo.\n\n## Problema com o Google Meet\n\n1. Tentar sair e entrar novamente no link.\n2. Verificar conexão de internet.\n3. Reiniciar o navegador.\n4. Usar o app do celular como alternativa.\n\n## Problema de Áudio ou Câmera\n\n1. Verificar as permissões do navegador para câmera e microfone.\n2. Verificar se os dispositivos estão conectados.\n3. Reiniciar o navegador.\n\n## Aula Interrompida por Falha Técnica\n\n- Professor e aluno devem tentar se reconectar por até [A CONFIRMAR] minutos.\n- Se não for possível retomar, a aula deve ser reagendada sem custo adicional.\n\n## Relatar o Problema\n\nO professor deve registrar o problema no registro de aula. O aluno pode abrir um ticket de suporte se necessário.\n"
+            }
+          ]
+        },
+        {
+          "title": "Financeiro",
+          "pages": [
+            {
+              "title": "Visão geral do processo financeiro",
+              "route": "financeiro-visao-geral",
+              "order": 1,
+              "published": 1,
+              "content": "# Visão Geral do Processo Financeiro\n\nDescreve como funciona a gestão financeira das mensalidades e cobranças na Vedium.\n\n## Plataforma de Pagamento\n\nTodos os pagamentos são processados pela **Stripe**, plataforma global de pagamentos com certificação PCI-DSS.\n\n## Modelo de Cobrança\n\n- Assinatura recorrente mensal.\n- Cobrança automática no cartão cadastrado.\n- O aluno é notificado sobre cobranças e falhas.\n\n## Responsabilidades\n\n| Ação | Responsável |\n|---|---|\n| Configuração de planos | Equipe administrativa / Stripe |\n| Processamento de pagamento | Stripe |\n| Confirmação e acesso | Sistema automático |\n| Dúvidas financeiras | Equipe administrativa |\n\n## Moeda\n\n[A CONFIRMAR] — definir moeda padrão (BRL) e se há suporte a outras moedas.\n"
+            },
+            {
+              "title": "Cobrança via Stripe",
+              "route": "financeiro-cobranca-stripe",
+              "order": 2,
+              "published": 1,
+              "content": "# Cobrança via Stripe\n\nDescreve como funciona a cobrança recorrente dos planos da Vedium.\n\n## Funcionamento\n\n1. Na matrícula, o aluno autoriza a cobrança recorrente no checkout da Stripe.\n2. No vencimento mensal, a Stripe realiza a cobrança automaticamente.\n3. O sistema da Vedium é notificado via webhook.\n4. O aluno recebe confirmação por e-mail.\n\n## Segurança\n\n- Os dados do cartão são gerenciados exclusivamente pela Stripe.\n- A Vedium nunca armazena dados de cartão de crédito.\n\n## Data de Vencimento\n\nA cobrança ocorre na mesma data da matrícula, a cada mês. [A CONFIRMAR]\n\n## Falha no Pagamento\n\nConsulte o processo de falha de pagamento.\n"
+            },
+            {
+              "title": "Confirmação de pagamento",
+              "route": "financeiro-confirmacao",
+              "order": 3,
+              "published": 1,
+              "content": "# Confirmação de Pagamento\n\nDescreve o que acontece após um pagamento bem-sucedido.\n\n## Notificações\n\n- E-mail de confirmação enviado pela Stripe.\n- Acesso na plataforma mantido ou reativado.\n- Registro atualizado no sistema da Vedium.\n\n## Comprovante\n\nO aluno pode acessar o comprovante diretamente no e-mail recebido da Stripe ou solicitá-lo à equipe administrativa.\n\n## Pagamento Confirmado sem Acesso\n\nSe o pagamento foi confirmado mas o acesso não foi liberado, abrir ticket de suporte com comprovante da Stripe.\n"
+            },
+            {
+              "title": "Falha de pagamento",
+              "route": "financeiro-falha",
+              "order": 4,
+              "published": 1,
+              "content": "# Falha de Pagamento\n\nDescreve o que ocorre quando uma cobrança recorrente falha.\n\n## O que Acontece\n\n1. A Stripe tenta a cobrança na data prevista.\n2. A cobrança falha (cartão recusado, expirado, saldo insuficiente, etc.).\n3. O aluno recebe notificação por e-mail.\n4. A Stripe pode tentar novamente automaticamente. [A CONFIRMAR número de tentativas]\n5. O sistema da Vedium é informado e inicia o período de tolerância.\n\n## Período de Tolerância\n\nO acesso continua disponível por [A CONFIRMAR] dias após a falha.\n\n## O que o Aluno Deve Fazer\n\n1. Verificar os dados do cartão.\n2. Atualizar o cartão na Stripe se necessário.\n3. Aguardar nova tentativa automática ou regularizar manualmente.\n\n## Suspensão de Acesso\n\nSe o pagamento não for regularizado dentro do período de tolerância, o acesso é suspenso.\n"
+            },
+            {
+              "title": "Pagamento em atraso",
+              "route": "financeiro-atraso",
+              "order": 5,
+              "published": 1,
+              "content": "# Pagamento em Atraso\n\nDescreve o tratamento de mensalidades em atraso.\n\n## Processo\n\n1. Falha de pagamento detectada.\n2. Notificação enviada ao aluno.\n3. Período de tolerância iniciado. [A CONFIRMAR duração]\n4. Se não regularizado, acesso suspenso.\n\n## Juros e Multa\n\n[A CONFIRMAR] — verificar se há aplicação de multa ou juros por atraso.\n\n## Regularização\n\nO aluno deve atualizar o cartão ou entrar em contato com a equipe para regularizar a situação.\n"
+            },
+            {
+              "title": "Suspensão de acesso por inadimplência",
+              "route": "financeiro-suspensao",
+              "order": 6,
+              "published": 1,
+              "content": "# Suspensão de Acesso por Inadimplência\n\nDescreve o que acontece quando o acesso é suspenso por falta de pagamento.\n\n## Quando Ocorre\n\nApós o período de tolerância sem regularização do pagamento.\n\n## O que Muda para o Aluno\n\n- O acesso à plataforma é bloqueado.\n- As aulas são suspensas.\n- O histórico é mantido.\n\n## Como Reativar\n\nConsulte o processo de reativação de acesso.\n\n## Comunicação\n\nO aluno recebe notificação antes e após a suspensão.\n"
+            },
+            {
+              "title": "Reativação de acesso",
+              "route": "financeiro-reativacao",
+              "order": 7,
+              "published": 1,
+              "content": "# Reativação de Acesso\n\nDescreve como reativar o acesso após suspensão por inadimplência.\n\n## Processo\n\n1. Aluno regulariza o pagamento (atualiza cartão ou quita pendência).\n2. A Stripe processa o pagamento.\n3. O sistema da Vedium recebe confirmação.\n4. O acesso é reativado automaticamente.\n\n## Prazo de Reativação\n\nApós a confirmação do pagamento, o acesso é reativado em tempo real. [A CONFIRMAR]\n\n## Aulas Perdidas Durante Suspensão\n\n[A CONFIRMAR] — definir política para aulas não realizadas durante o período de suspensão.\n"
+            },
+            {
+              "title": "Reembolso",
+              "route": "financeiro-reembolso",
+              "order": 8,
+              "published": 1,
+              "content": "# Reembolso\n\nDescreve as condições e o processo para solicitação de reembolso.\n\n## Condições de Reembolso\n\n[A CONFIRMAR] — as condições de reembolso dependem do plano contratado e das políticas comerciais vigentes.\n\n## Como Solicitar\n\n1. Entrar em contato com a equipe administrativa pelo canal oficial.\n2. Informar o motivo da solicitação.\n3. Aguardar análise da equipe.\n\n## Prazo de Análise\n\n[A CONFIRMAR]\n\n## Prazo para Devolução\n\n[A CONFIRMAR] — dependente da Stripe e do banco do aluno.\n\n## Reembolso Parcial\n\n[A CONFIRMAR] — verificar se reembolso parcial é praticado pela Vedium.\n"
+            },
+            {
+              "title": "Cancelamento de plano",
+              "route": "financeiro-cancelamento-plano",
+              "order": 9,
+              "published": 1,
+              "content": "# Cancelamento de Plano\n\nDescreve como solicitar o cancelamento da assinatura recorrente.\n\n## Como Solicitar\n\n1. Aluno entra em contato pelo canal oficial.\n2. Solicita o cancelamento informando o motivo.\n3. Equipe processa e cancela a assinatura na Stripe.\n4. Aluno recebe confirmação.\n\n## Efeito do Cancelamento\n\n- A cobrança recorrente é interrompida.\n- O acesso continua até o final do período pago. [A CONFIRMAR]\n- O histórico do aluno é preservado.\n\n## Fidelidade\n\n[A CONFIRMAR] — verificar se há período mínimo de permanência.\n"
+            },
+            {
+              "title": "Conciliação financeira",
+              "route": "financeiro-conciliacao",
+              "order": 10,
+              "published": 1,
+              "content": "# Conciliação Financeira\n\nDescreve o processo de conferência entre os pagamentos recebidos e os registros internos.\n\n## Periodicidade\n\n[A CONFIRMAR] — definir frequência da conciliação (mensal, semanal).\n\n## Processo\n\n1. Exportar relatório de cobranças da Stripe.\n2. Comparar com registros do sistema da Vedium.\n3. Identificar divergências.\n4. Corrigir divergências e registrar justificativa.\n5. Arquivar o relatório.\n\n## Responsável\n\n[A CONFIRMAR] — definir responsável pela conciliação financeira.\n\n## Divergências\n\nDivergências identificadas devem ser resolvidas imediatamente e reportadas à direção da Vedium.\n"
+            }
+          ]
+        },
+        {
+          "title": "Atendimento",
+          "pages": [
+            {
+              "title": "Canais de atendimento",
+              "route": "atendimento-canais",
+              "order": 1,
+              "published": 1,
+              "content": "# Canais de Atendimento\n\nDescreve os canais oficiais para atendimento a alunos, professores e interessados.\n\n## Canais Disponíveis\n\n- **Ticket de suporte:** disponível na plataforma `app.vediums.com`.\n- **E-mail:** [A CONFIRMAR endereço de suporte].\n- **WhatsApp:** [A CONFIRMAR disponibilidade e número].\n\n## Horário de Atendimento\n\n[A CONFIRMAR] — definir dias e horários de atendimento.\n\n## Prioridade\n\nProblemas que impedem o acesso às aulas têm prioridade de atendimento.\n\n## O que Não é Atendido pelos Canais Administrativos\n\nDúvidas pedagógicas específicas de aula devem ser direcionadas ao professor.\n"
+            },
+            {
+              "title": "Abertura de ticket",
+              "route": "atendimento-abertura-ticket",
+              "order": 2,
+              "published": 1,
+              "content": "# Abertura de Ticket de Suporte\n\nDescreve como abrir um ticket de suporte na Vedium.\n\n## Como Abrir\n\n1. Acessar `app.vediums.com`.\n2. Entrar na área de suporte.\n3. Preencher o título e a descrição do problema.\n4. Indicar a categoria do problema.\n5. Anexar capturas de tela se necessário.\n6. Enviar o ticket.\n\n## O que Informar\n\n- Descrição clara do problema\n- Data e horário da ocorrência\n- O que foi tentado para resolver\n- Mensagens de erro (quando houver)\n- Capturas de tela (quando possível)\n\n## Confirmação\n\nUm número de protocolo é enviado por e-mail após a abertura do ticket.\n"
+            },
+            {
+              "title": "Classificação de solicitação",
+              "route": "atendimento-classificacao",
+              "order": 3,
+              "published": 1,
+              "content": "# Classificação de Solicitações de Suporte\n\nTodo ticket é classificado pela equipe para agilizar o atendimento.\n\n## Categorias\n\n- Acesso à plataforma\n- Pagamento e financeiro\n- Problemas técnicos\n- Dúvidas comerciais\n- Matrículas e alterações\n- Cancelamentos\n- Reclamação\n- Outros\n\n## Prioridades\n\n| Prioridade | Exemplos |\n|---|---|\n| Alta | Acesso bloqueado, aula não realizada por falha |\n| Média | Dúvida financeira, troca de professor |\n| Baixa | Informação geral, sugestão |\n\n## Reclassificação\n\nA equipe pode reclassificar o ticket conforme a análise. O aluno é informado.\n"
+            },
+            {
+              "title": "Encaminhamento interno",
+              "route": "atendimento-encaminhamento",
+              "order": 4,
+              "published": 1,
+              "content": "# Encaminhamento Interno de Tickets\n\nDescreve como tickets são direcionados para a área responsável.\n\n## Responsáveis por Área\n\n| Categoria | Responsável |\n|---|---|\n| Acesso técnico | Equipe técnica |\n| Pagamento | Equipe financeira |\n| Matrícula | Equipe administrativa |\n| Pedagógico | Coordenação pedagógica |\n| Reclamação | Coordenação geral |\n\n## Processo\n\n1. Ticket recebido e classificado.\n2. Direcionado para a área responsável.\n3. Área responsável assume o atendimento.\n4. Aluno é informado sobre o responsável, quando necessário.\n"
+            },
+            {
+              "title": "Prazos de atendimento",
+              "route": "atendimento-prazos",
+              "order": 5,
+              "published": 1,
+              "content": "# Prazos de Atendimento\n\nDefine os prazos de resposta para cada categoria e prioridade de ticket.\n\n## Prazos por Prioridade\n\n| Prioridade | Primeira resposta | Resolução |\n|---|---|---|\n| Alta | [A CONFIRMAR] | [A CONFIRMAR] |\n| Média | [A CONFIRMAR] | [A CONFIRMAR] |\n| Baixa | [A CONFIRMAR] | [A CONFIRMAR] |\n\n## Prazo Suspenso\n\nSe o atendimento depender de informação do aluno, o prazo fica suspenso até o retorno.\n\n## Fora do Horário de Atendimento\n\nTickets abertos fora do horário de atendimento serão respondidos no próximo dia útil. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Resposta ao aluno",
+              "route": "atendimento-resposta",
+              "order": 6,
+              "published": 1,
+              "content": "# Resposta ao Aluno\n\nOrientações para a comunicação com o aluno durante o atendimento.\n\n## Tom e Linguagem\n\n- Use linguagem clara, direta e respeitosa.\n- Evite jargões técnicos desnecessários.\n- Personalize a resposta com o nome do aluno.\n- Confirme o entendimento do problema antes de propor solução.\n\n## Estrutura de Resposta\n\n1. Agradecimento pelo contato.\n2. Confirmação do problema identificado.\n3. Ação tomada ou passos para resolução.\n4. Prazo estimado (quando aplicável).\n5. Abertura para mais dúvidas.\n\n## Resposta Sem Solução Imediata\n\nSe o problema não pode ser resolvido imediatamente, informe o prazo e o próximo passo. Não deixe o aluno sem resposta.\n"
+            },
+            {
+              "title": "Encerramento de ticket",
+              "route": "atendimento-encerramento",
+              "order": 7,
+              "published": 1,
+              "content": "# Encerramento de Ticket\n\nDescreve como encerrar um ticket de suporte após resolução.\n\n## Condições para Encerramento\n\n- Problema resolvido e aluno confirmou a resolução, ou\n- Solução oferecida e prazo para retorno do aluno expirado. [A CONFIRMAR prazo]\n\n## Processo\n\n1. Registrar a solução no ticket.\n2. Informar o aluno sobre o encerramento.\n3. Encerrar o ticket no sistema.\n\n## Reabertura\n\nO aluno pode reabrir o ticket se o problema persistir.\n"
+            },
+            {
+              "title": "Reclamações",
+              "route": "atendimento-reclamacoes",
+              "order": 8,
+              "published": 1,
+              "content": "# Tratamento de Reclamações\n\nDescreve como as reclamações de alunos e professores são tratadas.\n\n## Tipos de Reclamação\n\n- Qualidade das aulas\n- Problemas com professor\n- Problemas com a plataforma\n- Problemas financeiros\n- Atendimento inadequado\n- Outros\n\n## Processo\n\n1. Reclamação recebida pelo canal oficial.\n2. Coordenação é informada imediatamente para reclamações graves.\n3. Investigação realizada com todas as partes envolvidas.\n4. Resposta formal enviada ao reclamante.\n5. Ação corretiva aplicada quando necessário.\n\n## Prazo\n\n[A CONFIRMAR] — definir prazo máximo para resposta a reclamações.\n\n## Registro\n\nTodas as reclamações são registradas para controle e melhoria contínua.\n"
+            },
+            {
+              "title": "Escalonamento",
+              "route": "atendimento-escalonamento",
+              "order": 9,
+              "published": 1,
+              "content": "# Escalonamento de Tickets\n\nDescreve quando e como um ticket deve ser escalonado para nível superior.\n\n## Quando Escalar\n\n- O prazo de resolução foi excedido.\n- O problema é complexo demais para a equipe de atendimento.\n- O aluno está insatisfeito com a resposta recebida.\n- O caso envolve decisão gerencial ou jurídica.\n- Reclamação formal ou ameaça de ação legal.\n\n## Para Quem Escalar\n\n| Situação | Escalado para |\n|---|---|\n| Problema técnico não resolvido | Equipe técnica sênior |\n| Problema financeiro complexo | Coordenação financeira |\n| Reclamação grave | Coordenação geral |\n| Questão jurídica | Direção |\n\n## Processo\n\n1. Atendente registra o escalonamento no ticket.\n2. Responsável superior é notificado.\n3. Aluno é informado sobre o novo responsável e prazo.\n"
+            },
+            {
+              "title": "Registro de histórico de atendimento",
+              "route": "atendimento-historico",
+              "order": 10,
+              "published": 1,
+              "content": "# Registro de Histórico de Atendimento\n\nDescreve como manter e consultar o histórico de atendimentos.\n\n## O que é Registrado\n\n- Todos os tickets abertos e encerrados.\n- Conversas e soluções adotadas.\n- Reclamações e ações corretivas.\n- Tempo de resposta e resolução.\n\n## Finalidade\n\n- Referência para atendimentos futuros.\n- Indicadores de qualidade.\n- Evidência em casos de disputa.\n- Insumo para melhoria de processos.\n\n## Acesso\n\nO histórico é acessível à equipe administrativa e coordenação. O aluno pode solicitar informações sobre seus próprios tickets.\n\n## Retenção\n\n[A CONFIRMAR] — definir prazo de retenção dos registros de atendimento.\n"
+            }
+          ]
+        },
+        {
+          "title": "Documentos e Arquivos",
+          "pages": [
+            {
+              "title": "Organização de documentos",
+              "route": "documentos-organizacao",
+              "order": 1,
+              "published": 1,
+              "content": "# Organização de Documentos\n\nDescreve a estrutura de organização dos documentos administrativos da Vedium.\n\n## Estrutura de Pastas\n\n```\nDocumentos/\n├── Alunos/\n│   ├── [Nome do Aluno]/\n│   │   ├── Cadastro/\n│   │   ├── Contratos/\n│   │   └── Histórico/\n├── Professores/\n│   ├── [Nome do Professor]/\n│   │   ├── Cadastro/\n│   │   ├── Contratos/\n│   │   └── Documentos/\n├── Financeiro/\n│   ├── Faturas/\n│   ├── Conciliações/\n│   └── Relatórios/\n├── Pedagógico/\n│   ├── Planos de Aula/\n│   ├── Avaliações/\n│   └── Relatórios/\n└── Políticas/\n    ├── Vigentes/\n    └── Arquivo/\n```\n\n## Acesso\n\nO acesso a cada pasta é restrito às pessoas autorizadas.\n"
+            },
+            {
+              "title": "Padrão de nomes de arquivos",
+              "route": "documentos-padrao-nomes",
+              "order": 2,
+              "published": 1,
+              "content": "# Padrão de Nomes de Arquivos\n\nTodos os arquivos devem seguir o padrão de nomenclatura definido.\n\n## Formato\n\n```\n[TIPO]-[IDENTIFICAÇÃO]-[DATA]-v[VERSÃO]\n```\n\n## Exemplos\n\n- `CONTRATO-JOAO-SILVA-2026-01-v1.pdf`\n- `FATURA-STRIPE-2026-07.pdf`\n- `PLANO-AULA-INGLES-A1-2026-03-v2.docx`\n\n## Regras\n\n- Sem espaços — usar hífens.\n- Sem caracteres especiais (ç, ã, é).\n- Letras maiúsculas para o tipo.\n- Data no formato AAAA-MM.\n- Sempre indicar a versão.\n"
+            },
+            {
+              "title": "Controle de versões",
+              "route": "documentos-versoes",
+              "order": 3,
+              "published": 1,
+              "content": "# Controle de Versões de Documentos\n\nDescreve como versionar documentos administrativos.\n\n## Quando Criar Nova Versão\n\n- Qualquer alteração de conteúdo relevante.\n- Aprovação de nova política ou contrato.\n- Correção de erro em documento já distribuído.\n\n## Identificação da Versão\n\nIncluir no nome do arquivo: `-v1`, `-v2`, etc.\nIncluir no cabeçalho do documento: versão, data e responsável pela revisão.\n\n## Versão Vigente\n\nApenas a versão mais recente aprovada deve estar na pasta ativa.\nAs versões anteriores são movidas para a pasta de arquivo.\n"
+            },
+            {
+              "title": "Aprovação de documentos",
+              "route": "documentos-aprovacao",
+              "order": 4,
+              "published": 1,
+              "content": "# Aprovação de Documentos\n\nDescreve o fluxo de aprovação para documentos oficiais da Vedium.\n\n## Tipos de Documento que Requerem Aprovação\n\n- Contratos\n- Políticas internas\n- Comunicados oficiais\n- Procedimentos novos ou revisados\n\n## Fluxo de Aprovação\n\n1. Elaboração pelo responsável.\n2. Revisão por par ou área relacionada.\n3. Aprovação pela coordenação ou direção.\n4. Publicação e comunicação.\n5. Arquivamento da versão aprovada.\n\n## Prazo\n\n[A CONFIRMAR] — definir prazo máximo para cada etapa do fluxo.\n"
+            },
+            {
+              "title": "Arquivamento",
+              "route": "documentos-arquivamento",
+              "order": 5,
+              "published": 1,
+              "content": "# Arquivamento de Documentos\n\nDescreve as regras de arquivamento de documentos inativos ou substituídos.\n\n## O que Deve ser Arquivado\n\n- Versões anteriores de documentos revisados.\n- Contratos encerrados.\n- Registros de turmas e alunos inativos.\n- Relatórios históricos.\n\n## Onde Arquivar\n\nPasta `Arquivo/` dentro da categoria correspondente.\n\n## Prazo de Retenção\n\n[A CONFIRMAR] — consultar política de retenção de dados conforme LGPD e obrigações legais.\n\n## Exclusão\n\nA exclusão definitiva de documentos deve seguir as regras da Política de Privacidade e LGPD.\n"
+            },
+            {
+              "title": "Documentos de alunos",
+              "route": "documentos-alunos",
+              "order": 6,
+              "published": 1,
+              "content": "# Documentos de Alunos\n\nDescreve os documentos relacionados a alunos que devem ser mantidos pela Vedium.\n\n## Documentos Obrigatórios\n\n- Confirmação de cadastro e matrícula\n- Registro de pagamentos\n\n## Documentos Complementares\n\n- Autorização do responsável (para menores)\n- Avaliação diagnóstica\n- Relatórios de evolução\n- Certificados emitidos\n\n## Acesso\n\nO aluno tem direito de solicitar acesso aos seus próprios dados conforme LGPD.\n\n## Retenção\n\n[A CONFIRMAR] — definir por quanto tempo os documentos de alunos são mantidos após o encerramento da matrícula.\n"
+            },
+            {
+              "title": "Documentos de professores",
+              "route": "documentos-professores",
+              "order": 7,
+              "published": 1,
+              "content": "# Documentos de Professores\n\nDescreve os documentos relacionados a professores que devem ser mantidos.\n\n## Documentos Obrigatórios\n\n- Documento de identidade e CPF\n- Contrato assinado\n- Dados bancários\n\n## Documentos Complementares\n\n- Currículo\n- Certificados de formação\n- Comprovante de proficiência no idioma\n- Registros de aulas e avaliações\n\n## Retenção\n\n[A CONFIRMAR] — definir por quanto tempo os documentos de professores são mantidos após o encerramento do contrato.\n"
+            },
+            {
+              "title": "Documentos financeiros",
+              "route": "documentos-financeiros",
+              "order": 8,
+              "published": 1,
+              "content": "# Documentos Financeiros\n\nDescreve os documentos financeiros que devem ser mantidos pela Vedium.\n\n## Documentos Obrigatórios\n\n- Relatórios de cobranças da Stripe\n- Comprovantes de pagamento a professores\n- Conciliações financeiras\n- Relatórios de reembolso\n\n## Acesso\n\nAcesso restrito à equipe financeira e direção.\n\n## Retenção\n\n[A CONFIRMAR] — verificar obrigações legais e fiscais para retenção de documentos financeiros.\n"
+            },
+            {
+              "title": "Documentos pedagógicos",
+              "route": "documentos-pedagogicos",
+              "order": 9,
+              "published": 1,
+              "content": "# Documentos Pedagógicos\n\nDescreve os documentos pedagógicos mantidos pela Vedium.\n\n## Documentos Incluídos\n\n- Planos de curso e aula\n- Registros de aulas\n- Avaliações aplicadas\n- Relatórios de evolução\n- Alertas pedagógicos\n- Atas de reunião pedagógica\n\n## Acesso\n\n- Professores: acesso aos seus próprios registros e alunos.\n- Coordenação: acesso a todos os registros pedagógicos.\n- Alunos: acesso ao próprio histórico mediante solicitação.\n\n## Retenção\n\n[A CONFIRMAR]\n"
+            },
+            {
+              "title": "Controle de acesso a documentos",
+              "route": "documentos-controle-acesso",
+              "order": 10,
+              "published": 1,
+              "content": "# Controle de Acesso a Documentos\n\nDescreve as regras de quem pode acessar cada tipo de documento.\n\n## Matriz de Acesso\n\n| Tipo de documento | Direção | Coordenação | Administrativo | Professor | Aluno |\n|---|---|---|---|---|---|\n| Contratos de alunos | ✅ | ✅ | ✅ | ❌ | Próprios |\n| Contratos de professores | ✅ | ✅ | ✅ | Próprios | ❌ |\n| Registros pedagógicos | ✅ | ✅ | ❌ | Próprios | Próprios |\n| Financeiro | ✅ | Parcial | Parcial | ❌ | Próprio |\n| Políticas internas | ✅ | ✅ | ✅ | ✅ | Públicas |\n\n## Compartilhamento Externo\n\nDocumentos internos não devem ser compartilhados externamente sem aprovação da direção.\n\n## Violação de Acesso\n\nAcesso não autorizado a documentos deve ser reportado imediatamente à coordenação.\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Políticas e Compliance",
+      "route": "politicas-compliance",
+      "published": 1,
+      "pages": [
+        {
+          "title": "Políticas e Compliance",
+          "route": "politicas-compliance",
+          "order": 1,
+          "published": 1,
+          "content": "# Políticas e Compliance\n\nEste espaço reúne as políticas institucionais da Vedium relacionadas à conduta, privacidade, proteção de dados, gravação de aulas, segurança da informação, direitos autorais e relacionamento com alunos, professores e parceiros.\n\n## Objetivo\n\nEstabelecer regras claras para a operação da escola e orientar decisões de professores, equipe administrativa, coordenação e prestadores.\n\n## Temas Principais\n\n- Código de Conduta;\n- LGPD e privacidade;\n- gravação de aulas, imagem e voz;\n- segurança da informação;\n- direitos autorais;\n- compliance operacional.\n\nAs páginas deste espaço devem ser mantidas alinhadas aos documentos jurídicos oficiais da Vedium.\n"
+        }
+      ],
+      "groups": [
+        {
+          "title": "Privacidade e LGPD",
+          "pages": [
+            {
+              "title": "Política de Privacidade",
+              "route": "lgpd-politica-privacidade",
+              "order": 1,
+              "published": 1,
+              "content": "# Política de Privacidade\n\nA Vedium trata dados pessoais de alunos, professores e visitantes em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).\n\n## Responsável pelo Tratamento\n\nVedium — operadora de cursos de idiomas online.\n\n## Encarregado de Dados (DPO)\n\nContato: **dpo@vediums.com**\n\n## Dados Coletados\n\n- Dados de identificação: nome, e-mail, CPF (quando aplicável).\n- Dados de contato: telefone, WhatsApp.\n- Dados de pagamento: gerenciados exclusivamente pela Stripe.\n- Dados de uso da plataforma: aulas assistidas, atividades, progressos.\n- Dados de comunicação: tickets de suporte, mensagens.\n\n## Finalidades\n\n- Prestação dos serviços educacionais.\n- Gestão de matrículas e pagamentos.\n- Comunicação com alunos e professores.\n- Cumprimento de obrigações legais.\n\n## Direitos dos Titulares\n\nConsulte a seção \"Direitos dos Titulares\" neste espaço.\n\n## Alterações nesta Política\n\nAlterações serão comunicadas pelos canais oficiais da Vedium.\n"
+            },
+            {
+              "title": "Tratamento de dados pessoais",
+              "route": "lgpd-tratamento-dados",
+              "order": 2,
+              "published": 1,
+              "content": "# Tratamento de Dados Pessoais\n\nDescreve como a Vedium coleta, usa, armazena e protege dados pessoais.\n\n## Coleta\n\nDados são coletados no momento do cadastro, durante o uso da plataforma e em comunicações com a Vedium.\n\n## Uso\n\nUsados exclusivamente para os fins informados na Política de Privacidade.\n\n## Armazenamento\n\nDados armazenados em servidores seguros com acesso controlado.\n\n## Compartilhamento\n\n- Stripe: dados de pagamento.\n- Brevo (ou similar): envio de e-mails.\n- Outros fornecedores essenciais com base em contrato.\n\nA Vedium não vende dados pessoais a terceiros.\n\n## Exclusão\n\nDados podem ser excluídos mediante solicitação, respeitados os prazos legais de retenção.\n"
+            },
+            {
+              "title": "Base legal para tratamento",
+              "route": "lgpd-base-legal",
+              "order": 3,
+              "published": 1,
+              "content": "# Base Legal para Tratamento de Dados\n\nA Vedium fundamenta o tratamento de dados nas bases legais previstas na LGPD.\n\n## Bases Utilizadas\n\n| Dado / Finalidade | Base Legal |\n|---|---|\n| Cadastro e prestação de serviço | Execução de contrato (Art. 7º, V) |\n| Pagamentos | Execução de contrato (Art. 7º, V) |\n| Comunicação de marketing | Legítimo interesse ou consentimento (Art. 7º, IX / X) |\n| Cumprimento de obrigação legal | Cumprimento de obrigação legal (Art. 7º, II) |\n| Dados de menores | Consentimento do responsável (Art. 14) |\n\n## Consentimento\n\nQuando o consentimento é a base legal, ele pode ser revogado a qualquer momento sem prejuízo às atividades realizadas até a revogação.\n"
+            },
+            {
+              "title": "Dados de alunos",
+              "route": "lgpd-dados-alunos",
+              "order": 4,
+              "published": 1,
+              "content": "# Dados de Alunos\n\nEspecifica os dados pessoais coletados e tratados de alunos da Vedium.\n\n## Dados Coletados\n\n- Nome completo\n- E-mail\n- Telefone (opcional)\n- Data de nascimento (para menores)\n- Dados de pagamento (gerenciados pela Stripe)\n- Histórico de aulas e progresso\n- Registros pedagógicos\n\n## Finalidade\n\n- Prestação do serviço educacional.\n- Comunicação sobre a matrícula e aulas.\n- Emissão de certificados.\n- Suporte.\n\n## Retenção\n\n[A CONFIRMAR] — definir prazo de retenção após encerramento da matrícula.\n\n## Acesso do Aluno\n\nO aluno pode solicitar acesso, correção ou exclusão dos seus dados a qualquer momento pelo canal dpo@vediums.com.\n"
+            },
+            {
+              "title": "Dados de professores",
+              "route": "lgpd-dados-professores",
+              "order": 5,
+              "published": 1,
+              "content": "# Dados de Professores\n\nEspecifica os dados pessoais coletados e tratados de professores da Vedium.\n\n## Dados Coletados\n\n- Nome completo\n- E-mail profissional\n- CPF e documento de identidade\n- Dados bancários\n- Qualificações e certidões\n\n## Finalidade\n\n- Prestação de serviços como docente.\n- Pagamento.\n- Cumprimento de obrigações legais e contratuais.\n\n## Retenção\n\n[A CONFIRMAR] — prazo após encerramento do contrato, respeitando obrigações legais.\n\n## Direitos\n\nO professor pode exercer seus direitos como titular conforme a LGPD, pelo canal dpo@vediums.com.\n"
+            },
+            {
+              "title": "Dados de menores de idade",
+              "route": "lgpd-dados-menores",
+              "order": 6,
+              "published": 1,
+              "content": "# Dados de Menores de Idade\n\nA Vedium pode atender alunos menores de 18 anos, com consentimento e acompanhamento do responsável legal.\n\n## Consentimento\n\nO cadastro de menores requer consentimento expresso do responsável legal (pai, mãe ou guardião).\n\n## Dados Coletados\n\n- Dados do aluno menor (nome, data de nascimento).\n- Dados do responsável legal (nome, e-mail, CPF).\n\n## Proteção Adicional\n\n- Dados de menores não são compartilhados com terceiros exceto quando necessário para a prestação do serviço.\n- Gravações de aulas com menores requerem autorização específica do responsável.\n\n## Contato\n\nResponsáveis podem exercer direitos LGPD em nome do menor pelo canal dpo@vediums.com.\n"
+            },
+            {
+              "title": "Direitos dos titulares",
+              "route": "lgpd-direitos-titulares",
+              "order": 7,
+              "published": 1,
+              "content": "# Direitos dos Titulares de Dados\n\nTitulares de dados pessoais tratados pela Vedium têm os seguintes direitos garantidos pela LGPD.\n\n## Direitos\n\n| Direito | Descrição |\n|---|---|\n| Acesso | Saber quais dados a Vedium possui sobre você |\n| Correção | Corrigir dados incorretos ou desatualizados |\n| Eliminação | Solicitar exclusão dos seus dados |\n| Portabilidade | Receber seus dados em formato estruturado |\n| Revogação de consentimento | Retirar o consentimento dado anteriormente |\n| Informação sobre compartilhamento | Saber com quem seus dados são compartilhados |\n| Oposição | Opor-se a tratamentos realizados sem consentimento |\n\n## Como Exercer\n\nEnvie sua solicitação para: **dpo@vediums.com**\n\nInforme:\n- Nome completo\n- E-mail cadastrado\n- Direito que deseja exercer\n- Detalhes da solicitação\n\n## Prazo de Resposta\n\n[A CONFIRMAR] — conforme LGPD, em regra 15 dias.\n"
+            },
+            {
+              "title": "Retenção e exclusão de dados",
+              "route": "lgpd-retencao-exclusao",
+              "order": 8,
+              "published": 1,
+              "content": "# Retenção e Exclusão de Dados\n\nDescreve por quanto tempo a Vedium mantém dados pessoais e como são excluídos.\n\n## Prazos de Retenção\n\n| Tipo de dado | Prazo de retenção |\n|---|---|\n| Dados de matrícula | [A CONFIRMAR] após encerramento |\n| Registros financeiros | [A CONFIRMAR] conforme legislação fiscal |\n| Registros pedagógicos | [A CONFIRMAR] |\n| Dados de suporte | [A CONFIRMAR] |\n\n## Exclusão\n\nApós o prazo de retenção, dados são excluídos ou anonimizados de forma segura.\n\n## Solicitação de Exclusão Antecipada\n\nO titular pode solicitar exclusão de seus dados a qualquer momento, exceto quando a retenção for obrigatória por lei ou contrato.\n\n## Contato\n\ndpo@vediums.com\n"
+            },
+            {
+              "title": "Incidentes de segurança de dados",
+              "route": "lgpd-incidentes",
+              "order": 9,
+              "published": 1,
+              "content": "# Incidentes de Segurança de Dados\n\nDescreve como a Vedium trata incidentes que possam comprometer dados pessoais.\n\n## O que é um Incidente\n\n- Acesso não autorizado a dados pessoais.\n- Vazamento de dados.\n- Perda ou destruição não intencional de dados.\n\n## Procedimento\n\n1. Identificar e conter o incidente imediatamente.\n2. Avaliar o impacto e os titulares afetados.\n3. Notificar a ANPD em até 72 horas quando exigido.\n4. Comunicar os titulares afetados quando necessário.\n5. Registrar o incidente e as ações tomadas.\n6. Revisar e corrigir as vulnerabilidades.\n\n## Reporte Interno\n\nQualquer colaborador que identificar indício de incidente deve reportar imediatamente ao DPO: dpo@vediums.com.\n"
+            },
+            {
+              "title": "Contato com o DPO",
+              "route": "lgpd-contato-dpo",
+              "order": 10,
+              "published": 1,
+              "content": "# Contato com o DPO\n\nO Encarregado de Dados (DPO) da Vedium é o ponto de contato para questões relacionadas à privacidade e à LGPD.\n\n## E-mail\n\n**dpo@vediums.com**\n\n## Quando Contatar o DPO\n\n- Exercer direitos como titular (acesso, correção, exclusão, etc.).\n- Relatar suspeita de incidente de segurança.\n- Tirar dúvidas sobre o tratamento dos seus dados.\n- Revogar consentimento.\n\n## Prazo de Retorno\n\n[A CONFIRMAR]\n\n## Solicitações de Terceiros\n\nSolicitações de autoridades públicas ou terceiros sobre dados pessoais devem ser direcionadas ao DPO e analisadas juridicamente antes de qualquer resposta.\n"
+            }
+          ]
+        },
+        {
+          "title": "Segurança da Informação",
+          "pages": [
+            {
+              "title": "Política de Segurança da Informação",
+              "route": "seguranca-politica",
+              "order": 1,
+              "published": 1,
+              "content": "# Política de Segurança da Informação\n\nEstabelece as diretrizes para proteção das informações da Vedium e de seus alunos e professores.\n\n## Objetivo\n\nGarantir a confidencialidade, integridade e disponibilidade das informações tratadas pela Vedium.\n\n## Abrangência\n\nAplica-se a todos os colaboradores, professores, prestadores e terceiros com acesso aos sistemas e dados da Vedium.\n\n## Princípios\n\n- Confidencialidade: acesso apenas a quem é autorizado.\n- Integridade: dados corretos e não adulterados.\n- Disponibilidade: sistemas acessíveis quando necessário.\n- Responsabilidade: cada usuário é responsável pelo uso correto do acesso.\n\n## Violações\n\nViolações desta política estão sujeitas a medidas disciplinares e, quando aplicável, ações legais.\n"
+            },
+            {
+              "title": "Controle de acesso",
+              "route": "seguranca-controle-acesso",
+              "order": 2,
+              "published": 1,
+              "content": "# Controle de Acesso\n\nDescreve como o acesso aos sistemas da Vedium é gerenciado.\n\n## Princípio do Mínimo Privilégio\n\nCada usuário deve ter acesso apenas ao que for necessário para suas funções.\n\n## Gestão de Acessos\n\n- Novos acessos são criados mediante solicitação formal.\n- Acessos são revisados periodicamente. [A CONFIRMAR periodicidade]\n- Acessos de colaboradores desligados são revogados imediatamente.\n\n## Tipos de Acesso\n\n| Perfil | Permissões |\n|---|---|\n| Aluno | Área do aluno, cursos matriculados |\n| Professor | Área do professor, alunos e turmas vinculados |\n| Administrativo | Módulos administrativos |\n| Coordenação | Módulos administrativos e pedagógicos |\n| Direção | Acesso amplo |\n"
+            },
+            {
+              "title": "Uso de senhas",
+              "route": "seguranca-senhas",
+              "order": 3,
+              "published": 1,
+              "content": "# Uso de Senhas\n\nOrientações para criação e uso de senhas seguras.\n\n## Requisitos de Senha\n\n- Mínimo de 8 caracteres. [A CONFIRMAR]\n- Combinação de letras maiúsculas, minúsculas, números e símbolos.\n- Não usar informações pessoais óbvias (nome, data de nascimento).\n\n## Boas Práticas\n\n- Não compartilhar senhas com ninguém, incluindo a equipe da Vedium.\n- Não usar a mesma senha em vários serviços.\n- Trocar a senha imediatamente se suspeitar de comprometimento.\n- Usar um gerenciador de senhas.\n\n## Esqueci minha Senha\n\nUsar a funcionalidade de recuperação de senha na plataforma. Em caso de dificuldade, abrir ticket de suporte.\n"
+            },
+            {
+              "title": "Autenticação",
+              "route": "seguranca-autenticacao",
+              "order": 4,
+              "published": 1,
+              "content": "# Autenticação\n\nDescreve como o acesso à plataforma é autenticado.\n\n## Método Principal\n\nLogin com e-mail e senha cadastrados.\n\n## Autenticação de Dois Fatores (2FA)\n\n[A CONFIRMAR] — verificar se 2FA está disponível na plataforma.\n\n## Sessão Expirada\n\nPor segurança, sessões inativas por longo período são encerradas automaticamente. [A CONFIRMAR tempo]\n\n## Acesso Suspeito\n\nSe o usuário identificar acesso não autorizado à sua conta, deve trocar a senha imediatamente e contatar o suporte.\n"
+            },
+            {
+              "title": "Compartilhamento de dados",
+              "route": "seguranca-compartilhamento",
+              "order": 5,
+              "published": 1,
+              "content": "# Compartilhamento de Dados\n\nDefine as regras para compartilhamento de dados internos e externos.\n\n## Compartilhamento Interno\n\n- Dados são compartilhados internamente apenas entre pessoas autorizadas.\n- Não encaminhar informações de alunos ou professores por canais não seguros.\n\n## Compartilhamento Externo\n\n- Apenas com fornecedores que tenham contrato com a Vedium e garantias adequadas de proteção.\n- Nunca compartilhar dados pessoais por e-mail em texto livre sem necessidade.\n\n## Proibições\n\n- Não compartilhar credenciais de acesso.\n- Não enviar listas de alunos ou professores para terceiros sem autorização.\n- Não postar dados pessoais em redes sociais ou grupos públicos.\n"
+            },
+            {
+              "title": "Dispositivos pessoais",
+              "route": "seguranca-dispositivos-pessoais",
+              "order": 6,
+              "published": 1,
+              "content": "# Uso de Dispositivos Pessoais\n\nOrientações para uso de dispositivos pessoais no acesso a sistemas da Vedium.\n\n## Boas Práticas\n\n- Manter o dispositivo com sistema operacional e aplicativos atualizados.\n- Usar senhas ou biometria para bloquear o dispositivo.\n- Não acessar sistemas da Vedium em redes Wi-Fi públicas sem VPN. [A CONFIRMAR]\n- Não armazenar documentos da Vedium em serviços de nuvem pessoal não aprovados.\n\n## Perda ou Roubo de Dispositivo\n\nInformar imediatamente ao suporte da Vedium se um dispositivo com acesso à plataforma for perdido ou roubado.\n"
+            },
+            {
+              "title": "Backups",
+              "route": "seguranca-backups",
+              "order": 7,
+              "published": 1,
+              "content": "# Política de Backups\n\nDescreve como os dados da Vedium são protegidos por backups.\n\n## Periodicidade\n\n[A CONFIRMAR] — verificar frequência atual de backups (diário, semanal).\n\n## O que é Salvo em Backup\n\n- Banco de dados da plataforma.\n- Arquivos e documentos.\n- Configurações do sistema.\n\n## Armazenamento\n\nBackups são armazenados em local separado e seguro. [A CONFIRMAR]\n\n## Teste de Restauração\n\nA integridade dos backups deve ser testada periodicamente. [A CONFIRMAR]\n\n## Responsável\n\n[A CONFIRMAR] — definir responsável pela gestão de backups.\n"
+            },
+            {
+              "title": "Incidentes de segurança",
+              "route": "seguranca-incidentes",
+              "order": 8,
+              "published": 1,
+              "content": "# Incidentes de Segurança\n\nDescreve como identificar, reportar e responder a incidentes de segurança.\n\n## O que é um Incidente de Segurança\n\n- Acesso não autorizado a sistemas ou dados.\n- Ataque de malware ou phishing.\n- Vazamento de informações.\n- Falha crítica de sistema que expõe dados.\n\n## Como Reportar\n\nAo identificar ou suspeitar de um incidente:\n\n1. Não tente resolver sozinho.\n2. Informe imediatamente ao responsável técnico ou DPO.\n3. Preserve evidências (capturas de tela, logs).\n4. Aguarde orientação.\n\n## Contato\n\ndpo@vediums.com\n"
+            },
+            {
+              "title": "Acesso de terceiros",
+              "route": "seguranca-acesso-terceiros",
+              "order": 9,
+              "published": 1,
+              "content": "# Acesso de Terceiros\n\nDescreve as condições para acesso de terceiros (fornecedores, prestadores) aos sistemas e dados da Vedium.\n\n## Requisitos\n\n- Contrato assinado com cláusula de confidencialidade.\n- Acesso limitado ao estritamente necessário.\n- Revisão periódica dos acessos concedidos.\n\n## Processo de Concessão\n\n1. Solicitação formal com justificativa.\n2. Aprovação pela coordenação.\n3. Acesso criado com permissões mínimas.\n4. Prazo de validade definido.\n5. Revogação ao término do contrato.\n"
+            },
+            {
+              "title": "Desligamento de usuários",
+              "route": "seguranca-desligamento",
+              "order": 10,
+              "published": 1,
+              "content": "# Desligamento de Usuários\n\nDescreve o processo de revogação de acesso quando um colaborador ou professor é desligado.\n\n## Procedimento\n\n1. Comunicação do desligamento à equipe administrativa.\n2. Revogação imediata de todos os acessos na plataforma.\n3. Alteração de senhas compartilhadas que o usuário conhecia.\n4. Bloqueio de e-mail corporativo (quando aplicável).\n5. Recuperação de equipamentos ou credenciais da Vedium.\n6. Registro do desligamento.\n\n## Prazo\n\nA revogação deve ocorrer no mesmo dia do desligamento, de preferência antes que o usuário seja informado.\n\n## Dados do Usuário Desligado\n\nOs dados são retidos conforme LGPD e obrigações contratuais.\n"
+            }
+          ]
+        },
+        {
+          "title": "Conduta",
+          "pages": [
+            {
+              "title": "Código de Conduta",
+              "route": "conduta-codigo",
+              "order": 1,
+              "published": 1,
+              "content": "# Código de Conduta\n\nEstabelece os padrões de comportamento esperados de todos os membros da comunidade Vedium: alunos, professores, equipe e parceiros.\n\n## Valores da Vedium\n\n- Respeito mútuo e inclusão.\n- Compromisso com a educação de qualidade.\n- Honestidade e transparência.\n- Responsabilidade individual e coletiva.\n\n## Comportamento Esperado\n\n- Tratar todas as pessoas com dignidade e respeito.\n- Participar das aulas de forma ativa e respeitosa.\n- Comunicar-se de forma clara e educada.\n- Reportar situações inadequadas pelos canais corretos.\n\n## Comportamento Inaceitável\n\n- Assédio, discriminação ou intimidação de qualquer natureza.\n- Uso de linguagem ofensiva ou violenta.\n- Compartilhamento não autorizado de conteúdo das aulas.\n- Qualquer ação que prejudique o ambiente de aprendizado.\n\n## Consequências\n\nViolações ao Código de Conduta podem resultar em advertência, suspensão ou encerramento da matrícula ou contrato.\n"
+            },
+            {
+              "title": "Conduta dos professores",
+              "route": "conduta-professores",
+              "order": 2,
+              "published": 1,
+              "content": "# Conduta dos Professores\n\nDefine os padrões de comportamento esperados dos professores da Vedium.\n\n## Compromissos do Professor\n\n- Comparecer às aulas no horário combinado.\n- Preparar as aulas com antecedência.\n- Manter comunicação respeitosa com alunos.\n- Registrar as aulas conforme os padrões pedagógicos.\n- Reportar problemas e alertas pedagógicos.\n- Manter sigilo sobre dados e informações dos alunos.\n- Não compartilhar materiais protegidos sem autorização.\n\n## Proibições\n\n- Comunicação inadequada com alunos fora dos canais oficiais.\n- Oferecimento de aulas particulares sem vínculo com a Vedium usando alunos da escola.\n- Qualquer forma de assédio ou discriminação.\n"
+            },
+            {
+              "title": "Conduta dos alunos",
+              "route": "conduta-alunos",
+              "order": 3,
+              "published": 1,
+              "content": "# Conduta dos Alunos\n\nDefine os padrões de comportamento esperados dos alunos da Vedium.\n\n## Compromissos do Aluno\n\n- Participar das aulas com pontualidade e respeito.\n- Tratar o professor e colegas de turma com educação.\n- Não compartilhar materiais da Vedium sem autorização.\n- Informar problemas pelo canal oficial de suporte.\n- Manter dados de acesso em sigilo.\n\n## Em Turmas\n\n- Respeitar o espaço de aprendizado dos colegas.\n- Não interromper desnecessariamente a aula.\n- Usar câmera e microfone de forma responsável.\n\n## Consequências\n\nComportamento inadequado pode resultar em advertência, suspensão temporária ou encerramento da matrícula.\n"
+            },
+            {
+              "title": "Comunicação respeitosa",
+              "route": "conduta-comunicacao-respeitosa",
+              "order": 4,
+              "published": 1,
+              "content": "# Comunicação Respeitosa\n\nPadrões de comunicação esperados em todos os canais da Vedium.\n\n## Princípios\n\n- Use linguagem educada e respeitosa.\n- Seja claro e objetivo.\n- Reconheça perspectivas diferentes com abertura.\n- Evite sarcasmo, ironia e tom agressivo.\n\n## Nos Canais de Suporte\n\n- Descreva o problema de forma clara.\n- Forneça as informações solicitadas.\n- Aguarde a resposta dentro dos prazos informados.\n\n## Em Aulas ao Vivo\n\n- Use o microfone de forma responsável.\n- No chat, use linguagem adequada ao contexto escolar.\n- Respeite o professor e os colegas.\n\n## Comunicação Inadequada\n\nMensagens ofensivas, ameaças ou linguagem discriminatória não serão toleradas em nenhum canal.\n"
+            },
+            {
+              "title": "Assédio e discriminação",
+              "route": "conduta-assedio-discriminacao",
+              "order": 5,
+              "published": 1,
+              "content": "# Assédio e Discriminação\n\nA Vedium tem tolerância zero com qualquer forma de assédio ou discriminação.\n\n## Definição\n\n**Assédio:** comportamento indesejado, repetitivo ou grave que cria ambiente hostil, constrangedor ou intimidador.\n\n**Discriminação:** tratamento desigual ou prejudicial baseado em raça, gênero, orientação sexual, religião, deficiência, origem ou qualquer outra característica pessoal.\n\n## O que Fazer ao Identificar\n\n1. Preservar evidências (capturas de tela, descrição do ocorrido).\n2. Reportar pelo canal oficial de suporte ou diretamente à coordenação.\n3. Não compartilhar o relato publicamente.\n\n## Tratamento da Denúncia\n\nTodas as denúncias são investigadas com seriedade e sigilo. O denunciante não será prejudicado pela denúncia.\n\n## Consequências\n\nConfirmadas as violações, medidas disciplinares serão aplicadas, incluindo possível encerramento da matrícula ou contrato.\n"
+            },
+            {
+              "title": "Conflito de interesses",
+              "route": "conduta-conflito-interesses",
+              "order": 6,
+              "published": 1,
+              "content": "# Conflito de Interesses\n\nDescreve situações de conflito de interesses e como devem ser tratadas.\n\n## O que é Conflito de Interesses\n\nSituação em que o interesse pessoal de um colaborador ou professor pode influenciar de forma inadequada decisões relacionadas à Vedium.\n\n## Exemplos\n\n- Professor oferecendo aulas particulares a alunos da Vedium fora da plataforma.\n- Contratação de fornecedor com relação pessoal sem transparência.\n- Acesso a informações privilegiadas para benefício próprio.\n\n## Como Proceder\n\n1. Identificar a situação de potencial conflito.\n2. Reportar à coordenação antes de tomar qualquer decisão.\n3. Abster-se de participar da decisão relacionada.\n\n## Omissão\n\nA omissão de conflito de interesse identificado é tratada como violação de conduta.\n"
+            },
+            {
+              "title": "Uso da imagem da Vedium",
+              "route": "conduta-imagem-vedium",
+              "order": 7,
+              "published": 1,
+              "content": "# Uso da Imagem da Vedium\n\nDefine quem pode usar a marca e a identidade da Vedium e em quais condições.\n\n## Uso Autorizado\n\n- Materiais produzidos pela equipe interna para fins institucionais.\n- Professores podem mencionar que lecionam pela Vedium em seus perfis profissionais.\n\n## Uso Não Autorizado\n\n- Criação de materiais com a marca Vedium sem aprovação.\n- Uso da logo ou nome da Vedium para fins comerciais pessoais.\n- Representação da Vedium em declarações públicas sem autorização.\n\n## Aprovação\n\nQualquer uso da identidade visual da Vedium deve ser aprovado pela coordenação.\n"
+            },
+            {
+              "title": "Redes sociais",
+              "route": "conduta-redes-sociais",
+              "order": 8,
+              "published": 1,
+              "content": "# Conduta em Redes Sociais\n\nOrientações para uso de redes sociais por professores e colaboradores da Vedium.\n\n## Perfis Pessoais\n\n- Ao mencionar a Vedium em perfil pessoal, faça de forma respeitosa e precisa.\n- Não compartilhe informações confidenciais sobre alunos, professores ou processos internos.\n- Não faça declarações que possam ser interpretadas como posição oficial da Vedium.\n\n## Perfis Profissionais\n\n- Professores podem indicar a Vedium como local de trabalho.\n- Compartilhamentos devem ser aprovados quando envolvem marca ou conteúdo da Vedium.\n\n## Proibições\n\n- Compartilhar gravações de aulas sem autorização.\n- Expor dados de alunos ou colegas.\n- Fazer comentários negativos sobre alunos, professores ou a Vedium.\n"
+            },
+            {
+              "title": "Medidas disciplinares",
+              "route": "conduta-medidas-disciplinares",
+              "order": 9,
+              "published": 1,
+              "content": "# Medidas Disciplinares\n\nDescreve as possíveis consequências de violações ao Código de Conduta.\n\n## Gradação\n\n| Nível | Aplicação |\n|---|---|\n| Advertência | Primeira ocorrência leve |\n| Advertência formal | Reincidência ou ocorrência moderada |\n| Suspensão temporária | Ocorrência grave ou reincidência |\n| Encerramento | Violação grave ou reincidência após suspensão |\n\n## Processo\n\n1. Ocorrência identificada e registrada.\n2. Investigação pela coordenação.\n3. Audiência com o envolvido quando aplicável.\n4. Decisão e comunicação formal.\n5. Recurso disponível ao interessado. [A CONFIRMAR]\n\n## Proporcionalidade\n\nAs medidas são proporcionais à gravidade da ocorrência e ao histórico do envolvido.\n"
+            },
+            {
+              "title": "Canal de comunicação de conduta",
+              "route": "conduta-canal-comunicacao",
+              "order": 10,
+              "published": 1,
+              "content": "# Canal de Comunicação de Conduta\n\nInforma como reportar violações ao Código de Conduta.\n\n## Como Reportar\n\n- Pelo canal oficial de suporte na plataforma.\n- Diretamente à coordenação por e-mail.\n- [A CONFIRMAR] — verificar se há canal anônimo.\n\n## O que Informar\n\n- Descrição do ocorrido.\n- Data, horário e contexto.\n- Pessoas envolvidas (se possível).\n- Evidências disponíveis.\n\n## Confidencialidade\n\nO relato é tratado com sigilo. A identidade do denunciante é protegida.\n\n## Proteção ao Denunciante\n\nNenhuma medida de retaliação será tomada contra quem reportar de boa-fé.\n"
+            }
+          ]
+        },
+        {
+          "title": "Gravação, Imagem e Voz",
+          "pages": [
+            {
+              "title": "Política de gravação de aulas",
+              "route": "gravacao-politica",
+              "order": 1,
+              "published": 1,
+              "content": "# Política de Gravação de Aulas\n\nDefine as condições em que aulas ao vivo podem ser gravadas.\n\n## Princípio Geral\n\nA gravação de aulas só é permitida com o consentimento prévio de todos os participantes.\n\n## Gravação pela Vedium\n\n[A CONFIRMAR] — definir se a Vedium grava aulas por padrão e em quais condições.\n\n## Gravação pelo Professor\n\nO professor pode gravar a aula apenas com autorização prévia e documentada do aluno (ou responsável, se menor).\n\n## Gravação pelo Aluno\n\nO aluno pode gravar a aula apenas com autorização prévia do professor.\n\n## Uso das Gravações\n\nGravações são para uso exclusivo de estudo e referência pessoal. Não é permitido compartilhá-las publicamente.\n"
+            },
+            {
+              "title": "Uso de imagem",
+              "route": "gravacao-uso-imagem",
+              "order": 2,
+              "published": 1,
+              "content": "# Uso de Imagem\n\nDescreve as regras para uso de imagem de alunos e professores.\n\n## Consentimento\n\nO uso de imagem requer autorização expressa e documentada.\n\n## Uso para Fins Institucionais\n\nA Vedium pode usar imagens de alunos e professores para fins institucionais (site, redes sociais, materiais) somente com autorização específica.\n\n## Revogação\n\nA autorização de uso de imagem pode ser revogada a qualquer momento. Imagens já publicadas podem ser mantidas se a remoção não for tecnicamente viável. [A CONFIRMAR]\n\n## Menores\n\nO uso de imagem de menores requer autorização dos responsáveis legais.\n"
+            },
+            {
+              "title": "Uso de voz",
+              "route": "gravacao-uso-voz",
+              "order": 3,
+              "published": 1,
+              "content": "# Uso de Voz\n\nDescreve as regras para gravação e uso de voz de alunos e professores.\n\n## Consentimento\n\nA gravação de voz requer o mesmo consentimento que a gravação de imagem.\n\n## Uso Pedagógico\n\nGravações de voz para fins pedagógicos (como análise de pronúncia) podem ser realizadas com consentimento específico do aluno.\n\n## Armazenamento\n\nGravações de voz são armazenadas de forma segura e acessadas apenas por quem tiver autorização.\n\n## Exclusão\n\nApós o prazo definido, gravações são excluídas. [A CONFIRMAR prazo]\n"
+            },
+            {
+              "title": "Consentimento para gravação",
+              "route": "gravacao-consentimento",
+              "order": 4,
+              "published": 1,
+              "content": "# Consentimento para Gravação\n\nDescreve como o consentimento para gravação deve ser obtido e documentado.\n\n## Forma\n\n- O consentimento deve ser explícito e informado.\n- Pode ser obtido por e-mail, formulário digital ou assinatura em documento.\n\n## O que deve ser Explicado\n\n- Finalidade da gravação.\n- Quem terá acesso.\n- Por quanto tempo será armazenada.\n- Como pode ser excluída.\n\n## Registro\n\nO consentimento deve ser arquivado junto ao cadastro do aluno ou professor.\n\n## Revogação\n\nO titular pode revogar o consentimento a qualquer momento, pelo canal dpo@vediums.com.\n"
+            },
+            {
+              "title": "Aulas com menores",
+              "route": "gravacao-menores",
+              "order": 5,
+              "published": 1,
+              "content": "# Gravação de Aulas com Menores de Idade\n\nEstabelece regras específicas para gravação e imagem de alunos menores de 18 anos.\n\n## Consentimento do Responsável\n\nQualquer gravação de aula com menor requer autorização prévia, por escrito, do responsável legal.\n\n## Proibições\n\n- Nenhuma gravação de menor pode ser compartilhada publicamente.\n- Nenhuma imagem ou voz de menor pode ser usada em material de divulgação sem consentimento expresso do responsável.\n\n## Acesso às Gravações\n\nGravações de aulas com menores são acessíveis somente ao professor, coordenação e responsável legal.\n"
+            },
+            {
+              "title": "Armazenamento de gravações",
+              "route": "gravacao-armazenamento",
+              "order": 6,
+              "published": 1,
+              "content": "# Armazenamento de Gravações\n\nDescreve onde e como as gravações de aulas são armazenadas.\n\n## Local\n\n[A CONFIRMAR] — definir plataforma de armazenamento (Google Drive, servidor próprio, etc.).\n\n## Acesso\n\nAcesso restrito ao professor, aluno autorizado e coordenação.\n\n## Segurança\n\n- Gravações protegidas por senha ou link restrito.\n- Não armazenar em dispositivos pessoais sem autorização.\n\n## Prazo\n\n[A CONFIRMAR] — definir prazo de retenção das gravações.\n"
+            },
+            {
+              "title": "Acesso às gravações",
+              "route": "gravacao-acesso",
+              "order": 7,
+              "published": 1,
+              "content": "# Acesso às Gravações de Aulas\n\nDescreve quem pode acessar as gravações de aulas e como.\n\n## Quem Pode Acessar\n\n- O aluno que participou da aula.\n- O professor que ministrou.\n- A coordenação pedagógica para fins de qualidade.\n- O responsável legal, no caso de alunos menores.\n\n## Como Acessar\n\n[A CONFIRMAR] — definir processo de acesso (link, plataforma, solicitação formal).\n\n## Solicitação de Acesso\n\nSolicitações de acesso devem ser feitas pelo canal oficial de suporte.\n"
+            },
+            {
+              "title": "Compartilhamento de gravações",
+              "route": "gravacao-compartilhamento",
+              "order": 8,
+              "published": 1,
+              "content": "# Compartilhamento de Gravações\n\nDefine as regras para compartilhamento de gravações de aulas.\n\n## O que é Permitido\n\n- Compartilhar com o próprio aluno que participou da aula.\n- Compartilhar com o responsável legal do aluno menor.\n- Compartilhamento interno para fins pedagógicos, com consentimento.\n\n## O que é Proibido\n\n- Compartilhamento público em redes sociais ou plataformas abertas.\n- Compartilhamento com terceiros sem consentimento.\n- Uso comercial de gravações sem autorização.\n"
+            },
+            {
+              "title": "Revogação de autorização",
+              "route": "gravacao-revogacao",
+              "order": 9,
+              "published": 1,
+              "content": "# Revogação de Autorização de Gravação\n\nDescreve como revogar uma autorização de gravação de imagem ou voz.\n\n## Como Solicitar\n\nEnviar solicitação para dpo@vediums.com com:\n- Nome completo\n- E-mail cadastrado\n- Indicação da autorização que deseja revogar\n\n## Efeito da Revogação\n\n- Novas gravações não serão realizadas.\n- Gravações existentes serão excluídas conforme o prazo definido. [A CONFIRMAR]\n- Material já publicado será removido quando tecnicamente possível. [A CONFIRMAR]\n\n## Prazo de Resposta\n\n[A CONFIRMAR]\n"
+            },
+            {
+              "title": "Exclusão de gravações",
+              "route": "gravacao-exclusao",
+              "order": 10,
+              "published": 1,
+              "content": "# Exclusão de Gravações\n\nDescreve como as gravações são excluídas ao término do prazo ou por solicitação.\n\n## Exclusão Automática\n\nGravações são excluídas automaticamente após o prazo de retenção definido. [A CONFIRMAR]\n\n## Exclusão por Solicitação\n\nO aluno ou responsável pode solicitar a exclusão antes do prazo pelo canal dpo@vediums.com.\n\n## Prazo para Exclusão\n\n[A CONFIRMAR] — após a solicitação, a exclusão deve ocorrer em no máximo [A CONFIRMAR].\n\n## Confirmação\n\nApós a exclusão, o solicitante recebe confirmação por e-mail.\n"
+            }
+          ]
+        },
+        {
+          "title": "Direitos Autorais",
+          "pages": [
+            {
+              "title": "Política de direitos autorais",
+              "route": "direitos-autorais-politica",
+              "order": 1,
+              "published": 1,
+              "content": "# Política de Direitos Autorais\n\nDefine as regras sobre criação, uso e proteção de materiais didáticos na Vedium.\n\n## Objetivo\n\nProteger os direitos dos criadores e garantir o uso legal de materiais educacionais.\n\n## Aplicação\n\nAplica-se a todos os materiais criados, usados ou compartilhados por professores, alunos e equipe da Vedium.\n\n## Princípios\n\n- Respeitar a autoria dos materiais utilizados.\n- Usar apenas materiais com licença adequada ou de criação própria.\n- Não reproduzir integralmente obras protegidas sem autorização.\n- Citar fontes adequadamente.\n"
+            },
+            {
+              "title": "Materiais próprios da Vedium",
+              "route": "direitos-autorais-materiais-vedium",
+              "order": 2,
+              "published": 1,
+              "content": "# Materiais Próprios da Vedium\n\nDescreve os direitos sobre materiais criados pela Vedium.\n\n## Titularidade\n\nMateriais criados pela equipe da Vedium (apostilas, exercícios, planos de aula, vídeos) são de propriedade da Vedium.\n\n## Uso por Professores\n\nProfessores podem usar os materiais da Vedium nas aulas ministradas pela escola. Não é permitido usá-los em contextos externos sem autorização.\n\n## Reprodução\n\nA reprodução parcial para fins pedagógicos internos é permitida. Reprodução comercial sem autorização é proibida.\n"
+            },
+            {
+              "title": "Materiais de professores",
+              "route": "direitos-autorais-materiais-professores",
+              "order": 3,
+              "published": 1,
+              "content": "# Materiais de Professores\n\nDescreve os direitos sobre materiais criados pelos professores para a Vedium.\n\n## Titularidade\n\n[A CONFIRMAR] — definir se materiais criados por professores para a Vedium pertencem ao professor, à escola ou são compartilhados.\n\n## Uso pela Vedium\n\nA Vedium pode usar materiais criados pelos professores para suas aulas, conforme definido em contrato.\n\n## Uso pelo Professor\n\nO professor pode usar os materiais que criou em outros contextos, desde que não sejam materiais exclusivos por contrato. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Materiais de terceiros",
+              "route": "direitos-autorais-terceiros",
+              "order": 4,
+              "published": 1,
+              "content": "# Uso de Materiais de Terceiros\n\nDescreve as regras para uso de materiais criados por outras pessoas ou editoras.\n\n## Requisitos\n\n- Verificar a licença do material antes de usar.\n- Obter autorização quando necessário.\n- Citar a fonte sempre.\n\n## Licenças Aceitas\n\n- Creative Commons com permissão de uso educacional.\n- Material sob domínio público.\n- Materiais adquiridos com licença de uso.\n\n## Materiais Não Permitidos\n\n- Reprodução integral de livros ou obras sem licença.\n- Materiais obtidos de forma não autorizada.\n"
+            },
+            {
+              "title": "Uso de livros e PDFs",
+              "route": "direitos-autorais-livros-pdfs",
+              "order": 5,
+              "published": 1,
+              "content": "# Uso de Livros e PDFs em Aulas\n\nOrientações sobre o uso de livros didáticos e materiais em PDF nas aulas da Vedium.\n\n## O que é Permitido\n\n- Usar excertos breves para fins pedagógicos, com citação da fonte.\n- Indicar o livro como leitura complementar (sem reproduzir o conteúdo).\n- Usar livros de acesso livre ou domínio público na íntegra.\n\n## O que não é Permitido\n\n- Distribuir PDFs de livros protegidos aos alunos sem licença.\n- Digitalizar e compartilhar livros físicos protegidos.\n- Compartilhar links de download não autorizado.\n\n## Materiais Adquiridos pela Vedium\n\nA Vedium pode adquirir licenças de uso de materiais. O professor deve confirmar a disponibilidade com a coordenação antes de usar.\n"
+            },
+            {
+              "title": "Vídeos e áudios",
+              "route": "direitos-autorais-videos-audios",
+              "order": 6,
+              "published": 1,
+              "content": "# Uso de Vídeos e Áudios em Aulas\n\nOrientações sobre uso de vídeos e áudios externos nas aulas da Vedium.\n\n## O que é Permitido\n\n- Exibir vídeos do YouTube com permissão de incorporação ativada para fins educacionais.\n- Usar áudios e vídeos com licença Creative Commons compatível.\n- Usar materiais de domínio público.\n\n## O que não é Permitido\n\n- Baixar e redistribuir vídeos protegidos sem autorização.\n- Usar músicas ou trilhas sonoras protegidas em produções da Vedium sem licença.\n"
+            },
+            {
+              "title": "Imagens",
+              "route": "direitos-autorais-imagens",
+              "order": 7,
+              "published": 1,
+              "content": "# Uso de Imagens\n\nOrientações sobre uso de imagens em materiais didáticos e comunicações da Vedium.\n\n## O que é Permitido\n\n- Imagens com licença Creative Commons compatível (CC0, CC-BY, etc.).\n- Imagens de bancos de imagens gratuitos com licença de uso comercial ou educacional.\n- Imagens de criação própria.\n\n## O que não é Permitido\n\n- Copiar imagens de outros sites sem verificar a licença.\n- Usar imagens de pessoas sem autorização.\n\n## Fontes Recomendadas\n\n- Unsplash, Pexels, Pixabay (verificar licença de cada imagem).\n- Google Imagens com filtro de uso livre.\n"
+            },
+            {
+              "title": "Compartilhamento com alunos",
+              "route": "direitos-autorais-compartilhamento-alunos",
+              "order": 8,
+              "published": 1,
+              "content": "# Compartilhamento de Materiais com Alunos\n\nDescreve as regras para distribuição de materiais didáticos aos alunos.\n\n## O que Pode ser Compartilhado\n\n- Materiais próprios da Vedium.\n- Materiais criados pelo professor para a aula.\n- Materiais de terceiros com licença adequada.\n- Links para materiais públicos e gratuitos.\n\n## O que não Pode ser Compartilhado\n\n- PDFs de livros protegidos sem licença.\n- Vídeos baixados de plataformas sem autorização.\n- Qualquer material cujos direitos não foram verificados.\n\n## Responsabilidade do Professor\n\nO professor é responsável por verificar os direitos dos materiais que compartilha com seus alunos.\n"
+            },
+            {
+              "title": "Violação de direitos autorais",
+              "route": "direitos-autorais-violacao",
+              "order": 9,
+              "published": 1,
+              "content": "# Violação de Direitos Autorais\n\nDescreve como a Vedium trata casos de violação de direitos autorais.\n\n## O que Caracteriza Violação\n\n- Reprodução não autorizada de obras protegidas.\n- Compartilhamento de materiais sem licença adequada.\n- Omissão ou falsificação de autoria.\n\n## Reporte\n\nViolações identificadas devem ser reportadas à coordenação.\n\n## Consequências Internas\n\n- Advertência ou medida disciplinar conforme gravidade.\n- Remoção imediata do material irregular.\n\n## Consequências Externas\n\nViolações podem resultar em notificação extrajudicial ou ação legal pelo detentor dos direitos.\n"
+            },
+            {
+              "title": "Retirada de conteúdo",
+              "route": "direitos-autorais-retirada",
+              "order": 10,
+              "published": 1,
+              "content": "# Retirada de Conteúdo por Direitos Autorais\n\nDescreve o processo para atender solicitações de retirada de conteúdo.\n\n## Recebimento da Solicitação\n\nSolicitações de retirada de conteúdo por direitos autorais devem ser enviadas para o e-mail oficial da Vedium, com:\n\n- Identificação do solicitante.\n- Descrição do conteúdo e localização.\n- Comprovação de titularidade.\n\n## Análise\n\nA equipe da Vedium analisa a solicitação em até [A CONFIRMAR] dias úteis.\n\n## Ação\n\nSe confirmada a violação, o conteúdo é removido ou substituído imediatamente.\n\n## Recurso\n\nO professor ou responsável pelo material pode apresentar justificativa antes da remoção definitiva.\n"
+            }
+          ]
+        },
+        {
+          "title": "Compliance Operacional",
+          "pages": [
+            {
+              "title": "Responsabilidades internas",
+              "route": "compliance-responsabilidades",
+              "order": 1,
+              "published": 1,
+              "content": "# Responsabilidades Internas\n\nDefine as responsabilidades de cada área para garantir a conformidade operacional.\n\n## Direção\n\n- Definir e aprovar políticas.\n- Garantir recursos para conformidade.\n- Responder pelos atos da organização.\n\n## Coordenação\n\n- Implementar políticas em suas áreas.\n- Supervisionar cumprimento das normas.\n- Reportar problemas à direção.\n\n## Equipe Administrativa\n\n- Executar processos conforme procedimentos definidos.\n- Manter registros atualizados.\n- Reportar irregularidades à coordenação.\n\n## Professores\n\n- Cumprir o Código de Conduta.\n- Manter registros pedagógicos.\n- Reportar ocorrências relevantes.\n"
+            },
+            {
+              "title": "Aprovações",
+              "route": "compliance-aprovacoes",
+              "order": 2,
+              "published": 1,
+              "content": "# Aprovações\n\nDescreve quais decisões requerem aprovação formal e de quem.\n\n## Matriz de Aprovação\n\n| Decisão | Aprovador |\n|---|---|\n| Novo professor | Coordenação pedagógica |\n| Novo aluno | Equipe administrativa |\n| Cancelamento de turma | Coordenação |\n| Reembolso | Coordenação financeira |\n| Nova política | Direção |\n| Contrato | Direção |\n| Divulgação institucional | Coordenação de marketing [A CONFIRMAR] |\n\n## Decisões Sem Aprovação Prévia\n\nDecisões rotineiras executadas pela equipe dentro dos procedimentos definidos não requerem aprovação adicional.\n"
+            },
+            {
+              "title": "Segregação de funções",
+              "route": "compliance-segregacao",
+              "order": 3,
+              "published": 1,
+              "content": "# Segregação de Funções\n\nDescreve as regras para evitar conflitos e concentração de poder em processos críticos.\n\n## Princípio\n\nNenhuma pessoa deve ter controle total sobre um processo financeiro ou de alto risco de ponta a ponta.\n\n## Exemplos de Segregação\n\n- Quem aprova um pagamento não deve ser o mesmo que efetua a transferência.\n- Quem cria o cadastro de professor não deve aprovar o contrato.\n- Quem acessa os dados financeiros não deve ter acesso irrestrito aos dados pedagógicos.\n\n## Aplicação\n\nA segregação de funções deve ser implementada sempre que houver risco significativo de fraude ou erro.\n"
+            },
+            {
+              "title": "Registros obrigatórios",
+              "route": "compliance-registros",
+              "order": 4,
+              "published": 1,
+              "content": "# Registros Obrigatórios\n\nDefine os registros que devem ser mantidos para fins de conformidade e auditoria.\n\n## Registros Obrigatórios\n\n| Tipo | Responsável | Frequência |\n|---|---|---|\n| Registro de aula | Professor | Por aula |\n| Registros financeiros | Financeiro | Por transação |\n| Contratos assinados | Administrativo | Por contratação |\n| Registros de ocorrências | Administrativo | Por ocorrência |\n| Logs de acesso ao sistema | TI / Coordenação | Automático |\n| Atas de reunião | Facilitador | Por reunião |\n\n## Armazenamento\n\nTodos os registros obrigatórios devem ser mantidos por prazo mínimo de [A CONFIRMAR].\n\n## Integridade\n\nRegistros não podem ser alterados retroativamente sem justificativa documentada e aprovação.\n"
+            },
+            {
+              "title": "Auditoria interna",
+              "route": "compliance-auditoria",
+              "order": 5,
+              "published": 1,
+              "content": "# Auditoria Interna\n\nDescreve o processo de verificação interna de conformidade.\n\n## Objetivo\n\nVerificar se os processos e registros estão em conformidade com as políticas da Vedium.\n\n## Frequência\n\n[A CONFIRMAR] — definir periodicidade da auditoria interna.\n\n## Áreas Auditadas\n\n- Processos financeiros\n- Matrículas e cancelamentos\n- Registros pedagógicos\n- Segurança de dados\n- Conformidade com LGPD\n\n## Responsável\n\n[A CONFIRMAR] — definir quem conduz a auditoria interna.\n\n## Resultado\n\nO relatório de auditoria é apresentado à direção com recomendações de melhoria.\n"
+            },
+            {
+              "title": "Gestão de riscos",
+              "route": "compliance-riscos",
+              "order": 6,
+              "published": 1,
+              "content": "# Gestão de Riscos\n\nDescreve como a Vedium identifica, avalia e mitiga riscos operacionais.\n\n## Tipos de Risco\n\n- Risco financeiro: inadimplência, fraude, erro de conciliação.\n- Risco pedagógico: qualidade de ensino, rotatividade de professores.\n- Risco de dados: vazamento, acesso não autorizado.\n- Risco operacional: falhas de sistema, dependência de fornecedores.\n- Risco jurídico: descumprimento de LGPD, conflitos contratuais.\n\n## Processo\n\n1. Identificar riscos.\n2. Avaliar probabilidade e impacto.\n3. Definir ações de mitigação.\n4. Monitorar periodicamente.\n5. Revisar quando houver mudança relevante.\n"
+            },
+            {
+              "title": "Fornecedores",
+              "route": "compliance-fornecedores",
+              "order": 7,
+              "published": 1,
+              "content": "# Compliance com Fornecedores\n\nDescreve os requisitos de conformidade para contratação e gestão de fornecedores.\n\n## Critérios de Seleção\n\n- Idoneidade comprovada.\n- Capacidade técnica para o serviço contratado.\n- Conformidade com a LGPD quando tratar dados pessoais.\n- Aceite dos termos de conduta da Vedium.\n\n## Contrato\n\nTodo fornecedor deve assinar contrato com cláusulas de confidencialidade e proteção de dados.\n\n## Revisão Periódica\n\nFornecedores ativos devem ser avaliados periodicamente. [A CONFIRMAR]\n\n## Encerramento\n\nAo encerrar o relacionamento, garantir a exclusão ou devolução de dados da Vedium pelo fornecedor.\n"
+            },
+            {
+              "title": "Pagamentos",
+              "route": "compliance-pagamentos",
+              "order": 8,
+              "published": 1,
+              "content": "# Compliance em Pagamentos\n\nDescreve os controles de conformidade aplicados aos processos de pagamento.\n\n## Pagamentos a Professores\n\n- Baseados em registros verificados de aulas realizadas.\n- Aprovados pela coordenação antes do pagamento.\n- Comprovante enviado ao professor.\n\n## Pagamentos a Fornecedores\n\n- Baseados em nota fiscal ou contrato.\n- Aprovados conforme matriz de aprovação.\n- Registrados e arquivados.\n\n## Controle\n\n- Dois responsáveis diferentes para aprovação e execução. [A CONFIRMAR]\n- Conciliação financeira periódica.\n- Auditoria anual dos pagamentos. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Contratos",
+              "route": "compliance-contratos",
+              "order": 9,
+              "published": 1,
+              "content": "# Compliance Contratual\n\nDescreve as boas práticas para gestão de contratos.\n\n## Regras Gerais\n\n- Todo relacionamento comercial ou de prestação de serviços deve ter contrato assinado.\n- Contratos verbais não têm validade formal para a Vedium.\n- Alterações contratuais devem ser formalizadas por aditivo.\n\n## Arquivo\n\n- Contratos assinados arquivados em local seguro.\n- Acesso restrito à direção e administrativo.\n\n## Renovação e Encerramento\n\n- Contratos devem ser revisados antes do vencimento.\n- Encerramento deve seguir as cláusulas contratuais.\n"
+            },
+            {
+              "title": "Não conformidades",
+              "route": "compliance-nao-conformidades",
+              "order": 10,
+              "published": 1,
+              "content": "# Tratamento de Não Conformidades\n\nDescreve como identificar e tratar situações de não conformidade com políticas internas.\n\n## O que é uma Não Conformidade\n\nQualquer desvio das políticas, procedimentos ou padrões estabelecidos pela Vedium.\n\n## Exemplos\n\n- Aula realizada sem registro.\n- Pagamento efetuado sem aprovação.\n- Compartilhamento de dados sem autorização.\n- Descumprimento do Código de Conduta.\n\n## Processo\n\n1. Identificar e registrar a não conformidade.\n2. Analisar a causa raiz.\n3. Definir ação corretiva.\n4. Implementar e verificar a efetividade.\n5. Registrar o encerramento.\n\n## Responsável\n\nA coordenação é responsável pelo acompanhamento das não conformidades abertas.\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FAQ Comercial e Financeiro",
+      "route": "faq-comercial-financeiro",
+      "published": 1,
+      "pages": [
+        {
+          "title": "FAQ Comercial e Financeiro",
+          "route": "faq-comercial-financeiro",
+          "order": 1,
+          "published": 1,
+          "content": "# FAQ Comercial e Financeiro\n\nEste espaço reúne respostas padronizadas para dúvidas comerciais e financeiras de alunos, responsáveis e interessados nos cursos da Vedium.\n\n## Temas Principais\n\n- Cursos, idiomas e modalidades.\n- Planos e pagamentos.\n- Cancelamentos e reembolsos.\n- Aulas e agendamento.\n- Certificados e avaliação.\n\nPara problemas técnicos, consulte o FAQ Técnico.\n"
+        }
+      ],
+      "groups": [
+        {
+          "title": "Cursos e Modalidades",
+          "pages": [
+            { "title": "Quais idiomas a Vedium oferece?", "route": "faq-com-quais-idiomas", "order": 1, "published": 1, "content": "# Quais idiomas a Vedium oferece?\n\nA Vedium oferece cursos nos seguintes idiomas:\n\n- **Inglês** — do nível iniciante ao avançado.\n- **Português para Estrangeiros** — para falantes de outros idiomas que desejam aprender português brasileiro.\n- **Espanhol** — do nível iniciante ao avançado.\n- **Iorubá** — idioma de origem africana, com currículo próprio.\n- **Hebraico** — moderno e bíblico. [A CONFIRMAR especificidade]\n\nConsulte a plataforma para verificar a disponibilidade atual de cada idioma e nível.\n" },
+            { "title": "As aulas são ao vivo?", "route": "faq-com-aulas-ao-vivo", "order": 2, "published": 1, "content": "# As aulas são ao vivo?\n\nSim. Todas as aulas da Vedium são ao vivo, realizadas pelo **Google Meet** com professor em tempo real.\n\nNão há aulas gravadas como formato principal. O ensino é interativo, permitindo que o aluno pratique, tire dúvidas e receba feedback imediato.\n" },
+            { "title": "As aulas são particulares?", "route": "faq-com-aulas-particulares", "order": 3, "published": 1, "content": "# As aulas são particulares?\n\nSim. A Vedium oferece aulas particulares individuais, onde o professor dedica toda a atenção a um único aluno.\n\nA Vedium também oferece aulas em turmas reduzidas. Consulte os planos disponíveis para cada idioma.\n" },
+            { "title": "Existem aulas em turma?", "route": "faq-com-aulas-turma", "order": 4, "published": 1, "content": "# Existem aulas em turma?\n\nSim. Além das aulas particulares, a Vedium oferece aulas em grupos reduzidos para alguns idiomas e níveis.\n\nAs turmas têm número máximo de alunos para garantir qualidade. [A CONFIRMAR número máximo]\n\nConsulte a disponibilidade atual de turmas na plataforma ou entre em contato com a equipe.\n" },
+            { "title": "Os professores são nativos?", "route": "faq-com-professores-nativos", "order": 5, "published": 1, "content": "# Os professores são nativos?\n\nA Vedium conta com professores nativos ou altamente qualificados em cada idioma.\n\nPara idiomas como Iorubá e Hebraico, a equipe é composta por especialistas com formação e experiência específica.\n\nConsulte o perfil dos professores disponíveis para o idioma de interesse.\n" },
+            { "title": "Como funcionam os níveis?", "route": "faq-com-niveis", "order": 6, "published": 1, "content": "# Como funcionam os níveis?\n\nA Vedium organiza os cursos por níveis de proficiência.\n\nPara inglês e espanhol, a referência é o Quadro Europeu Comum de Referência (QECR): A1, A2, B1, B2, C1 e C2.\n\nPara Iorubá e Hebraico, os níveis são definidos internamente pela Vedium. [A CONFIRMAR]\n\nO nível do aluno é definido pelo próprio na matrícula ou por um teste de nivelamento gratuito.\n" },
+            { "title": "Existe teste de nível?", "route": "faq-com-teste-nivel", "order": 7, "published": 1, "content": "# Existe teste de nível?\n\nSim. A Vedium oferece avaliação diagnóstica para alunos que já estudaram o idioma anteriormente.\n\nO teste é realizado pelo professor em uma aula inicial ou por avaliação prévia.\n\nPara alunos iniciantes, o teste não é necessário — o curso começa do zero.\n\nConsulte a equipe para agendar o nivelamento.\n" },
+            { "title": "Posso começar do zero?", "route": "faq-com-comecar-zero", "order": 8, "published": 1, "content": "# Posso começar do zero?\n\nSim. A Vedium aceita alunos completamente iniciantes, sem nenhum conhecimento prévio do idioma.\n\nO curso é estruturado para partir do zero e avançar gradualmente conforme o ritmo do aluno.\n" },
+            { "title": "A Vedium atende menores de idade?", "route": "faq-com-menores", "order": 9, "published": 1, "content": "# A Vedium atende menores de idade?\n\nSim. A Vedium pode atender alunos menores de 18 anos com autorização e acompanhamento do responsável legal.\n\nO cadastro do aluno menor requer os dados do responsável legal.\n\nGravações de aulas com menores requerem autorização expressa do responsável.\n\nConsulte a equipe para verificar as condições específicas.\n" },
+            { "title": "Há aula experimental?", "route": "faq-com-aula-experimental", "order": 10, "published": 1, "content": "# Há aula experimental?\n\n[A CONFIRMAR] — verificar se a Vedium oferece aula experimental gratuita e em quais condições.\n\nEm caso positivo, o interessado deve entrar em contato pelo canal oficial para agendar.\n" }
+          ]
+        },
+        {
+          "title": "Planos e Pagamentos",
+          "pages": [
+            { "title": "Como funcionam os planos?", "route": "faq-fin-como-planos", "order": 1, "published": 1, "content": "# Como funcionam os planos?\n\nA Vedium oferece planos de assinatura recorrente mensal.\n\nO aluno escolhe o idioma, o nível e a frequência de aulas semanais no momento da matrícula.\n\nO plano é cobrado mensalmente de forma automática no cartão cadastrado.\n\nConsulte os planos disponíveis na plataforma para ver as opções atuais.\n" },
+            { "title": "Quais são as formas de pagamento?", "route": "faq-fin-formas-pagamento", "order": 2, "published": 1, "content": "# Quais são as formas de pagamento?\n\nOs pagamentos são processados pela **Stripe**, plataforma segura e internacional.\n\nFormas aceitas:\n\n- Cartão de crédito (nacional e internacional)\n- Cartão de débito (quando disponível)\n- Boleto bancário [A CONFIRMAR disponibilidade]\n\nA Vedium não aceita pagamentos em dinheiro ou transferência direta.\n" },
+            { "title": "O pagamento é recorrente?", "route": "faq-fin-recorrente", "order": 3, "published": 1, "content": "# O pagamento é recorrente?\n\nSim. Ao se matricular, o aluno autoriza a cobrança automática mensal no cartão cadastrado.\n\nA cobrança ocorre na mesma data da matrícula, a cada mês. [A CONFIRMAR]\n\nO aluno pode cancelar a qualquer momento pelo canal oficial.\n" },
+            { "title": "O pagamento é feito pela Stripe?", "route": "faq-fin-stripe", "order": 4, "published": 1, "content": "# O pagamento é feito pela Stripe?\n\nSim. Todos os pagamentos são processados pela **Stripe**, empresa global certificada (PCI-DSS).\n\nA Vedium nunca tem acesso aos dados completos do cartão do aluno. Os dados são gerenciados exclusivamente pela Stripe.\n\nO aluno recebe confirmação por e-mail após cada cobrança.\n" },
+            { "title": "Como atualizar o cartão?", "route": "faq-fin-atualizar-cartao", "order": 5, "published": 1, "content": "# Como atualizar o cartão?\n\nEm caso de cartão expirado, cancelado ou trocado, o aluno deve atualizar os dados de pagamento.\n\n[A CONFIRMAR] — definir o caminho para atualização do cartão (portal do cliente Stripe, suporte, etc.).\n\nEm caso de dificuldade, abrir ticket de suporte informando que precisa atualizar o cartão.\n" },
+            { "title": "O que acontece se o pagamento falhar?", "route": "faq-fin-falha-pagamento", "order": 6, "published": 1, "content": "# O que acontece se o pagamento falhar?\n\nSe a cobrança mensal falhar:\n\n1. O aluno recebe notificação por e-mail.\n2. A Stripe pode tentar novamente automaticamente. [A CONFIRMAR]\n3. O acesso permanece disponível por um período de tolerância. [A CONFIRMAR duração]\n4. Se não regularizado, o acesso é suspenso.\n\nPara regularizar, atualizar o cartão ou entrar em contato com o suporte.\n" },
+            { "title": "Existe multa por atraso?", "route": "faq-fin-multa-atraso", "order": 7, "published": 1, "content": "# Existe multa por atraso?\n\n[A CONFIRMAR] — verificar política de multa ou juros por atraso no pagamento.\n" },
+            { "title": "Quando o acesso é suspenso?", "route": "faq-fin-suspensao-acesso", "order": 8, "published": 1, "content": "# Quando o acesso é suspenso?\n\nO acesso é suspenso quando o pagamento não é regularizado dentro do período de tolerância após uma falha de cobrança.\n\nO período de tolerância é de [A CONFIRMAR] dias.\n\nDurante a suspensão, o aluno não consegue acessar a plataforma nem participar das aulas.\n" },
+            { "title": "Como reativar o acesso?", "route": "faq-fin-reativar", "order": 9, "published": 1, "content": "# Como reativar o acesso?\n\nPara reativar o acesso após suspensão por inadimplência:\n\n1. Atualizar o cartão de pagamento (se necessário).\n2. A Stripe processa o pagamento.\n3. O acesso é reativado automaticamente após confirmação.\n\nEm caso de dificuldade, abrir ticket de suporte.\n" },
+            { "title": "A Vedium emite comprovante?", "route": "faq-fin-comprovante", "order": 10, "published": 1, "content": "# A Vedium emite comprovante de pagamento?\n\nSim. Após cada cobrança bem-sucedida, a **Stripe** envia e-mail com recibo do pagamento.\n\nSe precisar de comprovante adicional, entre em contato pelo canal oficial de suporte.\n\n[A CONFIRMAR] — verificar se a Vedium emite nota fiscal ou recibo próprio.\n" }
+          ]
+        },
+        {
+          "title": "Cancelamentos e Reembolsos",
+          "pages": [
+            { "title": "Como cancelar?", "route": "faq-cancel-como-cancelar", "order": 1, "published": 1, "content": "# Como cancelar?\n\nPara cancelar a assinatura:\n\n1. Entre em contato pelo canal oficial de suporte.\n2. Informe o motivo do cancelamento.\n3. Aguarde a confirmação da equipe.\n\nO cancelamento encerra as cobranças futuras. O acesso permanece disponível até o final do período pago. [A CONFIRMAR]\n" },
+            { "title": "Existe fidelidade?", "route": "faq-cancel-fidelidade", "order": 2, "published": 1, "content": "# Existe fidelidade?\n\n[A CONFIRMAR] — verificar se existe período mínimo de permanência para os planos da Vedium.\n\nEm caso positivo, o cancelamento antecipado pode estar sujeito a condições específicas definidas no plano contratado.\n" },
+            { "title": "Existe aviso prévio?", "route": "faq-cancel-aviso-previo", "order": 3, "published": 1, "content": "# É necessário aviso prévio para cancelar?\n\n[A CONFIRMAR] — verificar se há prazo de aviso prévio necessário para cancelamento.\n" },
+            { "title": "Como funciona o reembolso?", "route": "faq-cancel-reembolso", "order": 4, "published": 1, "content": "# Como funciona o reembolso?\n\n[A CONFIRMAR] — as condições de reembolso dependem do plano contratado e das políticas vigentes.\n\nPara solicitar reembolso:\n\n1. Entre em contato pelo canal oficial.\n2. Informe o motivo e os dados da cobrança.\n3. Aguarde análise da equipe.\n\nA devolução, quando aprovada, é processada pela Stripe e pode levar alguns dias úteis para aparecer na fatura do cartão.\n" },
+            { "title": "Posso pausar o plano?", "route": "faq-cancel-pausar", "order": 5, "published": 1, "content": "# Posso pausar o plano?\n\n[A CONFIRMAR] — verificar se a Vedium oferece a opção de pausar temporariamente o plano sem cancelar.\n\nCaso não haja opção de pausa, o aluno pode cancelar e se rematricular posteriormente.\n" },
+            { "title": "Posso trocar de plano?", "route": "faq-cancel-trocar-plano", "order": 6, "published": 1, "content": "# Posso trocar de plano?\n\n[A CONFIRMAR] — verificar se é possível mudar de plano (frequência de aulas, modalidade) e quais são as condições.\n\nEntre em contato pelo canal oficial para verificar as opções disponíveis.\n" },
+            { "title": "Posso trocar de professor?", "route": "faq-cancel-trocar-professor", "order": 7, "published": 1, "content": "# Posso trocar de professor?\n\nSim. A troca de professor pode ser solicitada à equipe administrativa.\n\n[A CONFIRMAR] — definir condições e procedimentos para troca de professor.\n\nEntre em contato pelo canal oficial informando o motivo da solicitação.\n" },
+            { "title": "Posso trocar de turma?", "route": "faq-cancel-trocar-turma", "order": 8, "published": 1, "content": "# Posso trocar de turma?\n\nSim, sujeito à disponibilidade de vaga na turma desejada e compatibilidade de nível.\n\nSolicite a troca pelo canal oficial de suporte.\n\n[A CONFIRMAR] — definir prazo e condições para troca.\n" },
+            { "title": "O que acontece com as aulas já agendadas após cancelamento?", "route": "faq-cancel-aulas-agendadas", "order": 9, "published": 1, "content": "# O que acontece com as aulas já agendadas após cancelamento?\n\nApós o cancelamento, as aulas agendadas no período pago podem ser mantidas até o fim do ciclo. [A CONFIRMAR]\n\nAulas fora do período pago são canceladas automaticamente.\n\nPara dúvidas específicas sobre aulas já agendadas, entre em contato com o suporte.\n" },
+            { "title": "Como encerrar a matrícula?", "route": "faq-cancel-encerrar-matricula", "order": 10, "published": 1, "content": "# Como encerrar a matrícula?\n\nO encerramento da matrícula é feito junto ao cancelamento do plano.\n\nEntre em contato pelo canal oficial de suporte para iniciar o processo.\n\nO histórico do aluno é preservado mesmo após o encerramento. Os dados são tratados conforme a Política de Privacidade.\n" }
+          ]
+        },
+        {
+          "title": "Aulas",
+          "pages": [
+            { "title": "Onde acontecem as aulas?", "route": "faq-aulas-onde", "order": 1, "published": 1, "content": "# Onde acontecem as aulas?\n\nTodas as aulas da Vedium são realizadas online pelo **Google Meet**.\n\nO aluno precisa apenas de:\n\n- Computador, tablet ou celular com acesso à internet.\n- Câmera e microfone.\n- Conexão estável.\n\nNão há deslocamento necessário.\n" },
+            { "title": "Como recebo o link da aula?", "route": "faq-aulas-link", "order": 2, "published": 1, "content": "# Como recebo o link da aula?\n\nO link do Google Meet é enviado pelo professor ou pela plataforma antes de cada aula.\n\n[A CONFIRMAR] — definir canal e antecedência de envio do link.\n\nPara turmas com horário fixo, o mesmo link pode ser usado em todas as aulas. [A CONFIRMAR]\n" },
+            { "title": "Posso reagendar?", "route": "faq-aulas-reagendar", "order": 3, "published": 1, "content": "# Posso reagendar uma aula?\n\nSim. O reagendamento de aulas particulares pode ser solicitado com antecedência mínima de [A CONFIRMAR].\n\nCombine a nova data com o professor ou solicite pelo canal de suporte.\n\nPara aulas em turma, não é possível reagendar uma aula específica — consulte as opções de reposição.\n" },
+            { "title": "O que acontece se eu faltar?", "route": "faq-aulas-falta", "order": 4, "published": 1, "content": "# O que acontece se eu faltar a uma aula?\n\n[A CONFIRMAR] — verificar a política de reposição de aulas faltadas pelo aluno.\n\nEm caso de falta, avise o professor o quanto antes pelo canal oficial.\n" },
+            { "title": "O professor pode cancelar?", "route": "faq-aulas-professor-cancelar", "order": 5, "published": 1, "content": "# O professor pode cancelar uma aula?\n\nSim. Em situações excepcionais, o professor pode precisar cancelar uma aula.\n\nNesse caso, o professor avisa com a maior antecedência possível e uma reposição é agendada.\n\nA Vedium garante que o aluno não seja prejudicado por cancelamentos do professor.\n" },
+            { "title": "Existe reposição?", "route": "faq-aulas-reposicao", "order": 6, "published": 1, "content": "# Existe reposição de aulas?\n\n[A CONFIRMAR] — definir política de reposição:\n- Cancelamento pelo professor: reposição garantida.\n- Cancelamento pelo aluno com aviso prévio: [A CONFIRMAR].\n- Falta sem aviso: [A CONFIRMAR].\n\nEntre em contato pelo canal de suporte para solicitar reposição quando aplicável.\n" },
+            { "title": "A aula pode ser gravada?", "route": "faq-aulas-gravacao", "order": 7, "published": 1, "content": "# A aula pode ser gravada?\n\nAs aulas só podem ser gravadas com o consentimento de todos os participantes (professor e aluno).\n\nSe desejar gravar para fins de estudo, solicite autorização ao professor antes da aula.\n\nConsulte a Política de Gravação de Aulas neste site para mais detalhes.\n" },
+            { "title": "Preciso usar câmera?", "route": "faq-aulas-camera", "order": 8, "published": 1, "content": "# Preciso usar câmera durante a aula?\n\nO uso de câmera é fortemente recomendado para melhorar a comunicação e o aproveitamento da aula.\n\n[A CONFIRMAR] — verificar se o uso de câmera é obrigatório ou apenas recomendado.\n\nSe houver impossibilidade técnica, comunique o professor antes da aula.\n" },
+            { "title": "Quanto dura uma aula?", "route": "faq-aulas-duracao", "order": 9, "published": 1, "content": "# Quanto dura uma aula?\n\n[A CONFIRMAR] — definir a duração padrão das aulas (ex.: 50 minutos, 1 hora).\n\nA duração pode variar conforme o plano contratado. Consulte os detalhes do seu plano na plataforma.\n" },
+            { "title": "Como funciona a aula experimental?", "route": "faq-aulas-experimental", "order": 10, "published": 1, "content": "# Como funciona a aula experimental?\n\n[A CONFIRMAR] — descrever o funcionamento da aula experimental quando a política for definida.\n\nPara verificar disponibilidade e agendar, entre em contato pelo canal oficial.\n" }
+          ]
+        },
+        {
+          "title": "Certificados e Avaliação",
+          "pages": [
+            { "title": "A Vedium emite certificado?", "route": "faq-cert-emite", "order": 1, "published": 1, "content": "# A Vedium emite certificado?\n\nSim. A Vedium emite certificado de conclusão para alunos que atendem aos critérios definidos.\n\nConsulte os critérios de elegibilidade para o curso que está realizando.\n" },
+            { "title": "Quais são os critérios para o certificado?", "route": "faq-cert-criterios", "order": 2, "published": 1, "content": "# Quais são os critérios para o certificado?\n\n[A CONFIRMAR] — definir critérios de frequência, avaliação e conclusão de nível necessários para emissão do certificado.\n" },
+            { "title": "Existe avaliação?", "route": "faq-cert-avaliacao", "order": 3, "published": 1, "content": "# Existe avaliação?\n\nSim. A Vedium realiza avaliações ao longo do curso para acompanhar o progresso do aluno.\n\n- **Avaliação diagnóstica:** no início do curso.\n- **Avaliação contínua:** ao longo das aulas.\n- **Avaliação final:** ao término de um nível. [A CONFIRMAR]\n" },
+            { "title": "Como funciona o nivelamento?", "route": "faq-cert-nivelamento", "order": 4, "published": 1, "content": "# Como funciona o nivelamento?\n\nO nivelamento é realizado por avaliação diagnóstica antes do início das aulas.\n\nO professor avalia as habilidades do aluno e recomenda o nível mais adequado.\n\nAlunos iniciantes não precisam de nivelamento.\n" },
+            { "title": "Como avanço de nível?", "route": "faq-cert-avanco-nivel", "order": 5, "published": 1, "content": "# Como avanço de nível?\n\nO avanço de nível é recomendado pelo professor com base na avaliação contínua e final.\n\n[A CONFIRMAR] — definir critérios de aprovação para avanço de nível.\n\nAo avançar de nível, o aluno é rematriculado no próximo nível conforme disponibilidade.\n" },
+            { "title": "Posso repetir um nível?", "route": "faq-cert-repetir-nivel", "order": 6, "published": 1, "content": "# Posso repetir um nível?\n\nSim. Se o aluno e o professor avaliarem que é necessário consolidar o aprendizado, o nível pode ser repetido.\n\nNão há penalidade por repetir um nível.\n\nConsulte o professor ou a equipe para analisar a necessidade.\n" },
+            { "title": "Recebo relatório de evolução?", "route": "faq-cert-relatorio", "order": 7, "published": 1, "content": "# Recebo relatório de evolução?\n\nSim. A Vedium fornece relatórios periódicos de evolução ao aluno.\n\n[A CONFIRMAR] — definir periodicidade e formato dos relatórios.\n\nO professor também oferece feedback ao aluno durante e após as aulas.\n" },
+            { "title": "A frequência é obrigatória?", "route": "faq-cert-frequencia", "order": 8, "published": 1, "content": "# A frequência é obrigatória?\n\n[A CONFIRMAR] — definir política de frequência mínima e seu impacto na matrícula e no certificado.\n\nÉ recomendável manter regularidade nas aulas para melhor aproveitamento e progresso consistente.\n" },
+            { "title": "Existe prova final?", "route": "faq-cert-prova-final", "order": 9, "published": 1, "content": "# Existe prova final?\n\n[A CONFIRMAR] — definir se há avaliação formal ao término de cada nível e como é realizada.\n" },
+            { "title": "O certificado é pago?", "route": "faq-cert-pago", "order": 10, "published": 1, "content": "# O certificado é pago?\n\n[A CONFIRMAR] — definir se há taxa para emissão do certificado.\n\nEm caso de dúvidas, entre em contato pelo canal oficial de suporte.\n" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FAQ Técnico",
+      "route": "faq-tecnico",
+      "published": 1,
+      "pages": [
+        {
+          "title": "FAQ Técnico",
+          "route": "faq-tecnico",
+          "order": 1,
+          "published": 1,
+          "content": "# FAQ Técnico\n\nEste espaço reúne orientações para acesso e uso da plataforma da Vedium, do Google Meet e dos canais oficiais de suporte.\n\nSe o problema não for resolvido pelas orientações abaixo, abra um ticket de suporte informando:\n\n- Descrição do problema.\n- Data e horário da ocorrência.\n- Mensagem de erro (quando houver).\n- Captura de tela (quando possível).\n"
+        }
+      ],
+      "groups": [
+        {
+          "title": "Acesso à Plataforma",
+          "pages": [
+            { "title": "Como acessar a plataforma?", "route": "faq-tec-como-acessar", "order": 1, "published": 1, "content": "# Como acessar a plataforma?\n\nAcesse `app.vediums.com` no navegador.\n\nInsira o e-mail e a senha cadastrados.\n\nClique em \"Entrar\" para acessar sua área do aluno.\n\n**Recomendado:** use o Google Chrome ou o Mozilla Firefox atualizados para melhor experiência.\n" },
+            { "title": "Esqueci minha senha", "route": "faq-tec-esqueci-senha", "order": 2, "published": 1, "content": "# Esqueci minha senha\n\nPara redefinir a senha:\n\n1. Acesse `app.vediums.com`.\n2. Clique em \"Esqueci minha senha\".\n3. Informe o e-mail cadastrado.\n4. Verifique a caixa de entrada e a pasta de spam.\n5. Clique no link recebido por e-mail.\n6. Crie uma nova senha.\n\nSe não receber o e-mail, abra um ticket de suporte.\n" },
+            { "title": "Não recebi o e-mail de acesso", "route": "faq-tec-email-acesso", "order": 3, "published": 1, "content": "# Não recebi o e-mail de acesso\n\nSe não recebeu o e-mail de confirmação ou recuperação de senha:\n\n1. Verifique a pasta de spam ou lixo eletrônico.\n2. Certifique-se de que o e-mail informado é o mesmo cadastrado.\n3. Aguarde até 10 minutos.\n4. Tente reenviar pelo link \"Reenviar e-mail\" na plataforma.\n\nSe o problema persistir, abra um ticket de suporte informando o e-mail utilizado.\n" },
+            { "title": "Minha conta está bloqueada", "route": "faq-tec-conta-bloqueada", "order": 4, "published": 1, "content": "# Minha conta está bloqueada\n\nA conta pode ser bloqueada por:\n\n- Múltiplas tentativas incorretas de login.\n- Inadimplência (acesso suspenso por falta de pagamento).\n- Outro motivo administrativo.\n\nPara desbloquear:\n\n1. Aguarde alguns minutos e tente novamente (bloqueio temporário por tentativas).\n2. Verifique se o pagamento está em dia.\n3. Se o problema persistir, abra um ticket de suporte.\n" },
+            { "title": "Como alterar meus dados cadastrais?", "route": "faq-tec-alterar-dados", "order": 5, "published": 1, "content": "# Como alterar meus dados cadastrais?\n\nPara atualizar seu nome, telefone ou outras informações:\n\n1. Acesse `app.vediums.com`.\n2. Vá para as configurações do seu perfil.\n3. Atualize os dados e salve.\n\nSe não conseguir alterar pelo perfil, entre em contato com o suporte.\n" },
+            { "title": "Como alterar meu e-mail?", "route": "faq-tec-alterar-email", "order": 6, "published": 1, "content": "# Como alterar meu e-mail?\n\nA alteração de e-mail deve ser solicitada ao suporte, pois é um dado sensível.\n\n1. Abra um ticket de suporte.\n2. Informe o e-mail atual e o novo e-mail.\n3. Aguarde a confirmação da equipe.\n\nApós a alteração, você passará a usar o novo e-mail para login.\n" },
+            { "title": "Como sair da conta?", "route": "faq-tec-sair-conta", "order": 7, "published": 1, "content": "# Como sair da conta?\n\nPara encerrar a sessão:\n\n1. Clique no seu nome ou foto no canto superior direito.\n2. Selecione \"Sair\" ou \"Logout\".\n\nRecomendamos sair sempre que usar dispositivos compartilhados.\n" },
+            { "title": "A plataforma funciona no celular?", "route": "faq-tec-celular", "order": 8, "published": 1, "content": "# A plataforma funciona no celular?\n\nSim. A plataforma `app.vediums.com` é compatível com dispositivos móveis.\n\nAcesse pelo navegador do celular. A experiência pode ser melhor em dispositivos maiores para algumas funcionalidades.\n\nPara as aulas ao vivo, instale o aplicativo **Google Meet** no celular.\n" },
+            { "title": "Quais navegadores usar?", "route": "faq-tec-navegadores", "order": 9, "published": 1, "content": "# Quais navegadores são recomendados?\n\nRecomendamos:\n\n- **Google Chrome** (versão atual) — melhor experiência.\n- **Mozilla Firefox** (versão atual).\n- **Microsoft Edge** (versão atual).\n\nEvite usar navegadores desatualizados ou Internet Explorer.\n\nSe encontrar problemas em um navegador específico, tente em outro.\n" },
+            { "title": "Como limpar cache do navegador?", "route": "faq-tec-limpar-cache", "order": 10, "published": 1, "content": "# Como limpar o cache do navegador?\n\nLimpar o cache pode resolver problemas de carregamento e exibição.\n\n**Google Chrome:**\n1. Pressione `Ctrl + Shift + Delete` (Windows) ou `Cmd + Shift + Delete` (Mac).\n2. Selecione \"Imagens e arquivos em cache\" e \"Cookies\".\n3. Clique em \"Limpar dados\".\n\n**Mozilla Firefox:**\n1. Pressione `Ctrl + Shift + Delete`.\n2. Selecione o período e os dados a limpar.\n3. Confirme.\n\nApós limpar o cache, feche e abra novamente o navegador.\n" }
+          ]
+        },
+        {
+          "title": "Google Meet",
+          "pages": [
+            { "title": "Como entrar na aula pelo Google Meet?", "route": "faq-meet-como-entrar", "order": 1, "published": 1, "content": "# Como entrar na aula pelo Google Meet?\n\n1. Receba o link do Google Meet do professor ou da plataforma.\n2. Clique no link no horário combinado.\n3. Permita acesso à câmera e ao microfone quando solicitado pelo navegador.\n4. Clique em \"Entrar agora\".\n\nSe for seu primeiro acesso ao Google Meet, pode ser necessário criar uma conta Google gratuita.\n" },
+            { "title": "O link do Meet não abre", "route": "faq-meet-link-nao-abre", "order": 2, "published": 1, "content": "# O link do Google Meet não abre\n\nSe o link não abrir:\n\n1. Copie o link e cole em um navegador diferente.\n2. Tente abrir o link em uma aba anônima/privada.\n3. Verifique se o link está correto (sem espaços extras).\n4. Tente entrar pelo aplicativo Google Meet no celular.\n5. Verifique se o link não está expirado.\n\nSe nenhuma opção funcionar, entre em contato com o professor ou abra um ticket de suporte.\n" },
+            { "title": "O microfone não funciona", "route": "faq-meet-microfone", "order": 3, "published": 1, "content": "# O microfone não funciona no Google Meet\n\n1. Verifique se o microfone está conectado e funcionando.\n2. No Google Meet, clique no ícone do microfone para ativá-lo.\n3. Verifique as permissões do navegador: clique no cadeado na barra de endereço e permita o microfone.\n4. Reinicie o navegador.\n5. Teste o microfone em outro aplicativo.\n\nSe o problema persistir, use fone de ouvido com microfone integrado.\n" },
+            { "title": "A câmera não funciona", "route": "faq-meet-camera", "order": 4, "published": 1, "content": "# A câmera não funciona no Google Meet\n\n1. Verifique se a câmera está conectada e não coberta.\n2. Clique no ícone da câmera no Google Meet para ativá-la.\n3. Verifique as permissões do navegador: clique no cadeado e permita a câmera.\n4. Verifique se outro aplicativo está usando a câmera simultaneamente.\n5. Reinicie o navegador.\n\nSe a câmera do computador não funcionar, pode usar o celular com o app Google Meet.\n" },
+            { "title": "Não escuto o professor", "route": "faq-meet-audio-professor", "order": 5, "published": 1, "content": "# Não escuto o professor na aula\n\n1. Verifique o volume do computador ou celular.\n2. Verifique se o som não está mutado no Google Meet.\n3. Verifique se o professor está com o microfone ativado.\n4. Use fone de ouvido para melhor qualidade de áudio.\n5. Saia e entre novamente na reunião.\n\nSe o problema persistir, informe o professor pelo chat do Meet.\n" },
+            { "title": "O professor não me escuta", "route": "faq-meet-professor-nao-escuta", "order": 6, "published": 1, "content": "# O professor não me escuta na aula\n\n1. Verifique se o seu microfone não está mutado (ícone com risco vermelho).\n2. Clique no ícone do microfone para ativar.\n3. Verifique as permissões de microfone no navegador.\n4. Fale mais perto do microfone.\n5. Use um fone de ouvido com microfone.\n\nSe o professor ainda não escutar, saia e entre novamente na reunião.\n" },
+            { "title": "A conexão está instável", "route": "faq-meet-conexao-instavel", "order": 7, "published": 1, "content": "# A conexão está instável durante a aula\n\n1. Verifique a velocidade da sua internet.\n2. Aproxime o dispositivo do roteador Wi-Fi ou use cabo de rede.\n3. Encerre outros programas que usam a internet.\n4. Desative a câmera temporariamente para economizar banda.\n5. Reinicie o roteador se necessário.\n\nSe a instabilidade for intensa e persistente, combine com o professor para remarcar a aula.\n" },
+            { "title": "Posso entrar pelo celular?", "route": "faq-meet-celular", "order": 8, "published": 1, "content": "# Posso entrar na aula pelo celular?\n\nSim. É possível participar das aulas pelo celular usando o aplicativo **Google Meet**.\n\nInstale o app:\n- Android: Google Play Store\n- iOS: App Store\n\nRecomendamos usar fone de ouvido e manter o celular em posição estável durante a aula.\n" },
+            { "title": "Preciso instalar aplicativo?", "route": "faq-meet-instalar-app", "order": 9, "published": 1, "content": "# Preciso instalar algum aplicativo?\n\nNo **computador:** não é necessário instalar nada. O Google Meet funciona diretamente no navegador.\n\nNo **celular:** é recomendável instalar o aplicativo **Google Meet** para melhor experiência.\n\nNão instale aplicativos de terceiros para acessar as aulas da Vedium. Use apenas o Google Meet oficial.\n" },
+            { "title": "Como usar o chat do Google Meet?", "route": "faq-meet-chat", "order": 10, "published": 1, "content": "# Como usar o chat do Google Meet?\n\nO chat do Google Meet permite enviar mensagens de texto durante a aula sem interromper o áudio.\n\nPara abrir o chat:\n\n1. Na tela do Google Meet, clique no ícone de balão de mensagem (canto superior direito).\n2. Digite sua mensagem e pressione Enter para enviar.\n\nO chat é útil para enviar links, perguntas ou avisar sobre problemas técnicos sem interromper a aula.\n" }
+          ]
+        },
+        {
+          "title": "Cursos e Conteúdo",
+          "pages": [
+            { "title": "Não consigo abrir o curso", "route": "faq-curso-nao-abre", "order": 1, "published": 1, "content": "# Não consigo abrir o curso\n\n1. Verifique se o pagamento está em dia e o acesso está ativo.\n2. Faça logout e login novamente.\n3. Limpe o cache do navegador.\n4. Tente em outro navegador.\n5. Verifique se está usando o e-mail correto da matrícula.\n\nSe o problema persistir, abra um ticket de suporte informando o nome do curso e a mensagem de erro.\n" },
+            { "title": "O curso não aparece", "route": "faq-curso-nao-aparece", "order": 2, "published": 1, "content": "# O curso não aparece na minha área\n\n1. Verifique se o pagamento foi confirmado pela Stripe.\n2. Faça logout e login novamente.\n3. Aguarde alguns minutos e atualize a página.\n4. Verifique se o e-mail usado no login é o mesmo da matrícula.\n\nSe o pagamento foi confirmado há mais de 30 minutos e o curso ainda não aparece, abra um ticket com o comprovante da Stripe.\n" },
+            { "title": "A aula não aparece", "route": "faq-curso-aula-nao-aparece", "order": 3, "published": 1, "content": "# A aula não aparece no curso\n\n1. Verifique se o módulo ou seção está publicado (algumas aulas são liberadas progressivamente).\n2. Atualize a página.\n3. Faça logout e login.\n4. Tente em outro navegador.\n\nSe a aula deveria estar disponível e não aparece, abra um ticket informando o nome do curso e da aula.\n" },
+            { "title": "O material não abre", "route": "faq-curso-material-nao-abre", "order": 4, "published": 1, "content": "# O material didático não abre\n\n1. Verifique se o arquivo é PDF e se há um leitor de PDF instalado.\n2. Tente baixar o arquivo e abrir localmente.\n3. Verifique sua conexão com a internet.\n4. Tente em outro navegador.\n\nSe o arquivo estiver corrompido ou indisponível, informe o professor ou abra um ticket.\n" },
+            { "title": "O vídeo não carrega", "route": "faq-curso-video", "order": 5, "published": 1, "content": "# O vídeo não carrega\n\n1. Verifique sua conexão com a internet.\n2. Aguarde alguns segundos — vídeos grandes podem demorar para carregar.\n3. Reduza a qualidade do vídeo (configurações do player).\n4. Tente em outro navegador.\n5. Desative extensões do navegador que possam bloquear o conteúdo.\n\nSe o vídeo não carregar em nenhuma condição, informe pelo ticket de suporte.\n" },
+            { "title": "Não consigo baixar o material", "route": "faq-curso-download", "order": 6, "published": 1, "content": "# Não consigo baixar o material\n\n1. Verifique se o botão de download está visível (nem todos os materiais têm opção de download).\n2. Verifique se há espaço suficiente no seu dispositivo.\n3. Tente em outro navegador.\n4. Desative bloqueadores de pop-up.\n\nSe o download não funcionar, informe pelo ticket de suporte com o nome do material.\n" },
+            { "title": "Minha atividade não foi salva", "route": "faq-curso-atividade-nao-salva", "order": 7, "published": 1, "content": "# Minha atividade não foi salva\n\n1. Verifique se você clicou em \"Salvar\" ou \"Enviar\" antes de fechar.\n2. Verifique se estava conectado à internet no momento do envio.\n3. Tente enviar novamente.\n\nSe o problema persistir e a atividade tiver prazo, informe o professor imediatamente.\n" },
+            { "title": "Minha avaliação não aparece", "route": "faq-curso-avaliacao", "order": 8, "published": 1, "content": "# Minha avaliação não aparece\n\n1. Verifique se concluiu os módulos anteriores (algumas avaliações são desbloqueadas progressivamente).\n2. Atualize a página.\n3. Faça logout e login.\n\nSe a avaliação deveria estar disponível e não aparece, abra um ticket.\n" },
+            { "title": "Meu progresso está incorreto", "route": "faq-curso-progresso", "order": 9, "published": 1, "content": "# Meu progresso aparece incorreto no curso\n\n1. O progresso pode levar alguns instantes para atualizar após concluir uma aula.\n2. Faça logout, aguarde e faça login novamente.\n3. Atualize a página.\n\nSe o progresso continuar incorreto após 24 horas, abra um ticket descrevendo o que está errado.\n" },
+            { "title": "Meu certificado não aparece", "route": "faq-curso-certificado", "order": 10, "published": 1, "content": "# Meu certificado não aparece\n\nO certificado é emitido após atender todos os critérios de conclusão. [A CONFIRMAR critérios]\n\n1. Verifique se concluiu todas as atividades e avaliações necessárias.\n2. Aguarde até 24 horas após a conclusão. [A CONFIRMAR]\n3. Se após esse prazo o certificado não aparecer, abra um ticket informando o nome do curso.\n" }
+          ]
+        },
+        {
+          "title": "Pagamentos",
+          "pages": [
+            { "title": "O pagamento não foi aprovado", "route": "faq-pag-nao-aprovado", "order": 1, "published": 1, "content": "# O pagamento não foi aprovado\n\nSe o pagamento foi recusado:\n\n1. Verifique os dados do cartão (número, validade, CVV).\n2. Verifique se há limite disponível.\n3. Tente com outro cartão.\n4. Entre em contato com o banco emissor do cartão.\n5. Se o problema persistir, abra um ticket de suporte.\n" },
+            { "title": "O cartão foi recusado", "route": "faq-pag-cartao-recusado", "order": 2, "published": 1, "content": "# O cartão foi recusado\n\nO cartão pode ser recusado por:\n\n- Dados incorretos (número, validade, CVV).\n- Limite insuficiente.\n- Cartão bloqueado ou cancelado.\n- Banco bloqueando a transação (comum em compras internacionais).\n\n**O que fazer:**\n\n1. Verifique os dados e tente novamente.\n2. Entre em contato com o banco para verificar bloqueios.\n3. Tente com outro cartão.\n4. Abra ticket de suporte se o problema persistir.\n" },
+            { "title": "A cobrança está duplicada", "route": "faq-pag-duplicada", "order": 3, "published": 1, "content": "# Apareceu uma cobrança duplicada\n\nSe identificou cobranças duplicadas:\n\n1. Verifique no e-mail da Stripe se foram gerados dois recibos.\n2. Abra um ticket de suporte imediatamente com:\n   - Datas e valores das cobranças.\n   - Captura de tela da fatura do cartão ou recibos da Stripe.\n\nA equipe analisará e processará o estorno da cobrança indevida.\n" },
+            { "title": "Não reconheço a cobrança", "route": "faq-pag-nao-reconheco", "order": 4, "published": 1, "content": "# Não reconheço uma cobrança da Vedium\n\nAs cobranças da Vedium aparecem na fatura do cartão com a descrição da Stripe ou da Vedium.\n\n1. Verifique se o e-mail da Stripe foi recebido com o recibo.\n2. Verifique se algum familiar pode ter realizado a compra.\n3. Se confirmar que a cobrança não é da Vedium, entre em contato com o banco.\n4. Se a cobrança for da Vedium mas você não reconhecer, abra um ticket com os detalhes.\n" },
+            { "title": "Como atualizar o cartão?", "route": "faq-pag-atualizar-cartao", "order": 5, "published": 1, "content": "# Como atualizar o cartão de pagamento?\n\n[A CONFIRMAR] — definir o processo para atualização do cartão (portal do cliente Stripe, suporte, etc.).\n\nEm caso de falha de pagamento por cartão expirado, entre em contato com o suporte para orientação.\n" },
+            { "title": "Como acessar a fatura?", "route": "faq-pag-fatura", "order": 6, "published": 1, "content": "# Como acessar a fatura da minha assinatura?\n\nA Stripe envia e-mail com recibo após cada cobrança. Verifique sua caixa de entrada com o endereço cadastrado.\n\n[A CONFIRMAR] — definir se há portal do cliente Stripe disponível para histórico de faturas.\n\nPara solicitar cópia de fatura, abra um ticket de suporte informando o período desejado.\n" },
+            { "title": "O pagamento foi feito mas o acesso não liberou", "route": "faq-pag-acesso-nao-liberou", "order": 7, "published": 1, "content": "# O pagamento foi feito mas o acesso não foi liberado\n\n1. Aguarde até 15 minutos — a confirmação pode levar alguns instantes.\n2. Faça logout e login novamente.\n3. Atualize a página.\n\nSe após 30 minutos o acesso ainda não foi liberado:\n\n1. Abra um ticket de suporte.\n2. Informe: data e horário do pagamento, e-mail cadastrado, e o recibo da Stripe.\n" },
+            { "title": "Meu plano aparece como vencido", "route": "faq-pag-plano-vencido", "order": 8, "published": 1, "content": "# Meu plano aparece como vencido\n\n1. Verifique se o pagamento mensal foi realizado com sucesso.\n2. Verifique o e-mail — pode haver notificação de falha de pagamento.\n3. Verifique os dados do cartão.\n4. Regularize o pagamento para reativar o acesso.\n\nPara dúvidas sobre o status do plano, abra um ticket de suporte.\n" },
+            { "title": "Como cancelar a cobrança recorrente?", "route": "faq-pag-cancelar-recorrente", "order": 9, "published": 1, "content": "# Como cancelar a cobrança recorrente?\n\nO cancelamento da cobrança recorrente é feito pelo encerramento do plano.\n\nEntre em contato pelo canal oficial de suporte para solicitar o cancelamento.\n\nO sistema cancela a assinatura na Stripe, e não haverá novas cobranças após a data de processamento.\n" },
+            { "title": "Como solicitar análise financeira?", "route": "faq-pag-analise-financeira", "order": 10, "published": 1, "content": "# Como solicitar análise financeira?\n\nPara dúvidas ou contestações financeiras que não foram resolvidas pelo suporte padrão:\n\n1. Abra um ticket de suporte com a categoria \"Financeiro\".\n2. Descreva a situação detalhadamente.\n3. Anexe comprovantes (recibos da Stripe, extrato do cartão).\n4. Aguarde o contato da equipe financeira.\n" }
+          ]
+        },
+        {
+          "title": "Suporte",
+          "pages": [
+            { "title": "Como abrir um ticket?", "route": "faq-sup-abrir-ticket", "order": 1, "published": 1, "content": "# Como abrir um ticket de suporte?\n\n1. Acesse `app.vediums.com`.\n2. Vá para a área de suporte ou ajuda.\n3. Clique em \"Novo ticket\" ou \"Abrir chamado\".\n4. Preencha o título e a descrição.\n5. Selecione a categoria.\n6. Clique em enviar.\n\nVocê receberá um número de protocolo por e-mail.\n" },
+            { "title": "Onde acompanho meu ticket?", "route": "faq-sup-acompanhar", "order": 2, "published": 1, "content": "# Onde acompanho o status do meu ticket?\n\n1. Acesse `app.vediums.com`.\n2. Vá para a área de suporte.\n3. Consulte a lista de tickets abertos.\n4. Clique no ticket para ver as atualizações.\n\nVocê também receberá notificações por e-mail quando houver atualização.\n" },
+            { "title": "Como responder um ticket?", "route": "faq-sup-responder", "order": 3, "published": 1, "content": "# Como responder a uma mensagem do suporte?\n\n1. Acesse o ticket pela plataforma ou pelo link no e-mail de notificação.\n2. Leia a mensagem da equipe.\n3. Adicione sua resposta no campo de comentário.\n4. Clique em enviar.\n\nEvite abrir um novo ticket para o mesmo problema — responda sempre no mesmo ticket.\n" },
+            { "title": "Posso anexar arquivo ao ticket?", "route": "faq-sup-anexar", "order": 4, "published": 1, "content": "# Posso anexar arquivo ao ticket?\n\nSim. Você pode anexar capturas de tela, comprovantes ou outros arquivos relevantes ao ticket.\n\n[A CONFIRMAR] — verificar formatos e tamanho máximo aceitos.\n\nAnexe imagens ou documentos que ajudem a equipe a entender e resolver o problema mais rapidamente.\n" },
+            { "title": "Qual o prazo de resposta?", "route": "faq-sup-prazo", "order": 5, "published": 1, "content": "# Qual o prazo de resposta do suporte?\n\nO prazo varia conforme a prioridade do ticket:\n\n- **Alta prioridade** (acesso bloqueado, problema em aula): [A CONFIRMAR]\n- **Média prioridade** (dúvidas financeiras, alterações): [A CONFIRMAR]\n- **Baixa prioridade** (informações gerais): [A CONFIRMAR]\n\nTickets fora do horário de atendimento serão respondidos no próximo dia útil.\n" },
+            { "title": "Como informar um erro?", "route": "faq-sup-informar-erro", "order": 6, "published": 1, "content": "# Como informar um erro na plataforma?\n\nAo identificar um erro:\n\n1. Abra um ticket de suporte.\n2. Descreva o que estava fazendo quando o erro ocorreu.\n3. Informe a mensagem de erro exata (copie o texto ou tire uma captura de tela).\n4. Informe o navegador e o dispositivo utilizados.\n5. Informe a data e o horário da ocorrência.\n\nEssas informações ajudam a equipe a reproduzir e corrigir o problema mais rapidamente.\n" },
+            { "title": "Como enviar print?", "route": "faq-sup-print", "order": 7, "published": 1, "content": "# Como enviar uma captura de tela ao suporte?\n\n**Windows:** pressione `Print Screen` ou `Windows + Shift + S` para capturar a tela.\n\n**Mac:** pressione `Cmd + Shift + 3` para a tela inteira ou `Cmd + Shift + 4` para selecionar uma área.\n\n**Celular:** consulte as instruções do seu dispositivo para captura de tela.\n\nAnexe a imagem ao ticket de suporte clicando em \"Anexar arquivo\".\n" },
+            { "title": "Como relatar problema em aula?", "route": "faq-sup-problema-aula", "order": 8, "published": 1, "content": "# Como relatar um problema ocorrido durante a aula?\n\n1. Durante a aula, informe o professor imediatamente pelo chat do Google Meet.\n2. Se a aula precisar ser interrompida, combine com o professor por onde irá se comunicar (WhatsApp ou e-mail, se autorizado).\n3. Após a aula, abra um ticket de suporte descrevendo o problema, a data, o horário e o impacto na aula.\n\nSe a aula não pôde ser realizada por falha técnica, informe no ticket para que a reposição seja providenciada.\n" },
+            { "title": "Quando meu caso será escalado?", "route": "faq-sup-escalonamento", "order": 9, "published": 1, "content": "# Quando meu caso será escalado?\n\nO ticket é escalado para um nível superior quando:\n\n- O prazo de resolução foi excedido sem resposta.\n- O problema é complexo e exige decisão gerencial.\n- A solução proposta não resolveu o problema.\n- A situação envolve questão financeira ou jurídica.\n\nSe o seu ticket não foi resolvido dentro do prazo, você pode solicitar o escalonamento respondendo ao ticket.\n" },
+            { "title": "Como encerrar um atendimento?", "route": "faq-sup-encerrar", "order": 10, "published": 1, "content": "# Como encerrar um atendimento?\n\nO ticket é encerrado automaticamente quando o problema for resolvido e confirmado.\n\nSe a equipe encerrar o ticket e o problema persistir:\n\n1. Responda ao ticket solicitando reabertura.\n2. Descreva o que ainda está ocorrendo.\n\nVocê também pode abrir um novo ticket se o problema for diferente do anterior.\n" }
+          ]
+        }
+      ]
+    }
+  ]
+}
