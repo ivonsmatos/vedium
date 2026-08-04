@@ -4,13 +4,11 @@
   "spaces": [
     {
       "title": "Documentação Pedagógica dos Cursos",
-      "route": "documentacao-pedagogica-dos-cursos",
+      "route": "documentao-pedaggica-dos-cursos",
       "published": 1,
-      "existing": true,
       "groups": [
         {
           "title": "Modelos e Padrões Pedagógicos",
-          "existing": true,
           "pages": [
             {
               "title": "Modelo de Plano de Curso",
@@ -1166,76 +1164,376 @@
         {
           "title": "Cursos e Modalidades",
           "pages": [
-            { "title": "Quais idiomas a Vedium oferece?", "route": "faq-com-quais-idiomas", "order": 1, "published": 1, "content": "# Quais idiomas a Vedium oferece?\n\nA Vedium oferece cursos nos seguintes idiomas:\n\n- **Inglês** — do nível iniciante ao avançado.\n- **Português para Estrangeiros** — para falantes de outros idiomas que desejam aprender português brasileiro.\n- **Espanhol** — do nível iniciante ao avançado.\n- **Iorubá** — idioma de origem africana, com currículo próprio.\n- **Hebraico** — moderno e bíblico. [A CONFIRMAR especificidade]\n\nConsulte a plataforma para verificar a disponibilidade atual de cada idioma e nível.\n" },
-            { "title": "As aulas são ao vivo?", "route": "faq-com-aulas-ao-vivo", "order": 2, "published": 1, "content": "# As aulas são ao vivo?\n\nSim. Todas as aulas da Vedium são ao vivo, realizadas pelo **Google Meet** com professor em tempo real.\n\nNão há aulas gravadas como formato principal. O ensino é interativo, permitindo que o aluno pratique, tire dúvidas e receba feedback imediato.\n" },
-            { "title": "As aulas são particulares?", "route": "faq-com-aulas-particulares", "order": 3, "published": 1, "content": "# As aulas são particulares?\n\nSim. A Vedium oferece aulas particulares individuais, onde o professor dedica toda a atenção a um único aluno.\n\nA Vedium também oferece aulas em turmas reduzidas. Consulte os planos disponíveis para cada idioma.\n" },
-            { "title": "Existem aulas em turma?", "route": "faq-com-aulas-turma", "order": 4, "published": 1, "content": "# Existem aulas em turma?\n\nSim. Além das aulas particulares, a Vedium oferece aulas em grupos reduzidos para alguns idiomas e níveis.\n\nAs turmas têm número máximo de alunos para garantir qualidade. [A CONFIRMAR número máximo]\n\nConsulte a disponibilidade atual de turmas na plataforma ou entre em contato com a equipe.\n" },
-            { "title": "Os professores são nativos?", "route": "faq-com-professores-nativos", "order": 5, "published": 1, "content": "# Os professores são nativos?\n\nA Vedium conta com professores nativos ou altamente qualificados em cada idioma.\n\nPara idiomas como Iorubá e Hebraico, a equipe é composta por especialistas com formação e experiência específica.\n\nConsulte o perfil dos professores disponíveis para o idioma de interesse.\n" },
-            { "title": "Como funcionam os níveis?", "route": "faq-com-niveis", "order": 6, "published": 1, "content": "# Como funcionam os níveis?\n\nA Vedium organiza os cursos por níveis de proficiência.\n\nPara inglês e espanhol, a referência é o Quadro Europeu Comum de Referência (QECR): A1, A2, B1, B2, C1 e C2.\n\nPara Iorubá e Hebraico, os níveis são definidos internamente pela Vedium. [A CONFIRMAR]\n\nO nível do aluno é definido pelo próprio na matrícula ou por um teste de nivelamento gratuito.\n" },
-            { "title": "Existe teste de nível?", "route": "faq-com-teste-nivel", "order": 7, "published": 1, "content": "# Existe teste de nível?\n\nSim. A Vedium oferece avaliação diagnóstica para alunos que já estudaram o idioma anteriormente.\n\nO teste é realizado pelo professor em uma aula inicial ou por avaliação prévia.\n\nPara alunos iniciantes, o teste não é necessário — o curso começa do zero.\n\nConsulte a equipe para agendar o nivelamento.\n" },
-            { "title": "Posso começar do zero?", "route": "faq-com-comecar-zero", "order": 8, "published": 1, "content": "# Posso começar do zero?\n\nSim. A Vedium aceita alunos completamente iniciantes, sem nenhum conhecimento prévio do idioma.\n\nO curso é estruturado para partir do zero e avançar gradualmente conforme o ritmo do aluno.\n" },
-            { "title": "A Vedium atende menores de idade?", "route": "faq-com-menores", "order": 9, "published": 1, "content": "# A Vedium atende menores de idade?\n\nSim. A Vedium pode atender alunos menores de 18 anos com autorização e acompanhamento do responsável legal.\n\nO cadastro do aluno menor requer os dados do responsável legal.\n\nGravações de aulas com menores requerem autorização expressa do responsável.\n\nConsulte a equipe para verificar as condições específicas.\n" },
-            { "title": "Há aula experimental?", "route": "faq-com-aula-experimental", "order": 10, "published": 1, "content": "# Há aula experimental?\n\n[A CONFIRMAR] — verificar se a Vedium oferece aula experimental gratuita e em quais condições.\n\nEm caso positivo, o interessado deve entrar em contato pelo canal oficial para agendar.\n" }
+            {
+              "title": "Quais idiomas a Vedium oferece?",
+              "route": "faq-com-quais-idiomas",
+              "order": 1,
+              "published": 1,
+              "content": "# Quais idiomas a Vedium oferece?\n\nA Vedium oferece cursos nos seguintes idiomas:\n\n- **Inglês** — do nível iniciante ao avançado.\n- **Português para Estrangeiros** — para falantes de outros idiomas que desejam aprender português brasileiro.\n- **Espanhol** — do nível iniciante ao avançado.\n- **Iorubá** — idioma de origem africana, com currículo próprio.\n- **Hebraico** — moderno e bíblico. [A CONFIRMAR especificidade]\n\nConsulte a plataforma para verificar a disponibilidade atual de cada idioma e nível.\n"
+            },
+            {
+              "title": "As aulas são ao vivo?",
+              "route": "faq-com-aulas-ao-vivo",
+              "order": 2,
+              "published": 1,
+              "content": "# As aulas são ao vivo?\n\nSim. Todas as aulas da Vedium são ao vivo, realizadas pelo **Google Meet** com professor em tempo real.\n\nNão há aulas gravadas como formato principal. O ensino é interativo, permitindo que o aluno pratique, tire dúvidas e receba feedback imediato.\n"
+            },
+            {
+              "title": "As aulas são particulares?",
+              "route": "faq-com-aulas-particulares",
+              "order": 3,
+              "published": 1,
+              "content": "# As aulas são particulares?\n\nSim. A Vedium oferece aulas particulares individuais, onde o professor dedica toda a atenção a um único aluno.\n\nA Vedium também oferece aulas em turmas reduzidas. Consulte os planos disponíveis para cada idioma.\n"
+            },
+            {
+              "title": "Existem aulas em turma?",
+              "route": "faq-com-aulas-turma",
+              "order": 4,
+              "published": 1,
+              "content": "# Existem aulas em turma?\n\nSim. Além das aulas particulares, a Vedium oferece aulas em grupos reduzidos para alguns idiomas e níveis.\n\nAs turmas têm número máximo de alunos para garantir qualidade. [A CONFIRMAR número máximo]\n\nConsulte a disponibilidade atual de turmas na plataforma ou entre em contato com a equipe.\n"
+            },
+            {
+              "title": "Os professores são nativos?",
+              "route": "faq-com-professores-nativos",
+              "order": 5,
+              "published": 1,
+              "content": "# Os professores são nativos?\n\nA Vedium conta com professores nativos ou altamente qualificados em cada idioma.\n\nPara idiomas como Iorubá e Hebraico, a equipe é composta por especialistas com formação e experiência específica.\n\nConsulte o perfil dos professores disponíveis para o idioma de interesse.\n"
+            },
+            {
+              "title": "Como funcionam os níveis?",
+              "route": "faq-com-niveis",
+              "order": 6,
+              "published": 1,
+              "content": "# Como funcionam os níveis?\n\nA Vedium organiza os cursos por níveis de proficiência.\n\nPara inglês e espanhol, a referência é o Quadro Europeu Comum de Referência (QECR): A1, A2, B1, B2, C1 e C2.\n\nPara Iorubá e Hebraico, os níveis são definidos internamente pela Vedium. [A CONFIRMAR]\n\nO nível do aluno é definido pelo próprio na matrícula ou por um teste de nivelamento gratuito.\n"
+            },
+            {
+              "title": "Existe teste de nível?",
+              "route": "faq-com-teste-nivel",
+              "order": 7,
+              "published": 1,
+              "content": "# Existe teste de nível?\n\nSim. A Vedium oferece avaliação diagnóstica para alunos que já estudaram o idioma anteriormente.\n\nO teste é realizado pelo professor em uma aula inicial ou por avaliação prévia.\n\nPara alunos iniciantes, o teste não é necessário — o curso começa do zero.\n\nConsulte a equipe para agendar o nivelamento.\n"
+            },
+            {
+              "title": "Posso começar do zero?",
+              "route": "faq-com-comecar-zero",
+              "order": 8,
+              "published": 1,
+              "content": "# Posso começar do zero?\n\nSim. A Vedium aceita alunos completamente iniciantes, sem nenhum conhecimento prévio do idioma.\n\nO curso é estruturado para partir do zero e avançar gradualmente conforme o ritmo do aluno.\n"
+            },
+            {
+              "title": "A Vedium atende menores de idade?",
+              "route": "faq-com-menores",
+              "order": 9,
+              "published": 1,
+              "content": "# A Vedium atende menores de idade?\n\nSim. A Vedium pode atender alunos menores de 18 anos com autorização e acompanhamento do responsável legal.\n\nO cadastro do aluno menor requer os dados do responsável legal.\n\nGravações de aulas com menores requerem autorização expressa do responsável.\n\nConsulte a equipe para verificar as condições específicas.\n"
+            },
+            {
+              "title": "Há aula experimental?",
+              "route": "faq-com-aula-experimental",
+              "order": 10,
+              "published": 1,
+              "content": "# Há aula experimental?\n\n[A CONFIRMAR] — verificar se a Vedium oferece aula experimental gratuita e em quais condições.\n\nEm caso positivo, o interessado deve entrar em contato pelo canal oficial para agendar.\n"
+            }
           ]
         },
         {
           "title": "Planos e Pagamentos",
           "pages": [
-            { "title": "Como funcionam os planos?", "route": "faq-fin-como-planos", "order": 1, "published": 1, "content": "# Como funcionam os planos?\n\nA Vedium oferece planos de assinatura recorrente mensal.\n\nO aluno escolhe o idioma, o nível e a frequência de aulas semanais no momento da matrícula.\n\nO plano é cobrado mensalmente de forma automática no cartão cadastrado.\n\nConsulte os planos disponíveis na plataforma para ver as opções atuais.\n" },
-            { "title": "Quais são as formas de pagamento?", "route": "faq-fin-formas-pagamento", "order": 2, "published": 1, "content": "# Quais são as formas de pagamento?\n\nOs pagamentos são processados pela **Stripe**, plataforma segura e internacional.\n\nFormas aceitas:\n\n- Cartão de crédito (nacional e internacional)\n- Cartão de débito (quando disponível)\n- Boleto bancário [A CONFIRMAR disponibilidade]\n\nA Vedium não aceita pagamentos em dinheiro ou transferência direta.\n" },
-            { "title": "O pagamento é recorrente?", "route": "faq-fin-recorrente", "order": 3, "published": 1, "content": "# O pagamento é recorrente?\n\nSim. Ao se matricular, o aluno autoriza a cobrança automática mensal no cartão cadastrado.\n\nA cobrança ocorre na mesma data da matrícula, a cada mês. [A CONFIRMAR]\n\nO aluno pode cancelar a qualquer momento pelo canal oficial.\n" },
-            { "title": "O pagamento é feito pela Stripe?", "route": "faq-fin-stripe", "order": 4, "published": 1, "content": "# O pagamento é feito pela Stripe?\n\nSim. Todos os pagamentos são processados pela **Stripe**, empresa global certificada (PCI-DSS).\n\nA Vedium nunca tem acesso aos dados completos do cartão do aluno. Os dados são gerenciados exclusivamente pela Stripe.\n\nO aluno recebe confirmação por e-mail após cada cobrança.\n" },
-            { "title": "Como atualizar o cartão?", "route": "faq-fin-atualizar-cartao", "order": 5, "published": 1, "content": "# Como atualizar o cartão?\n\nEm caso de cartão expirado, cancelado ou trocado, o aluno deve atualizar os dados de pagamento.\n\n[A CONFIRMAR] — definir o caminho para atualização do cartão (portal do cliente Stripe, suporte, etc.).\n\nEm caso de dificuldade, abrir ticket de suporte informando que precisa atualizar o cartão.\n" },
-            { "title": "O que acontece se o pagamento falhar?", "route": "faq-fin-falha-pagamento", "order": 6, "published": 1, "content": "# O que acontece se o pagamento falhar?\n\nSe a cobrança mensal falhar:\n\n1. O aluno recebe notificação por e-mail.\n2. A Stripe pode tentar novamente automaticamente. [A CONFIRMAR]\n3. O acesso permanece disponível por um período de tolerância. [A CONFIRMAR duração]\n4. Se não regularizado, o acesso é suspenso.\n\nPara regularizar, atualizar o cartão ou entrar em contato com o suporte.\n" },
-            { "title": "Existe multa por atraso?", "route": "faq-fin-multa-atraso", "order": 7, "published": 1, "content": "# Existe multa por atraso?\n\n[A CONFIRMAR] — verificar política de multa ou juros por atraso no pagamento.\n" },
-            { "title": "Quando o acesso é suspenso?", "route": "faq-fin-suspensao-acesso", "order": 8, "published": 1, "content": "# Quando o acesso é suspenso?\n\nO acesso é suspenso quando o pagamento não é regularizado dentro do período de tolerância após uma falha de cobrança.\n\nO período de tolerância é de [A CONFIRMAR] dias.\n\nDurante a suspensão, o aluno não consegue acessar a plataforma nem participar das aulas.\n" },
-            { "title": "Como reativar o acesso?", "route": "faq-fin-reativar", "order": 9, "published": 1, "content": "# Como reativar o acesso?\n\nPara reativar o acesso após suspensão por inadimplência:\n\n1. Atualizar o cartão de pagamento (se necessário).\n2. A Stripe processa o pagamento.\n3. O acesso é reativado automaticamente após confirmação.\n\nEm caso de dificuldade, abrir ticket de suporte.\n" },
-            { "title": "A Vedium emite comprovante?", "route": "faq-fin-comprovante", "order": 10, "published": 1, "content": "# A Vedium emite comprovante de pagamento?\n\nSim. Após cada cobrança bem-sucedida, a **Stripe** envia e-mail com recibo do pagamento.\n\nSe precisar de comprovante adicional, entre em contato pelo canal oficial de suporte.\n\n[A CONFIRMAR] — verificar se a Vedium emite nota fiscal ou recibo próprio.\n" }
+            {
+              "title": "Como funcionam os planos?",
+              "route": "faq-fin-como-planos",
+              "order": 1,
+              "published": 1,
+              "content": "# Como funcionam os planos?\n\nA Vedium oferece planos de assinatura recorrente mensal.\n\nO aluno escolhe o idioma, o nível e a frequência de aulas semanais no momento da matrícula.\n\nO plano é cobrado mensalmente de forma automática no cartão cadastrado.\n\nConsulte os planos disponíveis na plataforma para ver as opções atuais.\n"
+            },
+            {
+              "title": "Quais são as formas de pagamento?",
+              "route": "faq-fin-formas-pagamento",
+              "order": 2,
+              "published": 1,
+              "content": "# Quais são as formas de pagamento?\n\nOs pagamentos são processados pela **Stripe**, plataforma segura e internacional.\n\nFormas aceitas:\n\n- Cartão de crédito (nacional e internacional)\n- Cartão de débito (quando disponível)\n- Boleto bancário [A CONFIRMAR disponibilidade]\n\nA Vedium não aceita pagamentos em dinheiro ou transferência direta.\n"
+            },
+            {
+              "title": "O pagamento é recorrente?",
+              "route": "faq-fin-recorrente",
+              "order": 3,
+              "published": 1,
+              "content": "# O pagamento é recorrente?\n\nSim. Ao se matricular, o aluno autoriza a cobrança automática mensal no cartão cadastrado.\n\nA cobrança ocorre na mesma data da matrícula, a cada mês. [A CONFIRMAR]\n\nO aluno pode cancelar a qualquer momento pelo canal oficial.\n"
+            },
+            {
+              "title": "O pagamento é feito pela Stripe?",
+              "route": "faq-fin-stripe",
+              "order": 4,
+              "published": 1,
+              "content": "# O pagamento é feito pela Stripe?\n\nSim. Todos os pagamentos são processados pela **Stripe**, empresa global certificada (PCI-DSS).\n\nA Vedium nunca tem acesso aos dados completos do cartão do aluno. Os dados são gerenciados exclusivamente pela Stripe.\n\nO aluno recebe confirmação por e-mail após cada cobrança.\n"
+            },
+            {
+              "title": "Como atualizar o cartão?",
+              "route": "faq-fin-atualizar-cartao",
+              "order": 5,
+              "published": 1,
+              "content": "# Como atualizar o cartão?\n\nEm caso de cartão expirado, cancelado ou trocado, o aluno deve atualizar os dados de pagamento.\n\n[A CONFIRMAR] — definir o caminho para atualização do cartão (portal do cliente Stripe, suporte, etc.).\n\nEm caso de dificuldade, abrir ticket de suporte informando que precisa atualizar o cartão.\n"
+            },
+            {
+              "title": "O que acontece se o pagamento falhar?",
+              "route": "faq-fin-falha-pagamento",
+              "order": 6,
+              "published": 1,
+              "content": "# O que acontece se o pagamento falhar?\n\nSe a cobrança mensal falhar:\n\n1. O aluno recebe notificação por e-mail.\n2. A Stripe pode tentar novamente automaticamente. [A CONFIRMAR]\n3. O acesso permanece disponível por um período de tolerância. [A CONFIRMAR duração]\n4. Se não regularizado, o acesso é suspenso.\n\nPara regularizar, atualizar o cartão ou entrar em contato com o suporte.\n"
+            },
+            {
+              "title": "Existe multa por atraso?",
+              "route": "faq-fin-multa-atraso",
+              "order": 7,
+              "published": 1,
+              "content": "# Existe multa por atraso?\n\n[A CONFIRMAR] — verificar política de multa ou juros por atraso no pagamento.\n"
+            },
+            {
+              "title": "Quando o acesso é suspenso?",
+              "route": "faq-fin-suspensao-acesso",
+              "order": 8,
+              "published": 1,
+              "content": "# Quando o acesso é suspenso?\n\nO acesso é suspenso quando o pagamento não é regularizado dentro do período de tolerância após uma falha de cobrança.\n\nO período de tolerância é de [A CONFIRMAR] dias.\n\nDurante a suspensão, o aluno não consegue acessar a plataforma nem participar das aulas.\n"
+            },
+            {
+              "title": "Como reativar o acesso?",
+              "route": "faq-fin-reativar",
+              "order": 9,
+              "published": 1,
+              "content": "# Como reativar o acesso?\n\nPara reativar o acesso após suspensão por inadimplência:\n\n1. Atualizar o cartão de pagamento (se necessário).\n2. A Stripe processa o pagamento.\n3. O acesso é reativado automaticamente após confirmação.\n\nEm caso de dificuldade, abrir ticket de suporte.\n"
+            },
+            {
+              "title": "A Vedium emite comprovante?",
+              "route": "faq-fin-comprovante",
+              "order": 10,
+              "published": 1,
+              "content": "# A Vedium emite comprovante de pagamento?\n\nSim. Após cada cobrança bem-sucedida, a **Stripe** envia e-mail com recibo do pagamento.\n\nSe precisar de comprovante adicional, entre em contato pelo canal oficial de suporte.\n\n[A CONFIRMAR] — verificar se a Vedium emite nota fiscal ou recibo próprio.\n"
+            }
           ]
         },
         {
           "title": "Cancelamentos e Reembolsos",
           "pages": [
-            { "title": "Como cancelar?", "route": "faq-cancel-como-cancelar", "order": 1, "published": 1, "content": "# Como cancelar?\n\nPara cancelar a assinatura:\n\n1. Entre em contato pelo canal oficial de suporte.\n2. Informe o motivo do cancelamento.\n3. Aguarde a confirmação da equipe.\n\nO cancelamento encerra as cobranças futuras. O acesso permanece disponível até o final do período pago. [A CONFIRMAR]\n" },
-            { "title": "Existe fidelidade?", "route": "faq-cancel-fidelidade", "order": 2, "published": 1, "content": "# Existe fidelidade?\n\n[A CONFIRMAR] — verificar se existe período mínimo de permanência para os planos da Vedium.\n\nEm caso positivo, o cancelamento antecipado pode estar sujeito a condições específicas definidas no plano contratado.\n" },
-            { "title": "Existe aviso prévio?", "route": "faq-cancel-aviso-previo", "order": 3, "published": 1, "content": "# É necessário aviso prévio para cancelar?\n\n[A CONFIRMAR] — verificar se há prazo de aviso prévio necessário para cancelamento.\n" },
-            { "title": "Como funciona o reembolso?", "route": "faq-cancel-reembolso", "order": 4, "published": 1, "content": "# Como funciona o reembolso?\n\n[A CONFIRMAR] — as condições de reembolso dependem do plano contratado e das políticas vigentes.\n\nPara solicitar reembolso:\n\n1. Entre em contato pelo canal oficial.\n2. Informe o motivo e os dados da cobrança.\n3. Aguarde análise da equipe.\n\nA devolução, quando aprovada, é processada pela Stripe e pode levar alguns dias úteis para aparecer na fatura do cartão.\n" },
-            { "title": "Posso pausar o plano?", "route": "faq-cancel-pausar", "order": 5, "published": 1, "content": "# Posso pausar o plano?\n\n[A CONFIRMAR] — verificar se a Vedium oferece a opção de pausar temporariamente o plano sem cancelar.\n\nCaso não haja opção de pausa, o aluno pode cancelar e se rematricular posteriormente.\n" },
-            { "title": "Posso trocar de plano?", "route": "faq-cancel-trocar-plano", "order": 6, "published": 1, "content": "# Posso trocar de plano?\n\n[A CONFIRMAR] — verificar se é possível mudar de plano (frequência de aulas, modalidade) e quais são as condições.\n\nEntre em contato pelo canal oficial para verificar as opções disponíveis.\n" },
-            { "title": "Posso trocar de professor?", "route": "faq-cancel-trocar-professor", "order": 7, "published": 1, "content": "# Posso trocar de professor?\n\nSim. A troca de professor pode ser solicitada à equipe administrativa.\n\n[A CONFIRMAR] — definir condições e procedimentos para troca de professor.\n\nEntre em contato pelo canal oficial informando o motivo da solicitação.\n" },
-            { "title": "Posso trocar de turma?", "route": "faq-cancel-trocar-turma", "order": 8, "published": 1, "content": "# Posso trocar de turma?\n\nSim, sujeito à disponibilidade de vaga na turma desejada e compatibilidade de nível.\n\nSolicite a troca pelo canal oficial de suporte.\n\n[A CONFIRMAR] — definir prazo e condições para troca.\n" },
-            { "title": "O que acontece com as aulas já agendadas após cancelamento?", "route": "faq-cancel-aulas-agendadas", "order": 9, "published": 1, "content": "# O que acontece com as aulas já agendadas após cancelamento?\n\nApós o cancelamento, as aulas agendadas no período pago podem ser mantidas até o fim do ciclo. [A CONFIRMAR]\n\nAulas fora do período pago são canceladas automaticamente.\n\nPara dúvidas específicas sobre aulas já agendadas, entre em contato com o suporte.\n" },
-            { "title": "Como encerrar a matrícula?", "route": "faq-cancel-encerrar-matricula", "order": 10, "published": 1, "content": "# Como encerrar a matrícula?\n\nO encerramento da matrícula é feito junto ao cancelamento do plano.\n\nEntre em contato pelo canal oficial de suporte para iniciar o processo.\n\nO histórico do aluno é preservado mesmo após o encerramento. Os dados são tratados conforme a Política de Privacidade.\n" }
+            {
+              "title": "Como cancelar?",
+              "route": "faq-cancel-como-cancelar",
+              "order": 1,
+              "published": 1,
+              "content": "# Como cancelar?\n\nPara cancelar a assinatura:\n\n1. Entre em contato pelo canal oficial de suporte.\n2. Informe o motivo do cancelamento.\n3. Aguarde a confirmação da equipe.\n\nO cancelamento encerra as cobranças futuras. O acesso permanece disponível até o final do período pago. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Existe fidelidade?",
+              "route": "faq-cancel-fidelidade",
+              "order": 2,
+              "published": 1,
+              "content": "# Existe fidelidade?\n\n[A CONFIRMAR] — verificar se existe período mínimo de permanência para os planos da Vedium.\n\nEm caso positivo, o cancelamento antecipado pode estar sujeito a condições específicas definidas no plano contratado.\n"
+            },
+            {
+              "title": "Existe aviso prévio?",
+              "route": "faq-cancel-aviso-previo",
+              "order": 3,
+              "published": 1,
+              "content": "# É necessário aviso prévio para cancelar?\n\n[A CONFIRMAR] — verificar se há prazo de aviso prévio necessário para cancelamento.\n"
+            },
+            {
+              "title": "Como funciona o reembolso?",
+              "route": "faq-cancel-reembolso",
+              "order": 4,
+              "published": 1,
+              "content": "# Como funciona o reembolso?\n\n[A CONFIRMAR] — as condições de reembolso dependem do plano contratado e das políticas vigentes.\n\nPara solicitar reembolso:\n\n1. Entre em contato pelo canal oficial.\n2. Informe o motivo e os dados da cobrança.\n3. Aguarde análise da equipe.\n\nA devolução, quando aprovada, é processada pela Stripe e pode levar alguns dias úteis para aparecer na fatura do cartão.\n"
+            },
+            {
+              "title": "Posso pausar o plano?",
+              "route": "faq-cancel-pausar",
+              "order": 5,
+              "published": 1,
+              "content": "# Posso pausar o plano?\n\n[A CONFIRMAR] — verificar se a Vedium oferece a opção de pausar temporariamente o plano sem cancelar.\n\nCaso não haja opção de pausa, o aluno pode cancelar e se rematricular posteriormente.\n"
+            },
+            {
+              "title": "Posso trocar de plano?",
+              "route": "faq-cancel-trocar-plano",
+              "order": 6,
+              "published": 1,
+              "content": "# Posso trocar de plano?\n\n[A CONFIRMAR] — verificar se é possível mudar de plano (frequência de aulas, modalidade) e quais são as condições.\n\nEntre em contato pelo canal oficial para verificar as opções disponíveis.\n"
+            },
+            {
+              "title": "Posso trocar de professor?",
+              "route": "faq-cancel-trocar-professor",
+              "order": 7,
+              "published": 1,
+              "content": "# Posso trocar de professor?\n\nSim. A troca de professor pode ser solicitada à equipe administrativa.\n\n[A CONFIRMAR] — definir condições e procedimentos para troca de professor.\n\nEntre em contato pelo canal oficial informando o motivo da solicitação.\n"
+            },
+            {
+              "title": "Posso trocar de turma?",
+              "route": "faq-cancel-trocar-turma",
+              "order": 8,
+              "published": 1,
+              "content": "# Posso trocar de turma?\n\nSim, sujeito à disponibilidade de vaga na turma desejada e compatibilidade de nível.\n\nSolicite a troca pelo canal oficial de suporte.\n\n[A CONFIRMAR] — definir prazo e condições para troca.\n"
+            },
+            {
+              "title": "O que acontece com as aulas já agendadas após cancelamento?",
+              "route": "faq-cancel-aulas-agendadas",
+              "order": 9,
+              "published": 1,
+              "content": "# O que acontece com as aulas já agendadas após cancelamento?\n\nApós o cancelamento, as aulas agendadas no período pago podem ser mantidas até o fim do ciclo. [A CONFIRMAR]\n\nAulas fora do período pago são canceladas automaticamente.\n\nPara dúvidas específicas sobre aulas já agendadas, entre em contato com o suporte.\n"
+            },
+            {
+              "title": "Como encerrar a matrícula?",
+              "route": "faq-cancel-encerrar-matricula",
+              "order": 10,
+              "published": 1,
+              "content": "# Como encerrar a matrícula?\n\nO encerramento da matrícula é feito junto ao cancelamento do plano.\n\nEntre em contato pelo canal oficial de suporte para iniciar o processo.\n\nO histórico do aluno é preservado mesmo após o encerramento. Os dados são tratados conforme a Política de Privacidade.\n"
+            }
           ]
         },
         {
           "title": "Aulas",
           "pages": [
-            { "title": "Onde acontecem as aulas?", "route": "faq-aulas-onde", "order": 1, "published": 1, "content": "# Onde acontecem as aulas?\n\nTodas as aulas da Vedium são realizadas online pelo **Google Meet**.\n\nO aluno precisa apenas de:\n\n- Computador, tablet ou celular com acesso à internet.\n- Câmera e microfone.\n- Conexão estável.\n\nNão há deslocamento necessário.\n" },
-            { "title": "Como recebo o link da aula?", "route": "faq-aulas-link", "order": 2, "published": 1, "content": "# Como recebo o link da aula?\n\nO link do Google Meet é enviado pelo professor ou pela plataforma antes de cada aula.\n\n[A CONFIRMAR] — definir canal e antecedência de envio do link.\n\nPara turmas com horário fixo, o mesmo link pode ser usado em todas as aulas. [A CONFIRMAR]\n" },
-            { "title": "Posso reagendar?", "route": "faq-aulas-reagendar", "order": 3, "published": 1, "content": "# Posso reagendar uma aula?\n\nSim. O reagendamento de aulas particulares pode ser solicitado com antecedência mínima de [A CONFIRMAR].\n\nCombine a nova data com o professor ou solicite pelo canal de suporte.\n\nPara aulas em turma, não é possível reagendar uma aula específica — consulte as opções de reposição.\n" },
-            { "title": "O que acontece se eu faltar?", "route": "faq-aulas-falta", "order": 4, "published": 1, "content": "# O que acontece se eu faltar a uma aula?\n\n[A CONFIRMAR] — verificar a política de reposição de aulas faltadas pelo aluno.\n\nEm caso de falta, avise o professor o quanto antes pelo canal oficial.\n" },
-            { "title": "O professor pode cancelar?", "route": "faq-aulas-professor-cancelar", "order": 5, "published": 1, "content": "# O professor pode cancelar uma aula?\n\nSim. Em situações excepcionais, o professor pode precisar cancelar uma aula.\n\nNesse caso, o professor avisa com a maior antecedência possível e uma reposição é agendada.\n\nA Vedium garante que o aluno não seja prejudicado por cancelamentos do professor.\n" },
-            { "title": "Existe reposição?", "route": "faq-aulas-reposicao", "order": 6, "published": 1, "content": "# Existe reposição de aulas?\n\n[A CONFIRMAR] — definir política de reposição:\n- Cancelamento pelo professor: reposição garantida.\n- Cancelamento pelo aluno com aviso prévio: [A CONFIRMAR].\n- Falta sem aviso: [A CONFIRMAR].\n\nEntre em contato pelo canal de suporte para solicitar reposição quando aplicável.\n" },
-            { "title": "A aula pode ser gravada?", "route": "faq-aulas-gravacao", "order": 7, "published": 1, "content": "# A aula pode ser gravada?\n\nAs aulas só podem ser gravadas com o consentimento de todos os participantes (professor e aluno).\n\nSe desejar gravar para fins de estudo, solicite autorização ao professor antes da aula.\n\nConsulte a Política de Gravação de Aulas neste site para mais detalhes.\n" },
-            { "title": "Preciso usar câmera?", "route": "faq-aulas-camera", "order": 8, "published": 1, "content": "# Preciso usar câmera durante a aula?\n\nO uso de câmera é fortemente recomendado para melhorar a comunicação e o aproveitamento da aula.\n\n[A CONFIRMAR] — verificar se o uso de câmera é obrigatório ou apenas recomendado.\n\nSe houver impossibilidade técnica, comunique o professor antes da aula.\n" },
-            { "title": "Quanto dura uma aula?", "route": "faq-aulas-duracao", "order": 9, "published": 1, "content": "# Quanto dura uma aula?\n\n[A CONFIRMAR] — definir a duração padrão das aulas (ex.: 50 minutos, 1 hora).\n\nA duração pode variar conforme o plano contratado. Consulte os detalhes do seu plano na plataforma.\n" },
-            { "title": "Como funciona a aula experimental?", "route": "faq-aulas-experimental", "order": 10, "published": 1, "content": "# Como funciona a aula experimental?\n\n[A CONFIRMAR] — descrever o funcionamento da aula experimental quando a política for definida.\n\nPara verificar disponibilidade e agendar, entre em contato pelo canal oficial.\n" }
+            {
+              "title": "Onde acontecem as aulas?",
+              "route": "faq-aulas-onde",
+              "order": 1,
+              "published": 1,
+              "content": "# Onde acontecem as aulas?\n\nTodas as aulas da Vedium são realizadas online pelo **Google Meet**.\n\nO aluno precisa apenas de:\n\n- Computador, tablet ou celular com acesso à internet.\n- Câmera e microfone.\n- Conexão estável.\n\nNão há deslocamento necessário.\n"
+            },
+            {
+              "title": "Como recebo o link da aula?",
+              "route": "faq-aulas-link",
+              "order": 2,
+              "published": 1,
+              "content": "# Como recebo o link da aula?\n\nO link do Google Meet é enviado pelo professor ou pela plataforma antes de cada aula.\n\n[A CONFIRMAR] — definir canal e antecedência de envio do link.\n\nPara turmas com horário fixo, o mesmo link pode ser usado em todas as aulas. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Posso reagendar?",
+              "route": "faq-aulas-reagendar",
+              "order": 3,
+              "published": 1,
+              "content": "# Posso reagendar uma aula?\n\nSim. O reagendamento de aulas particulares pode ser solicitado com antecedência mínima de [A CONFIRMAR].\n\nCombine a nova data com o professor ou solicite pelo canal de suporte.\n\nPara aulas em turma, não é possível reagendar uma aula específica — consulte as opções de reposição.\n"
+            },
+            {
+              "title": "O que acontece se eu faltar?",
+              "route": "faq-aulas-falta",
+              "order": 4,
+              "published": 1,
+              "content": "# O que acontece se eu faltar a uma aula?\n\n[A CONFIRMAR] — verificar a política de reposição de aulas faltadas pelo aluno.\n\nEm caso de falta, avise o professor o quanto antes pelo canal oficial.\n"
+            },
+            {
+              "title": "O professor pode cancelar?",
+              "route": "faq-aulas-professor-cancelar",
+              "order": 5,
+              "published": 1,
+              "content": "# O professor pode cancelar uma aula?\n\nSim. Em situações excepcionais, o professor pode precisar cancelar uma aula.\n\nNesse caso, o professor avisa com a maior antecedência possível e uma reposição é agendada.\n\nA Vedium garante que o aluno não seja prejudicado por cancelamentos do professor.\n"
+            },
+            {
+              "title": "Existe reposição?",
+              "route": "faq-aulas-reposicao",
+              "order": 6,
+              "published": 1,
+              "content": "# Existe reposição de aulas?\n\n[A CONFIRMAR] — definir política de reposição:\n- Cancelamento pelo professor: reposição garantida.\n- Cancelamento pelo aluno com aviso prévio: [A CONFIRMAR].\n- Falta sem aviso: [A CONFIRMAR].\n\nEntre em contato pelo canal de suporte para solicitar reposição quando aplicável.\n"
+            },
+            {
+              "title": "A aula pode ser gravada?",
+              "route": "faq-aulas-gravacao",
+              "order": 7,
+              "published": 1,
+              "content": "# A aula pode ser gravada?\n\nAs aulas só podem ser gravadas com o consentimento de todos os participantes (professor e aluno).\n\nSe desejar gravar para fins de estudo, solicite autorização ao professor antes da aula.\n\nConsulte a Política de Gravação de Aulas neste site para mais detalhes.\n"
+            },
+            {
+              "title": "Preciso usar câmera?",
+              "route": "faq-aulas-camera",
+              "order": 8,
+              "published": 1,
+              "content": "# Preciso usar câmera durante a aula?\n\nO uso de câmera é fortemente recomendado para melhorar a comunicação e o aproveitamento da aula.\n\n[A CONFIRMAR] — verificar se o uso de câmera é obrigatório ou apenas recomendado.\n\nSe houver impossibilidade técnica, comunique o professor antes da aula.\n"
+            },
+            {
+              "title": "Quanto dura uma aula?",
+              "route": "faq-aulas-duracao",
+              "order": 9,
+              "published": 1,
+              "content": "# Quanto dura uma aula?\n\n[A CONFIRMAR] — definir a duração padrão das aulas (ex.: 50 minutos, 1 hora).\n\nA duração pode variar conforme o plano contratado. Consulte os detalhes do seu plano na plataforma.\n"
+            },
+            {
+              "title": "Como funciona a aula experimental?",
+              "route": "faq-aulas-experimental",
+              "order": 10,
+              "published": 1,
+              "content": "# Como funciona a aula experimental?\n\n[A CONFIRMAR] — descrever o funcionamento da aula experimental quando a política for definida.\n\nPara verificar disponibilidade e agendar, entre em contato pelo canal oficial.\n"
+            }
           ]
         },
         {
           "title": "Certificados e Avaliação",
           "pages": [
-            { "title": "A Vedium emite certificado?", "route": "faq-cert-emite", "order": 1, "published": 1, "content": "# A Vedium emite certificado?\n\nSim. A Vedium emite certificado de conclusão para alunos que atendem aos critérios definidos.\n\nConsulte os critérios de elegibilidade para o curso que está realizando.\n" },
-            { "title": "Quais são os critérios para o certificado?", "route": "faq-cert-criterios", "order": 2, "published": 1, "content": "# Quais são os critérios para o certificado?\n\n[A CONFIRMAR] — definir critérios de frequência, avaliação e conclusão de nível necessários para emissão do certificado.\n" },
-            { "title": "Existe avaliação?", "route": "faq-cert-avaliacao", "order": 3, "published": 1, "content": "# Existe avaliação?\n\nSim. A Vedium realiza avaliações ao longo do curso para acompanhar o progresso do aluno.\n\n- **Avaliação diagnóstica:** no início do curso.\n- **Avaliação contínua:** ao longo das aulas.\n- **Avaliação final:** ao término de um nível. [A CONFIRMAR]\n" },
-            { "title": "Como funciona o nivelamento?", "route": "faq-cert-nivelamento", "order": 4, "published": 1, "content": "# Como funciona o nivelamento?\n\nO nivelamento é realizado por avaliação diagnóstica antes do início das aulas.\n\nO professor avalia as habilidades do aluno e recomenda o nível mais adequado.\n\nAlunos iniciantes não precisam de nivelamento.\n" },
-            { "title": "Como avanço de nível?", "route": "faq-cert-avanco-nivel", "order": 5, "published": 1, "content": "# Como avanço de nível?\n\nO avanço de nível é recomendado pelo professor com base na avaliação contínua e final.\n\n[A CONFIRMAR] — definir critérios de aprovação para avanço de nível.\n\nAo avançar de nível, o aluno é rematriculado no próximo nível conforme disponibilidade.\n" },
-            { "title": "Posso repetir um nível?", "route": "faq-cert-repetir-nivel", "order": 6, "published": 1, "content": "# Posso repetir um nível?\n\nSim. Se o aluno e o professor avaliarem que é necessário consolidar o aprendizado, o nível pode ser repetido.\n\nNão há penalidade por repetir um nível.\n\nConsulte o professor ou a equipe para analisar a necessidade.\n" },
-            { "title": "Recebo relatório de evolução?", "route": "faq-cert-relatorio", "order": 7, "published": 1, "content": "# Recebo relatório de evolução?\n\nSim. A Vedium fornece relatórios periódicos de evolução ao aluno.\n\n[A CONFIRMAR] — definir periodicidade e formato dos relatórios.\n\nO professor também oferece feedback ao aluno durante e após as aulas.\n" },
-            { "title": "A frequência é obrigatória?", "route": "faq-cert-frequencia", "order": 8, "published": 1, "content": "# A frequência é obrigatória?\n\n[A CONFIRMAR] — definir política de frequência mínima e seu impacto na matrícula e no certificado.\n\nÉ recomendável manter regularidade nas aulas para melhor aproveitamento e progresso consistente.\n" },
-            { "title": "Existe prova final?", "route": "faq-cert-prova-final", "order": 9, "published": 1, "content": "# Existe prova final?\n\n[A CONFIRMAR] — definir se há avaliação formal ao término de cada nível e como é realizada.\n" },
-            { "title": "O certificado é pago?", "route": "faq-cert-pago", "order": 10, "published": 1, "content": "# O certificado é pago?\n\n[A CONFIRMAR] — definir se há taxa para emissão do certificado.\n\nEm caso de dúvidas, entre em contato pelo canal oficial de suporte.\n" }
+            {
+              "title": "A Vedium emite certificado?",
+              "route": "faq-cert-emite",
+              "order": 1,
+              "published": 1,
+              "content": "# A Vedium emite certificado?\n\nSim. A Vedium emite certificado de conclusão para alunos que atendem aos critérios definidos.\n\nConsulte os critérios de elegibilidade para o curso que está realizando.\n"
+            },
+            {
+              "title": "Quais são os critérios para o certificado?",
+              "route": "faq-cert-criterios",
+              "order": 2,
+              "published": 1,
+              "content": "# Quais são os critérios para o certificado?\n\n[A CONFIRMAR] — definir critérios de frequência, avaliação e conclusão de nível necessários para emissão do certificado.\n"
+            },
+            {
+              "title": "Existe avaliação?",
+              "route": "faq-cert-avaliacao",
+              "order": 3,
+              "published": 1,
+              "content": "# Existe avaliação?\n\nSim. A Vedium realiza avaliações ao longo do curso para acompanhar o progresso do aluno.\n\n- **Avaliação diagnóstica:** no início do curso.\n- **Avaliação contínua:** ao longo das aulas.\n- **Avaliação final:** ao término de um nível. [A CONFIRMAR]\n"
+            },
+            {
+              "title": "Como funciona o nivelamento?",
+              "route": "faq-cert-nivelamento",
+              "order": 4,
+              "published": 1,
+              "content": "# Como funciona o nivelamento?\n\nO nivelamento é realizado por avaliação diagnóstica antes do início das aulas.\n\nO professor avalia as habilidades do aluno e recomenda o nível mais adequado.\n\nAlunos iniciantes não precisam de nivelamento.\n"
+            },
+            {
+              "title": "Como avanço de nível?",
+              "route": "faq-cert-avanco-nivel",
+              "order": 5,
+              "published": 1,
+              "content": "# Como avanço de nível?\n\nO avanço de nível é recomendado pelo professor com base na avaliação contínua e final.\n\n[A CONFIRMAR] — definir critérios de aprovação para avanço de nível.\n\nAo avançar de nível, o aluno é rematriculado no próximo nível conforme disponibilidade.\n"
+            },
+            {
+              "title": "Posso repetir um nível?",
+              "route": "faq-cert-repetir-nivel",
+              "order": 6,
+              "published": 1,
+              "content": "# Posso repetir um nível?\n\nSim. Se o aluno e o professor avaliarem que é necessário consolidar o aprendizado, o nível pode ser repetido.\n\nNão há penalidade por repetir um nível.\n\nConsulte o professor ou a equipe para analisar a necessidade.\n"
+            },
+            {
+              "title": "Recebo relatório de evolução?",
+              "route": "faq-cert-relatorio",
+              "order": 7,
+              "published": 1,
+              "content": "# Recebo relatório de evolução?\n\nSim. A Vedium fornece relatórios periódicos de evolução ao aluno.\n\n[A CONFIRMAR] — definir periodicidade e formato dos relatórios.\n\nO professor também oferece feedback ao aluno durante e após as aulas.\n"
+            },
+            {
+              "title": "A frequência é obrigatória?",
+              "route": "faq-cert-frequencia",
+              "order": 8,
+              "published": 1,
+              "content": "# A frequência é obrigatória?\n\n[A CONFIRMAR] — definir política de frequência mínima e seu impacto na matrícula e no certificado.\n\nÉ recomendável manter regularidade nas aulas para melhor aproveitamento e progresso consistente.\n"
+            },
+            {
+              "title": "Existe prova final?",
+              "route": "faq-cert-prova-final",
+              "order": 9,
+              "published": 1,
+              "content": "# Existe prova final?\n\n[A CONFIRMAR] — definir se há avaliação formal ao término de cada nível e como é realizada.\n"
+            },
+            {
+              "title": "O certificado é pago?",
+              "route": "faq-cert-pago",
+              "order": 10,
+              "published": 1,
+              "content": "# O certificado é pago?\n\n[A CONFIRMAR] — definir se há taxa para emissão do certificado.\n\nEm caso de dúvidas, entre em contato pelo canal oficial de suporte.\n"
+            }
           ]
         }
       ]
@@ -1257,76 +1555,376 @@
         {
           "title": "Acesso à Plataforma",
           "pages": [
-            { "title": "Como acessar a plataforma?", "route": "faq-tec-como-acessar", "order": 1, "published": 1, "content": "# Como acessar a plataforma?\n\nAcesse `app.vediums.com` no navegador.\n\nInsira o e-mail e a senha cadastrados.\n\nClique em \"Entrar\" para acessar sua área do aluno.\n\n**Recomendado:** use o Google Chrome ou o Mozilla Firefox atualizados para melhor experiência.\n" },
-            { "title": "Esqueci minha senha", "route": "faq-tec-esqueci-senha", "order": 2, "published": 1, "content": "# Esqueci minha senha\n\nPara redefinir a senha:\n\n1. Acesse `app.vediums.com`.\n2. Clique em \"Esqueci minha senha\".\n3. Informe o e-mail cadastrado.\n4. Verifique a caixa de entrada e a pasta de spam.\n5. Clique no link recebido por e-mail.\n6. Crie uma nova senha.\n\nSe não receber o e-mail, abra um ticket de suporte.\n" },
-            { "title": "Não recebi o e-mail de acesso", "route": "faq-tec-email-acesso", "order": 3, "published": 1, "content": "# Não recebi o e-mail de acesso\n\nSe não recebeu o e-mail de confirmação ou recuperação de senha:\n\n1. Verifique a pasta de spam ou lixo eletrônico.\n2. Certifique-se de que o e-mail informado é o mesmo cadastrado.\n3. Aguarde até 10 minutos.\n4. Tente reenviar pelo link \"Reenviar e-mail\" na plataforma.\n\nSe o problema persistir, abra um ticket de suporte informando o e-mail utilizado.\n" },
-            { "title": "Minha conta está bloqueada", "route": "faq-tec-conta-bloqueada", "order": 4, "published": 1, "content": "# Minha conta está bloqueada\n\nA conta pode ser bloqueada por:\n\n- Múltiplas tentativas incorretas de login.\n- Inadimplência (acesso suspenso por falta de pagamento).\n- Outro motivo administrativo.\n\nPara desbloquear:\n\n1. Aguarde alguns minutos e tente novamente (bloqueio temporário por tentativas).\n2. Verifique se o pagamento está em dia.\n3. Se o problema persistir, abra um ticket de suporte.\n" },
-            { "title": "Como alterar meus dados cadastrais?", "route": "faq-tec-alterar-dados", "order": 5, "published": 1, "content": "# Como alterar meus dados cadastrais?\n\nPara atualizar seu nome, telefone ou outras informações:\n\n1. Acesse `app.vediums.com`.\n2. Vá para as configurações do seu perfil.\n3. Atualize os dados e salve.\n\nSe não conseguir alterar pelo perfil, entre em contato com o suporte.\n" },
-            { "title": "Como alterar meu e-mail?", "route": "faq-tec-alterar-email", "order": 6, "published": 1, "content": "# Como alterar meu e-mail?\n\nA alteração de e-mail deve ser solicitada ao suporte, pois é um dado sensível.\n\n1. Abra um ticket de suporte.\n2. Informe o e-mail atual e o novo e-mail.\n3. Aguarde a confirmação da equipe.\n\nApós a alteração, você passará a usar o novo e-mail para login.\n" },
-            { "title": "Como sair da conta?", "route": "faq-tec-sair-conta", "order": 7, "published": 1, "content": "# Como sair da conta?\n\nPara encerrar a sessão:\n\n1. Clique no seu nome ou foto no canto superior direito.\n2. Selecione \"Sair\" ou \"Logout\".\n\nRecomendamos sair sempre que usar dispositivos compartilhados.\n" },
-            { "title": "A plataforma funciona no celular?", "route": "faq-tec-celular", "order": 8, "published": 1, "content": "# A plataforma funciona no celular?\n\nSim. A plataforma `app.vediums.com` é compatível com dispositivos móveis.\n\nAcesse pelo navegador do celular. A experiência pode ser melhor em dispositivos maiores para algumas funcionalidades.\n\nPara as aulas ao vivo, instale o aplicativo **Google Meet** no celular.\n" },
-            { "title": "Quais navegadores usar?", "route": "faq-tec-navegadores", "order": 9, "published": 1, "content": "# Quais navegadores são recomendados?\n\nRecomendamos:\n\n- **Google Chrome** (versão atual) — melhor experiência.\n- **Mozilla Firefox** (versão atual).\n- **Microsoft Edge** (versão atual).\n\nEvite usar navegadores desatualizados ou Internet Explorer.\n\nSe encontrar problemas em um navegador específico, tente em outro.\n" },
-            { "title": "Como limpar cache do navegador?", "route": "faq-tec-limpar-cache", "order": 10, "published": 1, "content": "# Como limpar o cache do navegador?\n\nLimpar o cache pode resolver problemas de carregamento e exibição.\n\n**Google Chrome:**\n1. Pressione `Ctrl + Shift + Delete` (Windows) ou `Cmd + Shift + Delete` (Mac).\n2. Selecione \"Imagens e arquivos em cache\" e \"Cookies\".\n3. Clique em \"Limpar dados\".\n\n**Mozilla Firefox:**\n1. Pressione `Ctrl + Shift + Delete`.\n2. Selecione o período e os dados a limpar.\n3. Confirme.\n\nApós limpar o cache, feche e abra novamente o navegador.\n" }
+            {
+              "title": "Como acessar a plataforma?",
+              "route": "faq-tec-como-acessar",
+              "order": 1,
+              "published": 1,
+              "content": "# Como acessar a plataforma?\n\nAcesse `app.vediums.com` no navegador.\n\nInsira o e-mail e a senha cadastrados.\n\nClique em \"Entrar\" para acessar sua área do aluno.\n\n**Recomendado:** use o Google Chrome ou o Mozilla Firefox atualizados para melhor experiência.\n"
+            },
+            {
+              "title": "Esqueci minha senha",
+              "route": "faq-tec-esqueci-senha",
+              "order": 2,
+              "published": 1,
+              "content": "# Esqueci minha senha\n\nPara redefinir a senha:\n\n1. Acesse `app.vediums.com`.\n2. Clique em \"Esqueci minha senha\".\n3. Informe o e-mail cadastrado.\n4. Verifique a caixa de entrada e a pasta de spam.\n5. Clique no link recebido por e-mail.\n6. Crie uma nova senha.\n\nSe não receber o e-mail, abra um ticket de suporte.\n"
+            },
+            {
+              "title": "Não recebi o e-mail de acesso",
+              "route": "faq-tec-email-acesso",
+              "order": 3,
+              "published": 1,
+              "content": "# Não recebi o e-mail de acesso\n\nSe não recebeu o e-mail de confirmação ou recuperação de senha:\n\n1. Verifique a pasta de spam ou lixo eletrônico.\n2. Certifique-se de que o e-mail informado é o mesmo cadastrado.\n3. Aguarde até 10 minutos.\n4. Tente reenviar pelo link \"Reenviar e-mail\" na plataforma.\n\nSe o problema persistir, abra um ticket de suporte informando o e-mail utilizado.\n"
+            },
+            {
+              "title": "Minha conta está bloqueada",
+              "route": "faq-tec-conta-bloqueada",
+              "order": 4,
+              "published": 1,
+              "content": "# Minha conta está bloqueada\n\nA conta pode ser bloqueada por:\n\n- Múltiplas tentativas incorretas de login.\n- Inadimplência (acesso suspenso por falta de pagamento).\n- Outro motivo administrativo.\n\nPara desbloquear:\n\n1. Aguarde alguns minutos e tente novamente (bloqueio temporário por tentativas).\n2. Verifique se o pagamento está em dia.\n3. Se o problema persistir, abra um ticket de suporte.\n"
+            },
+            {
+              "title": "Como alterar meus dados cadastrais?",
+              "route": "faq-tec-alterar-dados",
+              "order": 5,
+              "published": 1,
+              "content": "# Como alterar meus dados cadastrais?\n\nPara atualizar seu nome, telefone ou outras informações:\n\n1. Acesse `app.vediums.com`.\n2. Vá para as configurações do seu perfil.\n3. Atualize os dados e salve.\n\nSe não conseguir alterar pelo perfil, entre em contato com o suporte.\n"
+            },
+            {
+              "title": "Como alterar meu e-mail?",
+              "route": "faq-tec-alterar-email",
+              "order": 6,
+              "published": 1,
+              "content": "# Como alterar meu e-mail?\n\nA alteração de e-mail deve ser solicitada ao suporte, pois é um dado sensível.\n\n1. Abra um ticket de suporte.\n2. Informe o e-mail atual e o novo e-mail.\n3. Aguarde a confirmação da equipe.\n\nApós a alteração, você passará a usar o novo e-mail para login.\n"
+            },
+            {
+              "title": "Como sair da conta?",
+              "route": "faq-tec-sair-conta",
+              "order": 7,
+              "published": 1,
+              "content": "# Como sair da conta?\n\nPara encerrar a sessão:\n\n1. Clique no seu nome ou foto no canto superior direito.\n2. Selecione \"Sair\" ou \"Logout\".\n\nRecomendamos sair sempre que usar dispositivos compartilhados.\n"
+            },
+            {
+              "title": "A plataforma funciona no celular?",
+              "route": "faq-tec-celular",
+              "order": 8,
+              "published": 1,
+              "content": "# A plataforma funciona no celular?\n\nSim. A plataforma `app.vediums.com` é compatível com dispositivos móveis.\n\nAcesse pelo navegador do celular. A experiência pode ser melhor em dispositivos maiores para algumas funcionalidades.\n\nPara as aulas ao vivo, instale o aplicativo **Google Meet** no celular.\n"
+            },
+            {
+              "title": "Quais navegadores usar?",
+              "route": "faq-tec-navegadores",
+              "order": 9,
+              "published": 1,
+              "content": "# Quais navegadores são recomendados?\n\nRecomendamos:\n\n- **Google Chrome** (versão atual) — melhor experiência.\n- **Mozilla Firefox** (versão atual).\n- **Microsoft Edge** (versão atual).\n\nEvite usar navegadores desatualizados ou Internet Explorer.\n\nSe encontrar problemas em um navegador específico, tente em outro.\n"
+            },
+            {
+              "title": "Como limpar cache do navegador?",
+              "route": "faq-tec-limpar-cache",
+              "order": 10,
+              "published": 1,
+              "content": "# Como limpar o cache do navegador?\n\nLimpar o cache pode resolver problemas de carregamento e exibição.\n\n**Google Chrome:**\n1. Pressione `Ctrl + Shift + Delete` (Windows) ou `Cmd + Shift + Delete` (Mac).\n2. Selecione \"Imagens e arquivos em cache\" e \"Cookies\".\n3. Clique em \"Limpar dados\".\n\n**Mozilla Firefox:**\n1. Pressione `Ctrl + Shift + Delete`.\n2. Selecione o período e os dados a limpar.\n3. Confirme.\n\nApós limpar o cache, feche e abra novamente o navegador.\n"
+            }
           ]
         },
         {
           "title": "Google Meet",
           "pages": [
-            { "title": "Como entrar na aula pelo Google Meet?", "route": "faq-meet-como-entrar", "order": 1, "published": 1, "content": "# Como entrar na aula pelo Google Meet?\n\n1. Receba o link do Google Meet do professor ou da plataforma.\n2. Clique no link no horário combinado.\n3. Permita acesso à câmera e ao microfone quando solicitado pelo navegador.\n4. Clique em \"Entrar agora\".\n\nSe for seu primeiro acesso ao Google Meet, pode ser necessário criar uma conta Google gratuita.\n" },
-            { "title": "O link do Meet não abre", "route": "faq-meet-link-nao-abre", "order": 2, "published": 1, "content": "# O link do Google Meet não abre\n\nSe o link não abrir:\n\n1. Copie o link e cole em um navegador diferente.\n2. Tente abrir o link em uma aba anônima/privada.\n3. Verifique se o link está correto (sem espaços extras).\n4. Tente entrar pelo aplicativo Google Meet no celular.\n5. Verifique se o link não está expirado.\n\nSe nenhuma opção funcionar, entre em contato com o professor ou abra um ticket de suporte.\n" },
-            { "title": "O microfone não funciona", "route": "faq-meet-microfone", "order": 3, "published": 1, "content": "# O microfone não funciona no Google Meet\n\n1. Verifique se o microfone está conectado e funcionando.\n2. No Google Meet, clique no ícone do microfone para ativá-lo.\n3. Verifique as permissões do navegador: clique no cadeado na barra de endereço e permita o microfone.\n4. Reinicie o navegador.\n5. Teste o microfone em outro aplicativo.\n\nSe o problema persistir, use fone de ouvido com microfone integrado.\n" },
-            { "title": "A câmera não funciona", "route": "faq-meet-camera", "order": 4, "published": 1, "content": "# A câmera não funciona no Google Meet\n\n1. Verifique se a câmera está conectada e não coberta.\n2. Clique no ícone da câmera no Google Meet para ativá-la.\n3. Verifique as permissões do navegador: clique no cadeado e permita a câmera.\n4. Verifique se outro aplicativo está usando a câmera simultaneamente.\n5. Reinicie o navegador.\n\nSe a câmera do computador não funcionar, pode usar o celular com o app Google Meet.\n" },
-            { "title": "Não escuto o professor", "route": "faq-meet-audio-professor", "order": 5, "published": 1, "content": "# Não escuto o professor na aula\n\n1. Verifique o volume do computador ou celular.\n2. Verifique se o som não está mutado no Google Meet.\n3. Verifique se o professor está com o microfone ativado.\n4. Use fone de ouvido para melhor qualidade de áudio.\n5. Saia e entre novamente na reunião.\n\nSe o problema persistir, informe o professor pelo chat do Meet.\n" },
-            { "title": "O professor não me escuta", "route": "faq-meet-professor-nao-escuta", "order": 6, "published": 1, "content": "# O professor não me escuta na aula\n\n1. Verifique se o seu microfone não está mutado (ícone com risco vermelho).\n2. Clique no ícone do microfone para ativar.\n3. Verifique as permissões de microfone no navegador.\n4. Fale mais perto do microfone.\n5. Use um fone de ouvido com microfone.\n\nSe o professor ainda não escutar, saia e entre novamente na reunião.\n" },
-            { "title": "A conexão está instável", "route": "faq-meet-conexao-instavel", "order": 7, "published": 1, "content": "# A conexão está instável durante a aula\n\n1. Verifique a velocidade da sua internet.\n2. Aproxime o dispositivo do roteador Wi-Fi ou use cabo de rede.\n3. Encerre outros programas que usam a internet.\n4. Desative a câmera temporariamente para economizar banda.\n5. Reinicie o roteador se necessário.\n\nSe a instabilidade for intensa e persistente, combine com o professor para remarcar a aula.\n" },
-            { "title": "Posso entrar pelo celular?", "route": "faq-meet-celular", "order": 8, "published": 1, "content": "# Posso entrar na aula pelo celular?\n\nSim. É possível participar das aulas pelo celular usando o aplicativo **Google Meet**.\n\nInstale o app:\n- Android: Google Play Store\n- iOS: App Store\n\nRecomendamos usar fone de ouvido e manter o celular em posição estável durante a aula.\n" },
-            { "title": "Preciso instalar aplicativo?", "route": "faq-meet-instalar-app", "order": 9, "published": 1, "content": "# Preciso instalar algum aplicativo?\n\nNo **computador:** não é necessário instalar nada. O Google Meet funciona diretamente no navegador.\n\nNo **celular:** é recomendável instalar o aplicativo **Google Meet** para melhor experiência.\n\nNão instale aplicativos de terceiros para acessar as aulas da Vedium. Use apenas o Google Meet oficial.\n" },
-            { "title": "Como usar o chat do Google Meet?", "route": "faq-meet-chat", "order": 10, "published": 1, "content": "# Como usar o chat do Google Meet?\n\nO chat do Google Meet permite enviar mensagens de texto durante a aula sem interromper o áudio.\n\nPara abrir o chat:\n\n1. Na tela do Google Meet, clique no ícone de balão de mensagem (canto superior direito).\n2. Digite sua mensagem e pressione Enter para enviar.\n\nO chat é útil para enviar links, perguntas ou avisar sobre problemas técnicos sem interromper a aula.\n" }
+            {
+              "title": "Como entrar na aula pelo Google Meet?",
+              "route": "faq-meet-como-entrar",
+              "order": 1,
+              "published": 1,
+              "content": "# Como entrar na aula pelo Google Meet?\n\n1. Receba o link do Google Meet do professor ou da plataforma.\n2. Clique no link no horário combinado.\n3. Permita acesso à câmera e ao microfone quando solicitado pelo navegador.\n4. Clique em \"Entrar agora\".\n\nSe for seu primeiro acesso ao Google Meet, pode ser necessário criar uma conta Google gratuita.\n"
+            },
+            {
+              "title": "O link do Meet não abre",
+              "route": "faq-meet-link-nao-abre",
+              "order": 2,
+              "published": 1,
+              "content": "# O link do Google Meet não abre\n\nSe o link não abrir:\n\n1. Copie o link e cole em um navegador diferente.\n2. Tente abrir o link em uma aba anônima/privada.\n3. Verifique se o link está correto (sem espaços extras).\n4. Tente entrar pelo aplicativo Google Meet no celular.\n5. Verifique se o link não está expirado.\n\nSe nenhuma opção funcionar, entre em contato com o professor ou abra um ticket de suporte.\n"
+            },
+            {
+              "title": "O microfone não funciona",
+              "route": "faq-meet-microfone",
+              "order": 3,
+              "published": 1,
+              "content": "# O microfone não funciona no Google Meet\n\n1. Verifique se o microfone está conectado e funcionando.\n2. No Google Meet, clique no ícone do microfone para ativá-lo.\n3. Verifique as permissões do navegador: clique no cadeado na barra de endereço e permita o microfone.\n4. Reinicie o navegador.\n5. Teste o microfone em outro aplicativo.\n\nSe o problema persistir, use fone de ouvido com microfone integrado.\n"
+            },
+            {
+              "title": "A câmera não funciona",
+              "route": "faq-meet-camera",
+              "order": 4,
+              "published": 1,
+              "content": "# A câmera não funciona no Google Meet\n\n1. Verifique se a câmera está conectada e não coberta.\n2. Clique no ícone da câmera no Google Meet para ativá-la.\n3. Verifique as permissões do navegador: clique no cadeado e permita a câmera.\n4. Verifique se outro aplicativo está usando a câmera simultaneamente.\n5. Reinicie o navegador.\n\nSe a câmera do computador não funcionar, pode usar o celular com o app Google Meet.\n"
+            },
+            {
+              "title": "Não escuto o professor",
+              "route": "faq-meet-audio-professor",
+              "order": 5,
+              "published": 1,
+              "content": "# Não escuto o professor na aula\n\n1. Verifique o volume do computador ou celular.\n2. Verifique se o som não está mutado no Google Meet.\n3. Verifique se o professor está com o microfone ativado.\n4. Use fone de ouvido para melhor qualidade de áudio.\n5. Saia e entre novamente na reunião.\n\nSe o problema persistir, informe o professor pelo chat do Meet.\n"
+            },
+            {
+              "title": "O professor não me escuta",
+              "route": "faq-meet-professor-nao-escuta",
+              "order": 6,
+              "published": 1,
+              "content": "# O professor não me escuta na aula\n\n1. Verifique se o seu microfone não está mutado (ícone com risco vermelho).\n2. Clique no ícone do microfone para ativar.\n3. Verifique as permissões de microfone no navegador.\n4. Fale mais perto do microfone.\n5. Use um fone de ouvido com microfone.\n\nSe o professor ainda não escutar, saia e entre novamente na reunião.\n"
+            },
+            {
+              "title": "A conexão está instável",
+              "route": "faq-meet-conexao-instavel",
+              "order": 7,
+              "published": 1,
+              "content": "# A conexão está instável durante a aula\n\n1. Verifique a velocidade da sua internet.\n2. Aproxime o dispositivo do roteador Wi-Fi ou use cabo de rede.\n3. Encerre outros programas que usam a internet.\n4. Desative a câmera temporariamente para economizar banda.\n5. Reinicie o roteador se necessário.\n\nSe a instabilidade for intensa e persistente, combine com o professor para remarcar a aula.\n"
+            },
+            {
+              "title": "Posso entrar pelo celular?",
+              "route": "faq-meet-celular",
+              "order": 8,
+              "published": 1,
+              "content": "# Posso entrar na aula pelo celular?\n\nSim. É possível participar das aulas pelo celular usando o aplicativo **Google Meet**.\n\nInstale o app:\n- Android: Google Play Store\n- iOS: App Store\n\nRecomendamos usar fone de ouvido e manter o celular em posição estável durante a aula.\n"
+            },
+            {
+              "title": "Preciso instalar aplicativo?",
+              "route": "faq-meet-instalar-app",
+              "order": 9,
+              "published": 1,
+              "content": "# Preciso instalar algum aplicativo?\n\nNo **computador:** não é necessário instalar nada. O Google Meet funciona diretamente no navegador.\n\nNo **celular:** é recomendável instalar o aplicativo **Google Meet** para melhor experiência.\n\nNão instale aplicativos de terceiros para acessar as aulas da Vedium. Use apenas o Google Meet oficial.\n"
+            },
+            {
+              "title": "Como usar o chat do Google Meet?",
+              "route": "faq-meet-chat",
+              "order": 10,
+              "published": 1,
+              "content": "# Como usar o chat do Google Meet?\n\nO chat do Google Meet permite enviar mensagens de texto durante a aula sem interromper o áudio.\n\nPara abrir o chat:\n\n1. Na tela do Google Meet, clique no ícone de balão de mensagem (canto superior direito).\n2. Digite sua mensagem e pressione Enter para enviar.\n\nO chat é útil para enviar links, perguntas ou avisar sobre problemas técnicos sem interromper a aula.\n"
+            }
           ]
         },
         {
           "title": "Cursos e Conteúdo",
           "pages": [
-            { "title": "Não consigo abrir o curso", "route": "faq-curso-nao-abre", "order": 1, "published": 1, "content": "# Não consigo abrir o curso\n\n1. Verifique se o pagamento está em dia e o acesso está ativo.\n2. Faça logout e login novamente.\n3. Limpe o cache do navegador.\n4. Tente em outro navegador.\n5. Verifique se está usando o e-mail correto da matrícula.\n\nSe o problema persistir, abra um ticket de suporte informando o nome do curso e a mensagem de erro.\n" },
-            { "title": "O curso não aparece", "route": "faq-curso-nao-aparece", "order": 2, "published": 1, "content": "# O curso não aparece na minha área\n\n1. Verifique se o pagamento foi confirmado pela Stripe.\n2. Faça logout e login novamente.\n3. Aguarde alguns minutos e atualize a página.\n4. Verifique se o e-mail usado no login é o mesmo da matrícula.\n\nSe o pagamento foi confirmado há mais de 30 minutos e o curso ainda não aparece, abra um ticket com o comprovante da Stripe.\n" },
-            { "title": "A aula não aparece", "route": "faq-curso-aula-nao-aparece", "order": 3, "published": 1, "content": "# A aula não aparece no curso\n\n1. Verifique se o módulo ou seção está publicado (algumas aulas são liberadas progressivamente).\n2. Atualize a página.\n3. Faça logout e login.\n4. Tente em outro navegador.\n\nSe a aula deveria estar disponível e não aparece, abra um ticket informando o nome do curso e da aula.\n" },
-            { "title": "O material não abre", "route": "faq-curso-material-nao-abre", "order": 4, "published": 1, "content": "# O material didático não abre\n\n1. Verifique se o arquivo é PDF e se há um leitor de PDF instalado.\n2. Tente baixar o arquivo e abrir localmente.\n3. Verifique sua conexão com a internet.\n4. Tente em outro navegador.\n\nSe o arquivo estiver corrompido ou indisponível, informe o professor ou abra um ticket.\n" },
-            { "title": "O vídeo não carrega", "route": "faq-curso-video", "order": 5, "published": 1, "content": "# O vídeo não carrega\n\n1. Verifique sua conexão com a internet.\n2. Aguarde alguns segundos — vídeos grandes podem demorar para carregar.\n3. Reduza a qualidade do vídeo (configurações do player).\n4. Tente em outro navegador.\n5. Desative extensões do navegador que possam bloquear o conteúdo.\n\nSe o vídeo não carregar em nenhuma condição, informe pelo ticket de suporte.\n" },
-            { "title": "Não consigo baixar o material", "route": "faq-curso-download", "order": 6, "published": 1, "content": "# Não consigo baixar o material\n\n1. Verifique se o botão de download está visível (nem todos os materiais têm opção de download).\n2. Verifique se há espaço suficiente no seu dispositivo.\n3. Tente em outro navegador.\n4. Desative bloqueadores de pop-up.\n\nSe o download não funcionar, informe pelo ticket de suporte com o nome do material.\n" },
-            { "title": "Minha atividade não foi salva", "route": "faq-curso-atividade-nao-salva", "order": 7, "published": 1, "content": "# Minha atividade não foi salva\n\n1. Verifique se você clicou em \"Salvar\" ou \"Enviar\" antes de fechar.\n2. Verifique se estava conectado à internet no momento do envio.\n3. Tente enviar novamente.\n\nSe o problema persistir e a atividade tiver prazo, informe o professor imediatamente.\n" },
-            { "title": "Minha avaliação não aparece", "route": "faq-curso-avaliacao", "order": 8, "published": 1, "content": "# Minha avaliação não aparece\n\n1. Verifique se concluiu os módulos anteriores (algumas avaliações são desbloqueadas progressivamente).\n2. Atualize a página.\n3. Faça logout e login.\n\nSe a avaliação deveria estar disponível e não aparece, abra um ticket.\n" },
-            { "title": "Meu progresso está incorreto", "route": "faq-curso-progresso", "order": 9, "published": 1, "content": "# Meu progresso aparece incorreto no curso\n\n1. O progresso pode levar alguns instantes para atualizar após concluir uma aula.\n2. Faça logout, aguarde e faça login novamente.\n3. Atualize a página.\n\nSe o progresso continuar incorreto após 24 horas, abra um ticket descrevendo o que está errado.\n" },
-            { "title": "Meu certificado não aparece", "route": "faq-curso-certificado", "order": 10, "published": 1, "content": "# Meu certificado não aparece\n\nO certificado é emitido após atender todos os critérios de conclusão. [A CONFIRMAR critérios]\n\n1. Verifique se concluiu todas as atividades e avaliações necessárias.\n2. Aguarde até 24 horas após a conclusão. [A CONFIRMAR]\n3. Se após esse prazo o certificado não aparecer, abra um ticket informando o nome do curso.\n" }
+            {
+              "title": "Não consigo abrir o curso",
+              "route": "faq-curso-nao-abre",
+              "order": 1,
+              "published": 1,
+              "content": "# Não consigo abrir o curso\n\n1. Verifique se o pagamento está em dia e o acesso está ativo.\n2. Faça logout e login novamente.\n3. Limpe o cache do navegador.\n4. Tente em outro navegador.\n5. Verifique se está usando o e-mail correto da matrícula.\n\nSe o problema persistir, abra um ticket de suporte informando o nome do curso e a mensagem de erro.\n"
+            },
+            {
+              "title": "O curso não aparece",
+              "route": "faq-curso-nao-aparece",
+              "order": 2,
+              "published": 1,
+              "content": "# O curso não aparece na minha área\n\n1. Verifique se o pagamento foi confirmado pela Stripe.\n2. Faça logout e login novamente.\n3. Aguarde alguns minutos e atualize a página.\n4. Verifique se o e-mail usado no login é o mesmo da matrícula.\n\nSe o pagamento foi confirmado há mais de 30 minutos e o curso ainda não aparece, abra um ticket com o comprovante da Stripe.\n"
+            },
+            {
+              "title": "A aula não aparece",
+              "route": "faq-curso-aula-nao-aparece",
+              "order": 3,
+              "published": 1,
+              "content": "# A aula não aparece no curso\n\n1. Verifique se o módulo ou seção está publicado (algumas aulas são liberadas progressivamente).\n2. Atualize a página.\n3. Faça logout e login.\n4. Tente em outro navegador.\n\nSe a aula deveria estar disponível e não aparece, abra um ticket informando o nome do curso e da aula.\n"
+            },
+            {
+              "title": "O material não abre",
+              "route": "faq-curso-material-nao-abre",
+              "order": 4,
+              "published": 1,
+              "content": "# O material didático não abre\n\n1. Verifique se o arquivo é PDF e se há um leitor de PDF instalado.\n2. Tente baixar o arquivo e abrir localmente.\n3. Verifique sua conexão com a internet.\n4. Tente em outro navegador.\n\nSe o arquivo estiver corrompido ou indisponível, informe o professor ou abra um ticket.\n"
+            },
+            {
+              "title": "O vídeo não carrega",
+              "route": "faq-curso-video",
+              "order": 5,
+              "published": 1,
+              "content": "# O vídeo não carrega\n\n1. Verifique sua conexão com a internet.\n2. Aguarde alguns segundos — vídeos grandes podem demorar para carregar.\n3. Reduza a qualidade do vídeo (configurações do player).\n4. Tente em outro navegador.\n5. Desative extensões do navegador que possam bloquear o conteúdo.\n\nSe o vídeo não carregar em nenhuma condição, informe pelo ticket de suporte.\n"
+            },
+            {
+              "title": "Não consigo baixar o material",
+              "route": "faq-curso-download",
+              "order": 6,
+              "published": 1,
+              "content": "# Não consigo baixar o material\n\n1. Verifique se o botão de download está visível (nem todos os materiais têm opção de download).\n2. Verifique se há espaço suficiente no seu dispositivo.\n3. Tente em outro navegador.\n4. Desative bloqueadores de pop-up.\n\nSe o download não funcionar, informe pelo ticket de suporte com o nome do material.\n"
+            },
+            {
+              "title": "Minha atividade não foi salva",
+              "route": "faq-curso-atividade-nao-salva",
+              "order": 7,
+              "published": 1,
+              "content": "# Minha atividade não foi salva\n\n1. Verifique se você clicou em \"Salvar\" ou \"Enviar\" antes de fechar.\n2. Verifique se estava conectado à internet no momento do envio.\n3. Tente enviar novamente.\n\nSe o problema persistir e a atividade tiver prazo, informe o professor imediatamente.\n"
+            },
+            {
+              "title": "Minha avaliação não aparece",
+              "route": "faq-curso-avaliacao",
+              "order": 8,
+              "published": 1,
+              "content": "# Minha avaliação não aparece\n\n1. Verifique se concluiu os módulos anteriores (algumas avaliações são desbloqueadas progressivamente).\n2. Atualize a página.\n3. Faça logout e login.\n\nSe a avaliação deveria estar disponível e não aparece, abra um ticket.\n"
+            },
+            {
+              "title": "Meu progresso está incorreto",
+              "route": "faq-curso-progresso",
+              "order": 9,
+              "published": 1,
+              "content": "# Meu progresso aparece incorreto no curso\n\n1. O progresso pode levar alguns instantes para atualizar após concluir uma aula.\n2. Faça logout, aguarde e faça login novamente.\n3. Atualize a página.\n\nSe o progresso continuar incorreto após 24 horas, abra um ticket descrevendo o que está errado.\n"
+            },
+            {
+              "title": "Meu certificado não aparece",
+              "route": "faq-curso-certificado",
+              "order": 10,
+              "published": 1,
+              "content": "# Meu certificado não aparece\n\nO certificado é emitido após atender todos os critérios de conclusão. [A CONFIRMAR critérios]\n\n1. Verifique se concluiu todas as atividades e avaliações necessárias.\n2. Aguarde até 24 horas após a conclusão. [A CONFIRMAR]\n3. Se após esse prazo o certificado não aparecer, abra um ticket informando o nome do curso.\n"
+            }
           ]
         },
         {
           "title": "Pagamentos",
           "pages": [
-            { "title": "O pagamento não foi aprovado", "route": "faq-pag-nao-aprovado", "order": 1, "published": 1, "content": "# O pagamento não foi aprovado\n\nSe o pagamento foi recusado:\n\n1. Verifique os dados do cartão (número, validade, CVV).\n2. Verifique se há limite disponível.\n3. Tente com outro cartão.\n4. Entre em contato com o banco emissor do cartão.\n5. Se o problema persistir, abra um ticket de suporte.\n" },
-            { "title": "O cartão foi recusado", "route": "faq-pag-cartao-recusado", "order": 2, "published": 1, "content": "# O cartão foi recusado\n\nO cartão pode ser recusado por:\n\n- Dados incorretos (número, validade, CVV).\n- Limite insuficiente.\n- Cartão bloqueado ou cancelado.\n- Banco bloqueando a transação (comum em compras internacionais).\n\n**O que fazer:**\n\n1. Verifique os dados e tente novamente.\n2. Entre em contato com o banco para verificar bloqueios.\n3. Tente com outro cartão.\n4. Abra ticket de suporte se o problema persistir.\n" },
-            { "title": "A cobrança está duplicada", "route": "faq-pag-duplicada", "order": 3, "published": 1, "content": "# Apareceu uma cobrança duplicada\n\nSe identificou cobranças duplicadas:\n\n1. Verifique no e-mail da Stripe se foram gerados dois recibos.\n2. Abra um ticket de suporte imediatamente com:\n   - Datas e valores das cobranças.\n   - Captura de tela da fatura do cartão ou recibos da Stripe.\n\nA equipe analisará e processará o estorno da cobrança indevida.\n" },
-            { "title": "Não reconheço a cobrança", "route": "faq-pag-nao-reconheco", "order": 4, "published": 1, "content": "# Não reconheço uma cobrança da Vedium\n\nAs cobranças da Vedium aparecem na fatura do cartão com a descrição da Stripe ou da Vedium.\n\n1. Verifique se o e-mail da Stripe foi recebido com o recibo.\n2. Verifique se algum familiar pode ter realizado a compra.\n3. Se confirmar que a cobrança não é da Vedium, entre em contato com o banco.\n4. Se a cobrança for da Vedium mas você não reconhecer, abra um ticket com os detalhes.\n" },
-            { "title": "Como atualizar o cartão?", "route": "faq-pag-atualizar-cartao", "order": 5, "published": 1, "content": "# Como atualizar o cartão de pagamento?\n\n[A CONFIRMAR] — definir o processo para atualização do cartão (portal do cliente Stripe, suporte, etc.).\n\nEm caso de falha de pagamento por cartão expirado, entre em contato com o suporte para orientação.\n" },
-            { "title": "Como acessar a fatura?", "route": "faq-pag-fatura", "order": 6, "published": 1, "content": "# Como acessar a fatura da minha assinatura?\n\nA Stripe envia e-mail com recibo após cada cobrança. Verifique sua caixa de entrada com o endereço cadastrado.\n\n[A CONFIRMAR] — definir se há portal do cliente Stripe disponível para histórico de faturas.\n\nPara solicitar cópia de fatura, abra um ticket de suporte informando o período desejado.\n" },
-            { "title": "O pagamento foi feito mas o acesso não liberou", "route": "faq-pag-acesso-nao-liberou", "order": 7, "published": 1, "content": "# O pagamento foi feito mas o acesso não foi liberado\n\n1. Aguarde até 15 minutos — a confirmação pode levar alguns instantes.\n2. Faça logout e login novamente.\n3. Atualize a página.\n\nSe após 30 minutos o acesso ainda não foi liberado:\n\n1. Abra um ticket de suporte.\n2. Informe: data e horário do pagamento, e-mail cadastrado, e o recibo da Stripe.\n" },
-            { "title": "Meu plano aparece como vencido", "route": "faq-pag-plano-vencido", "order": 8, "published": 1, "content": "# Meu plano aparece como vencido\n\n1. Verifique se o pagamento mensal foi realizado com sucesso.\n2. Verifique o e-mail — pode haver notificação de falha de pagamento.\n3. Verifique os dados do cartão.\n4. Regularize o pagamento para reativar o acesso.\n\nPara dúvidas sobre o status do plano, abra um ticket de suporte.\n" },
-            { "title": "Como cancelar a cobrança recorrente?", "route": "faq-pag-cancelar-recorrente", "order": 9, "published": 1, "content": "# Como cancelar a cobrança recorrente?\n\nO cancelamento da cobrança recorrente é feito pelo encerramento do plano.\n\nEntre em contato pelo canal oficial de suporte para solicitar o cancelamento.\n\nO sistema cancela a assinatura na Stripe, e não haverá novas cobranças após a data de processamento.\n" },
-            { "title": "Como solicitar análise financeira?", "route": "faq-pag-analise-financeira", "order": 10, "published": 1, "content": "# Como solicitar análise financeira?\n\nPara dúvidas ou contestações financeiras que não foram resolvidas pelo suporte padrão:\n\n1. Abra um ticket de suporte com a categoria \"Financeiro\".\n2. Descreva a situação detalhadamente.\n3. Anexe comprovantes (recibos da Stripe, extrato do cartão).\n4. Aguarde o contato da equipe financeira.\n" }
+            {
+              "title": "O pagamento não foi aprovado",
+              "route": "faq-pag-nao-aprovado",
+              "order": 1,
+              "published": 1,
+              "content": "# O pagamento não foi aprovado\n\nSe o pagamento foi recusado:\n\n1. Verifique os dados do cartão (número, validade, CVV).\n2. Verifique se há limite disponível.\n3. Tente com outro cartão.\n4. Entre em contato com o banco emissor do cartão.\n5. Se o problema persistir, abra um ticket de suporte.\n"
+            },
+            {
+              "title": "O cartão foi recusado",
+              "route": "faq-pag-cartao-recusado",
+              "order": 2,
+              "published": 1,
+              "content": "# O cartão foi recusado\n\nO cartão pode ser recusado por:\n\n- Dados incorretos (número, validade, CVV).\n- Limite insuficiente.\n- Cartão bloqueado ou cancelado.\n- Banco bloqueando a transação (comum em compras internacionais).\n\n**O que fazer:**\n\n1. Verifique os dados e tente novamente.\n2. Entre em contato com o banco para verificar bloqueios.\n3. Tente com outro cartão.\n4. Abra ticket de suporte se o problema persistir.\n"
+            },
+            {
+              "title": "A cobrança está duplicada",
+              "route": "faq-pag-duplicada",
+              "order": 3,
+              "published": 1,
+              "content": "# Apareceu uma cobrança duplicada\n\nSe identificou cobranças duplicadas:\n\n1. Verifique no e-mail da Stripe se foram gerados dois recibos.\n2. Abra um ticket de suporte imediatamente com:\n   - Datas e valores das cobranças.\n   - Captura de tela da fatura do cartão ou recibos da Stripe.\n\nA equipe analisará e processará o estorno da cobrança indevida.\n"
+            },
+            {
+              "title": "Não reconheço a cobrança",
+              "route": "faq-pag-nao-reconheco",
+              "order": 4,
+              "published": 1,
+              "content": "# Não reconheço uma cobrança da Vedium\n\nAs cobranças da Vedium aparecem na fatura do cartão com a descrição da Stripe ou da Vedium.\n\n1. Verifique se o e-mail da Stripe foi recebido com o recibo.\n2. Verifique se algum familiar pode ter realizado a compra.\n3. Se confirmar que a cobrança não é da Vedium, entre em contato com o banco.\n4. Se a cobrança for da Vedium mas você não reconhecer, abra um ticket com os detalhes.\n"
+            },
+            {
+              "title": "Como atualizar o cartão?",
+              "route": "faq-pag-atualizar-cartao",
+              "order": 5,
+              "published": 1,
+              "content": "# Como atualizar o cartão de pagamento?\n\n[A CONFIRMAR] — definir o processo para atualização do cartão (portal do cliente Stripe, suporte, etc.).\n\nEm caso de falha de pagamento por cartão expirado, entre em contato com o suporte para orientação.\n"
+            },
+            {
+              "title": "Como acessar a fatura?",
+              "route": "faq-pag-fatura",
+              "order": 6,
+              "published": 1,
+              "content": "# Como acessar a fatura da minha assinatura?\n\nA Stripe envia e-mail com recibo após cada cobrança. Verifique sua caixa de entrada com o endereço cadastrado.\n\n[A CONFIRMAR] — definir se há portal do cliente Stripe disponível para histórico de faturas.\n\nPara solicitar cópia de fatura, abra um ticket de suporte informando o período desejado.\n"
+            },
+            {
+              "title": "O pagamento foi feito mas o acesso não liberou",
+              "route": "faq-pag-acesso-nao-liberou",
+              "order": 7,
+              "published": 1,
+              "content": "# O pagamento foi feito mas o acesso não foi liberado\n\n1. Aguarde até 15 minutos — a confirmação pode levar alguns instantes.\n2. Faça logout e login novamente.\n3. Atualize a página.\n\nSe após 30 minutos o acesso ainda não foi liberado:\n\n1. Abra um ticket de suporte.\n2. Informe: data e horário do pagamento, e-mail cadastrado, e o recibo da Stripe.\n"
+            },
+            {
+              "title": "Meu plano aparece como vencido",
+              "route": "faq-pag-plano-vencido",
+              "order": 8,
+              "published": 1,
+              "content": "# Meu plano aparece como vencido\n\n1. Verifique se o pagamento mensal foi realizado com sucesso.\n2. Verifique o e-mail — pode haver notificação de falha de pagamento.\n3. Verifique os dados do cartão.\n4. Regularize o pagamento para reativar o acesso.\n\nPara dúvidas sobre o status do plano, abra um ticket de suporte.\n"
+            },
+            {
+              "title": "Como cancelar a cobrança recorrente?",
+              "route": "faq-pag-cancelar-recorrente",
+              "order": 9,
+              "published": 1,
+              "content": "# Como cancelar a cobrança recorrente?\n\nO cancelamento da cobrança recorrente é feito pelo encerramento do plano.\n\nEntre em contato pelo canal oficial de suporte para solicitar o cancelamento.\n\nO sistema cancela a assinatura na Stripe, e não haverá novas cobranças após a data de processamento.\n"
+            },
+            {
+              "title": "Como solicitar análise financeira?",
+              "route": "faq-pag-analise-financeira",
+              "order": 10,
+              "published": 1,
+              "content": "# Como solicitar análise financeira?\n\nPara dúvidas ou contestações financeiras que não foram resolvidas pelo suporte padrão:\n\n1. Abra um ticket de suporte com a categoria \"Financeiro\".\n2. Descreva a situação detalhadamente.\n3. Anexe comprovantes (recibos da Stripe, extrato do cartão).\n4. Aguarde o contato da equipe financeira.\n"
+            }
           ]
         },
         {
           "title": "Suporte",
           "pages": [
-            { "title": "Como abrir um ticket?", "route": "faq-sup-abrir-ticket", "order": 1, "published": 1, "content": "# Como abrir um ticket de suporte?\n\n1. Acesse `app.vediums.com`.\n2. Vá para a área de suporte ou ajuda.\n3. Clique em \"Novo ticket\" ou \"Abrir chamado\".\n4. Preencha o título e a descrição.\n5. Selecione a categoria.\n6. Clique em enviar.\n\nVocê receberá um número de protocolo por e-mail.\n" },
-            { "title": "Onde acompanho meu ticket?", "route": "faq-sup-acompanhar", "order": 2, "published": 1, "content": "# Onde acompanho o status do meu ticket?\n\n1. Acesse `app.vediums.com`.\n2. Vá para a área de suporte.\n3. Consulte a lista de tickets abertos.\n4. Clique no ticket para ver as atualizações.\n\nVocê também receberá notificações por e-mail quando houver atualização.\n" },
-            { "title": "Como responder um ticket?", "route": "faq-sup-responder", "order": 3, "published": 1, "content": "# Como responder a uma mensagem do suporte?\n\n1. Acesse o ticket pela plataforma ou pelo link no e-mail de notificação.\n2. Leia a mensagem da equipe.\n3. Adicione sua resposta no campo de comentário.\n4. Clique em enviar.\n\nEvite abrir um novo ticket para o mesmo problema — responda sempre no mesmo ticket.\n" },
-            { "title": "Posso anexar arquivo ao ticket?", "route": "faq-sup-anexar", "order": 4, "published": 1, "content": "# Posso anexar arquivo ao ticket?\n\nSim. Você pode anexar capturas de tela, comprovantes ou outros arquivos relevantes ao ticket.\n\n[A CONFIRMAR] — verificar formatos e tamanho máximo aceitos.\n\nAnexe imagens ou documentos que ajudem a equipe a entender e resolver o problema mais rapidamente.\n" },
-            { "title": "Qual o prazo de resposta?", "route": "faq-sup-prazo", "order": 5, "published": 1, "content": "# Qual o prazo de resposta do suporte?\n\nO prazo varia conforme a prioridade do ticket:\n\n- **Alta prioridade** (acesso bloqueado, problema em aula): [A CONFIRMAR]\n- **Média prioridade** (dúvidas financeiras, alterações): [A CONFIRMAR]\n- **Baixa prioridade** (informações gerais): [A CONFIRMAR]\n\nTickets fora do horário de atendimento serão respondidos no próximo dia útil.\n" },
-            { "title": "Como informar um erro?", "route": "faq-sup-informar-erro", "order": 6, "published": 1, "content": "# Como informar um erro na plataforma?\n\nAo identificar um erro:\n\n1. Abra um ticket de suporte.\n2. Descreva o que estava fazendo quando o erro ocorreu.\n3. Informe a mensagem de erro exata (copie o texto ou tire uma captura de tela).\n4. Informe o navegador e o dispositivo utilizados.\n5. Informe a data e o horário da ocorrência.\n\nEssas informações ajudam a equipe a reproduzir e corrigir o problema mais rapidamente.\n" },
-            { "title": "Como enviar print?", "route": "faq-sup-print", "order": 7, "published": 1, "content": "# Como enviar uma captura de tela ao suporte?\n\n**Windows:** pressione `Print Screen` ou `Windows + Shift + S` para capturar a tela.\n\n**Mac:** pressione `Cmd + Shift + 3` para a tela inteira ou `Cmd + Shift + 4` para selecionar uma área.\n\n**Celular:** consulte as instruções do seu dispositivo para captura de tela.\n\nAnexe a imagem ao ticket de suporte clicando em \"Anexar arquivo\".\n" },
-            { "title": "Como relatar problema em aula?", "route": "faq-sup-problema-aula", "order": 8, "published": 1, "content": "# Como relatar um problema ocorrido durante a aula?\n\n1. Durante a aula, informe o professor imediatamente pelo chat do Google Meet.\n2. Se a aula precisar ser interrompida, combine com o professor por onde irá se comunicar (WhatsApp ou e-mail, se autorizado).\n3. Após a aula, abra um ticket de suporte descrevendo o problema, a data, o horário e o impacto na aula.\n\nSe a aula não pôde ser realizada por falha técnica, informe no ticket para que a reposição seja providenciada.\n" },
-            { "title": "Quando meu caso será escalado?", "route": "faq-sup-escalonamento", "order": 9, "published": 1, "content": "# Quando meu caso será escalado?\n\nO ticket é escalado para um nível superior quando:\n\n- O prazo de resolução foi excedido sem resposta.\n- O problema é complexo e exige decisão gerencial.\n- A solução proposta não resolveu o problema.\n- A situação envolve questão financeira ou jurídica.\n\nSe o seu ticket não foi resolvido dentro do prazo, você pode solicitar o escalonamento respondendo ao ticket.\n" },
-            { "title": "Como encerrar um atendimento?", "route": "faq-sup-encerrar", "order": 10, "published": 1, "content": "# Como encerrar um atendimento?\n\nO ticket é encerrado automaticamente quando o problema for resolvido e confirmado.\n\nSe a equipe encerrar o ticket e o problema persistir:\n\n1. Responda ao ticket solicitando reabertura.\n2. Descreva o que ainda está ocorrendo.\n\nVocê também pode abrir um novo ticket se o problema for diferente do anterior.\n" }
+            {
+              "title": "Como abrir um ticket?",
+              "route": "faq-sup-abrir-ticket",
+              "order": 1,
+              "published": 1,
+              "content": "# Como abrir um ticket de suporte?\n\n1. Acesse `app.vediums.com`.\n2. Vá para a área de suporte ou ajuda.\n3. Clique em \"Novo ticket\" ou \"Abrir chamado\".\n4. Preencha o título e a descrição.\n5. Selecione a categoria.\n6. Clique em enviar.\n\nVocê receberá um número de protocolo por e-mail.\n"
+            },
+            {
+              "title": "Onde acompanho meu ticket?",
+              "route": "faq-sup-acompanhar",
+              "order": 2,
+              "published": 1,
+              "content": "# Onde acompanho o status do meu ticket?\n\n1. Acesse `app.vediums.com`.\n2. Vá para a área de suporte.\n3. Consulte a lista de tickets abertos.\n4. Clique no ticket para ver as atualizações.\n\nVocê também receberá notificações por e-mail quando houver atualização.\n"
+            },
+            {
+              "title": "Como responder um ticket?",
+              "route": "faq-sup-responder",
+              "order": 3,
+              "published": 1,
+              "content": "# Como responder a uma mensagem do suporte?\n\n1. Acesse o ticket pela plataforma ou pelo link no e-mail de notificação.\n2. Leia a mensagem da equipe.\n3. Adicione sua resposta no campo de comentário.\n4. Clique em enviar.\n\nEvite abrir um novo ticket para o mesmo problema — responda sempre no mesmo ticket.\n"
+            },
+            {
+              "title": "Posso anexar arquivo ao ticket?",
+              "route": "faq-sup-anexar",
+              "order": 4,
+              "published": 1,
+              "content": "# Posso anexar arquivo ao ticket?\n\nSim. Você pode anexar capturas de tela, comprovantes ou outros arquivos relevantes ao ticket.\n\n[A CONFIRMAR] — verificar formatos e tamanho máximo aceitos.\n\nAnexe imagens ou documentos que ajudem a equipe a entender e resolver o problema mais rapidamente.\n"
+            },
+            {
+              "title": "Qual o prazo de resposta?",
+              "route": "faq-sup-prazo",
+              "order": 5,
+              "published": 1,
+              "content": "# Qual o prazo de resposta do suporte?\n\nO prazo varia conforme a prioridade do ticket:\n\n- **Alta prioridade** (acesso bloqueado, problema em aula): [A CONFIRMAR]\n- **Média prioridade** (dúvidas financeiras, alterações): [A CONFIRMAR]\n- **Baixa prioridade** (informações gerais): [A CONFIRMAR]\n\nTickets fora do horário de atendimento serão respondidos no próximo dia útil.\n"
+            },
+            {
+              "title": "Como informar um erro?",
+              "route": "faq-sup-informar-erro",
+              "order": 6,
+              "published": 1,
+              "content": "# Como informar um erro na plataforma?\n\nAo identificar um erro:\n\n1. Abra um ticket de suporte.\n2. Descreva o que estava fazendo quando o erro ocorreu.\n3. Informe a mensagem de erro exata (copie o texto ou tire uma captura de tela).\n4. Informe o navegador e o dispositivo utilizados.\n5. Informe a data e o horário da ocorrência.\n\nEssas informações ajudam a equipe a reproduzir e corrigir o problema mais rapidamente.\n"
+            },
+            {
+              "title": "Como enviar print?",
+              "route": "faq-sup-print",
+              "order": 7,
+              "published": 1,
+              "content": "# Como enviar uma captura de tela ao suporte?\n\n**Windows:** pressione `Print Screen` ou `Windows + Shift + S` para capturar a tela.\n\n**Mac:** pressione `Cmd + Shift + 3` para a tela inteira ou `Cmd + Shift + 4` para selecionar uma área.\n\n**Celular:** consulte as instruções do seu dispositivo para captura de tela.\n\nAnexe a imagem ao ticket de suporte clicando em \"Anexar arquivo\".\n"
+            },
+            {
+              "title": "Como relatar problema em aula?",
+              "route": "faq-sup-problema-aula",
+              "order": 8,
+              "published": 1,
+              "content": "# Como relatar um problema ocorrido durante a aula?\n\n1. Durante a aula, informe o professor imediatamente pelo chat do Google Meet.\n2. Se a aula precisar ser interrompida, combine com o professor por onde irá se comunicar (WhatsApp ou e-mail, se autorizado).\n3. Após a aula, abra um ticket de suporte descrevendo o problema, a data, o horário e o impacto na aula.\n\nSe a aula não pôde ser realizada por falha técnica, informe no ticket para que a reposição seja providenciada.\n"
+            },
+            {
+              "title": "Quando meu caso será escalado?",
+              "route": "faq-sup-escalonamento",
+              "order": 9,
+              "published": 1,
+              "content": "# Quando meu caso será escalado?\n\nO ticket é escalado para um nível superior quando:\n\n- O prazo de resolução foi excedido sem resposta.\n- O problema é complexo e exige decisão gerencial.\n- A solução proposta não resolveu o problema.\n- A situação envolve questão financeira ou jurídica.\n\nSe o seu ticket não foi resolvido dentro do prazo, você pode solicitar o escalonamento respondendo ao ticket.\n"
+            },
+            {
+              "title": "Como encerrar um atendimento?",
+              "route": "faq-sup-encerrar",
+              "order": 10,
+              "published": 1,
+              "content": "# Como encerrar um atendimento?\n\nO ticket é encerrado automaticamente quando o problema for resolvido e confirmado.\n\nSe a equipe encerrar o ticket e o problema persistir:\n\n1. Responda ao ticket solicitando reabertura.\n2. Descreva o que ainda está ocorrendo.\n\nVocê também pode abrir um novo ticket se o problema for diferente do anterior.\n"
+            }
           ]
         }
       ]
