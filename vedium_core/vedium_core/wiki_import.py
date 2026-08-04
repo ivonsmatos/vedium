@@ -154,23 +154,19 @@ def _upsert_space(
 # ---------------------------------------------------------------------------
 
 def _upsert_group(
-    group: dict[str, Any],
-    space_name: str | None,
-    space_route: str,
-    dry_run: bool,
-    counters: dict[str, int],
+    group: dict[str, Any], space_name: str | None, space_route: str, dry_run: bool, counters: dict
 ) -> tuple[str | None, str]:
-    group_doctype = _resolve_doctype(GROUP_DOCTYPE_CANDIDATES)
-    if not group_doctype:
-        # Wiki sem suporte a grupos — páginas serão vinculadas só ao espaço
-        return None, f"INFO sem WikiGroup DocType; grupo '{group['title']}' ignorado"
+    title = group["title"].strip()
+    
+    doctype = _resolve_doctype(GROUP_DOCTYPE_CANDIDATES)
+    if not doctype or frappe.get_meta(doctype).istable:
+        counters["skipped"] += 1
+        return None, f"SKIP (Grupo é child table ou inexistente): {title}"
 
-    fields = _fieldnames(group_doctype)
+    fields = _fieldnames(doctype)
     title_field = _first_field(fields, "title", "group_title", "name1")
     space_field = _first_field(fields, "wiki_space", "space", "parent_space")
     order_field = _first_field(fields, "idx", "sort_order", "position", "sequence")
-
-    title = group["title"].strip()
 
     filters: list[dict] = []
     if title_field and space_field and space_name:
