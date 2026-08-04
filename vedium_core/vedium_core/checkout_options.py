@@ -14,7 +14,7 @@ from vedium_core.frequency_pricing_rules import (
 from vedium_core.catalog_pricing import is_catalog_complete, get_course_price
 
 
-def _catalog_plan_payload(course_name: str, billing_period: str) -> dict | None:
+def _catalog_plan_payload(course_name: str, billing_period: str):
     options = []
     currency = "BRL"
     for classes in range(MIN_CLASSES_PER_WEEK, MAX_CLASSES_PER_WEEK + 1):
@@ -83,7 +83,7 @@ def _frequency_payloads(unit_amount) -> list[dict]:
     return options
 
 
-def _plan_payload(plan_name: str, billing_period: str) -> dict | None:
+def _plan_payload(plan_name, billing_period: str):
     if not plan_name or not frappe.db.exists("Subscription Plan", plan_name):
         return None
 

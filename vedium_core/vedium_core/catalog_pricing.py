@@ -40,7 +40,7 @@ def get_course_price(course_name, billing_period, classes_per_week, environment=
     return frappe.get_doc("Vedium Course Price", records[0])
 
 
-def is_catalog_complete(course_name, environment="live"):
+def is_catalog_complete(course_name: str, environment: str = "live"):
     """
     Verifica se o curso possui os 10 registros necessários (5 mensais + 5 anuais)
     ativos e validados.
