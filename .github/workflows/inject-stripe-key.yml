@@ -1,0 +1,42 @@
+name: Inject Stripe Key to Production
+on:
+  workflow_dispatch:
+
+jobs:
+  inject-key:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Inject STRIPE_SECRET_KEY to Frappe site_config
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          if [ -z "${STRIPE_SECRET_KEY:-}" ]; then
+            echo "::error::STRIPE_SECRET_KEY não configurada no GitHub Environment."
+            exit 1
+          fi
+
+          echo "::add-mask::$STRIPE_SECRET_KEY"
+
+          # Envia a chave via stdin para não aparecer no ps ou history
+          printf '%s' "$STRIPE_SECRET_KEY" | ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'read -r STRIPE_KEY &&
+             docker exec -i -w /home/frappe/frappe-bench vedium-frappe \
+             bench --site app.vediums.com set-config STRIPE_SECRET_KEY "$STRIPE_KEY" &&
+             docker exec -w /home/frappe/frappe-bench vedium-frappe \
+             bench --site app.vediums.com clear-cache'
+
+          echo "Chave STRIPE_SECRET_KEY gravada com sucesso via SSH."
