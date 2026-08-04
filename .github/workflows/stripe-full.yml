@@ -88,33 +88,32 @@ jobs:
 
           echo "Linhas no JSON: $(wc -l < frappe_stripe_config.json)"
 
-          # 3. Extrair Stripe key do site_config (sem logar o valor)
-          STRIPE_KEY=$(ssh "$DEPLOY_USER@$DEPLOY_HOST" \
-            "docker exec -w /home/frappe/frappe-bench vedium-frappe \
-             python3 -c \"
-import sys, json
-sys.path.insert(0,'/home/frappe/frappe-bench/apps/frappe')
-import frappe
-frappe.init(site='app.vediums.com', sites_path='/home/frappe/frappe-bench/sites')
-frappe.connect()
-key = frappe.conf.get('STRIPE_SECRET_KEY') or ''
-print(key)
-\"" 2>/dev/null || echo "")
-
-          # Mascarar ANTES de qualquer uso posterior
-          if [ -n "$STRIPE_KEY" ]; then
-            echo "::add-mask::$STRIPE_KEY"
-            echo "STRIPE_KEY=$STRIPE_KEY" >> $GITHUB_ENV
-            echo "key_found=true" >> $GITHUB_OUTPUT
-            echo "Stripe key: presente (mascarada)"
-          else
-            echo "key_found=false" >> $GITHUB_OUTPUT
-            echo "::error::STRIPE_SECRET_KEY nao encontrada no Frappe site_config."
+      - name: Validate and Mask Stripe Key
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        run: |
+          if [ -z "${STRIPE_SECRET_KEY:-}" ]; then
+            echo "::error::STRIPE_SECRET_KEY não configurada no GitHub Environment production."
             exit 1
           fi
 
+          echo "::add-mask::$STRIPE_SECRET_KEY"
+
+          case "$STRIPE_SECRET_KEY" in
+            sk_live_*)
+              echo "Stripe live key: presente e mascarada."
+              ;;
+            *)
+              echo "::error::A chave configurada não é uma chave live."
+              exit 1
+              ;;
+          esac
+          echo "STRIPE_KEY=$STRIPE_SECRET_KEY" >> $GITHUB_ENV
+          echo "key_found=true" >> $GITHUB_OUTPUT
+        id: validate_key
+
       - name: Run Stripe audit (read-only)
-        if: steps.frappe_data.outputs.key_found == 'true'
+        if: steps.validate_key.outputs.key_found == 'true'
         env:
           STRIPE_SECRET_KEY: ${{ env.STRIPE_KEY }}
         run: |
@@ -123,7 +122,7 @@ print(key)
             --output stripe_audit_result.json
 
       - name: Display matrix summary
-        if: always() && steps.frappe_data.outputs.key_found == 'true'
+        if: always() && steps.validate_key.outputs.key_found == 'true'
         run: |
           python3 -c "
           import json, sys
@@ -155,7 +154,7 @@ print(key)
         if: >
           github.event.inputs.mode == 'apply' &&
           github.event.inputs.approved_json_b64 != '' &&
-          steps.frappe_data.outputs.key_found == 'true'
+          steps.validate_key.outputs.key_found == 'true'
         env:
           STRIPE_SECRET_KEY: ${{ env.STRIPE_KEY }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}

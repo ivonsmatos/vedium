@@ -124,7 +124,7 @@ def _create_price_if_not_exists(course_name, period, product_id, p_data):
         "commercial_name": f"Iorubá Básico ({p_data['classes']}x na semana)",
         "catalog_key": catalog_key,
         "catalog_version": 1,
-        "enabled": 1,
+        "enabled": 1 if stripe_price_id else 0,
         "billing_period": period,
         "classes_per_week": p_data['classes'],
         "currency": "BRL",
