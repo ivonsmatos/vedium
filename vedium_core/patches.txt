@@ -4,3 +4,4 @@ vedium_core.vedium_core.scripts.migrations.oneshot.seed_ingls_pr_intermediario_c
 vedium_core.vedium_core.scripts.migrations.oneshot.seed_ingls_upper_intermediario_catalog.execute
 vedium_core.vedium_core.scripts.migrations.oneshot.seed_ingls_c1_catalog.execute
 vedium_core.vedium_core.scripts.migrations.oneshot.seed_ioruba_basico_catalog.execute
+vedium_core.vedium_core.scripts.migrations.oneshot.seed_ioruba_intermediario_catalog.execute
