@@ -1,0 +1,1 @@
+vedium_core.vedium_core.scripts.migrations.oneshot.seed_ingls_beginner_catalog.execute

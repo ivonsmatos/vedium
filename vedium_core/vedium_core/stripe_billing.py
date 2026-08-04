@@ -26,6 +26,7 @@ from vedium_core.stripe_billing_rules import (
     normalize_period,
     refund_access_status,
 )
+from vedium_core.catalog_pricing import is_catalog_complete, get_course_price
 
 
 ACTIVE_STRIPE_STATUSES = {"active", "trialing"}
@@ -176,36 +177,74 @@ def create_subscription_checkout(
         frappe.throw(_(str(exc)))
 
     period = normalize_period(billing_period)
-    plan = get_subscription_plan(course, period)
-    price = _retrieve_and_validate_price(stripe, course, plan, display_currency)
-    price_id = plan.product_price_id
     email = frappe.db.get_value("User", user, "email") or user
     base_url = frappe.utils.get_url()
-    quote = frequency_quote((price.get("unit_amount") or 0) / 100, frequency)
-    recurring_frequency_discount = float(frequency_discount_percent(frequency))
-    metadata = {
-        "course_name": str(course.name),
-        "user": str(user),
-        "site": str(frappe.local.site),
-        "coupon_code": coupon_code or "",
-        "billing_period": period,
-        "minimum_term_months": str(minimum_term_months(period)),
-        "price_id": price_id,
-        "classes_per_week": str(frequency),
-        "frequency_discount_percent": str(recurring_frequency_discount),
-        "unit_amount": str(quote["unit_amount"]),
-        "monthly_subtotal": str(quote["subtotal"]),
-        "monthly_final_amount": str(quote["amount"]),
-    }
-    params = build_checkout_params(
-        price_id,
-        email,
-        f"{course.name}|{user}",
-        base_url,
-        course.name,
-        metadata,
-    )
-    params["line_items"][0]["quantity"] = frequency
+    
+    catalog_status = is_catalog_complete(course.name, environment="live")
+    if catalog_status == "incomplete":
+        frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
+        
+    if catalog_status is True:
+        price_doc = get_course_price(course.name, period, frequency, environment="live")
+        price_id = price_doc.stripe_price_id
+        recurring_frequency_discount = float(price_doc.frequency_discount_percent or 0)
+        metadata = {
+            "course_name": str(course.name),
+            "user": str(user),
+            "site": str(frappe.local.site),
+            "coupon_code": coupon_code or "",
+            "billing_period": period,
+            "minimum_term_months": str(price_doc.minimum_term_months or minimum_term_months(period)),
+            "price_id": price_id,
+            "classes_per_week": str(frequency),
+            "frequency_discount_percent": str(recurring_frequency_discount),
+            "unit_amount": str(price_doc.unit_amount),
+            "monthly_subtotal": str(price_doc.subtotal),
+            "monthly_final_amount": str(price_doc.amount),
+            "catalog_key": str(price_doc.catalog_key),
+            "catalog_version": str(price_doc.catalog_version),
+            "stripe_product_id": str(price_doc.stripe_product_id),
+        }
+        params = build_checkout_params(
+            price_id,
+            email,
+            f"{course.name}|{user}",
+            base_url,
+            course.name,
+            metadata,
+        )
+        params["line_items"][0]["quantity"] = 1
+        has_catalog = True
+    else:
+        plan = get_subscription_plan(course, period)
+        price = _retrieve_and_validate_price(stripe, course, plan, display_currency)
+        price_id = plan.product_price_id
+        quote = frequency_quote((price.get("unit_amount") or 0) / 100, frequency)
+        recurring_frequency_discount = float(frequency_discount_percent(frequency))
+        metadata = {
+            "course_name": str(course.name),
+            "user": str(user),
+            "site": str(frappe.local.site),
+            "coupon_code": coupon_code or "",
+            "billing_period": period,
+            "minimum_term_months": str(minimum_term_months(period)),
+            "price_id": price_id,
+            "classes_per_week": str(frequency),
+            "frequency_discount_percent": str(recurring_frequency_discount),
+            "unit_amount": str(quote["unit_amount"]),
+            "monthly_subtotal": str(quote["subtotal"]),
+            "monthly_final_amount": str(quote["amount"]),
+        }
+        params = build_checkout_params(
+            price_id,
+            email,
+            f"{course.name}|{user}",
+            base_url,
+            course.name,
+            metadata,
+        )
+        params["line_items"][0]["quantity"] = frequency
+        has_catalog = False
 
     promotional_discount = _discount_percent(coupon_code, user)
     if recurring_frequency_discount and promotional_discount:
@@ -215,7 +254,7 @@ def create_subscription_checkout(
                 "Remova o cupom para continuar."
             )
         )
-    if recurring_frequency_discount:
+    if recurring_frequency_discount and not has_catalog:
         params["discounts"] = [{"coupon": _frequency_coupon_id(stripe)}]
     elif promotional_discount:
         stripe_coupon = stripe.Coupon.create(
@@ -409,7 +448,7 @@ def _checkout_completed(session):
             "custom_billing_period": period,
             "custom_classes_per_week": frequency,
             "custom_frequency_discount_percent": float(
-                frequency_discount_percent(frequency)
+                metadata.get("frequency_discount_percent") or frequency_discount_percent(frequency)
             ),
             "custom_contract_monthly_amount": (session.get("amount_total") or 0) / 100,
             "custom_minimum_term_ends_on": add_months(today(), minimum_term_months(period)),
@@ -462,7 +501,10 @@ def _validate_subscription(subscription, session, course, user, period):
     if any(session_metadata.get(key) != value for key, value in expected.items()):
         frappe.throw(_("Metadados do Checkout Stripe inválidos"), frappe.AuthenticationError)
 
-    plan = get_subscription_plan(course, period)
+    catalog_status = is_catalog_complete(course.name, environment="live")
+    if catalog_status == "incomplete":
+        frappe.throw(_("Este curso possui um catálogo de preços incompleto."), frappe.AuthenticationError)
+        
     items = ((subscription.get("items") or {}).get("data") or [])
     price_ids = {
         (item.get("price") or {}).get("id")
@@ -470,13 +512,25 @@ def _validate_subscription(subscription, session, course, user, period):
         if isinstance(item.get("price"), dict)
     }
     quantities = [int(item.get("quantity") or 0) for item in items]
-    if (
-        price_ids != {plan.product_price_id}
-        or metadata.get("price_id") != plan.product_price_id
-        or len(items) != 1
-        or quantities != [frequency]
-    ):
-        frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
+    
+    if catalog_status is True:
+        price_doc = get_course_price(course.name, period, frequency, environment="live")
+        if (
+            price_ids != {price_doc.stripe_price_id}
+            or metadata.get("price_id") != price_doc.stripe_price_id
+            or len(items) != 1
+            or quantities != [1]
+        ):
+            frappe.throw(_("Itens da assinatura Stripe inválidos (catálogo)"), frappe.AuthenticationError)
+    else:
+        plan = get_subscription_plan(course, period)
+        if (
+            price_ids != {plan.product_price_id}
+            or metadata.get("price_id") != plan.product_price_id
+            or len(items) != 1
+            or quantities != [frequency]
+        ):
+            frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
 
 
 def _find_enrollment(subscription_id):
