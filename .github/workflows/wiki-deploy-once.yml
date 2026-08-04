@@ -1,0 +1,55 @@
+name: "Wiki Deploy Once"
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run?"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+jobs:
+  run-wiki-import:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Import Wiki
+        env:
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          SITE_NAME: ${{ vars.SITE_NAME || 'app.vediums.com' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
+          set -euo pipefail
+          CONTAINER=vedium-frappe
+          echo "=========================================================="
+          echo "Rodando import_manifest com dry_run=\${DRY_RUN}..."
+          echo "=========================================================="
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" execute \
+              vedium_core.wiki_import.import_manifest \
+              --kwargs '{"manifest_path":"wiki_content/manifest.json","dry_run":'\${DRY_RUN}'}'
+          
+          echo "=========================================================="
+          echo "Limpando cache..."
+          echo "=========================================================="
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" clear-cache
+          REMOTE
