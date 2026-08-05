@@ -84,6 +84,19 @@ def sync_course_catalog(config: Dict[str, Any], execute_apply: bool = False):
         "annual": []
     }
     
+    if "legacy_price_ids" in config:
+        print("\n--- Auditoria de Prices Legados ---")
+        for legacy_id in config["legacy_price_ids"]:
+            found = False
+            for p in all_prices:
+                if p.id == legacy_id:
+                    print(f" [LEGACY] Identificado Price {legacy_id} ({p.currency.upper()} {p.unit_amount/100:.2f})")
+                    found = True
+                    break
+            if not found:
+                print(f" [LEGACY AVISO] Price {legacy_id} não encontrado ou inativo.")
+        print("-----------------------------------\n")
+    
     for period in ["monthly", "annual"]:
         for price_def in config[f"{period}_prices"]:
             lkey = price_def["lookup_key"]
@@ -157,9 +170,18 @@ def _create_stripe_price(stripe, config, period, price_def):
         "system": "frappe"
     }
     
+    if "pricing_basis" in config:
+        metadata["pricing_basis"] = str(config["pricing_basis"])
+    if "unit_lesson_amount" in config:
+        metadata["unit_lesson_amount"] = str(config["unit_lesson_amount"])
+    if "classes_per_month" in price_def:
+        metadata["classes_per_month"] = str(price_def["classes_per_month"])
+    
     if period == "annual":
         metadata["minimum_term_months"] = "12"
         metadata["charge_count"] = "12"
+        if "annual_discount_months" in config:
+            metadata["annual_discount_months"] = str(config["annual_discount_months"])
     else:
         metadata["minimum_term_months"] = "0"
         
@@ -203,6 +225,13 @@ def _upsert_vedium_course_price(config, period, price_def):
     doc.amount = price_def["amount"]
     doc.subtotal = price_def["subtotal"]
     doc.frequency_discount_percent = price_def["frequency_discount_percent"]
+    
+    if "pricing_basis" in config:
+        try: doc.pricing_basis = config["pricing_basis"]
+        except Exception: pass
+    if "unit_lesson_amount" in config:
+        try: doc.unit_lesson_amount = config["unit_lesson_amount"]
+        except Exception: pass
     
     # Só valida se o price realmente foi criado/confirmado na Stripe
     if "dryrun" not in doc.stripe_price_id:

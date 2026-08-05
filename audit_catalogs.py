@@ -16,7 +16,8 @@ def run_audits():
         "seed_hebraico_a0_catalog",
         "seed_hebraico_moderno_a1_catalog",
         "seed_hebraico_moderno_a2_b1_catalog",
-        "seed_hebraico_biblico_leitura_guiada_catalog"
+        "seed_hebraico_biblico_leitura_guiada_catalog",
+        "seed_hebraico_particular_catalog"
     ]
     
     success = True
