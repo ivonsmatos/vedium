@@ -26,7 +26,7 @@ from vedium_core.stripe_billing_rules import (
     normalize_period,
     refund_access_status,
 )
-from vedium_core.catalog_pricing import is_catalog_complete, get_course_price
+from vedium_core.catalog_pricing import get_course_price, is_catalog_complete
 
 
 ACTIVE_STRIPE_STATUSES = {"active", "trialing"}
@@ -82,11 +82,13 @@ def get_subscription_plan(course, period):
         if acc:
             account_currency = acc.get("currency")
             if acc.get("payment_gateway"):
-                controller = frappe.db.get_value("Payment Gateway", acc.get("payment_gateway"), "gateway_controller") or ""
+                controller = frappe.db.get_value(
+                    "Payment Gateway", acc.get("payment_gateway"), "gateway_controller"
+                ) or ""
     elif target_doctype == "Payment Gateway":
-        controller = (
-            frappe.db.get_value("Payment Gateway", gateway, "gateway_controller") or ""
-        )
+        controller = frappe.db.get_value(
+            "Payment Gateway", gateway, "gateway_controller"
+        ) or ""
 
     if "stripe" not in controller.lower():
         frappe.throw(_("O plano {0} não está vinculado a um gateway Stripe válido.").format(plan_name))
@@ -148,7 +150,6 @@ def _frequency_coupon_id(stripe):
                 },
             )
         except stripe.error.InvalidRequestError:
-            # Handles a concurrent request that created the deterministic ID first.
             coupon = stripe.Coupon.retrieve(coupon_id)
 
     if (
@@ -179,11 +180,11 @@ def create_subscription_checkout(
     period = normalize_period(billing_period)
     email = frappe.db.get_value("User", user, "email") or user
     base_url = frappe.utils.get_url()
-    
+
     catalog_status = is_catalog_complete(course.name, environment="live")
     if catalog_status == "incomplete":
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
-        
+
     if catalog_status is True:
         price_doc = get_course_price(course.name, period, frequency, environment="live")
         price_id = price_doc.stripe_price_id
@@ -194,7 +195,9 @@ def create_subscription_checkout(
             "site": str(frappe.local.site),
             "coupon_code": coupon_code or "",
             "billing_period": period,
-            "minimum_term_months": str(price_doc.minimum_term_months or minimum_term_months(period)),
+            "minimum_term_months": str(
+                price_doc.minimum_term_months or minimum_term_months(period)
+            ),
             "price_id": price_id,
             "classes_per_week": str(frequency),
             "frequency_discount_percent": str(recurring_frequency_discount),
@@ -344,7 +347,6 @@ def _claim_event(event_id, event_type):
             doc.insert(ignore_permissions=True)
         except frappe.DuplicateEntryError:
             return None
-    # Persist the claim so a handler rollback cannot erase the idempotency key.
     frappe.db.commit()
     return name
 
@@ -420,9 +422,20 @@ def _checkout_completed(session):
     import stripe
 
     subscription = stripe.Subscription.retrieve(subscription_id)
-    _validate_subscription(subscription, session, course, user, period)
+    price_doc = _validate_subscription(subscription, session, course, user, period)
 
     from vedium_core.api import create_enrollment_if_paid
+
+    contract_amount = float(
+        metadata.get("monthly_final_amount") or (session.get("amount_total") or 0) / 100
+    )
+    contract_currency = (
+        (getattr(price_doc, "currency", None) if price_doc else None)
+        or session.get("currency")
+        or getattr(course, "currency", None)
+        or "brl"
+    ).upper()
+    minimum_months = int(metadata.get("minimum_term_months") or minimum_term_months(period))
 
     name = frappe.db.exists("LMS Enrollment", {"course": course_name, "member": user})
     if not name:
@@ -431,8 +444,8 @@ def _checkout_completed(session):
             user,
             "stripe",
             subscription_id,
-            (session.get("amount_total") or 0) / 100,
-            (session.get("currency") or course.currency or "brl").upper(),
+            contract_amount,
+            contract_currency,
             metadata.get("coupon_code") or None,
         )
         name = frappe.db.exists("LMS Enrollment", {"course": course_name, "member": user})
@@ -450,9 +463,11 @@ def _checkout_completed(session):
             "custom_frequency_discount_percent": float(
                 metadata.get("frequency_discount_percent") or frequency_discount_percent(frequency)
             ),
-            "custom_contract_monthly_amount": (session.get("amount_total") or 0) / 100,
-            "custom_contract_currency": (session.get("currency") or course.currency or "brl").upper(),
-            "custom_minimum_term_ends_on": add_months(today(), minimum_term_months(period)),
+            "custom_contract_monthly_amount": contract_amount,
+            "custom_contract_currency": contract_currency,
+            "custom_catalog_key": metadata.get("catalog_key"),
+            "custom_catalog_version": cint(metadata.get("catalog_version") or 0),
+            "custom_minimum_term_ends_on": add_months(today(), minimum_months),
             "custom_payment_failed_on": None,
             "custom_vedium_status": "Active",
             "custom_vedium_status_changed_on": now_datetime(),
@@ -505,33 +520,38 @@ def _validate_subscription(subscription, session, course, user, period):
     catalog_status = is_catalog_complete(course.name, environment="live")
     if catalog_status == "incomplete":
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."), frappe.AuthenticationError)
-        
+
     items = ((subscription.get("items") or {}).get("data") or [])
-    price_ids = {
-        (item.get("price") or {}).get("id")
-        for item in items
-        if isinstance(item.get("price"), dict)
-    }
+    price_ids = {(item.get("price") or {}).get("id") for item in items}
     quantities = [int(item.get("quantity") or 0) for item in items]
-    
+
     if catalog_status is True:
         price_doc = get_course_price(course.name, period, frequency, environment="live")
+        if len(items) != 1:
+            frappe.throw(_("Assinatura deve possuir um único item de catálogo."), frappe.AuthenticationError)
+        item_price = items[0].get("price") or {}
+        item_currency = (item_price.get("currency") or "").upper()
+        item_unit_amount = int(item_price.get("unit_amount") or -1)
         if (
             price_ids != {price_doc.stripe_price_id}
             or metadata.get("price_id") != price_doc.stripe_price_id
-            or len(items) != 1
             or quantities != [1]
+            or item_price.get("product") != price_doc.stripe_product_id
+            or item_currency != price_doc.currency.upper()
+            or item_unit_amount != int(round(float(price_doc.amount) * 100))
         ):
             frappe.throw(_("Itens da assinatura Stripe inválidos (catálogo)"), frappe.AuthenticationError)
-    else:
-        plan = get_subscription_plan(course, period)
-        if (
-            price_ids != {plan.product_price_id}
-            or metadata.get("price_id") != plan.product_price_id
-            or len(items) != 1
-            or quantities != [frequency]
-        ):
-            frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
+        return price_doc
+
+    plan = get_subscription_plan(course, period)
+    if (
+        price_ids != {plan.product_price_id}
+        or metadata.get("price_id") != plan.product_price_id
+        or len(items) != 1
+        or quantities != [frequency]
+    ):
+        frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
+    return None
 
 
 def _find_enrollment(subscription_id):
@@ -539,6 +559,22 @@ def _find_enrollment(subscription_id):
         return None
     return frappe.db.get_value(
         "LMS Enrollment", {"custom_stripe_subscription_id": subscription_id}, "name"
+    )
+
+
+def _catalog_row_for_price(price_id):
+    if not price_id:
+        return None
+    return frappe.db.get_value(
+        "Vedium Course Price",
+        {
+            "stripe_price_id": price_id,
+            "stripe_environment": "live",
+            "enabled": 1,
+            "stripe_validated": 1,
+        },
+        ["course", "billing_period", "classes_per_week", "currency", "amount"],
+        as_dict=True,
     )
 
 
@@ -555,19 +591,36 @@ def _invoice_enrollment(invoice):
     line_price_ids = {
         (line.get("price") or {}).get("id")
         for line in lines
-        if isinstance(line.get("price"), dict) and (line.get("price") or {}).get("id")
+        if (line.get("price") or {}).get("id")
     }
     if line_price_ids and enrollment.custom_stripe_price_id not in line_price_ids:
         frappe.throw(_("Price da fatura Stripe inválido"), frappe.AuthenticationError)
 
-    expected_frequency = cint(getattr(enrollment, "custom_classes_per_week", 0) or 0)
-    matching_quantities = [
-        int(line.get("quantity") or 0)
+    matching_lines = [
+        line
         for line in lines
-        if isinstance(line.get("price"), dict)
-        and (line.get("price") or {}).get("id") == enrollment.custom_stripe_price_id
+        if (line.get("price") or {}).get("id") == enrollment.custom_stripe_price_id
     ]
-    if expected_frequency and matching_quantities and expected_frequency not in matching_quantities:
+    matching_quantities = [int(line.get("quantity") or 0) for line in matching_lines]
+    catalog_row = _catalog_row_for_price(enrollment.custom_stripe_price_id)
+    expected_frequency = cint(getattr(enrollment, "custom_classes_per_week", 0) or 0)
+    expected_quantity = 1 if catalog_row else expected_frequency
+
+    if catalog_row:
+        if catalog_row.course != enrollment.course:
+            frappe.throw(_("Curso da fatura Stripe inválido"), frappe.AuthenticationError)
+        if int(catalog_row.classes_per_week) != expected_frequency:
+            frappe.throw(_("Frequência da fatura Stripe inválida"), frappe.AuthenticationError)
+        for line in matching_lines:
+            price = line.get("price") or {}
+            if (
+                (price.get("currency") or "").upper() != catalog_row.currency.upper()
+                or int(price.get("unit_amount") or -1)
+                != int(round(float(catalog_row.amount) * 100))
+            ):
+                frappe.throw(_("Valor ou moeda da fatura Stripe inválidos"), frappe.AuthenticationError)
+
+    if matching_quantities and matching_quantities != [expected_quantity]:
         frappe.throw(_("Quantidade da fatura Stripe inválida"), frappe.AuthenticationError)
     return enrollment
 
