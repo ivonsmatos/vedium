@@ -28,3 +28,7 @@ class TestCourseCatalogsSeeding:
     def test_hebraico_a0_uses_historical_price(self):
         seed = importlib.import_module("vedium_core.scripts.migrations.oneshot.seed_hebraico_a0_catalog")
         assert hasattr(seed, "execute")
+        
+    def test_hebraico_moderno_a1_uses_historical_price(self):
+        seed = importlib.import_module("vedium_core.scripts.migrations.oneshot.seed_hebraico_moderno_a1_catalog")
+        assert hasattr(seed, "execute")
