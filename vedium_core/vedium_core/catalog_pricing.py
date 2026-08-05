@@ -1,91 +1,112 @@
-"""Service for querying pre-configured course prices (Stripe catalog)."""
+"""Query the verified Stripe/Frappe course price catalog."""
 
 from __future__ import annotations
 
 import frappe
 from frappe import _
 
+from vedium_core.catalog_definitions import get_catalog_configs
+
+
+EXPECTED_FREQUENCIES = {1, 2, 3, 4, 5}
+
+
+def managed_course_names() -> set[str]:
+    return {config["course_name"] for config in get_catalog_configs()}
+
+
+def is_catalog_managed_course(course_name: str) -> bool:
+    if not course_name:
+        return False
+    if course_name in managed_course_names():
+        return True
+    commercial_names = {config["commercial_name"] for config in get_catalog_configs()}
+    title = frappe.db.get_value("LMS Course", course_name, "title")
+    return bool(title and title in commercial_names)
+
 
 def get_course_price(course_name, billing_period, classes_per_week, environment="live"):
-    """
-    Localiza exatamente um registro ativo e validado no catálogo.
-    Falha se não encontrar ou se houver múltiplos ativos de forma inconsistente.
-    """
+    """Return exactly one active and Stripe-validated catalog record."""
     if not course_name:
         frappe.throw(_("Curso não informado."))
-    if billing_period not in ["monthly", "annual"]:
-        frappe.throw(_("Período de cobrança inválido (deve ser 'monthly' ou 'annual')."))
-    if not classes_per_week or int(classes_per_week) < 1 or int(classes_per_week) > 5:
+    if billing_period not in {"monthly", "annual"}:
+        frappe.throw(_("Período de cobrança inválido."))
+    frequency = int(classes_per_week or 0)
+    if frequency not in EXPECTED_FREQUENCIES:
         frappe.throw(_("Aulas por semana deve estar entre 1 e 5."))
 
-    filters = {
-        "course": course_name,
-        "billing_period": billing_period,
-        "classes_per_week": int(classes_per_week),
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1,
-    }
+    status = is_catalog_complete(course_name, environment)
+    if status is not True:
+        frappe.throw(
+            _("O catálogo de pagamento deste curso está indisponível ou incompleto. Tente novamente mais tarde.")
+        )
 
-    records = frappe.get_all("Vedium Course Price", filters=filters, pluck="name")
-
+    records = frappe.get_all(
+        "Vedium Course Price",
+        filters={
+            "course": course_name,
+            "billing_period": billing_period,
+            "classes_per_week": frequency,
+            "stripe_environment": environment,
+            "enabled": 1,
+            "stripe_validated": 1,
+        },
+        fields=["name", "catalog_version"],
+        order_by="catalog_version desc",
+        limit_page_length=2,
+    )
     if not records:
         frappe.throw(_("Preço não encontrado no catálogo para as opções selecionadas."))
-    
-    if len(records) > 1:
-        # Se houver mais de um, pegar o de maior versão ou falhar
-        # Por segurança, vamos falhar, exigindo que o admin desative os antigos
+    if len(records) > 1 and records[0]["catalog_version"] == records[1]["catalog_version"]:
         frappe.throw(_("Múltiplos preços ativos encontrados. Contate o suporte administrativo."))
-
-    return frappe.get_doc("Vedium Course Price", records[0])
+    return frappe.get_doc("Vedium Course Price", records[0]["name"])
 
 
 def is_catalog_complete(course_name: str, environment: str = "live"):
-    """
-    Verifica se o curso possui os 10 registros necessários (5 mensais + 5 anuais)
-    ativos e validados.
+    """Require distinct frequencies 1..5 for monthly and annual periods.
+
+    Managed courses return ``"incomplete"`` instead of ``False`` so callers
+    fail closed and never fall back to the legacy quantity/coupon checkout.
     """
     if not course_name:
         return False
-        
-    counts = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1
-    }, group_by="billing_period", debug=False)
-    
-    # O group_by retorna algo como: [(5, 'annual'), (5, 'monthly')] se fetch_as_dict=False
-    # Mas no get_all/count pode ser complicado. Vamos fazer manual.
-    
-    monthly_count = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1,
-        "billing_period": "monthly"
-    })
-    
-    annual_count = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1,
-        "billing_period": "annual"
-    })
-    
-    # Se tem algum incompleto mas tem pelo menos 1, retornamos ValueError
-    # O requisito: "Se houver apenas parte dos registros, bloquear o Checkout administrativo e registrar erro de configuração."
-    total = monthly_count + annual_count
-    
-    if total == 10 and monthly_count == 5 and annual_count == 5:
+
+    rows = frappe.get_all(
+        "Vedium Course Price",
+        filters={
+            "course": course_name,
+            "stripe_environment": environment,
+            "enabled": 1,
+            "stripe_validated": 1,
+        },
+        fields=["billing_period", "classes_per_week", "catalog_version"],
+        order_by="catalog_version desc",
+        limit_page_length=50,
+    )
+    if not rows:
+        return "incomplete" if is_catalog_managed_course(course_name) else False
+
+    latest_version = max(int(row["catalog_version"] or 0) for row in rows)
+    latest = [row for row in rows if int(row["catalog_version"] or 0) == latest_version]
+    monthly = {
+        int(row["classes_per_week"])
+        for row in latest
+        if row["billing_period"] == "monthly"
+    }
+    annual = {
+        int(row["classes_per_week"])
+        for row in latest
+        if row["billing_period"] == "annual"
+    }
+    complete = monthly == EXPECTED_FREQUENCIES and annual == EXPECTED_FREQUENCIES and len(latest) == 10
+    if complete:
         return True
-        
-    if total > 0:
-        frappe.log_error(
-            f"Catálogo incompleto para o curso {course_name}. Mensal: {monthly_count}, Anual: {annual_count}.",
-            "Vedium Course Price Error"
-        )
-        return "incomplete"
-        
-    return False
+
+    frappe.log_error(
+        message=(
+            f"Catálogo incompleto para {course_name}. "
+            f"Versão {latest_version}; monthly={sorted(monthly)}; annual={sorted(annual)}."
+        ),
+        title="Vedium Course Price Error",
+    )
+    return "incomplete" if is_catalog_managed_course(course_name) else False
