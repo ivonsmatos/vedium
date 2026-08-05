@@ -12,7 +12,8 @@ def run_audits():
         "seed_espanhol_avancado_catalog",
         "seed_ple_basico_catalog",
         "seed_ple_intermediario_catalog",
-        "seed_ple_avancado_catalog"
+        "seed_ple_avancado_catalog",
+        "seed_hebraico_a0_catalog"
     ]
     
     success = True

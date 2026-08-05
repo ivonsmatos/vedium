@@ -6,9 +6,9 @@ def fetch():
     client.connect('45.151.122.234', username='root', password='Protonsysdba@1986', timeout=10)
     
     stdin, stdout, stderr = client.exec_command(
-        'docker exec -i -w /home/frappe/frappe-bench vedium-frappe bench --site app.vediums.com execute '
-        '"frappe.db.get_value(\'LMS Course\', {\'title\': \'Hebraico A0 Alfabetização\'}, \'name\')"'
+        'docker exec -i -w /home/frappe/frappe-bench/apps/vedium_core vedium-frappe git pull'
     )
-    print("NAME VIA GET_VALUE:", stdout.read().decode())
+    print("STDOUT:", stdout.read().decode())
+    print("STDERR:", stderr.read().decode())
         
 fetch()
