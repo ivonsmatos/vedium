@@ -35,7 +35,8 @@ def get_course_price(course_name, billing_period, classes_per_week, environment=
     if frequency not in EXPECTED_FREQUENCIES:
         frappe.throw(_("Aulas por semana deve estar entre 1 e 5."))
 
-    if not is_catalog_complete(course_name, environment):
+    status = is_catalog_complete(course_name, environment)
+    if status is not True:
         frappe.throw(
             _("O catálogo de pagamento deste curso está indisponível ou incompleto. Tente novamente mais tarde.")
         )
@@ -61,8 +62,12 @@ def get_course_price(course_name, billing_period, classes_per_week, environment=
     return frappe.get_doc("Vedium Course Price", records[0]["name"])
 
 
-def is_catalog_complete(course_name: str, environment: str = "live") -> bool:
-    """Require distinct frequencies 1..5 for monthly and annual periods."""
+def is_catalog_complete(course_name: str, environment: str = "live"):
+    """Require distinct frequencies 1..5 for monthly and annual periods.
+
+    Managed courses return ``"incomplete"`` instead of ``False`` so callers
+    fail closed and never fall back to the legacy quantity/coupon checkout.
+    """
     if not course_name:
         return False
 
@@ -79,7 +84,7 @@ def is_catalog_complete(course_name: str, environment: str = "live") -> bool:
         limit_page_length=50,
     )
     if not rows:
-        return False
+        return "incomplete" if is_catalog_managed_course(course_name) else False
 
     latest_version = max(int(row["catalog_version"] or 0) for row in rows)
     latest = [row for row in rows if int(row["catalog_version"] or 0) == latest_version]
@@ -94,12 +99,14 @@ def is_catalog_complete(course_name: str, environment: str = "live") -> bool:
         if row["billing_period"] == "annual"
     }
     complete = monthly == EXPECTED_FREQUENCIES and annual == EXPECTED_FREQUENCIES and len(latest) == 10
-    if not complete:
-        frappe.log_error(
-            message=(
-                f"Catálogo incompleto para {course_name}. "
-                f"Versão {latest_version}; monthly={sorted(monthly)}; annual={sorted(annual)}."
-            ),
-            title="Vedium Course Price Error",
-        )
-    return complete
+    if complete:
+        return True
+
+    frappe.log_error(
+        message=(
+            f"Catálogo incompleto para {course_name}. "
+            f"Versão {latest_version}; monthly={sorted(monthly)}; annual={sorted(annual)}."
+        ),
+        title="Vedium Course Price Error",
+    )
+    return "incomplete" if is_catalog_managed_course(course_name) else False
