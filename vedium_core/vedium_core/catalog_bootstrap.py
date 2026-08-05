@@ -29,10 +29,11 @@ def run(execute_apply: bool = False, course: str | None = None) -> dict[str, Any
     Frappe mappings only.
     """
     apply_mode = bool(cint(execute_apply))
+    selected = _selected_configs(course)
     reports: list[dict[str, Any]] = []
     failures: list[dict[str, str]] = []
 
-    for config in _selected_configs(course):
+    for config in selected:
         try:
             report = sync_course_catalog(config, execute_apply=apply_mode)
             reports.append(report)
@@ -46,7 +47,7 @@ def run(execute_apply: bool = False, course: str | None = None) -> dict[str, Any
 
     result = {
         "mode": "apply" if apply_mode else "audit",
-        "expected_courses": len(_selected_configs(course)),
+        "expected_courses": len(selected),
         "successful_courses": len(reports),
         "failed_courses": len(failures),
         "reports": reports,
@@ -62,17 +63,29 @@ def run(execute_apply: bool = False, course: str | None = None) -> dict[str, Any
 
 def status() -> dict[str, Any]:
     """Return a payment-readiness summary without contacting Stripe."""
-    expected = {config["course_name"] for config in get_catalog_configs()}
+    configs = get_catalog_configs()
     rows = frappe.get_all(
         "Vedium Course Price",
         filters={"stripe_environment": "live", "catalog_version": 1},
-        fields=["course", "billing_period", "classes_per_week", "enabled", "stripe_validated"],
+        fields=[
+            "course",
+            "commercial_name",
+            "billing_period",
+            "classes_per_week",
+            "enabled",
+            "stripe_validated",
+        ],
         limit_page_length=500,
     )
 
     course_status: dict[str, dict[str, Any]] = {}
-    for course in expected:
-        course_rows = [row for row in rows if row["course"] == course]
+    for config in configs:
+        course_rows = [
+            row
+            for row in rows
+            if row.get("commercial_name") == config["commercial_name"]
+            or row.get("course") == config["course_name"]
+        ]
         monthly = {
             int(row["classes_per_week"])
             for row in course_rows
@@ -88,7 +101,9 @@ def status() -> dict[str, Any]:
             and int(row["stripe_validated"] or 0) == 1
         }
         ready = monthly == {1, 2, 3, 4, 5} and annual == {1, 2, 3, 4, 5}
-        course_status[course] = {
+        course_status[config["course_name"]] = {
+            "commercial_name": config["commercial_name"],
+            "resolved_course": course_rows[0]["course"] if course_rows else None,
             "ready": ready,
             "monthly": sorted(monthly),
             "annual": sorted(annual),
@@ -96,8 +111,8 @@ def status() -> dict[str, Any]:
 
     ready_courses = sum(1 for row in course_status.values() if row["ready"])
     return {
-        "expected_courses": len(expected),
+        "expected_courses": len(configs),
         "ready_courses": ready_courses,
-        "ready": ready_courses == len(expected),
+        "ready": ready_courses == len(configs),
         "courses": course_status,
     }
