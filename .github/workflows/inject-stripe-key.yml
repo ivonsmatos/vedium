@@ -12,11 +12,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add known hosts
-        run: |
-          mkdir -p ~/.ssh && chmod 700 ~/.ssh
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
 
       - name: Inject STRIPE_SECRET_KEY to Frappe site_config
         env:
@@ -32,7 +27,7 @@ jobs:
           echo "::add-mask::$STRIPE_SECRET_KEY"
 
           # Envia a chave via stdin para não aparecer no ps ou history
-          printf '%s' "$STRIPE_SECRET_KEY" | ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+          printf '%s' "$STRIPE_SECRET_KEY" | ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" \
             'read -r STRIPE_KEY &&
              docker exec -i -w /home/frappe/frappe-bench vedium-frappe \
              bench --site app.vediums.com set-config STRIPE_SECRET_KEY "$STRIPE_KEY" &&

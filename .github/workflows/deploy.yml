@@ -29,12 +29,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add known hosts
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+
 
       # Sincroniza o repositório (necessário para o app Frappe em vedium_core).
       # --omit-dir-times evita "failed to set times on /opt/vedium/." quando o
@@ -46,7 +41,7 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          rsync -az --delete --omit-dir-times \
+          rsync -az --delete --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" \
             --include='vedium_core/vedium_core/public/legal/*.pdf' \
             --exclude='.git' \
             --exclude='node_modules' \
@@ -71,7 +66,7 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          rsync -az --delete --omit-dir-times \
+          rsync -az --delete --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" \
             deploy/site/ "$DEPLOY_USER@$DEPLOY_HOST:/opt/vedium/site/"
 
       # O .env contém senhas reais (Redis, MariaDB, etc.) e NUNCA entra no git.
@@ -84,7 +79,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           ENV_FILE: ${{ secrets.ENV_FILE }}
         run: |
-          echo "$ENV_FILE" | ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+          echo "$ENV_FILE" | ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" \
             'cat > /opt/vedium/deploy/.env && chmod 600 /opt/vedium/deploy/.env'
           echo "✅ .env atualizado no servidor"
 
@@ -94,7 +89,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           SITE_NAME: ${{ vars.SITE_NAME || 'app.vediums.com' }}
         run: |
-          ssh "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
+          ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
           set -euo pipefail
 
           CONTAINER=vedium-frappe
