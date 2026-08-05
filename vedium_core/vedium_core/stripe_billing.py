@@ -451,6 +451,7 @@ def _checkout_completed(session):
                 metadata.get("frequency_discount_percent") or frequency_discount_percent(frequency)
             ),
             "custom_contract_monthly_amount": (session.get("amount_total") or 0) / 100,
+            "custom_contract_currency": (session.get("currency") or course.currency or "brl").upper(),
             "custom_minimum_term_ends_on": add_months(today(), minimum_term_months(period)),
             "custom_payment_failed_on": None,
             "custom_vedium_status": "Active",

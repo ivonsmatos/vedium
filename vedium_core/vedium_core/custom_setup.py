@@ -199,6 +199,14 @@ CUSTOM_FIELDS = {
             "read_only": 1,
         },
         {
+            "fieldname": "custom_contract_currency",
+            "label": "Moeda contratada",
+            "fieldtype": "Data",
+            "insert_after": "custom_contract_monthly_amount",
+            "read_only": 1,
+            "default": "BRL",
+        },
+        {
             "fieldname": "custom_minimum_term_ends_on",
             "label": "Fim da permanência mínima",
             "fieldtype": "Date",
