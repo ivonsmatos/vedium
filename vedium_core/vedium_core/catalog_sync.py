@@ -6,19 +6,34 @@ import time
 from frappe.custom.doctype.custom_field.custom_field import create_custom_field
 
 def ensure_custom_contract_currency_field():
-    if not frappe.db.exists("Custom Field", "LMS Enrollment-custom_contract_currency"):
-        create_custom_field(
-            "LMS Enrollment",
-            {
-                "fieldname": "custom_contract_currency",
-                "label": "Moeda contratada",
-                "fieldtype": "Data",
-                "insert_after": "custom_contract_monthly_amount",
-                "read_only": 1,
-                "default": "BRL"
-            },
-        )
-        frappe.db.commit()
+    fields_to_create = [
+        {
+            "fieldname": "custom_contract_currency",
+            "label": "Moeda contratada",
+            "fieldtype": "Data",
+            "insert_after": "custom_contract_monthly_amount",
+            "read_only": 1,
+            "default": "BRL"
+        },
+        {
+            "fieldname": "custom_catalog_key",
+            "label": "Chave do Catálogo",
+            "fieldtype": "Data",
+            "insert_after": "custom_stripe_price_id",
+            "read_only": 1
+        },
+        {
+            "fieldname": "custom_catalog_version",
+            "label": "Versão do Catálogo",
+            "fieldtype": "Int",
+            "insert_after": "custom_catalog_key",
+            "read_only": 1
+        }
+    ]
+    for field in fields_to_create:
+        if not frappe.db.exists("Custom Field", f"LMS Enrollment-{field['fieldname']}"):
+            create_custom_field("LMS Enrollment", field)
+    frappe.db.commit()
 
 def sync_course_catalog(config: Dict[str, Any], execute_apply: bool = False):
     """

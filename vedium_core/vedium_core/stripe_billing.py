@@ -457,6 +457,8 @@ def _checkout_completed(session):
             "custom_vedium_status": "Active",
             "custom_vedium_status_changed_on": now_datetime(),
             "custom_vedium_status_reason": "Assinatura Stripe ativa",
+            "custom_catalog_key": metadata.get("catalog_key"),
+            "custom_catalog_version": metadata.get("catalog_version")
         },
     )
 
@@ -487,13 +489,24 @@ def _validate_subscription(subscription, session, course, user, period):
         frequency = normalize_classes_per_week(metadata.get("classes_per_week"))
     except ValueError as exc:
         frappe.throw(_(str(exc)), frappe.AuthenticationError)
+        
+    catalog_status = is_catalog_complete(course.name, environment="live")
+    if catalog_status == "incomplete":
+        frappe.throw(_("Este curso possui um catálogo de preços incompleto."), frappe.AuthenticationError)
+        
+    if catalog_status is True:
+        price_doc = get_course_price(course.name, period, frequency, environment="live")
+        expected_discount = float(price_doc.frequency_discount_percent or 0)
+    else:
+        expected_discount = float(frequency_discount_percent(frequency))
+
     expected = {
         "course_name": str(course.name),
         "user": str(user),
         "site": str(frappe.local.site),
         "billing_period": period,
         "classes_per_week": str(frequency),
-        "frequency_discount_percent": str(float(frequency_discount_percent(frequency))),
+        "frequency_discount_percent": str(expected_discount),
     }
     if any(metadata.get(key) != value for key, value in expected.items()):
         frappe.throw(_("Metadados da assinatura Stripe inválidos"), frappe.AuthenticationError)
@@ -501,10 +514,6 @@ def _validate_subscription(subscription, session, course, user, period):
     session_metadata = session.get("metadata") or {}
     if any(session_metadata.get(key) != value for key, value in expected.items()):
         frappe.throw(_("Metadados do Checkout Stripe inválidos"), frappe.AuthenticationError)
-
-    catalog_status = is_catalog_complete(course.name, environment="live")
-    if catalog_status == "incomplete":
-        frappe.throw(_("Este curso possui um catálogo de preços incompleto."), frappe.AuthenticationError)
         
     items = ((subscription.get("items") or {}).get("data") or [])
     price_ids = {
