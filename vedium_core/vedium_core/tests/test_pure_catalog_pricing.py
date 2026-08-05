@@ -28,7 +28,6 @@ frappe.whitelist = mock_whitelist
 from vedium_core.catalog_pricing import get_course_price, is_catalog_complete
 from vedium_core.checkout_options import get_course_purchase_options
 from vedium_core.stripe_billing import create_subscription_checkout, _checkout_completed
-from vedium_core.scripts.migrations.oneshot.seed_ingls_beginner_catalog import _create_price_if_not_exists
 
 
 
