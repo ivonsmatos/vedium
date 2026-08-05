@@ -1,0 +1,142 @@
+name: Activate Stripe Catalog in Production
+
+on:
+  workflow_run:
+    workflows: ["Deploy to Production"]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: stripe-catalog-production
+  cancel-in-progress: false
+
+jobs:
+  catalog:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Validate required secrets
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          [ -n "${DEPLOY_HOST:-}" ] || { echo "::error::DEPLOY_HOST ausente"; exit 1; }
+          [ -n "${DEPLOY_USER:-}" ] || { echo "::error::DEPLOY_USER ausente"; exit 1; }
+          [ -n "${SSH_KNOWN_HOSTS:-}" ] || { echo "::error::SSH_KNOWN_HOSTS ausente"; exit 1; }
+          case "${STRIPE_SECRET_KEY:-}" in
+            sk_live_*) echo "Stripe live key presente" ;;
+            *) echo "::error::STRIPE_SECRET_KEY live ausente ou inválida"; exit 1 ;;
+          esac
+          echo "::add-mask::$STRIPE_SECRET_KEY"
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Trust production host
+        env:
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Install Stripe key in Frappe site config
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          echo "::add-mask::$STRIPE_SECRET_KEY"
+          printf '%s\n' "$STRIPE_SECRET_KEY" | ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'set -euo pipefail
+             IFS= read -r STRIPE_KEY
+             docker exec -i -w /home/frappe/frappe-bench vedium-frappe \
+               bench --site app.vediums.com set-config STRIPE_SECRET_KEY "$STRIPE_KEY"
+             unset STRIPE_KEY
+             docker exec -w /home/frappe/frappe-bench vedium-frappe \
+               bench --site app.vediums.com clear-cache'
+
+      - name: Backup before catalog activation
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'docker exec -w /home/frappe/frappe-bench vedium-frappe \
+             bench --site app.vediums.com backup --with-files'
+
+      - name: Audit all course catalogs
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'docker exec -w /home/frappe/frappe-bench vedium-frappe \
+             bench --site app.vediums.com execute vedium_core.catalog_bootstrap.run \
+             --kwargs '"'"'{"execute_apply": false}'"'"'' \
+            | tee catalog-audit.log
+
+      - name: Create missing Prices and activate Frappe mappings
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'docker exec -w /home/frappe/frappe-bench vedium-frappe \
+             bench --site app.vediums.com execute vedium_core.catalog_bootstrap.run \
+             --kwargs '"'"'{"execute_apply": true}'"'"'' \
+            | tee catalog-apply.log
+
+      - name: Verify customer payment readiness
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" \
+            'docker exec -w /home/frappe/frappe-bench vedium-frappe \
+             bench --site app.vediums.com execute vedium_core.catalog_bootstrap.status' \
+            | tee catalog-status.log
+          grep -Eq '"ready"[[:space:]]*:[[:space:]]*true|''"ready": true' catalog-status.log || {
+            echo "::error::Nem todos os cursos estão prontos para pagamento"
+            exit 1
+          }
+
+      - name: Endpoint smoke test
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/options.json -w '%{http_code}' \
+            'https://app.vediums.com/api/method/vedium_core.checkout_options.get_course_purchase_options?course_name=ingl-s-beginner')
+          echo "Purchase options HTTP $code"
+          test "$code" = "200"
+          python - <<'PY'
+          import json
+          data = json.load(open('/tmp/options.json', encoding='utf-8'))
+          plans = data.get('message', {}).get('plans', [])
+          assert len(plans) == 2, plans
+          for plan in plans:
+              options = plan.get('frequency_options', [])
+              assert [row.get('classes_per_week') for row in options] == [1, 2, 3, 4, 5]
+              assert all(row.get('stripe_catalog') is True for row in options)
+          print('Endpoint retornou os dez preços canônicos do Inglês A1.')
+          PY
+
+      - name: Upload operational logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stripe-catalog-production-${{ github.run_id }}
+          path: |
+            catalog-audit.log
+            catalog-apply.log
+            catalog-status.log
+          retention-days: 14
+          if-no-files-found: warn
