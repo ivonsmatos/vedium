@@ -27,7 +27,7 @@ jobs:
           echo "::add-mask::$STRIPE_SECRET_KEY"
 
           # Envia a chave via stdin para não aparecer no ps ou history
-          printf '%s' "$STRIPE_SECRET_KEY" | ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" \
+          printf '%s\n' "$STRIPE_SECRET_KEY" | ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" \
             'read -r STRIPE_KEY &&
              docker exec -i -w /home/frappe/frappe-bench vedium-frappe \
              bench --site app.vediums.com set-config STRIPE_SECRET_KEY "$STRIPE_KEY" &&
