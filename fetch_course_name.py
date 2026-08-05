@@ -7,7 +7,7 @@ def fetch():
     
     stdin, stdout, stderr = client.exec_command(
         'docker exec -i -w /home/frappe/frappe-bench vedium-frappe bench --site app.vediums.com execute '
-        '"frappe.db.get_value(\'LMS Course\', {\'title\': \'Hebraico Moderno Nível A2/B1\'}, \'name\')"'
+        '"frappe.db.get_value(\'LMS Course\', {\'title\': \'Hebraico Bíblico Leitura Guiada\'}, \'name\')"'
     )
     print("NAME VIA GET_VALUE:", stdout.read().decode())
         
