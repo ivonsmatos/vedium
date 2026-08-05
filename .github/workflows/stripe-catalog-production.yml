@@ -105,7 +105,7 @@ jobs:
             'docker exec -w /home/frappe/frappe-bench vedium-frappe \
              bench --site app.vediums.com execute vedium_core.catalog_bootstrap.status' \
             | tee catalog-status.log
-          grep -Eq '"ready"[[:space:]]*:[[:space:]]*true|''"ready": true' catalog-status.log || {
+          grep -Eq '"ready"[[:space:]]*:[[:space:]]*true' catalog-status.log || {
             echo "::error::Nem todos os cursos estão prontos para pagamento"
             exit 1
           }
