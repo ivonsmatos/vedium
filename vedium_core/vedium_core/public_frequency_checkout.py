@@ -23,8 +23,11 @@ def start(
     The selected frequency is validated again on the server. Prices and the
     recurring 10% discount are never accepted from browser-calculated values.
     """
-    if not course_name or not frappe.db.exists("LMS Course", course_name):
+    from vedium_core.checkout_options import resolve_course_name
+    real_course_name = resolve_course_name(course_name)
+    if not real_course_name:
         frappe.throw(_("Curso não encontrado."), frappe.DoesNotExistError)
+    course_name = real_course_name
 
     period = normalize_period(billing_period)
     try:
