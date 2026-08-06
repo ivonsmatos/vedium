@@ -9,6 +9,42 @@
         "https://app.vediums.com/api/method/vedium_core.public_frequency_checkout.start";
     const HIGHLIGHT_COLOR = "#2E6DA4";
 
+    if (!document.getElementById("vedium-frequency-selector-style")) {
+        const style = document.createElement("style");
+        style.id = "vedium-frequency-selector-style";
+        style.textContent = `
+            .vedium-frequency-selector {
+                width: 100%;
+                margin: 0 0 16px;
+            }
+            .vedium-frequency-selector label {
+                display: block;
+                margin-bottom: 7px;
+                color: #172033;
+                font-size: 14px;
+                font-weight: 700;
+            }
+            .vedium-frequency-selector select {
+                display: block;
+                width: 100%;
+                min-height: 48px;
+                padding: 0 42px 0 14px;
+                border: 1px solid #cbd5e1;
+                border-radius: 8px;
+                background: #fff;
+                color: #172033;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .vedium-frequency-selector select:focus {
+                border-color: #315cff;
+                outline: 3px solid rgba(49, 92, 255, 0.15);
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     let activeCourse = null;
     let purchaseOptions = null;
     let selectedClassesPerWeek = 1;
@@ -26,6 +62,11 @@
     }
 
     function getCourseFromPublicButton() {
+        const priceCard = document.querySelector(".course-details__price");
+        if (priceCard && priceCard.dataset.courseName) {
+            return priceCard.dataset.courseName;
+        }
+
         const link = document.querySelector(
             '.course-details__price-btn a[href*="course_name="]'
         );
@@ -117,56 +158,42 @@
     function buildFrequencySelector(onChange) {
         const wrapper = document.createElement("div");
         wrapper.dataset.vediumFrequencySelector = "true";
-        wrapper.style.margin = "0 0 18px";
-        wrapper.innerHTML = `
-            <p style="margin:0 0 8px;font-weight:700;color:#172033;font-size:15px;">
-                Quantas aulas por semana?
-            </p>
-            <p style="margin:0 0 10px;color:#6b7280;font-size:12px;line-height:1.4;">
-                De 2 a 5 aulas, o desconto recorrente de 10% é aplicado automaticamente.
-            </p>
-        `;
+        wrapper.className = "vedium-frequency-selector";
 
-        const grid = document.createElement("div");
-        grid.style.display = "grid";
-        grid.style.gridTemplateColumns = "repeat(5, minmax(0, 1fr))";
-        grid.style.gap = "7px";
+        const label = document.createElement("label");
+        label.setAttribute("for", "vedium-classes-per-week");
+        label.textContent = "Quantidade de aulas por semana";
+
+        const select = document.createElement("select");
+        select.id = "vedium-classes-per-week";
+        select.name = "classes_per_week";
+        select.setAttribute("aria-label", "Quantidade de aulas por semana");
 
         for (let classes = 1; classes <= 5; classes += 1) {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.textContent = String(classes);
-            button.setAttribute(
-                "aria-label",
-                `${classes} ${classes === 1 ? "aula" : "aulas"} por semana`
-            );
-            button.style.height = "40px";
-            button.style.borderRadius = "7px";
-            button.style.fontWeight = "700";
-            button.style.cursor = "pointer";
-            button.style.border = `1px solid ${
-                classes === selectedClassesPerWeek
-                    ? HIGHLIGHT_COLOR
-                    : "#cbd5e1"
-            }`;
-            button.style.background =
-                classes === selectedClassesPerWeek ? "#eff6ff" : "#ffffff";
-            button.style.color =
-                classes === selectedClassesPerWeek
-                    ? HIGHLIGHT_COLOR
-                    : "#334155";
-            button.addEventListener("click", function () {
-                selectedClassesPerWeek = classes;
-                localStorage.setItem(
-                    "vedium_intent_frequency",
-                    String(classes)
-                );
-                onChange();
-            });
-            grid.appendChild(button);
+            const option = document.createElement("option");
+            option.value = String(classes);
+            option.textContent =
+                classes === 1
+                    ? "1 aula por semana"
+                    : `${classes} aulas por semana — 10% de desconto`;
+            option.selected = classes === selectedClassesPerWeek;
+            select.appendChild(option);
         }
 
-        wrapper.appendChild(grid);
+        select.addEventListener("change", function () {
+            const classes = Number(select.value);
+
+            if (!Number.isInteger(classes) || classes < 1 || classes > 5) {
+                return;
+            }
+
+            selectedClassesPerWeek = classes;
+            localStorage.setItem("vedium_intent_frequency", String(classes));
+            onChange();
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
         return wrapper;
     }
 
@@ -202,6 +229,7 @@
         const annualPlan = planFor("annual");
         const monthlyQuote = quoteFor(monthlyPlan);
 
+        amountElement.setAttribute("aria-live", "polite");
         amountElement.innerHTML = `${escapeHtml(
             formatCurrency(monthlyQuote.amount, monthlyPlan.currency)
         )}<span>/mês</span>`;
