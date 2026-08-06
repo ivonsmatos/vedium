@@ -168,6 +168,8 @@
         select.id = "vedium-classes-per-week";
         select.name = "classes_per_week";
         select.setAttribute("aria-label", "Quantidade de aulas por semana");
+        select.style.width = "60%";
+        select.style.minWidth = "220px";
 
         for (let classes = 1; classes <= 5; classes += 1) {
             const option = document.createElement("option");
