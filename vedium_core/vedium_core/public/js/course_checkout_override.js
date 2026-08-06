@@ -218,6 +218,13 @@
         );
         if (!priceCard || !amountElement || !buttonArea) return;
 
+        if (priceCard.dataset.vediumRenderedCourse === activeCourse && 
+            priceCard.dataset.vediumRenderedFrequency === String(selectedClassesPerWeek)) {
+            return; // State hasn't changed, avoid re-rendering and losing focus
+        }
+        priceCard.dataset.vediumRenderedCourse = activeCourse;
+        priceCard.dataset.vediumRenderedFrequency = String(selectedClassesPerWeek);
+
         priceCard
             .querySelectorAll('[data-vedium-frequency-selector="true"]')
             .forEach((element) => element.remove());
@@ -465,8 +472,16 @@
 
     function renderLmsCourse() {
         if (!purchaseOptions || !isLmsCoursePage()) return;
+
         const cardBody = getLmsCardBody();
         if (!cardBody) return;
+
+        if (cardBody.dataset.vediumRenderedCourse === activeCourse && 
+            cardBody.dataset.vediumRenderedFrequency === String(selectedClassesPerWeek)) {
+            return; // State hasn't changed
+        }
+        cardBody.dataset.vediumRenderedCourse = activeCourse;
+        cardBody.dataset.vediumRenderedFrequency = String(selectedClassesPerWeek);
 
         removeLmsOverride(cardBody);
         hideLegacyLmsCheckout(cardBody);
