@@ -3,9 +3,8 @@ from frappe import _
 from typing import Dict, List, Any
 import time
 
-from frappe.custom.doctype.custom_field.custom_field import create_custom_field
-
 def ensure_custom_contract_currency_field():
+    from frappe.custom.doctype.custom_field.custom_field import create_custom_field
     fields_to_create = [
         {
             "fieldname": "custom_contract_currency",
