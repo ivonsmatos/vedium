@@ -159,6 +159,7 @@
         const wrapper = document.createElement("div");
         wrapper.dataset.vediumFrequencySelector = "true";
         wrapper.className = "vedium-frequency-selector";
+        wrapper.style.alignItems = "center";
 
         const label = document.createElement("label");
         label.setAttribute("for", "vedium-classes-per-week");
