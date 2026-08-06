@@ -495,9 +495,7 @@ def get_payment_history(limit=50, start=0):
     enrollments = frappe.db.sql(
         """
         SELECT
-            e.name, e.course, e.creation, e.status,
-            e.payment_gateway, e.payment_reference,
-            e.amount, e.currency,
+            e.name, e.course, e.creation,
             c.title AS course_title
         FROM `tabLMS Enrollment` e
         LEFT JOIN `tabLMS Course` c ON c.name = e.course

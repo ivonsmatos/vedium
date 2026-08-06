@@ -181,10 +181,10 @@ def create_subscription_checkout(
     base_url = frappe.utils.get_url()
     
     catalog_status = is_catalog_complete(course.name, environment="live")
-    if catalog_status == "incomplete":
+    if not catalog_status.get("complete") and catalog_status.get("valid", 0) > 0:
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
         
-    if catalog_status is True:
+    if catalog_status.get("complete"):
         price_doc = get_course_price(course.name, period, frequency, environment="live")
         price_id = price_doc.stripe_price_id
         recurring_frequency_discount = float(price_doc.frequency_discount_percent or 0)
@@ -491,10 +491,10 @@ def _validate_subscription(subscription, session, course, user, period):
         frappe.throw(_(str(exc)), frappe.AuthenticationError)
         
     catalog_status = is_catalog_complete(course.name, environment="live")
-    if catalog_status == "incomplete":
+    if not catalog_status.get("complete") and catalog_status.get("valid", 0) > 0:
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."), frappe.AuthenticationError)
         
-    if catalog_status is True:
+    if catalog_status.get("complete"):
         price_doc = get_course_price(course.name, period, frequency, environment="live")
         expected_discount = float(price_doc.frequency_discount_percent or 0)
     else:

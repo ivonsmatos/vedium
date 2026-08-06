@@ -9,19 +9,23 @@ if str(APP_ROOT) not in sys.path:
 
 
 # Mocks para que os testes pure (sem bench) não quebrem no import
-sys.modules['frappe'] = MagicMock()
-sys.modules['frappe.utils'] = MagicMock()
+is_frappe_mocked = 'frappe' not in sys.modules
+if is_frappe_mocked:
+    sys.modules['frappe'] = MagicMock()
+    sys.modules['frappe.utils'] = MagicMock()
 import frappe
 
-frappe.ValidationError = type('ValidationError', (Exception,), {})
-def mock_throw(msg):
-    raise frappe.ValidationError(msg)
-frappe.throw = mock_throw
-frappe._ = lambda x: x
+if is_frappe_mocked:
+    frappe.ValidationError = type('ValidationError', (Exception,), {})
+    def mock_throw(msg):
+        raise frappe.ValidationError(msg)
+    frappe.throw = mock_throw
+    frappe._ = lambda x: x
 
 def mock_whitelist(*args, **kwargs):
     def decorator(f):
         return f
+
     return decorator
 frappe.whitelist = mock_whitelist
 

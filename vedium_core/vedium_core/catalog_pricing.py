@@ -40,52 +40,66 @@ def get_course_price(course_name, billing_period, classes_per_week, environment=
     return frappe.get_doc("Vedium Course Price", records[0])
 
 
-def is_catalog_complete(course_name: str, environment: str = "live"):
+def is_catalog_complete(course_name: str, environment: str = "live") -> dict:
     """
     Verifica se o curso possui os 10 registros necessários (5 mensais + 5 anuais)
-    ativos e validados.
+    ativos, validados, na versão 1 e no modo Live.
+    Retorna o status em um dicionário completo e detalhado.
     """
+    result = {
+        "complete": False,
+        "expected": 10,
+        "valid": 0,
+        "missing": [],
+        "duplicated": [],
+        "invalid": []
+    }
+    
     if not course_name:
-        return False
-        
-    counts = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1
-    }, group_by="billing_period", debug=False)
+        return result
+
+    # Buscar todos os preços deste curso e ambiente (qualquer status, para relatar invalidez)
+    prices = frappe.get_all(
+        "Vedium Course Price",
+        filters={"course": course_name, "stripe_environment": environment},
+        fields=["name", "billing_period", "classes_per_week", "enabled", "stripe_validated", "catalog_version", "stripe_price_id"]
+    )
     
-    # O group_by retorna algo como: [(5, 'annual'), (5, 'monthly')] se fetch_as_dict=False
-    # Mas no get_all/count pode ser complicado. Vamos fazer manual.
+    expected_combinations = {
+        f"{period}:{classes}": 0
+        for period in ["monthly", "annual"]
+        for classes in [1, 2, 3, 4, 5]
+    }
     
-    monthly_count = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1,
-        "billing_period": "monthly"
-    })
-    
-    annual_count = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1,
-        "billing_period": "annual"
-    })
-    
-    # Se tem algum incompleto mas tem pelo menos 1, retornamos ValueError
-    # O requisito: "Se houver apenas parte dos registros, bloquear o Checkout administrativo e registrar erro de configuração."
-    total = monthly_count + annual_count
-    
-    if total == 10 and monthly_count == 5 and annual_count == 5:
-        return True
-        
-    if total > 0:
-        frappe.log_error(
-            f"Catálogo incompleto para o curso {course_name}. Mensal: {monthly_count}, Anual: {annual_count}.",
-            "Vedium Course Price Error"
+    for p in prices:
+        key = f"{p.billing_period}:{p.classes_per_week}"
+        is_valid = bool(
+            p.enabled and 
+            p.stripe_validated and 
+            p.catalog_version == 1 and 
+            p.stripe_price_id
         )
-        return "incomplete"
         
-    return False
+        if not is_valid:
+            result["invalid"].append(p.name)
+            continue
+            
+        if key in expected_combinations:
+            expected_combinations[key] += 1
+        else:
+            # Caso não esperado
+            result["invalid"].append(p.name)
+            
+    for key, count in expected_combinations.items():
+        if count == 0:
+            result["missing"].append(key)
+        elif count == 1:
+            result["valid"] += 1
+        else:
+            result["duplicated"].append(key)
+            result["valid"] += 1 # Contamos apenas um como válido
+            
+    if result["valid"] == 10 and not result["missing"] and not result["duplicated"]:
+        result["complete"] = True
+        
+    return result
