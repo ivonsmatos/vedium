@@ -171,6 +171,7 @@
         select.setAttribute("aria-label", "Quantidade de aulas por semana");
         select.style.width = "60%";
         select.style.minWidth = "220px";
+        select.style.margin = "0 auto";
 
         for (let classes = 1; classes <= 5; classes += 1) {
             const option = document.createElement("option");
