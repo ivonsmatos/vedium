@@ -139,27 +139,14 @@ def _add_annual_savings(monthly: dict, annual: dict) -> None:
     annual["savings_period_months"] = 12
 
 
-def resolve_course_name(course_identifier):
-    if not course_identifier:
-        return None
-    if frappe.db.exists("LMS Course", course_identifier):
-        return course_identifier
-    if frappe.db.has_column("LMS Course", "route"):
-        name_by_route = frappe.db.get_value("LMS Course", {"route": course_identifier}, "name")
-        if name_by_route:
-            return name_by_route
-        if not course_identifier.startswith("curso/"):
-            name_by_route_prefix = frappe.db.get_value("LMS Course", {"route": f"curso/{course_identifier}"}, "name")
-            if name_by_route_prefix:
-                return name_by_route_prefix
-    return None
+from vedium_core.course_urls import get_internal_course_name
 
 
 @frappe.whitelist(allow_guest=True)
 def get_course_purchase_options(course_name):
     """Return monthly/annual prices and 1-5 weekly-class quotes for a course."""
-    real_course_name = resolve_course_name(course_name)
-    if not real_course_name:
+    real_course_name = get_internal_course_name(course_name)
+    if not real_course_name or not frappe.db.exists("LMS Course", real_course_name):
         frappe.throw(_("Curso não encontrado."), frappe.DoesNotExistError)
     course_name = real_course_name
 

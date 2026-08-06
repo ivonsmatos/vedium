@@ -48,13 +48,6 @@ def is_catalog_complete(course_name: str, environment: str = "live"):
     if not course_name:
         return False
         
-    counts = frappe.db.count("Vedium Course Price", filters={
-        "course": course_name,
-        "stripe_environment": environment,
-        "enabled": 1,
-        "stripe_validated": 1
-    }, group_by="billing_period", debug=False)
-    
     # O group_by retorna algo como: [(5, 'annual'), (5, 'monthly')] se fetch_as_dict=False
     # Mas no get_all/count pode ser complicado. Vamos fazer manual.
     
