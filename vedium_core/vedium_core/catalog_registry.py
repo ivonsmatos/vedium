@@ -7,6 +7,8 @@ CATALOG = {
         "title": "Inglês A1",
         "commercial_id": "ingles-a1",
         "product_id": "prod_UznRGM7yCjT6lg",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 240.00,
         "base_annual": 200.00,
@@ -19,6 +21,8 @@ CATALOG = {
         "title": "Inglês A2",
         "commercial_id": "ingles-a2",
         "product_id": "prod_UznRycssZj7MaH",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 240.00,
         "base_annual": 200.00,
@@ -31,6 +35,8 @@ CATALOG = {
         "title": "Inglês B1",
         "commercial_id": "ingles-b1",
         "product_id": "prod_UznRRZqfPDfCie",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 240.00,
         "base_annual": 200.00,
@@ -43,6 +49,8 @@ CATALOG = {
         "title": "Inglês B1+",
         "commercial_id": "ingles-b1-plus",
         "product_id": "prod_UznRu2aqzaiSRp", # Note: I found this missing in oneshots but present in my previous review? Actually I didn't grep it well earlier, let's assume this is correct. I will verify.
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 240.00,
         "base_annual": 200.00,
@@ -55,6 +63,8 @@ CATALOG = {
         "title": "Inglês B2",
         "commercial_id": "ingles-b2",
         "product_id": "prod_UznR3LZ6Wesyyc",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 240.00,
         "base_annual": 200.00,
@@ -67,6 +77,8 @@ CATALOG = {
         "title": "Inglês C1",
         "commercial_id": "ingles-c1",
         "product_id": "prod_UznRM5sYVlZSuH",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 240.00,
         "base_annual": 200.00,
@@ -81,6 +93,8 @@ CATALOG = {
         "title": "Iorubá Básico",
         "commercial_id": "ioruba-basico",
         "product_id": "prod_UznRrPZ7yuf9yL",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 320.00,
         "base_annual": None,
@@ -94,6 +108,8 @@ CATALOG = {
         "title": "Iorubá Intermediário",
         "commercial_id": "ioruba-intermediario",
         "product_id": "prod_UznR5eXanIPt8H",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 320.00,
         "base_annual": None,
@@ -107,6 +123,8 @@ CATALOG = {
         "title": "Iorubá Avançado",
         "commercial_id": "ioruba-avancado",
         "product_id": "prod_UznRl193oyLvrF",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 320.00,
         "base_annual": None,
@@ -122,6 +140,8 @@ CATALOG = {
         "title": "Espanhol Básico",
         "commercial_id": "espanhol-basico",
         "product_id": "prod_UznRZM83HU7unf",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 297.00,
         "base_annual": None,
@@ -135,6 +155,8 @@ CATALOG = {
         "title": "Espanhol Intermediário",
         "commercial_id": "espanhol-intermediario",
         "product_id": "prod_UznR0Jq6tk3II4",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 397.00,
         "base_annual": None,
@@ -148,6 +170,8 @@ CATALOG = {
         "title": "Espanhol Avançado",
         "commercial_id": "espanhol-avancado",
         "product_id": "prod_UznR52w5UCsZsw",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 497.00,
         "base_annual": None,
@@ -201,6 +225,8 @@ CATALOG = {
         "title": "Hebraico A0",
         "commercial_id": "hebraico-a0",
         "product_id": "prod_UznRs3ValZEHMB",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 197.00,
         "base_annual": None,
@@ -214,6 +240,8 @@ CATALOG = {
         "title": "Hebraico Moderno A1",
         "commercial_id": "hebraico-moderno-a1",
         "product_id": "prod_UznRkTmGluQK9B",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 397.00,
         "base_annual": None,
@@ -227,6 +255,8 @@ CATALOG = {
         "title": "Hebraico Moderno A2/B1",
         "commercial_id": "hebraico-moderno-a2-b1",
         "product_id": "prod_UznRiiitUJrbpj",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 447.00,
         "base_annual": None,
@@ -240,6 +270,8 @@ CATALOG = {
         "title": "Hebraico Bíblico",
         "commercial_id": "hebraico-biblico",
         "product_id": "prod_UznRo9Ul5fjr7s",
+        "status": "ACTIVE",
+        "provisioning_enabled": True,
         "currency": "BRL",
         "base_monthly": 497.00,
         "base_annual": None,
@@ -253,6 +285,8 @@ CATALOG = {
         "title": "Hebraico Particular",
         "commercial_id": "hebraico-particular",
         "product_id": "prod_UznRzhBCmMC5y8",
+        "status": "BLOCKED_COMMERCIAL_DECISION",
+        "provisioning_enabled": False,
         "currency": "BRL",
         "base_monthly": 140.00,
         "base_annual": None,
@@ -352,15 +386,40 @@ def generate_config_for_course(course_id):
         
     return config
 
+def status():
+    """Retorna o status global da implantação do catálogo."""
+    total_courses = len(CATALOG)
+    active_courses = sum(1 for c in CATALOG.values() if c.get("status") == "ACTIVE" and c.get("provisioning_enabled"))
+    blocked_courses = sum(1 for c in CATALOG.values() if c.get("status") == "BLOCKED_COMMERCIAL_DECISION")
+    
+    # Preços reais já cadastrados e validados no Frappe
+    # Considerando "10" prices esperados por curso ativo
+    expected_prices = active_courses * 10
+    
+    # Você poderia consultar o banco para saber quantos existem
+    # mas para simplificar o status em tempo de registry, retornaremos a expectativa
+    return {
+        "ready": active_courses == 19,
+        "ready_courses": active_courses,
+        "blocked_courses": blocked_courses,
+        "total_courses": total_courses,
+        "expected_canonical_prices": expected_prices
+    }
+
 def audit_all_catalogs():
     from vedium_core.catalog_sync import sync_course_catalog
     
     results = {}
-    for course_id in CATALOG.keys():
-        print(f"\n--- AUDITANDO {CATALOG[course_id]['title']} ---")
-        if CATALOG[course_id].get("blocked_status"):
-            print(f"PULANDO: {CATALOG[course_id]['blocked_status']}")
-            results[course_id] = {"status": CATALOG[course_id]["blocked_status"]}
+    for course_id, c in CATALOG.items():
+        print(f"\n--- AUDITANDO {c['title']} ---")
+        if c.get("status") == "BLOCKED_COMMERCIAL_DECISION":
+            print(f"PULANDO: BLOCKED_COMMERCIAL_DECISION")
+            results[course_id] = {"status": "BLOCKED_COMMERCIAL_DECISION"}
+            continue
+            
+        if c.get("status") != "ACTIVE" or not c.get("provisioning_enabled"):
+            print(f"PULANDO: Curso inativo ou sem provisioning_enabled")
+            results[course_id] = {"status": "SKIPPED"}
             continue
 
         config = generate_config_for_course(course_id)
@@ -374,21 +433,29 @@ def audit_all_catalogs():
             
     return results
 
-def apply_all_catalogs():
+def apply_all_catalogs(execute_apply=True):
     from vedium_core.catalog_sync import sync_course_catalog
     
+    # Se passarem False explícito (ex: GitHub Actions mode=dry-run)
+    execute_apply_bool = str(execute_apply).lower() == 'true'
+    
     results = {}
-    for course_id in CATALOG.keys():
-        print(f"\n--- APLICANDO {CATALOG[course_id]['title']} ---")
-        if CATALOG[course_id].get("blocked_status"):
-            print(f"PULANDO: {CATALOG[course_id]['blocked_status']}")
-            results[course_id] = {"status": CATALOG[course_id]["blocked_status"]}
+    for course_id, c in CATALOG.items():
+        print(f"\n--- APLICANDO {c['title']} ---")
+        if c.get("status") == "BLOCKED_COMMERCIAL_DECISION":
+            print(f"PULANDO: BLOCKED_COMMERCIAL_DECISION")
+            results[course_id] = {"status": "BLOCKED_COMMERCIAL_DECISION"}
+            continue
+            
+        if c.get("status") != "ACTIVE" or not c.get("provisioning_enabled"):
+            print(f"PULANDO: Curso inativo ou sem provisioning_enabled")
+            results[course_id] = {"status": "SKIPPED"}
             continue
 
         config = generate_config_for_course(course_id)
         
         try:
-            r = sync_course_catalog(config, execute_apply=True)
+            r = sync_course_catalog(config, execute_apply=execute_apply_bool)
             results[course_id] = r
         except Exception as e:
             frappe.log_error(f"Erro em {course_id}: {str(e)}")

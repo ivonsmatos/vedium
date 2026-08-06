@@ -8,12 +8,14 @@ APP_ROOT = Path(__file__).resolve().parents[2]
 if str(APP_ROOT) not in sys.path:
     sys.path.insert(0, str(APP_ROOT))
 
-sys.modules['frappe'] = MagicMock()
-sys.modules['frappe.utils'] = MagicMock()
-sys.modules['frappe.custom'] = MagicMock()
-sys.modules['frappe.custom.doctype'] = MagicMock()
-sys.modules['frappe.custom.doctype.custom_field'] = MagicMock()
-sys.modules['frappe.custom.doctype.custom_field.custom_field'] = MagicMock()
+is_frappe_mocked = 'frappe' not in sys.modules
+if is_frappe_mocked:
+    sys.modules['frappe'] = MagicMock()
+    sys.modules['frappe.utils'] = MagicMock()
+    sys.modules['frappe.custom'] = MagicMock()
+    sys.modules['frappe.custom.doctype'] = MagicMock()
+    sys.modules['frappe.custom.doctype.custom_field'] = MagicMock()
+    sys.modules['frappe.custom.doctype.custom_field.custom_field'] = MagicMock()
 import frappe
 
 class TestCourseCatalogsSeeding:

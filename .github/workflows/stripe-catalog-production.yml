@@ -1,0 +1,109 @@
+name: Stripe Catalog Sync (Production)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Modo de execução (audit, dry-run, apply)"
+        required: true
+        default: "audit"
+        type: choice
+        options:
+          - audit
+          - dry-run
+          - apply
+      confirmation:
+        description: "Confirmação (APPLY-STRIPE-LIVE-APPROVED) obrigatória para apply"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  catalog_sync:
+    name: "Sync Stripe Catalog"
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate Apply Confirmation
+        if: github.event.inputs.mode == 'apply'
+        run: |
+          if [ "${{ github.event.inputs.confirmation }}" != "APPLY-STRIPE-LIVE-APPROVED" ]; then
+            echo "::error::Apply exige a confirmação textual correta."
+            exit 1
+          fi
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Check Stripe Key Mask
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        run: |
+          if [ -z "${STRIPE_SECRET_KEY:-}" ]; then
+            echo "::error::STRIPE_SECRET_KEY não configurada no GitHub Environment production."
+            exit 1
+          fi
+          echo "::add-mask::$STRIPE_SECRET_KEY"
+          case "$STRIPE_SECRET_KEY" in
+            sk_live_*)
+              echo "Stripe live key format verified."
+              ;;
+            *)
+              echo "::error::Stripe key MUST be a live key."
+              exit 1
+              ;;
+          esac
+
+      - name: Execute Frappe script inside VPS
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          MODE: ${{ github.event.inputs.mode }}
+          SITE_NAME: app.vediums.com
+        run: |
+          if [ "$MODE" = "audit" ]; then
+            CMD="vedium_core.catalog_registry.audit_all_catalogs"
+          elif [ "$MODE" = "dry-run" ]; then
+            CMD="vedium_core.catalog_sync.apply_all_catalogs"
+            EXEC_APPLY="False"
+          elif [ "$MODE" = "apply" ]; then
+            CMD="vedium_core.catalog_sync.apply_all_catalogs"
+            EXEC_APPLY="True"
+          fi
+
+          ssh -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST" bash -se << REMOTE
+            set -euo pipefail
+            CONTAINER=vedium-frappe
+            
+            # Exportar a chave de forma segura para dentro do container apenas durante a execucao
+            if [ "$MODE" = "audit" ]; then
+              docker exec -w /home/frappe/frappe-bench -e STRIPE_SECRET_KEY="$STRIPE_SECRET_KEY" "\$CONTAINER" \
+                bench --site $SITE_NAME execute "\$CMD" > /tmp/stripe_catalog_output.txt
+            else
+              docker exec -w /home/frappe/frappe-bench -e STRIPE_SECRET_KEY="$STRIPE_SECRET_KEY" "\$CONTAINER" \
+                bench --site $SITE_NAME execute "\$CMD" --kwargs '{"execute_apply": '"\$EXEC_APPLY"'}' > /tmp/stripe_catalog_output.txt
+            fi
+          REMOTE
+          
+          # Copiar o resultado para os artefatos
+          scp -o StrictHostKeyChecking=no "$DEPLOY_USER@$DEPLOY_HOST:/tmp/stripe_catalog_output.txt" ./stripe_catalog_output.txt
+
+      - name: Upload Audit/Dry-Run Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: stripe-catalog-${{ github.event.inputs.mode }}-result
+          path: stripe_catalog_output.txt
+          retention-days: 14

@@ -150,10 +150,10 @@ def get_course_purchase_options(course_name):
         return {"is_paid": False, "plans": []}
 
     catalog_status = is_catalog_complete(course.name, environment="live")
-    if catalog_status == "incomplete":
+    if not catalog_status.get("complete") and catalog_status.get("valid", 0) > 0:
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
 
-    if catalog_status is True:
+    if catalog_status.get("complete"):
         monthly = _catalog_plan_payload(course.name, "monthly")
         annual = _catalog_plan_payload(course.name, "annual")
     else:
