@@ -55,8 +55,14 @@ def test_purchase_options_explain_both_commercial_models():
 
 
 def test_frontend_shows_monthly_frequency_and_annual_commitment():
-    assert "Quantas aulas por semana?" in CHECKOUT_JS
-    assert "De 2 a 5 aulas" in CHECKOUT_JS
+    # O texto do seletor mudou nos ajustes visuais de 2026-07 (label virou
+    # "Quantidade de aulas por semana" e o desconto passou a aparecer dentro
+    # de cada opção, "N aulas por semana — 10% de desconto", em vez de uma
+    # frase separada "De 2 a 5 aulas"). A intenção do teste segue a mesma:
+    # o seletor precisa explicar a frequência e sinalizar o desconto.
+    assert "Quantidade de aulas por semana" in CHECKOUT_JS
+    assert "1 aula por semana" in CHECKOUT_JS
+    assert "aulas por semana — 10% de desconto" in CHECKOUT_JS
     assert "10% de desconto" in CHECKOUT_JS
     assert "por mês" in CHECKOUT_JS
     assert "Economia de" in CHECKOUT_JS

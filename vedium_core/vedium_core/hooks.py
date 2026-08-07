@@ -474,6 +474,14 @@ doc_events = {
             "vedium_core.courses.bump_courses_cache_version",
         ],
     },
+    # Espelha Lead do CRM no Brevo (contato + eventos lead_created/
+    # lead_updated/lead_status_changed/lead_converted). on_crm_lead enfileira
+    # em background (queue "short", after_commit), então falha do Brevo nunca
+    # bloqueia a gravação do Lead no CRM.
+    "CRM Lead": {
+        "after_insert": "vedium_core.brevo.on_crm_lead",
+        "on_update": "vedium_core.brevo.on_crm_lead",
+    },
     # Invalida o cache de páginas públicas (catálogo, landings, página de
     # curso — ver vedium_core/courses.py) sempre que dados exibidos lá mudam.
     "LMS Course": {
