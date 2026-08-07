@@ -376,8 +376,8 @@ def handle_stripe_event(event):
         _mark_event(log_name, "Failed", type(exc).__name__)
         frappe.db.commit()
         frappe.log_error(
-            f"Stripe event {event_id} failed ({type(exc).__name__})",
-            "Vedium.payments.stripe_webhook",
+            title=f"Stripe {event_type} {event_id} falhou ({type(exc).__name__})",
+            message=f"{exc}\n\n{frappe.get_traceback()}",
         )
         raise
 
