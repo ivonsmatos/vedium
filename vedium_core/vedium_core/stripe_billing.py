@@ -462,6 +462,19 @@ def _checkout_completed(session):
         },
     )
 
+    # GA4 server-side: registra a compra concluída como conversão via Measurement
+    # Protocol (background, after_commit — nunca bloqueia nem quebra a matrícula).
+    frappe.enqueue(
+        "vedium_core.analytics_events.send_ga4_purchase_server_side",
+        queue="short",
+        enqueue_after_commit=True,
+        transaction_id=subscription_id,
+        course_name=course_name,
+        amount=(session.get("amount_total") or 0) / 100,
+        currency=(session.get("currency") or course.currency or "brl").upper(),
+        client_id=metadata.get("ga_client_id"),
+    )
+
 
 def _validated_reference(session, metadata):
     try:
