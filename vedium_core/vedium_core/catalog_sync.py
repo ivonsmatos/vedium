@@ -229,6 +229,7 @@ def _upsert_vedium_course_price(config, period, price_def):
         doc.catalog_key = catalog_key
         
     doc.course = course_name
+    doc.commercial_name = config["commercial_name"]
     doc.billing_period = period
     doc.classes_per_week = freq
     doc.catalog_version = catalog_version
@@ -237,6 +238,7 @@ def _upsert_vedium_course_price(config, period, price_def):
     doc.stripe_price_id = price_def["stripe_price_id"]
     doc.currency = config["currency"].upper()
     doc.amount = price_def["amount"]
+    doc.unit_amount = price_def["unit_amount"]
     doc.subtotal = price_def["subtotal"]
     doc.frequency_discount_percent = price_def["frequency_discount_percent"]
     

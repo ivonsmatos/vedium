@@ -183,7 +183,7 @@ jobs:
           echo "Buscando os ultimos erros do Frappe no banco para debug:"
           echo "=========================================================="
           docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
-              bench --site "$SITE_NAME" mariadb -e "SELECT creation, method, error FROM \`tabError Log\` ORDER BY creation DESC LIMIT 5;"
+              bench --site "$SITE_NAME" mariadb -e "SELECT creation, method, error FROM \\\`tabError Log\\\` ORDER BY creation DESC LIMIT 5;" || true
               
           echo "✅ Deploy finalizado."
           REMOTE
