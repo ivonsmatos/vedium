@@ -1,5 +1,5 @@
 import frappe
-from frappe.custom.doctype.custom_field.custom_field import create_custom_field
+from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 # Campos customizados do Vedium em DocTypes oficiais.
 # gamification.add_points depende de User.vedium_points — por isso esta
@@ -298,14 +298,11 @@ CUSTOM_FIELDS = {
 
 
 def setup_custom_fields():
-    for doctype, field_list in CUSTOM_FIELDS.items():
-        for field in field_list:
-            if frappe.db.exists(
-                "Custom Field", {"dt": doctype, "fieldname": field["fieldname"]}
-            ):
-                continue
-            create_custom_field(doctype, field)
-
+    # update=True: reaplica opções/propriedades em campos já existentes (não só
+    # insere os ausentes). Sem isso, mudar `options` no source nunca chegava ao
+    # campo vivo — foi o que barrou matrículas "monthly" quando o Select ainda
+    # tinha as opções antigas ("semestral\nannual").
+    create_custom_fields(CUSTOM_FIELDS, update=True)
     frappe.db.commit()
 
 

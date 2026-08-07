@@ -301,52 +301,54 @@ def _event_log_name(event_id):
 
 
 def _claim_event(event_id, event_type):
-    name = _event_log_name(event_id)
-    row = frappe.db.get_value(
+    # Integration Request autonomeia por hash: o `name` sintético (stripe-<id>)
+    # NÃO cola no insert. A idempotência tem que ser feita por `request_id`
+    # (= event_id do Stripe), e devolvemos o nome REAL da linha para que
+    # _mark_event consiga atualizar o status (senão fica "Queued" pra sempre).
+    _event_log_name(event_id)  # valida o formato do event_id (throw se inválido)
+    now = now_datetime()
+    existing = frappe.db.get_value(
         "Integration Request",
-        name,
-        ["status", "modified", "custom_vedium_attempts"],
+        {"request_id": event_id, "integration_request_service": "Stripe Webhook"},
+        ["name", "status", "modified", "custom_vedium_attempts"],
         as_dict=True,
     )
-    now = now_datetime()
-    if row:
-        if row.status == "Completed":
+    if existing:
+        if existing.status == "Completed":
             return None
-        if row.status == "Queued" and get_datetime(row.modified) > now - timedelta(
+        if existing.status == "Queued" and get_datetime(existing.modified) > now - timedelta(
             minutes=EVENT_PROCESSING_TIMEOUT_MINUTES
         ):
             return None
         frappe.db.set_value(
             "Integration Request",
-            name,
+            existing.name,
             {
                 "status": "Queued",
                 "error": None,
-                "custom_vedium_attempts": cint(row.custom_vedium_attempts) + 1,
+                "custom_vedium_attempts": cint(existing.custom_vedium_attempts) + 1,
                 "custom_vedium_last_attempt_on": now,
             },
         )
-    else:
-        doc = frappe.get_doc(
-            {
-                "doctype": "Integration Request",
-                "name": name,
-                "request_id": event_id,
-                "integration_request_service": "Stripe Webhook",
-                "is_remote_request": 1,
-                "request_description": str(event_type or "unknown")[:140],
-                "status": "Queued",
-                "custom_vedium_attempts": 1,
-                "custom_vedium_last_attempt_on": now,
-            }
-        )
-        try:
-            doc.insert(ignore_permissions=True)
-        except frappe.DuplicateEntryError:
-            return None
+        frappe.db.commit()
+        return existing.name
+
+    doc = frappe.get_doc(
+        {
+            "doctype": "Integration Request",
+            "request_id": event_id,
+            "integration_request_service": "Stripe Webhook",
+            "is_remote_request": 1,
+            "request_description": str(event_type or "unknown")[:140],
+            "status": "Queued",
+            "custom_vedium_attempts": 1,
+            "custom_vedium_last_attempt_on": now,
+        }
+    )
+    doc.insert(ignore_permissions=True)
     # Persist the claim so a handler rollback cannot erase the idempotency key.
     frappe.db.commit()
-    return name
+    return doc.name
 
 
 def _mark_event(name, status, failure_code=None):
