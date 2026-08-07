@@ -165,6 +165,15 @@ jobs:
               echo "  \$WORKER: \$wstatus"
           done
           
+          # Portão de saúde: health.run faz raise SystemExit(1) se algum check
+          # CRÍTICO (db, scheduler, stripe.config, lms) quebrar. Sob pipefail,
+          # isso aborta o deploy — "verde" passa a significar app operacional.
+          # Checks externos flaky (stripe.catalog, brevo, raven, e-mail, fila)
+          # são critical=False → viram aviso, não derrubam o deploy.
+          echo "🩺 Portão de saúde (health check crítico)..."
+          docker exec -w /home/frappe/frappe-bench "\$CONTAINER" \
+              bench --site "$SITE_NAME" execute vedium_core.health.run
+
           echo "=========================================================="
           echo "Executando backup obrigatório (antes do import_manifest)..."
           echo "=========================================================="
