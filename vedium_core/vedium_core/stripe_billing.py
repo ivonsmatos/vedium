@@ -384,6 +384,23 @@ def handle_stripe_event(event):
         raise
 
 
+def reprocess_stripe_event(event_id):
+    """Ops: re-busca um evento no Stripe pelo id e reprocessa (despacho direto,
+    idempotente — _checkout_completed só cria matrícula se ainda não existir).
+
+    Uso: bench --site <site> execute vedium_core.stripe_billing.reprocess_stripe_event \
+         --kwargs "{'event_id': 'evt_...'}"
+    """
+    import stripe
+
+    stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY", "")
+    event = stripe.Event.retrieve(event_id)
+    event_type = event.get("type")
+    _dispatch_event(event_type, event.get("data", {}).get("object", {}))
+    frappe.db.commit()
+    return {"reprocessed": event_id, "type": event_type}
+
+
 def _dispatch_event(event_type, obj):
     if event_type == "checkout.session.completed":
         _checkout_completed(obj)
