@@ -124,7 +124,13 @@ def sync_course_catalog(config: Dict[str, Any], execute_apply: bool = False):
                     frappe.throw(_(f"Price {lkey} existe mas o valor diverge. (Stripe: {existing.unit_amount}, Esperado: {expected_amount})"))
                 if existing.recurring.interval != "month" or existing.recurring.interval_count != 1:
                     frappe.throw(_(f"Price {lkey} existe mas a recorrência diverge."))
-                
+
+                # Prices legados (pré-catálogo) reaproveitados podem estar sem os
+                # metadados exigidos pelo controller (interval, minimum_term_months,
+                # charge_count). Ressincroniza o metadata para manter idempotência.
+                if execute_apply:
+                    stripe.Price.modify(existing.id, metadata=_build_price_metadata(config, period, price_def))
+
                 print(f" [OK] Price reutilizado: {lkey} -> {existing.id} ({currency.upper()} {expected_amount/100:.2f})")
                 price_def["stripe_price_id"] = existing.id
             else:
@@ -174,7 +180,7 @@ def _get_all_active_prices_for_product(stripe, product_id):
             starting_after = resp.data[-1].id
     return prices
 
-def _create_stripe_price(stripe, config, period, price_def):
+def _build_price_metadata(config, period, price_def):
     metadata = {
         "vedium_course_id": config["course_name"],
         "classes_per_week": str(price_def["classes_per_week"]),
@@ -183,14 +189,14 @@ def _create_stripe_price(stripe, config, period, price_def):
         "catalog_version": str(config["catalog_version"]),
         "system": "frappe"
     }
-    
+
     if "pricing_basis" in config:
         metadata["pricing_basis"] = str(config["pricing_basis"])
     if "unit_lesson_amount" in config:
         metadata["unit_lesson_amount"] = str(config["unit_lesson_amount"])
     if "classes_per_month" in price_def:
         metadata["classes_per_month"] = str(price_def["classes_per_month"])
-    
+
     if period == "annual":
         metadata["minimum_term_months"] = "12"
         metadata["charge_count"] = "12"
@@ -198,7 +204,11 @@ def _create_stripe_price(stripe, config, period, price_def):
             metadata["annual_discount_months"] = str(config["annual_discount_months"])
     else:
         metadata["minimum_term_months"] = "0"
-        
+
+    return metadata
+
+
+def _create_stripe_price(stripe, config, period, price_def):
     return stripe.Price.create(
         product=config["product_id"],
         currency=config["currency"],
@@ -212,7 +222,7 @@ def _create_stripe_price(stripe, config, period, price_def):
         lookup_key=price_def["lookup_key"],
         transfer_lookup_key=False,
         nickname=price_def["nickname"],
-        metadata=metadata
+        metadata=_build_price_metadata(config, period, price_def)
     )
 
 def _upsert_vedium_course_price(config, period, price_def):

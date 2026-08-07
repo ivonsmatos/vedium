@@ -118,7 +118,7 @@ CATALOG = {
     },
     
     # ------------------ ESPANHOL ------------------
-    "espanhol-b-sico-a1-a2": {
+    "espanhol-basico": {
         "title": "Espanhol Básico",
         "commercial_id": "espanhol-basico",
         "product_id": "prod_UznRZM83HU7unf",
@@ -131,7 +131,7 @@ CATALOG = {
         "legacy_prices": [],
         "custom_annual_prices": [247.50, 445.50, 668.25, 891.00, 1113.75]
     },
-    "espanhol-intermedi-rio-b1-b2-1": {
+    "espanhol-intermediario": {
         "title": "Espanhol Intermediário",
         "commercial_id": "espanhol-intermediario",
         "product_id": "prod_UznR0Jq6tk3II4",
@@ -144,7 +144,7 @@ CATALOG = {
         "legacy_prices": [],
         "custom_annual_prices": [330.83, 595.50, 893.25, 1191.00, 1488.75]
     },
-    "espanhol-avan-ado-b2-2-c1": {
+    "espanhol-avancado": {
         "title": "Espanhol Avançado",
         "commercial_id": "espanhol-avancado",
         "product_id": "prod_UznR52w5UCsZsw",
@@ -159,7 +159,7 @@ CATALOG = {
     },
     
     # ------------------ PLE ------------------
-    "portugu-s-para-estrangeiros-b-sico-a1-a2": {
+    "portugues-para-estrangeiros-basico": {
         "title": "PLE Básico",
         "commercial_id": "ple-basico",
         "product_id": "prod_UznRbeMspEN6Xw",
@@ -171,7 +171,7 @@ CATALOG = {
         "unit_lesson_amount": None,
         "legacy_prices": []
     },
-    "portugu-s-para-estrangeiros-intermedi-rio-b1-b2-1": {
+    "portugues-para-estrangeiros-intermediario": {
         "title": "PLE Intermediário",
         "commercial_id": "ple-intermediario",
         "product_id": "prod_UznRHPXfGqcX5P",
@@ -183,7 +183,7 @@ CATALOG = {
         "unit_lesson_amount": None,
         "legacy_prices": []
     },
-    "portugu-s-para-estrangeiros-avan-ado-b2-2-c1": {
+    "portugues-para-estrangeiros-avancado": {
         "title": "PLE Avançado",
         "commercial_id": "ple-avancado",
         "product_id": "prod_UznRvtr8FIWJQY",
@@ -197,7 +197,7 @@ CATALOG = {
     },
     
     # ------------------ HEBRAICO ------------------
-    "hebraico-a0-alfabetiza-o": {
+    "hebraico-a0-alfabetizacao": {
         "title": "Hebraico A0",
         "commercial_id": "hebraico-a0",
         "product_id": "prod_UznRs3ValZEHMB",
