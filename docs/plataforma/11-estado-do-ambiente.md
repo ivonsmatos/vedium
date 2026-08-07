@@ -16,8 +16,9 @@ para trade-offs e critérios de adoção.
 ## Cursos e certificação
 
 - **Catálogo publicado atual:** 6 Inglês, 3 Iorubá, 3 PLE e 5 Hebraico
-  (17 cursos no total, incluindo `hebraico-particular`, que é oferta
-  consultiva 1:1 e não deve fechar checkout de valor fixo).
+  (17 cursos no total, incluindo `hebraico-particular`, que é vendido via
+  checkout recorrente de valor fixo — plano único, fora do catálogo por
+  frequência; política atualizada em 2026-08-07).
 - Cursos de assinatura/nível têm `evaluator` vinculado,
   `enable_certification=1` **e**
   `paid_certificate=1` (ligado nesta sessão — ver [doc 05](05-fluxo-jornada-do-aluno.md)).

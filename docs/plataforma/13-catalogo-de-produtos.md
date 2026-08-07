@@ -44,11 +44,12 @@ os outros dois clusters ao fazer conta de receita consolidada.
 | `hebraico-moderno-a1` | Hebraico Moderno — Nível A1 | R$ 397 |
 | `hebraico-moderno-a2-b1` | Hebraico Moderno — Nível A2/B1 | R$ 447 |
 | `hebraico-biblico-leitura-guiada` | Hebraico Bíblico — Leitura Guiada | R$ 497 |
-| `hebraico-particular` | Hebraico Particular 1:1 | R$ 140-220/hora, consultivo |
+| `hebraico-particular` | Hebraico Particular 1:1 | ~R$ 1.120/mês (assinatura) |
 
-`hebraico-particular` **não deve ir para checkout Stripe de valor fixo**:
-o CTA público abre conversa com a equipe para definir pacote, horário e
-valor final.
+`hebraico-particular` **é vendido via checkout Stripe recorrente de valor fixo**
+(assinatura mensal ~R$ 1.120; anual ~R$ 933/mês). Usa plano único (preços
+`custom_stripe_*` legados), **fora** do catálogo por frequência (1–5 aulas).
+*(Política atualizada em 2026-08-07 — antes era oferta apenas consultiva.)*
 
 ## Regras de preço observadas
 
