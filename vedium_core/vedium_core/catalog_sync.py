@@ -238,7 +238,10 @@ def _upsert_vedium_course_price(config, period, price_def):
     doc.stripe_price_id = price_def["stripe_price_id"]
     doc.currency = config["currency"].upper()
     doc.amount = price_def["amount"]
-    doc.unit_amount = price_def["unit_amount"]
+    # price_def["unit_amount"] está em centavos (vai direto pro Stripe); o campo
+    # unit_amount é Currency (unidades de moeda) e o controller valida
+    # unit_amount * 100 == Stripe.unit_amount, então converte de volta.
+    doc.unit_amount = price_def["unit_amount"] / 100
     doc.subtotal = price_def["subtotal"]
     doc.frequency_discount_percent = price_def["frequency_discount_percent"]
     
