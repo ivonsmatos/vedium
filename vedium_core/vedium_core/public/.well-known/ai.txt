@@ -17,7 +17,7 @@ Vedium is a specialized online language learning platform offering courses in Ex
 - Corporate training solutions
 
 ## Payment Options
-- Credit/Debit cards (Stripe, MercadoPago)
+- Credit/Debit cards (Stripe)
 - Cryptocurrency (Bitcoin, Ethereum, USDC via Coinbase Commerce)
 - Corporate invoicing
 

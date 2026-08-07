@@ -82,7 +82,7 @@ def get_ai_summary():
         "primaryServices": [
             f"Cursos de {lang}" for lang in languages
         ] + ["Certificados verificáveis de conclusão"],
-        "paymentMethods": ["Cartão de crédito (Stripe)", "Mercado Pago"],
+        "paymentMethods": ["Cartão de crédito (Stripe)"],
     }
     return _json_response(summary)
 
@@ -125,7 +125,7 @@ def get_ai_faq():
             {
                 "question": "Quais formas de pagamento são aceitas?",
                 "answer": (
-                    "Cartão de crédito via Stripe e Mercado Pago, em reais "
+                    "Cartão de crédito via Stripe, em reais "
                     "(BRL)."
                 ),
             },
@@ -199,7 +199,7 @@ def get_ai_service():
         "paymentMethods": [
             {
                 "name": "Cartão de crédito / débito",
-                "providers": ["Stripe", "MercadoPago"],
+                "providers": ["Stripe"],
                 "currencies": ["BRL"],
             }
         ],

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Vedium Core — API pública e endpoints internos
-# Imports pesados (mercadopago, stripe, services.*) ficam lazy dentro das
+# Imports pesados (stripe, services.*) ficam lazy dentro das
 # funções que os usam, para o módulo carregar mesmo sem essas dependências
 # instaladas (ex.: workers que só processam fila).
 
@@ -965,94 +965,6 @@ class StripeGateway(PaymentGateway):
         return handle_stripe_event(event)
 
 
-class MercadoPagoGateway(PaymentGateway):
-    def get_sdk(self):
-        import mercadopago
-
-        access_token = frappe.conf.get("MERCADOPAGO_ACCESS_TOKEN")
-        if not access_token:
-            frappe.throw(_("MERCADOPAGO_ACCESS_TOKEN não configurado"))
-        return mercadopago.SDK(access_token)
-
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
-        sdk = self.get_sdk()
-
-        preference_data = {
-            "items": [
-                {
-                    "title": course.title,
-                    "quantity": 1,
-                    "unit_price": float(course.course_price),
-                    "currency_id": course.currency or "BRL",
-                }
-            ],
-            "payer": {"email": user},
-            "back_urls": {
-                "success": f"{frappe.utils.get_url()}/lms/enrollment/success",
-                "failure": f"{frappe.utils.get_url()}/lms/enrollment/failure",
-                "pending": f"{frappe.utils.get_url()}/lms/enrollment/pending",
-            },
-            "auto_return": "approved",
-            # Formato: course|user[|coupon] — webhook aceita 2 ou 3 segmentos
-            "external_reference": f"{course.name}|{user}|{coupon_code or ''}",
-        }
-
-        preference_response = sdk.preference().create(preference_data)
-        response = preference_response.get("response", {})
-
-        # Prefer sandbox for testing if configured, else init_point
-        return (
-            response.get("sandbox_init_point")
-            if frappe.conf.get("DEVELOPER_MODE")
-            else response.get("init_point")
-        )
-
-    def handle_webhook(self, data):
-        # Mercado Pago sends topic/type and id
-        topic = data.get("topic") or data.get("type")
-        resource_id = data.get("id") or data.get("data", {}).get("id")
-
-        if topic == "payment" and resource_id:
-            sdk = self.get_sdk()
-            payment_info = sdk.payment().get(resource_id)
-            if payment_info["status"] == 200:
-                payment = payment_info["response"]
-                status = payment.get("status")
-                external_ref = payment.get("external_reference")
-
-                if status == "approved" and external_ref:
-                    try:
-                        # 2 segmentos (legado) ou 3 (com cupom)
-                        parts = external_ref.split("|")
-                        if len(parts) < 2:
-                            raise ValueError(external_ref)
-                        course_name, user = parts[0], parts[1]
-                        coupon_code = parts[2] if len(parts) > 2 and parts[2] else None
-                        create_enrollment_if_paid(
-                            course_name,
-                            user,
-                            "mercadopago",
-                            str(resource_id),
-                            amount=payment.get("transaction_amount"),
-                            currency=payment.get("currency_id"),
-                            coupon_code=coupon_code,
-                        )
-                    except ValueError:
-                        frappe.log_error(
-                            "Invalid external_reference in MercadoPago Webhook"
-                        )
-
-
-class BasecommerceGateway(PaymentGateway):
-    def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
-        # TODO: Integrar com Basecommerce API
-        return f"/lms/courses/{course.name}/enroll-basecommerce"
-
-    def handle_webhook(self, data):
-        # TODO: Lógica de webhook Basecommerce
-        pass
-
-
 class CryptoGateway(PaymentGateway):
     def create_checkout(self, course, user, coupon_code=None, display_currency=None, billing_period=None):
         from vedium_core.services.crypto_service import CryptoService
@@ -1081,10 +993,6 @@ class CryptoGateway(PaymentGateway):
 def get_gateway(gateway_name):
     if gateway_name == "stripe":
         return StripeGateway()
-    elif gateway_name == "mercadopago":
-        return MercadoPagoGateway()
-    elif gateway_name == "basecommerce":
-        return BasecommerceGateway()
     elif gateway_name == "crypto":
         # Coinbase Commerce ainda não está integrado de verdade (mock).
         # Só habilita com flag explícita + API key — evita URL falsa em prod.
@@ -1175,35 +1083,6 @@ def stripe_webhook():
 
 
 # =====================
-# Funções de checkout para cada gateway
-# =====================
-@frappe.whitelist()
-def create_mercadopago_checkout(course_name):
-    """
-    [DEPRECATED] Use `create_checkout(course_name, gateway='mercadopago')` em vez disto.
-    Mantido por compatibilidade com clientes antigos. Será removido na v2.
-    """
-    frappe.log_error(
-        f"create_mercadopago_checkout chamado para {course_name} — migrar para create_checkout",
-        "Vedium.api.deprecated",
-    )
-    return create_checkout(course_name, gateway="mercadopago")
-
-
-@frappe.whitelist()
-def create_basecommerce_checkout(course_name):
-    """
-    [DEPRECATED] Use `create_checkout(course_name, gateway='basecommerce')` em vez disto.
-    Mantido por compatibilidade com clientes antigos. Será removido na v2.
-    """
-    frappe.log_error(
-        f"create_basecommerce_checkout chamado para {course_name} — migrar para create_checkout",
-        "Vedium.api.deprecated",
-    )
-    return create_checkout(course_name, gateway="basecommerce")
-
-
-# =====================
 # Webhook centralizado
 # =====================
 def _is_dev_mode() -> bool:
@@ -1240,9 +1119,6 @@ def handle_payment_webhook(gateway=None):
 
     Em produção (DEVELOPER_MODE=0), segredo HMAC do gateway é obrigatório.
     """
-    import hashlib
-    import hmac
-
     data = frappe.local.form_dict or {}
     verified_event = None
     if not gateway:
@@ -1250,48 +1126,7 @@ def handle_payment_webhook(gateway=None):
     if not gateway:
         frappe.throw(_("Gateway não informado"))
 
-    if gateway == "mercadopago":
-        sig_header = frappe.request.headers.get("X-Signature", "")
-        webhook_secret = _require_webhook_secret(
-            "MERCADOPAGO_WEBHOOK_SECRET", "mercadopago"
-        )
-        if webhook_secret:
-            if not sig_header:
-                frappe.throw(
-                    _("X-Signature header obrigatório"),
-                    frappe.AuthenticationError,
-                )
-            try:
-                parts = {
-                    k: v
-                    for k, v in (p.split("=", 1) for p in sig_header.split(","))
-                }
-                ts = parts.get("ts", "")
-                v1 = parts.get("v1", "")
-                data_id = data.get("data", {}).get("id", data.get("id", ""))
-                request_id = frappe.request.headers.get("X-Request-Id", "")
-                manifest = f"id:{data_id};request-id:{request_id};ts:{ts}"
-                expected = hmac.new(
-                    webhook_secret.encode(), manifest.encode(), hashlib.sha256
-                ).hexdigest()
-                if not hmac.compare_digest(expected, v1):
-                    frappe.throw(
-                        _("Webhook signature inválida"),
-                        frappe.AuthenticationError,
-                    )
-            except frappe.AuthenticationError:
-                raise
-            except Exception as e:
-                frappe.log_error(
-                    f"MercadoPago webhook signature check failed: {e}",
-                    "Vedium.payments.mercadopago_webhook",
-                )
-                frappe.throw(
-                    _("Webhook signature inválida"),
-                    frappe.AuthenticationError,
-                )
-
-    elif gateway == "stripe":
+    if gateway == "stripe":
         sig_header = frappe.request.headers.get("Stripe-Signature")
         stripe_secret = _require_webhook_secret("STRIPE_WEBHOOK_SECRET", "stripe")
         if stripe_secret:

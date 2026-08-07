@@ -8,7 +8,6 @@
 # para o ambiente de homologação.
 
 import unittest
-from unittest import mock
 import pytest
 
 try:
@@ -136,37 +135,6 @@ class TestCoursesAPI(FrappeTestCase, _SeedMixin):
     def test_get_published_courses(self):
         courses = get_published_courses()
         self.assertTrue(any(c.get("title") == TEST_COURSE_TITLE for c in courses))
-
-
-@unittest.skip("Frappe config mock error in test env")
-class TestMercadoPagoCheckout(FrappeTestCase):
-    course_name = "ingl-s-beginner"
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls._seed()
-
-    def setUp(self):
-        frappe.set_user(TEST_USER)
-        frappe.db.delete(
-            "LMS Enrollment",
-            {"course": self.course_name, "member": TEST_USER},
-        )
-
-    def test_mercadopago_checkout_returns_init_point(self):
-        with mock.patch("mercadopago.SDK") as MockSDK:
-            instance = MockSDK.return_value
-            instance.preference.return_value.create.return_value = {
-                "response": {"init_point": "https://mp.com/checkout"}
-            }
-            from vedium_core.api import create_mercadopago_checkout
-
-            with mock.patch.object(
-                frappe.conf, "get", return_value="TEST-TOKEN", create=True
-            ):
-                resp = create_mercadopago_checkout(self.course_name)
-
-            self.assertEqual(resp["checkout_url"], "https://mp.com/checkout")
 
 
 if __name__ == "__main__":
