@@ -362,6 +362,38 @@ def _mark_event(name, status, failure_code=None):
     frappe.db.set_value("Integration Request", name, values)
 
 
+def admin_stripe_subscriptions(email, cancel_ids=None):
+    """Ops: lista as assinaturas Stripe de um cliente (por e-mail) e, se
+    `cancel_ids` for informado, cancela essas imediatamente. Não é whitelisted —
+    só roda via `bench execute`. Usado p/ limpeza de assinaturas de teste E2E.
+
+    bench --site <site> execute vedium_core.stripe_billing.admin_stripe_subscriptions \
+        --kwargs "{'email': 'x@y.z', 'cancel_ids': ['sub_...']}"
+    """
+    import stripe
+
+    stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY")
+    if not stripe.api_key:
+        frappe.throw(_("STRIPE_SECRET_KEY não configurada."))
+    cancel_ids = set(cancel_ids or [])
+    out, cancelled = [], []
+    for customer in stripe.Customer.list(email=email, limit=20).data:
+        for sub in stripe.Subscription.list(customer=customer.id, status="all", limit=100).data:
+            out.append(
+                {
+                    "customer": customer.id,
+                    "sub": sub.id,
+                    "status": sub.status,
+                    "has_discount": bool(sub.get("discount")),
+                    "current_period_end": sub.get("current_period_end"),
+                }
+            )
+            if sub.id in cancel_ids and sub.status not in {"canceled", "incomplete_expired"}:
+                stripe.Subscription.cancel(sub.id)
+                cancelled.append(sub.id)
+    return {"subscriptions": out, "cancelled": cancelled}
+
+
 def handle_stripe_event(event):
     """Process a signed Stripe event once, with a durable retryable audit row."""
     event_id = event.get("id")
