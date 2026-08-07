@@ -478,7 +478,10 @@ doc_events = {
     # curso — ver vedium_core/courses.py) sempre que dados exibidos lá mudam.
     "LMS Course": {
         "after_insert": "vedium_core.courses.bump_courses_cache_version",
-        "on_update": "vedium_core.courses.bump_courses_cache_version",
+        "on_update": [
+            "vedium_core.courses.bump_courses_cache_version",
+            "vedium_core.course_chapter_override.sync_chapter_ordering",
+        ],
         "on_trash": "vedium_core.courses.bump_courses_cache_version",
     },
     "Course Chapter": {
