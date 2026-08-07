@@ -673,7 +673,19 @@ def create_enrollment_if_paid(
         }
     )
     enrollment = frappe.get_doc(values)
-    enrollment.insert(ignore_permissions=True)
+    # A validação nativa do LMS (lms_enrollment.py) exige um LMS Payment com
+    # payment_received=True para cursos pagos, EXCETO quando o usuário é admin.
+    # A Vedium valida o pagamento no PRÓPRIO webhook Stripe (assinado) e registra
+    # em custom_payment_* — o webhook roda como Guest, então a matrícula é criada
+    # em contexto admin para passar esse gate sem duplicar o ledger do LMS.
+    _original_user = frappe.session.user
+    try:
+        if _original_user != "Administrator":
+            frappe.set_user("Administrator")
+        enrollment.insert(ignore_permissions=True)
+    finally:
+        if frappe.session.user != _original_user:
+            frappe.set_user(_original_user)
 
     if coupon_code and frappe.db.exists("Coupon", coupon_code):
         frappe.db.sql(
