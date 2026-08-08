@@ -30,6 +30,12 @@ def get_context(context):
     context.language_programs = LANGUAGE_ORDER
     context.cart_count = get_cart_count()
 
+    # Preços do Inglês em USD — convertidos por câmbio do catálogo (INTERIM até
+    # existir preço USD fixo). Fonte única: checkout_options (bate com o checkout).
+    from vedium_core.checkout_options import get_frequency_plans_for_display
+
+    context.english_plans = get_frequency_plans_for_display("ingl-s-beginner", "USD")
+
     context.title = "Vedium - Live Online Courses in Five Languages"
     context.description = (
         "Learn English, Spanish, Hebrew, Yoruba or Brazilian Portuguese with Vedium: "

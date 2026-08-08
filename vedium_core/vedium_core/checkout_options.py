@@ -141,6 +141,43 @@ def _add_annual_savings(monthly: dict, annual: dict) -> None:
 from vedium_core.course_urls import get_internal_course_name
 
 
+def get_frequency_plans_for_display(course_name="ingl-s-beginner", currency="BRL"):
+    """{freq: {amount, formatted, lessons_month}} do plano MENSAL, na moeda pedida.
+
+    Fonte única de preço (o mesmo que a /curso e o checkout usam), para as home
+    (PT em BRL, EN/ES em USD convertido) nunca desalinharem do catálogo. A
+    conversão de moeda é por câmbio cacheado (currency.py) — INTERIM até existir
+    preço USD fixo por curso. Nunca levanta: em falha retorna {} e o template cai
+    no fallback.
+    """
+    from vedium_core import currency as vd_currency
+
+    plans = {}
+    try:
+        data = get_course_purchase_options(course_name)
+        monthly = next(
+            (p for p in (data.get("plans") or []) if p.get("billing_period") == "monthly"),
+            None,
+        )
+        if not monthly:
+            return {}
+        source = (monthly.get("currency") or "BRL").upper()
+        target = (currency or source).upper()
+        for opt in monthly.get("frequency_options", []):
+            freq = int(opt["classes_per_week"])
+            amount = float(opt["amount"])
+            if target != source:
+                amount = vd_currency.convert_amount(amount, source, target)
+            plans[freq] = {
+                "amount": amount,
+                "formatted": vd_currency.format_amount(amount, target),
+                "lessons_month": freq * 4,
+            }
+    except Exception as e:
+        frappe.log_error(f"get_frequency_plans_for_display: {e}", "Vedium")
+    return plans
+
+
 @frappe.whitelist(allow_guest=True)
 def get_course_purchase_options(course_name):
     """Return the commercially allowed purchase options for a paid course."""

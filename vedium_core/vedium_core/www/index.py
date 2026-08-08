@@ -39,33 +39,11 @@ def get_context(context):
 
 
 def get_english_frequency_plans(course_name="ingl-s-beginner"):
-    """{freq: {amount, formatted, lessons_month}} do plano mensal, do catálogo.
+    """Preços do Inglês por frequência em BRL — delega ao helper compartilhado
+    (checkout_options), fonte única usada também pela /curso e pelo checkout."""
+    from vedium_core.checkout_options import get_frequency_plans_for_display
 
-    Fonte única: checkout_options (o mesmo que a /curso e o checkout usam). Se
-    falhar, retorna {} e o template cai no texto de fallback — nunca quebra a home.
-    """
-    plans = {}
-    try:
-        from vedium_core.checkout_options import get_course_purchase_options
-
-        data = get_course_purchase_options(course_name)
-        monthly = next(
-            (p for p in (data.get("plans") or []) if p.get("billing_period") == "monthly"),
-            None,
-        )
-        if not monthly:
-            return {}
-        for opt in monthly.get("frequency_options", []):
-            freq = int(opt["classes_per_week"])
-            amount = float(opt["amount"])
-            plans[freq] = {
-                "amount": amount,
-                "formatted": f"R$ {amount:,.0f}".replace(",", "."),
-                "lessons_month": freq * 4,
-            }
-    except Exception as e:
-        frappe.log_error(f"Error fetching english plans: {e}", "Vedium LMS")
-    return plans
+    return get_frequency_plans_for_display(course_name, "BRL")
 
 
 def _redirect_app_root_to_login():

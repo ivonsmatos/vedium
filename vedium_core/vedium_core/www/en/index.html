@@ -358,7 +358,7 @@
                                 </div>
                                 <h2 class="main-slider__content-title">English That <br>Opens Doors</h2>
                                 <p class="main-slider__content-text">A complete program across 6 progressive levels.<br>
-                                    Live classes with native teachers from <strong>US$ 120/month</strong>.
+                                    Live classes with native teachers from <strong>{{ english_plans.get(1, {}).get('formatted', 'US$ 44') }}/month</strong>.
                                 </p>
                                 <div class="main-slider__content-btn">
                                     <a href="/teste-de-nivel-ingles" class="thm-btn">Take the free placement test</a>
@@ -598,7 +598,7 @@
                             <div style="font-size:36px;margin-bottom:8px;">📖</div>
                             <h4 style="font-size:18px;font-weight:700;color:#222;">1 Class per Week</h4>
                             <p style="color:#888;font-size:14px;margin:8px 0 20px;">Ideal for keeping up your practice</p>
-                            <div style="font-size:42px;font-weight:800;color:#2563eb;line-height:1;">US$ 120</div>
+                            <div style="font-size:42px;font-weight:800;color:#2563eb;line-height:1;">{{ english_plans.get(1, {}).get('formatted', 'US$ 44') }}</div>
                             <div style="font-size:13px;color:#999;margin-bottom:24px;">/month</div>
                             <ul style="list-style:none;padding:0;margin:0 0 28px;text-align:left;font-size:14px;color:#555;">
                                 <li style="padding:6px 0;">✓ 4 classes/month (1h each)</li>
@@ -618,7 +618,7 @@
                             <div style="font-size:36px;margin-bottom:8px;">🎯</div>
                             <h4 style="font-size:18px;font-weight:700;color:#fff;">2 Classes per Week</h4>
                             <p style="color:rgba(255,255,255,.75);font-size:14px;margin:8px 0 20px;">The perfect balance</p>
-                            <div style="font-size:42px;font-weight:800;color:#fff;line-height:1;">US$ 220</div>
+                            <div style="font-size:42px;font-weight:800;color:#fff;line-height:1;">{{ english_plans.get(2, {}).get('formatted', 'US$ 80') }}</div>
                             <div style="font-size:13px;color:rgba(255,255,255,.65);margin-bottom:24px;">/month</div>
                             <ul style="list-style:none;padding:0;margin:0 0 28px;text-align:left;font-size:14px;color:rgba(255,255,255,.9);">
                                 <li style="padding:6px 0;">✓ 8 classes/month (1h each)</li>
@@ -637,7 +637,7 @@
                             <div style="font-size:36px;margin-bottom:8px;">🚀</div>
                             <h4 style="font-size:18px;font-weight:700;color:#222;">3 Classes per Week</h4>
                             <p style="color:#888;font-size:14px;margin:8px 0 20px;">Recommended for faster fluency</p>
-                            <div style="font-size:42px;font-weight:800;color:#2563eb;line-height:1;">US$ 320</div>
+                            <div style="font-size:42px;font-weight:800;color:#2563eb;line-height:1;">{{ english_plans.get(3, {}).get('formatted', 'US$ 120') }}</div>
                             <div style="font-size:13px;color:#999;margin-bottom:24px;">/month</div>
                             <ul style="list-style:none;padding:0;margin:0 0 28px;text-align:left;font-size:14px;color:#555;">
                                 <li style="padding:6px 0;">✓ 12 classes/month (1h each)</li>
@@ -656,7 +656,7 @@
                             <div style="font-size:36px;margin-bottom:8px;">⚡</div>
                             <h4 style="font-size:18px;font-weight:700;color:#222;">4 Classes per Week</h4>
                             <p style="color:#888;font-size:14px;margin:8px 0 20px;">Full, accelerated immersion</p>
-                            <div style="font-size:42px;font-weight:800;color:#2563eb;line-height:1;">US$ 430</div>
+                            <div style="font-size:42px;font-weight:800;color:#2563eb;line-height:1;">{{ english_plans.get(4, {}).get('formatted', 'US$ 160') }}</div>
                             <div style="font-size:13px;color:#999;margin-bottom:24px;">/month</div>
                             <ul style="list-style:none;padding:0;margin:0 0 28px;text-align:left;font-size:14px;color:#555;">
                                 <li style="padding:6px 0;">✓ 16 classes/month (1h each)</li>
