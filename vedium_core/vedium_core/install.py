@@ -28,7 +28,19 @@ def after_migrate():
     _remove_ai_tutor_artifacts()
     _ensure_raven_realtime_patch()
     _ensure_usd_plans()
+    _ensure_crm_pipeline()
     _clear_module_cache()
+
+
+def _ensure_crm_pipeline():
+    # Garante as origens (CRM Lead Source) usadas pelos formulários do site, pra
+    # o lead nascer no estágio/origem certos (P3). Idempotente e nunca fatal.
+    try:
+        from vedium_core.crm_pipeline import ensure_crm_pipeline
+
+        ensure_crm_pipeline()
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.install.ensure_crm_pipeline")
 
 
 def _ensure_usd_plans():

@@ -83,6 +83,8 @@ def _upsert_crm_lead_from_public_intent(intent, name, email, phone, company, tea
         frappe.get_doc("CRM Lead", existing).add_comment("Comment", note)
         return
 
+    from vedium_core.crm_pipeline import resolve_lead_source, resolve_lead_status
+
     lead = frappe.new_doc("CRM Lead")
     lead.first_name = parts[0]
     if len(parts) > 1:
@@ -91,7 +93,20 @@ def _upsert_crm_lead_from_public_intent(intent, name, email, phone, company, tea
     lead.email = email
     if phone:
         lead.mobile_no = phone
-    lead.source = f"Website {intent_label}"
+    # source é Link para CRM Lead Source — precisa ser um registro VÁLIDO, senão
+    # o insert falha (era o bug: "Website <intent>" não existia → lead perdido).
+    source = resolve_lead_source(intent)
+    if source:
+        lead.source = source
+    status = resolve_lead_status(intent)
+    if status:
+        lead.status = status
+    if course:
+        # Estrutura o curso de interesse (custom field) além do comentário.
+        try:
+            lead.custom_curso_interesse = course
+        except Exception:
+            pass
     if company:
         try:
             lead.organization = company

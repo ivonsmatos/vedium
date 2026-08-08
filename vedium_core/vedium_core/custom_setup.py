@@ -296,6 +296,17 @@ CUSTOM_FIELDS = {
             "read_only": 1,
         },
     ],
+    "CRM Lead": [
+        {
+            # Curso/idioma de interesse informado no formulário do site. Estrutura
+            # o dado (antes só ia no comentário) → segmentação no CRM + atributo
+            # COURSE no Brevo para a nutrição de lead (A01/A02). Ver crm_pipeline.py.
+            "fieldname": "custom_curso_interesse",
+            "label": "Curso de interesse",
+            "fieldtype": "Data",
+            "insert_after": "source",
+        },
+    ],
     "Integration Request": [
         {
             "fieldname": "custom_vedium_attempts",
