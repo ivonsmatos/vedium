@@ -274,6 +274,17 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_payment_currency",
             "read_only": 1,
         },
+        {
+            # Maior marco de progresso (25/50/75/100%) já notificado ao Brevo
+            # (fluxo A10). Anti-duplicidade: só emite quando cruza um marco novo.
+            # Ver vedium_core/gamification.py::handle_course_progress_milestone.
+            "fieldname": "custom_last_progress_milestone",
+            "label": "Último marco de progresso notificado (%)",
+            "fieldtype": "Int",
+            "default": "0",
+            "insert_after": "custom_activation_nudged_on",
+            "read_only": 1,
+        },
     ],
     "Integration Request": [
         {

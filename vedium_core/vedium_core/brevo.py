@@ -345,6 +345,35 @@ def track_event(
     return _request("POST", "/events", payload)
 
 
+def emit_contact_event(
+    email: str,
+    event_name: str,
+    *,
+    event_properties: dict | None = None,
+    contact_properties: dict | None = None,
+) -> dict:
+    """Dispara um evento de contato pro Brevo, guardado e best-effort.
+
+    No-op se a integração estiver desligada; nunca lança (falha só loga). Usado
+    por emissores pontuais de evento fora do fluxo de matrícula (ex.: marcos de
+    progresso A10 em gamification.py, ativação em student_onboarding.py) — NÃO
+    faz dedup durável (o chamador é responsável pela idempotência via um marcador
+    próprio, ex.: custom_last_progress_milestone)."""
+    if not is_enabled() or not email or email in ("Guest", "Administrator"):
+        return {"skipped": True}
+    try:
+        track_event(
+            event_name,
+            email,
+            event_properties=event_properties or None,
+            contact_properties=contact_properties or None,
+        )
+        return {"sent": event_name}
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), f"Vedium.Brevo.event.{event_name}")
+        return {"error": True}
+
+
 def _event_key(*parts: Any) -> str:
     raw = "|".join(str(part or "") for part in parts)
     digest = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:40]

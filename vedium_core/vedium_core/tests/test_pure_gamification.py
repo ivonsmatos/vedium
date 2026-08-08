@@ -61,6 +61,25 @@ def test_milestone_coupon_is_deterministic_and_durable():
     assert '"portugues-para-estrangeiros-avancado":' not in GAMIFICATION.split("MILESTONE_NEXT_COURSE = {")[1].split("}")[0]
 
 
+def test_progress_milestone_emits_brevo_event_idempotently():
+    """Ao cruzar 25/50/75/100% pela 1ª vez, emite o evento Brevo
+    `progress_milestone` (fluxo A10) — só evento, sem sendmail (Brevo é dono do
+    corpo). Idempotência durável via LMS Enrollment.custom_last_progress_milestone
+    (não cache), e a checagem de marco roda dentro da conclusão de lição."""
+    assert "PROGRESS_MILESTONES = (25, 50, 75, 100)" in GAMIFICATION
+    assert "def handle_course_progress_milestone(doc):" in GAMIFICATION
+    assert "handle_course_progress_milestone(doc)" in GAMIFICATION.split(
+        "def handle_lesson_completion(doc, method):", 1
+    )[1].split("@staticmethod", 1)[0]
+    assert 'emit_contact_event(' in GAMIFICATION
+    assert '"progress_milestone"' in GAMIFICATION
+    assert "custom_last_progress_milestone" in GAMIFICATION
+    # anti-duplicidade: só marco MAIOR que o último notificado
+    assert "reached <= last" in GAMIFICATION
+    # progresso = lições concluídas / total (status nativo do LMS = "Complete")
+    assert '"status": "Complete"' in GAMIFICATION
+
+
 def test_levels_are_monotonic_and_start_at_zero():
     levels_src = GAMIFICATION.split("LEVELS = [")[1].split("]")[0]
     thresholds = []

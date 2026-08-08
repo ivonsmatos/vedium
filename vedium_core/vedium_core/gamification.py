@@ -20,6 +20,12 @@ MILESTONE_NEXT_COURSE = {
 MILESTONE_DISCOUNT_PERCENT = 10
 MILESTONE_COUPON_VALID_DAYS = 90
 
+# Marcos de progresso do curso (%). Ao cruzar cada um pela 1ª vez, emitimos o
+# evento Brevo `progress_milestone` que dispara o fluxo A10 do kit de e-mail
+# (ver Cliente/Vedium/emailmkt e [[project_email_lifecycle_brevo]]). Só evento —
+# o Brevo é o dono do corpo/entrega; nada de sendmail aqui.
+PROGRESS_MILESTONES = (25, 50, 75, 100)
+
 
 def get_level(points):
     """Nome do nível para uma quantidade de pontos."""
@@ -72,10 +78,18 @@ class Gamification:
 
     @staticmethod
     def handle_lesson_completion(doc, method):
-        """Recompensa padrão para conclusão de uma lição."""
+        """Recompensa padrão para conclusão de uma lição + verificação de marco
+        de progresso (evento Brevo A10). Nenhum dos dois pode quebrar o salvar
+        do progresso do aluno."""
         Gamification.add_points(
             doc.member, 10, f"completing a lesson in {doc.course}"
         )
+        try:
+            handle_course_progress_milestone(doc)
+        except Exception:
+            frappe.log_error(
+                frappe.get_traceback(), "Vedium.gamification.progress_milestone"
+            )
 
     @staticmethod
     def handle_quiz_submission(doc, method):
@@ -136,6 +150,70 @@ def handle_quiz_submission(doc, method=None):
 def handle_certificate_issued(doc, method=None):
     """Hook importavel pelo Frappe para emissao de certificado."""
     return Gamification.handle_certificate_issued(doc, method)
+
+
+def _course_progress_percent(member, course):
+    """% de progresso do aluno no curso = lições concluídas / total de lições.
+    Robusto: 0 se o curso não tem lições (evita divisão por zero)."""
+    total = frappe.db.count("Course Lesson", {"course": course})
+    if not total:
+        return 0
+    completed = frappe.db.count(
+        "LMS Course Progress",
+        {"member": member, "course": course, "status": "Complete"},
+    )
+    return int(round(completed * 100 / total))
+
+
+def handle_course_progress_milestone(doc):
+    """Ao concluir uma lição, se o aluno cruzou um marco novo (25/50/75/100%),
+    emite o evento Brevo `progress_milestone` (fluxo A10). Idempotente via
+    LMS Enrollment.custom_last_progress_milestone — cada marco dispara uma vez.
+    Só emite evento (Brevo é dono do e-mail); no-op se Brevo desligado."""
+    member = getattr(doc, "member", None)
+    course = getattr(doc, "course", None)
+    if not member or not course or member in ("Administrator", "Guest"):
+        return
+
+    enr = frappe.db.get_value(
+        "LMS Enrollment",
+        {"member": member, "course": course},
+        ["name", "custom_last_progress_milestone"],
+        as_dict=True,
+    )
+    if not enr:
+        return
+
+    pct = _course_progress_percent(member, course)
+    reached = 0
+    for m in PROGRESS_MILESTONES:
+        if pct >= m:
+            reached = m
+    last = int(enr.custom_last_progress_milestone or 0)
+    if not reached or reached <= last:
+        return
+
+    from vedium_core import brevo
+
+    course_title = frappe.db.get_value("LMS Course", course, "title") or course
+    email = frappe.db.get_value("User", member, "email") or member
+    brevo.emit_contact_event(
+        email,
+        "progress_milestone",
+        event_properties={
+            "enrollment_id": enr.name,
+            "course": course_title,
+            "course_level": course_title,
+            "milestone": reached,
+            "progress_percent": pct,
+            "progress_url": brevo.STUDENT_PORTAL_URL,
+            "student_portal_url": brevo.STUDENT_PORTAL_URL,
+        },
+        contact_properties={"COURSE": course_title},
+    )
+    frappe.db.set_value(
+        "LMS Enrollment", enr.name, "custom_last_progress_milestone", reached
+    )
 
 
 def _grant_milestone_coupon(member, course_name):
