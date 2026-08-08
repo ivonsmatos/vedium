@@ -25,9 +25,8 @@ banco (`curso.py` / catálogo Stripe), nunca hardcoded na página.
 - **Duração da aula:** 🟡 60 min (a validar/confirmar como padrão oficial).
 - **Avaliação:** 🟡 diagnóstico na entrada + atividades ao longo + avaliação
   final para certificar (a validar o formato exato por idioma).
-- **Certificado:** incluído no preço (não cobrado à parte). ⚠️ Ver
-  [inconsistências](#inconsistências-a-resolver) — a *feature* está desligada
-  hoje no LMS.
+- **Certificado:** ✅ incluído no preço, **ganho por avaliação** com o professor
+  (não cobrado à parte). Ligado em 20/20 cursos desde 2026-08-08.
 - **CTA:** `Matrícula` (checkout Stripe, funcionando) + `Aula experimental /
   diagnóstica` (páginas `aula-diagnostica.html` existem no site).
 
@@ -82,8 +81,9 @@ maiores custam mais, com desconto por frequência — grade completa no Stripe.
 | Avançado | `espanhol-avancado` | B2→C1 | R$ 497 | Fluência refinada; chegar ao C1 | ~48–64h |
 
 **Público 🟡:** brasileiros que querem espanhol para carreira/viagem na América Latina/Espanha.
-**Professor ✅:** Lupita Samayoa (`lupitasamayoa3@gmail.com`) — instrutora.
-🔴 **evaluator NÃO setado** (corrigir: usar a instrutora).
+**Professor ✅ (2026-08-08):** Salomón Bernardo Vinitsky (`vinitskysalomon@gmail.com`) —
+evaluator + instrutor. Lupita Samayoa (`lupitasamayoa3@gmail.com`) permanece como
+co-instrutora. 🟡 **Confirmar:** Lupita segue dando Espanhol ou Salomón assume sozinho?
 
 ## Hebraico — 5 ofertas · preço escala por nível
 
@@ -96,8 +96,8 @@ maiores custam mais, com desconto por frequência — grade completa no Stripe.
 | Particular 1:1 | `hebraico-particular` | Sob medida | ⚠️ ver abaixo | Aula individual personalizada |
 
 **Público 🟡:** estudo religioso/bíblico, aliá, herança judaica.
-🔴 **Professor NÃO definido** — instrutor atual = `Administrator` (placeholder).
-Sem professor real, avaliação/certificado do Hebraico **não roda**.
+**Professor ✅ (2026-08-08):** Salomón Bernardo Vinitsky (`vinitskysalomon@gmail.com`)
+— evaluator + instrutor nos 5 (placeholder `Administrator` removido).
 🔴 **`hebraico-particular`:** `course_price` = R$ 140 no LMS, mas a memória/checkout
 indicam plano recorrente legado **~R$ 1.120/mês** (`custom_stripe_*`, fora do
 catálogo por frequência). Preço divergente — **precisa ser reconciliado**.
@@ -109,20 +109,21 @@ catálogo por frequência). Preço divergente — **precisa ser reconciliado**.
 Levantadas em 2026-08-08 ao extrair a matriz. São o backlog de "fazer as
 camadas falarem a mesma coisa":
 
-1. 🔴 **Certificado desligado em 100% dos cursos** (`enable_certification=0`),
-   mas a oferta promete certificado. **Decisão 2026-08-08: ligar em todos.**
-   Requer evaluator em cada curso (ver #2). *A codificar em `pedagogical_setup`
-   p/ não regredir de novo.*
-2. 🔴 **Sem evaluator:** Espanhol (→ usar Lupita) e Hebraico (→ **falta
-   professor real**). Sem evaluator, o fluxo de avaliação/Google Meet não gera.
-3. 🟡 **`paid_certificate` inconsistente:** =1 em Inglês/Iorubá/PLE, =0 em
-   Espanhol/Hebraico. Definir o modelo único (certificado incluído via
-   `purchased_certificate` auto-marcado, ou cobrado à parte).
+1. ✅ **RESOLVIDO 2026-08-08 — Certificação ligada em 20/20 cursos pagos.**
+   Modelo: **por avaliação, incluída no preço** (`enable_certification=1` +
+   `paid_certificate=0` — o LMS proíbe os dois juntos). Codificado em
+   `pedagogical_setup.ensure_course_certification` (roda no `after_migrate`,
+   não regride).
+2. ✅ **RESOLVIDO 2026-08-08 — Evaluators atribuídos em todos.** Espanhol e
+   Hebraico → **Salomón Bernardo Vinitsky** (criado usuário + registro Course
+   Evaluator). Codificado em `pedagogical_setup.ensure_language_teachers`.
+3. ✅ **RESOLVIDO 2026-08-08 — `paid_certificate` padronizado = 0** em todos
+   (modelo único: certificação por avaliação, incluída).
 4. 🔴 **`hebraico-particular`** com preço divergente (R$ 140 no LMS vs
-   ~R$ 1.120/mês no checkout legado).
+   ~R$ 1.120/mês no checkout legado). **Decisão comercial pendente.**
 5. 🟡 **Filosofia de preço mista:** Inglês/Iorubá são flat; Espanhol/Hebraico
    escalam por nível; PLE tem básico mais barato. Não é erro — mas precisa ser
-   **escolha consciente e comunicada**, não acidente histórico.
+   **escolha consciente e comunicada**, não acidente histórico. **Pendente.**
 
 ## Campos 🟡 que dependem da coordenação (não inventar)
 
