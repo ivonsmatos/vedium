@@ -519,6 +519,8 @@ def _dispatch_event(event_type, obj):
         _invoice_paid(obj)
     elif event_type == "invoice.payment_failed":
         _invoice_failed(obj)
+    elif event_type == "invoice.upcoming":
+        _invoice_upcoming(obj)
     elif event_type == "customer.subscription.updated":
         _subscription_updated(obj)
     elif event_type == "customer.subscription.deleted":
@@ -771,6 +773,55 @@ def _invoice_failed(invoice):
             enrollment_name=enrollment.name,
             stage="failed",
         )
+
+
+def _invoice_upcoming(invoice):
+    """invoice.upcoming: o Stripe avisa alguns dias antes da próxima fatura.
+    Emite o evento Brevo `payment_due_soon` (fluxo A20-01, lembrete de
+    vencimento). Só evento — o Brevo é dono do corpo/entrega; sem sendmail e sem
+    gate (não há e-mail interino de vencimento no Frappe). Requer o evento
+    `invoice.upcoming` habilitado no webhook do Stripe (ver doc 16)."""
+    subscription_id = invoice_subscription_id(invoice)
+    name = _find_enrollment(subscription_id)
+    if not name:
+        return
+    enrollment = frappe.get_doc("LMS Enrollment", name)
+    if enrollment.custom_vedium_status in {"Suspended", "Cancelled", "Ended", "Expired"}:
+        return
+
+    email = frappe.db.get_value("User", enrollment.member, "email") or enrollment.member
+    if not email or "@" not in str(email):
+        return
+    course_title = (
+        frappe.db.get_value("LMS Course", enrollment.course, "title") or enrollment.course
+    )
+    amount = (invoice.get("amount_due") or 0) / 100
+    currency = (
+        invoice.get("currency") or enrollment.custom_contract_currency or "brl"
+    ).upper()
+    due_ts = invoice.get("next_payment_attempt") or invoice.get("period_end")
+    due_date = None
+    if due_ts:
+        from datetime import datetime, timezone
+
+        due_date = datetime.fromtimestamp(int(due_ts), tz=timezone.utc).strftime("%d/%m/%Y")
+
+    from vedium_core import brevo
+
+    brevo.emit_contact_event(
+        email,
+        "payment_due_soon",
+        event_properties={
+            "enrollment_id": enrollment.name,
+            "course": course_title,
+            "course_level": course_title,
+            "amount": brevo._format_amount(amount, currency) if amount else None,
+            "due_date": due_date,
+            "billing_url": brevo.BILLING_PORTAL_URL,
+            "payment_update_url": brevo.BILLING_PORTAL_URL,
+        },
+        contact_properties={"COURSE": course_title},
+    )
 
 
 def _billing_portal_url(customer_id):

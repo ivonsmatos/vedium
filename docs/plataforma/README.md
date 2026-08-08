@@ -46,8 +46,10 @@ não se repita.
 | 12 | [Runbook de Operação & Deploy](12-runbook-de-operacao.md) | Como deploya, footguns, logs, rollback | ✅ |
 | 13 | [Catálogo de Produtos & Preços](13-catalogo-de-produtos.md) | Cursos publicados, slugs, níveis, preços, professor | ✅ |
 | 14 | [Atendimento ao Aluno e Canais de Suporte](14-atendimento-e-tutor-ia.md) | Dúvidas humanas, LMS/Raven/Helpdesk e decisão de não usar tutor IA | ✅ |
+| 15 | [Registro de Aula Vedium](15-registro-de-aula-vedium.md) | Doctype de registro/diário de aula | ✅ |
+| 16 | [Brevo — Setup Externo (checklist do dono)](16-brevo-setup-externo.md) | O que fazer no painel do Brevo (+Stripe) p/ ligar o kit de e-mail e o cutover | ✅ |
 
-Todos os documentos planejados desta pasta estão escritos (05-14).
+Todos os documentos planejados desta pasta estão escritos (05-16).
 
 Legenda: ✅ escrito · ⏳ a escrever
 

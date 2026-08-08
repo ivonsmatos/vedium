@@ -182,6 +182,19 @@ def test_price_currency_and_plan_validation_are_mandatory():
     assert "A moeda exibida diverge da moeda do plano Stripe." in BILLING
 
 
+def test_invoice_upcoming_emits_payment_due_soon_event():
+    """invoice.upcoming (lembrete de vencimento A20-01) despacha pra
+    _invoice_upcoming, que emite o evento Brevo payment_due_soon — só evento,
+    sem sendmail (Brevo é dono do corpo)."""
+    assert 'elif event_type == "invoice.upcoming":' in BILLING
+    assert "_invoice_upcoming(obj)" in BILLING
+    assert "def _invoice_upcoming(invoice):" in BILLING
+    block = BILLING.split("def _invoice_upcoming(invoice):", 1)[1].split("\ndef ", 1)[0]
+    assert '"payment_due_soon"' in block
+    assert "emit_contact_event" in block
+    assert "frappe.sendmail" not in block
+
+
 def test_status_changes_use_document_save_to_trigger_lms_hooks():
     block = BILLING.split("def _save_enrollment", 1)[1].split(
         "def suspend_overdue_enrollments", 1
