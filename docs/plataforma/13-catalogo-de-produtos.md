@@ -81,9 +81,8 @@ maiores custam mais, com desconto por frequência — grade completa no Stripe.
 | Avançado | `espanhol-avancado` | B2→C1 | R$ 497 | Fluência refinada; chegar ao C1 | ~48–64h |
 
 **Público 🟡:** brasileiros que querem espanhol para carreira/viagem na América Latina/Espanha.
-**Professor ✅ (2026-08-08):** Salomón Bernardo Vinitsky (`vinitskysalomon@gmail.com`) —
-evaluator + instrutor. Lupita Samayoa (`lupitasamayoa3@gmail.com`) permanece como
-co-instrutora. 🟡 **Confirmar:** Lupita segue dando Espanhol ou Salomón assume sozinho?
+**Professor ✅ (2026-08-08):** Lupita Samayoa / Guadalupe (`lupitasamayoa3@gmail.com`)
+— evaluator + instrutora (decisão do usuário: Lupita continua no Espanhol).
 
 ## Hebraico — 5 ofertas · preço escala por nível
 
@@ -93,14 +92,17 @@ co-instrutora. 🟡 **Confirmar:** Lupita segue dando Espanhol ou Salomón assum
 | Moderno A1 | `hebraico-moderno-a1` | A1 | R$ 397 | Comunicação básica em hebraico moderno |
 | Moderno A2/B1 | `hebraico-moderno-a2-b1` | A2→B1 | R$ 447 | Autonomia no hebraico moderno |
 | Bíblico — Leitura Guiada | `hebraico-biblico-leitura-guiada` | Nicho | R$ 497 | Ler textos bíblicos no original |
-| Particular 1:1 | `hebraico-particular` | Sob medida | ⚠️ ver abaixo | Aula individual personalizada |
+| Particular 1:1 | `hebraico-particular` | Sob medida | **R$ 450/mês (1x)** · anual R$ 351 | Aula individual personalizada |
 
 **Público 🟡:** estudo religioso/bíblico, aliá, herança judaica.
 **Professor ✅ (2026-08-08):** Salomón Bernardo Vinitsky (`vinitskysalomon@gmail.com`)
 — evaluator + instrutor nos 5 (placeholder `Administrator` removido).
-🔴 **`hebraico-particular`:** `course_price` = R$ 140 no LMS, mas a memória/checkout
-indicam plano recorrente legado **~R$ 1.120/mês** (`custom_stripe_*`, fora do
-catálogo por frequência). Preço divergente — **precisa ser reconciliado**.
+**`hebraico-particular` ✅ reprecificado 2026-08-08:** R$ 450/mês (1x/semana) =
+R$ 112,50/aula, margem ~60% sobre o custo de R$ 45/aula do professor. Escala por
+frequência (2–5x) com desconto de frequência de 10% da plataforma. Anual R$ 351/mês
+(22% off). *(Antes: R$ 1.120/mês legado — estava muito acima; R$ 140 do LMS estava
+ABAIXO do custo, prejuízo.)* 🟡 Avaliar remover o desconto de frequência p/ manter
+60% no 1:1 (custo escala linear).
 
 ---
 
@@ -114,13 +116,15 @@ camadas falarem a mesma coisa":
    `paid_certificate=0` — o LMS proíbe os dois juntos). Codificado em
    `pedagogical_setup.ensure_course_certification` (roda no `after_migrate`,
    não regride).
-2. ✅ **RESOLVIDO 2026-08-08 — Evaluators atribuídos em todos.** Espanhol e
-   Hebraico → **Salomón Bernardo Vinitsky** (criado usuário + registro Course
-   Evaluator). Codificado em `pedagogical_setup.ensure_language_teachers`.
+2. ✅ **RESOLVIDO 2026-08-08 — Evaluators atribuídos em todos.** Hebraico →
+   **Salomón Bernardo Vinitsky**; Espanhol → **Lupita Samayoa** (mantida, decisão
+   do usuário). Usuários + registros Course Evaluator garantidos. Codificado em
+   `pedagogical_setup.ensure_language_teachers` (auto-corretivo).
 3. ✅ **RESOLVIDO 2026-08-08 — `paid_certificate` padronizado = 0** em todos
    (modelo único: certificação por avaliação, incluída).
-4. 🔴 **`hebraico-particular`** com preço divergente (R$ 140 no LMS vs
-   ~R$ 1.120/mês no checkout legado). **Decisão comercial pendente.**
+4. ✅ **RESOLVIDO 2026-08-08 — `hebraico-particular` reprecificado** p/ R$ 450/mês
+   (1x, cost-plus sobre R$ 45/aula). Antes: R$ 1.120 legado / R$ 140 no LMS
+   (abaixo do custo). Site e checkout agora batem.
 5. 🟡 **Filosofia de preço mista:** Inglês/Iorubá são flat; Espanhol/Hebraico
    escalam por nível; PLE tem básico mais barato. Não é erro — mas precisa ser
    **escolha consciente e comunicada**, não acidente histórico. **Pendente.**
