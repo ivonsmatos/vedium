@@ -67,21 +67,42 @@ def ensure_course_certification():
 
 
 def ensure_language_teachers():
-    """Garante o usuário do professor + evaluator/instrutor nos cursos do idioma.
-    Remove instrutores placeholder (Administrator) preservando co-professores
-    reais. Sem isso, Espanhol/Hebraico ficavam sem evaluator e a avaliação/
-    certificado não rodava."""
+    """Garante o usuário do professor + registro de Course Evaluator + evaluator/
+    instrutor nos cursos do idioma. Remove instrutores placeholder (Administrator)
+    preservando co-professores reais. Sem isso, Espanhol/Hebraico ficavam sem
+    evaluator e a avaliação/certificado não rodava. Resiliente por-curso: uma
+    validação de curso legado não pode derrubar o resto."""
     for email, info in LANGUAGE_TEACHERS.items():
         try:
             _ensure_teacher_user(email, info["full_name"])
-            for course in info["courses"]:
-                if frappe.db.exists("LMS Course", course):
-                    _assign_course_teacher(course, email)
+            _ensure_course_evaluator(email, info["full_name"])
         except Exception:
             frappe.log_error(
-                frappe.get_traceback(), "Vedium.pedagogical.ensure_language_teachers"
+                frappe.get_traceback(), "Vedium.pedagogical.teacher_user"
             )
+            continue
+        for course in info["courses"]:
+            if not frappe.db.exists("LMS Course", course):
+                continue
+            try:
+                _assign_course_teacher(course, email)
+            except Exception:
+                frappe.log_error(
+                    frappe.get_traceback(), f"Vedium.pedagogical.assign:{course}"
+                )
     frappe.db.commit()
+
+
+def _ensure_course_evaluator(email, full_name):
+    """O campo `evaluator` do LMS Course liga ao doctype 'Course Evaluator'
+    (agenda de avaliação), não direto ao User. Sem esse registro, o link não
+    valida ('Could not find Evaluator')."""
+    if not frappe.db.exists("Course Evaluator", email):
+        frappe.get_doc({
+            "doctype": "Course Evaluator",
+            "evaluator": email,
+            "full_name": full_name,
+        }).insert(ignore_permissions=True)
 
 
 def _ensure_teacher_user(email, full_name):
