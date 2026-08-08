@@ -45,11 +45,14 @@ LANGUAGE_TEACHERS = {
 
 
 def ensure_course_certification():
-    """Certificado incluído no preço → certificação ligada em TODO curso pago
-    publicado. Idempotente. Foi setado à mão antes e regrediu (enable_certification
-    voltou a 0); codificar aqui garante que o deploy sempre reponha. O aluno
-    pagante não é cobrado de novo: create_enrollment_if_paid marca
-    purchased_certificate=1."""
+    """Certificação POR AVALIAÇÃO, incluída no preço, em TODO curso pago publicado:
+    enable_certification=1 + paid_certificate=0. O aluno ganha o certificado
+    passando na avaliação final com o professor (evaluator), sem cobrança à parte.
+
+    ⚠️ O LMS proíbe os dois juntos ('A course cannot have both paid certificate
+    and certificate of completion'), então paid_certificate TEM que ser 0 aqui.
+    Foi setado à mão antes e regrediu; codificar garante que o deploy reponha.
+    Idempotente."""
     courses = frappe.get_all(
         "LMS Course",
         filters={"published": 1, "paid_course": 1},
@@ -59,8 +62,8 @@ def ensure_course_certification():
         updates = {}
         if not c.enable_certification:
             updates["enable_certification"] = 1
-        if not c.paid_certificate:
-            updates["paid_certificate"] = 1
+        if c.paid_certificate:
+            updates["paid_certificate"] = 0
         if updates:
             frappe.db.set_value("LMS Course", c.name, updates)
     frappe.db.commit()
