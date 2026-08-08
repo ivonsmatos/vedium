@@ -16,12 +16,17 @@ banco (`curso.py` / catálogo Stripe), nunca hardcoded na página.
 
 ## Modelo comercial (decidido 2026-08-08)
 
-- **Modalidade:** assinatura recorrente **individual flexível** — o aluno
+- **Modalidade padrão:** assinatura recorrente **individual flexível** — o aluno
   escolhe de **1 a 5 aulas/semana**. (Turmas fixas em grupo existem só como
   piloto PLE em rascunho — não é venda pública ainda.)
-- **Plano:** mensal ou anual (anual ~-22%/mês; permanência mínima registrada).
-- **Frequência:** 1x a 5x/semana. O catálogo Stripe tem **190 preços** (19
-  cursos × 5 frequências × 2 planos) — ver [[project_catalog_price_rollout]].
+- **Exceção comercial:** `hebraico-particular` é vendido **somente no plano
+  mensal de 1 aula/semana por R$ 450/mês**. Não possui plano anual nem opções
+  2x–5x no checkout.
+- **Plano padrão:** mensal ou anual (anual ~-22%/mês; permanência mínima
+  registrada), exceto quando houver regra comercial explícita como a acima.
+- **Frequência padrão:** 1x a 5x/semana. O catálogo Stripe genérico cobre os
+  cursos que seguem essa matriz; ofertas excepcionais usam Subscription Plan
+  explícito e validação própria no backend.
 - **Duração da aula:** 🟡 60 min (a validar/confirmar como padrão oficial).
 - **Avaliação:** 🟡 diagnóstico na entrada + atividades ao longo + avaliação
   final para certificar (a validar o formato exato por idioma).
@@ -31,7 +36,8 @@ banco (`curso.py` / catálogo Stripe), nunca hardcoded na página.
   diagnóstica` (páginas `aula-diagnostica.html` existem no site).
 
 O **preço de destaque** abaixo é o **mensal a 1x/semana** (piso). Frequências
-maiores custam mais, com desconto por frequência — grade completa no Stripe.
+maiores custam mais nos cursos que seguem o catálogo flexível, com desconto por
+frequência — **Hebraico Particular é exceção e permanece fixo em 1x/semana**.
 
 ---
 
@@ -92,17 +98,17 @@ maiores custam mais, com desconto por frequência — grade completa no Stripe.
 | Moderno A1 | `hebraico-moderno-a1` | A1 | R$ 397 | Comunicação básica em hebraico moderno |
 | Moderno A2/B1 | `hebraico-moderno-a2-b1` | A2→B1 | R$ 447 | Autonomia no hebraico moderno |
 | Bíblico — Leitura Guiada | `hebraico-biblico-leitura-guiada` | Nicho | R$ 497 | Ler textos bíblicos no original |
-| Particular 1:1 | `hebraico-particular` | Sob medida | **R$ 450/mês (1x)** · anual R$ 351 | Aula individual personalizada |
+| Particular 1:1 | `hebraico-particular` | Sob medida | **R$ 450/mês (1x)** · sem anual | Aula individual personalizada |
 
 **Público 🟡:** estudo religioso/bíblico, aliá, herança judaica.
 **Professor ✅ (2026-08-08):** Salomón Bernardo Vinitsky (`vinitskysalomon@gmail.com`)
 — evaluator + instrutor nos 5 (placeholder `Administrator` removido).
-**`hebraico-particular` ✅ reprecificado 2026-08-08:** R$ 450/mês (1x/semana) =
-R$ 112,50/aula, margem ~60% sobre o custo de R$ 45/aula do professor. Escala por
-frequência (2–5x) com desconto de frequência de 10% da plataforma. Anual R$ 351/mês
-(22% off). *(Antes: R$ 1.120/mês legado — estava muito acima; R$ 140 do LMS estava
-ABAIXO do custo, prejuízo.)* 🟡 Avaliar remover o desconto de frequência p/ manter
-60% no 1:1 (custo escala linear).
+**`hebraico-particular` ✅ regra oficial 2026-08-08:** R$ 450/mês,
+**exclusivamente 1x/semana (4 aulas/mês)** = R$ 112,50/aula. Não há plano anual,
+nem frequência 2x–5x, nem desconto de frequência para essa oferta. O checkout
+usa um Subscription Plan explícito vinculado ao Price live
+`price_1U28ADJu78f2k3L08xHL5KCa`; o catálogo genérico 1–5x permanece bloqueado
+para esse curso para evitar regressão dos valores históricos.
 
 ---
 
@@ -122,9 +128,10 @@ camadas falarem a mesma coisa":
    `pedagogical_setup.ensure_language_teachers` (auto-corretivo).
 3. ✅ **RESOLVIDO 2026-08-08 — `paid_certificate` padronizado = 0** em todos
    (modelo único: certificação por avaliação, incluída).
-4. ✅ **RESOLVIDO 2026-08-08 — `hebraico-particular` reprecificado** p/ R$ 450/mês
-   (1x, cost-plus sobre R$ 45/aula). Antes: R$ 1.120 legado / R$ 140 no LMS
-   (abaixo do custo). Site e checkout agora batem.
+4. ✅ **RESOLVIDO 2026-08-08 — `hebraico-particular` alinhado** para R$ 450/mês,
+   1x/semana, sem anual e sem 2x–5x. Price live:
+   `price_1U28ADJu78f2k3L08xHL5KCa`. O backend rejeita combinações não
+   autorizadas e o Frappe migra para o Subscription Plan mensal explícito.
 5. 🟡 **Filosofia de preço mista:** Inglês/Iorubá são flat; Espanhol/Hebraico
    escalam por nível; PLE tem básico mais barato. Não é erro — mas precisa ser
    **escolha consciente e comunicada**, não acidente histórico. **Pendente.**
