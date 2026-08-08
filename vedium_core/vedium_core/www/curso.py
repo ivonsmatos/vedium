@@ -119,11 +119,22 @@ def get_context(context):
         "https://app.vediums.com/api/method/vedium_core.api.start_course_checkout"
         f"?course_name={quote(str(course_name))}"
     )
-    context.monthly_checkout_url = f"{checkout_base_url}&billing_period=monthly"
-    context.annual_checkout_url = f"{checkout_base_url}&billing_period=annual"
+    # Moeda por língua: páginas internacionais (não-PT) cobram em USD FIXO se o
+    # curso tiver preço USD; PT segue em BRL. (Decisão 2026-08-08.)
+    from vedium_core.usd_pricing import usd_monthly_amount
+
+    _is_intl = bool(req_lang) and req_lang != "pt-BR"
+    _usd_monthly = usd_monthly_amount(course_name) if _is_intl else None
+    _cur_qs = "&display_currency=USD" if _usd_monthly else ""
+    context.monthly_checkout_url = f"{checkout_base_url}&billing_period=monthly{_cur_qs}"
+    context.annual_checkout_url = f"{checkout_base_url}&billing_period=annual{_cur_qs}"
     context.checkout_url = context.monthly_checkout_url
     context.annual_price = None
-    if context.course.paid_course and context.course.course_price:
+    if _usd_monthly:
+        # Preço exibido em USD fixo (não câmbio); anual com moldura "2 meses grátis".
+        context.course.formatted_price = _format_price(float(_usd_monthly), "USD")
+        context.annual_price = _format_price(float(_usd_monthly) * 10, "USD")
+    elif context.course.paid_course and context.course.course_price:
         context.annual_price = _format_price(
             float(context.course.course_price or 0) * 10,
             context.course.currency,
