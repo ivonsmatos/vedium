@@ -154,7 +154,9 @@ def get_frequency_plans_for_display(course_name="ingl-s-beginner", currency="BRL
 
     plans = {}
     try:
-        data = get_course_purchase_options(course_name)
+        # Passa a moeda: cursos com plano USD fixo já voltam em USD (preço real,
+        # sem câmbio). O convert_amount abaixo só age se ainda restar divergência.
+        data = get_course_purchase_options(course_name, currency)
         monthly = next(
             (p for p in (data.get("plans") or []) if p.get("billing_period") == "monthly"),
             None,
@@ -179,8 +181,12 @@ def get_frequency_plans_for_display(course_name="ingl-s-beginner", currency="BRL
 
 
 @frappe.whitelist(allow_guest=True)
-def get_course_purchase_options(course_name):
-    """Return the commercially allowed purchase options for a paid course."""
+def get_course_purchase_options(course_name, currency=None):
+    """Return the commercially allowed purchase options for a paid course.
+
+    `currency="USD"` usa o plano USD fixo do curso (público internacional). BRL
+    (padrão) usa o catálogo/plano doméstico. PLE já é USD nativo pelo catálogo.
+    """
     real_course_name = get_internal_course_name(course_name)
     if not real_course_name or not frappe.db.exists("LMS Course", real_course_name):
         frappe.throw(_("Curso não encontrado."), frappe.DoesNotExistError)
@@ -190,22 +196,30 @@ def get_course_purchase_options(course_name):
     if not getattr(course, "paid_course", False):
         return {"is_paid": False, "plans": []}
 
-    catalog_status = is_catalog_complete(course.name, environment="live")
-    if catalog_status == "incomplete":
-        frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
+    from vedium_core.usd_pricing import usd_monthly_amount, usd_plan_name
 
-    if catalog_status is True:
-        monthly = _catalog_plan_payload(course.name, "monthly")
-        annual = _catalog_plan_payload(course.name, "annual")
+    currency = str(currency or "BRL").upper()
+    use_usd = currency == "USD" and usd_monthly_amount(course.name) is not None
+
+    if use_usd:
+        monthly = _plan_payload(usd_plan_name(course.name, "monthly"), "monthly")
+        annual = _plan_payload(usd_plan_name(course.name, "annual"), "annual")
     else:
-        monthly = _plan_payload(
-            getattr(course, "custom_stripe_monthly_plan", None),
-            "monthly",
-        )
-        annual = _plan_payload(
-            getattr(course, "custom_stripe_annual_plan", None),
-            "annual",
-        )
+        catalog_status = is_catalog_complete(course.name, environment="live")
+        if catalog_status == "incomplete":
+            frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
+        if catalog_status is True:
+            monthly = _catalog_plan_payload(course.name, "monthly")
+            annual = _catalog_plan_payload(course.name, "annual")
+        else:
+            monthly = _plan_payload(
+                getattr(course, "custom_stripe_monthly_plan", None),
+                "monthly",
+            )
+            annual = _plan_payload(
+                getattr(course, "custom_stripe_annual_plan", None),
+                "annual",
+            )
 
     restriction = get_checkout_restriction(course.name)
     if restriction:

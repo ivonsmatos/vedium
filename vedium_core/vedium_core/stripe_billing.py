@@ -27,6 +27,7 @@ from vedium_core.stripe_billing_rules import (
     refund_access_status,
 )
 from vedium_core.catalog_pricing import is_catalog_complete, get_course_price
+from vedium_core.usd_pricing import usd_monthly_amount, usd_plan_name
 
 
 ACTIVE_STRIPE_STATUSES = {"active", "trialing"}
@@ -36,14 +37,15 @@ EVENT_ID_PATTERN = re.compile(r"^evt_[A-Za-z0-9]+$")
 DEFAULT_FREQUENCY_COUPON_ID = "vedium-frequency-10"
 
 
-def get_subscription_plan(course, period):
+def get_subscription_plan(course, period, plan_name=None):
     period = normalize_period(period)
-    field = (
-        "custom_stripe_annual_plan"
-        if period == "annual"
-        else "custom_stripe_monthly_plan"
-    )
-    plan_name = getattr(course, field, None)
+    if not plan_name:
+        field = (
+            "custom_stripe_annual_plan"
+            if period == "annual"
+            else "custom_stripe_monthly_plan"
+        )
+        plan_name = getattr(course, field, None)
     if not plan_name:
         frappe.throw(_("O curso ainda não possui plano Stripe {0} vinculado.").format(period))
 
@@ -198,11 +200,16 @@ def create_subscription_checkout(
     base_url = frappe.utils.get_url()
     ga_client_id = _ga_client_id_from_cookie() or ""
 
+    # Público internacional (EN/ES) paga em USD com preço FIXO por curso: usa o
+    # Subscription Plan USD (caminho base+quantidade), não o catálogo BRL.
+    usd_amount = usd_monthly_amount(course.name)
+    use_usd = str(display_currency or "").upper() == "USD" and usd_amount is not None
+
     catalog_status = is_catalog_complete(course.name, environment="live")
     if catalog_status == "incomplete":
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
-        
-    if catalog_status is True:
+
+    if catalog_status is True and not use_usd:
         price_doc = get_course_price(course.name, period, frequency, environment="live")
         price_id = price_doc.stripe_price_id
         recurring_frequency_discount = float(price_doc.frequency_discount_percent or 0)
@@ -235,8 +242,15 @@ def create_subscription_checkout(
         params["line_items"][0]["quantity"] = 1
         has_catalog = True
     else:
-        plan = get_subscription_plan(course, period)
-        price = _retrieve_and_validate_price(stripe, course, plan, display_currency)
+        if use_usd:
+            plan = get_subscription_plan(
+                course, period, plan_name=usd_plan_name(course.name, period)
+            )
+            expected_currency = "USD"
+        else:
+            plan = get_subscription_plan(course, period)
+            expected_currency = display_currency
+        price = _retrieve_and_validate_price(stripe, course, plan, expected_currency)
         price_id = plan.product_price_id
         quote = frequency_quote((price.get("unit_amount") or 0) / 100, frequency)
         recurring_frequency_discount = float(frequency_discount_percent(frequency))
@@ -613,16 +627,44 @@ def _validate_subscription(subscription, session, course, user, period):
         frequency = normalize_classes_per_week(metadata.get("classes_per_week"))
     except ValueError as exc:
         frappe.throw(_(str(exc)), frappe.AuthenticationError)
-        
+
+    items = ((subscription.get("items") or {}).get("data") or [])
+    price_ids = {
+        (item.get("price") or {}).get("id")
+        for item in items
+        if isinstance(item.get("price"), dict)
+    }
+    quantities = [int(item.get("quantity") or 0) for item in items]
+
+    # Moeda real da assinatura (o item Stripe carrega a moeda do price).
+    sub_currency = None
+    for item in items:
+        price = item.get("price")
+        if isinstance(price, dict) and price.get("currency"):
+            sub_currency = price["currency"].upper()
+            break
+    use_usd = sub_currency == "USD" and usd_monthly_amount(course.name) is not None
+
     catalog_status = is_catalog_complete(course.name, environment="live")
     if catalog_status == "incomplete":
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."), frappe.AuthenticationError)
-        
-    if catalog_status is True:
+
+    # Resolve o que era ESPERADO conforme o mesmo roteamento do checkout.
+    if use_usd:
+        plan = get_subscription_plan(course, period, plan_name=usd_plan_name(course.name, period))
+        expected_discount = float(frequency_discount_percent(frequency))
+        expected_price_id = plan.product_price_id
+        expected_quantities = [frequency]
+    elif catalog_status is True:
         price_doc = get_course_price(course.name, period, frequency, environment="live")
         expected_discount = float(price_doc.frequency_discount_percent or 0)
+        expected_price_id = price_doc.stripe_price_id
+        expected_quantities = [1]
     else:
+        plan = get_subscription_plan(course, period)
         expected_discount = float(frequency_discount_percent(frequency))
+        expected_price_id = plan.product_price_id
+        expected_quantities = [frequency]
 
     expected = {
         "course_name": str(course.name),
@@ -638,33 +680,14 @@ def _validate_subscription(subscription, session, course, user, period):
     session_metadata = session.get("metadata") or {}
     if any(session_metadata.get(key) != value for key, value in expected.items()):
         frappe.throw(_("Metadados do Checkout Stripe inválidos"), frappe.AuthenticationError)
-        
-    items = ((subscription.get("items") or {}).get("data") or [])
-    price_ids = {
-        (item.get("price") or {}).get("id")
-        for item in items
-        if isinstance(item.get("price"), dict)
-    }
-    quantities = [int(item.get("quantity") or 0) for item in items]
-    
-    if catalog_status is True:
-        price_doc = get_course_price(course.name, period, frequency, environment="live")
-        if (
-            price_ids != {price_doc.stripe_price_id}
-            or metadata.get("price_id") != price_doc.stripe_price_id
-            or len(items) != 1
-            or quantities != [1]
-        ):
-            frappe.throw(_("Itens da assinatura Stripe inválidos (catálogo)"), frappe.AuthenticationError)
-    else:
-        plan = get_subscription_plan(course, period)
-        if (
-            price_ids != {plan.product_price_id}
-            or metadata.get("price_id") != plan.product_price_id
-            or len(items) != 1
-            or quantities != [frequency]
-        ):
-            frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
+
+    if (
+        price_ids != {expected_price_id}
+        or metadata.get("price_id") != expected_price_id
+        or len(items) != 1
+        or quantities != expected_quantities
+    ):
+        frappe.throw(_("Itens da assinatura Stripe inválidos"), frappe.AuthenticationError)
 
 
 def _find_enrollment(subscription_id):
