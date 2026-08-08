@@ -67,6 +67,7 @@ def ensure_usd_plans():
     product_price_id, PULA a Stripe (não bate na API a cada deploy). Só cria/ajusta
     quando falta ou o valor mudou. Nunca levanta — roda no after_migrate."""
     created = []
+    errors = []
     skipped = {"no_cfg": [], "already": []}
     for course_name, monthly in USD_MONTHLY_1X.items():
         cfg = CATALOG.get(course_name)
@@ -87,14 +88,13 @@ def ensure_usd_plans():
                 continue
             try:
                 price_id = _ensure_usd_price(course_name, period, product_id, amount)
-                _ensure_usd_subscription_plan(plan_name, price_id, amount)
+                _ensure_usd_subscription_plan(plan_name, price_id, amount, course_name)
                 created.append(plan_name)
-            except Exception:
-                frappe.log_error(
-                    frappe.get_traceback(), f"Vedium.usd_pricing:{course_name}:{period}"
-                )
+            except Exception as exc:
+                frappe.db.rollback()
+                errors.append(f"{course_name}:{period}: {type(exc).__name__}: {exc}")
     frappe.db.commit()
-    return {"created_or_updated": created, "skipped": skipped, "catalog_len": len(CATALOG)}
+    return {"created_or_updated": created, "skipped": skipped, "errors": errors}
 
 
 def _ensure_usd_price(course_name, period, product_id, amount) -> str:
@@ -124,16 +124,56 @@ def _ensure_usd_price(course_name, period, product_id, amount) -> str:
     return price.id
 
 
-def _ensure_usd_subscription_plan(plan_name, price_id, amount):
+def _ensure_usd_subscription_plan(plan_name, price_id, amount, course_name=None):
     if frappe.db.exists("Subscription Plan", plan_name):
         plan = frappe.get_doc("Subscription Plan", plan_name)
     else:
         plan = frappe.new_doc("Subscription Plan")
         plan.plan_name = plan_name
     plan.currency = "USD"
+    plan.price_determination = "Fixed Rate"
     plan.cost = float(amount)
     plan.billing_interval = "Month"
     plan.billing_interval_count = 1
     plan.payment_gateway = USD_GATEWAY
     plan.product_price_id = price_id
+    if course_name:
+        item = _ensure_course_item(course_name)
+        if item:
+            plan.item = item
     plan.save(ignore_permissions=True)
+
+
+def _ensure_course_item(course_name):
+    """Item ERPNext exigido pelo Subscription Plan. Reusa o Item do plano BRL do
+    mesmo curso se existir; senão cria um item de serviço mínimo."""
+    # Reusa o item de um Subscription Plan BRL já existente do mesmo curso.
+    title = frappe.db.get_value("LMS Course", course_name, "title") or course_name
+    existing_brl = frappe.db.get_value(
+        "Subscription Plan", f"Vedium — {title} — Mensal", "item"
+    )
+    if existing_brl:
+        return existing_brl
+
+    if not frappe.db.exists("DocType", "Item"):
+        return None
+
+    item_code = f"CURSO-{course_name.upper()}"
+    if frappe.db.exists("Item", item_code):
+        return item_code
+
+    group = frappe.db.get_value("Item Group", {"is_group": 0}, "name") or frappe.db.get_value(
+        "Item Group", {}, "name"
+    )
+    uom = frappe.db.get_value("UOM", {"name": "Unit"}, "name") or frappe.db.get_value("UOM", {}, "name")
+    item = frappe.get_doc({
+        "doctype": "Item",
+        "item_code": item_code,
+        "item_name": (title or course_name)[:140],
+        "item_group": group,
+        "stock_uom": uom,
+        "is_stock_item": 0,
+        "is_sales_item": 1,
+    })
+    item.insert(ignore_permissions=True)
+    return item.name
