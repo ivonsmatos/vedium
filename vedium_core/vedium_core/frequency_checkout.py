@@ -5,7 +5,9 @@ from __future__ import annotations
 import frappe
 from frappe import _
 
+from vedium_core.commercial_checkout_rules import validate_checkout_selection
 from vedium_core.frequency_pricing_rules import normalize_classes_per_week
+from vedium_core.stripe_billing_rules import normalize_period
 
 
 @frappe.whitelist()
@@ -15,7 +17,7 @@ def create_checkout_session(
     classes_per_week=1,
     display_currency=None,
 ):
-    """Create a Stripe subscription for 1 to 5 weekly classes.
+    """Create a Stripe subscription for an allowed weekly class frequency.
 
     The browser only sends the selected frequency. Price, recurring discount and
     Stripe Price ID are recalculated and validated on the server.
@@ -42,6 +44,8 @@ def create_checkout_session(
 
     try:
         frequency = normalize_classes_per_week(classes_per_week)
+        period = normalize_period(billing_period)
+        validate_checkout_selection(course_name, period, frequency)
     except ValueError as exc:
         frappe.throw(_(str(exc)))
 
@@ -56,7 +60,7 @@ def create_checkout_session(
     checkout_url = create_subscription_checkout(
         course,
         frappe.session.user,
-        billing_period=billing_period,
+        billing_period=period,
         display_currency=display_currency,
         classes_per_week=frequency,
     )
