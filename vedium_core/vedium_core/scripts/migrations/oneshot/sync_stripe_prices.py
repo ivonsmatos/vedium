@@ -33,7 +33,7 @@ def run(mode="audit"):
         "hebraico-moderno-a1": 39700,
         "hebraico-moderno-a2-b1": 44700,
         "hebraico-biblico-leitura-guiada": 49700,
-        "hebraico-particular": 112000
+        "hebraico-particular": 45000
     }
     
     def get_monthly_price(slug):
@@ -201,6 +201,16 @@ def run(mode="audit"):
                     frappe.db.set_value('LMS Course', c.name, field, plan_name)
 
         process_plan("Mensal", monthly_cents, False)
+
+        # Hebraico Particular é uma oferta comercial explícita de 1x/semana,
+        # R$450/mês. Não gerar nem religar plano anual por este script legado.
+        if "hebraico-particular" in c.name:
+            if getattr(c, 'custom_stripe_annual_plan', None):
+                results["Courses updated"] += 1
+                if is_apply:
+                    frappe.db.set_value('LMS Course', c.name, 'custom_stripe_annual_plan', None)
+            continue
+
         annual_cents = int(monthly_cents * 10 / 12)
         process_plan("Anual", annual_cents, True)
         
