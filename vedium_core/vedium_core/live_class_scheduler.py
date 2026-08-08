@@ -117,3 +117,97 @@ def generate_batch_live_classes(batch_name, weekdays, host=None, duration=None, 
         "created": created,
         "skipped_existing": skipped,
     }
+
+
+def _find_individual_batch(member, course):
+    """Turma-de-um (seat_count=1) do aluno para o curso, se já existe."""
+    rows = frappe.db.sql(
+        """
+        SELECT be.batch
+        FROM `tabLMS Batch Enrollment` be
+        JOIN `tabLMS Batch` b ON b.name = be.batch
+        JOIN `tabBatch Course` bc ON bc.parent = b.name
+        WHERE be.member = %s AND bc.course = %s AND b.seat_count = 1
+        LIMIT 1
+        """,
+        (member, course),
+    )
+    return rows[0][0] if rows else None
+
+
+def setup_individual_classes(
+    member,
+    course,
+    weekdays,
+    start_time,
+    end_time,
+    host,
+    start_date,
+    end_date,
+    timezone="America/Sao_Paulo",
+    google_meet_account="Vedium Meet",
+    duration=None,
+):
+    """1:1: cria (ou reusa) uma turma-de-um pro aluno+curso, matricula o aluno e
+    gera as aulas recorrentes. A coordenação define os slots (weekdays + horário).
+
+    bench --site <site> execute vedium_core.live_class_scheduler.setup_individual_classes \
+      --kwargs "{'member':'aluno@x.com','course':'ingl-s-beginner','weekdays':['terca','quinta'],'start_time':'19:00:00','end_time':'20:00:00','host':'kayode@vediums.com','start_date':'2026-08-11','end_date':'2026-11-11'}"
+    """
+    if not frappe.db.exists("User", member):
+        frappe.throw(f"Aluno não encontrado: {member}")
+    if not frappe.db.exists("LMS Course", course):
+        frappe.throw(f"Curso não encontrado: {course}")
+    if not host:
+        frappe.throw("Informe o host (e-mail do professor).")
+
+    student_name = frappe.db.get_value("User", member, "full_name") or member
+    course_title = frappe.db.get_value("LMS Course", course, "title") or course
+
+    batch_name = _find_individual_batch(member, course)
+    if not batch_name:
+        batch = frappe.get_doc({
+            "doctype": "LMS Batch",
+            "title": f"1:1 {student_name} — {course_title}"[:140],
+            "description": f"Aulas particulares 1:1 de {course_title}.",
+            "batch_details": f"<p>Aulas particulares 1:1 de <b>{course_title}</b> para {student_name}.</p>",
+            "start_date": start_date,
+            "end_date": end_date,
+            "start_time": start_time,
+            "end_time": end_time,
+            "timezone": timezone,
+            "medium": "Online",
+            "seat_count": 1,
+            "google_meet_account": google_meet_account,
+            "published": 1,
+            "allow_self_enrollment": 0,
+        })
+        batch.append("instructors", {"instructor": host})
+        batch.append("courses", {"course": course, "title": course_title})
+        batch.insert(ignore_permissions=True)
+        batch_name = batch.name
+    else:
+        # Reusa a turma existente; atualiza o período/horário caso mude.
+        frappe.db.set_value(
+            "LMS Batch",
+            batch_name,
+            {
+                "start_date": start_date,
+                "end_date": end_date,
+                "start_time": start_time,
+                "end_time": end_time,
+            },
+        )
+
+    if not frappe.db.exists("LMS Batch Enrollment", {"member": member, "batch": batch_name}):
+        frappe.get_doc({
+            "doctype": "LMS Batch Enrollment",
+            "member": member,
+            "batch": batch_name,
+        }).insert(ignore_permissions=True)
+
+    frappe.db.commit()
+    result = generate_batch_live_classes(batch_name, weekdays, host=host, duration=duration)
+    result["member"] = member
+    result["course"] = course
+    return result
