@@ -530,8 +530,17 @@ doc_events = {
     # Professor novo (ganhou a role "Vedium Professor") entra automaticamente
     # no Raven (usuário + membro do workspace) -- ver comunication.sync_new_professor.
     # Não adiciona a nenhum canal específico, isso é manual (admin escolhe).
+    # + on_user_became_professor: e-mail de orientação (uma vez, por transição de role).
     "User": {
-        "on_update": "vedium_core.communication.sync_new_professor",
+        "on_update": [
+            "vedium_core.communication.sync_new_professor",
+            "vedium_core.teacher_onboarding.on_user_became_professor",
+        ],
+    },
+    # Turma nova nasce "completa": canal Raven + professores recebem detalhes e
+    # checklist de início -- ver teacher_onboarding.on_batch_created.
+    "LMS Batch": {
+        "after_insert": "vedium_core.teacher_onboarding.on_batch_created",
     },
     "Discussion Reply": {
         "validate": "vedium_core.access_control.validate_discussion_reply",
