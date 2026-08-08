@@ -27,7 +27,19 @@ def after_migrate():
     _ensure_branding()
     _remove_ai_tutor_artifacts()
     _ensure_raven_realtime_patch()
+    _ensure_usd_plans()
     _clear_module_cache()
+
+
+def _ensure_usd_plans():
+    # Garante os preços/planos USD (público internacional). Idempotente e barato:
+    # pula a Stripe quando o plano já existe com o valor certo.
+    try:
+        from vedium_core.usd_pricing import ensure_usd_plans
+
+        ensure_usd_plans()
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.install.ensure_usd_plans")
 
 
 def _ensure_raven_realtime_patch():
