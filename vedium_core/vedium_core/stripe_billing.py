@@ -35,6 +35,9 @@ INACTIVE_STRIPE_STATUSES = {"canceled", "unpaid", "incomplete_expired", "paused"
 EVENT_PROCESSING_TIMEOUT_MINUTES = 5
 EVENT_ID_PATTERN = re.compile(r"^evt_[A-Za-z0-9]+$")
 DEFAULT_FREQUENCY_COUPON_ID = "vedium-frequency-10"
+# Dunning: dias (após a falha) em que se manda lembrete, dentro dos GRACE_DAYS.
+# Dia 0 = e-mail imediato na falha; suspensão no dia GRACE_DAYS (10).
+DUNNING_REMINDER_DAYS = (3, 7, 9)
 
 
 def get_subscription_plan(course, period, plan_name=None):
@@ -760,6 +763,122 @@ def _invoice_failed(invoice):
                 ),
             },
         )
+        # Dunning dia 0: avisa o aluno na hora, com link p/ atualizar o cartão.
+        frappe.enqueue(
+            "vedium_core.stripe_billing.send_dunning_email",
+            queue="short",
+            enqueue_after_commit=True,
+            enrollment_name=enrollment.name,
+            stage="failed",
+        )
+
+
+def _billing_portal_url(customer_id):
+    """URL do Portal de Cobrança Stripe (aluno atualiza cartão/gerencia assinatura).
+    None se não houver customer ou o portal não estiver configurado."""
+    if not customer_id:
+        return None
+    import stripe
+
+    stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY")
+    if not stripe.api_key:
+        return None
+    try:
+        session = stripe.billing_portal.Session.create(
+            customer=customer_id, return_url=frappe.utils.get_url("/lms")
+        )
+        return session.url
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.dunning.billing_portal")
+        return None
+
+
+@frappe.whitelist()
+def billing_portal_redirect():
+    """Redireciona o aluno logado para o Portal de Cobrança Stripe. É o destino do
+    link nos e-mails de dunning (exige login → cria sessão fresca do portal)."""
+    if frappe.session.user == "Guest":
+        frappe.throw(_("Faça login para gerenciar seu pagamento."), frappe.PermissionError)
+    customer = frappe.db.get_value(
+        "LMS Enrollment",
+        {"member": frappe.session.user, "custom_stripe_customer_id": ["is", "set"]},
+        "custom_stripe_customer_id",
+    )
+    url = _billing_portal_url(customer)
+    if not url:
+        frappe.throw(_("Não foi possível abrir o portal de cobrança agora."))
+    frappe.local.flags.redirect_location = url
+    raise frappe.Redirect
+
+
+def _dunning_copy(stage, days_left):
+    if stage == "failed":
+        return (
+            "Falha no pagamento da sua assinatura Vedium",
+            "Não conseguimos processar o pagamento da sua mensalidade.",
+        )
+    return (
+        f"Lembrete: regularize seu pagamento (faltam {days_left} dias)",
+        f"Seu pagamento ainda não foi regularizado. Você tem {days_left} dia(s) "
+        "antes que o acesso ao curso seja suspenso.",
+    )
+
+
+def send_dunning_email(enrollment_name, stage="failed"):
+    """Envia um e-mail de recuperação de pagamento com link pro portal Stripe.
+    No-op se a matrícula já regularizou (payment_failed_on limpo) ou saiu do ar."""
+    enrollment = frappe.get_doc("LMS Enrollment", enrollment_name)
+    if not enrollment.custom_payment_failed_on:
+        return
+    if enrollment.custom_vedium_status in {"Suspended", "Cancelled"}:
+        return
+
+    member = enrollment.member
+    email = frappe.db.get_value("User", member, "email") or member
+    if not email or "@" not in str(email):
+        return
+    course_title = frappe.db.get_value("LMS Course", enrollment.course, "title") or enrollment.course
+    days_since = (now_datetime() - get_datetime(enrollment.custom_payment_failed_on)).days
+    days_left = max(GRACE_DAYS - days_since, 0)
+    subject, intro = _dunning_copy(stage, days_left)
+    portal_link = f"{frappe.utils.get_url()}/api/method/vedium_core.stripe_billing.billing_portal_redirect"
+
+    message = f"""
+        <p>Olá,</p>
+        <p>{intro}</p>
+        <p>Curso: <b>{course_title}</b></p>
+        <p>Para manter seu acesso, atualize seu método de pagamento:</p>
+        <p><a href="{portal_link}" style="background:#2E6DA4;color:#fff;padding:10px 18px;
+        border-radius:6px;text-decoration:none;display:inline-block">Atualizar pagamento</a></p>
+        <p style="color:#666;font-size:13px">Se você já regularizou, ignore este e-mail.
+        Dúvidas? Fale com a equipe Vedium.</p>
+    """
+    try:
+        frappe.sendmail(recipients=[email], subject=subject, message=message)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.dunning.send_email")
+
+
+def send_dunning_reminders():
+    """Job diário: manda lembretes de dunning nos dias configurados, dentro da
+    tolerância, para matrículas com pagamento pendente ainda não suspensas."""
+    rows = frappe.get_all(
+        "LMS Enrollment",
+        filters={
+            "custom_payment_failed_on": ["is", "set"],
+            "custom_vedium_status": ["not in", ["Suspended", "Cancelled"]],
+        },
+        fields=["name", "custom_payment_failed_on"],
+    )
+    for row in rows:
+        days = (now_datetime() - get_datetime(row.custom_payment_failed_on)).days
+        if days in DUNNING_REMINDER_DAYS:
+            frappe.enqueue(
+                "vedium_core.stripe_billing.send_dunning_email",
+                queue="short",
+                enrollment_name=row.name,
+                stage="reminder",
+            )
 
 
 def _subscription_updated(subscription):

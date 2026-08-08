@@ -443,6 +443,7 @@ scheduler_events = {
     "daily": [
         "vedium_core.trial.expire_trials",
         "vedium_core.stripe_billing.suspend_overdue_enrollments",
+        "vedium_core.stripe_billing.send_dunning_reminders",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
