@@ -114,12 +114,14 @@ def _retrieve_and_validate_price(stripe, course, plan, display_currency=None):
 
     stripe_currency = (price.get("currency") or "").upper()
     plan_currency = (plan.currency or "").upper()
-    course_currency = (getattr(course, "currency", None) or plan_currency).upper()
     requested_currency = (display_currency or plan_currency).upper()
     if not stripe_currency or stripe_currency != plan_currency:
         frappe.throw(_("A moeda do Price Stripe diverge da moeda do plano."))
-    if course_currency != plan_currency or requested_currency != plan_currency:
-        frappe.throw(_("A moeda exibida, o curso e o plano Stripe precisam ser iguais."))
+    # A garantia que importa é anuncia==cobra: display == plano == preço Stripe.
+    # O internacional vende deliberadamente o curso doméstico (BRL) em USD, então
+    # NÃO se exige que course.currency bata com a do plano.
+    if requested_currency != plan_currency:
+        frappe.throw(_("A moeda exibida diverge da moeda do plano Stripe."))
 
     unit_amount = price.get("unit_amount")
     plan_cost = float(getattr(plan, "cost", 0) or 0)
