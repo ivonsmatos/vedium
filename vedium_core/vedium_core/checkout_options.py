@@ -6,6 +6,7 @@ import frappe
 from frappe import _
 
 from vedium_core.checkout_pricing_rules import annual_savings, money, twelve_month_total
+from vedium_core.commercial_checkout_rules import get_checkout_restriction
 from vedium_core.frequency_pricing_rules import (
     MAX_CLASSES_PER_WEEK,
     MIN_CLASSES_PER_WEEK,
@@ -29,10 +30,9 @@ def _catalog_plan_payload(course_name: str, billing_period: str):
                 "stripe_catalog": True,
             }
         )
-    
-    # Define as prioridades do plano baseando-se no registro de 1 aula (ou o primeiro)
+
     base_price = get_course_price(course_name, billing_period, 1, environment="live")
-    
+
     payload = {
         "billing_period": billing_period,
         "amount": float(base_price.amount),
@@ -63,7 +63,6 @@ def _catalog_plan_payload(course_name: str, billing_period: str):
         }
     )
     return payload
-
 
 
 def _frequency_payloads(unit_amount) -> list[dict]:
@@ -144,7 +143,7 @@ from vedium_core.course_urls import get_internal_course_name
 
 @frappe.whitelist(allow_guest=True)
 def get_course_purchase_options(course_name):
-    """Return monthly/annual prices and 1-5 weekly-class quotes for a course."""
+    """Return the commercially allowed purchase options for a paid course."""
     real_course_name = get_internal_course_name(course_name)
     if not real_course_name or not frappe.db.exists("LMS Course", real_course_name):
         frappe.throw(_("Curso não encontrado."), frappe.DoesNotExistError)
@@ -171,6 +170,27 @@ def get_course_purchase_options(course_name):
             "annual",
         )
 
+    restriction = get_checkout_restriction(course.name)
+    if restriction:
+        allowed_periods = set(restriction["billing_periods"])
+        allowed_frequencies = set(restriction["classes_per_week"])
+        if "monthly" not in allowed_periods:
+            monthly = None
+        if "annual" not in allowed_periods:
+            annual = None
+        for plan in (monthly, annual):
+            if plan:
+                plan["frequency_options"] = [
+                    option
+                    for option in plan["frequency_options"]
+                    if option["classes_per_week"] in allowed_frequencies
+                ]
+                if not plan["frequency_options"]:
+                    frappe.throw(_("Este curso não possui frequência comercial disponível."))
+                base_option = plan["frequency_options"][0]
+                plan["amount"] = float(base_option["amount"])
+                plan["subtotal"] = float(base_option["subtotal"])
+
     plans = [plan for plan in (monthly, annual) if plan]
     if not plans:
         frappe.throw(_("Este curso ainda não possui planos disponíveis."))
@@ -188,15 +208,25 @@ def get_course_purchase_options(course_name):
             option["savings"] = 0.0
             option["savings_period_months"] = 12
 
-    return {
-        "is_paid": True,
-        "course_name": course.name,
-        "course_title": getattr(course, "title", None) or course.name,
-        "frequency": {
+    if restriction:
+        frequency_payload = {
+            "minimum": min(restriction["classes_per_week"]),
+            "maximum": max(restriction["classes_per_week"]),
+            "discount_from": None,
+            "discount_percent": 0,
+        }
+    else:
+        frequency_payload = {
             "minimum": MIN_CLASSES_PER_WEEK,
             "maximum": MAX_CLASSES_PER_WEEK,
             "discount_from": 2,
             "discount_percent": 10,
-        },
+        }
+
+    return {
+        "is_paid": True,
+        "course_name": course.name,
+        "course_title": getattr(course, "title", None) or course.name,
+        "frequency": frequency_payload,
         "plans": plans,
     }
