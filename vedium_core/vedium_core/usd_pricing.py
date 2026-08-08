@@ -67,9 +67,11 @@ def ensure_usd_plans():
     product_price_id, PULA a Stripe (não bate na API a cada deploy). Só cria/ajusta
     quando falta ou o valor mudou. Nunca levanta — roda no after_migrate."""
     created = []
+    skipped = {"no_cfg": [], "already": []}
     for course_name, monthly in USD_MONTHLY_1X.items():
         cfg = CATALOG.get(course_name)
         if not cfg or not cfg.get("product_id"):
+            skipped["no_cfg"].append(course_name)
             continue
         product_id = cfg["product_id"]
         for period, amount in (
@@ -81,6 +83,7 @@ def ensure_usd_plans():
                 "Subscription Plan", plan_name, ["cost", "product_price_id"], as_dict=True
             )
             if existing and float(existing.cost) == float(amount) and existing.product_price_id:
+                skipped["already"].append(plan_name)
                 continue
             try:
                 price_id = _ensure_usd_price(course_name, period, product_id, amount)
@@ -91,7 +94,7 @@ def ensure_usd_plans():
                     frappe.get_traceback(), f"Vedium.usd_pricing:{course_name}:{period}"
                 )
     frappe.db.commit()
-    return {"created_or_updated": created}
+    return {"created_or_updated": created, "skipped": skipped, "catalog_len": len(CATALOG)}
 
 
 def _ensure_usd_price(course_name, period, product_id, amount) -> str:
