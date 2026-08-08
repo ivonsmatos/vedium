@@ -103,14 +103,17 @@ para trade-offs e critérios de adoção.
   produção: `apps/raven/raven/public/raven/assets/index-CXbC3MJi.js`
   (backup em `index-CXbC3MJi.js.bak-2026-07-13` no mesmo diretório,
   dentro do container `vedium-frappe`).
-- ⚠️ **Risco**: é um patch manual no arquivo **compilado/minificado** do
-  app, **não um commit git nem mudança no source do `frappe-react-sdk`**
-  — qualquer atualização/rebuild futuro do app `raven` (novo hash de
-  bundle, ex. deixa de ser `index-CXbC3MJi.js`) sobrescreve e desfaz a
-  correção sem aviso. Se o toast de realtime voltar a aparecer após uma
-  atualização do Raven, esse é o primeiro lugar a checar. Fix definitivo
-  seria via fork/PR upstream do `frappe-react-sdk` expondo `transports`
-  como prop do `FrappeProvider`.
+- ✅ **Robustez automatizada em 2026-08-07**: o patch agora é reaplicado de
+  forma **idempotente** por `vedium_core.raven_realtime.ensure_websocket_patch`,
+  chamado no `after_migrate` (roda em todo deploy). Um rebuild do Raven (novo
+  hash de bundle) é re-patchado automaticamente no próximo deploy — ou à mão com
+  `bench --site <site> execute vedium_core.raven_realtime.ensure_websocket_patch`.
+  O health check `raven.realtime` acusa se o patch sumir. `sites/assets/raven` é
+  symlink → patchar `apps/raven/.../public` já serve.
+- ⚠️ **Resíduo**: ainda é patch no bundle minificado, não fix no source do
+  `frappe-react-sdk`. Fix definitivo seria fork/PR upstream expondo `transports`
+  como prop do `FrappeProvider`. Se o toast de realtime voltar após atualizar o
+  Raven, rode o `ensure_websocket_patch` (ou cheque o health `raven.realtime`).
 
 ## Helpdesk (`helpdesk`)
 
