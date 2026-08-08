@@ -14,6 +14,114 @@ def ensure_pedagogical_setup():
     ensure_workflow()
     ensure_reports()
     ensure_workspace()
+    ensure_course_certification()
+    ensure_language_teachers()
+
+
+# Papéis de um professor/avaliador, espelhados dos que já funcionam (ex.: Kayode).
+# "Batch Evaluator" é o que habilita o fluxo de avaliação/agendamento.
+TEACHER_ROLES = ("Batch Evaluator", "Course Creator", "Moderator", "Raven User")
+
+# Instrutores placeholder que devem ser substituídos pelo professor real.
+PLACEHOLDER_INSTRUCTORS = ("Administrator",)
+
+# Professor (instrutor + evaluator) por curso. Editar aqui ao trocar de professor.
+# Fonte de verdade do vínculo idioma→professor, para não regredir a placeholder.
+LANGUAGE_TEACHERS = {
+    "vinitskysalomon@gmail.com": {
+        "full_name": "Salomón Bernardo Vinitsky",
+        "courses": [
+            "hebraico-a0-alfabetizacao",
+            "hebraico-moderno-a1",
+            "hebraico-moderno-a2-b1",
+            "hebraico-biblico-leitura-guiada",
+            "hebraico-particular",
+            "espanhol-basico",
+            "espanhol-intermediario",
+            "espanhol-avancado",
+        ],
+    },
+}
+
+
+def ensure_course_certification():
+    """Certificado incluído no preço → certificação ligada em TODO curso pago
+    publicado. Idempotente. Foi setado à mão antes e regrediu (enable_certification
+    voltou a 0); codificar aqui garante que o deploy sempre reponha. O aluno
+    pagante não é cobrado de novo: create_enrollment_if_paid marca
+    purchased_certificate=1."""
+    courses = frappe.get_all(
+        "LMS Course",
+        filters={"published": 1, "paid_course": 1},
+        fields=["name", "enable_certification", "paid_certificate"],
+    )
+    for c in courses:
+        updates = {}
+        if not c.enable_certification:
+            updates["enable_certification"] = 1
+        if not c.paid_certificate:
+            updates["paid_certificate"] = 1
+        if updates:
+            frappe.db.set_value("LMS Course", c.name, updates)
+    frappe.db.commit()
+
+
+def ensure_language_teachers():
+    """Garante o usuário do professor + evaluator/instrutor nos cursos do idioma.
+    Remove instrutores placeholder (Administrator) preservando co-professores
+    reais. Sem isso, Espanhol/Hebraico ficavam sem evaluator e a avaliação/
+    certificado não rodava."""
+    for email, info in LANGUAGE_TEACHERS.items():
+        try:
+            _ensure_teacher_user(email, info["full_name"])
+            for course in info["courses"]:
+                if frappe.db.exists("LMS Course", course):
+                    _assign_course_teacher(course, email)
+        except Exception:
+            frappe.log_error(
+                frappe.get_traceback(), "Vedium.pedagogical.ensure_language_teachers"
+            )
+    frappe.db.commit()
+
+
+def _ensure_teacher_user(email, full_name):
+    if frappe.db.exists("User", email):
+        user = frappe.get_doc("User", email)
+    else:
+        parts = full_name.split()
+        user = frappe.get_doc({
+            "doctype": "User",
+            "email": email,
+            "first_name": parts[0],
+            "last_name": " ".join(parts[1:]),
+            "user_type": "System User",
+            "send_welcome_email": 0,
+        })
+        user.flags.no_welcome_mail = True
+        user.insert(ignore_permissions=True)
+    existing = {r.role for r in user.roles}
+    changed = False
+    for role in TEACHER_ROLES:
+        if role not in existing and frappe.db.exists("Role", role):
+            user.append("roles", {"role": role})
+            changed = True
+    if changed:
+        user.save(ignore_permissions=True)
+
+
+def _assign_course_teacher(course, email):
+    if frappe.db.get_value("LMS Course", course, "evaluator") != email:
+        frappe.db.set_value("LMS Course", course, "evaluator", email)
+    doc = frappe.get_doc("LMS Course", course)
+    current = [row.instructor for row in doc.instructors]
+    desired = [i for i in current if i not in PLACEHOLDER_INSTRUCTORS]
+    if email not in desired:
+        desired.append(email)
+    if desired != current:
+        doc.set("instructors", [])
+        for instructor in desired:
+            doc.append("instructors", {"instructor": instructor})
+        doc.save(ignore_permissions=True)
 
 
 def ensure_roles():
