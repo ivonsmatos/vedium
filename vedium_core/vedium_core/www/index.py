@@ -30,8 +30,42 @@ def get_context(context):
     # Idiomas disponíveis para filtro no template
     context.language_programs = LANGUAGE_ORDER
 
+    # Preços do Inglês por frequência — AO VIVO do catálogo, para o grid da home
+    # nunca desalinhar do que o checkout cobra (mesma fonte da página /curso).
+    context.english_plans = get_english_frequency_plans()
+
     # Shopping Cart Count
     context.cart_count = get_cart_count()
+
+
+def get_english_frequency_plans(course_name="ingl-s-beginner"):
+    """{freq: {amount, formatted, lessons_month}} do plano mensal, do catálogo.
+
+    Fonte única: checkout_options (o mesmo que a /curso e o checkout usam). Se
+    falhar, retorna {} e o template cai no texto de fallback — nunca quebra a home.
+    """
+    plans = {}
+    try:
+        from vedium_core.checkout_options import get_course_purchase_options
+
+        data = get_course_purchase_options(course_name)
+        monthly = next(
+            (p for p in (data.get("plans") or []) if p.get("billing_period") == "monthly"),
+            None,
+        )
+        if not monthly:
+            return {}
+        for opt in monthly.get("frequency_options", []):
+            freq = int(opt["classes_per_week"])
+            amount = float(opt["amount"])
+            plans[freq] = {
+                "amount": amount,
+                "formatted": f"R$ {amount:,.0f}".replace(",", "."),
+                "lessons_month": freq * 4,
+            }
+    except Exception as e:
+        frappe.log_error(f"Error fetching english plans: {e}", "Vedium LMS")
+    return plans
 
 
 def _redirect_app_root_to_login():
