@@ -182,6 +182,19 @@ def test_price_currency_and_plan_validation_are_mandatory():
     assert "A moeda exibida diverge da moeda do plano Stripe." in BILLING
 
 
+def test_checkout_start_emits_abandoned_cart_event():
+    """Ao criar a sessão de checkout, emite `checkout_started` pro Brevo (A07
+    carrinho abandonado). Best-effort: envolto em try/except pra nunca quebrar o
+    checkout; link de recuperação = página do curso (a sessão Stripe expira)."""
+    block = BILLING.split("session = stripe.checkout.Session.create", 1)[1].split(
+        "return session.url", 1
+    )[0]
+    assert '"checkout_started"' in block
+    assert "emit_contact_event" in block
+    assert "/curso/" in block
+    assert "try:" in block  # nunca quebra o checkout
+
+
 def test_invoice_upcoming_emits_payment_due_soon_event():
     """invoice.upcoming (lembrete de vencimento A20-01) despacha pra
     _invoice_upcoming, que emite o evento Brevo payment_due_soon — só evento,

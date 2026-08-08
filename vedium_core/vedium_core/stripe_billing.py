@@ -305,6 +305,30 @@ def create_subscription_checkout(
         params["discounts"] = [{"coupon": stripe_coupon.id}]
 
     session = stripe.checkout.Session.create(**params)
+
+    # Carrinho abandonado (P3/A07): emite `checkout_started` pro Brevo. Se o
+    # pagamento não vier, o fluxo A07 recupera; o Brevo sai do fluxo ao receber
+    # `enrollment_created`. Link de recuperação = a PÁGINA do curso (a sessão
+    # Stripe expira), não a URL da sessão. Best-effort: nunca quebra o checkout.
+    try:
+        from vedium_core import brevo
+
+        course_title = getattr(course, "title", None) or course.name
+        brevo.emit_contact_event(
+            email,
+            "checkout_started",
+            event_properties={
+                "course": course_title,
+                "course_level": course_title,
+                "checkout_url": f"{base_url}/curso/{course.name}",
+                "billing_period": period,
+                "classes_per_week": frequency,
+            },
+            contact_properties={"COURSE": course_title},
+        )
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.checkout_started_event")
+
     return session.url
 
 
