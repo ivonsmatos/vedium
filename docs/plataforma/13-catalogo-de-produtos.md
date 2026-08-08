@@ -1,73 +1,138 @@
-# 13 — Catálogo de Produtos & Preços
+# 13 — Matriz Comercial Oficial (Catálogo de Produtos)
 
-**Verificado em produção:** 2026-07-10. Fonte única de verdade do que a
-Vedium vende hoje — se este doc divergir do site, o site é que está
-desatualizado (preço vem sempre ao vivo do banco em `curso.py`, nunca
-hardcoded na página).
+**Fonte única de verdade** do que a Vedium vende. Se site, LMS ou Stripe
+divergirem daqui, **eles** é que estão errados. Preço vem sempre ao vivo do
+banco (`curso.py` / catálogo Stripe), nunca hardcoded na página.
 
-## Inglês — 6 níveis, professor Kayode, R$ 240/mês (todos os níveis)
+**Dados do sistema verificados em produção:** 2026-08-08.
 
-| Slug (`LMS Course.name`) | Nível |
-|---|---|
-| `ingl-s-beginner` | Beginner |
-| `ingl-s-elementary` | Elementary |
-| `ingl-s-pr-intermedi-rio` | Pré-Intermediário |
-| `ingl-s-intermedi-rio` | Intermediário |
-| `ingl-s-upper-intermedi-rio` | Upper Intermediário |
-| `ingl-s-avan-ado` | Avançado |
+## Legenda de confiança de cada campo
 
-## Iorubá — 3 níveis, professora Busayo, R$ 320/mês (todos os níveis)
+- ✅ **Firme** — dado vivo no Frappe/Stripe (preço, nível, frequência, plano,
+  professor). Não inventar; extrair.
+- 🟡 **Proposto (a validar)** — sugestão pedagógica minha (padrão CEFR). Precisa
+  de aval da coordenação antes de virar promessa pública.
+- 🔴 **Lacuna / inconsistência** — falta definir ou as camadas divergem.
 
-| Slug | Nível |
-|---|---|
-| `iorub-b-sico` | Básico |
-| `iorub-intermedi-rio` | Intermediário |
-| `iorub-avan-ado` | Avançado |
+## Modelo comercial (decidido 2026-08-08)
 
-## Português para Estrangeiros (PLE) — 3 níveis, professor Almir, US$ 120/mês (todos os níveis)
+- **Modalidade:** assinatura recorrente **individual flexível** — o aluno
+  escolhe de **1 a 5 aulas/semana**. (Turmas fixas em grupo existem só como
+  piloto PLE em rascunho — não é venda pública ainda.)
+- **Plano:** mensal ou anual (anual ~-22%/mês; permanência mínima registrada).
+- **Frequência:** 1x a 5x/semana. O catálogo Stripe tem **190 preços** (19
+  cursos × 5 frequências × 2 planos) — ver [[project_catalog_price_rollout]].
+- **Duração da aula:** 🟡 60 min (a validar/confirmar como padrão oficial).
+- **Avaliação:** 🟡 diagnóstico na entrada + atividades ao longo + avaliação
+  final para certificar (a validar o formato exato por idioma).
+- **Certificado:** incluído no preço (não cobrado à parte). ⚠️ Ver
+  [inconsistências](#inconsistências-a-resolver) — a *feature* está desligada
+  hoje no LMS.
+- **CTA:** `Matrícula` (checkout Stripe, funcionando) + `Aula experimental /
+  diagnóstica` (páginas `aula-diagnostica.html` existem no site).
 
-| Slug | Nível |
-|---|---|
-| `portugues-para-estrangeiros-basico` | Básico |
-| `portugues-para-estrangeiros-intermediario` | Intermediário |
-| `portugues-para-estrangeiros-avancado` | Avançado |
+O **preço de destaque** abaixo é o **mensal a 1x/semana** (piso). Frequências
+maiores custam mais, com desconto por frequência — grade completa no Stripe.
 
-**⚠️ Único cluster com preço em USD** (não BRL) — moeda escolhida pro
-público internacional/diáspora que não fala português. Não confundir com
-os outros dois clusters ao fazer conta de receita consolidada.
+---
 
-## Hebraico — 5 ofertas
+## Inglês — 6 níveis · Prof. Kayode · R$ 240/mês (flat)
 
-| Slug | Oferta | Preço |
-|---|---|---|
-| `hebraico-a0-alfabetizacao` | Hebraico A0 — Alfabetização | R$ 197 |
-| `hebraico-moderno-a1` | Hebraico Moderno — Nível A1 | R$ 397 |
-| `hebraico-moderno-a2-b1` | Hebraico Moderno — Nível A2/B1 | R$ 447 |
-| `hebraico-biblico-leitura-guiada` | Hebraico Bíblico — Leitura Guiada | R$ 497 |
-| `hebraico-particular` | Hebraico Particular 1:1 | ~R$ 1.120/mês (assinatura) |
+| Nível | Slug (`LMS Course.name`) | CEFR | Preço/mês 1x | Objetivo 🟡 | Carga aula ao vivo 🟡 |
+|---|---|---|---|---|---|
+| Beginner | `ingl-s-beginner` | A1 | R$ 240 | Comunicação básica do dia a dia; chegar ao A1 | ~48–64h |
+| Elementary | `ingl-s-elementary` | A2 | R$ 240 | Situações rotineiras; chegar ao A2 | ~48–64h |
+| Pré-Intermediário | `ingl-s-pr-intermedi-rio` | A2→B1 | R$ 240 | Transição p/ autonomia; entrar no B1 | ~48–64h |
+| Intermediário | `ingl-s-intermedi-rio` | B1 | R$ 240 | Lidar com viagem/trabalho; consolidar B1 | ~48–64h |
+| Upper-Intermediário | `ingl-s-upper-intermedi-rio` | B2 | R$ 240 | Fluência e espontaneidade; chegar ao B2 | ~48–64h |
+| Avançado | `ingl-s-avan-ado` | C1 | R$ 240 | Uso flexível/eficaz; chegar ao C1 | ~48–64h |
 
-`hebraico-particular` **é vendido via checkout Stripe recorrente de valor fixo**
-(assinatura mensal ~R$ 1.120; anual ~R$ 933/mês). Usa plano único (preços
-`custom_stripe_*` legados), **fora** do catálogo por frequência (1–5 aulas).
-*(Política atualizada em 2026-08-07 — antes era oferta apenas consultiva.)*
+**Público 🟡:** do zero absoluto (Beginner) ao profissional que quer refinar (Avançado).
+**Professor ✅:** Kayode (`kayode@vediums.com`) — instrutor **e** evaluator.
 
-## Regras de preço observadas
+## Iorubá — 3 níveis · Profa. Busayo · R$ 320/mês (flat)
 
-- Preço é **por curso/nível**, não varia dentro do mesmo idioma+nível —
-  hoje não há desconto por pacote de níveis nativo (cupom cobre isso,
-  ver [doc 02](02-dicionario-doctypes.md) pro doctype `Coupon`).
-- Certificado/avaliação **já incluso** no preço — não é cobrado à parte
-  (ver [doc 05](05-fluxo-jornada-do-aluno.md), é exatamente essa premissa
-  que motivou o fix de `purchased_certificate` nesta sessão).
-- Catálogo publicado atual: 17 cursos/ofertas (6 Inglês, 3 Iorubá, 3 PLE,
-  5 Hebraico). Cursos com cobrança mensal/por nível usam checkout; oferta
-  consultiva 1:1 usa conversa comercial antes da cobrança.
+| Nível | Slug | Faixa | Preço/mês 1x | Objetivo 🟡 | Carga 🟡 |
+|---|---|---|---|---|---|
+| Básico | `iorub-b-sico` | Iniciante | R$ 320 | Alfabeto, saudações, frases essenciais | ~48–64h |
+| Intermediário | `iorub-intermedi-rio` | Intermediário | R$ 320 | Conversação cotidiana, tempos verbais | ~48–64h |
+| Avançado | `iorub-avan-ado` | Avançado | R$ 320 | Fluência cultural, textos e nuance | ~48–64h |
+
+**Público 🟡:** diáspora e interessados em cultura iorubá/religiões de matriz africana.
+**Professor ✅:** Busayo (`busayo@vediums.com`) — instrutor **e** evaluator.
+*(Iorubá não segue CEFR — níveis funcionais.)*
+
+## Português para Estrangeiros (PLE) — 3 níveis · Prof. Almir · USD
+
+| Nível | Slug | CEFR | Preço/mês 1x | Objetivo 🟡 | Carga 🟡 |
+|---|---|---|---|---|---|
+| Básico | `portugues-para-estrangeiros-basico` | A1→A2 | **US$ 90** | Sobreviver no Brasil no dia a dia | ~48–64h |
+| Intermediário | `portugues-para-estrangeiros-intermediario` | B1→B2 | US$ 120 | Autonomia social e profissional | ~48–64h |
+| Avançado | `portugues-para-estrangeiros-avancado` | B2→C1 | US$ 120 | Fluência acadêmica/profissional | ~48–64h |
+
+**⚠️ Único cluster em USD** (público internacional/diáspora). Básico é mais barato (US$ 90).
+**Professor ✅:** Almir (`almirseller@yahoo.com`) — instrutor **e** evaluator.
+
+## Espanhol — 3 níveis · Profa. Lupita Samayoa · preço escala por nível
+
+| Nível | Slug | CEFR | Preço/mês 1x | Objetivo 🟡 | Carga 🟡 |
+|---|---|---|---|---|---|
+| Básico | `espanhol-basico` | A1→A2 | R$ 297 | Base comunicativa; chegar ao A2 | ~48–64h |
+| Intermediário | `espanhol-intermediario` | B1→B2 | R$ 397 | Autonomia; consolidar B1/B2 | ~48–64h |
+| Avançado | `espanhol-avancado` | B2→C1 | R$ 497 | Fluência refinada; chegar ao C1 | ~48–64h |
+
+**Público 🟡:** brasileiros que querem espanhol para carreira/viagem na América Latina/Espanha.
+**Professor ✅:** Lupita Samayoa (`lupitasamayoa3@gmail.com`) — instrutora.
+🔴 **evaluator NÃO setado** (corrigir: usar a instrutora).
+
+## Hebraico — 5 ofertas · preço escala por nível
+
+| Oferta | Slug | Nível | Preço/mês 1x | Objetivo 🟡 |
+|---|---|---|---|---|
+| A0 — Alfabetização | `hebraico-a0-alfabetizacao` | Pré-A1 | R$ 197 | Ler/escrever o alfabeto hebraico |
+| Moderno A1 | `hebraico-moderno-a1` | A1 | R$ 397 | Comunicação básica em hebraico moderno |
+| Moderno A2/B1 | `hebraico-moderno-a2-b1` | A2→B1 | R$ 447 | Autonomia no hebraico moderno |
+| Bíblico — Leitura Guiada | `hebraico-biblico-leitura-guiada` | Nicho | R$ 497 | Ler textos bíblicos no original |
+| Particular 1:1 | `hebraico-particular` | Sob medida | ⚠️ ver abaixo | Aula individual personalizada |
+
+**Público 🟡:** estudo religioso/bíblico, aliá, herança judaica.
+🔴 **Professor NÃO definido** — instrutor atual = `Administrator` (placeholder).
+Sem professor real, avaliação/certificado do Hebraico **não roda**.
+🔴 **`hebraico-particular`:** `course_price` = R$ 140 no LMS, mas a memória/checkout
+indicam plano recorrente legado **~R$ 1.120/mês** (`custom_stripe_*`, fora do
+catálogo por frequência). Preço divergente — **precisa ser reconciliado**.
+
+---
+
+## Inconsistências a resolver (site ↔ Frappe ↔ LMS ↔ Stripe)
+
+Levantadas em 2026-08-08 ao extrair a matriz. São o backlog de "fazer as
+camadas falarem a mesma coisa":
+
+1. 🔴 **Certificado desligado em 100% dos cursos** (`enable_certification=0`),
+   mas a oferta promete certificado. **Decisão 2026-08-08: ligar em todos.**
+   Requer evaluator em cada curso (ver #2). *A codificar em `pedagogical_setup`
+   p/ não regredir de novo.*
+2. 🔴 **Sem evaluator:** Espanhol (→ usar Lupita) e Hebraico (→ **falta
+   professor real**). Sem evaluator, o fluxo de avaliação/Google Meet não gera.
+3. 🟡 **`paid_certificate` inconsistente:** =1 em Inglês/Iorubá/PLE, =0 em
+   Espanhol/Hebraico. Definir o modelo único (certificado incluído via
+   `purchased_certificate` auto-marcado, ou cobrado à parte).
+4. 🔴 **`hebraico-particular`** com preço divergente (R$ 140 no LMS vs
+   ~R$ 1.120/mês no checkout legado).
+5. 🟡 **Filosofia de preço mista:** Inglês/Iorubá são flat; Espanhol/Hebraico
+   escalam por nível; PLE tem básico mais barato. Não é erro — mas precisa ser
+   **escolha consciente e comunicada**, não acidente histórico.
+
+## Campos 🟡 que dependem da coordenação (não inventar)
+
+Duração oficial da aula, carga horária por nível, formato exato da avaliação,
+**material didático por curso** e critérios de contratação de professor ainda
+não estão no sistema. As propostas CEFR acima são ponto de partida para validar.
 
 ## O que NÃO está no catálogo hoje
 
-- A primeira turma em grupo PLE já existe como infraestrutura/piloto:
-  `PLE Básico - Turma Agosto/2026`, ainda rascunho/privada. Não é venda
-  pública aberta enquanto `published=0` e `allow_self_enrollment=0`.
-- Nenhum outro idioma além de Inglês/Iorubá/PLE/Hebraico tem curso
-  publicado (mesmo havendo cluster de marketing/SEO para outros idiomas em
-  desenvolvimento).
+- Turma em grupo PLE (`PLE Básico - Turma Agosto/2026`) — rascunho/privada
+  (`published=0`, `allow_self_enrollment=0`). Não é venda pública.
+- Nenhum idioma além de Inglês/Espanhol/Iorubá/PLE/Hebraico tem curso publicado
+  (mesmo havendo landings de SEO para outros idiomas).
