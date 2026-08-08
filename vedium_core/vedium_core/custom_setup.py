@@ -285,6 +285,16 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_activation_nudged_on",
             "read_only": 1,
         },
+        {
+            # Data da aula mais recente para a qual já disparamos o alerta de
+            # faltas consecutivas (fluxo A09). Idempotência do detector de
+            # ausência — ver vedium_core/attendance_events.py.
+            "fieldname": "custom_absence_alerted_on",
+            "label": "Alerta de ausência (última aula) em",
+            "fieldtype": "Date",
+            "insert_after": "custom_last_progress_milestone",
+            "read_only": 1,
+        },
     ],
     "Integration Request": [
         {
