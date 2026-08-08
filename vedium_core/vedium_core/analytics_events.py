@@ -69,6 +69,50 @@ def track_purchase(transaction_id, course_name, amount, currency='BRL', payment_
     
     return event_data
 
+def validate_ga4_config(course_name=None, transaction_id="GA4-VALIDATION"):
+    """Ops: valida a config GA4 server-side contra o endpoint /debug/mp/collect
+    (retorna `validationMessages` do Google e NÃO grava em relatórios). Prova que
+    measurement_id/api_secret e o payload estão OK.
+
+    bench --site <site> execute vedium_core.analytics_events.validate_ga4_config
+    """
+    measurement_id = frappe.conf.get("GA4_MEASUREMENT_ID")
+    api_secret = frappe.conf.get("GA4_API_SECRET")
+    if not measurement_id or not api_secret:
+        return {"ok": False, "reason": "GA4_MEASUREMENT_ID/GA4_API_SECRET ausentes no site_config"}
+    course_name = course_name or frappe.db.get_value("LMS Course", {"published": 1}, "name")
+    payload = track_purchase(transaction_id, course_name, 0, "BRL")
+    body = {
+        "client_id": "vedium.validation",
+        "events": [{
+            "name": "purchase",
+            "params": {
+                "transaction_id": transaction_id,
+                "value": 0.0,
+                "currency": "BRL",
+                "items": payload["items"],
+            },
+        }],
+    }
+    import requests
+    resp = requests.post(
+        "https://www.google-analytics.com/debug/mp/collect"
+        f"?measurement_id={measurement_id}&api_secret={api_secret}",
+        json=body,
+        timeout=10,
+    )
+    try:
+        data = resp.json()
+    except Exception:
+        data = {"raw": resp.text[:300]}
+    return {
+        "ok": resp.status_code == 200 and not data.get("validationMessages"),
+        "status": resp.status_code,
+        "measurement_id": measurement_id,
+        "response": data,
+    }
+
+
 def send_ga4_purchase_server_side(transaction_id, course_name, amount, currency='BRL', client_id=None):
     """Envia o evento `purchase` ao GA4 via Measurement Protocol (server-side),
     disparado pelo webhook Stripe após a matrícula — garante que a venda
