@@ -4,6 +4,31 @@ Registro de mudanças relevantes do Vedium. Formato baseado em
 [Keep a Changelog](https://keepachangelog.com/) (datas absolutas, ordem
 cronológica reversa).
 
+## [2026-08-07] — Cadeia de pagamento destravada + endurecimento
+
+### Corrigido
+- **Matrícula paga estava 100% quebrada** (webhook Stripe rodava como Guest e
+  esbarrava no gate de pagamento nativo do LMS) → agora cria em contexto admin.
+- **Select `custom_billing_period` obsoleto em produção**: `setup_custom_fields`
+  era insert-only e nunca atualizava opções → rejeitava `monthly`. Agora usa
+  `create_custom_fields(update=True)` (auto-corretivo no `after_migrate`).
+- **Idempotência do webhook**: `Integration Request` autonomeia por hash, então o
+  `name` sintético `stripe-<event_id>` nunca colava (linhas ficavam "Queued" pra
+  sempre; retries não deduplicavam). Agora deduplica por `request_id`.
+
+### Adicionado
+- **GA4 server-side** (Measurement Protocol) no webhook Stripe, com captura do
+  `_ga` client_id no checkout p/ atribuição. Validado via `validate_ga4_config`.
+- **Robustez do realtime do Raven**: `raven_realtime.ensure_websocket_patch`
+  reaplica o patch "força WebSocket" no bundle a cada `after_migrate` (o hash muda
+  em rebuild); health check `raven.realtime` detecta regressão.
+- Helpers de ops: `reprocess_stripe_event`, `admin_stripe_subscriptions`.
+
+### Removido
+- **Mercado Pago e BaseCommerce eliminados** do código (gateways, funções,
+  webhooks, dependência `mercadopago`, chaves `.env`, testes e menções de SEO).
+  `get_gateway` só tem `stripe` e `crypto` (crypto segue desativado sem HMAC).
+
 ## [2026-06-12] — CRM funcional de ponta a ponta + gestão
 
 ### Adicionado

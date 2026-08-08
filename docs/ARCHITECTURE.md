@@ -43,7 +43,7 @@ Iorubá Ancestral, Português para Estrangeiros) construída sobre o
 | Container | Docker Compose | v2 |
 | CDN/edge | Cloudflare | proxy ativo |
 | Monitoramento | Uptime Kuma | container `vedium-uptime-kuma` |
-| Pagamentos | Stripe + Mercado Pago | + Basecommerce (stub) |
+| Pagamentos | Stripe | Crypto desativado; Mercado Pago/Basecommerce removidos em 2026-08 |
 | IA | — | Tutor IA removido em 2026-07-12; não há chat LLM em produção |
 
 ⚠️ `bench list-apps` mostra frappe/erpnext como `UNVERSIONED` porque eles
@@ -127,18 +127,17 @@ vedium_core/
 Padrão Strategy + Factory implementado em `api.py`:
 
 ```python
-get_gateway("stripe"|"mercadopago"|"basecommerce"|"crypto") → PaymentGateway
+get_gateway("stripe"|"crypto") → PaymentGateway
 gateway.create_checkout(course, user) → URL
 gateway.handle_webhook(event) → cria LMS Enrollment
 ```
 
 - **Stripe**: webhook em `/api/method/vedium_core.api.stripe_webhook` com
-  verificação HMAC obrigatória em produção.
-- **Mercado Pago**: webhook centralizado em
-  `/api/method/vedium_core.api.handle_payment_webhook?gateway=mercadopago`,
-  HMAC `X-Signature` validado.
-- **Basecommerce**: stub (TODO).
-- **Crypto**: `handle_webhook` levanta `NotImplementedError` por segurança.
+  verificação HMAC obrigatória em produção. Gateway ativo/principal.
+- **Crypto**: `handle_webhook` levanta `NotImplementedError` por segurança
+  (desativado deliberadamente — sem verificação HMAC do Coinbase Commerce).
+- **Mercado Pago / Basecommerce**: removidos em 2026-08 (decisão de produto —
+  ver histórico git). Não existem mais no `get_gateway`.
 
 **Cupons**: DocType `Coupon` com `discount_percent`, `valid_from`, `valid_to`,
 `max_uses`, `used_count`. Aplicado em `create_checkout(coupon_code=...)`.
@@ -149,8 +148,8 @@ gateway.handle_webhook(event) → cria LMS Enrollment
 
 1. **Nunca modificar apps oficiais** (`frappe`, `erpnext`, `lms`). Toda
    customização vive em `vedium_core`.
-2. **Webhooks em produção exigem segredo** — sem `STRIPE_WEBHOOK_SECRET`
-   ou `MERCADOPAGO_WEBHOOK_SECRET`, falha duro com `DEVELOPER_MODE=0`.
+2. **Webhooks em produção exigem segredo** — sem `STRIPE_WEBHOOK_SECRET`,
+   falha duro com `DEVELOPER_MODE=0`.
 3. **URLs públicas estáveis** — `vedium_core.api.<func>` não pode mudar
    de caminho sem aviso de 90 dias; webhooks externos estão registrados.
 4. **DocTypes não-existentes devem ter fallback** — endpoints que consultam

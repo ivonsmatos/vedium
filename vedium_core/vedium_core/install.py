@@ -26,7 +26,21 @@ def after_migrate():
     _ensure_custom_doctypes()
     _ensure_branding()
     _remove_ai_tutor_artifacts()
+    _ensure_raven_realtime_patch()
     _clear_module_cache()
+
+
+def _ensure_raven_realtime_patch():
+    # Reaplica o patch "força WebSocket" no bundle do Raven (o hash muda a cada
+    # rebuild do app e desfaz o patch). Idempotente e nunca fatal.
+    try:
+        from vedium_core.raven_realtime import ensure_websocket_patch
+
+        ensure_websocket_patch()
+    except Exception:
+        frappe.log_error(
+            frappe.get_traceback(), "Vedium.install.ensure_raven_realtime_patch"
+        )
 
 
 def _ensure_custom_doctypes():

@@ -53,6 +53,7 @@ def run():
     results.check("lms.doctypes", _check_lms)
     results.check("crm.doctype", _check_crm, critical=False)
     results.check("raven.setup", _check_raven, critical=False)
+    results.check("raven.realtime", _check_raven_realtime, critical=False)
     results.check("helpdesk.setup", _check_helpdesk, critical=False)
     results.check("brevo.config", _check_brevo, critical=False)
     results.check("email.outgoing", _check_email, critical=False)
@@ -184,6 +185,17 @@ def _check_raven():
         return False, "workspace 'Vedium' ausente"
     channels = frappe.db.count("Raven Channel", {"workspace": "Vedium"})
     return channels > 0, f"{channels} canais no workspace Vedium"
+
+
+def _check_raven_realtime():
+    """O bundle do Raven precisa do patch 'força WebSocket' senão o chat em tempo
+    real quebra atrás do Cloudflare. O after_migrate reaplica; aqui só detectamos
+    regressão (ex.: se o patch falhou por permissão)."""
+    from vedium_core.raven_realtime import is_realtime_patched
+
+    if is_realtime_patched():
+        return True, "patch websocket presente no bundle"
+    return False, "bundle do Raven SEM patch websocket — realtime pode quebrar"
 
 
 def _check_helpdesk():

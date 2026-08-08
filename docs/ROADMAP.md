@@ -32,7 +32,7 @@
     `record_consent(user, purpose, scope)`.
 - [ ] Página `/privacidade/meus-dados`.
 - [ ] Restore drill mensal automatizado.
-- [ ] DPA com Stripe/MercadoPago documentado.
+- [ ] DPA com Stripe documentado.
 - [ ] Pentest agendado (OWASP ZAP + revisão manual).
 
 ## Desativado / removido

@@ -10,9 +10,8 @@ Checkout → matrícula → aula → certificado, com o "onde vive cada peça"
 
 - Aluno navega o site (`vediums.com`, `www/*.html`) e chega numa página de
   curso (`www/curso.html`/`curso.py`) ou landing (`marketing_landing.html`).
-- Clica em matricular → `api.create_checkout_session` (Stripe) ou
-  `create_mercadopago_checkout`/`create_basecommerce_checkout` — cria a
-  sessão de pagamento fora do Frappe.
+- Clica em matricular → `api.create_checkout_session` (Stripe) — cria a
+  sessão de pagamento recorrente fora do Frappe.
 - Pagamento confirmado → webhook (`api.handle_payment_webhook` /
   `stripe_webhook`) → `api.create_enrollment_if_paid`.
 

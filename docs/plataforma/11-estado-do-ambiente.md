@@ -154,7 +154,8 @@ pra focar nesses fixes de plataforma); russo e mandarim não iniciados.
 
 ## Cobrança
 
-- Stripe é o gateway ativo/principal. MercadoPago e BaseCommerce existem
-  no código (`get_gateway`) mas não confirmados como ativos em produção
-  nesta rodada. Gateway cripto **desativado deliberadamente** (ADR, ver
-  histórico do git).
+- Stripe é o **único** gateway ativo (assinatura recorrente). Cadeia
+  checkout→webhook→matrícula validada de ponta a ponta em 2026-08-07
+  (inclui cancelamento). MercadoPago e BaseCommerce **removidos do código**
+  em 2026-08 (decisão de produto). Gateway cripto **desativado
+  deliberadamente** (sem HMAC do Coinbase Commerce; ADR no histórico do git).
