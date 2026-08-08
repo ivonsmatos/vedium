@@ -414,6 +414,46 @@ def admin_stripe_subscriptions(email, cancel_ids=None):
     return {"subscriptions": out, "cancelled": cancelled}
 
 
+def admin_reprice_subscription_plan(plan_name, new_amount, archive_old=True):
+    """Ops: troca o preço de um Subscription Plan legado. Preços Stripe são
+    imutáveis, então cria um NOVO preço (mesmo produto/moeda/intervalo), aponta o
+    plano para ele e atualiza o `cost`. Reversível (o preço antigo é só arquivado).
+    Não whitelisted — só via bench execute.
+
+    bench --site <site> execute vedium_core.stripe_billing.admin_reprice_subscription_plan \
+        --kwargs "{'plan_name': 'Vedium — Hebraico Particular — Mensal', 'new_amount': 450}"
+    """
+    import stripe
+
+    stripe.api_key = frappe.conf.get("STRIPE_SECRET_KEY")
+    if not stripe.api_key:
+        frappe.throw(_("STRIPE_SECRET_KEY não configurada."))
+    plan = frappe.get_doc("Subscription Plan", plan_name)
+    old = stripe.Price.retrieve(plan.product_price_id)
+    new_price = stripe.Price.create(
+        product=old["product"],
+        currency=old["currency"],
+        unit_amount=int(round(float(new_amount) * 100)),
+        recurring={
+            "interval": old["recurring"]["interval"],
+            "interval_count": old["recurring"]["interval_count"],
+        },
+    )
+    old_price_id = plan.product_price_id
+    plan.product_price_id = new_price.id
+    plan.cost = float(new_amount)
+    plan.save(ignore_permissions=True)
+    if archive_old and old_price_id != new_price.id:
+        stripe.Price.modify(old_price_id, active=False)
+    frappe.db.commit()
+    return {
+        "plan": plan_name,
+        "old_price": old_price_id,
+        "new_price": new_price.id,
+        "amount": float(new_amount),
+    }
+
+
 def handle_stripe_event(event):
     """Process a signed Stripe event once, with a durable retryable audit row."""
     event_id = event.get("id")

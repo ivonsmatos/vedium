@@ -36,6 +36,11 @@ LANGUAGE_TEACHERS = {
             "hebraico-moderno-a2-b1",
             "hebraico-biblico-leitura-guiada",
             "hebraico-particular",
+        ],
+    },
+    "lupitasamayoa3@gmail.com": {
+        "full_name": "Guadalupe Samayoa",
+        "courses": [
             "espanhol-basico",
             "espanhol-intermediario",
             "espanhol-avancado",
@@ -138,7 +143,14 @@ def _assign_course_teacher(course, email):
         frappe.db.set_value("LMS Course", course, "evaluator", email)
     doc = frappe.get_doc("LMS Course", course)
     current = [row.instructor for row in doc.instructors]
-    desired = [i for i in current if i not in PLACEHOLDER_INSTRUCTORS]
+    # Remove placeholders E professores de OUTRO idioma que não dão este curso
+    # (auto-corretivo: se um professor for reatribuído, sai dos cursos antigos).
+    # Co-instrutores que não estão no mapa de professores são preservados.
+    other_teachers = set(LANGUAGE_TEACHERS) - {email}
+    desired = [
+        i for i in current
+        if i not in PLACEHOLDER_INSTRUCTORS and i not in other_teachers
+    ]
     if email not in desired:
         desired.append(email)
     if desired != current:
