@@ -263,6 +263,17 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_payment_amount",
             "read_only": 1,
         },
+        {
+            # Marca quando o "nudge de ativação" já foi disparado para esta
+            # matrícula (aluno matriculou mas ainda não começou o curso). Sem
+            # isso, o job diário reenviaria o empurrão todo dia — ver
+            # vedium_core/student_onboarding.py::detect_inactive_students.
+            "fieldname": "custom_activation_nudged_on",
+            "label": "Nudge de ativação enviado em",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_payment_currency",
+            "read_only": 1,
+        },
     ],
     "Integration Request": [
         {

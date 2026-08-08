@@ -1410,8 +1410,9 @@ def test_english_home_page_exists_and_routes_correctly():
     assert "Chat on WhatsApp" in en_html
     assert "wa.me/5511911293075" in en_html
 
-    # Preço em US$, não R$ (público internacional)
-    assert "US$ 120" in en_html
+    # Preço em US$, não R$ (público internacional). Dinâmico via english_plans
+    # (controller) com fallback = preço USD real do Inglês 1x (usd_pricing=79).
+    assert "US$ 79" in en_html
     assert "R$" not in en_html
 
     # Teasers do blog apontam pros posts em inglês existentes (não pros
@@ -2281,8 +2282,9 @@ def test_spanish_home_page_exists_and_routes_correctly():
     assert "Escríbenos por WhatsApp" in es_html
     assert "wa.me/5511911293075" in es_html
 
-    # Preço em US$, não R$ (público internacional, mesmo padrão do EN)
-    assert "US$ 120" in es_html
+    # Preço em US$, não R$ (público internacional, mesmo padrão do EN).
+    # Dinâmico via english_plans (fallback = USD real do Inglês 1x = 79).
+    assert "US$ 79" in es_html
     assert "R$" not in es_html
 
     # Teasers do blog apontam pros posts em inglês existentes (ainda não há

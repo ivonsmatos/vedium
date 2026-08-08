@@ -444,6 +444,9 @@ scheduler_events = {
         "vedium_core.trial.expire_trials",
         "vedium_core.stripe_billing.suspend_overdue_enrollments",
         "vedium_core.stripe_billing.send_dunning_reminders",
+        # Onboarding/ativação: quem matriculou e não começou o curso recebe um
+        # empurrão (e emite o evento student_not_activated pro Brevo A08/A09).
+        "vedium_core.student_onboarding.detect_inactive_students",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias

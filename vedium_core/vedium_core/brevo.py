@@ -31,7 +31,24 @@ DEFAULT_TIMEOUT_SECONDS = 20
 # Attributes created by setup_brevo_schema(). They are deliberately text
 # attributes so course/status identifiers can evolve without a destructive
 # enumeration migration inside Brevo.
+#
+# Dois grupos:
+# 1) Os nomes que os MODELOS do kit de e-mail leem diretamente no corpo
+#    (COURSE/LEVEL/COMPANY) + os de segmentação sugeridos no README
+#    (ENROLLMENT_STATUS/LIFECYCLE_STAGE/COMMUNICATION_LANGUAGE). Sem estes,
+#    `{{ contact.COURSE }}` etc. renderizam vazio — ver
+#    Cliente/Vedium/emailmkt/README.md ("enviar em COURSE, não COURSE_INTEREST").
+# 2) Os VEDIUM_* legados/técnicos, mantidos para auditoria e segmentação fina
+#    sem colidir com os nomes canônicos do kit.
 CONTACT_ATTRIBUTES = {
+    # Lidos pelos modelos do kit (nomes exatos, ver campos-brevo.txt)
+    "COURSE": "text",
+    "LEVEL": "text",
+    "COMPANY": "text",
+    "ENROLLMENT_STATUS": "text",
+    "LIFECYCLE_STAGE": "text",
+    "COMMUNICATION_LANGUAGE": "text",
+    # Legados/técnicos Vedium
     "VEDIUM_USER_ID": "text",
     "VEDIUM_COURSE_ID": "text",
     "VEDIUM_COURSE": "text",
@@ -42,6 +59,18 @@ CONTACT_ATTRIBUTES = {
     "VEDIUM_CRM_STATUS": "text",
     "VEDIUM_SOURCE": "text",
 }
+
+# Área do aluno e portal de cobrança (links estáveis usados como params.* dos
+# fluxos operacionais/transacionais do kit — A08 onboarding, A20 cobrança).
+# O portal de cobrança é um redirect whitelisted que exige login e cria uma
+# sessão fresca do Stripe Billing Portal no clique (ver
+# stripe_billing.billing_portal_redirect) — por isso pode ir num evento que o
+# Brevo guarda e envia depois, ao contrário de uma URL de sessão de curta vida.
+STUDENT_PORTAL_URL = "https://app.vediums.com/lms/courses"
+BILLING_PORTAL_URL = (
+    "https://app.vediums.com/api/method/"
+    "vedium_core.stripe_billing.billing_portal_redirect"
+)
 
 STATUS_EVENTS = {
     "Active": "enrollment_activated",
@@ -71,6 +100,29 @@ def is_enabled() -> bool:
     enabled = _config("BREVO_ENABLED", "brevo_enabled", default=1)
     api_key = _config("BREVO_API_KEY", "brevo_api_key")
     return bool(cint(enabled) and api_key)
+
+
+def lifecycle_owned_by_brevo() -> bool:
+    """Quando True, o Brevo é o dono dos e-mails de ciclo de vida do aluno
+    (boas-vindas/onboarding A08, cobrança A20, marcos A10…) e o Frappe NÃO
+    deve enviar os e-mails equivalentes por `frappe.sendmail` — evita e-mail em
+    dobro.
+
+    Enquanto o setup do Brevo não estiver 100% no ar, deixe
+    ``BREVO_LIFECYCLE_LIVE`` desligado (padrão): o Frappe continua sendo o
+    remetente interino de boas-vindas/dunning/nudge. Ao concluir o setup do
+    Brevo (modelos importados, automações mapeando os eventos, domínio
+    autenticado), ligue a chave num único comando e o Frappe se cala sozinho:
+
+        bench --site app.vediums.com set-config BREVO_LIFECYCLE_LIVE 1
+
+    Deliberadamente separado de ``is_enabled()``: a sincronização de contato/
+    evento (a "fonte de verdade" que alimenta o Brevo) deve rodar MUITO antes
+    de o Brevo assumir o envio — para que, no dia do corte, os contatos já
+    estejam corretos e os fluxos tenham histórico de eventos.
+    """
+    live = _config("BREVO_LIFECYCLE_LIVE", "brevo_lifecycle_live", default=0)
+    return bool(is_enabled() and cint(live))
 
 
 def _api_key() -> str:
@@ -380,9 +432,55 @@ def _enrollment_snapshot(doc) -> dict:
         "trial_end": _as_iso(getattr(doc, "custom_trial_end", None)),
         "billing_period": getattr(doc, "custom_billing_period", None),
         "payment_currency": getattr(doc, "custom_payment_currency", None),
+        "contract_amount": getattr(doc, "custom_contract_monthly_amount", None),
+        "contract_currency": (
+            getattr(doc, "custom_contract_currency", None)
+            or getattr(doc, "custom_payment_currency", None)
+        ),
         "payment_failed_on": _as_iso(getattr(doc, "custom_payment_failed_on", None)),
         "status_reason": getattr(doc, "custom_vedium_status_reason", None),
     }
+
+
+def _format_amount(amount: Any, currency: str | None) -> str | None:
+    """Formata o valor pro corpo do e-mail (params.amount). Usa currency.py
+    quando disponível; senão, um fallback simples. Nunca lança."""
+    if amount in (None, ""):
+        return None
+    try:
+        from vedium_core.currency import format_amount
+
+        return format_amount(float(amount), (currency or "BRL").upper())
+    except Exception:
+        try:
+            return f"{(currency or 'BRL').upper()} {float(amount):,.2f}"
+        except Exception:
+            return None
+
+
+def _lifecycle_event_params(snapshot: dict) -> dict:
+    """Monta os ``params.*`` que os fluxos operacionais/transacionais do kit
+    Brevo leem no corpo (ver Cliente/Vedium/emailmkt/brevo/campos-brevo.txt).
+
+    Só inclui o que o Frappe consegue prover com confiança; todo o resto tem
+    ``|default`` no modelo. Os nomes das chaves batem EXATAMENTE com os tokens
+    dos modelos, pra qualquer mapeamento de evento→params no Brevo funcionar.
+    """
+    course = snapshot.get("course") or "seu curso"
+    params = {
+        "student_portal_url": STUDENT_PORTAL_URL,
+        "onboarding_url": STUDENT_PORTAL_URL,
+        "progress_url": STUDENT_PORTAL_URL,
+        "course_url": STUDENT_PORTAL_URL,
+        "billing_url": BILLING_PORTAL_URL,
+        "payment_update_url": BILLING_PORTAL_URL,
+        "course": course,
+        "course_level": course,
+    }
+    amount = _format_amount(snapshot.get("contract_amount"), snapshot.get("contract_currency"))
+    if amount:
+        params["amount"] = amount
+    return params
 
 
 def _previous_snapshot(doc) -> dict:
@@ -442,6 +540,10 @@ def process_enrollment_snapshot(snapshot: dict, event_names: list[str] | None = 
         return {"skipped": "missing_email"}
 
     attributes = {
+        # Nomes que os modelos do kit leem no corpo
+        "COURSE": snapshot.get("course"),
+        "ENROLLMENT_STATUS": snapshot.get("status"),
+        # Legados/técnicos (segmentação e auditoria)
         "VEDIUM_USER_ID": snapshot.get("user_id"),
         "VEDIUM_COURSE_ID": snapshot.get("course_id"),
         "VEDIUM_COURSE": snapshot.get("course"),
@@ -472,22 +574,26 @@ def process_enrollment_snapshot(snapshot: dict, event_names: list[str] | None = 
             continue
         try:
             upsert_contact(contact_payload)
+            event_properties = {
+                "enrollment_id": snapshot.get("name"),
+                "course_id": snapshot.get("course_id"),
+                "course_category": snapshot.get("course_category"),
+                "status": snapshot.get("status"),
+                "status_reason": snapshot.get("status_reason"),
+                "billing_period": snapshot.get("billing_period"),
+                "payment_currency": snapshot.get("payment_currency"),
+                "trial_end": snapshot.get("trial_end"),
+            }
+            # params.* que os fluxos do kit renderizam no corpo (links da área
+            # do aluno, portal de cobrança, valor, nome do curso). Vão por
+            # último para que course/course_level tenham o rótulo humano.
+            event_properties.update(_lifecycle_event_params(snapshot))
             track_event(
                 event_name,
                 email,
                 event_date=snapshot.get("modified"),
                 contact_properties=attributes,
-                event_properties={
-                    "enrollment_id": snapshot.get("name"),
-                    "course_id": snapshot.get("course_id"),
-                    "course": snapshot.get("course"),
-                    "course_category": snapshot.get("course_category"),
-                    "status": snapshot.get("status"),
-                    "status_reason": snapshot.get("status_reason"),
-                    "billing_period": snapshot.get("billing_period"),
-                    "payment_currency": snapshot.get("payment_currency"),
-                    "trial_end": snapshot.get("trial_end"),
-                },
+                event_properties=event_properties,
             )
             _mark_event(key, "Completed")
             processed.append(event_name)
@@ -519,6 +625,7 @@ def _lead_snapshot(doc) -> dict:
         "phone": getattr(doc, "mobile_no", None) or getattr(doc, "phone", None) or "",
         "status": getattr(doc, "status", None) or "",
         "source": getattr(doc, "source", None) or "",
+        "company": getattr(doc, "organization", None) or getattr(doc, "company_name", None) or "",
     }
 
 
@@ -550,6 +657,7 @@ def process_lead_snapshot(snapshot: dict, event_name: str) -> dict:
         return {"skipped": "disabled"}
     email = snapshot.get("email")
     attributes = {
+        "COMPANY": snapshot.get("company"),
         "VEDIUM_CRM_STATUS": snapshot.get("status"),
         "VEDIUM_SOURCE": snapshot.get("source") or "Frappe CRM",
     }

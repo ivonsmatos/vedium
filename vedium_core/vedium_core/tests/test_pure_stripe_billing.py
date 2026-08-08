@@ -148,7 +148,7 @@ def test_refund_and_dispute_rules():
 
 def test_duplicate_event_is_durable_and_short_circuits():
     assert '"Integration Request"' in BILLING
-    assert 'row.status == "Completed"' in BILLING
+    assert 'existing.status == "Completed"' in BILLING
     assert 'return {"duplicate": True}' in BILLING
     assert "frappe.db.commit()" in BILLING
     assert '"data"' not in BILLING.split("def _claim_event", 1)[1].split(
@@ -176,7 +176,10 @@ def test_price_currency_and_plan_validation_are_mandatory():
     assert "SUPPORTED_CURRENCIES" in BILLING
     assert "billing_interval_count" in BILLING
     assert "stripe.Price.retrieve" in BILLING
-    assert "A moeda exibida, o curso e o plano Stripe precisam ser iguais" in BILLING
+    # A validação foi relaxada para o USD real (curso em BRL vendido em USD na
+    # página internacional): exige só que moeda exibida == moeda do plano/preço
+    # Stripe. Ver _retrieve_and_validate_price + usd_pricing.py.
+    assert "A moeda exibida diverge da moeda do plano Stripe." in BILLING
 
 
 def test_status_changes_use_document_save_to_trigger_lms_hooks():

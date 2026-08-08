@@ -826,7 +826,20 @@ def _dunning_copy(stage, days_left):
 
 def send_dunning_email(enrollment_name, stage="failed"):
     """Envia um e-mail de recuperação de pagamento com link pro portal Stripe.
-    No-op se a matrícula já regularizou (payment_failed_on limpo) ou saiu do ar."""
+    No-op se a matrícula já regularizou (payment_failed_on limpo) ou saiu do ar.
+
+    Quando o Brevo é o dono do ciclo de vida (fluxo A20 do kit), o Frappe se cala
+    aqui: o evento `payment_failed` já é emitido pro Brevo em brevo.on_enrollment
+    (transição de custom_payment_failed_on), então o A20 assume o envio. Ver
+    brevo.lifecycle_owned_by_brevo."""
+    try:
+        from vedium_core.brevo import lifecycle_owned_by_brevo
+
+        if lifecycle_owned_by_brevo():
+            return
+    except Exception:
+        pass  # Brevo indisponível → Frappe envia (interino)
+
     enrollment = frappe.get_doc("LMS Enrollment", enrollment_name)
     if not enrollment.custom_payment_failed_on:
         return

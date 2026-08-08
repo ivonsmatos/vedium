@@ -704,31 +704,43 @@ def create_enrollment_if_paid(
 
         record_referral_conversion(coupon_code, user, course_name, enrollment.name)
 
-    # E-mail de boas-vindas (na fila, nunca bloqueia/aborta a matrícula)
+    # E-mail de boas-vindas (na fila, nunca bloqueia/aborta a matrícula).
+    # Quando o Brevo é o dono do ciclo de vida (fluxo A08 do kit), o Frappe se
+    # cala aqui para não duplicar o e-mail — ver brevo.lifecycle_owned_by_brevo.
+    # A matrícula já emite o evento `enrollment_created` pro Brevo em
+    # brevo.on_enrollment (hook after_insert), então o fluxo A08 tem o gatilho.
     try:
-        course_title = (
-            frappe.db.get_value("LMS Course", course_name, "title") or course_name
-        )
-        user_email = frappe.db.get_value("User", user, "email") or user
-        first_name = frappe.db.get_value("User", user, "first_name") or ""
-        frappe.sendmail(
-            recipients=[user_email],
-            subject=f"Matrícula confirmada — {course_title} | Vedium",
-            message=f"""
-                <h3>Bem-vindo(a){', ' + frappe.utils.escape_html(first_name) if first_name else ''}!</h3>
-                <p>Seu pagamento foi confirmado e sua matrícula no curso
-                <strong>{frappe.utils.escape_html(course_title)}</strong> está ativa.</p>
-                <p><a href="https://app.vediums.com/lms/courses/{course_name}">
-                Acessar o curso agora</a></p>
-                <p>Qualquer dúvida, responda este e-mail ou escreva para
-                contato@vediums.com.</p>
-                <p>— Equipe Vedium</p>
-            """,
-        )
+        from vedium_core.brevo import lifecycle_owned_by_brevo
+
+        skip_frappe_email = lifecycle_owned_by_brevo()
     except Exception:
-        frappe.log_error(
-            frappe.get_traceback(), "Vedium.payments.enrollment_email"
-        )
+        skip_frappe_email = False  # Brevo indisponível → Frappe envia (interino)
+
+    if not skip_frappe_email:
+        try:
+            course_title = (
+                frappe.db.get_value("LMS Course", course_name, "title") or course_name
+            )
+            user_email = frappe.db.get_value("User", user, "email") or user
+            first_name = frappe.db.get_value("User", user, "first_name") or ""
+            frappe.sendmail(
+                recipients=[user_email],
+                subject=f"Matrícula confirmada — {course_title} | Vedium",
+                message=f"""
+                    <h3>Bem-vindo(a){', ' + frappe.utils.escape_html(first_name) if first_name else ''}!</h3>
+                    <p>Seu pagamento foi confirmado e sua matrícula no curso
+                    <strong>{frappe.utils.escape_html(course_title)}</strong> está ativa.</p>
+                    <p><a href="https://app.vediums.com/lms/courses/{course_name}">
+                    Acessar o curso agora</a></p>
+                    <p>Qualquer dúvida, responda este e-mail ou escreva para
+                    contato@vediums.com.</p>
+                    <p>— Equipe Vedium</p>
+                """,
+            )
+        except Exception:
+            frappe.log_error(
+                frappe.get_traceback(), "Vedium.payments.enrollment_email"
+            )
 
     frappe.msgprint(_("Inscrição realizada com sucesso!"))
 
