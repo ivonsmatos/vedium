@@ -160,6 +160,23 @@ def _frequency_coupon_id(stripe):
     return coupon.id
 
 
+def _ga_client_id_from_cookie():
+    """Extrai o client_id do GA4 do cookie `_ga` (formato GA1.1.<a>.<b> → "<a>.<b>").
+
+    Server-side, sem depender do frontend. Retorna None fora de contexto de request
+    (ex.: bench execute) ou se o cookie não existir — a atribuição GA4 então cai no
+    fallback aleatório do Measurement Protocol.
+    """
+    try:
+        raw = frappe.request.cookies.get("_ga") if getattr(frappe, "request", None) else None
+    except Exception:
+        raw = None
+    if not raw:
+        return None
+    parts = raw.split(".")
+    return f"{parts[-2]}.{parts[-1]}" if len(parts) >= 4 else None
+
+
 def create_subscription_checkout(
     course,
     user,
@@ -179,7 +196,8 @@ def create_subscription_checkout(
     period = normalize_period(billing_period)
     email = frappe.db.get_value("User", user, "email") or user
     base_url = frappe.utils.get_url()
-    
+    ga_client_id = _ga_client_id_from_cookie() or ""
+
     catalog_status = is_catalog_complete(course.name, environment="live")
     if catalog_status == "incomplete":
         frappe.throw(_("Este curso possui um catálogo de preços incompleto."))
@@ -204,6 +222,7 @@ def create_subscription_checkout(
             "catalog_key": str(price_doc.catalog_key),
             "catalog_version": str(price_doc.catalog_version),
             "stripe_product_id": str(price_doc.stripe_product_id),
+            "ga_client_id": ga_client_id,
         }
         params = build_checkout_params(
             price_id,
@@ -234,6 +253,7 @@ def create_subscription_checkout(
             "unit_amount": str(quote["unit_amount"]),
             "monthly_subtotal": str(quote["subtotal"]),
             "monthly_final_amount": str(quote["amount"]),
+            "ga_client_id": ga_client_id,
         }
         params = build_checkout_params(
             price_id,
