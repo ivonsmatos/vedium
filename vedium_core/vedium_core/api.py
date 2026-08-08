@@ -617,15 +617,20 @@ def create_checkout(course_name, gateway, coupon_code=None, display_currency=Non
     }
 
 
-def generate_test_checkout(user, course_name, coupon_code=None, billing_period="monthly"):
+def generate_test_checkout(user, course_name, coupon_code=None, billing_period="monthly", display_currency=None):
     """[TESTE E2E] Gera um checkout Stripe impersonando `user` (via set_user) e
     aplicando `coupon_code`. Propositalmente NÃO é @frappe.whitelist — só roda
     via `bench execute` (contexto Administrator). Serve para validar a cadeia
     webhook→matrícula com um cupom 100%-off num usuário real (System User como
-    Administrator não pode ser membro de LMS Enrollment)."""
+    Administrator não pode ser membro de LMS Enrollment). `display_currency="USD"`
+    testa o fluxo internacional."""
     frappe.set_user(user)
     return create_checkout(
-        course_name, "stripe", coupon_code=coupon_code, billing_period=billing_period
+        course_name,
+        "stripe",
+        coupon_code=coupon_code,
+        billing_period=billing_period,
+        display_currency=display_currency,
     )
 
 
