@@ -7,6 +7,7 @@ from urllib.parse import quote
 import frappe
 from frappe import _
 
+from vedium_core.commercial_checkout_rules import validate_checkout_selection
 from vedium_core.frequency_pricing_rules import normalize_classes_per_week
 from vedium_core.stripe_billing_rules import normalize_period
 
@@ -32,6 +33,7 @@ def start(
     period = normalize_period(billing_period)
     try:
         frequency = normalize_classes_per_week(classes_per_week)
+        validate_checkout_selection(course_name, period, frequency)
     except ValueError as exc:
         frappe.throw(_(str(exc)))
 

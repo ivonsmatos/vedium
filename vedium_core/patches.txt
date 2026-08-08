@@ -6,3 +6,4 @@ vedium_core.vedium_core.scripts.migrations.oneshot.seed_ingls_c1_catalog.execute
 vedium_core.vedium_core.scripts.migrations.oneshot.seed_ioruba_basico_catalog.execute
 vedium_core.vedium_core.scripts.migrations.oneshot.seed_ioruba_intermediario_catalog.execute
 vedium_core.vedium_core.scripts.migrations.oneshot.seed_ioruba_avancado_catalog.execute
+vedium_core.vedium_core.scripts.migrations.oneshot.fix_hebraico_particular_450.execute
