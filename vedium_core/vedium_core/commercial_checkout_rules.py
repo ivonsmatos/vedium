@@ -1,18 +1,18 @@
-"""Commercial checkout restrictions for exceptional course offers."""
+"""Commercial checkout restrictions for exceptional course offers.
+
+Ponto de extensão (dormente): nenhum curso tem restrição comercial hoje. O
+Hebraico Particular voltou ao modelo genérico (mensal + anual, 1–5x/semana,
+preço automático do catálogo/plano) em 2026-08-08 — decisão do usuário: "todos
+os valores automáticos, como os outros". Para reintroduzir uma exceção no futuro,
+retorne aqui um dict {"billing_periods": (...), "classes_per_week": (...)}.
+"""
 
 from __future__ import annotations
 
 
-HEBRAICO_PARTICULAR_COURSE = "hebraico-particular"
-
-
 def get_checkout_restriction(course_name: str):
-    """Return an explicit commercial restriction for courses that are not generic 1-5x offers."""
-    if course_name == HEBRAICO_PARTICULAR_COURSE:
-        return {
-            "billing_periods": ("monthly",),
-            "classes_per_week": (1,),
-        }
+    """Restrição comercial explícita por curso. None = sem restrição (o padrão:
+    o curso segue a matriz genérica 1–5x + mensal/anual)."""
     return None
 
 

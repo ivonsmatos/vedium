@@ -1,4 +1,9 @@
-"""Pure tests for exceptional commercial checkout restrictions."""
+"""Pure tests for the (dormant) commercial checkout restriction framework.
+
+Nenhum curso tem restrição comercial hoje — o Hebraico Particular voltou ao
+modelo genérico (mensal + anual, 1–5x) em 2026-08-08. Estes testes garantem que
+o ponto de extensão está inerte (não barra nada) até uma exceção ser reintroduzida.
+"""
 
 from pathlib import Path
 import sys
@@ -10,38 +15,26 @@ if str(APP_ROOT) not in sys.path:
     sys.path.insert(0, str(APP_ROOT))
 
 from vedium_core.commercial_checkout_rules import (  # noqa: E402
-    HEBRAICO_PARTICULAR_COURSE,
     get_checkout_restriction,
     validate_checkout_selection,
 )
 
 
-def test_hebraico_particular_is_monthly_1x_only():
-    restriction = get_checkout_restriction(HEBRAICO_PARTICULAR_COURSE)
-    assert restriction == {
-        "billing_periods": ("monthly",),
-        "classes_per_week": (1,),
-    }
-    validate_checkout_selection(HEBRAICO_PARTICULAR_COURSE, "monthly", 1)
+@pytest.mark.parametrize("course_name", ["hebraico-particular", "ingles-a1", "espanhol-basico"])
+def test_no_course_is_restricted(course_name):
+    assert get_checkout_restriction(course_name) is None
 
 
 @pytest.mark.parametrize(
     ("billing_period", "classes_per_week"),
     [
+        ("monthly", 1),
         ("annual", 1),
-        ("monthly", 2),
-        ("annual", 2),
+        ("monthly", 5),
+        ("annual", 5),
     ],
 )
-def test_hebraico_particular_rejects_unapproved_options(billing_period, classes_per_week):
-    with pytest.raises(ValueError):
-        validate_checkout_selection(
-            HEBRAICO_PARTICULAR_COURSE,
-            billing_period,
-            classes_per_week,
-        )
-
-
-def test_other_courses_keep_generic_checkout_behavior():
-    assert get_checkout_restriction("ingles-a1") is None
-    validate_checkout_selection("ingles-a1", "annual", 5)
+def test_any_selection_is_allowed(billing_period, classes_per_week):
+    # Não levanta: sem restrição, qualquer combinação mensal/anual × 1–5x passa.
+    validate_checkout_selection("hebraico-particular", billing_period, classes_per_week)
+    validate_checkout_selection("ingles-a1", billing_period, classes_per_week)
