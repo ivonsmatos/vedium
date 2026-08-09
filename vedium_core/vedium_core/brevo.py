@@ -374,6 +374,60 @@ def emit_contact_event(
         return {"error": True}
 
 
+# Catálogo canônico de eventos de ciclo de vida que o Frappe emite. Usado para
+# "primar" a lista de gatilhos do Brevo: o Brevo SÓ mostra no dropdown de
+# "evento personalizado" eventos que já foram recebidos ao menos uma vez. NÃO
+# inclui `enrollment_created` (já aparece e já tem a automação A08 ativa —
+# dispará-lo pro contato-semente entraria no onboarding).
+LIFECYCLE_EVENTS = (
+    "student_not_activated", "student_absent", "student_inactive",
+    "progress_milestone", "monthly_evolution",
+    "checkout_started", "payment_failed", "payment_recovered", "payment_due_soon",
+    "trial_started", "trial_expired",
+    "enrollment_activated", "enrollment_suspended", "enrollment_cancelled",
+    "cancellation_requested", "enrollment_pending_review", "enrollment_ended",
+    "lead_created", "lead_updated", "lead_stale",
+    "lead_status_changed", "lead_converted",
+)
+
+
+@frappe.whitelist()
+def seed_event_catalog(email: str = "brevo-seed@vediums.com") -> dict:
+    """Dispara cada evento de LIFECYCLE_EVENTS UMA vez para um contato-semente,
+    para que apareçam no dropdown de gatilhos do Brevo. Seguro: nenhum desses
+    eventos tem automação ainda, e automações do Brevo disparam em eventos
+    FUTUROS (não no seed). Rode uma vez; depois o contato-semente pode ser
+    apagado do Brevo. Restrito à gestão."""
+    if not set(frappe.get_roles()) & {"System Manager", "Administrator", "Vedium Ops"}:
+        frappe.throw(_("Acesso restrito à equipe."), frappe.PermissionError)
+    if not is_enabled():
+        return {"skipped": "disabled"}
+    upsert_contact({
+        "email": email,
+        "attributes": {"FIRSTNAME": "Seed", "COURSE": "Seed"},
+        "updateEnabled": True,
+    })
+    # Superset de params, para o Brevo também aprender as chaves usadas nos modelos.
+    params = {
+        "course": "Seed", "course_level": "Seed", "milestone": 25,
+        "progress_percent": 25, "amount": "R$ 0,00", "due_date": "01/01/2027",
+        "days_idle": 7, "absences": 3, "checkout_url": STUDENT_PORTAL_URL,
+        "billing_url": BILLING_PORTAL_URL, "payment_update_url": BILLING_PORTAL_URL,
+        "student_portal_url": STUDENT_PORTAL_URL, "onboarding_url": STUDENT_PORTAL_URL,
+        "progress_url": STUDENT_PORTAL_URL, "support_checkin_url": STUDENT_PORTAL_URL,
+        "attendance_rate": "100%", "activities_summary": "seed", "seed": True,
+    }
+    fired = []
+    for name in LIFECYCLE_EVENTS:
+        try:
+            track_event(name, email, event_properties=params,
+                        contact_properties={"COURSE": "Seed"})
+            fired.append(name)
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), f"Vedium.Brevo.seed.{name}")
+    return {"fired": fired, "count": len(fired), "contact": email}
+
+
 def _event_key(*parts: Any) -> str:
     raw = "|".join(str(part or "") for part in parts)
     digest = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:40]

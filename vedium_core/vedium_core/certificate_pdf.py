@@ -46,22 +46,15 @@ def _qr_base64(url: str) -> str:
 def _get_certificate_data(code: str) -> dict | None:
     """Busca dados do certificado pelo código de verificação."""
     try:
-        # Tenta por verification_code customizado
-        cert = frappe.db.get_value(
+        # SÓ por verification_code (segredo). Antes havia fallback por `name`
+        # (PK), que permitia enumerar titular+curso sem conhecer o código. QA
+        # 2026-08-09.
+        return frappe.db.get_value(
             "LMS Certificate",
             {"verification_code": code},
             ["name", "member", "course", "issue_date"],
             as_dict=True,
         )
-        if not cert:
-            # Fallback: busca pelo próprio name
-            cert = frappe.db.get_value(
-                "LMS Certificate",
-                code,
-                ["name", "member", "course", "issue_date"],
-                as_dict=True,
-            )
-        return cert
     except Exception:
         return None
 

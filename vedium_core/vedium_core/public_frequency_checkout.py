@@ -24,6 +24,9 @@ def start(
     The selected frequency is validated again on the server. Prices and the
     recurring 10% discount are never accepted from browser-calculated values.
     """
+    from vedium_core.api import rate_limit_by_ip
+
+    rate_limit_by_ip("checkout", limit=20, window_sec=3600)
     from vedium_core.course_urls import get_internal_course_name
     real_course_name = get_internal_course_name(course_name)
     if not real_course_name or not frappe.db.exists("LMS Course", real_course_name):

@@ -25,6 +25,10 @@ def create_checkout_session(
     if getattr(frappe.request, "method", "POST").upper() != "POST":
         frappe.throw(_("Método não permitido (exige POST)"), frappe.PermissionError)
 
+    from vedium_core.api import rate_limit_by_ip
+
+    rate_limit_by_ip("checkout", limit=20, window_sec=3600)
+
     if frappe.session.user == "Guest":
         frappe.throw(_("Por favor, faça login para comprar este curso"))
 

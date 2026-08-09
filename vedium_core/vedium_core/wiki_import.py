@@ -75,9 +75,12 @@ def _first_field(fields: set[str], *candidates: str) -> str | None:
 # ---------------------------------------------------------------------------
 
 def _load_manifest(manifest_path: str) -> dict[str, Any]:
-    path = Path(manifest_path)
-    if not path.is_absolute():
-        path = Path(frappe.get_app_path("vedium_core")) / path
+    # Sempre resolve DENTRO do app; rejeita path absoluto/traversal — senão um
+    # caller poderia fazer json.loads de qualquer arquivo do servidor. QA 2026-08-09.
+    base = Path(frappe.get_app_path("vedium_core")).resolve()
+    path = (base / manifest_path).resolve()
+    if not str(path).startswith(str(base)):
+        frappe.throw("Caminho de manifesto inválido.", frappe.ValidationError)
     if not path.exists():
         raise FileNotFoundError(f"Manifesto não encontrado: {path}")
     return json.loads(path.read_text(encoding="utf-8"))
@@ -281,6 +284,11 @@ def import_manifest(
 
     Por segurança, ``dry_run`` é verdadeiro por padrão.
     """
+    # Função de manutenção que escreve Wiki com ignore_permissions → SÓ gestão.
+    # Sem isto, qualquer usuário logado alteraria/despublicaria a wiki. QA 2026-08-09.
+    if not set(frappe.get_roles()) & {"System Manager", "Administrator"}:
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
+
     manifest = _load_manifest(manifest_path)
     logs: list[str] = []
     counters: dict[str, int] = {"created": 0, "updated": 0, "skipped": 0, "errors": 0}

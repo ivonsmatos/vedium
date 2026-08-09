@@ -267,11 +267,15 @@ def get_leaderboard(course_name, limit=20, start=0):
     """
     Retorna ranking de alunos do curso. Suporta paginação via `start`.
     """
+    # Retorna o NOME do aluno, nunca o `member` (que é o e-mail = PK do User).
+    # Endpoint público: expor e-mail permitia coleta em massa de clientes.
     leaderboard = frappe.db.sql(
         """
-        SELECT member, score, completed_on FROM `tabLMS Enrollment`
-        WHERE course=%s AND status='Completed'
-        ORDER BY score DESC, completed_on ASC
+        SELECT u.full_name AS student, e.score, e.completed_on
+        FROM `tabLMS Enrollment` e
+        JOIN `tabUser` u ON u.name = e.member
+        WHERE e.course=%s AND e.status='Completed'
+        ORDER BY e.score DESC, e.completed_on ASC
         LIMIT %s OFFSET %s
     """,
         (course_name, int(limit), int(start)),
@@ -343,11 +347,25 @@ def get_course_sessions(course_name):
 
 
 # Recursos extras: escuta ativa, gravação de áudio, flashcards (placeholders)
+def _validate_audio_url(audio_url):
+    """Só aceita áudio de arquivo interno do Frappe (/files/...) ou do próprio
+    domínio — bloqueia URL externa arbitrária (evita SSRF quando o serviço de IA
+    baixa a URL). QA 2026-08-09."""
+    u = str(audio_url or "").strip()
+    if u.startswith("/") or u.startswith(
+        ("https://app.vediums.com/", "https://vediums.com/")
+    ):
+        return u
+    frappe.throw(_("URL de áudio inválida."), frappe.ValidationError)
+
+
 @frappe.whitelist()
 def submit_listening_exercise(course_name, audio_url):
     """
     Recebe áudio do aluno para exercício de escuta ativa
     """
+    rate_limit_by_ip("audio_exercise", limit=20, window_sec=3600)
+    audio_url = _validate_audio_url(audio_url)
     from vedium_core.services.ai_service import AIService
 
     ai = AIService()
@@ -360,6 +378,8 @@ def submit_speaking_exercise(course_name, audio_url):
     """
     Recebe áudio do aluno para exercício de fala
     """
+    rate_limit_by_ip("audio_exercise", limit=20, window_sec=3600)
+    audio_url = _validate_audio_url(audio_url)
     from vedium_core.services.ai_service import AIService
 
     ai = AIService()
@@ -432,6 +452,13 @@ def issue_certificate(enrollment_name):
     """
     rate_limit_by_ip("issue_certificate", limit=5, window_sec=3600)
     enrollment = frappe.get_doc("LMS Enrollment", enrollment_name)
+    # Ownership: só o próprio aluno (ou staff) emite o certificado da matrícula —
+    # senão qualquer logado emitiria pra matrícula de outro e leria o
+    # verification_code (que revela e-mail+curso do terceiro). IDOR. QA 2026-08-09.
+    if enrollment.member != frappe.session.user and not (
+        set(frappe.get_roles()) & {"System Manager", "Administrator", "LMS Moderator"}
+    ):
+        frappe.throw(_("Sem permissão para emitir este certificado."), frappe.PermissionError)
     # Bug real encontrado em 2026-07-07: esta função checava
     # `enrollment.status != "Completed"`, mas LMS Enrollment não tem (e nunca
     # teve) um campo "status" -- nada no código jamais setava esse valor, e a
@@ -478,7 +505,15 @@ def verify_certificate(code):
     )
     if not cert:
         frappe.throw(_("Certificado não encontrado"))
-    return cert[0]
+    c = cert[0]
+    # Endpoint público: NÃO expor o e-mail do titular (`member`). Devolve nome +
+    # título do curso, como o gêmeo em public_funnel.verify_certificate.
+    return {
+        "valid": True,
+        "student": frappe.db.get_value("User", c.member, "full_name") or "Aluno Vedium",
+        "course": frappe.db.get_value("LMS Course", c.course, "title") or c.course,
+        "issue_date": c.issue_date,
+    }
 
 
 # =====================
