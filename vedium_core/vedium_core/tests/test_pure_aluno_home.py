@@ -22,7 +22,9 @@ def test_controller_is_valid_python():
 def test_requires_login():
     """Página logada: Guest é redirecionado para o login (com volta pra /aluno)."""
     assert 'frappe.session.user == "Guest"' in ALUNO_PY
-    assert "raise frappe.Redirect" in ALUNO_PY
+    # 302 (temporário) — um 301 no gate de login seria cacheado e prenderia o
+    # usuário fora da página depois de logar.
+    assert "raise frappe.Redirect(302)" in ALUNO_PY
     assert "/login?redirect-to=/aluno" in ALUNO_PY
     assert "no_cache = 1" in ALUNO_PY
 

@@ -26,8 +26,10 @@ _ATTENDED = ("Presente", "Atrasado", "Saida antecipada")
 
 def get_context(context):
     if frappe.session.user == "Guest":
+        # 302 (temporário) de propósito: um 301 no gate de login é cacheado pelo
+        # navegador e prende o usuário fora da página mesmo depois de logar.
         frappe.local.flags.redirect_location = "/login?redirect-to=/aluno"
-        raise frappe.Redirect
+        raise frappe.Redirect(302)
 
     user = frappe.session.user
     context.no_cache = 1
