@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="{{ canonical_url }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+    <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+    <style>
+        .vd-aluno { max-width: 1080px; margin: 0 auto; padding: 40px 20px 64px; }
+        .vd-aluno__hi { font-size: 28px; font-weight: 800; color: #152233; margin: 0 0 4px; }
+        .vd-aluno__sub { color: #5a6b7b; margin: 0 0 28px; }
+        .vd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .vd-card { background: #fff; border: 1px solid #e5ecf3; border-radius: 14px; padding: 22px; box-shadow: 0 1px 3px rgba(20,34,51,.04); }
+        .vd-card h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: #5a6b7b; margin: 0 0 12px; font-weight: 700; }
+        .vd-card--wide { grid-column: 1 / -1; }
+        .vd-next { background: linear-gradient(135deg, #2E6DA4, #1e4f78); color: #fff; border: 0; }
+        .vd-next h3 { color: rgba(255,255,255,.8); }
+        .vd-next__when { font-size: 22px; font-weight: 800; margin: 0 0 2px; text-transform: capitalize; }
+        .vd-next__title { color: rgba(255,255,255,.85); margin: 0 0 18px; }
+        .vd-btn { display: inline-block; background: #A12D1C; color: #fff; text-decoration: none; padding: 11px 20px; border-radius: 8px; font-weight: 700; }
+        .vd-btn--ghost { background: transparent; border: 1px solid #cdd9e4; color: #2E6DA4; }
+        .vd-big { font-size: 42px; font-weight: 800; color: #2E6DA4; line-height: 1; }
+        .vd-muted { color: #8595a4; font-size: 13px; }
+        .vd-pill { display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+        .vd-pill--ok { background: #e6f4ea; color: #1e7a3d; }
+        .vd-pill--warn { background: #fcebe8; color: #A12D1C; }
+        .vd-prog { margin: 12px 0; }
+        .vd-prog__label { display: flex; justify-content: space-between; font-size: 14px; color: #152233; margin-bottom: 6px; }
+        .vd-prog__bar { height: 8px; border-radius: 999px; background: #eef3f8; overflow: hidden; }
+        .vd-prog__fill { height: 100%; background: #2E6DA4; border-radius: 999px; }
+        .vd-shortcuts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+        .vd-short { display: block; text-align: center; text-decoration: none; background: #fff; border: 1px solid #e5ecf3; border-radius: 12px; padding: 18px 10px; color: #152233; font-weight: 600; }
+        .vd-short:hover { border-color: #2E6DA4; color: #2E6DA4; }
+        .vd-short__ico { font-size: 24px; display: block; margin-bottom: 6px; }
+        .vd-empty { color: #8595a4; }
+        @media (max-width: 760px) {
+            .vd-grid { grid-template-columns: 1fr; }
+            .vd-shortcuts { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+
+<body>
+    {% set vd_page = "aluno" %}
+    {% include "templates/includes/site_navbar.html" %}
+
+    <main class="vd-aluno">
+        <h1 class="vd-aluno__hi">Olá{% if student_name %}, {{ student_name }}{% endif %} 👋</h1>
+        <p class="vd-aluno__sub">Esta é a sua jornada na Vedium.</p>
+
+        <div class="vd-grid">
+            <!-- Próxima aula ao vivo -->
+            <div class="vd-card vd-next {% if not next_class %}{% else %}vd-card--wide{% endif %}">
+                <h3>Próxima aula ao vivo</h3>
+                {% if next_class %}
+                <p class="vd-next__when">{% if next_class.weekday %}{{ next_class.weekday }}, {% endif %}{{ next_class.date }}{% if next_class.time %} · {{ next_class.time }}{% endif %}</p>
+                <p class="vd-next__title">{{ next_class.title or "Aula ao vivo" }}</p>
+                {% if next_class.join_url %}
+                <a class="vd-btn" href="{{ next_class.join_url }}" target="_blank" rel="noopener">Entrar no Google Meet</a>
+                {% else %}
+                <span class="vd-muted" style="color:rgba(255,255,255,.8)">O link do Meet aparece aqui quando a aula for gerada.</span>
+                {% endif %}
+                {% else %}
+                <p class="vd-empty" style="color:rgba(255,255,255,.85)">Nenhuma aula agendada no momento. A coordenação monta a agenda com seu professor.</p>
+                {% endif %}
+            </div>
+
+            <!-- Presença -->
+            <div class="vd-card">
+                <h3>Presença</h3>
+                {% if attendance %}
+                <div class="vd-big">{{ attendance.pct }}%</div>
+                <p class="vd-muted">{{ attendance.attended }} de {{ attendance.total }} aulas</p>
+                {% else %}
+                <p class="vd-empty">Ainda sem registro de presença.</p>
+                {% endif %}
+            </div>
+
+            <!-- Pagamento -->
+            <div class="vd-card">
+                <h3>Pagamento</h3>
+                {% if payment and payment.failed %}
+                <span class="vd-pill vd-pill--warn">Pendência</span>
+                <p class="vd-muted" style="margin:10px 0 14px">Regularize para manter seu acesso.</p>
+                <a class="vd-btn" href="{{ billing_url }}">Atualizar pagamento</a>
+                {% else %}
+                <span class="vd-pill vd-pill--ok">Em dia</span>
+                <p class="vd-muted" style="margin-top:10px">Sua assinatura está ativa.</p>
+                {% endif %}
+            </div>
+
+            <!-- Progresso -->
+            <div class="vd-card vd-card--wide">
+                <h3>Meus cursos</h3>
+                {% if enrollments %}
+                {% for e in enrollments %}
+                <div class="vd-prog">
+                    <div class="vd-prog__label"><span>{{ e.title }}</span><span>{{ e.progress }}%</span></div>
+                    <div class="vd-prog__bar"><div class="vd-prog__fill" style="width: {{ e.progress }}%;"></div></div>
+                </div>
+                {% endfor %}
+                <a class="vd-btn vd-btn--ghost" style="margin-top:12px" href="{{ lms_url }}">Continuar estudando</a>
+                {% else %}
+                <p class="vd-empty">Você ainda não tem cursos ativos. <a href="https://vediums.com/cursos-de-idiomas-online">Ver catálogo</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Atalhos -->
+        <div class="vd-shortcuts">
+            <a class="vd-short" href="{{ lms_url }}"><span class="vd-short__ico">📚</span>Meus cursos</a>
+            <a class="vd-short" href="{{ raven_url }}"><span class="vd-short__ico">💬</span>Comunidade</a>
+            <a class="vd-short" href="{{ billing_url }}"><span class="vd-short__ico">💳</span>Pagamentos</a>
+            <a class="vd-short" href="{{ support_url }}"><span class="vd-short__ico">🛟</span>Suporte</a>
+        </div>
+    </main>
+
+    {% include "templates/includes/site_footer.html" %}
+</body>
+
+</html>

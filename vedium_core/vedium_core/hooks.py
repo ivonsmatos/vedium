@@ -328,7 +328,8 @@ website_redirects = [
     # Atalhos para fora do www/ precisam ser REDIRECT, não route rule:
     # website_route_rules só resolve templates do próprio www/ — apontar
     # to_route para /lms/... ou /app dava 404 (achado do QA 2026-07-01).
-    {"source": "/aluno", "target": "https://app.vediums.com/lms/courses"},
+    # /aluno agora é a Home do Aluno (www/aluno.py, P4) — não redireciona mais
+    # pro LMS; a própria página tem o atalho "Meus cursos" pro /lms.
     {"source": "/admin", "target": "https://app.vediums.com/app"},
     {"source": "/rh", "target": "https://app.vediums.com/app/employee"},
     {"source": "/financeiro", "target": "https://app.vediums.com/app/accounts"},
