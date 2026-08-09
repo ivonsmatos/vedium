@@ -427,6 +427,8 @@ jinja = {
         "vedium_core.marketing_landing_content.get_marketing_landing",
         "vedium_core.blog_content.get_blog_post",
         "vedium_core.blog_content.list_blog_posts",
+        # Clusters de autoridade SEO (P9): spoke → pilar → teste de nível.
+        "vedium_core.content_clusters.cluster_for_category",
         "vedium_core.utils.jinja_methods",
     ]
 }
