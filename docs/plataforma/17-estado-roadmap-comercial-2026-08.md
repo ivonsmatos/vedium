@@ -63,15 +63,19 @@ gates anti-duplicação. Ver doc 16 e [[project_email_lifecycle_brevo]].
 
 ---
 
-## 🟡 O que falta (P5–P9) — a base já existe, é conectar
+## ✅ P5–P9 (2026-08-09) — implementadas
 
-| Fase | O que existe | O que falta |
+| Fase | Entrega | Módulo |
 |---|---|---|
-| **P5 Acompanhamento pedagógico** | captura pedagógica **nativa** (Aluno da Aula Vedium: participação/compreensão/produção/pronúncia + próximo foco/tarefa) + relatórios de frequência | **Relatório mensal de evolução** por aluno (série temporal) — grande valor de retenção (pais/corporativo/particular) |
-| **P6 Retenção** | ausência (A09), renovação (A20-01), nível concluído→cert+cupom (`gamification`) já são eventos | aluno inativo no LMS **10 dias**; progresso **abaixo do esperado**; aluno **engajado → pedir avaliação/indicação** |
-| **P7 Indicação** | `referrals.py` é o **core** (Referral, `record_referral_conversion`, recompensa via cupom, chamado no checkout) | expor o fluxo (código do aluno, link) + **medir CAC por indicação** |
-| **P8 Crescimento/dashboard** | **GA4 server-side ok** + app **Insights instalado**; eventos do funil já emitidos (`lead_created`, `checkout_started`, purchase) | modelar métricas (CAC, LTV, churn, ticket médio, conversão por idioma/professor/canal) + montar o painel no Insights |
-| **P9 SEO/clusters** | arquitetura de blog pronta (`blog_content.py`, categorias, `/blog/<cat>/<slug>`) | estrutura **hub-and-spoke**: pilar `/curso-de-<idioma>-online` ↔ cluster `/blog/<idioma>/...`, cada peça apontando teste→curso→lead→matrícula |
+| **P5 Acompanhamento pedagógico** | resumo mensal de evolução por aluno (competências + presença) → evento `monthly_evolution` (A08-05) + e-mail interino; cron dia 1 do mês | `pedagogical_report.py` |
+| **P6 Retenção** | `detect_dormant_students` (começou e sumiu ~10d → `student_inactive`/A09) + `weekly_at_risk_digest` (progresso abaixo do esperado → coordenação). Engajado→indicação (A12) reusa `progress_milestone(=100)` | `retention_events.py` |
+| **P7 Indicação** | 🔴 corrigido bug de `source` inválido no lead de indicação; `referral_metrics()` (conversões, MRR trazido, recompensa média) p/ medir CAC. Core + página `minhas-indicacoes` já existiam | `referrals.py` |
+| **P8 Crescimento/dashboard** | `funnel_metrics()` — camada de DADOS do funil (leads/origem, matrículas, MRR, ticket médio, churn, conversão por idioma, indicação). ⏳ **dashboard visual** monta-se no **Insights** (UI) + GA4 (visitantes) consumindo isto | `funnel_metrics.py` |
+| **P9 SEO/clusters** | mapa hub-and-spoke (idioma → pilar + teste) + helper Jinja `cluster_for_category` (registrado) p/ linkar spoke→pilar→teste. ⏳ **escrever os artigos** do cluster (via `blog-publisher`) + cruzar links é conteúdo | `content_clusters.py` |
+
+**Pendências não-código restantes:** montar o painel no **Insights** (consome
+`funnel_metrics` + GA4); escrever os **artigos dos clusters** SEO e wirar a seção
+"conteúdos relacionados" nos templates (usando `cluster_for_category`).
 
 ---
 
