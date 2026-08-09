@@ -67,6 +67,19 @@ def test_new_lead_creates_commercial_task():
     assert '"vedium_core.brevo.on_crm_lead"' in HOOKS
 
 
+def test_lead_stale_nurture_event_is_field_free_and_scheduled():
+    """Lead parado ~7d em estágio inicial → evento Brevo lead_stale (nutrição),
+    sem campo marcador (janela sobre modified). lead_lost é coberto por
+    lead_status_changed do brevo."""
+    assert "def emit_lead_nurture_events(" in PIPELINE
+    assert '"lead_stale"' in PIPELINE
+    assert "NURTURE_STALE_DAYS = 7" in PIPELINE
+    block = PIPELINE.split("def emit_lead_nurture_events", 1)[1]
+    assert '"modified": ["between"' in block
+    assert '"converted": 0' in block
+    assert "vedium_core.crm_pipeline.emit_lead_nurture_events" in HOOKS
+
+
 def test_stale_lead_alert_is_idempotent_and_scheduled():
     """Lead em 'New' há +24h sem contato → alerta a coordenação uma vez."""
     assert "def alert_stale_leads(" in PIPELINE

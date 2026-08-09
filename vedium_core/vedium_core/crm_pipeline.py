@@ -36,6 +36,9 @@ _COMMERCIAL_ROLES = (
 )
 # Horas em "New" sem contato antes de alertar a coordenação.
 STALE_LEAD_HOURS = 24
+# Dias parado (estágio inicial) antes de disparar a nutrição (Brevo A02/A13).
+NURTURE_STALE_DAYS = 7
+_NURTURE_STATUSES = ("New", "Contacted", "Nurture")
 
 # Origem (CRM Lead Source) por intent do formulário público.
 LEAD_SOURCE_BY_INTENT = {
@@ -207,3 +210,50 @@ def alert_stale_leads(limit: int = 200) -> dict:
         frappe.db.set_value("CRM Lead", r.name, "custom_stale_alerted_on", now_datetime())
     frappe.db.commit()
     return {"alerted": len(rows)}
+
+
+def emit_lead_nurture_events(limit: int = 200) -> dict:
+    """Job diário: leads em estágio inicial parados há ~NURTURE_STALE_DAYS →
+    emite `lead_stale` pro Brevo (nutrição A02/A13). "Lead parado → nutrição".
+
+    Sem campo marcador: usa uma janela de 1 dia sobre `modified` (o job diário
+    pega cada lead uma única vez ao cruzar o limite; se nada tocar o lead, o
+    `modified` não muda e ele não reentra na janela). O e-mail em si é do Brevo;
+    aqui só emitimos o evento. lead_lost → reativação já é coberto por
+    `lead_status_changed` (brevo.on_crm_lead) com o status = Unqualified/Junk."""
+    if not frappe.db.exists("DocType", "CRM Lead"):
+        return {"skipped": "no_crm"}
+    from vedium_core import brevo
+
+    if not brevo.is_enabled():
+        return {"skipped": "brevo_off"}
+
+    lower = add_to_date(now_datetime(), days=-(NURTURE_STALE_DAYS + 1))
+    upper = add_to_date(now_datetime(), days=-NURTURE_STALE_DAYS)
+    rows = frappe.get_all(
+        "CRM Lead",
+        filters={
+            "status": ["in", _NURTURE_STATUSES],
+            "modified": ["between", [lower, upper]],
+            "converted": 0,
+        },
+        fields=["name", "email", "custom_curso_interesse"],
+        limit_page_length=cint(limit),
+    )
+    sent = 0
+    for r in rows:
+        if not r.email or "@" not in str(r.email):
+            continue
+        course = r.custom_curso_interesse or ""
+        brevo.emit_contact_event(
+            r.email,
+            "lead_stale",
+            event_properties={
+                "lead_id": r.name,
+                "course": course,
+                "days_idle": NURTURE_STALE_DAYS,
+            },
+            contact_properties={"COURSE": course} if course else None,
+        )
+        sent += 1
+    return {"sent": sent}

@@ -451,6 +451,8 @@ scheduler_events = {
         "vedium_core.attendance_events.detect_absent_students",
         # Comercial: lead em 'New' há +24h sem contato → alerta a coordenação.
         "vedium_core.crm_pipeline.alert_stale_leads",
+        # Comercial: lead parado ~7 dias → nutrição (evento Brevo lead_stale).
+        "vedium_core.crm_pipeline.emit_lead_nurture_events",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
