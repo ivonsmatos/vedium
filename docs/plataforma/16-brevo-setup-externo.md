@@ -84,23 +84,39 @@ No Brevo: **Senders, Domains & Dedicated IPs → Domains** → autentique
 No Brevo: **Automations → Create → Event based**. Cada fluxo é disparado por um
 **evento que o Frappe já emite**. Mapa evento → fluxo do kit:
 
+Todos os eventos abaixo **já são emitidos pelo Frappe hoje** (estão chegando no
+Brevo; só falta a automação que os consome). Mapa evento → fluxo do kit:
+
 | Evento emitido pelo Frappe | Fluxo do kit | Observação |
 |---|---|---|
 | `enrollment_created` / `enrollment_activated` | **A08** (onboarding) | matrícula paga confirmada |
-| `student_not_activated` | **A08-03 / A09** | matriculou e não começou em 3 dias |
+| `student_not_activated` | **A08-03 / A09** | matriculou e não começou em 3 dias (job diário) |
 | `progress_milestone` (param `milestone` = 25/50/75/100) | **A10** | ramifique por `params.milestone` |
+| `student_absent` (param `absences`) | **A09** (contato de cuidado) | faltas consecutivas (job diário, sobre a presença nativa) |
+| `checkout_started` | **A07** (carrinho abandonado) | emitido ao iniciar o checkout; SAIR em `enrollment_created` |
 | `payment_failed` | **A20-03** (falha) | inicia a régua de cobrança |
 | `payment_recovered` | — (SAÍDA do A20) | condição de saída, não envio |
 | `payment_due_soon` | **A20-01** (lembrete de vencimento) | ⚠️ requer o passo 7 (Stripe) |
 | `trial_started` | fluxo de trial | opcional |
 | `enrollment_cancelled` / `cancellation_requested` | **A14** (cancelamento) | transacional |
-| `lead_created` | **A01** (nutrição inicial) | do CRM |
-| `lead_status_changed` / `lead_converted` | ramificar por estágio | ver P3 (automação comercial) |
+| `lead_created` | **A01** (nutrição inicial) | do CRM; já manda `contact.COURSE` |
+| `lead_stale` (param `days_idle`) | **A02 / A13** (nutrição/reengajamento) | lead parado ~7 dias (job diário) |
+| `lead_status_changed` / `lead_converted` | ramificar por estágio | lead perdido = status `Unqualified`/`Junk` → **A14** |
 
-Params disponíveis nos eventos de matrícula/marco (para os `{{ params.* }}`):
-`student_portal_url`, `onboarding_url`, `progress_url`, `course_url`,
-`billing_url`, `payment_update_url` (ambos = portal de cobrança Stripe),
-`course`, `course_level`, `amount`, `milestone`, `progress_percent`.
+Params disponíveis nos eventos (para os `{{ params.* }}`):
+- **Matrícula/marco/ativação:** `student_portal_url`, `onboarding_url`,
+  `progress_url`, `course_url`, `billing_url`, `payment_update_url` (ambos =
+  portal de cobrança Stripe), `course`, `course_level`, `amount`, `milestone`,
+  `progress_percent`.
+- **Carrinho (`checkout_started`):** `course`, `course_level`, `checkout_url`
+  (= página do curso, para re-iniciar), `billing_period`, `classes_per_week`.
+- **Cobrança (`payment_due_soon`):** `course`, `course_level`, `amount`,
+  `due_date`, `billing_url`, `payment_update_url`.
+- **Ausência (`student_absent`):** `course`, `absences`, `support_checkin_url`.
+
+> ⚠️ Alguns gatilhos que você listou são **internos** (não Brevo): "lead novo →
+> tarefa comercial" e "24h sem contato → alerta" já rodam no **CRM/Frappe**
+> (ToDo + e-mail à coordenação, ver P3), não precisam de automação no Brevo.
 
 **Regras de automação (do README do kit):** dedup por `event_id`; saída em
 compra/resposta/descadastro/conclusão; limite 1 e-mail de marketing/24h e 3/7
