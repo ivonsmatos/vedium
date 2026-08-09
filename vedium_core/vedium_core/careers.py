@@ -178,6 +178,14 @@ def approve_candidatura_as_professor(candidatura_name, funcao):
     sync_new_professor, hook em User.on_update) -- nao precisa repetir
     isso aqui. Nao adiciona a nenhum canal especifico (continua manual,
     o admin escolhe o grupo depois). Idempotente."""
+    # Segurança: concede roles (via ignore_permissions) → SÓ gestão pode chamar,
+    # senão qualquer usuário logado se auto-promoveria a professor (escalonamento
+    # de privilégio). Ver QA de segurança 2026-08-09.
+    if not set(frappe.get_roles()) & {
+        "System Manager", "Administrator", "HR Manager", "Vedium Ops"
+    }:
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
+
     if funcao not in FUNCAO_ROLES:
         frappe.throw(f"Função desconhecida: {funcao!r}. Opções: {', '.join(FUNCAO_ROLES)}")
 

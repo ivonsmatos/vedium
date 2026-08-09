@@ -17,10 +17,18 @@ _ACTIVE = ("Active", "Trial")
 _CHURNED = ("Cancelled", "Ended", "Expired")
 
 
+_STAFF_ROLES = {"System Manager", "Administrator", "Vedium Ops", "Sales Manager"}
+
+
 @frappe.whitelist()
 def funnel_metrics(days: int = 30) -> dict:
     """Snapshot do funil comercial (lead→matrícula→receita→churn) + recortes por
-    idioma e origem. `days` define a janela dos números de período."""
+    idioma e origem. `days` define a janela dos números de período.
+
+    Restrito à gestão: expõe métricas de negócio (MRR, churn, leads) — não pode
+    ficar acessível a qualquer usuário logado (aluno). Ver QA 2026-08-09."""
+    if not set(frappe.get_roles()) & _STAFF_ROLES:
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
     since = add_to_date(now_datetime(), days=-cint(days))
     out: dict = {"period_days": cint(days)}
 

@@ -233,7 +233,14 @@ def referral_metrics() -> dict:
     """Métricas do programa de indicação (P7 / alimenta o dashboard P8): quantos
     indicam, quantas indicações viraram matrícula e a receita mensal trazida
     pelos indicados. Base pra medir CAC por indicação (o custo é a recompensa em
-    desconto, resgatada no próximo pagamento do indicador)."""
+    desconto, resgatada no próximo pagamento do indicador).
+
+    Restrito à gestão: é métrica agregada de negócio, não pode ficar acessível a
+    qualquer usuário logado. Ver QA 2026-08-09."""
+    if not set(frappe.get_roles()) & {
+        "System Manager", "Administrator", "Vedium Ops", "Sales Manager"
+    }:
+        frappe.throw(_("Acesso restrito à equipe."), frappe.PermissionError)
     total_referrers = frappe.db.count("Referral")
     active_referrers = frappe.db.count("Referral", {"active": 1})
     conversions = frappe.get_all(

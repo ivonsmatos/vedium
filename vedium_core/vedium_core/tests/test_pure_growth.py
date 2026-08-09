@@ -27,6 +27,13 @@ def test_funnel_metrics_covers_the_funnel():
     assert "referral_metrics" in FUNNEL
 
 
+def test_funnel_metrics_is_staff_only():
+    """Métrica de negócio (MRR/churn/leads) NÃO pode vazar pra aluno logado."""
+    block = FUNNEL.split("def funnel_metrics(", 1)[1].split("since =", 1)[0]
+    assert "frappe.get_roles()" in block
+    assert "frappe.PermissionError" in block
+
+
 # ---- P9 ----
 
 def test_clusters_map_all_languages_to_pillars():

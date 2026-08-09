@@ -22,6 +22,27 @@ class TestReferralCrmSourceAndMetrics:
         assert "def referral_metrics(" in _REFERRALS
         assert "conversions" in _REFERRALS and "referred_mrr" in _REFERRALS
 
+    def test_referral_metrics_is_staff_only(self):
+        """Métrica agregada de negócio — não pode vazar pra qualquer logado."""
+        block = _REFERRALS.split("def referral_metrics(", 1)[1].split("total_referrers =", 1)[0]
+        assert "frappe.get_roles()" in block
+        assert "frappe.PermissionError" in block
+
+
+class TestApproveCandidaturaGuard:
+    _CAREERS = (
+        Path(__file__).resolve().parents[1] / "careers.py"
+    ).read_text(encoding="utf-8")
+
+    def test_approve_requires_management_role(self):
+        """Conceder role de professor (ignore_permissions) SÓ pra gestão — senão
+        e escalonamento de privilegio (QA seguranca 2026-08-09)."""
+        block = self._CAREERS.split("def approve_candidatura_as_professor(", 1)[1].split(
+            "if funcao not in", 1
+        )[0]
+        assert "frappe.get_roles()" in block
+        assert "frappe.PermissionError" in block
+
 
 # ---------------------------------------------------------------------------
 # Espelha referrals.validate_referral_code (anti-abuso: ninguém usa o
