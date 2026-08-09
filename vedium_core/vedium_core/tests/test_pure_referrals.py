@@ -3,6 +3,25 @@ referrals.validate_referral_code / record_referral_conversion sem
 nenhuma chamada a frappe/DB, seguindo a convenção de test_pure_payments.py.
 """
 
+from pathlib import Path
+
+_REFERRALS = (
+    Path(__file__).resolve().parents[1] / "referrals.py"
+).read_text(encoding="utf-8")
+
+
+class TestReferralCrmSourceAndMetrics:
+    def test_source_bug_fixed_uses_valid_link(self):
+        """O bug latente era `lead.source = "Indicação"` (acentuado) — origem
+        inexistente no CRM Lead Source (o válido é "Indicacao") → insert falhava.
+        Agora resolve para uma origem VÁLIDA."""
+        assert 'lead.source = "Indicação"' not in _REFERRALS
+        assert 'resolve_lead_source("referral")' in _REFERRALS
+
+    def test_referral_metrics_exists_for_measurement(self):
+        assert "def referral_metrics(" in _REFERRALS
+        assert "conversions" in _REFERRALS and "referred_mrr" in _REFERRALS
+
 
 # ---------------------------------------------------------------------------
 # Espelha referrals.validate_referral_code (anti-abuso: ninguém usa o

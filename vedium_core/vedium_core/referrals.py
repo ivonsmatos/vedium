@@ -228,6 +228,36 @@ def record_referral_conversion(referral_code, referee, course_name, enrollment_n
         )
 
 
+@frappe.whitelist()
+def referral_metrics() -> dict:
+    """Métricas do programa de indicação (P7 / alimenta o dashboard P8): quantos
+    indicam, quantas indicações viraram matrícula e a receita mensal trazida
+    pelos indicados. Base pra medir CAC por indicação (o custo é a recompensa em
+    desconto, resgatada no próximo pagamento do indicador)."""
+    total_referrers = frappe.db.count("Referral")
+    active_referrers = frappe.db.count("Referral", {"active": 1})
+    conversions = frappe.get_all(
+        "Referral Conversion",
+        fields=["enrollment", "reward_percent"],
+        limit_page_length=0,
+    )
+    referred_mrr = 0.0
+    for c in conversions:
+        if c.enrollment:
+            amount = frappe.db.get_value(
+                "LMS Enrollment", c.enrollment, "custom_contract_monthly_amount"
+            )
+            referred_mrr += float(amount or 0)
+    rewards = [float(c.reward_percent or 0) for c in conversions if c.reward_percent]
+    return {
+        "referrers_total": total_referrers,
+        "referrers_active": active_referrers,
+        "conversions": len(conversions),
+        "referred_mrr": round(referred_mrr, 2),
+        "avg_reward_percent": round(sum(rewards) / len(rewards), 1) if rewards else 0,
+    }
+
+
 def _upsert_crm_lead_from_referral_conversion(referrer, referee, course_name):
     """Cria/atualiza um CRM Lead para quem se matriculou via indicacao
     (referee), com nota indicando quem indicou -- assim o time de vendas
@@ -267,6 +297,16 @@ def _upsert_crm_lead_from_referral_conversion(referrer, referee, course_name):
         lead.last_name = parts[1]
     lead.lead_name = (referee_name or "").strip()
     lead.email = referee_email
-    lead.source = "Indicação"
+    # source é Link para CRM Lead Source — "Indicação" (acentuado) NÃO existe como
+    # registro (o válido é "Indicacao"); gravar o acentuado faria o insert falhar
+    # (mesmo bug do funil público). Resolve para uma origem válida.
+    from vedium_core.crm_pipeline import resolve_lead_source, resolve_lead_status
+
+    source = resolve_lead_source("referral")
+    if source:
+        lead.source = source
+    status = resolve_lead_status("referral")
+    if status:
+        lead.status = status
     lead.insert(ignore_permissions=True)
     lead.add_comment("Comment", note)
