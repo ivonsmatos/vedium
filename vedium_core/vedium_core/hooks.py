@@ -439,6 +439,8 @@ scheduler_events = {
     "cron": {
         # Segunda-feira 11:00 UTC = 08:00 BRT — resumo semanal de operação
         "0 11 * * 1": ["vedium_core.reports.send_weekly_digest"],
+        # Dia 1 do mês, 11:00 UTC = 08:00 BRT — relatório mensal de evolução (P5)
+        "0 11 1 * *": ["vedium_core.pedagogical_report.emit_monthly_evolution"],
     },
     # Trial de 7 dias: expira matrículas Trial vencidas
     "daily": [
@@ -454,11 +456,15 @@ scheduler_events = {
         "vedium_core.crm_pipeline.alert_stale_leads",
         # Comercial: lead parado ~7 dias → nutrição (evento Brevo lead_stale).
         "vedium_core.crm_pipeline.emit_lead_nurture_events",
+        # Retenção: aluno começou e sumiu do LMS há ~10 dias → win-back (A09).
+        "vedium_core.retention_events.detect_dormant_students",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
     "weekly": [
         "vedium_core.lgpd._audit_pending_requests",
+        # Retenção: digest de alunos com progresso abaixo do esperado (P6).
+        "vedium_core.retention_events.weekly_at_risk_digest",
     ],
 }
 
