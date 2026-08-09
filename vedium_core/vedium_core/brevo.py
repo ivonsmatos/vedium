@@ -399,7 +399,7 @@ def seed_event_catalog(email: str = "brevo-seed@vediums.com") -> dict:
     FUTUROS (não no seed). Rode uma vez; depois o contato-semente pode ser
     apagado do Brevo. Restrito à gestão."""
     if not set(frappe.get_roles()) & {"System Manager", "Administrator", "Vedium Ops"}:
-        frappe.throw(_("Acesso restrito à equipe."), frappe.PermissionError)
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
     if not is_enabled():
         return {"skipped": "disabled"}
     upsert_contact({
