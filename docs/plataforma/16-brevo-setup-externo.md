@@ -22,6 +22,16 @@ Enquanto você não termina os passos abaixo, o **Frappe é o remetente interino
 (boas-vindas, dunning e nudge de ativação saem por e-mail simples). Ao concluir,
 você liga a chave e o Brevo assume — sem e-mail duplicado, sem buraco.
 
+> **Estado verificado (2026-08-09):** ✅ passos **1, 2 e 4 concluídos** — chave OK
+> (`test_connection` conecta na conta VEDIUM GLOBAL), atributos criados
+> (`setup_brevo_schema` rodou), domínio `vediums.com` autenticado. `is_enabled`=
+> true → **eventos já estão sendo emitidos** e `upsert_contact`/`track_event`
+> foram testados e **passam** com os atributos atuais. Rodado um backfill de
+> contatos (8 matrículas + 2 leads). ⚠️ Havia 15 eventos antigos travados em
+> "Queued" — eram de **antes de os atributos existirem** (o Brevo rejeitava o
+> upsert com HTTP 400); são obsoletos e não precisam ser reenviados (reenviar
+> dispararia onboarding pra quem já é aluno). **Falta:** passos **3, 5, 6 e 8.**
+
 ---
 
 ## Passo a passo
@@ -156,10 +166,10 @@ docker exec vedium-frappe bench --site app.vediums.com set-config BREVO_LIFECYCL
 
 ## Checklist rápido
 
-- [ ] 1. `BREVO_API_KEY` / `BREVO_ENABLED` / `BREVO_CONTACT_LIST_IDS` + `test_connection`
-- [ ] 2. `setup_brevo_schema` (atributos)
+- [x] 1. `BREVO_API_KEY` / `BREVO_ENABLED` / `BREVO_CONTACT_LIST_IDS` + `test_connection` ✅
+- [x] 2. `setup_brevo_schema` (atributos) ✅
 - [ ] 3. 96 modelos importados (via `catalogo.csv`)
-- [ ] 4. Domínio `vediums.com` autenticado (SPF/DKIM/DMARC)
+- [x] 4. Domínio `vediums.com` autenticado (SPF/DKIM/DMARC) ✅
 - [ ] 5. Automações montadas (evento → fluxo, tabela acima)
 - [ ] 6. Testes de prova (real + duplicado + campos vazios + clientes)
 - [ ] 7. (Opcional) `invoice.upcoming` no Stripe → `payment_due_soon`
