@@ -97,6 +97,17 @@ No Brevo: **Automations → Create → Event based**. Cada fluxo é disparado po
 Todos os eventos abaixo **já são emitidos pelo Frappe hoje** (estão chegando no
 Brevo; só falta a automação que os consome). Mapa evento → fluxo do kit:
 
+> ✅ **Catálogo de eventos "primado" (2026-08-09):** o Brevo só lista no dropdown
+> de "evento personalizado" eventos já **recebidos ao menos uma vez**. Rodamos
+> `bench execute vedium_core.brevo.seed_event_catalog` → **22 eventos disparados**
+> (todos da tabela, menos `enrollment_created` que já existia) para um contato-
+> semente `brevo-seed@vediums.com`. Então **todos já aparecem** no dropdown para
+> montar as automações. Depois: **apague o contato `brevo-seed@vediums.com`** no
+> Brevo (não entra em automação futura, mas é lixo) e **exclua a automação antiga
+> quebrada "A03 - Teste iniciado"** (aponta pra `test_started`, evento que o
+> Frappe **não** emite — nunca vai funcionar). Ao adicionar um evento novo no
+> futuro, rode o seed de novo.
+
 | Evento emitido pelo Frappe | Fluxo do kit | Observação |
 |---|---|---|
 | `enrollment_created` / `enrollment_activated` | **A08** (onboarding) | matrícula paga confirmada |
