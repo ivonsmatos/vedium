@@ -306,6 +306,15 @@ CUSTOM_FIELDS = {
             "fieldtype": "Data",
             "insert_after": "source",
         },
+        {
+            # Idempotência do alerta de lead parado (New >24h sem contato).
+            # Ver vedium_core/crm_pipeline.py::alert_stale_leads.
+            "fieldname": "custom_stale_alerted_on",
+            "label": "Alerta de lead sem contato em",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_curso_interesse",
+            "read_only": 1,
+        },
     ],
     "Integration Request": [
         {

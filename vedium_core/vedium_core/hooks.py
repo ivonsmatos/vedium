@@ -449,6 +449,8 @@ scheduler_events = {
         "vedium_core.student_onboarding.detect_inactive_students",
         # Ausência: faltas consecutivas disparam o fluxo A09 (evento + check-in).
         "vedium_core.attendance_events.detect_absent_students",
+        # Comercial: lead em 'New' há +24h sem contato → alerta a coordenação.
+        "vedium_core.crm_pipeline.alert_stale_leads",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
@@ -485,7 +487,11 @@ doc_events = {
     # em background (queue "short", after_commit), então falha do Brevo nunca
     # bloqueia a gravação do Lead no CRM.
     "CRM Lead": {
-        "after_insert": "vedium_core.brevo.on_crm_lead",
+        "after_insert": [
+            "vedium_core.brevo.on_crm_lead",
+            # Cria a tarefa comercial (ToDo) de primeiro contato -- ver crm_pipeline.
+            "vedium_core.crm_pipeline.on_lead_created",
+        ],
         "on_update": "vedium_core.brevo.on_crm_lead",
     },
     # Invalida o cache de páginas públicas (catálogo, landings, página de
