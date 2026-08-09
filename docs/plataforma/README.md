@@ -48,9 +48,10 @@ não se repita.
 | 14 | [Atendimento ao Aluno e Canais de Suporte](14-atendimento-e-tutor-ia.md) | Dúvidas humanas, LMS/Raven/Helpdesk e decisão de não usar tutor IA | ✅ |
 | 15 | [Registro de Aula Vedium](15-registro-de-aula-vedium.md) | Doctype de registro/diário de aula | ✅ |
 | 16 | [Brevo — Setup Externo (checklist do dono)](16-brevo-setup-externo.md) | O que fazer no painel do Brevo (+Stripe) p/ ligar o kit de e-mail e o cutover | ✅ |
-| 17 | [Estado do Roadmap Comercial/Pedagógico](17-estado-roadmap-comercial-2026-08.md) | O que foi construído em P2–P4 e o que falta em P5–P9 + ações manuais | ✅ |
+| 17 | [Estado do Roadmap Comercial/Pedagógico](17-estado-roadmap-comercial-2026-08.md) | O que foi construído em P2–P9 e o que falta + ações manuais | ✅ |
+| 18 | [QA de Segurança & Arquitetura](18-qa-seguranca-arquitetura.md) | Achados de segurança (+ fixes), arquitetura, e recomendações de skills/subagentes | ✅ |
 
-Todos os documentos planejados desta pasta estão escritos (05-17).
+Todos os documentos planejados desta pasta estão escritos (05-18).
 
 Legenda: ✅ escrito · ⏳ a escrever
 
