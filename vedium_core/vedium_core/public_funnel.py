@@ -307,3 +307,63 @@ def verify_certificate(code):
         "course": title or cert.course,
         "issue_date": cert.issue_date,
     }
+
+
+@frappe.whitelist(allow_guest=True)
+def save_placement_result(email, level=None, language=None, name=None):
+    """Captura o resultado do teste de nível (CEFR) num CRM Lead + atributo LEVEL
+    no Brevo (nutrição por nível). Público (o teste é público), rate-limited.
+    Idempotente por e-mail: atualiza o lead existente."""
+    from vedium_core.api import rate_limit_by_ip
+
+    rate_limit_by_ip("placement", limit=10, window_sec=3600)
+
+    email = _clean(email, 180)
+    level = _clean(level, 20)
+    language = _clean(language, 40)
+    name = _clean(name, 180)
+    if not email or not EMAIL_RE.match(email):
+        frappe.throw(_("E-mail inválido."))
+    if not frappe.db.exists("DocType", "CRM Lead"):
+        return {"ok": True}
+
+    from vedium_core.crm_pipeline import resolve_lead_source, resolve_lead_status
+    from vedium_core.integrations import ensure_contact
+
+    parts = (name or "").strip().split(" ", 1)
+    ensure_contact(
+        email, first_name=parts[0] or None, last_name=parts[1] if len(parts) > 1 else None
+    )
+    note = f"Teste de nível: {level or '?'}" + (f" ({language})" if language else "")
+    has_nivel = frappe.get_meta("CRM Lead").has_field("custom_nivel")
+    has_curso = frappe.get_meta("CRM Lead").has_field("custom_curso_interesse")
+
+    existing = frappe.db.get_value("CRM Lead", {"email": email}, "name")
+    if existing:
+        doc = frappe.get_doc("CRM Lead", existing)
+        if level and has_nivel:
+            doc.custom_nivel = level
+        if language and has_curso and not doc.get("custom_curso_interesse"):
+            doc.custom_curso_interesse = language
+        doc.save(ignore_permissions=True)
+        doc.add_comment("Comment", note)
+        return {"ok": True}
+
+    lead = frappe.new_doc("CRM Lead")
+    if name:
+        lead.first_name = parts[0]
+        lead.lead_name = name
+    lead.email = email
+    source = resolve_lead_source("lead")
+    if source:
+        lead.source = source
+    status = resolve_lead_status("lead")
+    if status:
+        lead.status = status
+    if level and has_nivel:
+        lead.custom_nivel = level
+    if language and has_curso:
+        lead.custom_curso_interesse = language
+    lead.insert(ignore_permissions=True)
+    lead.add_comment("Comment", note)
+    return {"ok": True}

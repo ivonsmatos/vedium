@@ -315,6 +315,14 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_curso_interesse",
             "read_only": 1,
         },
+        {
+            # Nível CEFR do teste de nível (public_funnel.save_placement_result).
+            # Alimenta o atributo LEVEL do Brevo (nutrição por nível). QA/P8.
+            "fieldname": "custom_nivel",
+            "label": "Nível (teste)",
+            "fieldtype": "Data",
+            "insert_after": "custom_stale_alerted_on",
+        },
     ],
     "Integration Request": [
         {

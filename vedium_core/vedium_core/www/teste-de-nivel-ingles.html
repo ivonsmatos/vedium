@@ -346,6 +346,36 @@
               <a href="/planos" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_plan_click',language:'english_learners'});">Ver planos</a>
               <a href="/catalogo" class="thm-btn" style="background:#111827;" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'level_test_catalog_click',language:'english_learners'});">Escolher curso</a>
             </div>
+            <div class="vd-level-capture" style="margin-top:18px;padding-top:16px;border-top:1px solid #e5e7eb;">
+              <p class="vd-muted" style="margin-bottom:8px;">Receba um plano de estudos para o seu nível por e-mail:</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <input type="email" id="vd-lvl-email" placeholder="seu@email.com" style="flex:1;min-width:200px;padding:10px;border:1px solid #cbd5e1;border-radius:8px;" />
+                <button type="button" id="vd-lvl-send" class="thm-btn">Receber meu plano</button>
+              </div>
+              <p id="vd-lvl-msg" class="vd-muted" style="margin-top:8px;"></p>
+            </div>
+            <script>
+              (function () {
+                var btn = document.getElementById('vd-lvl-send');
+                if (!btn) return;
+                btn.addEventListener('click', function () {
+                  var email = (document.getElementById('vd-lvl-email').value || '').trim();
+                  var level = (document.getElementById('result-level').innerText || '').trim();
+                  var msg = document.getElementById('vd-lvl-msg');
+                  if (!email || email.indexOf('@') < 1) { msg.textContent = 'Informe um e-mail válido.'; return; }
+                  btn.disabled = true; msg.textContent = 'Enviando...';
+                  fetch('/api/method/vedium_core.public_funnel.save_placement_result', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Frappe-CSRF-Token': 'fetch' },
+                    body: JSON.stringify({ email: email, level: level, language: 'english' })
+                  }).then(function (r) { return r.json(); }).then(function () {
+                    msg.textContent = 'Pronto! Em breve enviamos seu plano de estudos.';
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({ event: 'level_test_email_capture', language: 'english_learners', level: level });
+                  }).catch(function () { msg.textContent = 'Não foi possível enviar agora. Fale com a gente pelo WhatsApp.'; btn.disabled = false; });
+                });
+              })();
+            </script>
           </div>
         </div>
       </div>

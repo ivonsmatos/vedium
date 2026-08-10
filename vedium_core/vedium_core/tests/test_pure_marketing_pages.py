@@ -883,7 +883,11 @@ def test_public_level_test_exists_without_backend_dependency():
     assert "Recomendação:" in english_html
     assert "wa.me/5511911293075" in english_html
     assert "A1" in english_html and "C1" in english_html
-    assert "/api/method" not in english_html
+    # O teste em si roda 100% client-side; a ÚNICA chamada de backend é a captura
+    # OPCIONAL de nível (save_placement_result -> CRM/Brevo LEVEL), que degrada
+    # graciosamente se o backend falhar (o resultado do teste aparece de qualquer forma).
+    assert english_html.count("/api/method/") == 1
+    assert "vedium_core.public_funnel.save_placement_result" in english_html
     assert "stripe" not in english_html.lower()
 
 

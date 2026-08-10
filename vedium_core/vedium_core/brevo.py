@@ -710,6 +710,7 @@ def _lead_snapshot(doc) -> dict:
         "source": getattr(doc, "source", None) or "",
         "company": getattr(doc, "organization", None) or getattr(doc, "company_name", None) or "",
         "course": getattr(doc, "custom_curso_interesse", None) or "",
+        "level": getattr(doc, "custom_nivel", None) or "",
     }
 
 
@@ -743,6 +744,7 @@ def process_lead_snapshot(snapshot: dict, event_name: str) -> dict:
     attributes = {
         "COMPANY": snapshot.get("company"),
         "COURSE": snapshot.get("course"),
+        "LEVEL": snapshot.get("level"),
         "VEDIUM_CRM_STATUS": snapshot.get("status"),
         "VEDIUM_SOURCE": snapshot.get("source") or "Frappe CRM",
     }
