@@ -1,0 +1,36 @@
+# Normaliza fim de linha: força LF nos arquivos-fonte que editamos. O editor no
+# Windows gravava CRLF em arquivos que o repo tinha em LF -> git via o arquivo
+# INTEIRO como alterado (footgun recorrente, ver docs/plataforma/18). Com isto,
+# git normaliza para LF no `git add` e o problema some. QA 2026-08-09.
+*.py    text eol=lf
+*.html  text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.txt   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.cfg   text eol=lf
+*.sh    text eol=lf
+
+# Assets vendorizados de terceiros: não renormalizar (evita diff gigante em
+# min.js/min.css alheios).
+vedium_core/vedium_core/public/vedium_assets/** -text
+
+# Binários: nunca aplicar conversão de linha.
+*.woff2 binary
+*.woff  binary
+*.ttf   binary
+*.eot   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.svg   binary
+*.pdf   binary
+*.xlsx  binary
+*.xls   binary
+*.zip   binary
