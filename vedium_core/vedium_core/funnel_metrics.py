@@ -174,18 +174,19 @@ def ensure_funnel_dashboard() -> dict:
         "DocType", "LMS Enrollment"
     ):
         chart_name = frappe.db.get_value(
-            "Dashboard Chart", {"chart_name": "Vedium · Alunos por status"}, "name"
+            "Dashboard Chart", {"chart_name": "Vedium - Alunos por status"}, "name"
         )
         if not chart_name:
             try:
                 chart = frappe.get_doc(
                     {
                         "doctype": "Dashboard Chart",
-                        "chart_name": "Vedium · Alunos por status",
+                        "chart_name": "Vedium - Alunos por status",
                         "chart_type": "Group By",
                         "document_type": "LMS Enrollment",
                         "group_by_type": "Count",
                         "group_by_based_on": "custom_vedium_status",
+                        "filters_json": "[]",
                         "type": "Donut",
                         "is_public": 1,
                     }
