@@ -287,10 +287,11 @@ def get_leaderboard(course_name, limit=20, start=0):
 @frappe.whitelist(allow_guest=True)
 def get_forum_topics(course_name):
     """Tópicos do fórum do curso. [] se DocType não existe ainda."""
+    # Endpoint público: NÃO expor `created_by` (e-mail do autor). QA 2026-08-09.
     return _safe_get_all(
         "LMS Forum Topic",
         filters={"course": course_name},
-        fields=["name", "title", "created_by", "creation"],
+        fields=["name", "title", "creation"],
     )
 
 
@@ -330,6 +331,8 @@ def get_accessibility_features(course_name):
 @frappe.whitelist(allow_guest=True)
 def get_course_sessions(course_name):
     """Sessões (ao vivo/gravadas) do curso. [] se DocType não existe."""
+    # Endpoint público: NÃO expor `live_url`/`video_url` (links de acesso à aula —
+    # devem ser gated a alunos matriculados). QA 2026-08-09.
     return _safe_get_all(
         "LMS Session",
         filters={"course": course_name},
@@ -339,8 +342,6 @@ def get_course_sessions(course_name):
             "type",
             "start_time",
             "end_time",
-            "video_url",
-            "live_url",
             "platform",
         ],
     )

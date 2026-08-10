@@ -53,3 +53,13 @@ def test_clusters_map_all_languages_to_pillars():
 
 def test_cluster_helper_registered_in_jinja():
     assert "vedium_core.content_clusters.cluster_for_category" in HOOKS
+
+
+def test_cluster_is_wired_into_blog_post_template():
+    """P9 não é código-morto: o post do blog realmente renderiza o cluster
+    (spoke -> pilar + teste de nível) via o helper."""
+    tpl = (
+        ROOT / "vedium_core" / "vedium_core" / "templates" / "includes" / "blog_post.html"
+    ).read_text(encoding="utf-8")
+    assert "cluster_for_category(post.category)" in tpl
+    assert "vd_cluster.pillar_url" in tpl and "vd_cluster.teste_url" in tpl

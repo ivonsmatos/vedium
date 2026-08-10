@@ -151,6 +151,18 @@
     </div>
     {%- endif %}
 
+    {#- Cluster de autoridade (P9): spoke -> pilar do idioma + teste de nível.
+        Linkagem interna hub-and-spoke via content_clusters.cluster_for_category. -#}
+    {%- set vd_cluster = cluster_for_category(post.category) %}
+    {%- if vd_cluster %}
+    <div class="vd-bp-cta vd-bp-cluster">
+      <h2>{{ "Ready to learn " ~ vd_cluster.label ~ "?" if vd_bp_en else "Quer aprender " ~ vd_cluster.label ~ "?" }}</h2>
+      <p>{{ "Discover your level, then start with a live teacher." if vd_bp_en else "Descubra seu nível e comece com um professor ao vivo." }}</p>
+      <a href="{{ vd_cluster.teste_url }}" class="vd-cta-btn">{{ "Take the level test" if vd_bp_en else "Fazer o teste de nível" }}</a>
+      <a href="{{ vd_cluster.pillar_url }}" class="vd-cta-btn">{{ "See the course" if vd_bp_en else "Ver o curso" }}</a>
+    </div>
+    {%- endif %}
+
     {%- if newer_post or older_post %}
     <div class="vd-bp-nav">
       {%- if older_post %}
