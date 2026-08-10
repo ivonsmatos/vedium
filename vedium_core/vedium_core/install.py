@@ -29,7 +29,18 @@ def after_migrate():
     _ensure_raven_realtime_patch()
     _ensure_usd_plans()
     _ensure_crm_pipeline()
+    _ensure_funnel_dashboard()
     _clear_module_cache()
+
+
+def _ensure_funnel_dashboard():
+    # Number Cards + Dashboard "Vedium Funil" (P8). Idempotente e nunca fatal.
+    try:
+        from vedium_core.funnel_metrics import ensure_funnel_dashboard
+
+        ensure_funnel_dashboard()
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.install.ensure_funnel_dashboard")
 
 
 def _ensure_crm_pipeline():
