@@ -167,15 +167,46 @@ def ensure_funnel_dashboard() -> dict:
         except Exception:
             frappe.log_error(frappe.get_traceback(), "Vedium.funnel.number_card")
 
+    # O Dashboard exige ao menos um chart (campo `charts` obrigatório). Criamos um
+    # Group By por status da matrícula.
+    chart_name = None
+    if frappe.db.exists("DocType", "Dashboard Chart") and frappe.db.exists(
+        "DocType", "LMS Enrollment"
+    ):
+        chart_name = frappe.db.get_value(
+            "Dashboard Chart", {"chart_name": "Vedium · Alunos por status"}, "name"
+        )
+        if not chart_name:
+            try:
+                chart = frappe.get_doc(
+                    {
+                        "doctype": "Dashboard Chart",
+                        "chart_name": "Vedium · Alunos por status",
+                        "chart_type": "Group By",
+                        "document_type": "LMS Enrollment",
+                        "group_by_type": "Count",
+                        "group_by_based_on": "custom_vedium_status",
+                        "type": "Donut",
+                        "is_public": 1,
+                    }
+                )
+                chart.insert(ignore_permissions=True)
+                chart_name = chart.name
+                created.append(chart_name)
+            except Exception:
+                frappe.log_error(frappe.get_traceback(), "Vedium.funnel.chart")
+
     if (
         frappe.db.exists("DocType", "Dashboard")
         and card_labels
+        and chart_name
         and not frappe.db.exists("Dashboard", "Vedium Funil")
     ):
         try:
             dash = frappe.get_doc({"doctype": "Dashboard", "dashboard_name": "Vedium Funil"})
+            dash.append("charts", {"chart": chart_name, "width": "Full"})
             for name in card_labels:
-                dash.append("cards", {"card": name})
+                dash.append("cards", {"card": name, "width": "Half"})
             dash.insert(ignore_permissions=True)
             created.append("Dashboard:Vedium Funil")
         except Exception:
