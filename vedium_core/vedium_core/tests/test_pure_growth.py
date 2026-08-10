@@ -27,6 +27,17 @@ def test_funnel_metrics_covers_the_funnel():
     assert "referral_metrics" in FUNNEL
 
 
+def test_funnel_dashboard_seed_is_idempotent_and_safe():
+    """Dashboard nativo (Number Cards + Dashboard) idempotente por label, nunca
+    fatal, só cria card cujo document_type existe."""
+    assert "def ensure_funnel_dashboard(" in FUNNEL
+    block = FUNNEL.split("def ensure_funnel_dashboard(", 1)[1]
+    assert 'frappe.db.exists("DocType", "Number Card")' in block
+    assert 'frappe.db.get_value("Number Card", {"label"' in block  # idempotente por label
+    assert '"Dashboard", "Vedium Funil"' in block
+    assert "frappe.log_error" in block  # nunca fatal
+
+
 def test_funnel_metrics_is_staff_only():
     """Métrica de negócio (MRR/churn/leads) NÃO pode vazar pra aluno logado."""
     block = FUNNEL.split("def funnel_metrics(", 1)[1].split("since =", 1)[0]

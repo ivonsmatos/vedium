@@ -10,6 +10,8 @@ Aqui cobrimos de "lead" pra baixo (o topo — visita/curso — é GA4).
 
 from __future__ import annotations
 
+import json
+
 import frappe
 from frappe.utils import add_to_date, cint, now_datetime
 
@@ -100,3 +102,84 @@ def funnel_metrics(days: int = 30) -> dict:
         out["referral"] = {}
 
     return out
+
+
+# ---------------------------------------------------------------------------
+# Dashboard nativo do funil (Number Cards + Dashboard) — o painel VISUAL para as
+# métricas que mapeiam pra agregados de doctype (Count/Sum). As métricas
+# computadas (churn %, ticket médio, conversão por idioma) ficam em
+# funnel_metrics() para o Insights consumir. Idempotente por label; nunca fatal.
+# ---------------------------------------------------------------------------
+
+_ACTIVE_FILTER = json.dumps([["custom_vedium_status", "in", ["Active", "Trial"]]])
+
+_FUNNEL_CARDS = [
+    {
+        "label": "Vedium · Alunos ativos",
+        "document_type": "LMS Enrollment",
+        "function": "Count",
+        "filters_json": _ACTIVE_FILTER,
+    },
+    {
+        "label": "Vedium · MRR (R$/mês)",
+        "document_type": "LMS Enrollment",
+        "function": "Sum",
+        "aggregate_function_based_on": "custom_contract_monthly_amount",
+        "filters_json": _ACTIVE_FILTER,
+    },
+    {
+        "label": "Vedium · Leads (total)",
+        "document_type": "CRM Lead",
+        "function": "Count",
+        "filters_json": "[]",
+    },
+    {
+        "label": "Vedium · Matrículas (total)",
+        "document_type": "LMS Enrollment",
+        "function": "Count",
+        "filters_json": "[]",
+    },
+]
+
+
+def ensure_funnel_dashboard() -> dict:
+    """Cria (idempotente) os Number Cards do funil + um Dashboard 'Vedium Funil'.
+    Nunca fatal. Só cria cards cujo document_type existe."""
+    if not frappe.db.exists("DocType", "Number Card"):
+        return {"skipped": "no_number_card"}
+
+    created = []
+    card_labels = []
+    for cfg in _FUNNEL_CARDS:
+        if not frappe.db.exists("DocType", cfg["document_type"]):
+            continue
+        existing = frappe.db.get_value("Number Card", {"label": cfg["label"]}, "name")
+        if existing:
+            card_labels.append(existing)
+            continue
+        try:
+            doc = frappe.get_doc(
+                {"doctype": "Number Card", "type": "Document Type", "is_public": 1, **cfg}
+            )
+            doc.insert(ignore_permissions=True)
+            card_labels.append(doc.name)
+            created.append(doc.name)
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), "Vedium.funnel.number_card")
+
+    if (
+        frappe.db.exists("DocType", "Dashboard")
+        and card_labels
+        and not frappe.db.exists("Dashboard", "Vedium Funil")
+    ):
+        try:
+            dash = frappe.get_doc({"doctype": "Dashboard", "dashboard_name": "Vedium Funil"})
+            for name in card_labels:
+                dash.append("cards", {"card": name})
+            dash.insert(ignore_permissions=True)
+            created.append("Dashboard:Vedium Funil")
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), "Vedium.funnel.dashboard")
+
+    frappe.db.commit()
+    return {"created": created, "cards": card_labels}
