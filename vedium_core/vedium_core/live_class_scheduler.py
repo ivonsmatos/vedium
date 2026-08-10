@@ -119,6 +119,44 @@ def generate_batch_live_classes(batch_name, weekdays, host=None, duration=None, 
     }
 
 
+_SCHEDULER_STAFF = {
+    "System Manager", "Administrator", "Vedium Ops",
+    "Batch Evaluator", "Course Creator", "Moderator",
+}
+
+
+@frappe.whitelist()
+def generate_live_classes_for_batch(batch_name, weekdays, host=None, duration=None):
+    """UI (botão no LMS Batch): gera as aulas ao vivo recorrentes da turma.
+    Restrito à equipe. `weekdays` aceita lista, JSON ou CSV de dias (nomes PT/EN
+    ou 0=segunda..6=domingo); `host` default = 1º instrutor da turma."""
+    if not set(frappe.get_roles()) & _SCHEDULER_STAFF:
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
+
+    if isinstance(weekdays, str):
+        import json
+
+        try:
+            weekdays = json.loads(weekdays)
+        except Exception:
+            weekdays = [w.strip() for w in weekdays.split(",") if w.strip()]
+
+    if not host:
+        batch = frappe.get_doc("LMS Batch", batch_name)
+        rows = batch.get("instructors") or []
+        if rows:
+            host = rows[0].instructor
+    if not host:
+        frappe.throw("A turma não tem instrutor — informe o host (e-mail do professor).")
+
+    result = generate_batch_live_classes(batch_name, weekdays, host=host, duration=duration)
+    return {
+        "created": len(result.get("created", [])),
+        "skipped": len(result.get("skipped_existing", [])),
+        "host": result.get("host"),
+    }
+
+
 def _find_individual_batch(member, course):
     """Turma-de-um (seat_count=1) do aluno para o curso, se já existe."""
     rows = frappe.db.sql(

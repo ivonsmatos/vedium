@@ -572,6 +572,8 @@ doc_events = {
 
 doctype_js = {
     "Candidatura": "public/js/candidatura.js",
+    # Botão "Gerar aulas ao vivo" na turma (P2 — tira o gerador do bench execute).
+    "LMS Batch": "public/js/lms_batch.js",
 }
 
 # =============================================================================
