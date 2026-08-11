@@ -145,11 +145,18 @@ Params disponíveis nos eventos (para os `{{ params.* }}`):
 > ✅ **Encontro pré-venda (A05/A06) ligado em 2026-08-11:** o agendamento usa o
 > **Appointment Booking NATIVO** em `app.vediums.com/book_appointment` (agente
 > `contato@vediums.com`, agenda seg–sex 09:00–18:00 — ajuste no Desk em
-> *Appointment Booking Settings*). ⚠️ **Passo manual seu:** conectar a conta
-> **Google Calendar de `contato@vediums.com`** (login OAuth) para gerar o link do
-> Meet automaticamente — enquanto não conectar, `params.meeting_url` cai no link
-> de booking. A detecção de no-show é **híbrida**: a equipe marca "Faltou" no
-> Appointment (dispara A06); o resto é assumido "Compareceu" após ~3h (A05-04).
+> *Appointment Booking Settings*). ✅ **Google Calendar do `contato@` conectado**
+> (push on) → **Meet automático ativo**. A detecção de no-show é **híbrida**: a
+> equipe marca "Faltou" no Appointment (dispara A06); o resto é assumido
+> "Compareceu" após ~3h (A05-04).
+>
+> ⚠️ **Footgun de OAuth do Google Calendar** (se for reconectar/adicionar outro):
+> o redirect que o Frappe manda é `https://vediums.com?cmd=…google_callback`
+> (segue o `host_name`), então esse URI **exato** tem de estar no cliente OAuth
+> "Vedium Frappe" (Google Cloud Console → Credenciais). E como o Desk fica em
+> `app.vediums.com` mas o callback volta pra `vediums.com`, **autorize logado no
+> Desk via `https://vediums.com/app/...`** (mesmo host do callback) — senão o
+> cookie de sessão não casa e o callback dá **403 "not permitted"**.
 
 > ⚠️ Alguns gatilhos que você listou são **internos** (não Brevo): "lead novo →
 > tarefa comercial" e "24h sem contato → alerta" já rodam no **CRM/Frappe**
