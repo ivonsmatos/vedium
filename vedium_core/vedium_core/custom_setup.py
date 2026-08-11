@@ -324,6 +324,44 @@ CUSTOM_FIELDS = {
             "insert_after": "custom_stale_alerted_on",
         },
     ],
+    "Appointment": [
+        {
+            # Idioma de interesse do lead que agendou a conversa pré-venda.
+            # Alimenta o atributo COURSE do Brevo (A05/A06 personalizados por
+            # idioma). Ver vedium_core/appointment_events.py.
+            "fieldname": "custom_course_interest",
+            "label": "Idioma de interesse",
+            "fieldtype": "Data",
+            "insert_after": "customer_details",
+        },
+        {
+            # Marcação de presença do encontro (detecção de no-show HÍBRIDA): a
+            # equipe marca "Faltou" (exceção) → dispara meeting_no_show (A06). O
+            # job assume "Compareceu" para o resto → meeting_attended (A05-04).
+            "fieldname": "custom_attendance_outcome",
+            "label": "Presença no encontro",
+            "fieldtype": "Select",
+            "options": "\nCompareceu\nFaltou",
+            "insert_after": "custom_course_interest",
+        },
+        {
+            # Idempotência: quando o evento meeting_booked (A05) já foi emitido.
+            "fieldname": "custom_booked_event_on",
+            "label": "Evento de agendamento emitido em",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_attendance_outcome",
+            "read_only": 1,
+        },
+        {
+            # Idempotência: quando o evento de desfecho (attended/no_show) já
+            # foi emitido. Ver appointment_events.finalize_past_appointments.
+            "fieldname": "custom_outcome_event_on",
+            "label": "Evento de desfecho emitido em",
+            "fieldtype": "Datetime",
+            "insert_after": "custom_booked_event_on",
+            "read_only": 1,
+        },
+    ],
     "Integration Request": [
         {
             "fieldname": "custom_vedium_attempts",

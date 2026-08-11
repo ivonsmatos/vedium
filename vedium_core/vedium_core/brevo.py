@@ -388,6 +388,8 @@ LIFECYCLE_EVENTS = (
     "cancellation_requested", "enrollment_pending_review", "enrollment_ended",
     "lead_created", "lead_updated", "lead_stale",
     "lead_status_changed", "lead_converted",
+    # Encontro pré-venda (Appointment nativo) — fluxos A05/A06.
+    "meeting_booked", "meeting_attended", "meeting_no_show",
 )
 
 

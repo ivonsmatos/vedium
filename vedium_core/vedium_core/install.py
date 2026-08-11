@@ -30,7 +30,19 @@ def after_migrate():
     _ensure_usd_plans()
     _ensure_crm_pipeline()
     _ensure_funnel_dashboard()
+    _ensure_appointment_booking()
     _clear_module_cache()
+
+
+def _ensure_appointment_booking():
+    # Liga o Appointment Booking nativo (encontro pré-venda A05/A06). Idempotente
+    # e nunca fatal; não pisa em agenda já ajustada no Desk.
+    try:
+        from vedium_core.appointment_setup import ensure_appointment_booking
+
+        ensure_appointment_booking()
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Vedium.install.ensure_appointment_booking")
 
 
 def _ensure_funnel_dashboard():

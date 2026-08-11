@@ -462,6 +462,11 @@ scheduler_events = {
         "vedium_core.retention_events.detect_dormant_students",
         "vedium_core.vedium_core.doctype.registro_de_aula_vedium.registro_de_aula_vedium.remind_draft_records",
     ],
+    # Encontro pré-venda: assume "compareceu" para encontros passados não
+    # marcados como falta → emite meeting_attended (A05-04). Ver appointment_events.
+    "hourly": [
+        "vedium_core.appointment_events.finalize_past_appointments",
+    ],
     # LGPD: auditoria semanal de solicitações pendentes há mais de 15 dias
     "weekly": [
         "vedium_core.lgpd._audit_pending_requests",
@@ -560,6 +565,13 @@ doc_events = {
     # checklist de início -- ver teacher_onboarding.on_batch_created.
     "LMS Batch": {
         "after_insert": "vedium_core.teacher_onboarding.on_batch_created",
+    },
+    # Encontro pré-venda (Appointment Booking nativo): emite meeting_booked (A05)
+    # ao agendar e meeting_no_show/meeting_attended (A06/A05-04) no desfecho.
+    # Ver vedium_core/appointment_events.py.
+    "Appointment": {
+        "after_insert": "vedium_core.appointment_events.on_appointment_after_insert",
+        "on_update": "vedium_core.appointment_events.on_appointment_outcome",
     },
     "Discussion Reply": {
         "validate": "vedium_core.access_control.validate_discussion_reply",
