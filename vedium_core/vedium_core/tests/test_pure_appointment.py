@@ -74,3 +74,12 @@ def test_setup_is_idempotent_and_non_destructive():
     """Só liga se estiver desligado; não sobrescreve a agenda já ajustada."""
     assert 'return {"skipped": "already_enabled"}' in SETUP
     assert 'not settings.get("availability_of_slots")' in SETUP
+
+
+def test_setup_needs_agent_and_uses_flags():
+    """Não chuta o dono da agenda (pula sem VEDIUM_APPOINTMENT_AGENT) e usa
+    flags.ignore_permissions (o save() do nativo não aceita o kwarg)."""
+    assert 'return {"skipped": "needs_agent"}' in SETUP
+    assert "vedium_appointment_agent" in SETUP
+    assert "settings.flags.ignore_permissions = True" in SETUP
+    assert "ignore_permissions=True)" not in SETUP  # não usa o kwarg quebrado
