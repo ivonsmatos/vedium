@@ -99,14 +99,15 @@ Brevo; só falta a automação que os consome). Mapa evento → fluxo do kit:
 
 > ✅ **Catálogo de eventos "primado" (2026-08-09):** o Brevo só lista no dropdown
 > de "evento personalizado" eventos já **recebidos ao menos uma vez**. Rodamos
-> `bench execute vedium_core.brevo.seed_event_catalog` → **22 eventos disparados**
+> `bench execute vedium_core.brevo.seed_event_catalog` → **25 eventos disparados**
 > (todos da tabela, menos `enrollment_created` que já existia) para um contato-
 > semente `brevo-seed@vediums.com`. Então **todos já aparecem** no dropdown para
 > montar as automações. Depois: **apague o contato `brevo-seed@vediums.com`** no
 > Brevo (não entra em automação futura, mas é lixo) e **exclua a automação antiga
 > quebrada "A03 - Teste iniciado"** (aponta pra `test_started`, evento que o
-> Frappe **não** emite — nunca vai funcionar). Ao adicionar um evento novo no
-> futuro, rode o seed de novo.
+> Frappe **não** emite — nunca vai funcionar; o teste de nível só captura no fim,
+> não há sinal de "iniciado"). Ao adicionar um evento novo no futuro, rode o seed
+> de novo. *(2026-08-11: re-seed trouxe `meeting_booked/attended/no_show` — A05/A06.)*
 
 | Evento emitido pelo Frappe | Fluxo do kit | Observação |
 |---|---|---|
@@ -115,6 +116,9 @@ Brevo; só falta a automação que os consome). Mapa evento → fluxo do kit:
 | `progress_milestone` (param `milestone` = 25/50/75/100) | **A10** | ramifique por `params.milestone` |
 | `student_absent` (param `absences`) | **A09** (contato de cuidado) | faltas consecutivas (job diário, sobre a presença nativa) |
 | `checkout_started` | **A07** (carrinho abandonado) | emitido ao iniciar o checkout; SAIR em `enrollment_created` |
+| `meeting_booked` | **A05** (confirmação + lembretes) | encontro pré-venda agendado (`/book_appointment` nativo); agende os lembretes a partir de `params.meeting_datetime` |
+| `meeting_attended` | **A05-04** (resumo pós-encontro) | job assume presença após tolerância |
+| `meeting_no_show` | **A06** (reagendamento) | equipe marca a falta no Appointment; SAIR se reagendar (`meeting_booked` de novo) |
 | `payment_failed` | **A20-03** (falha) | inicia a régua de cobrança |
 | `payment_recovered` | — (SAÍDA do A20) | condição de saída, não envio |
 | `payment_due_soon` | **A20-01** (lembrete de vencimento) | ⚠️ requer o passo 7 (Stripe) |
@@ -134,6 +138,18 @@ Params disponíveis nos eventos (para os `{{ params.* }}`):
 - **Cobrança (`payment_due_soon`):** `course`, `course_level`, `amount`,
   `due_date`, `billing_url`, `payment_update_url`.
 - **Ausência (`student_absent`):** `course`, `absences`, `support_checkin_url`.
+- **Encontro (`meeting_booked`/`attended`/`no_show`):** `meeting_datetime`, `date`,
+  `time`, `timezone`, `meeting_url` (Google Meet, best-effort), `booking_url`,
+  `calendar_url`, `reschedule_url`, `preference_url`, `course`.
+
+> ✅ **Encontro pré-venda (A05/A06) ligado em 2026-08-11:** o agendamento usa o
+> **Appointment Booking NATIVO** em `app.vediums.com/book_appointment` (agente
+> `contato@vediums.com`, agenda seg–sex 09:00–18:00 — ajuste no Desk em
+> *Appointment Booking Settings*). ⚠️ **Passo manual seu:** conectar a conta
+> **Google Calendar de `contato@vediums.com`** (login OAuth) para gerar o link do
+> Meet automaticamente — enquanto não conectar, `params.meeting_url` cai no link
+> de booking. A detecção de no-show é **híbrida**: a equipe marca "Faltou" no
+> Appointment (dispara A06); o resto é assumido "Compareceu" após ~3h (A05-04).
 
 > ⚠️ Alguns gatilhos que você listou são **internos** (não Brevo): "lead novo →
 > tarefa comercial" e "24h sem contato → alerta" já rodam no **CRM/Frappe**

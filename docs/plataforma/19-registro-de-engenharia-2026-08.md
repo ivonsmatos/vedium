@@ -48,6 +48,8 @@ request/job) e **idempotente** (marca o que já processou num custom field).
 | `funnel_metrics.py` | Camada de dados do funil + cria o dashboard nativo | `funnel_metrics()` (dados) + `ensure_funnel_dashboard()` (no `after_migrate`) |
 | `content_clusters.py` | Mapa hub-and-spoke (idioma→pilar+teste) | helper Jinja `cluster_for_category` |
 | `public_funnel.py` (edit) | Captura do teste de nível → lead + `LEVEL` | `save_placement_result()` (guest, rate-limited) |
+| `appointment_events.py` | Ponte encontro pré-venda→Brevo (A05/A06) | doc_events do `Appointment` + job horário `finalize_past_appointments` |
+| `appointment_setup.py` | Liga o Appointment Booking **nativo** (config) | `ensure_appointment_booking()` (agente por config, holiday auto) |
 
 Front-end / páginas:
 - `www/aluno.py` + `www/aluno.html` — Home do Aluno (server-rendered, logada).
@@ -70,7 +72,7 @@ Ver `lifecycle_owned_by_brevo()`.
 `ENROLLMENT_STATUS`, `LIFECYCLE_STAGE`, `COMMUNICATION_LANGUAGE` (+ os já
 existentes). Permitem a segmentação/personalização dos modelos.
 
-**Catálogo de eventos (`LIFECYCLE_EVENTS`, 22 eventos)** — todos primados no
+**Catálogo de eventos (`LIFECYCLE_EVENTS`, 25 eventos)** — todos primados no
 dropdown do Brevo via `seed_event_catalog()`:
 
 | Grupo | Eventos |
@@ -80,6 +82,7 @@ dropdown do Brevo via `seed_event_catalog()`:
 | Trial | `trial_started`, `trial_expired` |
 | Matrícula | `enrollment_activated`, `enrollment_suspended`, `enrollment_cancelled`, `cancellation_requested`, `enrollment_pending_review`, `enrollment_ended` |
 | Comercial (CRM) | `lead_created`, `lead_updated`, `lead_stale`, `lead_status_changed`, `lead_converted` |
+| Encontro pré-venda (A05/A06) | `meeting_booked`, `meeting_attended`, `meeting_no_show` |
 
 > `enrollment_created` fica **fora** da lista de seed de propósito (já tem
 > automação A08 ativa; disparar pro contato-semente entraria no onboarding real).
@@ -103,6 +106,7 @@ exceção (best-effort), e dedup por Integration Request. Emissores espalhados:
 | **Diário** | `stripe_billing.send_dunning_reminders` | P2 | dunning d0/d3/d7/d9 |
 | **Semanal** | `retention_events.weekly_at_risk_digest` | P6 | digest de progresso abaixo do esperado |
 | **Cron dia 1** (`0 11 1 * *`) | `pedagogical_report.emit_monthly_evolution` | P5 | resumo mensal → `monthly_evolution` |
+| **Horário** | `appointment_events.finalize_past_appointments` | A05/A06 | encontro passado não marcado como falta → `meeting_attended` |
 
 (Convivem com os pré-existentes: `trial.expire_trials`,
 `stripe_billing.suspend_overdue_enrollments`, `lgpd._audit_pending_requests`,
@@ -132,6 +136,9 @@ exceção (best-effort), e dedup por Integration Request. Emissores espalhados:
 | CRM Lead | `custom_curso_interesse` | curso estruturado do lead (nutrição por curso) |
 | CRM Lead | `custom_stale_alerted_on` | idempotência do alerta de lead parado (P3) |
 | CRM Lead | `custom_nivel` | nível capturado no teste de nível (P-funil) |
+| Appointment | `custom_course_interest` | idioma de interesse do lead (→ COURSE no Brevo) |
+| Appointment | `custom_attendance_outcome` | marcação de presença (Compareceu/Faltou) — no-show híbrido |
+| Appointment | `custom_booked_event_on` / `custom_outcome_event_on` | idempotência dos eventos A05/A06 |
 
 ---
 

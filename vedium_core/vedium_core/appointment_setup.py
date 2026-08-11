@@ -49,10 +49,12 @@ def _ensure_holiday_list() -> str:
 
 def _resolve_agent() -> str | None:
     """Agente = usuário da config VEDIUM_APPOINTMENT_AGENT (não chuta um padrão:
-    rotear encontro pra agenda errada é pior que não ligar)."""
-    agent = frappe.conf.get("vedium_appointment_agent")
-    if agent and frappe.db.exists("User", agent):
-        return agent
+    rotear encontro pra agenda errada é pior que não ligar). Aceita as duas
+    grafias da chave, como o resto do app (ver brevo._config)."""
+    for key in ("VEDIUM_APPOINTMENT_AGENT", "vedium_appointment_agent"):
+        agent = frappe.conf.get(key)
+        if agent and frappe.db.exists("User", agent):
+            return agent
     return None
 
 
