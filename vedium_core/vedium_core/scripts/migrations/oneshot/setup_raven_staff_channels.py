@@ -5,7 +5,7 @@ realmente ofertado) e adiciona professores/coordenação como membros.
 Baseado no catalogo real levantado por inspect_raven_setup.py (2026-07-12):
   - Ingles: kayode@vediums.com
   - Iorubá: busayo@vediums.com
-  - Português p/ Estrangeiros (PLE): almirseller@yahoo.com
+  - Português p/ Estrangeiros (PLE): almir@vediums.com
   - Espanhol: sem professor real cadastrado ainda -- canal criado vazio
   - Hebraico: sem professor real cadastrado ainda -- canal criado vazio
   - Coordenação: ivonmatos@vediums.com + todos os professores acima
@@ -43,7 +43,7 @@ LANGUAGE_CHANNELS = {
     },
     "professores-portugues-ple": {
         "description": "Grupo de professores de Português para Estrangeiros (PLE)",
-        "members": ["almirseller@yahoo.com"],
+        "members": ["almir@vediums.com"],
     },
     "professores-hebraico": {
         "description": "Grupo de professores de Hebraico",
@@ -60,7 +60,7 @@ COORDENACAO_MEMBERS = [
     COORDINATION_USER,
     "kayode@vediums.com",
     "busayo@vediums.com",
-    "almirseller@yahoo.com",
+    "almir@vediums.com",
 ]
 
 

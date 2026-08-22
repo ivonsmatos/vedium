@@ -10,7 +10,7 @@ Exemplo minimo de config:
 {
   "title": "PLE Básico - Turma Agosto/2026",
   "course": "portugues-para-estrangeiros-basico",
-  "instructor": "almirseller@yahoo.com",
+  "instructor": "almir@vediums.com",
   "start_date": "2026-08-03",
   "end_date": "2026-09-28",
   "start_time": "19:00:00",

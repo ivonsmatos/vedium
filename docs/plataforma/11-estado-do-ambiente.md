@@ -30,7 +30,7 @@ para trade-offs e critérios de adoção.
 ## Agendamento / Google Meet
 
 - `Google Calendar`: 3 contas — `ivonmatos@vediums.com`,
-  `almirseller@yahoo.com`, e a compartilhada "Vedium Aulas ao Vivo"
+  `almir@vediums.com`, e a compartilhada "Vedium Aulas ao Vivo"
   (owner: Administrator). Todas com `enable=1`.
 - `LMS Google Meet Settings`: 3 registros (Almir, Kayode, Busayo — criados
   nesta sessão), todos apontando pro calendário compartilhado.
@@ -39,7 +39,7 @@ para trade-offs e critérios de adoção.
 - `LMS Batch`: **1 criada** — `ple-b-sico-turma-agosto-2026`
   (`PLE Básico - Turma Agosto/2026`), curso
   `portugues-para-estrangeiros-basico`, professor/evaluator
-  `almirseller@yahoo.com`, 8 vagas, segundas 19:00-20:00 BRT.
+  `almir@vediums.com`, 8 vagas, segundas 19:00-20:00 BRT.
   Ainda está em rascunho (`published=0`, `allow_self_enrollment=0`).
 - `LMS Live Class`: **9 criadas** para essa turma, de 2026-08-03 a
   2026-09-28, todas com `Google Meet` via `Vedium Meet` e links gerados.

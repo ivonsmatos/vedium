@@ -5,7 +5,7 @@ bench execute vedium_core.scripts.migrations.oneshot.add_professor_almir.run
 
 import frappe
 
-EMAIL = "almirseller@yahoo.com"
+EMAIL = "almir@vediums.com"
 FIRST_NAME = "Almir"
 LAST_NAME = "Soares da Silva"
 FULL_NAME = "Almir Soares da Silva"

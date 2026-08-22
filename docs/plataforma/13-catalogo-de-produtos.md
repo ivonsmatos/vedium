@@ -74,7 +74,7 @@ todos os cursos, incluindo o Hebraico Particular.
 | Avançado | `portugues-para-estrangeiros-avancado` | B2→C1 | US$ 120 | Fluência acadêmica/profissional | ~48–64h |
 
 **⚠️ Único cluster em USD** (público internacional/diáspora). Básico é mais barato (US$ 90).
-**Professor ✅:** Almir (`almirseller@yahoo.com`) — instrutor **e** evaluator.
+**Professor ✅:** Almir (`almir@vediums.com`) — instrutor **e** evaluator.
 
 ## Espanhol — 3 níveis · Profa. Lupita Samayoa · preço escala por nível
 

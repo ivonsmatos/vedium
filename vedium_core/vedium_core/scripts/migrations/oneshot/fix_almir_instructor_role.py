@@ -4,7 +4,7 @@ bench execute vedium_core.scripts.migrations.oneshot.fix_almir_instructor_role.r
 """
 import frappe
 
-EMAIL = "almirseller@yahoo.com"
+EMAIL = "almir@vediums.com"
 
 
 def run():

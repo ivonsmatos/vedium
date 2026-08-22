@@ -9,7 +9,7 @@ de forma confiável.
 
 - `Course Instructor` (child table de `LMS Course`) — vínculo simples,
   cadastrado pelo moderador ao criar o curso.
-- Hoje: Almir (`almirseller@yahoo.com`, cursos PLE), Kayode
+- Hoje: Almir (`almir@vediums.com`, cursos PLE), Kayode
   (`kayode@vediums.com`, cursos de Inglês), Busayo (`busayo@vediums.com`,
   cursos de Iorubá) — um professor por trilha de idioma.
 
