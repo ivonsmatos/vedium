@@ -138,7 +138,9 @@ def test_corporate_english_article_title_does_not_leak_source_extension():
 def test_guest_course_pages_can_use_frappe_page_cache_without_session_leakage():
     controller = (WWW / "curso.py").read_text(encoding="utf-8")
 
-    assert 'context.no_cache = frappe.session.user != "Guest"' in controller
+    assert 'is_guest = frappe.session.user == "Guest"' in controller
+    assert "context.no_cache = not is_guest" in controller
+    assert "if is_guest:\n        frappe.local.no_cache = False" in controller
     assert 'if frappe.session.user == "Guest":\n        return False' in controller
     assert 'if frappe.session.user == "Guest":\n        return 0' in controller
 

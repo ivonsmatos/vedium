@@ -24,10 +24,15 @@ def get_context(context):
     Context for course details page
     Fetches specific course details and related data
     """
-    # Frappe pode reutilizar o HTML por URL para visitantes anônimos. Dados de
-    # matrícula e carrinho são constantes para Guest; usuários autenticados
-    # continuam sempre fora do cache para não misturar estado de sessão.
-    context.no_cache = frappe.session.user != "Guest"
+    # O router do Frappe marca toda rota dinâmica com argumentos (como
+    # /curso/<slug>) em ``frappe.local.no_cache``. Para Guest, matrícula e
+    # carrinho são constantes e a chave do cache já inclui o path completo;
+    # liberamos explicitamente esse bloqueio. Query strings continuam fora do
+    # cache pela própria can_cache(), e usuários autenticados nunca entram.
+    is_guest = frappe.session.user == "Guest"
+    context.no_cache = not is_guest
+    if is_guest:
+        frappe.local.no_cache = False
 
     # Resolve course slug from /curso/<slug> ou /en/curso/<slug> (form_dict)
     # ou path fallback
