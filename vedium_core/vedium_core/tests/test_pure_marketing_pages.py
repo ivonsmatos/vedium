@@ -1612,8 +1612,9 @@ def test_main_menu_labels_are_translated_per_language():
     assert '"pt-br": {"home": "Início"' in navbar
     assert '"en": {"home": "Home"' in navbar
     assert "vd_menu_t = vd_menu_i18n.get(vd_nav.current, vd_menu_i18n[\"pt-br\"])" in navbar
-    for label in ("home", "how", "about", "courses", "blog", "faq", "contact", "login", "signup", "free_test"):
+    for label in ("home", "how", "about", "courses", "blog", "faq", "contact", "login", "signup", "free_test", "menu"):
         assert f"vd_menu_t.{label}" in navbar
+    assert 'class="mobile-nav__toggler" aria-label="{{ vd_menu_t.menu }}"' in navbar
 
 
 def test_legacy_language_prefixes_redirect_instead_of_serving_wrong_language():
@@ -4263,6 +4264,11 @@ def test_home_pages_apply_lighthouse_performance_and_accessibility_fixes():
         assert 'sizes="{{ course.image_sizes }}"' in html, page
         assert 'width="720" height="480"' in html, page
         assert 'media="print" onload="this.media=\'all\'"' in html, page
+        assert 'fontawesome/css/all.min.css" media="print"' in html, page
+        assert 'icomoon-icons/style.min.css" media="print"' in html, page
+        assert 'reey-font/stylesheet.css" media="print"' in html, page
+        assert "photo-1522202176988-66273c2fd55f?auto=format&w=360" in html, page
+        assert 'sizes="(max-width: 575px) calc(100vw - 30px), 480px"' in html, page
         assert "background: #8a4b00 !important" in html, page
         assert "color: #595959 !important" in html, page
         assert "about-one__left-overlay .title h3" in html, page
@@ -4279,6 +4285,18 @@ def test_home_pages_apply_lighthouse_performance_and_accessibility_fixes():
         css = font_css.read_text(encoding="utf-8")
         assert "font-display:swap" in css.replace(" ", ""), font_css
         assert "font-display:block" not in css.replace(" ", ""), font_css
+
+    theme_css = (
+        ROOT
+        / "vedium_core"
+        / "vedium_core"
+        / "public"
+        / "vedium_assets"
+        / "css"
+        / "vedium.min.css"
+    ).read_text(encoding="utf-8")
+    assert "--thm-gray:#626472" in theme_css
+    assert "--thm-gray-rgb:98,100,114" in theme_css
 
 
 def test_responsive_course_image_uses_unsplash_resize_api_safely():

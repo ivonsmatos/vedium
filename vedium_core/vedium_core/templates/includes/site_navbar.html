@@ -54,12 +54,12 @@
    não infraestrutura; traduzir aqui só os RÓTULOS visíveis já resolve o
    pedido do usuário de "menu correto" nas páginas que já têm tradução. #}
 {%- set vd_menu_i18n = {
-  "pt-br": {"home": "Início", "how": "Como funciona", "about": "Sobre", "courses": "Cursos", "blog": "Blog", "faq": "FAQ", "contact": "Contato", "login": "Entrar", "signup": "Registrar", "free_test": "Teste grátis"},
-  "en": {"home": "Home", "how": "How it works", "about": "About", "courses": "Courses", "blog": "Blog", "faq": "FAQ", "contact": "Contact", "login": "Log in", "signup": "Sign up", "free_test": "Free test"},
-  "es": {"home": "Inicio", "how": "Cómo funciona", "about": "Sobre nosotros", "courses": "Cursos", "blog": "Blog", "faq": "Preguntas frecuentes", "contact": "Contacto", "login": "Iniciar sesión", "signup": "Registrarse", "free_test": "Prueba gratis"},
-  "fr": {"home": "Accueil", "how": "Comment ça marche", "about": "À propos", "courses": "Cours", "blog": "Blog", "faq": "FAQ", "contact": "Contact", "login": "Connexion", "signup": "S'inscrire", "free_test": "Test gratuit"},
-  "de": {"home": "Startseite", "how": "So funktioniert's", "about": "Über uns", "courses": "Kurse", "blog": "Blog", "faq": "FAQ", "contact": "Kontakt", "login": "Anmelden", "signup": "Registrieren", "free_test": "Kostenloser Test"},
-  "ru": {"home": "Главная", "how": "Как это работает", "about": "О нас", "courses": "Курсы", "blog": "Блог", "faq": "Вопросы", "contact": "Контакты", "login": "Войти", "signup": "Регистрация", "free_test": "Бесплатный тест"},
+  "pt-br": {"home": "Início", "how": "Como funciona", "about": "Sobre", "courses": "Cursos", "blog": "Blog", "faq": "FAQ", "contact": "Contato", "login": "Entrar", "signup": "Registrar", "free_test": "Teste grátis", "menu": "Abrir menu"},
+  "en": {"home": "Home", "how": "How it works", "about": "About", "courses": "Courses", "blog": "Blog", "faq": "FAQ", "contact": "Contact", "login": "Log in", "signup": "Sign up", "free_test": "Free test", "menu": "Open menu"},
+  "es": {"home": "Inicio", "how": "Cómo funciona", "about": "Sobre nosotros", "courses": "Cursos", "blog": "Blog", "faq": "Preguntas frecuentes", "contact": "Contacto", "login": "Iniciar sesión", "signup": "Registrarse", "free_test": "Prueba gratis", "menu": "Abrir menú"},
+  "fr": {"home": "Accueil", "how": "Comment ça marche", "about": "À propos", "courses": "Cours", "blog": "Blog", "faq": "FAQ", "contact": "Contact", "login": "Connexion", "signup": "S'inscrire", "free_test": "Test gratuit", "menu": "Ouvrir le menu"},
+  "de": {"home": "Startseite", "how": "So funktioniert's", "about": "Über uns", "courses": "Kurse", "blog": "Blog", "faq": "FAQ", "contact": "Kontakt", "login": "Anmelden", "signup": "Registrieren", "free_test": "Kostenloser Test", "menu": "Menü öffnen"},
+  "ru": {"home": "Главная", "how": "Как это работает", "about": "О нас", "courses": "Курсы", "blog": "Блог", "faq": "Вопросы", "contact": "Контакты", "login": "Войти", "signup": "Регистрация", "free_test": "Бесплатный тест", "menu": "Открыть меню"},
 } %}
 {%- set vd_menu_t = vd_menu_i18n.get(vd_nav.current, vd_menu_i18n["pt-br"]) %}
 {#- Bug real achado em produção (2026-07-03): os links do menu (Início,
@@ -157,7 +157,7 @@
             <div class="main-header-one__bottom-inner clearfix">
                 <nav class="main-menu main-menu--1">
                     <div class="main-menu__inner">
-                        <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                        <a href="#" class="mobile-nav__toggler" aria-label="{{ vd_menu_t.menu }}"><i class="fa fa-bars" aria-hidden="true"></i></a>
                         <div class="left">
                             <ul class="main-menu__list">
                                 <li{% if vd_page == "inicio" %} class="current"{% endif %}><a href="{{ vd_menu_u.home }}">{{ vd_menu_t.home }}</a></li>
