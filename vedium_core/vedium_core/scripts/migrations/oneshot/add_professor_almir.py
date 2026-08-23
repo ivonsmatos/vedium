@@ -1,5 +1,9 @@
 """Cadastra Almir Soares da Silva como professor e associa aos cursos PLE.
 
+Idempotente -- seguro rodar de novo mesmo se o usuário já existir (ex.: pra
+aplicar a foto adicionada em 2026-08-23, que precisa de uma nova execução se
+o script já tinha rodado sem ela).
+
 bench execute vedium_core.scripts.migrations.oneshot.add_professor_almir.run
 """
 
@@ -9,6 +13,9 @@ EMAIL = "almir@vediums.com"
 FIRST_NAME = "Almir"
 LAST_NAME = "Soares da Silva"
 FULL_NAME = "Almir Soares da Silva"
+# Foto real, autorizada pelo dono em 2026-08-23 (PLE cluster SEO mission,
+# item 1.3) -- publicada em vedium_core/public/vedium_assets/images/instructors/.
+USER_IMAGE = "/assets/vedium_core/vedium_assets/images/instructors/almir-soares-da-silva.jpg"
 
 PLE_SLUGS = [
     "portugues-para-estrangeiros-basico",
@@ -27,8 +34,9 @@ def run():
 def _ensure_user():
     if frappe.db.exists("User", EMAIL):
         print(f"  — Usuário {EMAIL} já existe.")
-        # Garante que está habilitado e tem papel de instrutor
+        # Garante que está habilitado, com foto e papel de instrutor
         frappe.db.set_value("User", EMAIL, "enabled", 1)
+        frappe.db.set_value("User", EMAIL, "user_image", USER_IMAGE)
         _ensure_roles(EMAIL)
         return
 
@@ -38,6 +46,7 @@ def _ensure_user():
         "first_name": FIRST_NAME,
         "last_name": LAST_NAME,
         "full_name": FULL_NAME,
+        "user_image": USER_IMAGE,
         "send_welcome_email": 0,
         "enabled": 1,
         "user_type": "Website User",
