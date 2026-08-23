@@ -2215,7 +2215,7 @@ def test_home_pricing_ctas_have_equal_size_and_single_line_text():
 
     assert html.count('class="thm-btn vd-pricing-cta"') == 3
     assert html.count('class="vd-pricing-cta vd-pricing-cta--featured"') == 1
-    assert "vedium.min.css?v=pricing-cta-20260717" in html
+    assert "vedium.min.css?v=perf-20260823" in html
     assert "min-height: 56px" in css
     assert "white-space: nowrap" in css
     assert ".pricing-one .vd-pricing-cta--featured" in css
@@ -4269,6 +4269,7 @@ def test_home_pages_apply_lighthouse_performance_and_accessibility_fixes():
         assert 'reey-font/stylesheet.css" media="print"' in html, page
         assert "photo-1522202176988-66273c2fd55f?auto=format&w=360" in html, page
         assert 'sizes="(max-width: 575px) calc(100vw - 30px), 480px"' in html, page
+        assert "vedium.min.css?v=perf-20260823" in html, page
         assert "background: #8a4b00 !important" in html, page
         assert "color: #595959 !important" in html, page
         assert "about-one__left-overlay .title h3" in html, page
