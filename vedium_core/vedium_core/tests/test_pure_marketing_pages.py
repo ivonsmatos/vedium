@@ -1969,7 +1969,12 @@ def test_semrush_seo_fixes_remain_wired():
         assert '"hasCourseInstance"' not in template
         assert '"courseSchedule"' not in template
         assert '"courseWorkload"' not in template
-        assert '"offers"' not in template
+
+    # A landing não inventa preço no schema. A ficha individual pode expor
+    # Offer porque preço e moeda vêm do próprio LMS e o bloco só renderiza
+    # quando os dois valores existem.
+    assert '"offers"' not in marketing_template
+    assert '"offers": {{ course_schema_offer | tojson }}' in course_template
 
     assert "/ru/portugiesisch-einstufungstest" not in landing_content
 

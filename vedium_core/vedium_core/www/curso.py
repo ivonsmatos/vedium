@@ -128,6 +128,20 @@ def get_context(context):
         f"https://vediums.com{get_course_url(course_name, req_lang)}" if translation
         else f"https://vediums.com{get_course_url(course_name)}"
     )
+    context.course_schema_offer = None
+    if (
+        context.course.paid_course
+        and context.course.course_price
+        and context.course.currency
+    ):
+        # O schema reutiliza exatamente preço e moeda do LMS. Não mantém uma
+        # segunda tabela comercial nem altera os valores usados no checkout.
+        context.course_schema_offer = {
+            "@type": "Offer",
+            "url": context.canonical_url,
+            "price": str(context.course.course_price),
+            "priceCurrency": context.course.currency,
+        }
     # hreflang recíproco — um link por idioma que realmente tem tradução
     # pra esse curso, mais o canônico em pt-BR.
     if has_translation:

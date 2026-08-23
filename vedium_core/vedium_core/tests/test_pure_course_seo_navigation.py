@@ -79,6 +79,7 @@ def test_course_template_has_one_semantic_title_and_non_heading_price():
     assert 'href="{{ related_courses.pillar.url }}"' in template
     assert '<meta property="og:title" content="{{ title }}" />' in template
     assert "related_courses.current.level" in template
+    assert '"offers": {{ course_schema_offer | tojson }}' in template
     assert 'width="1200" height="675"' in template
     assert "{%- set vd_level_test_url =" not in template
     assert "level_test_is_contact" in template
@@ -89,6 +90,9 @@ def test_course_template_has_one_semantic_title_and_non_heading_price():
     assert "PUBLIC_ENROLLMENT_COUNT_THRESHOLD = 10" in controller
     assert "context.public_enrollment_count" in controller
     assert "context.level_test_url, context.level_test_is_contact" in controller
+    assert '"price": str(context.course.course_price)' in controller
+    assert '"priceCurrency": context.course.currency' in controller
+    assert "frappe.db.set_value" not in controller
 
     navbar = (
         ROOT

@@ -116,6 +116,7 @@
         "image": {{ og_image | tojson }},
         "inLanguage": {{ vd_lang | tojson }},
         {% if related_courses %}"educationalLevel": {{ related_courses.current.level | tojson }},{% endif %}
+        {% if course_schema_offer %}"offers": {{ course_schema_offer | tojson }},{% endif %}
         "provider": {
             "@type": "Organization",
             "name": "Vedium",
