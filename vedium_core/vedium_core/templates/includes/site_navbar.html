@@ -112,6 +112,8 @@
   "ru": {"talk": "Свяжитесь с нами", "select": "Выбрать регион и язык", "dialog": "Выберите регион и язык", "close": "Закрыть", "global": "Весь мир", "americas": "Северная и Латинская Америка", "emea": "Европа, Ближний Восток и Африка", "asia": "Азия и Австралия"}
 } %}
 {%- set vd_chrome_t = vd_chrome_i18n.get(vd_nav.current, vd_chrome_i18n["pt-br"]) %}
+{%- set vd_menu_free_test_url = vd_level_test_url_override if vd_level_test_url_override is defined and vd_level_test_url_override else vd_menu_u.free_test %}
+{%- set vd_menu_free_test_label = vd_chrome_t.talk if vd_level_test_contact_override is defined and vd_level_test_contact_override else vd_menu_t.free_test %}
 <header class="main-header main-header--one clearfix"
     data-vd-nav-urls='{{ vd_nav.urls | tojson }}'
     data-vd-nav-current="{{ vd_nav.current }}">
@@ -188,7 +190,7 @@
                                 </div>
                                 <div class="main-menu__right-cart-search">
                                     <div class="main-menu__right-search-box">
-                                        <a href="{{ vd_menu_u.free_test }}" class="thm-btn">{{ vd_menu_t.free_test }}</a>
+                                        <a href="{{ vd_menu_free_test_url }}" class="thm-btn">{{ vd_menu_free_test_label }}</a>
                                     </div>
                                 </div>
                             </div>

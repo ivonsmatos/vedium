@@ -80,13 +80,36 @@ def test_course_template_has_one_semantic_title_and_non_heading_price():
     assert '<meta property="og:title" content="{{ title }}" />' in template
     assert "related_courses.current.level" in template
     assert 'width="1200" height="675"' in template
-    assert "vd_level_test_url" not in template
+    assert "{%- set vd_level_test_url =" not in template
     assert "level_test_is_contact" in template
+    assert "vd_level_test_url_override = level_test_url" in template
+    assert "vd_level_test_contact_override = level_test_is_contact" in template
 
     controller = (WWW / "curso.py").read_text(encoding="utf-8")
     assert "PUBLIC_ENROLLMENT_COUNT_THRESHOLD = 10" in controller
     assert "context.public_enrollment_count" in controller
     assert "context.level_test_url, context.level_test_is_contact" in controller
+
+    navbar = (
+        ROOT
+        / "vedium_core"
+        / "vedium_core"
+        / "templates"
+        / "includes"
+        / "site_navbar.html"
+    ).read_text(encoding="utf-8")
+    footer = (
+        ROOT
+        / "vedium_core"
+        / "vedium_core"
+        / "templates"
+        / "includes"
+        / "site_footer.html"
+    ).read_text(encoding="utf-8")
+    assert "vd_level_test_url_override" in navbar
+    assert "vd_menu_free_test_url" in navbar
+    assert "vd_level_test_url_override" in footer
+    assert "vd_footer_level_test_url" in footer
 
 
 def test_course_breadcrumb_schema_closes_the_conditional_last_item():

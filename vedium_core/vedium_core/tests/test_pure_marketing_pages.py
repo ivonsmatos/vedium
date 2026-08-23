@@ -3997,7 +3997,8 @@ def test_menu_links_respect_current_language_not_just_labels():
     for key in ("home", "how", "about", "courses", "blog", "faq", "contact"):
         assert f'href="{{{{ vd_menu_u.{key} }}}}"' in navbar
 
-    assert 'href="{{ vd_menu_u.free_test }}"' in navbar
+    assert "else vd_menu_u.free_test" in navbar
+    assert 'href="{{ vd_menu_free_test_url }}"' in navbar
 
     # Dict de URLs por idioma cobre as 5 famílias e cada uma resolve pro
     # slug certo (mesmo slug em en/es/fr/de para as páginas institucionais

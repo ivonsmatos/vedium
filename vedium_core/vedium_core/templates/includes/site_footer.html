@@ -62,6 +62,8 @@
 } %}
 {%- set vd_footer_u = vd_footer_ru_urls if vd_footer_lang == "ru" else vd_footer_urls.get(vd_footer_lang, vd_footer_urls["pt-br"]) %}
 {%- set vd_footer_pt = vd_footer_urls["pt-br"] %}
+{%- set vd_footer_level_test_url = vd_level_test_url_override if vd_level_test_url_override is defined and vd_level_test_url_override else vd_footer_u["teste-de-nivel"] %}
+{%- set vd_footer_level_test_label = vd_footer_t.contact if vd_level_test_contact_override is defined and vd_level_test_contact_override else vd_footer_t.level_test %}
 <footer class="footer-one vd-rich-footer">
 <div class="vd-rich-footer__inner">
         <div class="container">
@@ -96,7 +98,7 @@
                         <li><a href="{{ vd_footer_u.get('cluster-ple-exec', vd_footer_pt['cluster-ple-exec']) }}">{{ vd_footer_t.ple_exec }}</a></li>
                         <li><a href="{{ vd_footer_u.get('cluster-celpe', vd_footer_pt['cluster-celpe']) }}">{{ vd_footer_t.celpe }}</a></li>
                         <li><a href="{{ vd_footer_u.get('cluster-yoruba-culture', vd_footer_pt['cluster-yoruba-culture']) }}">{{ vd_footer_t.yo_culture }}</a></li>
-                        <li><a href="{{ vd_footer_u['teste-de-nivel'] }}">{{ vd_footer_t.level_test }}</a></li>
+                        <li><a href="{{ vd_footer_level_test_url }}">{{ vd_footer_level_test_label }}</a></li>
                     </ul>
                 </div>
                 <div>

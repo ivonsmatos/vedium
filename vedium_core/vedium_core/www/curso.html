@@ -157,6 +157,10 @@
     <div class="page-wrapper">
 
         {% set vd_page = "cursos" %}
+        {# O cabeçalho e o rodapé usam o mesmo destino validado pelo
+           controller, evitando que um curso de inglês herde o teste de PLE. #}
+        {% set vd_level_test_url_override = level_test_url %}
+        {% set vd_level_test_contact_override = level_test_is_contact %}
         {% include "templates/includes/site_navbar.html" %}
 
         <!--Page Header Start-->
