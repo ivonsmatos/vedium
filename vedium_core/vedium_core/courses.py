@@ -101,6 +101,41 @@ def get_published_courses(category_prefix=None, category_exact=None):
         return []
 
 
+# Contas de sistema usadas como preenchimento obrigatório do campo
+# "instructors" quando nenhum professor real foi associado ainda (ver
+# scripts/migrations/oneshot/create_ple_courses.py:_default_instructor).
+# Nunca podem aparecer numa página pública: mostrar "Administrator" como
+# professor destrói a confiança que o card deveria construir.
+PLACEHOLDER_INSTRUCTOR_ACCOUNTS = {"Administrator", "admin@example.com", "contato@vediums.com"}
+
+
+def get_public_instructors(course_name):
+    """Instrutores reais (nome + foto, se houver) de um curso, prontos pra
+    exibição pública -- filtra as contas placeholder acima."""
+    cache_key = f"vedium:public_instructors:v{_courses_cache_version()}:{course_name}"
+    cached = frappe.cache().get_value(cache_key)
+    if cached is not None:
+        return cached
+
+    rows = frappe.get_all(
+        "Course Instructor",
+        filters={"parent": course_name},
+        fields=["instructor"],
+    )
+    instructors = []
+    for row in rows:
+        if row.instructor in PLACEHOLDER_INSTRUCTOR_ACCOUNTS:
+            continue
+        data = frappe.db.get_value(
+            "User", row.instructor, ["full_name", "user_image"], as_dict=True
+        )
+        if data and data.full_name:
+            instructors.append(data)
+
+    frappe.cache().set_value(cache_key, instructors, expires_in_sec=CACHE_TTL)
+    return instructors
+
+
 def format_price(price, currency):
     p = float(price)
     if (currency or "BRL") == "USD":

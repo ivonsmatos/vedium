@@ -2188,6 +2188,88 @@ def test_ple_course_grid_is_available_and_translated_in_every_public_language():
             assert translation["short_introduction"].strip()
 
 
+def test_ple_landing_faq_is_in_portuguese_and_x_default_points_to_english():
+    """PLE cluster SEO mission (2026-08-23):
+
+    - 0.2: the pt-BR PLE landing's FAQ was verbatim English copy-pasted from
+      the EN entry (including a grammar slip, "The classes can include..."
+      instead of "Can the classes include..."), leaking into the pt-BR page's
+      FAQPage JSON-LD too. It must read as Portuguese.
+    - 1.2: PLE's audience does not speak Portuguese by definition, so
+      x-default across all 6 language variants of this landing must resolve
+      to English, unlike every other cluster (whose audience does speak
+      Portuguese) which keeps the site-wide pt-BR default.
+    """
+    ple_slugs = [
+        "portugues-para-estrangeiros",
+        "learn-portuguese-brazil",
+        "portugues-para-extranjeros",
+        "portugais-pour-etrangers",
+        "portugiesisch-fuer-auslaender",
+        "portugalskiy-dlya-inostrantsev",
+    ]
+    for slug in ple_slugs:
+        assert LANDINGS[slug]["x_default_lang"] == "en", slug
+
+    # Regressão: cluster de inglês não pode herdar o override de PLE.
+    for slug in ("curso-de-ingles-online", "learn-english-online"):
+        assert "x_default_lang" not in LANDINGS[slug], slug
+
+    pt_faqs = LANDINGS["portugues-para-estrangeiros"]["faqs"]
+    assert len(pt_faqs) == 4
+    for faq in pt_faqs:
+        assert faq["q"][0].isupper()
+        # Nenhuma pergunta sobrou em inglês (bug original: 4/4 estavam).
+        for english_tell in ("The classes can", "Is it Brazilian", "Can I prepare", "Do I need a"):
+            assert not faq["q"].startswith(english_tell)
+
+    landing_content = (
+        ROOT / "vedium_core" / "vedium_core" / "marketing_landing_content.py"
+    ).read_text(encoding="utf-8")
+    assert (
+        'override_lang = landing.get("x_default_lang")' in landing_content
+    ), "get_marketing_landing() precisa ler x_default_lang por slug, não só o fallback global pt-BR/en"
+
+
+def test_english_ple_pillar_landing_reaches_content_parity():
+    """1.1: the EN PLE pillar landing ("learn-portuguese-brazil") used to be
+    the thinnest of the 6 language variants (no seo_title/seo_sections/
+    workload at all -- ~4k chars vs. ~9.1k on the French entry). It must now
+    be at least as deep as its richest sibling, with 2 sections that only
+    make sense for a non-Portuguese-speaking audience (visa/CRNM onboarding,
+    Celpe-Bras exam format with an INEP link).
+    """
+    en = LANDINGS["learn-portuguese-brazil"]
+    assert en.get("seo_title")
+    assert en.get("workload")
+    sections = en.get("seo_sections") or []
+    assert len(sections) >= 7
+    headings = [s["heading"] for s in sections]
+    assert any("CRNM" in h or "Visa" in h for h in headings)
+    assert any("Celpe-Bras" in h and "Format" in h for h in headings)
+    assert any("gov.br/inep" in block for s in sections for block in s["body"])
+
+    def flat_len(entry):
+        if isinstance(entry, str):
+            return len(entry)
+        if isinstance(entry, dict):
+            return sum(flat_len(v) for v in entry.values())
+        if isinstance(entry, (list, tuple)):
+            return sum(flat_len(v) for v in entry)
+        return 0
+
+    en_len = flat_len(en)
+    for sibling_slug in (
+        "portugues-para-estrangeiros",
+        "portugues-para-extranjeros",
+        "portugais-pour-etrangers",
+        "portugiesisch-fuer-auslaender",
+    ):
+        assert en_len > flat_len(LANDINGS[sibling_slug]), (
+            f"EN PLE landing precisa ser a mais rica das 6, não empatar com {sibling_slug}"
+        )
+
+
 def test_lesson_slot_doctype_is_not_world_writable():
     """O agendamento aluno<->professor usa o fluxo NATIVO do Frappe LMS
     (Course Evaluator + Google Meet / LMS Live Class), não páginas custom.

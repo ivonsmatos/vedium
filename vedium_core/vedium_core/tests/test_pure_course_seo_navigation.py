@@ -49,7 +49,45 @@ def test_all_english_level_titles_are_unique_and_fit_the_search_snippet_target()
 
 def test_courses_without_an_approved_linear_trail_hide_navigation():
     assert get_course_navigation("hebraico-particular") is None
-    assert get_course_navigation("portugues-para-estrangeiros-basico") is None
+    assert get_course_navigation("espanhol-basico") is None
+
+
+def test_ple_course_navigation_follows_the_canonical_basico_to_avancado_trail():
+    """PLE (Português para Estrangeiros) got its own linear trail alongside the
+    English one — previously get_course_navigation() only knew the English
+    track, so PLE pages rendered no "related courses" block at all (see PLE
+    cluster SEO mission, item 0.1). It must be language-aware: the old
+    category-based get_related_courses() leaked pt-BR links onto the /en/
+    course pages, which is the bug this trail replaces.
+    """
+    navigation = get_course_navigation("portugues-para-estrangeiros-intermediario")
+
+    assert navigation["previous"] == {
+        "label": "PLE — Básico",
+        "url": "/curso/portugues-para-estrangeiros-basico",
+    }
+    assert navigation["next"] == {
+        "label": "PLE — Avançado",
+        "url": "/curso/portugues-para-estrangeiros-avancado",
+    }
+    assert navigation["pillar"]["url"] == "/portugues-para-estrangeiros"
+    assert navigation["current"]["level"] == "Intermediário"
+
+    en_navigation = get_course_navigation("portugues-para-estrangeiros-basico", "en")
+    assert en_navigation["current"]["url"] == "/en/curso/portugues-para-estrangeiros-basico"
+    assert en_navigation["next"] == {
+        "label": "PLE — Intermediate",
+        "url": "/en/curso/portugues-para-estrangeiros-intermediario",
+    }
+    assert en_navigation["previous"] is None
+    assert en_navigation["pillar"]["url"] == "/en/learn-portuguese-brazil"
+    assert en_navigation["pillar"]["breadcrumb_label"] == "Portuguese for Foreigners"
+    assert en_navigation["current"]["level"] == "Basic"
+
+    # Idioma sem chrome próprio (ru) cai pro pt-BR em vez de quebrar.
+    ru_navigation = get_course_navigation("portugues-para-estrangeiros-avancado", "ru")
+    assert ru_navigation["current"]["level"] == "Avançado"
+    assert ru_navigation["pillar"]["url"] == "/portugues-para-estrangeiros"
 
 
 def test_course_diagnostic_destination_uses_the_taught_language():
@@ -114,6 +152,95 @@ def test_course_template_has_one_semantic_title_and_non_heading_price():
     assert "vd_menu_free_test_url" in navbar
     assert "vd_level_test_url_override" in footer
     assert "vd_footer_level_test_url" in footer
+
+
+def test_ple_course_pages_translate_related_courses_curriculum_and_x_default():
+    """PLE cluster SEO mission (2026-08-23), items 0.1, 0.3 and 1.2:
+    - related_courses now needs the requested language (0.1: EN course pages
+      used to link to pt-BR titles/URLs).
+    - chapters_list titles come straight from the DB in pt-BR; PLE has a
+      dedicated translation table so /en/curso/... doesn't show a Portuguese
+      curriculum on the page selling "for complete beginners" (0.3).
+    - PLE's audience doesn't speak Portuguese by definition, so x-default on
+      the 3 PLE course pages must resolve to English, not pt-BR (1.2) —
+      other clusters (e.g. English) must keep the pt-BR default untouched.
+    """
+    controller = (WWW / "curso.py").read_text(encoding="utf-8")
+    template = (WWW / "curso.html").read_text(encoding="utf-8")
+
+    assert (
+        "from vedium_core.course_translations import COURSE_TRANSLATIONS, "
+        "PLE_CURRICULUM_TRANSLATIONS"
+    ) in controller
+    assert "get_course_x_default_lang" in controller
+    assert "context.related_courses = get_related_courses(course_name, req_lang)" in controller
+    assert "context.x_default_lang = get_course_x_default_lang(course_name)" in controller
+    assert "_apply_curriculum_translation(context.course, course_name, req_lang)" in controller
+    assert "def _apply_curriculum_translation(course, course_name, req_lang):" in controller
+
+    assert (
+        'href="{{ alt_langs.get(x_default_lang, alt_langs.get(\'pt-br\', canonical_url)) }}"'
+        in template
+    )
+
+    from vedium_core.course_urls import get_course_x_default_lang
+
+    assert get_course_x_default_lang("portugues-para-estrangeiros-basico") == "en"
+    assert get_course_x_default_lang("ingl-s-beginner") is None
+
+
+def test_curso_html_trail_labels_are_translated_for_every_supported_language():
+    """The trail heading/labels used to be pt-BR-only text hardcoded for the
+    English track ("Continue sua trilha de inglês") while en/es/fr/de were
+    missing previous_level/next_level/all_levels entirely (rendered blank).
+    Both bugs would have leaked onto PLE pages once they got a trail too.
+    """
+    template = (WWW / "curso.html").read_text(encoding="utf-8")
+
+    assert "Continue sua trilha de inglês" not in template
+    assert "Ver todos os níveis de inglês" not in template
+    for lang_line in (
+        '"related": "Continue your track", "previous_level": "Previous level", '
+        '"next_level": "Next level", "all_levels": "See all levels"',
+        '"related": "Continúa tu trayecto", "previous_level": "Nivel anterior", '
+        '"next_level": "Siguiente nivel", "all_levels": "Ver todos los niveles"',
+        '"related": "Continuez votre parcours", "previous_level": "Niveau précédent", '
+        '"next_level": "Niveau suivant", "all_levels": "Voir tous les niveaux"',
+        '"related": "Setzen Sie Ihren Kursweg fort", "previous_level": "Vorheriges Niveau", '
+        '"next_level": "Nächstes Niveau", "all_levels": "Alle Niveaus ansehen"',
+    ):
+        assert lang_line in template
+
+
+def test_course_instructor_card_never_leaks_placeholder_system_accounts():
+    """1.3 (E-E-A-T): curso.py used to build instructors_list straight from
+    the Course Instructor child table with no filtering. Several course
+    creation scripts (e.g. create_ple_courses.py:_default_instructor) fill
+    that field with a system account ("Administrator" or the shared support
+    inbox) whenever no real teacher is assigned yet, on the assumption the
+    front-end never rendered it -- which was true until this card shipped.
+    Rendering it unfiltered would show "Administrator" as the teacher on
+    every course still waiting for a real one.
+    """
+    courses_module = (
+        ROOT / "vedium_core" / "vedium_core" / "courses.py"
+    ).read_text(encoding="utf-8")
+    controller = (WWW / "curso.py").read_text(encoding="utf-8")
+    template = (WWW / "curso.html").read_text(encoding="utf-8")
+
+    assert 'PLACEHOLDER_INSTRUCTOR_ACCOUNTS = {"Administrator"' in courses_module
+    assert "def get_public_instructors(course_name):" in courses_module
+    assert "if row.instructor in PLACEHOLDER_INSTRUCTOR_ACCOUNTS:\n            continue" in courses_module
+
+    assert "get_public_instructors" in controller
+    assert "instructors_list = get_public_instructors(course.name)" in controller
+
+    assert "{% if course.instructors_list %}" in template
+    assert "{{ ui.instructor_label }}" in template
+    # Sem foto (caso do professor de PLE hoje -- ver relatório da missão):
+    # cai num avatar com a inicial, nunca numa tag <img> com src vazio.
+    assert "course-details__instructor-avatar-fallback" in template
+    assert '"instructor": [{% for instructor in course.instructors_list %}' in template
 
 
 def test_course_breadcrumb_schema_closes_the_conditional_last_item():

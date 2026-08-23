@@ -68,6 +68,80 @@ PLE_LEVEL_TEST_URLS = {
     "de": "/de/portugiesisch-einstufungstest",
 }
 
+# Trilha linear dos 3 níveis de PLE (Português para Estrangeiros). Nome
+# interno == slug público pra essa família (ver COURSE_PUBLIC_SLUGS acima).
+PLE_COURSE_TRACK = [
+    "portugues-para-estrangeiros-basico",
+    "portugues-para-estrangeiros-intermediario",
+    "portugues-para-estrangeiros-avancado",
+]
+
+# Rótulos curtos pro card de navegação e o "nível" usado no Schema Course
+# (educationalLevel) e no breadcrumb. Só nos 5 idiomas com chrome próprio em
+# curso.html (o dict UI de lá não tem "ru" — cursos em russo herdam o chrome
+# em pt-BR, mesma lacuna pré-existente do restante da página).
+PLE_COURSE_NAV_I18N = {
+    "pt-BR": {
+        "portugues-para-estrangeiros-basico": {"level": "Básico", "label": "PLE — Básico"},
+        "portugues-para-estrangeiros-intermediario": {"level": "Intermediário", "label": "PLE — Intermediário"},
+        "portugues-para-estrangeiros-avancado": {"level": "Avançado", "label": "PLE — Avançado"},
+    },
+    "en": {
+        "portugues-para-estrangeiros-basico": {"level": "Basic", "label": "PLE — Basic"},
+        "portugues-para-estrangeiros-intermediario": {"level": "Intermediate", "label": "PLE — Intermediate"},
+        "portugues-para-estrangeiros-avancado": {"level": "Advanced", "label": "PLE — Advanced"},
+    },
+    "es": {
+        "portugues-para-estrangeiros-basico": {"level": "Básico", "label": "PLE — Básico"},
+        "portugues-para-estrangeiros-intermediario": {"level": "Intermedio", "label": "PLE — Intermedio"},
+        "portugues-para-estrangeiros-avancado": {"level": "Avanzado", "label": "PLE — Avanzado"},
+    },
+    "fr": {
+        "portugues-para-estrangeiros-basico": {"level": "Débutant", "label": "PLE — Débutant"},
+        "portugues-para-estrangeiros-intermediario": {"level": "Intermédiaire", "label": "PLE — Intermédiaire"},
+        "portugues-para-estrangeiros-avancado": {"level": "Avancé", "label": "PLE — Avancé"},
+    },
+    "de": {
+        "portugues-para-estrangeiros-basico": {"level": "Grundstufe", "label": "PLE — Grundstufe"},
+        "portugues-para-estrangeiros-intermediario": {"level": "Mittelstufe", "label": "PLE — Mittelstufe"},
+        "portugues-para-estrangeiros-avancado": {"level": "Fortgeschritten", "label": "PLE — Fortgeschritten"},
+    },
+}
+
+# Landing (pilar) de cada idioma pra onde a trilha de PLE aponta.
+PLE_PILLAR_I18N = {
+    "pt-BR": {
+        "breadcrumb_label": "Português para Estrangeiros",
+        "url": "/portugues-para-estrangeiros",
+    },
+    "en": {
+        "breadcrumb_label": "Portuguese for Foreigners",
+        "url": "/en/learn-portuguese-brazil",
+    },
+    "es": {
+        "breadcrumb_label": "Portugués para Extranjeros",
+        "url": "/es/portugues-para-extranjeros",
+    },
+    "fr": {
+        "breadcrumb_label": "Portugais pour Étrangers",
+        "url": "/fr/portugais-pour-etrangers",
+    },
+    "de": {
+        "breadcrumb_label": "Portugiesisch für Ausländer",
+        "url": "/de/portugiesisch-fuer-auslaender",
+    },
+}
+
+# x-default: pro cluster de PLE, o público-alvo por definição não fala
+# português, então o fallback pra buscas sem hreflang correspondente deve
+# ser a versão em inglês (não pt-BR, que é a regra padrão dos outros
+# clusters — ver get_marketing_landing() e get_context() em curso.py).
+COURSE_X_DEFAULT_LANG = {
+    "portugues-para-estrangeiros-basico": "en",
+    "portugues-para-estrangeiros-intermediario": "en",
+    "portugues-para-estrangeiros-avancado": "en",
+}
+
 
 def get_public_course_slug(course_name):
     return COURSE_PUBLIC_SLUGS.get(course_name, course_name)
@@ -104,14 +178,22 @@ def get_course_level_destination(course_name, lang="pt-BR"):
     return None, False
 
 
-def get_course_navigation(course_name):
+def get_course_navigation(course_name, lang=None):
     """Return previous/next links for a course with a defined linear trail.
 
-    Only the English A1→C1 trail is defined here. Hebrew includes different
-    products (modern, biblical and private), while the other language trails
-    need their own approved labels before they can safely share this pattern.
-    Courses without a defined trail intentionally return ``None``.
+    Two trails are defined here: English (A1→C1) and PLE (Básico→Avançado).
+    Hebrew includes different products (modern, biblical and private), while
+    the other language trails need their own approved labels before they can
+    safely share this pattern. Courses without a defined trail intentionally
+    return ``None``.
+
+    ``lang`` only affects the PLE trail (English course pages only exist in
+    pt-BR — there is no COURSE_TRANSLATIONS entry for them, so req_lang is
+    always None when this runs for an English course).
     """
+    if course_name in PLE_COURSE_TRACK:
+        return _get_ple_navigation(course_name, lang)
+
     english_track = [
         internal
         for internal, public_slug in COURSE_PUBLIC_SLUGS.items()
@@ -142,6 +224,38 @@ def get_course_navigation(course_name):
             "url": "/curso-de-ingles-online",
         },
     }
+
+
+def _get_ple_navigation(course_name, lang):
+    nav_lang = lang if lang in PLE_COURSE_NAV_I18N else "pt-BR"
+    labels = PLE_COURSE_NAV_I18N[nav_lang]
+    url_lang = None if nav_lang == "pt-BR" else nav_lang
+    position = PLE_COURSE_TRACK.index(course_name)
+
+    def _link(index):
+        internal = PLE_COURSE_TRACK[index]
+        return {
+            "label": labels[internal]["label"],
+            "url": get_course_url(internal, url_lang),
+        }
+
+    return {
+        "current": {
+            **_link(position),
+            "level": labels[course_name]["level"],
+        },
+        "previous": _link(position - 1) if position > 0 else None,
+        "next": _link(position + 1) if position < len(PLE_COURSE_TRACK) - 1 else None,
+        "pillar": PLE_PILLAR_I18N[nav_lang],
+    }
+
+
+def get_course_x_default_lang(course_name):
+    """Language override for hreflang x-default on this course's detail page.
+
+    Returns None when the family should keep the site-wide default (pt-BR).
+    """
+    return COURSE_X_DEFAULT_LANG.get(course_name)
 
 
 def legacy_course_redirects():

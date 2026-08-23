@@ -3,15 +3,16 @@ from urllib.parse import quote
 import frappe
 from frappe import _
 
-from vedium_core.course_translations import COURSE_TRANSLATIONS
+from vedium_core.course_translations import COURSE_TRANSLATIONS, PLE_CURRICULUM_TRANSLATIONS
 from vedium_core.course_urls import (
     get_course_level_destination,
     get_course_navigation,
     get_course_seo_title,
     get_course_url,
+    get_course_x_default_lang,
     get_internal_course_name,
 )
-from vedium_core.courses import CACHE_TTL, _courses_cache_version
+from vedium_core.courses import CACHE_TTL, _courses_cache_version, get_public_instructors
 
 
 # Volumes menores geram uma prova social ambígua (por exemplo, "Alunos: 1").
@@ -77,6 +78,7 @@ def get_context(context):
         context.course.title = translation["title"]
         context.course.short_introduction = translation["short_introduction"]
         context.course.description = translation["description"]
+        _apply_curriculum_translation(context.course, course_name, req_lang)
 
     context.lang = req_lang or "pt-BR"
     context.level_test_url, context.level_test_is_contact = get_course_level_destination(
@@ -93,7 +95,8 @@ def get_context(context):
     context.is_enrolled = check_enrollment(course_name)
 
     # Get related courses
-    context.related_courses = get_related_courses(course_name)
+    context.related_courses = get_related_courses(course_name, req_lang)
+    context.x_default_lang = get_course_x_default_lang(course_name)
 
     # Shopping cart count
     context.cart_count = get_cart_count()
@@ -225,21 +228,9 @@ def get_course_details(course_name):
         # Fallback image
         image = course.image or "/assets/vedium_core/vedium_assets/images/resources/course-details-img1.jpg"
 
-        # Get instructors with details
-        instructors_list = []
-        instructors = frappe.get_all("Course Instructor",
-            filters={"parent": course.name},
-            fields=["instructor"]
-        )
-
-        for instructor in instructors:
-            instructor_data = frappe.db.get_value("User",
-                instructor.instructor,
-                ["full_name", "user_image"],
-                as_dict=True
-            )
-            if instructor_data:
-                instructors_list.append(instructor_data)
+        # Instrutores reais, prontos pra exibição pública (filtra contas
+        # placeholder como "Administrator" -- ver get_public_instructors()).
+        instructors_list = get_public_instructors(course.name)
 
         # Get chapters and lessons
         chapters_list = []
@@ -317,9 +308,31 @@ def check_enrollment(course_name):
         "member": frappe.session.user
     })
 
-def get_related_courses(course_name):
+def get_related_courses(course_name, lang=None):
     """Build linear course navigation from the canonical public URL trail."""
-    return get_course_navigation(course_name)
+    return get_course_navigation(course_name, lang)
+
+
+def _apply_curriculum_translation(course, course_name, req_lang):
+    """Overwrite chapter/lesson titles with the LMS-independent translation.
+
+    Course Chapter / Course Lesson always come from the DB in pt-BR — there is
+    no per-language field there. PLE_CURRICULUM_TRANSLATIONS maps the exact
+    pt-BR title (as created by create_ple_courses.py) to its translation, so
+    unmatched titles (drift, manual edits) safely stay in Portuguese instead
+    of silently disappearing.
+    """
+    if not req_lang:
+        return
+    curriculum = PLE_CURRICULUM_TRANSLATIONS.get(course_name, {}).get(req_lang)
+    if not curriculum:
+        return
+    chapter_titles = curriculum.get("chapters", {})
+    lesson_titles = curriculum.get("lessons", {})
+    for chapter in course.chapters_list or []:
+        chapter.title = chapter_titles.get(chapter.title, chapter.title)
+        for lesson in chapter.lessons or []:
+            lesson.title = lesson_titles.get(lesson.title, lesson.title)
 
 def get_course_reviews(course_name):
     """Get course reviews/ratings"""

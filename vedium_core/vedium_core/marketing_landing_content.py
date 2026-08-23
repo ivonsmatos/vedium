@@ -485,6 +485,9 @@ LANDINGS = {
         "title": "Português para Estrangeiros — Vedium",
         "short_title": "Português para Estrangeiros",
         "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender", "ru": "portugalskiy-dlya-inostrantsev"},
+        # Público-alvo por definição não fala português -- x-default deve
+        # cair no inglês, não em pt-BR (ver PLE cluster SEO mission, item 1.2).
+        "x_default_lang": "en",
         "meta_description": "Português para estrangeiros com aulas ao vivo para morar, trabalhar, estudar e se comunicar melhor no Brasil.",
         "tagline": "Portuguese for foreigners",
         "h1": "Português para estrangeiros com foco em vida real no Brasil",
@@ -562,12 +565,12 @@ LANDINGS = {
             },
         ],
         "faqs": [
-            {"q": "The classes can include English support?", "a": "Yes. The teacher can use English support when needed, while progressively increasing Portuguese practice."},
-            {"q": "Is it Brazilian Portuguese?", "a": "Yes. The focus is Portuguese as used in Brazil."},
-            {"q": "Can I prepare for work situations?", "a": "Yes. We can include meetings, e-mails, presentations and daily professional vocabulary."},
-            {"q": "Do I need a placement test?", "a": "The free test helps us estimate your level before recommending a path."},
+            {"q": "As aulas podem ter apoio em inglês?", "a": "Sim. O professor pode usar apoio em inglês quando necessário, aumentando a prática em português progressivamente."},
+            {"q": "É português do Brasil?", "a": "Sim. O foco é o português como falado no Brasil."},
+            {"q": "Dá para me preparar para situações de trabalho?", "a": "Sim. Podemos incluir reuniões, e-mails, apresentações e vocabulário profissional do dia a dia."},
+            {"q": "Preciso fazer o teste de nível?", "a": "O teste gratuito ajuda a estimar seu nível antes de recomendarmos uma trilha."},
         ],
-        "whatsapp_text": "Hello, I want to learn Portuguese for foreigners with Vedium.",
+        "whatsapp_text": "Olá, quero aprender português para estrangeiros na Vedium.",
     },
     "portugues-para-executivos": {
         "alt": {"pt-BR": "portugues-para-executivos", "en": "portuguese-for-executives", "es": "portugues-para-ejecutivos", "fr": "portugais-pour-cadres", "de": "portugiesisch-fuer-fuehrungskraefte", "ru": "portugalskiy-dlya-rukovoditeley"},
@@ -1248,6 +1251,7 @@ LANDINGS = {
     "learn-portuguese-brazil": {
         "lang": "en",
         "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender", "ru": "portugalskiy-dlya-inostrantsev"},
+        "x_default_lang": "en",
         "title": "Learn Brazilian Portuguese Online — Classes for Foreigners | Vedium",
         "short_title": "Brazilian Portuguese for Foreigners",
         "meta_description": "Learn Brazilian Portuguese online with live classes for foreigners: real conversation, pronunciation, everyday vocabulary and culture to live, work and study in Brazil.",
@@ -1287,6 +1291,58 @@ LANDINGS = {
             "English explanations whenever needed.",
             "A path by goal: life in Brazil, work, or exam prep.",
             "Optional Celpe-Bras preparation in a dedicated track.",
+        ],
+        "workload": "PT1H30M",
+        "seo_title": "Everything about Vedium's Brazilian Portuguese course for foreigners",
+        "seo_sections": [
+            {
+                "heading": "Brazilian Portuguese vs. European Portuguese: Which One Do You Need?",
+                "body": [
+                    "<p>If you're moving to, working in, or studying in Brazil, you need <strong>Brazilian Portuguese</strong> — a different listening target from European Portuguese, with its own pronunciation, vocabulary and everyday expressions. The two are mutually intelligible on paper, but the rhythm, the open vowel sounds, common contractions (\"tá\", \"pra\", \"cê\") and even how people address each other in conversation are noticeably different. Textbooks built around Portugal's variety will leave you unprepared for what you actually hear on the street, in a meeting, or on the phone with a landlord in São Paulo or Rio.</p>",
+                    "<p>At Vedium, every class is <strong>live and built around the Portuguese spoken in Brazil</strong>, with English support available whenever you need it, especially in the first weeks. The goal isn't to help you produce grammatically correct sentences on paper — it's to get you understanding Brazilians at normal speaking speed and responding with real autonomy in real situations.</p>",
+                ],
+            },
+            {
+                "heading": "Portuguese for Living, Working and Studying in Brazil",
+                "body": [
+                    "<p>The course starts from concrete situations: <strong>introducing yourself, dealing with public services, going to the bank or a doctor's appointment, renting an apartment, using public transport, and taking part in work meetings</strong>. Professionals get a track focused on corporate Portuguese — messages, check-ins, and short presentations. If you're mostly there to connect with Brazilian friends, family or a partner, the focus shifts toward natural conversation and the everyday expressions that textbooks skip.</p>",
+                    "<p>This practical framing is what separates learning Portuguese \"for real life\" from memorizing grammar tables. Every class, you practice exactly what you'll need outside of it, with pronunciation and rhythm corrected in real time by a live teacher — not an app.</p>",
+                ],
+            },
+            {
+                "heading": "How Long Does It Take to Learn Portuguese in Brazil?",
+                "body": [
+                    "<p>It depends on your native language and how often you study, but there's good news: if you already speak <strong>Spanish, Italian, French or another Romance language</strong>, Brazilian Portuguese tends to move fast in the early stages, because a large share of the vocabulary is already familiar. English speakers usually need more time upfront on pronunciation and false cognates, but the grammar is learnable through clear, regular patterns once you're past the first few months.</p>",
+                    "<p>As a rough guide, someone studying consistently (1–2 live classes a week, plus daily exposure from actually living in Brazil) can typically reach a functional, everyday level (A2–B1) within a few months, and a solid intermediate level within a year. What accelerates progress the most is <strong>frequent speaking practice</strong> and real immersion — which is why Vedium's classes prioritize conversation from day one, with the weekly frequency adjusted to your own timeline.</p>",
+                ],
+            },
+            {
+                "heading": "Celpe-Bras: Brazil's Official Portuguese Proficiency Exam",
+                "body": [
+                    "<p><strong>Celpe-Bras</strong> (Certificado de Proficiência em Língua Portuguesa para Estrangeiros) is Brazil's official Portuguese proficiency exam, issued by the Ministry of Education through INEP and recognized by Brazilian universities, professional licensing bodies and, in some cases, immigration processes. If you need the certificate — for a graduate program, professional validation, or a visa or residency application — Vedium offers a <a href=\"/en/celpe-bras-exam-prep\">dedicated Celpe-Bras preparation track</a> focused on the exam's task format, the written sections and the oral interview.</p>",
+                    "<p>Even if you never sit the exam, following a level-based, structured path gives you real clarity on your progress and organizes your learning into stages with a defined goal — instead of an open-ended \"just keep practicing\" plan.</p>",
+                ],
+            },
+            {
+                "heading": "How to Get Started",
+                "body": [
+                    "<p>To get started, message the Vedium team on WhatsApp or take the free <a href=\"/en/portuguese-placement-test\">Portuguese placement test for foreigners</a>. You'll get an estimate of your current level, a recommended weekly frequency, and a plan aligned with your actual goal — living in Brazil, working with Brazilian colleagues, studying, or preparing for Celpe-Bras.</p>",
+                ],
+            },
+            {
+                "heading": "Visa, CRNM and Your First 30 Days in Brazil",
+                "body": [
+                    "<p>Moving to Brazil comes with a short list of bureaucratic steps most guides gloss over. Depending on your visa type, you'll typically need to register with the <strong>Polícia Federal</strong> to receive your <strong>CRNM</strong> (Carteira de Registro Nacional Migratório — the national ID card for foreign residents that replaced the older RNE), get a <strong>CPF</strong> (the tax ID you need for almost everything: renting, opening a bank account, signing a phone contract), and open a Brazilian bank account. Registration deadlines and required documents change depending on your visa category, so always confirm the current rules directly with the Polícia Federal or your visa sponsor — this section is a language and logistics primer, not legal advice.</p>",
+                    "<p>Here's where the language gap actually bites: appointment systems, forms and in-person interviews at these agencies are almost entirely in Portuguese, and staff rarely speak English. Knowing how to fill out a form, understand what a Polícia Federal officer is asking you, or explain a mistake on your CPF registration removes a huge source of first-month stress. Vedium's beginner track includes exactly this kind of practical, bureaucratic vocabulary alongside everyday conversation, so your first 30 days in Brazil don't depend on a translation app.</p>",
+                ],
+            },
+            {
+                "heading": "Celpe-Bras Exam Format: What to Expect and How to Prepare",
+                "body": [
+                    "<p>Unlike multiple-choice proficiency tests, Celpe-Bras is <strong>task-based and integrates skills</strong>: instead of isolated grammar or vocabulary questions, you respond to prompts (often a short video, an audio clip or a text) by producing your own written or spoken Portuguese in a realistic context — writing an e-mail, summarizing a news item, or giving your opinion in a short essay. The exam has a written part and a face-to-face oral interview, and it's applied twice a year at accredited centers in Brazil and abroad. Results aren't pass/fail — they're reported as proficiency levels (from Intermediate to Advanced Superior), each accepted for different academic or professional purposes.</p>",
+                    "<p>Because the format rewards real communicative ability over rote memorization, the most effective preparation is sustained speaking and writing practice under exam-like conditions — not last-minute grammar cramming. For the current exam calendar, registration windows, fees and official sample tests, always check <a href=\"https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/celpe-bras\" rel=\"noopener\">INEP's official Celpe-Bras page</a> — Vedium's <a href=\"/en/celpe-bras-exam-prep\">preparation track</a> works alongside it, not as a replacement for the official source.</p>",
+                ],
+            },
         ],
         "faqs": [
             {"q": "Can the classes include English support?", "a": "Yes. The teacher can use English support when needed, while progressively increasing Portuguese practice."},
@@ -1515,6 +1571,7 @@ LANDINGS = {
     "portugues-para-extranjeros": {
         "lang": "es",
         "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender", "ru": "portugalskiy-dlya-inostrantsev"},
+        "x_default_lang": "en",
         "title": "Portugués para Extranjeros Online — Clases en Vivo | Vedium",
         "short_title": "Portugués para Extranjeros",
         "meta_description": "Aprende portugués de Brasil online con clases en vivo para extranjeros: conversación real, pronunciación, vocabulario cotidiano y cultura para vivir, trabajar y estudiar en Brasil.",
@@ -1715,6 +1772,7 @@ LANDINGS = {
     "portugais-pour-etrangers": {
         "lang": "fr",
         "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender", "ru": "portugalskiy-dlya-inostrantsev"},
+        "x_default_lang": "en",
         "title": "Portugais du Brésil pour Étrangers — Cours en Ligne en Direct | Vedium",
         "short_title": "Portugais pour Étrangers",
         "meta_description": "Apprenez le portugais du Brésil en ligne avec des cours en direct pour étrangers : conversation réelle, prononciation, vocabulaire quotidien et culture pour vivre, travailler et étudier au Brésil.",
@@ -1915,6 +1973,7 @@ LANDINGS = {
     "portugiesisch-fuer-auslaender": {
         "lang": "de",
         "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender", "ru": "portugalskiy-dlya-inostrantsev"},
+        "x_default_lang": "en",
         "title": "Brasilianisches Portugiesisch für Ausländer — Live-Online-Kurs | Vedium",
         "short_title": "Portugiesisch für Ausländer",
         "meta_description": "Lernen Sie brasilianisches Portugiesisch online mit Live-Unterricht für Ausländer: echte Konversation, Aussprache, Alltagswortschatz und Kultur, um in Brasilien zu leben, zu arbeiten und zu studieren.",
@@ -3972,6 +4031,7 @@ LANDINGS = {
     "portugalskiy-dlya-inostrantsev": {
         "lang": "ru",
         "alt": {"pt-BR": "portugues-para-estrangeiros", "en": "learn-portuguese-brazil", "es": "portugues-para-extranjeros", "fr": "portugais-pour-etrangers", "de": "portugiesisch-fuer-auslaender", "ru": "portugalskiy-dlya-inostrantsev"},
+        "x_default_lang": "en",
         "title": "Бразильский португальский для иностранцев — живой онлайн-курс | Vedium",
         "short_title": "Португальский для иностранцев",
         "meta_description": "Изучайте бразильский португальский онлайн с живыми занятиями для иностранцев: настоящий разговор, произношение, повседневная лексика и культура для жизни, работы и учёбы в Бразилии.",
@@ -4492,7 +4552,12 @@ def get_marketing_landing(slug):
         landing["course_grid"] = course_grid
 
     # Versões alternativas em outros idiomas (hreflang). "alt" mapeia idioma -> slug.
-    # Inclui a própria página + x-default (sempre o pt-BR quando existir).
+    # Inclui a própria página + x-default (pt-BR por padrão -- é quem o
+    # buscador manda pra quando não casa nenhum hreflang declarado, e o
+    # público padrão dos nossos clusters fala português). Landings cujo
+    # público-alvo NÃO fala português (ex.: PLE, cujo interlocutor é
+    # estrangeiro por definição) declaram a chave opcional "x_default_lang"
+    # na própria entrada de LANDINGS pra sobrepor esse fallback.
     alt = landing.get("alt")
     alternates = []
     if alt:
@@ -4501,12 +4566,19 @@ def get_marketing_landing(slug):
                 "hreflang": LANG_HREFLANG.get(alt_lang, alt_lang),
                 "href": _landing_url(alt_slug, alt_lang),
             })
-        x_default_slug = alt.get("pt-BR") or alt.get("en")
-        if x_default_slug:
-            x_default_lang = "pt-BR" if "pt-BR" in alt else "en"
+        override_lang = landing.get("x_default_lang")
+        if override_lang and override_lang in alt:
+            x_default_lang = override_lang
+        elif "pt-BR" in alt:
+            x_default_lang = "pt-BR"
+        elif "en" in alt:
+            x_default_lang = "en"
+        else:
+            x_default_lang = None
+        if x_default_lang:
             alternates.append({
                 "hreflang": "x-default",
-                "href": _landing_url(x_default_slug, x_default_lang),
+                "href": _landing_url(alt[x_default_lang], x_default_lang),
             })
     landing["alternates"] = alternates
     if slug in EM_DASH_FREE_LANDINGS:
