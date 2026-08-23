@@ -103,14 +103,16 @@ Brevo; só falta a automação que os consome). Mapa evento → fluxo do kit:
 > (todos da tabela, menos `enrollment_created` que já existia) para um contato-
 > semente `brevo-seed@vediums.com`. Então **todos já aparecem** no dropdown para
 > montar as automações. Depois: **apague o contato `brevo-seed@vediums.com`** no
-> Brevo (não entra em automação futura, mas é lixo) e **exclua a automação antiga
-> quebrada "A03 - Teste iniciado"** (aponta pra `test_started`, evento que o
-> Frappe **não** emite — nunca vai funcionar; o teste de nível só captura no fim,
-> não há sinal de "iniciado"). Ao adicionar um evento novo no futuro, rode o seed
-> de novo. *(2026-08-11: re-seed trouxe `meeting_booked/attended/no_show` — A05/A06.)*
+> Brevo (não entra em automação futura, mas é lixo). O evento `test_started` da
+> A03 foi incorporado ao catálogo em 2026-08-17 e pode ser primado isoladamente
+> com `bench execute vedium_core.brevo.seed_single_lifecycle_event`, sem reenviar
+> os outros eventos e sem acionar as automações já ativas. Ao adicionar um evento
+> novo no futuro, prefira o seed isolado. *(2026-08-11: re-seed trouxe
+> `meeting_booked/attended/no_show` — A05/A06.)*
 
 | Evento emitido pelo Frappe | Fluxo do kit | Observação |
 |---|---|---|
+| `test_started` | **A03** | evento do início do teste de nível; use o seed isolado para disponibilizá-lo no dropdown |
 | `enrollment_created` / `enrollment_activated` | **A08** (onboarding) | matrícula paga confirmada |
 | `student_not_activated` | **A08-03 / A09** | matriculou e não começou em 3 dias (job diário) |
 | `progress_milestone` (param `milestone` = 25/50/75/100) | **A10** | ramifique por `params.milestone` |

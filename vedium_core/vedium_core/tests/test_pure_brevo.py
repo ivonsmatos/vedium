@@ -35,6 +35,18 @@ def test_brevo_uses_contact_upsert_and_custom_events():
         assert event_name in BREVO
 
 
+def test_test_started_can_be_primed_without_replaying_live_automations():
+    assert '"test_started"' in BREVO
+    block = BREVO.split("def seed_single_lifecycle_event", 1)[1].split(
+        "def seed_event_catalog", 1
+    )[0]
+    assert 'event_name: str = "test_started"' in block
+    assert "event_name not in LIFECYCLE_EVENTS" in block
+    assert "track_event(" in block
+    assert "def verify_lifecycle_event" in BREVO
+    assert 'f"{BREVO_API_BASE_URL}/events"' in BREVO
+
+
 def test_enrollment_hook_queues_brevo_even_without_raven():
     function = COMMUNICATION.split("def sync_enrollment", 1)[1].split(
         "def sync_new_professor", 1

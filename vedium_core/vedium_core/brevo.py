@@ -380,6 +380,8 @@ def emit_contact_event(
 # inclui `enrollment_created` (já aparece e já tem a automação A08 ativa —
 # dispará-lo pro contato-semente entraria no onboarding).
 LIFECYCLE_EVENTS = (
+    # A03 — Brevo only exposes event names after the first successful POST.
+    "test_started",
     "student_not_activated", "student_absent", "student_inactive",
     "progress_milestone", "monthly_evolution",
     "checkout_started", "payment_failed", "payment_recovered", "payment_due_soon",
@@ -391,6 +393,76 @@ LIFECYCLE_EVENTS = (
     # Encontro pré-venda (Appointment nativo) — fluxos A05/A06.
     "meeting_booked", "meeting_attended", "meeting_no_show",
 )
+
+
+@frappe.whitelist()
+def seed_single_lifecycle_event(
+    event_name: str = "test_started",
+    email: str = "brevo-seed@vediums.com",
+) -> dict:
+    """Prime one canonical event without replaying every lifecycle event.
+
+    This is the safe path once other automations are live: replaying the full
+    catalog could start unrelated workflows for the seed contact.
+    """
+    if not set(frappe.get_roles()) & {"System Manager", "Administrator", "Vedium Ops"}:
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
+    if event_name not in LIFECYCLE_EVENTS:
+        frappe.throw(f"Evento fora do catálogo canônico: {event_name}")
+    if not is_enabled():
+        return {"skipped": "disabled"}
+
+    upsert_contact(
+        {
+            "email": email,
+            "attributes": {"FIRSTNAME": "Seed", "COURSE": "Seed"},
+            "updateEnabled": True,
+        }
+    )
+    params = {
+        "course": "Seed",
+        "language": "seed",
+        "placement_test_url": "https://vediums.com/teste-de-nivel",
+        "seed": True,
+    }
+    track_event(
+        event_name,
+        email,
+        event_properties=params,
+        contact_properties={"COURSE": "Seed"},
+    )
+    return {"sent": event_name, "contact": email, "params": sorted(params)}
+
+
+@frappe.whitelist()
+def verify_lifecycle_event(event_name: str = "test_started") -> dict:
+    """Verify through Brevo's Events API that a canonical event arrived."""
+    if not set(frappe.get_roles()) & {"System Manager", "Administrator", "Vedium Ops"}:
+        frappe.throw("Acesso restrito à equipe.", frappe.PermissionError)
+    if event_name not in LIFECYCLE_EVENTS:
+        frappe.throw(f"Evento fora do catálogo canônico: {event_name}")
+
+    response = requests.get(
+        f"{BREVO_API_BASE_URL}/events",
+        headers={"accept": "application/json", "api-key": _api_key()},
+        params={"event_name": event_name, "limit": 10, "offset": 0},
+        timeout=_timeout(),
+    )
+    if response.status_code >= 400:
+        raise BrevoAPIError(
+            f"Brevo GET /events retornou HTTP {response.status_code}"
+        )
+    payload = response.json() if response.content else {}
+    events = payload.get("events") or []
+    return {
+        "event_name": event_name,
+        "received": bool(events),
+        "count": payload.get("count", len(events)),
+        "latest_event_date": events[0].get("event_date") if events else None,
+        "latest_is_seed": bool(
+            events and (events[0].get("event_properties") or {}).get("seed")
+        ),
+    }
 
 
 @frappe.whitelist()
