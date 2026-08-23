@@ -2,15 +2,15 @@
 {%- set vd_lang = lang or "pt-BR" %}
 {%- set vd_course_en = vd_lang != "pt-BR" %}
 {%- set UI = {
-    "pt-BR": {"home": "Início", "courses": "Cursos", "course_word": "Curso", "live": "Aulas 100% ao vivo, em tempo real", "teacher": "Professores nativos e especialistas, turmas pequenas", "cert": "Certificado de conclusão", "anywhere": "Estude de qualquer lugar do Brasil", "content": "Conteúdo do curso", "per_month": "/mês", "access": "Acessar curso", "enroll": "Matricular agora", "enroll_annual": "Pagar anual", "annual_note": "Plano anual: {price}/ano (2 meses grátis)", "lessons": "Aulas:", "students": "Alunos:", "format_label": "Modalidade:", "format_value": "Online, ao vivo", "level_label": "Nível:", "cert_label": "Certificado:", "yes": "Sim", "related": "Cursos relacionados", "per_hour": "/hora", "talk": "Fale com a equipe Vedium", "locale": "pt_BR", "learn_more_title": "Saiba mais antes de matricular", "link_level_test": "Teste de nível grátis", "link_methodology": "Metodologia", "link_differentiators": "Diferenciais", "link_certificate": "Certificado", "link_plans": "Planos e preços", "link_faq": "Perguntas frequentes"},
+    "pt-BR": {"home": "Início", "courses": "Cursos", "course_word": "Curso", "live": "Aulas 100% ao vivo, em tempo real", "teacher": "Professores nativos e especialistas, turmas pequenas", "cert": "Certificado de conclusão", "anywhere": "Estude de qualquer lugar do Brasil", "content": "Conteúdo do curso", "per_month": "/mês", "access": "Acessar curso", "enroll": "Matricular agora", "enroll_annual": "Pagar anual", "annual_note": "Plano anual: {price}/ano (2 meses grátis)", "lessons": "Aulas:", "students": "Alunos:", "format_label": "Modalidade:", "format_value": "Online, ao vivo", "level_label": "Nível:", "cert_label": "Certificado:", "yes": "Sim", "related": "Continue sua trilha de inglês", "previous_level": "Nível anterior", "next_level": "Próximo nível", "all_levels": "Ver todos os níveis de inglês", "per_hour": "/hora", "talk": "Fale com a equipe Vedium", "locale": "pt_BR", "learn_more_title": "Saiba mais antes de matricular", "link_level_test": "Teste de nível grátis", "link_methodology": "Metodologia", "link_differentiators": "Diferenciais", "link_certificate": "Certificado", "link_plans": "Planos e preços", "link_faq": "Perguntas frequentes"},
     "en": {"home": "Home", "courses": "Courses", "course_word": "Course", "live": "100% live classes, in real time", "teacher": "Native and specialist teachers, small classes", "cert": "Certificate of completion", "anywhere": "Study from anywhere in the world", "content": "Course content", "per_month": "/month", "access": "Access course", "enroll": "Enroll now", "enroll_annual": "Pay annually", "annual_note": "Annual plan: {price}/year (2 months free)", "lessons": "Lessons:", "students": "Students:", "format_label": "Format:", "format_value": "Online, live", "level_label": "Level:", "cert_label": "Certificate:", "yes": "Yes", "related": "Related courses", "per_hour": "/hour", "talk": "Talk to the Vedium team", "locale": "en_US", "learn_more_title": "Learn more before enrolling", "link_level_test": "Free placement test", "link_methodology": "Methodology", "link_differentiators": "Why Vedium", "link_certificate": "Certificate", "link_plans": "Plans & pricing", "link_faq": "FAQ"},
     "es": {"home": "Inicio", "courses": "Cursos", "course_word": "Curso", "live": "Clases 100% en vivo, en tiempo real", "teacher": "Profesores nativos y especializados, grupos reducidos", "cert": "Certificado de finalización", "anywhere": "Estudia desde cualquier parte del mundo", "content": "Contenido del curso", "per_month": "/mes", "access": "Acceder al curso", "enroll": "Inscribirme ahora", "enroll_annual": "Pagar anual", "annual_note": "Plan anual: {price}/año (2 meses gratis)", "lessons": "Lecciones:", "students": "Estudiantes:", "format_label": "Modalidad:", "format_value": "En línea, en vivo", "level_label": "Nivel:", "cert_label": "Certificado:", "yes": "Sí", "related": "Cursos relacionados", "per_hour": "/hora", "talk": "Hablar con el equipo Vedium", "locale": "es_ES", "learn_more_title": "Conoce más antes de matricularte", "link_level_test": "Prueba de nivel gratis", "link_methodology": "Metodología", "link_differentiators": "Por qué Vedium", "link_certificate": "Certificado", "link_plans": "Planes y precios", "link_faq": "Preguntas frecuentes"},
     "fr": {"home": "Accueil", "courses": "Cours", "course_word": "Cours", "live": "Cours 100% en direct, en temps réel", "teacher": "Professeurs natifs et spécialisés, petits groupes", "cert": "Certificat de fin de formation", "anywhere": "Étudiez où que vous soyez dans le monde", "content": "Contenu du cours", "per_month": "/mois", "access": "Accéder au cours", "enroll": "S'inscrire maintenant", "enroll_annual": "Payer à l'année", "annual_note": "Formule annuelle : {price}/an (2 mois offerts)", "lessons": "Leçons :", "students": "Étudiants :", "format_label": "Format :", "format_value": "En ligne, en direct", "level_label": "Niveau :", "cert_label": "Certificat :", "yes": "Oui", "related": "Cours associés", "per_hour": "/heure", "talk": "Parler à l'équipe Vedium", "locale": "fr_FR", "learn_more_title": "En savoir plus avant de vous inscrire", "link_level_test": "Test de niveau gratuit", "link_methodology": "Méthodologie", "link_differentiators": "Pourquoi Vedium", "link_certificate": "Certificat", "link_plans": "Formules et tarifs", "link_faq": "FAQ"},
     "de": {"home": "Startseite", "courses": "Kurse", "course_word": "Kurs", "live": "100 % Live-Unterricht, in Echtzeit", "teacher": "Muttersprachliche und spezialisierte Lehrkräfte, kleine Gruppen", "cert": "Abschlusszertifikat", "anywhere": "Lernen Sie von überall auf der Welt", "content": "Kursinhalt", "per_month": "/Monat", "access": "Zum Kurs", "enroll": "Jetzt anmelden", "enroll_annual": "Jährlich zahlen", "annual_note": "Jahresplan: {price}/Jahr (2 Monate gratis)", "lessons": "Lektionen:", "students": "Teilnehmer:", "format_label": "Format:", "format_value": "Online, live", "level_label": "Niveau:", "cert_label": "Zertifikat:", "yes": "Ja", "related": "Ähnliche Kurse", "per_hour": "/Stunde", "talk": "Mit dem Vedium-Team sprechen", "locale": "de_DE", "learn_more_title": "Mehr erfahren vor der Anmeldung", "link_level_test": "Kostenloser Einstufungstest", "link_methodology": "Methodik", "link_differentiators": "Warum Vedium", "link_certificate": "Zertifikat", "link_plans": "Pakete und Preise", "link_faq": "FAQ"}
 } %}
 {%- set ui = UI.get(vd_lang, UI["pt-BR"]) %}
+{%- set vd_contact_label = {"pt-BR": "Falar com a equipe", "en": "Contact the team", "es": "Hablar con el equipo", "fr": "Contacter l'équipe", "de": "Team kontaktieren"}.get(vd_lang, "Falar com a equipe") %}
 {%- set vd_prefix = "" if vd_lang == "pt-BR" else "/" + vd_lang %}
-{%- set vd_level_test_url = {"pt-BR": "/teste-de-nivel", "en": "/en/portuguese-placement-test", "es": "/es/prueba-de-nivel-de-portugues", "fr": "/fr/test-de-niveau-de-portugais", "de": "/de/portugiesisch-einstufungstest"}.get(vd_lang, "/teste-de-nivel") %}
 <html lang="{{ vd_lang }}"{% if vd_course_en %} translate="no"{% endif %}>
 
 <head>
@@ -44,7 +44,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ canonical_url }}" />
-    <meta property="og:title" content="{{ course.title }} | Vedium" />
+    <meta property="og:title" content="{{ title }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="{{ og_image }}" />
     <meta property="og:locale" content="{{ ui.locale }}" />
@@ -52,7 +52,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ course.title }} | Vedium" />
+    <meta name="twitter:title" content="{{ title }}" />
     <meta name="twitter:description" content="{{ description }}" />
     <meta name="twitter:image" content="{{ og_image }}" />
 
@@ -80,7 +80,7 @@
       .footer-one img[src*="logo-branca-reta"] { max-width: 145px !important; height: auto !important; }
       .stricky-header, .stricky-header.stricked-menu { display: none !important; }
       .main-header-one__bottom { position: -webkit-sticky; position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.07); }
-      .page-header__title h2 { color: #fff; }
+      .page-header__title h1, .page-header__title h2 { color: #fff; }
       .course-details__content-text2 { margin-top: 12px; }
       .course-details__content-text2 p { margin-bottom: 12px; line-height: 1.75; }
       .courses-one__single.style2 .courses-one__single-img img { width: 100%; max-height: 380px; object-fit: cover; }
@@ -91,111 +91,17 @@
       .course-details__curriculum-list-left-title { font-size: 16px !important; text-transform: none !important; letter-spacing: 0 !important; color: #374151 !important; font-weight: 500 !important; }
       .course-details__curriculum-list-left-icon { flex: 0 0 auto; margin-right: 14px; }
       .course-details__curriculum-single-title { font-size: 21px; }
+      .course-details__trail { margin-top: 28px; padding: 24px 26px; border: 1px solid #e5e7eb; border-radius: 14px; background: #fff; }
+      .course-details__trail-title { margin: 0 0 16px; color: #172033; font-size: 22px; }
+      .course-details__trail-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .course-details__trail-link { display: flex; flex-direction: column; min-height: 86px; padding: 14px 16px; border: 1px solid #dbe4ee; border-radius: 10px; color: #172033; text-decoration: none; }
+      .course-details__trail-link span { color: #5f6b7a; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+      .course-details__trail-link strong { margin-top: 4px; line-height: 1.35; }
+      .course-details__trail-link:hover { border-color: #2e6da4; color: #2e6da4; }
+      .course-details__trail-pillar { display: inline-block; margin-top: 16px; font-weight: 700; }
 
-      /* Cursos relacionados: impede que imagem, titulo e preco se sobreponham. */
-      .course-details__new-courses {
-        overflow: hidden;
-      }
-      .course-details__new-courses-list {
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      .course-details__new-courses-list-item {
-        position: relative !important;
-        display: grid !important;
-        grid-template-columns: 96px minmax(0, 1fr);
-        align-items: center !important;
-        gap: 16px;
-        width: 100% !important;
-        height: auto !important;
-        min-height: 104px;
-        margin: 0 !important;
-        padding: 14px 0 !important;
-        overflow: hidden;
-        background: transparent !important;
-      }
-      .course-details__new-courses-list-item + .course-details__new-courses-list-item {
-        border-top: 1px solid #e5e7eb;
-      }
-      .course-details__new-courses-list-item-img {
-        position: static !important;
-        width: 96px !important;
-        height: 76px !important;
-        min-width: 96px;
-        margin: 0 !important;
-        overflow: hidden;
-        border-radius: 9px;
-        background: #eef2f7;
-      }
-      .course-details__new-courses-list-item-img img {
-        position: static !important;
-        display: block !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-width: none !important;
-        object-fit: cover !important;
-        transform: none !important;
-      }
-      .course-details__new-courses-list-item-content {
-        position: static !important;
-        inset: auto !important;
-        display: block !important;
-        min-width: 0;
-        width: auto !important;
-        height: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
-        background: transparent !important;
-      }
-      .course-details__new-courses-list-item-content-title {
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        font-size: 16px !important;
-        line-height: 1.35 !important;
-        font-weight: 700 !important;
-        text-transform: none !important;
-        letter-spacing: 0 !important;
-      }
-      .course-details__new-courses-list-item-content-title a {
-        position: static !important;
-        display: block !important;
-        color: #172033 !important;
-        overflow-wrap: anywhere;
-        text-decoration: none !important;
-      }
-      .course-details__new-courses-list-item-content-title a:hover {
-        color: #2e6da4 !important;
-      }
-      .course-details__new-courses-price {
-        position: static !important;
-        display: block !important;
-        margin: 7px 0 0 !important;
-        padding: 0 !important;
-        color: #2e6da4 !important;
-        font-size: 15px !important;
-        line-height: 1.25 !important;
-        font-weight: 700 !important;
-        opacity: 1 !important;
-      }
       @media (max-width: 480px) {
-        .course-details__new-courses-list-item {
-          grid-template-columns: 78px minmax(0, 1fr);
-          gap: 12px;
-          min-height: 92px;
-          padding: 12px 0 !important;
-        }
-        .course-details__new-courses-list-item-img {
-          width: 78px !important;
-          min-width: 78px;
-          height: 64px !important;
-        }
-        .course-details__new-courses-list-item-content-title {
-          font-size: 15px !important;
-        }
+        .course-details__trail-links { grid-template-columns: 1fr; }
       }
     </style>
 
@@ -209,6 +115,7 @@
         "url": {{ canonical_url | tojson }},
         "image": {{ og_image | tojson }},
         "inLanguage": {{ vd_lang | tojson }},
+        {% if related_courses %}"educationalLevel": {{ related_courses.current.level | tojson }},{% endif %}
         "provider": {
             "@type": "Organization",
             "name": "Vedium",
@@ -232,7 +139,12 @@
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": {{ ui.home | tojson }}, "item": "https://vediums.com/"},
             {"@type": "ListItem", "position": 2, "name": {{ ui.courses | tojson }}, "item": "https://vediums.com/cursos-de-idiomas-online"},
+            {% if related_courses %}
+            {"@type": "ListItem", "position": 3, "name": {{ related_courses.pillar.breadcrumb_label | tojson }}, "item": "https://vediums.com{{ related_courses.pillar.url }}"},
+            {"@type": "ListItem", "position": 4, "name": {{ related_courses.current.level | tojson }}, "item": {{ canonical_url | tojson }}}
+            {% else %}
             {"@type": "ListItem", "position": 3, "name": {{ course.title | tojson }}, "item": {{ canonical_url | tojson }}}
+            {% endif %}
         ]
     }
     </script>
@@ -254,13 +166,14 @@
                     <div class="col-xl-12">
                         <div class="page-header__wrapper clearfix">
                             <div class="page-header__title">
-                                <h2>{{ course.title }}</h2>
+                                <h1>{{ course.title }}</h1>
                             </div>
                             <div class="page-header__menu">
                                 <ul class="page-header__menu-list list-unstyled clearfix">
                                     <li><a href="/">{{ ui.home }}</a></li>
                                     <li><a href="/cursos-de-idiomas-online">{{ ui.courses }}</a></li>
-                                    <li class="active">{{ course.title }}</li>
+                                    {% if related_courses %}<li><a href="{{ related_courses.pillar.url }}">{{ related_courses.pillar.breadcrumb_label }}</a></li>{% endif %}
+                                    <li class="active">{{ related_courses.current.level if related_courses else course.title }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -279,13 +192,13 @@
                         <div class="course-details__content">
                             <div class="courses-one__single style2">
                                 <div class="courses-one__single-img">
-                                    {% if course.image %}<img src="{{ course.image }}" alt="{{ course.title }}" />{% endif %}
+                                    {% if course.image %}<img src="{{ course.image }}" alt="{{ course.title }}" width="1200" height="675" decoding="async" fetchpriority="high" />{% endif %}
                                     <div class="overlay-text">
                                         <p>{{ course.category_name or ui.course_word }}</p>
                                     </div>
                                 </div>
                                 <div class="courses-one__single-content">
-                                    <h4 class="courses-one__single-content-title">{{ course.title }}</h4>
+                                    <p class="courses-one__single-content-title">{{ course.title }}</p>
                                     {% if course.short_introduction %}
                                     <div class="course-details__content-text1">
                                         <p>{{ course.short_introduction }}</p>
@@ -347,11 +260,32 @@
                             <!--End Course Details Curriculum-->
                             {% endif %}
 
+                            {% if related_courses %}
+                            <nav class="course-details__trail" aria-label="{{ ui.related }}">
+                                <h2 class="course-details__trail-title">{{ ui.related }}</h2>
+                                <div class="course-details__trail-links">
+                                    {% if related_courses.previous %}
+                                    <a class="course-details__trail-link" href="{{ related_courses.previous.url }}">
+                                        <span>← {{ ui.previous_level }}</span>
+                                        <strong>{{ related_courses.previous.label }}</strong>
+                                    </a>
+                                    {% endif %}
+                                    {% if related_courses.next %}
+                                    <a class="course-details__trail-link" href="{{ related_courses.next.url }}">
+                                        <span>{{ ui.next_level }} →</span>
+                                        <strong>{{ related_courses.next.label }}</strong>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                                <a class="course-details__trail-pillar" href="{{ related_courses.pillar.url }}">{{ ui.all_levels }} →</a>
+                            </nav>
+                            {% endif %}
+
                             <!--Start Course Details Helpful Links-->
                             <div class="course-details__helpful-links" style="margin-top:28px;padding:22px 26px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
                                 <p style="margin:0 0 12px;font-weight:700;color:#111827;">{{ ui.learn_more_title }}</p>
                                 <p style="margin:0;line-height:2.1;">
-                                    <a href="{{ vd_level_test_url }}">{{ ui.link_level_test }}</a> ·
+                                    {% if level_test_url %}<a href="{{ level_test_url }}">{{ vd_contact_label if level_test_is_contact else ui.link_level_test }}</a> ·{% endif %}
                                     <a href="{{ vd_prefix }}/metodologia">{{ ui.link_methodology }}</a> ·
                                     <a href="{{ vd_prefix }}/diferenciais">{{ ui.link_differentiators }}</a> ·
                                     <a href="{{ vd_prefix }}/certificado">{{ ui.link_certificate }}</a> ·
@@ -368,7 +302,7 @@
                     <div class="col-xl-4 col-lg-4">
                         <div class="course-details__sidebar">
                             <div class="course-details__price wow fadeInUp animated" data-wow-delay="0.1s" data-course-name="{{ course.name }}">
-                                <h2 class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ ui.per_month }}</span>{% endif %}</h2>
+                                <p class="course-details__price-amount">{{ course.formatted_price }}{% if course.paid_course and course.course_price %}<span>{{ ui.per_month }}</span>{% endif %}</p>
                                 <div class="course-details__price-btn">
                                     {% if is_enrolled %}
                                     <a href="{{ lms_url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'course_platform_click',course:'{{ course.name }}',location:'course_detail'});">{{ ui.access }}</a>
@@ -390,10 +324,10 @@
                                         <div class="text"><p><a>{{ ui.lessons }}<span>{{ course.total_lessons }}</span></a></p></div>
                                     </li>
                                     {% endif %}
-                                    {% if course.enrollment_count %}
+                                    {% if public_enrollment_count %}
                                     <li class="course-details__sidebar-meta-list-item">
                                         <div class="icon"><a><i class="far fa-user-circle"></i></a></div>
-                                        <div class="text"><p><a>{{ ui.students }}<span>{{ course.enrollment_count }}</span></a></p></div>
+                                        <div class="text"><p><a>{{ ui.students }}<span>{{ public_enrollment_count }}</span></a></p></div>
                                     </li>
                                     {% endif %}
                                     <li class="course-details__sidebar-meta-list-item">
@@ -413,24 +347,6 @@
                                 </ul>
                             </div>
 
-                            {% if related_courses %}
-                            <div class="course-details__new-courses wow fadeInUp animated" data-wow-delay="0.5s">
-                                <h3 class="course-details__new-courses-title">{{ ui.related }}</h3>
-                                <ul class="course-details__new-courses-list list-unstyled">
-                                    {% for rc in related_courses %}
-                                    <li class="course-details__new-courses-list-item">
-                                        <div class="course-details__new-courses-list-item-img">
-                                            <img src="{{ rc.image }}" alt="{{ rc.title }}" loading="lazy" />
-                                        </div>
-                                        <div class="course-details__new-courses-list-item-content">
-                                            <h4 class="course-details__new-courses-list-item-content-title"><a href="{{ rc.url }}">{{ rc.title }}</a></h4>
-                                            <p class="course-details__new-courses-price">{{ rc.formatted_price }}</p>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            {% endif %}
                         </div>
                     </div>
                     <!--End Course Details Sidebar-->

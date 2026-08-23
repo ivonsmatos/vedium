@@ -4,8 +4,19 @@ import frappe
 from frappe import _
 
 from vedium_core.course_translations import COURSE_TRANSLATIONS
-from vedium_core.course_urls import get_course_url, get_internal_course_name
+from vedium_core.course_urls import (
+    get_course_level_destination,
+    get_course_navigation,
+    get_course_seo_title,
+    get_course_url,
+    get_internal_course_name,
+)
 from vedium_core.courses import CACHE_TTL, _courses_cache_version
+
+
+# Volumes menores geram uma prova social ambígua (por exemplo, "Alunos: 1").
+# O proprietário aprovou em 2026-08-23 a exibição pública a partir de 10.
+PUBLIC_ENROLLMENT_COUNT_THRESHOLD = 10
 
 
 def get_context(context):
@@ -13,6 +24,11 @@ def get_context(context):
     Context for course details page
     Fetches specific course details and related data
     """
+    # Frappe pode reutilizar o HTML por URL para visitantes anônimos. Dados de
+    # matrícula e carrinho são constantes para Guest; usuários autenticados
+    # continuam sempre fora do cache para não misturar estado de sessão.
+    context.no_cache = frappe.session.user != "Guest"
+
     # Resolve course slug from /curso/<slug> ou /en/curso/<slug> (form_dict)
     # ou path fallback
     requested_slug = frappe.form_dict.get("course")
@@ -58,12 +74,21 @@ def get_context(context):
         context.course.description = translation["description"]
 
     context.lang = req_lang or "pt-BR"
+    context.level_test_url, context.level_test_is_contact = get_course_level_destination(
+        course_name,
+        context.lang,
+    )
+    context.public_enrollment_count = (
+        context.course.enrollment_count
+        if context.course.enrollment_count >= PUBLIC_ENROLLMENT_COUNT_THRESHOLD
+        else None
+    )
 
     # Check if user is enrolled
     context.is_enrolled = check_enrollment(course_name)
 
     # Get related courses
-    context.related_courses = get_related_courses(context.course.category, course_name)
+    context.related_courses = get_related_courses(course_name)
 
     # Shopping cart count
     context.cart_count = get_cart_count()
@@ -86,7 +111,7 @@ def get_context(context):
     if translation:
         context.title = f"{context.course.title} — {_title_suffix[req_lang]} | Vedium"
     else:
-        context.title = f"{context.course.title} — Curso de Idiomas Online ao Vivo | Vedium"
+        context.title = get_course_seo_title(course_name, context.course.title)
     desc = (context.course.get("short_introduction") or "").strip()
     if translation:
         context.description = (desc[:155] if desc else
@@ -162,6 +187,7 @@ def get_cart_count():
         if quotation:
             return frappe.db.count("Quotation Item", {"parent": quotation[0].name})
     return 0
+
 
 def get_course_details(course_name):
     """Fetch complete course details"""
@@ -272,36 +298,9 @@ def check_enrollment(course_name):
         "member": frappe.session.user
     })
 
-def get_related_courses(category, exclude_course, limit=3):
-    """Get related courses from same category"""
-    if not category:
-        return []
-    
-    try:
-        courses = frappe.get_all("LMS Course",
-            filters={
-                "category": category,
-                "published": 1,
-                "name": ["!=", exclude_course]
-            },
-            fields=["name", "title", "short_introduction", "image", "course_price", "currency", "paid_course"],
-            limit=limit
-        )
-        
-        for course in courses:
-            if not course.image:
-                course.image = "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
-            course.url = get_course_url(course.name)
-            
-            if course.paid_course and course.course_price:
-                course.formatted_price = _format_price(course.course_price, course.currency)
-            else:
-                course.formatted_price = "Gratuito"
-        
-        return courses
-    except Exception as e:
-        frappe.log_error(f"Error fetching related courses: {str(e)}", "Vedium Course Details")
-        return []
+def get_related_courses(course_name):
+    """Build linear course navigation from the canonical public URL trail."""
+    return get_course_navigation(course_name)
 
 def get_course_reviews(course_name):
     """Get course reviews/ratings"""

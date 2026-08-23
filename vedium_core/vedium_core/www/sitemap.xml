@@ -3,7 +3,7 @@
 {%- for link in links %}
   <url>
     <loc>{{ link.loc }}</loc>
-    <lastmod>{{ link.lastmod }}</lastmod>
+    {%- if link.lastmod %}<lastmod>{{ link.lastmod }}</lastmod>{% endif %}
     <changefreq>{{ link.changefreq }}</changefreq>
     <priority>{{ link.priority }}</priority>
   </url>

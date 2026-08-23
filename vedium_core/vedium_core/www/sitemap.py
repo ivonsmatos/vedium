@@ -1,7 +1,6 @@
 from urllib.parse import quote
 
 import frappe
-from frappe.utils import nowdate
 
 
 no_cache = 1
@@ -227,20 +226,24 @@ def _course_urls():
 
     urls = []
     for course in courses:
-        lastmod = course.modified.strftime("%Y-%m-%d") if course.modified else nowdate()
-        urls.append({
+        lastmod = course.modified.strftime("%Y-%m-%d") if course.modified else None
+        course_url = {
             "loc": get_course_url(course.name),
             "priority": "0.8",
             "changefreq": "weekly",
-            "lastmod": lastmod,
-        })
+        }
+        if lastmod:
+            course_url["lastmod"] = lastmod
+        urls.append(course_url)
         for lang_code in COURSE_TRANSLATIONS.get(course.name, {}):
-            urls.append({
+            translated_url = {
                 "loc": get_course_url(course.name, lang_code),
                 "priority": "0.6",
                 "changefreq": "weekly",
-                "lastmod": lastmod,
-            })
+            }
+            if lastmod:
+                translated_url["lastmod"] = lastmod
+            urls.append(translated_url)
     return urls
 
 
@@ -272,7 +275,6 @@ def _blog_urls():
 
 
 def get_context(context):
-    today = nowdate()
     candidates = STATIC_URLS + _marketing_landing_urls() + _course_urls() + _blog_urls()
     # STATIC_URLS já contém algumas landings prioritárias. Mantém a primeira
     # configuração e elimina duplicatas no XML.
@@ -282,13 +284,14 @@ def get_context(context):
     urls = list(urls_by_location.values())
 
     context.no_cache = 1
-    context.links = [
-        {
+    context.links = []
+    for url in urls:
+        link = {
             "loc": _absolute_url(url["loc"]),
-            "lastmod": url.get("lastmod") or today,
             "changefreq": url["changefreq"],
             "priority": url["priority"],
         }
-        for url in urls
-    ]
+        if url.get("lastmod"):
+            link["lastmod"] = url["lastmod"]
+        context.links.append(link)
     return context
