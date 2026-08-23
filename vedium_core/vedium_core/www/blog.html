@@ -131,7 +131,7 @@
     <div class="vd-bl-grid">
       {% for p in posts %}
       <div class="vd-bl-card">
-        <div class="vd-bl-card-img">{% if p.hero_image %}<img src="{{ p.hero_image }}" alt="{{ p.hero_alt }}" loading="lazy" />{% endif %}</div>
+        <div class="vd-bl-card-img">{% if p.hero_image %}<img src="{{ p.hero_image }}" alt="{{ p.hero_alt }}" width="1100" height="560" loading="lazy" decoding="async" />{% endif %}</div>
         <div class="vd-bl-card-body">
           <span class="vd-bl-tag">{{ p.tag }}</span>
           <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>

@@ -125,6 +125,33 @@ def test_seo_objective_pages_exist_and_link_to_existing_funnel():
 
 def test_english_pillar_page_is_rich_for_seo():
     landing = LANDINGS["curso-de-ingles-online"]
+    assert landing["title"] == "Curso de Inglês Online ao Vivo do A1 ao C1 | Vedium"
+    assert landing["meta_description"] == (
+        "Aulas de inglês online ao vivo, turmas pequenas e progressão do A1 ao C1. "
+        "Faça o teste de nível grátis."
+    )
+    assert landing["h1"] == "Curso de inglês online ao vivo do A1 ao C1"
+    assert len(landing["faqs"]) >= 12
+    assert landing["updated_iso"] == "2026-08-23"
+    assert len(landing["info_tables"]) == 3
+    assert landing["compact_method"] is True
+    assert landing["instructors"] == [
+        {
+            "name": "Kayode Joseph Alonge",
+            "role": "Professor nativo de inglês",
+            "bio": "Professor vinculado aos cursos de inglês do A1 ao C1 na Vedium.",
+            "image": "/files/kayode-joseph28ad39.jpeg",
+        }
+    ]
+    assert "testimonials" not in landing
+    assert [item["level"] for item in landing["progression_levels"]] == [
+        "A1",
+        "A2",
+        "A2+",
+        "B1",
+        "B2",
+        "C1",
+    ]
     # prosa longa de verdade (SEO/GEO exige corpo de texto substancial)
     prose = " ".join(
         block
@@ -139,6 +166,37 @@ def test_english_pillar_page_is_rich_for_seo():
     # links internos para o cluster de inglês (link building interno)
     assert "/ingles-para-entrevista" in prose
     assert "/teste-de-nivel-ingles" in prose
+
+    english_source = repr(landing).lower()
+    assert "destrav" not in english_source
+    assert "3 a 6 meses" not in english_source
+    assert "fluência realmente acontece" not in english_source
+
+    template = (TPL / "marketing_landing.html").read_text(encoding="utf-8")
+    assert '<meta name="twitter:card" content="summary_large_image" />' in template
+    assert '"@type": "BreadcrumbList"' in template
+    assert "landing.schema_name or landing.short_title" in template
+    assert 'class="vd-data-table"' in template
+    assert '<h3><a href="{{ course.url }}">{{ course.title }}</a></h3>' in template
+    assert "<h3>{{ sec.heading }}</h3>" in template
+    assert '<p class="vd-page-header-title">{{ landing.short_title }}</p>' in template
+    assert "{%- if landing.instructors %}" in template
+    assert "{%- if landing.testimonials %}" in template
+    assert "{%- if landing.progression_levels %}" in template
+
+    blog_post_template = (TPL / "blog_post.html").read_text(encoding="utf-8")
+    assert 'width="1100" height="560"' in blog_post_template
+
+    english_posts = [
+        post for post in BLOG_POSTS.values() if post.get("category") == "ingles"
+    ]
+    assert all("destrav" not in repr(post).lower() for post in english_posts)
+    assert any(post.get("cta_url") == "/ingles-executivo" for post in english_posts)
+    assert any(post.get("cta_url") == "/ingles-para-viagens" for post in english_posts)
+    assert any(
+        post.get("cta_url") == "/ingles-para-atendimento-ao-cliente"
+        for post in english_posts
+    )
 
     for slug in SEO_SLUGS:
         html_path = WWW / f"{slug}.html"

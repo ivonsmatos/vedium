@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+{%- set vd_breadcrumb_i18n = {
+  "pt-BR": {"home": "Início", "courses": "Cursos de Idiomas", "home_url": "https://vediums.com/", "courses_url": "https://vediums.com/cursos-de-idiomas-online"},
+  "en": {"home": "Home", "courses": "Language Courses", "home_url": "https://vediums.com/en/", "courses_url": "https://vediums.com/en/catalogo"},
+  "es": {"home": "Inicio", "courses": "Cursos de Idiomas", "home_url": "https://vediums.com/es/", "courses_url": "https://vediums.com/es/catalogo"},
+  "fr": {"home": "Accueil", "courses": "Cours de Langues", "home_url": "https://vediums.com/fr/", "courses_url": "https://vediums.com/fr/catalogo"},
+  "de": {"home": "Startseite", "courses": "Sprachkurse", "home_url": "https://vediums.com/de/", "courses_url": "https://vediums.com/de/catalogo"},
+  "ru": {"home": "Главная", "courses": "Языковые курсы", "home_url": "https://vediums.com/ru/", "courses_url": "https://vediums.com/ru/catalogo"}
+} %}
+{%- set vd_schema_breadcrumb = vd_breadcrumb_i18n.get(landing.lang or "pt-BR", vd_breadcrumb_i18n["pt-BR"]) %}
 <html lang="{{ landing.lang or 'pt-BR' }}"{% if (landing.lang or 'pt-BR') != 'pt-BR' %} translate="no"{% endif %}>
 <head>
 <meta charset="UTF-8" />
@@ -14,9 +23,14 @@
 <link rel="alternate" hreflang="{{ alt.hreflang }}" href="{{ alt.href }}" />
 {%- endfor %}
 <meta property="og:type" content="website" />
+<meta property="og:url" content="{{ landing.url }}" />
 <meta property="og:title" content="{{ landing.title }}" />
 <meta property="og:description" content="{{ landing.meta_description }}" />
 <meta property="og:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ landing.title }}" />
+<meta name="twitter:description" content="{{ landing.meta_description }}" />
+<meta name="twitter:image" content="https://vediums.com/assets/vedium_core/vedium_assets/images/logos/Logo-color-quadrada.png" />
 <link rel="apple-touch-icon" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
 
@@ -32,6 +46,7 @@
   .stricky-header, .stricky-header.stricked-menu { display:none !important; }
   .main-header-one__bottom { position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.07); }
   .page-header__title h2 { color:#fff; }
+  .vd-page-header-title { margin:0;color:#fff;font-size:40px;font-weight:800;line-height:1.2; }
   .vd-landing-section { padding:76px 0;background:#fff; }
   .vd-landing-alt { background:#f8fafc; }
   .vd-landing-hero { padding:86px 0;background:#fff; }
@@ -56,18 +71,35 @@
   .vd-prose strong { color:#1f2937; }
   .vd-prose a { color:#2E6DA4;font-weight:600; }
   .vd-price-val { font-size:34px;font-weight:800;color:#234E70;line-height:1; }
-  @media (max-width:767px) { .vd-landing-hero, .vd-landing-section { padding:54px 0; } .vd-cta-row .thm-btn { width:100%;text-align:center; } }
+  .vd-table-wrap { overflow-x:auto;margin:18px 0 32px; }
+  .vd-data-table { width:100%;border-collapse:collapse;background:#fff; }
+  .vd-data-table caption { padding:0 0 12px;color:#172033;font-size:20px;font-weight:800;text-align:left;caption-side:top; }
+  .vd-data-table th, .vd-data-table td { padding:13px 14px;border:1px solid #dbe4ee;text-align:left;vertical-align:top; }
+  .vd-data-table th { background:#eef4fa;color:#172033;font-weight:800; }
+  .vd-data-table td { color:#374151;line-height:1.55; }
+  @media (max-width:767px) { .vd-landing-hero, .vd-landing-section { padding:54px 0; } .vd-cta-row .thm-btn { width:100%;text-align:center; } .vd-data-table { min-width:640px; } }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Course",
-  "name": {{ landing.title | tojson }},
+  "name": {{ (landing.schema_name or landing.short_title) | tojson }},
   "description": {{ landing.meta_description | tojson }},
   "url": {{ landing.url | tojson }},
   "provider": {"@type": "Organization", "name": "Vedium", "url": "https://vediums.com"},
   "educationalLevel": {{ landing.level | tojson }},
   "inLanguage": {{ (landing.lang or "pt-BR") | tojson }}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": {{ vd_schema_breadcrumb.home | tojson }}, "item": {{ vd_schema_breadcrumb.home_url | tojson }}},
+    {"@type": "ListItem", "position": 2, "name": {{ vd_schema_breadcrumb.courses | tojson }}, "item": {{ vd_schema_breadcrumb.courses_url | tojson }}},
+    {"@type": "ListItem", "position": 3, "name": {{ (landing.breadcrumb_name or landing.short_title) | tojson }}, "item": {{ landing.url | tojson }}}
+  ]
 }
 </script>
 {%- if landing.faqs %}
@@ -239,8 +271,8 @@
 {%- set landing_routes = vd_landing_routes.get(vd_lang, vd_landing_routes["pt-BR"]) %}
 <section class="page-header clearfix" style="background-image:linear-gradient(rgba(15,23,42,.84),rgba(46,109,164,.80)),url({{ landing.hero_image }});">
   <div class="container"><div class="page-header__wrapper clearfix">
-    <div class="page-header__title"><h2>{{ landing.short_title }}</h2></div>
-    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="{{ landing_routes.home }}">{{ t.home }}</a></li><li><a href="{{ landing_routes.courses }}">{{ t.courses }}</a></li><li class="active">{{ landing.short_title }}</li></ul></div>
+    <div class="page-header__title"><p class="vd-page-header-title">{{ landing.short_title }}</p></div>
+    <div class="page-header__menu"><ul class="page-header__menu-list list-unstyled clearfix"><li><a href="{{ landing_routes.home }}">{{ t.home }}</a></li><li><a href="{{ landing_routes.courses }}">{{ t.courses }}</a></li><li class="active">{{ landing.breadcrumb_name or landing.short_title }}</li></ul></div>
   </div></div>
 </section>
 
@@ -250,6 +282,7 @@
       <span class="vd-pill">{{ landing.tagline }}</span>
       <h1 style="color:#111827;margin-bottom:16px;">{{ landing.h1 }}</h1>
       <p class="vd-muted" style="font-size:18px;">{{ landing.lead }}</p>
+      {% if landing.updated_at %}<p class="vd-muted" style="font-size:14px;"><time datetime="{{ landing.updated_iso }}">{{ landing.updated_at }}</time></p>{% endif %}
       <ul class="vd-hero-list">
         {% for outcome in landing.outcomes %}{% if loop.index <= 3 %}<li>{{ outcome }}</li>{% endif %}{% endfor %}
       </ul>
@@ -271,6 +304,20 @@
   </div></div>
 </section>
 
+{%- if landing.instructors %}
+<section class="vd-landing-section vd-landing-alt">
+  <div class="container" style="max-width:920px;">
+    <div class="section-title text-center"><span class="section-title__tagline">Professor</span><h2 class="section-title__title">Quem acompanha as aulas de inglês</h2></div>
+    {% for instructor in landing.instructors %}
+    <div class="vd-card" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:28px;">
+      <img src="{{ instructor.image }}" alt="{{ instructor.name }}, {{ instructor.role }} na Vedium" width="180" height="180" loading="lazy" decoding="async" style="width:180px;height:180px;object-fit:cover;border-radius:50%;" />
+      <div style="flex:1;min-width:240px;"><h3>{{ instructor.name }}</h3><p><strong>{{ instructor.role }}</strong></p><p>{{ instructor.bio }}</p></div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{%- endif %}
+
 <section class="vd-landing-section vd-landing-alt">
   <div class="container"><div class="row" style="row-gap:28px;">
     <div class="col-lg-5">
@@ -281,7 +328,7 @@
     <div class="col-lg-7">
       <div class="row" style="row-gap:18px;">
         {% for pain in landing.pain_points %}
-        <div class="col-md-6"><div class="vd-card"><h4>{{ t.pain_point }}</h4><p>{{ pain }}</p></div></div>
+        <div class="col-md-6"><div class="vd-card"><h3>{{ landing.pain_headings[loop.index0] if landing.pain_headings else t.pain_point }}</h3><p>{{ pain }}</p></div></div>
         {% endfor %}
       </div>
     </div>
@@ -308,13 +355,69 @@
       <div class="col-lg-4 col-md-6">
         <div class="vd-card" style="display:flex;flex-direction:column;height:100%;">
           {% if course.level_badge %}<span class="vd-pill">{{ course.level_badge }}</span>{% endif %}
-          <h3>{{ course.title }}</h3>
+          <h3><a href="{{ course.url }}">{{ course.title }}</a></h3>
           <p style="flex:1;">{{ course.short_introduction }}</p>
           {% if course.lesson_count %}<p class="vd-muted" style="font-size:14px;margin-bottom:6px;">{{ course.lesson_count }} {{ t.lessons_count }}</p>{% endif %}
           <div class="vd-price-val" style="font-size:24px;margin:4px 0 16px;">{{ course.formatted_price }}</div>
           <a href="{{ course.url }}" class="thm-btn" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'seo_landing_course_grid_click',landing:'{{ landing.slug }}',course:'{{ course.name }}'});">{{ t.see_course }}</a>
         </div>
       </div>
+      {% endfor %}
+    </div>
+    {% if landing.show_course_table %}
+    <div class="vd-table-wrap" style="margin-top:34px;">
+      <table class="vd-data-table">
+        <caption>Resumo dos níveis, aulas e valores exibidos</caption>
+        <thead><tr><th scope="col">Nível e curso</th><th scope="col">Aulas publicadas</th><th scope="col">Valor exibido</th></tr></thead>
+        <tbody>
+          {% for course in landing.course_grid %}
+          <tr><td><a href="{{ course.url }}">{{ course.title }}</a></td><td>{{ course.lesson_count or "Consulte a ementa" }}</td><td>{{ course.formatted_price }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if landing.progression_levels %}
+<section class="vd-landing-section">
+  <div class="container">
+    <div class="section-title text-center"><span class="section-title__tagline">Progressão CEFR</span><h2 class="section-title__title">{{ landing.progression_title }}</h2></div>
+    <div class="row" style="row-gap:20px;margin-top:32px;">
+      {% for item in landing.progression_levels %}
+      <div class="col-lg-4 col-md-6"><div class="vd-card"><span class="vd-pill">{{ item.level }}</span><h3><a href="{{ item.url }}">Inglês {{ item.level }}: {{ item.title }}</a></h3><p>{{ item.text }}</p></div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if landing.info_tables %}
+<section class="vd-landing-section vd-landing-alt">
+  <div class="container" style="max-width:980px;">
+    <div class="section-title text-center"><span class="section-title__tagline">Informações objetivas</span><h2 class="section-title__title">Como comparar níveis, frequência e formatos</h2></div>
+    {% for table in landing.info_tables %}
+    <div class="vd-table-wrap">
+      <table class="vd-data-table">
+        <caption>{{ table.title }}</caption>
+        <thead><tr>{% for header in table.headers %}<th scope="col">{{ header }}</th>{% endfor %}</tr></thead>
+        <tbody>{% for row in table.rows %}<tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if landing.testimonials %}
+<section class="vd-landing-section">
+  <div class="container" style="max-width:920px;">
+    <div class="section-title text-center"><span class="section-title__tagline">Avaliações verificadas</span><h2 class="section-title__title">O que os alunos relatam</h2></div>
+    <div class="row" style="row-gap:20px;margin-top:28px;">
+      {% for testimonial in landing.testimonials %}
+      <div class="col-md-6"><blockquote class="vd-card"><p>{{ testimonial.text }}</p><footer>{{ testimonial.name }}</footer></blockquote></div>
       {% endfor %}
     </div>
   </div>
@@ -329,15 +432,20 @@
       <div class="col-md-4"><div class="vd-card"><span class="vd-pill">2</span><h3>{{ t.step2_t }}</h3><p>{{ t.step2_p }}</p></div></div>
       <div class="col-md-4"><div class="vd-card"><span class="vd-pill">3</span><h3>{{ t.step3_t }}</h3><p>{{ t.step3_p }}</p></div></div>
     </div>
+    {% if landing.compact_method %}
+    <div class="vd-card" style="margin-top:24px;"><h3>{{ t.what_expect }}</h3><p>{{ t.format_p }}</p><ul style="padding-left:18px;margin:0;">{% for item in landing.format_items %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    {% endif %}
   </div>
 </section>
 
+{%- if not landing.compact_method %}
 <section class="vd-landing-section">
   <div class="container"><div class="row" style="row-gap:28px;">
     <div class="col-lg-5"><span class="vd-pill">{{ t.format }}</span><h2 style="color:#111827;">{{ t.what_expect }}</h2><p class="vd-muted">{{ t.format_p }}</p></div>
     <div class="col-lg-7"><div class="vd-card"><ul style="padding-left:18px;margin:0;">{% for item in landing.format_items %}<li>{{ item }}</li>{% endfor %}</ul></div></div>
   </div></div>
 </section>
+{%- endif %}
 
 {%- if landing.seo_sections %}
 <section class="vd-landing-section vd-landing-alt">
@@ -345,7 +453,7 @@
     <div class="section-title text-center"><span class="section-title__tagline">{{ t.understand }}</span><h2 class="section-title__title">{{ landing.seo_title or landing.short_title }}</h2></div>
     <div class="vd-prose" style="margin-top:32px;">
       {% for sec in landing.seo_sections %}
-      <h2>{{ sec.heading }}</h2>
+      <h3>{{ sec.heading }}</h3>
       {% for block in sec.body %}{{ block | safe }}{% endfor %}
       {% endfor %}
     </div>

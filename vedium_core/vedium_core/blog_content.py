@@ -823,7 +823,7 @@ BLOG_POSTS = {
                             '<p>Na Vedium, o curso de inglês foi pensado para quem quer sair da '
                             'enrolação e praticar de verdade. As aulas são ao vivo, com '
                             'acompanhamento, foco em conversação e evolução do A1 ao C1. Para o '
-                            'profissional que precisa crescer, participar de reuniões, destravar o '
+                            'profissional que precisa crescer, participar de reuniões, desenvolver o '
                             'speaking ou buscar oportunidades melhores, isso faz diferença.</p>',
                             '<p>Além disso, estudar sem fidelidade reduz o medo de começar. Você pode '
                             'testar, sentir a dinâmica e continuar porque a experiência faz sentido '
@@ -1061,7 +1061,7 @@ BLOG_POSTS = {
                             'evoluindo, não porque assinou um contrato longo. Essa liberdade combina '
                             'com a realidade de quem trabalha, estuda, tem rotina cheia e precisa de '
                             'um curso sério, mas flexível.</p>']},
-                  {'heading': 'Próximo passo para destravar seu speaking',
+                  {'heading': 'Próximo passo para desenvolver seu speaking',
                    'body': ['<p>O próximo passo é descobrir seu nível real e experimentar uma aula ao '
                             'vivo. Antes de decidir entre inglês ao vivo ou gravado, faça uma pergunta '
                             'prática: qual formato realmente vai me colocar para falar?</p>',
@@ -1105,7 +1105,7 @@ BLOG_POSTS = {
                'a': 'Para conversação, geralmente sim. A aula ao vivo permite interação, feedback, '
                     'ajuste de pronúncia e prática em tempo real. O curso gravado pode ser útil como '
                     'apoio, mas não substitui a troca com professor e turma.'},
-              {'q': 'Como saber se preciso de aula ao vivo para destravar o inglês?',
+              {'q': 'Como saber se preciso de aula ao vivo para praticar a fala em inglês?',
                'a': 'Se você entende mais do que consegue falar, trava em conversas, demora para '
                     'responder ou sente medo de errar, a aula ao vivo tende a ser mais indicada. Ela '
                     'cria prática orientada e correção constante.'},
@@ -1149,7 +1149,7 @@ BLOG_POSTS = {
                             'não precisa escolher entre reading, listening, speaking e writing. '
                             'Precisa aprender a usar uma habilidade para fortalecer a outra.</p>',
                             '<p>Neste artigo, você vai entender por que integrar as quatro habilidades '
-                            'destrava o aprendizado, como montar um plano prático por semana, como '
+                            'fortalece o aprendizado, como montar um plano prático por semana, como '
                             'adaptar a rotina ao seu nível CEFR e por que o inglês online ao vivo '
                             'acelera a evolução quando há conversação, correção e '
                             'acompanhamento.</p>']},
@@ -2016,7 +2016,7 @@ BLOG_POSTS = {
                             'Estudar sozinho parece confortável, mas também permite fugir da fala. O '
                             'aluno assiste aulas, faz exercícios, entende a teoria, mas não enfrenta a '
                             'etapa mais importante: usar o idioma.</p>',
-                            '<p>Para destravar, ele precisa de três mudanças:</p>',
+                            '<p>Para avançar, ele precisa de três mudanças:</p>',
                             '<ul><li>estudar menos conteúdo por vez;</li><li>praticar mais produção '
                             'ativa;</li><li>ter contato ao vivo com correção.</li></ul>',
                             '<p>Essa combinação reduz ansiedade e aumenta progresso. O aluno percebe '
@@ -2195,10 +2195,10 @@ BLOG_POSTS = {
      'cta_text': 'Faça o teste de nível grátis da Vedium e descubra por onde começar.',
      'cta_label': 'Conhecer o curso de Inglês',
      'cta_url': '/curso-de-ingles-online'},
-    "como-escrever-mensagens-curtas-e-claras-em-ingles-corporativo": {'title': 'Como escrever mensagens curtas e claras em inglês corporativo.md',
+    "como-escrever-mensagens-curtas-e-claras-em-ingles-corporativo": {'title': 'Como escrever mensagens curtas e claras em inglês corporativo',
      'meta_description': 'Precisa melhorar sua escrita no trabalho? Aprenda técnicas essenciais para '
                          'escrever mensagens curtas, claras e profissionais em inglês com a Vedium.',
-     'h1': 'Como escrever mensagens curtas e claras em inglês corporativo.md',
+     'h1': 'Como escrever mensagens curtas e claras em inglês corporativo',
      'date': '2026-06-08',
      'date_display': '8 de junho de 2026',
      'hero_image': "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1100&h=560&fit=crop&q=80",
@@ -2452,11 +2452,11 @@ BLOG_POSTS = {
               {'q': 'Como agendar uma aula experimental de conversação corporativa?',
                'a': 'Acesse nosso site em https://vediums.com/, faça o seu teste de nível e entre em '
                     'contato com nossa equipe para agendar sua primeira aula focada em conversação '
-                    'corporativa. Estamos prontos para ajudar você a destravar sua carreira.'}],
-     'cta_title': 'Quer saber seu nível real de inglês?',
-     'cta_text': 'Faça o teste de nível grátis da Vedium e descubra por onde começar.',
-     'cta_label': 'Conhecer o curso de Inglês',
-     'cta_url': '/curso-de-ingles-online'},
+                    'corporativa. Estamos prontos para ajudar você a desenvolver sua comunicação profissional.'}],
+     'cta_title': 'Precisa usar inglês em conversas profissionais?',
+     'cta_text': 'Conheça a trilha voltada a atendimento e comunicação com clientes.',
+     'cta_label': 'Conhecer inglês para atendimento',
+     'cta_url': '/ingles-para-atendimento-ao-cliente'},
     "o-papel-do-professor-qualificado-no-ensino-de-ioruba": {'title': 'O papel do professor qualificado no ensino de iorubá',
      'meta_description': 'Entenda por que um professor qualificado é essencial para aprender Iorubá '
                          'com respeito, profundidade cultural e domínio da tradição.',
@@ -11025,7 +11025,7 @@ BLOG_POSTS = {
                             'precisa incluir vocabulário e situações de trabalho. Se quer '
                             'estudar fora, precisa praticar inglês acadêmico. Se quer '
                             'viajar, precisa lidar com aeroporto, hotel, transporte e '
-                            'emergências. Se quer destravar conversação, precisa falar em '
+                            'emergências. Se quer ganhar segurança na conversação, precisa falar em '
                             'toda aula.</p>',
                             '<p>Na Vedium, o inglês é trabalhado com foco em prática real '
                             'e evolução no ritmo do aluno. O objetivo não é acumular '
@@ -11281,7 +11281,7 @@ BLOG_POSTS = {
                             'situações simples e previsíveis. Um aluno B2 já deve '
                             'argumentar melhor, participar de conversas mais complexas e '
                             'usar o idioma com mais autonomia.</p>',
-                            '<p>Sem diagnóstico, o aluno não sabe o que precisa destravar. '
+                            '<p>Sem diagnóstico, o aluno não sabe o que precisa desenvolver. '
                             'Por isso, um teste de nível ajuda a transformar sensação em '
                             'plano.</p>']},
                   {'heading': 'Por que isso trava o aluno?',
@@ -11339,7 +11339,7 @@ BLOG_POSTS = {
                             'fazer entrevistas em inglês;</li><li>quero apresentar '
                             'projetos;</li><li>quero viajar sem depender de '
                             'tradução;</li><li>quero sair do B1 e chegar ao '
-                            'B2;</li><li>quero destravar conversação;</li><li>quero '
+                            'B2;</li><li>quero desenvolver a conversação;</li><li>quero '
                             'escrever e-mails profissionais com mais clareza.</li></ul>',
                             '<p>O objetivo define o tipo de prática.</p>',
                             '<h3>Passo 3: pratique fala toda semana</h3>',
@@ -11439,7 +11439,7 @@ BLOG_POSTS = {
                             '<p>A Vedium trabalha com evolução por nível para que o aluno '
                             'saiba seu ponto de partida e tenha um próximo passo '
                             'claro.</p>']},
-                  {'heading': 'Plano de 4 semanas para destravar o intermediário',
+                  {'heading': 'Plano de 4 semanas para avançar no intermediário',
                    'body': ['<p>Aqui está um plano prático para começar:</p>',
                             '<h3>Semana 1: diagnóstico e fala curta</h3>',
                             '<p>Objetivo: identificar onde você trava.</p>',
@@ -11505,7 +11505,7 @@ BLOG_POSTS = {
                             'situações em que ainda não se sente totalmente seguro.</p>',
                             '<h3>Estudar gramática sem usar</h3>',
                             '<p>A gramática precisa aparecer em frases e conversas. Saber '
-                            'a regra sem aplicar não destrava fluência.</p>',
+                            'a regra sem aplicar não transforma conhecimento em comunicação.</p>',
                             '<h3>Não pedir correção</h3>',
                             '<p>Muitos alunos querem conversar, mas não querem ser '
                             'corrigidos. Sem correção, o avanço fica mais lento.</p>']},
@@ -11551,7 +11551,7 @@ BLOG_POSTS = {
                'a': 'Faça um diagnóstico de nível, defina um objetivo claro, pratique '
                     'conversação toda semana, receba correção e use vocabulário novo em '
                     'situações reais.'},
-              {'q': 'O nível CEFR ajuda a destravar o inglês?',
+              {'q': 'O nível CEFR ajuda a planejar o avanço no inglês?',
                'a': 'Sim. O CEFR ajuda a identificar se você está em B1, B2 ou outro nível '
                     'e mostra quais competências precisam ser desenvolvidas para avançar.'},
               {'q': 'Conversação é essencial para sair do intermediário?',
@@ -12102,7 +12102,7 @@ BLOG_POSTS = {
                             '<ul><li>trabalhar;</li><li>estudar;</li><li>precisar;</li><li>querer;</li><li>gostar;</li><li>ter;</li><li>ir;</li><li>comprar;</li><li>enviar;</li><li>falar;</li><li>entender;</li><li>aprender;</li><li>perguntar;</li><li>responder.</li></ul>',
                             '<p>Para conversar, você precisa de movimento. E movimento vem '
                             'de verbos de ação.</p>']},
-                  {'heading': 'Comece com 8 verbos que destravam frases úteis',
+                  {'heading': 'Comece com 8 verbos que ajudam a formar frases úteis',
                    'body': ['<p>Para sair do verbo <em>to be</em>, comece com oito verbos '
                             'de alta utilidade. Eles aparecem em situações profissionais, '
                             'pessoais e de estudo.</p>',
@@ -12402,7 +12402,7 @@ BLOG_POSTS = {
                             'fazer uma mini-apresentação?</li><li>Já pratiquei essas '
                             'frases em voz alta?</li></ul>',
                             '<p>Se você respondeu “não” para muitos itens, comece por '
-                            'eles. O caminho para destravar é mais simples do que parece: '
+                            'eles. O caminho para avançar é mais simples do que parece: '
                             'frases úteis, repetição e prática ao vivo.</p>']},
                   {'heading': 'Em resumo',
                    'body': ['<p>Sair do verbo <em>to be</em> é um marco importante para '
@@ -12992,7 +12992,7 @@ BLOG_POSTS = {
                             '<p>Falar em reunião é uma habilidade. Se você nunca simula '
                             'esse cenário, a primeira prática real acontece em um momento '
                             'de pressão.</p>',
-                            '<p>Para destravar, é preciso praticar reunião como situação '
+                            '<p>Para participar com mais segurança, é preciso praticar reunião como situação '
                             'real de comunicação.</p>']},
                   {'heading': 'Frases para começar uma reunião em inglês',
                    'body': ['<p>Para começar uma reunião em inglês, use frases simples, '
@@ -13286,7 +13286,7 @@ BLOG_POSTS = {
                             'alta?</li></ul>',
                             '<p>Se você respondeu “não” para vários itens, escolha três '
                             'frases deste artigo e pratique hoje. Pequenos blocos bem '
-                            'treinados podem destravar sua participação.</p>']},
+                            'treinados podem ampliar sua participação.</p>']},
                   {'heading': 'Em resumo',
                    'body': ['<p>Inglês para reuniões é uma habilidade prática e '
                             'estratégica. Para participar sem travar, você não precisa '
@@ -13326,10 +13326,10 @@ BLOG_POSTS = {
                'a': 'Sim. A Vedium oferece inglês online ao vivo com conversação, '
                     'simulações profissionais, correção e evolução por nível CEFR para '
                     'ajudar alunos a participarem melhor de reuniões.'}],
-     'cta_title': 'Quer saber seu nível real de inglês?',
-     'cta_text': 'Faça o teste de nível grátis da Vedium e descubra por onde começar.',
-     'cta_label': 'Conhecer o curso de Inglês',
-     'cta_url': '/curso-de-ingles-online'},
+     'cta_title': 'Precisa usar inglês em reuniões?',
+     'cta_text': 'Conheça a trilha de inglês para contextos profissionais e executivos.',
+     'cta_label': 'Conhecer inglês executivo',
+     'cta_url': '/ingles-executivo'},
     "os-erros-que-travam-brasileiros-no-ingles-basico": {'title': 'Os erros que travam brasileiros no inglês básico',
      'meta_description': 'Conheça os erros que travam brasileiros no inglês básico e '
                          'aprenda como corrigir com conversação, nível CEFR e aulas ao '
@@ -13649,7 +13649,7 @@ BLOG_POSTS = {
                             'sua rotina.</p>',
                             '<p>CTA: Faça o teste de nível grátis em <a '
                             'href="/curso-de-ingles-online">https://vediums.com/</a> e '
-                            'descubra como destravar seu inglês básico com aulas ao '
+                            'descubra como desenvolver seu inglês básico com aulas ao '
                             'vivo.</p>']},
                   {'heading': 'Checklist para não travar no inglês básico',
                    'body': ['<p>Use este checklist semanal:</p>',
@@ -13682,7 +13682,7 @@ BLOG_POSTS = {
                             'porque sente evolução.</p>',
                             '<p>Faça seu teste de nível grátis em <a '
                             'href="/teste-de-nivel-ingles">https://vediums.com/</a> e '
-                            'comece a destravar seu inglês básico com direção, prática e '
+                            'comece a avançar no inglês básico com direção, prática e '
                             'confiança.</p>']}],
      'faqs': [{'q': 'Quais erros mais travam brasileiros no inglês básico?',
                'a': 'Os erros mais comuns são traduzir palavra por palavra, estudar '
@@ -20284,7 +20284,7 @@ BLOG_POSTS.update({
             {
                 "heading": "Para quem aula de inglês online ao vivo vale a pena?",
                 "body": [
-                    "<p>A aula de inglês online ao vivo vale a pena para quem precisa praticar, receber correção e usar o idioma em situações reais. Ela é indicada para alunos que já perceberam que estudar sozinho não está sendo suficiente para destravar a fala.</p>",
+                    "<p>A aula de inglês online ao vivo vale a pena para quem precisa praticar, receber correção e usar o idioma em situações reais. Ela é indicada para alunos que já perceberam que estudar sozinho não está sendo suficiente para praticar a fala.</p>",
                     "<p>Esse formato costuma ser ideal para:</p>",
                     "<ul><li>profissionais que precisam de inglês para carreira;</li><li>alunos que travam na conversação;</li><li>pessoas que querem evoluir do A1 ao C1;</li><li>quem precisa se preparar para entrevistas em inglês;</li><li>quem participa ou quer participar de reuniões internacionais;</li><li>quem entende textos, mas não consegue falar;</li><li>quem já tentou aplicativos e vídeos sem constância;</li><li>quem precisa de rotina com professor;</li><li>quem quer aprender no próprio ritmo;</li><li>quem busca flexibilidade sem abrir mão de interação.</li></ul>",
                     "<p>Para a persona Bruno, que trabalha ou estuda, tem rotina cheia e precisa de inglês de verdade para crescer, a aula online ao vivo faz sentido porque combina flexibilidade com compromisso. Você não perde tempo em deslocamento, mas também não fica sozinho diante de uma plataforma. Há uma pessoa conduzindo o aprendizado.</p>"
@@ -20480,10 +20480,10 @@ BLOG_POSTS.update({
                 "a": "Sim. A Vedium oferece aulas de inglês online ao vivo, com professor, conversação, evolução por nível e sem contrato de fidelidade."
             }
         ],
-        "cta_title": "Quer saber seu nível real de inglês?",
-        "cta_text": "Faça o teste de nível grátis da Vedium e descubra por onde começar.",
-        "cta_label": "Fazer teste de nível grátis",
-        "cta_url": "/curso-de-ingles-online"
+        "cta_title": "Vai usar inglês em uma viagem?",
+        "cta_text": "Conheça a trilha voltada a aeroporto, hotel, transporte e outras situações de viagem.",
+        "cta_label": "Conhecer inglês para viagens",
+        "cta_url": "/ingles-para-viagens"
     },
     "brasilianisches-portugiesisch-fur-beruf-und-alltag-in-brasilien": {
         "title": "Brasilianisches Portugiesisch für Beruf und Alltag in Brasilien",
@@ -21987,7 +21987,7 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>Muitos brasileiros descobrem o shadowing em vídeos de estudo, podcasts ou métodos de fluência e começam tentando imitar cada detalhe de um falante nativo. Isso pode gerar dois problemas. O primeiro é a frustração: o aluno sente que nunca soa igual e conclui que está falando errado. O segundo é a artificialidade: a fala fica forçada, teatral, distante da personalidade do aluno e, às vezes, até menos clara.</p>",
                     "<p>O melhor uso do shadowing é outro. Em vez de tentar “virar outra pessoa falando”, você usa a fala de referência como treino de escuta ativa. Você observa como as palavras se conectam, onde a frase sobe ou desce, quais sons são reduzidos, como as pausas funcionam e quais blocos aparecem juntos. Depois, repete com intenção comunicativa, preservando naturalidade.</p>",
-                    "<p>Para o Bruno, profissional que quer inglês para carreira, reuniões, entrevistas e evolução do A1 ao C1, o shadowing pode ser um excelente complemento. Ele ajuda a destravar a boca, reduzir tradução mental e criar familiaridade com frases reais. Mas ele funciona melhor quando vem acompanhado de aula ao vivo, porque o professor pode corrigir pronúncia, ritmo, entonação e clareza sem transformar o aluno em uma cópia artificial.</p>",
+                    "<p>Para o Bruno, profissional que quer inglês para carreira, reuniões, entrevistas e evolução do A1 ao C1, o shadowing pode ser um excelente complemento. Ele ajuda a treinar os movimentos da fala, reduzir tradução mental e criar familiaridade com frases reais. Mas ele funciona melhor quando vem acompanhado de aula ao vivo, porque o professor pode corrigir pronúncia, ritmo, entonação e clareza sem transformar o aluno em uma cópia artificial.</p>",
                     "<p>Neste artigo, você vai entender quando usar shadowing, por que ele pode travar alguns alunos, como praticar de forma objetiva e qual é o próximo passo em um curso de inglês online ao vivo.</p>"
                 ]
             },
@@ -22100,7 +22100,7 @@ BLOG_POSTS.update({
                     "<h3>Frase 3</h3>",
                     "<p><strong>I’m still learning, but I can try to explain.</strong></p>",
                     "<p>Treino:</p>",
-                    "<ul><li>pratique entonação confiante;</li><li>evite soar como pedido de desculpas;</li><li>use para destravar.</li></ul>",
+                    "<ul><li>pratique entonação confiante;</li><li>evite soar como pedido de desculpas;</li><li>use para ganhar ritmo.</li></ul>",
                     "<p>Contexto:</p>",
                     "<p><strong>What do you think about the project?</strong></p>",
                     "<p>Resposta:</p>",
@@ -22182,7 +22182,7 @@ BLOG_POSTS.update({
             {
                 "heading": "Como a Vedium ajuda a usar shadowing do jeito certo",
                 "body": [
-                    "<p>A Vedium ajuda porque trabalha inglês online ao vivo com professor, conversação e plano por nível. O shadowing pode entrar como ferramenta dentro de uma estratégia maior: ativar vocabulário, melhorar listening, ganhar ritmo e destravar a fala.</p>",
+                    "<p>A Vedium ajuda porque trabalha inglês online ao vivo com professor, conversação e plano por nível. O shadowing pode entrar como ferramenta dentro de uma estratégia maior: ativar vocabulário, melhorar listening, ganhar ritmo e desenvolver a fala.</p>",
                     "<p>Nas aulas, você pode praticar:</p>",
                     "<ul><li>frases por nível CEFR;</li><li>shadowing com correção;</li><li>inglês para carreira;</li><li>entrevistas;</li><li>reuniões;</li><li>apresentações;</li><li>pronúncia;</li><li>ritmo;</li><li>conversação;</li><li>listening;</li><li>redução da tradução mental;</li><li>uso real das frases.</li></ul>",
                     "<p>A Vedium não trabalha com contrato de fidelidade. O aluno continua porque percebe evolução. Isso combina com o uso responsável do shadowing: progresso real, sem promessas mágicas e sem imitação artificial.</p>"
@@ -24992,7 +24992,7 @@ BLOG_POSTS.update({
                     "<p>As travas mais comuns são:</p>",
                     "<ul><li>medo de não entender o atendente;</li><li>insegurança com pronúncia;</li><li>vocabulário solto, sem frases;</li><li>falta de prática de perguntas e respostas;</li><li>nervosismo na imigração;</li><li>dificuldade com números, horários e datas;</li><li>vergonha de pedir para repetir;</li><li>tentativa de falar perfeito;</li><li>dependência de tradutor no celular;</li><li>pouca experiência ouvindo inglês real.</li></ul>",
                     "<p>O aluno precisa entender que viajar não exige fluência avançada em todas as áreas. Exige um conjunto de frases de sobrevivência bem treinadas. Você precisa saber pedir repetição, confirmar informação, explicar sua necessidade e responder perguntas básicas.</p>",
-                    "<p>Frases que destravam:</p>",
+                    "<p>Frases para começar a falar:</p>",
                     "<ul><li><strong>Can you repeat, please?</strong>: Você pode repetir, por favor?</li><li><strong>Can you speak more slowly?</strong>: Você pode falar mais devagar?</li><li><strong>I don’t understand.</strong>: Eu não entendo.</li><li><strong>I need help.</strong>: Eu preciso de ajuda.</li><li><strong>Where is...?</strong>: Onde fica...?</li><li><strong>I have a reservation.</strong>: Eu tenho uma reserva.</li><li><strong>I’m traveling for vacation.</strong>: Estou viajando de férias.</li></ul>",
                     "<p>Essas frases mantêm a conversa viva.</p>"
                 ]
@@ -25839,7 +25839,7 @@ BLOG_POSTS.update({
     },
     "por-que-brasileiros-entendem-ingles-escrito-mas-travam-na-fala": {
         "title": "Por que brasileiros entendem inglês escrito mas travam na fala",
-        "meta_description": "Entenda por que brasileiros entendem inglês escrito, mas travam na fala, e como destravar com conversação ao vivo.",
+        "meta_description": "Entenda por que brasileiros entendem inglês escrito, mas travam na fala, e como desenvolver a comunicação com prática ao vivo.",
         "h1": "Por que brasileiros entendem inglês escrito mas travam na fala",
         "date": "2025-03-17",
         "date_display": "17 de março de 2025",
@@ -25865,8 +25865,8 @@ BLOG_POSTS.update({
                     "<ul><li>reler a frase;</li><li>deduzir pelo contexto;</li><li>ignorar uma palavra desconhecida;</li><li>usar tradutor;</li><li>pensar com calma;</li><li>reconhecer palavras parecidas;</li><li>entender a ideia geral.</li></ul>",
                     "<p>Na fala, você precisa:</p>",
                     "<ul><li>ouvir em tempo real;</li><li>entender a pergunta;</li><li>organizar a resposta;</li><li>escolher palavras;</li><li>pronunciar com clareza;</li><li>controlar a ansiedade;</li><li>responder sem traduzir tudo;</li><li>continuar mesmo com erros.</li></ul>",
-                    "<p>Por isso, entender inglês escrito não garante falar inglês. A leitura é uma base importante, mas a fala precisa de treino próprio. O caminho para destravar é praticar conversação guiada, ativar vocabulário, treinar frases úteis e receber correção ao vivo.</p>",
-                    "<p>Se você quer descobrir seu nível atual e o melhor caminho para destravar a fala, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
+                    "<p>Por isso, entender inglês escrito não garante falar inglês. A leitura é uma base importante, mas a fala precisa de treino próprio. O caminho é praticar conversação guiada, ativar vocabulário, treinar frases úteis e receber correção ao vivo.</p>",
+                    "<p>Se você quer descobrir seu nível atual e o melhor caminho para desenvolver a fala, faça o teste de nível grátis em <a href=\"/curso-de-ingles-online\">https://vediums.com/</a>.</p>"
                 ]
             },
             {
@@ -25937,7 +25937,7 @@ BLOG_POSTS.update({
             {
                 "heading": "Como praticar de forma objetiva",
                 "body": [
-                    "<p>Para praticar de forma objetiva, pare de tentar “falar sobre qualquer coisa” e comece com situações específicas. A fala destrava melhor quando o aluno sabe qual contexto está treinando.</p>",
+                    "<p>Para praticar de forma objetiva, pare de tentar “falar sobre qualquer coisa” e comece com situações específicas. A fala se desenvolve melhor quando o aluno sabe qual contexto está treinando.</p>",
                     "<h3>Exercício 1: transformar leitura em fala</h3>",
                     "<p>Pegue uma frase que você entende lendo e fale em voz alta.</p>",
                     "<p>Frase lida:</p>",
@@ -25984,17 +25984,17 @@ BLOG_POSTS.update({
                 "body": [
                     "<p>O estudo sozinho ajuda a construir vocabulário e contato com o idioma, mas o curso ao vivo cria interação e feedback. Para quem trava na fala, essa diferença é central.</p>",
                     "<table><thead><tr><th>Critério</th><th>Estudo sozinho</th><th>Curso ao vivo</th></tr></thead><tbody><tr><td>Leitura</td><td>forte</td><td>forte</td></tr><tr><td>Gramática</td><td>possível</td><td>aplicada</td></tr><tr><td>Fala</td><td>limitada</td><td>constante</td></tr><tr><td>Correção</td><td>difícil</td><td>imediata</td></tr><tr><td>Pronúncia</td><td>sem feedback humano</td><td>corrigida</td></tr><tr><td>Conversação</td><td>simulada ou ausente</td><td>real</td></tr><tr><td>Rotina</td><td>depende do aluno</td><td>professor conduz</td></tr><tr><td>Ansiedade</td><td>pouco trabalhada</td><td>reduzida com prática</td></tr><tr><td>Evolução</td><td>difícil de medir</td><td>acompanhada por nível</td></tr></tbody></table>",
-                    "<p>Isso não significa que estudar sozinho seja inútil. Significa que, para destravar a fala, você precisa falar com alguém que possa corrigir e conduzir.</p>"
+                    "<p>Isso não significa que estudar sozinho seja inútil. Significa que, para desenvolver a fala, você precisa falar com alguém que possa corrigir e conduzir.</p>"
                 ]
             },
             {
-                "heading": "Plano de 30 dias para destravar a fala",
+                "heading": "Plano de 30 dias para praticar a fala",
                 "body": [
                     "<p>Este plano ajuda quem já entende inglês escrito, mas precisa ativar a fala. Ele não promete fluência em 30 dias. O objetivo é criar movimento.</p>",
                     "<table><thead><tr><th>Semana</th><th>Foco</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Semana 1</td><td>frases pessoais e profissionais</td><td>responder perguntas simples</td></tr><tr><td>Semana 2</td><td>vocabulário ativo</td><td>transformar leitura em fala</td></tr><tr><td>Semana 3</td><td>conversação guiada</td><td>reduzir pausas e tradução mental</td></tr><tr><td>Semana 4</td><td>simulações reais</td><td>falar em reuniões, entrevistas ou viagem</td></tr></tbody></table>",
                     "<p>Rotina semanal:</p>",
                     "<ul><li>escolher 10 frases úteis;</li><li>falar cada frase em voz alta;</li><li>responder 5 perguntas;</li><li>gravar 1 áudio curto;</li><li>praticar 1 mini-conversa;</li><li>revisar correções;</li><li>repetir frases corrigidas.</li></ul>",
-                    "<p>O mais importante é constância. Falar 10 minutos por dia pode destravar mais do que estudar duas horas só lendo.</p>"
+                    "<p>O mais importante é a constância. Uma prática oral curta e frequente desenvolve uma habilidade diferente daquela exercitada apenas pela leitura.</p>"
                 ]
             },
             {
@@ -26036,7 +26036,7 @@ BLOG_POSTS.update({
                 "a": "Não. Significa que suas habilidades estão desequilibradas. Sua leitura pode estar melhor que sua conversação, e isso pode ser corrigido com prática oral."
             },
             {
-                "q": "Como destravar a fala em inglês?",
+                "q": "Como desenvolver a fala em inglês?",
                 "a": "Pratique perguntas e respostas, fale em voz alta, grave sua voz, aprenda blocos prontos, reduza tradução mental e treine conversação com professor ao vivo."
             },
             {

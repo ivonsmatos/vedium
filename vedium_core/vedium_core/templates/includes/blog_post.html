@@ -126,7 +126,7 @@
 <section class="vd-sec">
   <div class="container">
     <article class="vd-article">
-      {% if post.hero_image %}<img src="{{ post.hero_image }}" alt="{{ post.hero_alt or post.title }}" />{% endif %}
+      {% if post.hero_image %}<img src="{{ post.hero_image }}" alt="{{ post.hero_alt or post.title }}" width="1100" height="560" decoding="async" fetchpriority="high" />{% endif %}
       {% if post.lead %}<p class="vd-lead">{{ post.lead }}</p>{% endif %}
       {% for sec in post.sections %}
       {% if sec.heading %}<h2>{{ sec.heading }}</h2>{% endif %}
