@@ -135,3 +135,7 @@ memory/
 
 # Cache/estado local do wrangler CLI (Cloudflare)
 .wrangler/
+
+# Ferramentas administrativas instaladas/abertas apenas na máquina local
+.tools/
+scripts/brevo-cdp.mjs
