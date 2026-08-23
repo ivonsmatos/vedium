@@ -32,6 +32,7 @@ from vedium_core.marketing_landing_content import (  # noqa: E402
 from vedium_core.course_translations import COURSE_TRANSLATIONS  # noqa: E402
 from vedium_core.blog_content import BLOG_POSTS, get_blog_post  # noqa: E402
 from vedium_core import hooks as vedium_hooks  # noqa: E402
+from vedium_core.image_optimization import responsive_course_image  # noqa: E402
 
 SEO_SLUGS = [
     "curso-de-ingles-online",
@@ -1720,8 +1721,8 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "flagcdn.com/w20/cn.png" in navbar
     assert "GTM-P6Q2FXLK" in footer
     assert "vedium-language.min.js?v=v11-n-languages" in footer
-    assert "pwa-register.min.js?v=static-v4" in footer
-    assert "/assets/vedium_core/js/pwa-register.min.js?v=static-v4" in hooks
+    assert "pwa-register.min.js?v=static-v5" in footer
+    assert "/assets/vedium_core/js/pwa-register.min.js?v=static-v5" in hooks
     assert "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix" in hooks
     assert "vediumGoToLevelTest" not in footer
     assert "document.addEventListener('touchend'" not in footer
@@ -1773,7 +1774,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "googtrans=" not in lang_js
     assert "target.closest" in lang_js
     assert "navigator.serviceWorker.register('/sw.js'" in pwa_js
-    assert "fetch('/sw.js', { method: 'HEAD', cache: 'no-store' })" in pwa_js
+    assert "fetch('/sw.js', { method: 'HEAD'" not in pwa_js
+    assert "updateViaCache: 'none'" in pwa_js
+    assert "requestIdleCallback" in pwa_js
     assert "PUBLIC_HOSTS" in pwa_js
     assert "app.vediums.com" not in pwa_js
     assert "request.mode === 'navigate'" in sw_js
@@ -4243,3 +4246,58 @@ def test_public_shell_css_and_fonts_are_externalized_from_page_html():
             )
         ):
             assert "public-foundations.min.css?v=20260725" in html, path
+
+
+def test_home_pages_apply_lighthouse_performance_and_accessibility_fixes():
+    home_pages = [WWW / "index.html"] + [
+        WWW / locale / "index.html" for locale in ("en", "es", "fr", "de", "ru")
+    ]
+
+    for page in home_pages:
+        html = page.read_text(encoding="utf-8")
+        assert "googletagmanager.com/gtag/js" not in html, page
+        assert "GTM-P6Q2FXLK" in html, page
+        assert "w=1920&q=80" not in html, page
+        assert 'src="{{ course.image_src }}"' in html, page
+        assert 'srcset="{{ course.image_srcset }}"' in html, page
+        assert 'sizes="{{ course.image_sizes }}"' in html, page
+        assert 'width="720" height="480"' in html, page
+        assert 'media="print" onload="this.media=\'all\'"' in html, page
+        assert "background: #8a4b00 !important" in html, page
+        assert "color: #595959 !important" in html, page
+        assert "about-one__left-overlay .title h3" in html, page
+        assert "why-choose-one__left-learning-box .text h3" in html, page
+
+    font_files = (
+        ROOT / "vedium_core" / "vedium_core" / "public" / "vedium_assets" / "vendors"
+    )
+    for font_css in (
+        font_files / "fontawesome" / "css" / "all.min.css",
+        font_files / "icomoon-icons" / "style.min.css",
+        font_files / "reey-font" / "stylesheet.css",
+    ):
+        css = font_css.read_text(encoding="utf-8")
+        assert "font-display:swap" in css.replace(" ", ""), font_css
+        assert "font-display:block" not in css.replace(" ", ""), font_css
+
+
+def test_responsive_course_image_uses_unsplash_resize_api_safely():
+    optimized = responsive_course_image(
+        "https://images.unsplash.com/photo-test?w=900&h=600&q=80&crop=faces"
+    )
+
+    assert "w=640" in optimized["image_src"]
+    assert "h=" not in optimized["image_src"]
+    assert "auto=format" in optimized["image_src"]
+    assert "q=72" in optimized["image_src"]
+    assert "360w" in optimized["image_srcset"]
+    assert "640w" in optimized["image_srcset"]
+    assert "900w" in optimized["image_srcset"]
+    assert optimized["image_sizes"].endswith("25vw")
+
+    local = responsive_course_image("/files/course-cover.webp")
+    assert local == {
+        "image_src": "/files/course-cover.webp",
+        "image_srcset": "",
+        "image_sizes": "",
+    }

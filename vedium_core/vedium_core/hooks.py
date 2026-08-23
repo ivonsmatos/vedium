@@ -366,7 +366,7 @@ web_include_css = [
 
 # Website JS
 web_include_js = [
-    "/assets/vedium_core/js/pwa-register.min.js?v=static-v4",
+    "/assets/vedium_core/js/pwa-register.min.js?v=static-v5",
     "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix",
     "/assets/vedium_core/js/meta-pixel.min.js?v=consent-lgpd",
     "/assets/vedium_core/js/push-notifications.min.js?v=1",

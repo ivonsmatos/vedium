@@ -1,6 +1,7 @@
 import frappe
 
 from vedium_core.course_urls import get_course_url
+from vedium_core.image_optimization import responsive_course_image
 
 # Ordem de exibição dos idiomas no site
 LANGUAGE_ORDER = ["Inglês", "Espanhol", "Hebraico", "Iorubá", "Português para Estrangeiros"]
@@ -137,6 +138,7 @@ def _enrich(course) -> dict:
     if not course.get("image"):
         lang = _detect_language(course.get("category", ""))
         course["image"] = LANGUAGE_FALLBACK_IMAGES.get(lang, DEFAULT_FALLBACK)
+    course.update(responsive_course_image(course["image"]))
 
     # Preço formatado
     if course.get("paid_course") and course.get("course_price"):

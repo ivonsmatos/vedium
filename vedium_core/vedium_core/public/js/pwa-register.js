@@ -42,6 +42,17 @@
             .catch(function () { /* noop */ });
     }
 
+    function registerServiceWorker() {
+        navigator.serviceWorker.register('/sw.js', {
+            scope: '/',
+            updateViaCache: 'none'
+        })
+            .then(function (registration) {
+                registration.update();
+            })
+            .catch(function () { /* noop */ });
+    }
+
     try {
         cleanupCaches();
 
@@ -52,15 +63,11 @@
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
-                fetch('/sw.js', { method: 'HEAD', cache: 'no-store' })
-                    .then(function (response) {
-                        if (!response.ok) return null;
-                        return navigator.serviceWorker.register('/sw.js', { scope: '/' });
-                    })
-                    .then(function (registration) {
-                        if (registration) registration.update();
-                    })
-                    .catch(function () { /* noop */ });
+                if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(registerServiceWorker, { timeout: 2000 });
+                } else {
+                    window.setTimeout(registerServiceWorker, 0);
+                }
             });
         }
     } catch (e) {
