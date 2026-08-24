@@ -1,0 +1,103 @@
+{#
+  VEDIUM DESIGN SYSTEM V2 -- Header (componente isolado, Fase B 2026-08-24).
+  NAO substitui templates/includes/site_navbar.html em producao.
+
+  Contrato herdado do header atual (docs/redesign/baseline/ui-contracts.md),
+  preparado mas NAO implementado nesta fase (regra explicita da missao:
+  "Nao implementar uma logica nova de locale nesta fase"):
+    - Login/Registro sempre para app.vediums.com/login (+ #signup).
+    - CTA "Descubra seu nivel" e DINAMICO por pagina de curso -- este
+      include aceita as MESMAS duas variaveis de contexto que o header
+      atual (vd_level_test_url_override / vd_level_test_contact_override),
+      com o mesmo fallback, para nao quebrar o contrato quando for migrado.
+    - Seletor de idioma: markup carrega os MESMOS atributos de dado real
+      (data-vd-nav-urls / data-vd-nav-current) que o JS de locale atual
+      (vedium-language.js) já sabe ler -- a logica de troca em si NAO é
+      reimplementada aqui, so o contrato de dado é preservado.
+    - WhatsApp: mesmo numero e texto fixos do header/footer atuais.
+
+  Uso (na pagina de preview):
+    {% set v2_level_test_url_override = None %}
+    {% set v2_level_test_contact_override = False %}
+    {% include "templates/includes/v2/header.html" %}
+#}
+
+{% import "templates/includes/v2/macros_base.html" as v2 %}
+
+{%- set v2_hdr_lang = v2_hdr_lang or "pt-BR" -%}
+{%- set v2_hdr_nav = {
+  "pt-BR": {"como_funciona": "Como funciona", "professores": "Professores", "empresas": "Para empresas", "blog": "Blog", "cursos": "Cursos", "login": "Entrar", "cta": "Descubra seu nível"},
+  "en": {"como_funciona": "How it works", "professores": "Teachers", "empresas": "For companies", "blog": "Blog", "cursos": "Courses", "login": "Log in", "cta": "Find your level"}
+} -%}
+{%- set v2_t = v2_hdr_nav.get(v2_hdr_lang, v2_hdr_nav["pt-BR"]) -%}
+{%- set v2_hdr_courses = [
+  {"label": "Inglês", "href": "/curso-de-ingles-online"},
+  {"label": "Iorubá", "href": "/curso-de-ioruba-online"},
+  {"label": "Português para Estrangeiros", "href": "/portugues-para-estrangeiros"},
+  {"label": "Espanhol", "href": "/curso-de-espanhol-online"},
+  {"label": "Hebraico", "href": "/curso-de-hebraico-online"},
+  {"label": "Para empresas", "href": "/empresas"}
+] -%}
+{%- set v2_level_test_url = v2_level_test_url_override or "/teste-de-nivel" -%}
+{%- set v2_level_test_label = ("Fale conosco" if v2_level_test_contact_override else v2_t.cta) -%}
+
+<header class="v2-header" data-v2-header data-menu-open="false">
+  <div class="v2-container v2-container--wide">
+    <div class="v2-header__bar">
+      <a class="v2-header__logo" href="/" aria-label="Vedium">
+        <img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium" width="132" height="32" />
+      </a>
+
+      <nav class="v2-header__nav" aria-label="Principal">
+        <div class="v2-header__nav-item" data-v2-nav-item data-mega-open="false">
+          <button type="button" class="v2-header__nav-link" data-v2-mega-trigger aria-haspopup="true" aria-expanded="false">
+            {{ v2_t.cursos }} {{ v2.v2_icon("chevron-down", size="0.8em") }}
+          </button>
+          <div class="v2-header__mega" data-v2-mega>
+            <div class="v2-header__mega-grid">
+              {%- for course in v2_hdr_courses %}
+              <a class="v2-header__mega-link" href="{{ course.href }}">{{ course.label }}</a>
+              {%- endfor %}
+            </div>
+          </div>
+        </div>
+        <a class="v2-header__nav-link" href="/como-funciona">{{ v2_t.como_funciona }}</a>
+        <a class="v2-header__nav-link" href="/professores">{{ v2_t.professores }}</a>
+        <a class="v2-header__nav-link" href="/empresas">{{ v2_t.empresas }}</a>
+        <a class="v2-header__nav-link" href="/blog">{{ v2_t.blog }}</a>
+      </nav>
+
+      <div class="v2-header__actions">
+        <button
+          type="button"
+          class="v2-header__locale-btn"
+          data-vd-language-open
+          data-vd-nav-current="{{ v2_hdr_lang }}"
+          {% if v2_nav_urls %}data-vd-nav-urls='{{ v2_nav_urls | tojson }}'{% endif %}
+          aria-haspopup="dialog"
+        >
+          <img class="v2-header__locale-flag" src="https://flagcdn.com/w20/{{ 'br' if v2_hdr_lang == 'pt-BR' else 'us' }}.png" alt="" aria-hidden="true" />
+          <span>{{ "PT" if v2_hdr_lang == "pt-BR" else v2_hdr_lang | upper }}</span>
+        </button>
+
+        {{ v2.v2_button(v2_t.login, href="https://app.vediums.com/login", variant="tertiary", size="compact") }}
+        {{ v2.v2_button(v2_level_test_label, href=v2_level_test_url, variant="primary", size="compact") }}
+
+        <button type="button" class="v2-header__burger" data-v2-burger aria-label="Abrir menu" aria-expanded="false" aria-controls="v2-header-mobile-panel">
+          <span class="v2-header__burger-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="v2-header__mobile-panel" id="v2-header-mobile-panel">
+      {%- for course in v2_hdr_courses %}
+      <a class="v2-header__mobile-link" href="{{ course.href }}">{{ course.label }}</a>
+      {%- endfor %}
+      <a class="v2-header__mobile-link" href="/como-funciona">{{ v2_t.como_funciona }}</a>
+      <a class="v2-header__mobile-link" href="/professores">{{ v2_t.professores }}</a>
+      <a class="v2-header__mobile-link" href="/empresas">{{ v2_t.empresas }}</a>
+      <a class="v2-header__mobile-link" href="/blog">{{ v2_t.blog }}</a>
+      <a class="v2-header__mobile-link" href="https://app.vediums.com/login">{{ v2_t.login }}</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,531 @@
+/*
+ * VEDIUM DESIGN SYSTEM V2 -- componentes editoriais
+ * HeroSplit, HeroCentered, HeroFullBleed, ProofBar, FeatureCard, LanguageCard,
+ * CourseCard, LevelCard, LevelTimeline, TeacherCard, TeacherProfileSummary,
+ * ProcessSteps, FeatureMedia, VideoSection, TestimonialCard, PricingCard,
+ * FAQAccordion, BlogCard, CTASection. Todos recebem dado via macro (nunca
+ * hardcode professor/preco/depoimento/data/nivel no CSS ou no HTML gerado).
+ */
+
+/* ---------- Media vazia (estado real do componente, nao um placeholder de
+   dev) -- usado por todo slot de imagem quando nao ha image_src. Neutro,
+   sem fingir ser foto: fundo de superficie + icone pequeno. Nunca usa
+   padrao listrado "dev tool" nem qualquer coisa que possa passar por
+   conteudo real (regra da Fase B.1, item 13). ---------- */
+.v2-media-empty {
+  width: 100%;
+  height: 100%;
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--v2-color-surface-alt);
+  color: var(--v2-color-border-strong);
+}
+.v2-media-empty .v2-icon { width: 2rem; height: 2rem; }
+
+/* ---------- Hero (Split / Centered / FullBleed) ---------- */
+
+.v2-hero {
+  display: grid;
+  gap: var(--v2-space-8);
+  align-items: center;
+}
+.v2-hero__eyebrow { margin-block-end: var(--v2-space-3); }
+.v2-hero__title { margin-block-end: var(--v2-space-4); }
+.v2-hero__lead { margin-block-end: var(--v2-space-6); color: var(--v2-color-text-muted); }
+.v2-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-space-3);
+}
+
+.v2-hero--split {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .v2-hero--split { grid-template-columns: 1.05fr 0.95fr; }
+}
+.v2-hero--split .v2-hero__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--v2-radius-lg);
+  overflow: hidden;
+  background: var(--v2-color-surface-alt);
+}
+@media (min-width: 768px) {
+  .v2-hero--split .v2-hero__media { aspect-ratio: 3 / 2; }
+}
+.v2-hero--split .v2-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.v2-hero--centered {
+  text-align: center;
+  justify-items: center;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.v2-hero--full-bleed {
+  position: relative;
+  border-radius: var(--v2-radius-lg);
+  overflow: hidden;
+  padding: var(--v2-space-16) var(--v2-space-6);
+  color: var(--v2-color-surface-0);
+  isolation: isolate;
+}
+.v2-hero--full-bleed .v2-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.v2-hero--full-bleed .v2-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-hero--full-bleed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* area segura de contraste >=35% do quadro, conforme 06-photography-system.md */
+  background: linear-gradient(90deg, rgba(15, 20, 25, 0.72) 0%, rgba(15, 20, 25, 0.72) 42%, rgba(15, 20, 25, 0.15) 100%);
+}
+.v2-hero--full-bleed .v2-hero__content { max-width: 34rem; }
+.v2-hero--full-bleed .v2-hero__lead { color: rgba(255, 255, 255, 0.86); }
+
+/* ---------- Proof bar (ate 4 fatos, fonte auditavel obrigatoria via macro) ---------- */
+
+.v2-proofbar {
+  display: grid;
+  gap: var(--v2-space-4);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 768px) {
+  .v2-proofbar { grid-template-columns: repeat(4, 1fr); }
+}
+.v2-proofbar__item {
+  padding: var(--v2-space-5);
+  border: 1px solid var(--v2-color-border);
+  border-radius: var(--v2-radius-md);
+  text-align: center;
+}
+.v2-proofbar__value {
+  display: block;
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-2xl);
+  color: var(--v2-color-brand-700);
+}
+.v2-proofbar__label {
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-muted);
+}
+.v2-proofbar__item--qualitative .v2-proofbar__value {
+  font-size: var(--v2-text-lg);
+  color: var(--v2-color-text);
+}
+
+/* ---------- FeatureCard ---------- */
+
+.v2-feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+  padding: var(--v2-space-6);
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  background: var(--v2-color-surface-0);
+  height: 100%;
+}
+
+/* ---------- LanguageCard ---------- */
+
+.v2-language-card {
+  display: block;
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  overflow: hidden;
+  background: var(--v2-color-surface-0);
+  transition: border-color var(--v2-motion-base) var(--v2-motion-ease), transform var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-language-card:hover { border-color: var(--v2-color-brand-600); transform: translateY(-2px); }
+.v2-language-card__media { aspect-ratio: 3 / 2; background: var(--v2-color-surface-alt); }
+.v2-language-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-language-card__body { padding: var(--v2-space-5); display: flex; flex-direction: column; gap: var(--v2-space-2); }
+.v2-language-card__meta { font-size: var(--v2-text-sm); color: var(--v2-color-text-subtle); }
+
+/* ---------- CourseCard ---------- */
+
+.v2-course-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  background: var(--v2-color-surface-0);
+  overflow: hidden;
+}
+.v2-course-card__media { aspect-ratio: 4 / 3; background: var(--v2-color-surface-alt); }
+.v2-course-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-course-card__body { padding: var(--v2-space-5); display: flex; flex-direction: column; gap: var(--v2-space-2); flex: 1; }
+.v2-course-card__title { font-family: var(--v2-font-heading); font-weight: 600; font-size: var(--v2-text-lg); }
+.v2-course-card__outcome { color: var(--v2-color-text-muted); font-size: var(--v2-text-sm); flex: 1; }
+.v2-course-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--v2-space-3);
+  padding-block-start: var(--v2-space-3);
+  border-block-start: 1px solid var(--v2-color-border);
+}
+.v2-course-card__price { font-family: var(--v2-font-heading); font-weight: 700; color: var(--v2-color-brand-700); }
+.v2-course-card__price-period { font-size: var(--v2-text-sm); color: var(--v2-color-text-subtle); font-weight: 400; }
+
+/* ---------- LevelCard / LevelTimeline ---------- */
+
+.v2-level-card {
+  padding: var(--v2-space-5);
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  background: var(--v2-color-surface-0);
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-2);
+}
+.v2-level-card--current { border-color: var(--v2-color-accent); box-shadow: 0 0 0 1px var(--v2-color-accent); }
+
+.v2-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (min-width: 768px) {
+  .v2-timeline { flex-direction: row; }
+}
+.v2-timeline__step {
+  flex: 1;
+  display: flex;
+  gap: var(--v2-space-4);
+  padding-block: var(--v2-space-4);
+  position: relative;
+}
+@media (min-width: 768px) {
+  .v2-timeline__step { flex-direction: column; gap: var(--v2-space-3); }
+}
+.v2-timeline__marker {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--v2-color-surface-alt);
+  border: 2px solid var(--v2-color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-sm);
+}
+.v2-timeline__step--done .v2-timeline__marker,
+.v2-timeline__step--current .v2-timeline__marker {
+  background: var(--v2-color-brand-700);
+  border-color: var(--v2-color-brand-700);
+  color: var(--v2-color-surface-0);
+}
+.v2-timeline__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  background: var(--v2-color-border);
+}
+@media (max-width: 767px) {
+  .v2-timeline__step:not(:last-child)::after {
+    inset-inline-start: calc(1rem - 1px);
+    top: calc(2rem + var(--v2-space-4));
+    bottom: calc(-1 * var(--v2-space-4));
+    width: 2px;
+  }
+}
+@media (min-width: 768px) {
+  .v2-timeline__step:not(:last-child)::after {
+    top: calc(1rem - 1px);
+    inset-inline-start: calc(50% + 1rem);
+    inset-inline-end: calc(-50% + 1rem);
+    height: 2px;
+  }
+}
+
+/* ---------- TeacherCard / TeacherProfileSummary ---------- */
+
+.v2-teacher-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+  text-align: center;
+}
+.v2-teacher-card__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--v2-radius-md);
+  overflow: hidden;
+  background: var(--v2-color-surface-alt);
+  margin-inline: auto;
+}
+.v2-teacher-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+.v2-teacher-card__photo--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--v2-font-heading);
+  font-size: var(--v2-text-3xl);
+  font-weight: 700;
+  color: var(--v2-color-brand-700);
+  background: color-mix(in srgb, var(--v2-color-brand-600) 14%, white);
+}
+.v2-teacher-card__name { font-family: var(--v2-font-heading); font-weight: 600; font-size: var(--v2-text-lg); }
+.v2-teacher-card__role { color: var(--v2-color-text-muted); font-size: var(--v2-text-sm); }
+
+.v2-teacher-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-4);
+  text-align: start;
+}
+.v2-teacher-summary__photo {
+  flex: 0 0 auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--v2-color-surface-alt);
+}
+.v2-teacher-summary__photo img { width: 100%; height: 100%; object-fit: cover; }
+.v2-teacher-summary__photo--fallback {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--v2-font-heading); font-weight: 700;
+  color: var(--v2-color-brand-700);
+  background: color-mix(in srgb, var(--v2-color-brand-600) 14%, white);
+}
+
+/* ---------- ProcessSteps (3-5 etapas) ---------- */
+
+.v2-process {
+  display: grid;
+  gap: var(--v2-space-6);
+  grid-template-columns: 1fr;
+  counter-reset: v2-step;
+}
+@media (min-width: 768px) {
+  .v2-process { grid-template-columns: repeat(var(--v2-process-cols, 3), 1fr); }
+}
+.v2-process__step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-2);
+}
+.v2-process__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--v2-color-brand-700);
+  color: var(--v2-color-surface-0);
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  margin-block-end: var(--v2-space-2);
+}
+
+/* ---------- FeatureMedia (texto+midia, pode inverter lado) ---------- */
+
+.v2-feature-media {
+  display: grid;
+  gap: var(--v2-space-6);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .v2-feature-media { grid-template-columns: 1fr 1fr; }
+  /* Inversao por 'order' (nao por direction:rtl -- isso mudaria semantica
+     de RTL de verdade). Em paginas dir="rtl" o proprio grid ja inverte o
+     eixo inline; --reverse so serve pra alternar o ritmo visual em LTR. */
+  .v2-feature-media--reverse .v2-feature-media__media { order: 2; }
+  .v2-feature-media--reverse .v2-feature-media__content { order: 1; }
+}
+.v2-feature-media__media {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--v2-radius-md);
+  overflow: hidden;
+  background: var(--v2-color-surface-alt);
+}
+.v2-feature-media__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- VideoSection ---------- */
+
+.v2-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--v2-radius-md);
+  overflow: hidden;
+  background: var(--v2-color-ink-900);
+}
+.v2-video__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.v2-video__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--v2-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.v2-video__play:hover { background: var(--v2-color-surface-0); }
+
+/* ---------- TestimonialCard ---------- */
+
+.v2-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-4);
+  padding: var(--v2-space-6);
+  border-radius: var(--v2-radius-md);
+  background: var(--v2-color-surface-warm);
+}
+.v2-testimonial__quote {
+  font-family: var(--v2-font-display);
+  font-size: var(--v2-text-xl);
+  line-height: var(--v2-leading-heading);
+}
+.v2-testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-3);
+}
+.v2-testimonial__avatar {
+  width: 3rem; height: 3rem; border-radius: 50%; overflow: hidden; background: var(--v2-color-surface-alt);
+}
+.v2-testimonial__avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- PricingCard ---------- */
+
+.v2-pricing-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-4);
+  padding: var(--v2-space-6);
+  border-radius: var(--v2-radius-md);
+  border: 1.5px solid var(--v2-color-border);
+  background: var(--v2-color-surface-0);
+  height: 100%;
+}
+.v2-pricing-card--recommended {
+  border-color: var(--v2-color-accent);
+  box-shadow: var(--v2-shadow-2);
+  position: relative;
+}
+.v2-pricing-card__price {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-2xl);
+  color: var(--v2-color-brand-700);
+}
+.v2-pricing-card__period { font-size: var(--v2-text-sm); font-weight: 400; color: var(--v2-color-text-subtle); }
+.v2-pricing-card__list { display: flex; flex-direction: column; gap: var(--v2-space-2); flex: 1; }
+.v2-pricing-card__list li { display: flex; gap: var(--v2-space-2); align-items: flex-start; font-size: var(--v2-text-sm); }
+
+/* ---------- FAQAccordion ---------- */
+
+.v2-faq {
+  border-block-start: 1px solid var(--v2-color-border);
+}
+.v2-faq__item {
+  border-block-end: 1px solid var(--v2-color-border);
+}
+.v2-faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--v2-space-4);
+  padding-block: var(--v2-space-4);
+  text-align: start;
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+}
+.v2-faq__icon {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--v2-color-border-strong);
+  transition: transform var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-faq__trigger[aria-expanded="true"] .v2-faq__icon { transform: rotate(45deg); }
+.v2-faq__panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--v2-motion-slow) var(--v2-motion-ease);
+}
+.v2-faq__panel[data-open="true"] { max-height: var(--v2-faq-panel-height, 40rem); }
+.v2-faq__panel-inner {
+  padding-block-end: var(--v2-space-4);
+  color: var(--v2-color-text-muted);
+}
+
+/* ---------- BlogCard ---------- */
+
+.v2-blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+  position: relative;
+}
+.v2-blog-card__media { aspect-ratio: 3 / 2; border-radius: var(--v2-radius-md); overflow: hidden; background: var(--v2-color-surface-alt); }
+.v2-blog-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-blog-card__meta { display: flex; gap: var(--v2-space-3); font-size: var(--v2-text-xs); color: var(--v2-color-text-subtle); text-transform: uppercase; letter-spacing: 0.04em; }
+.v2-blog-card__title { font-family: var(--v2-font-heading); font-weight: 600; font-size: var(--v2-text-lg); }
+.v2-blog-card__link-overlay::after {
+  /* card inteiro clicavel SEM aninhar <a> -- link real cobre a area via ::after */
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- CTASection ---------- */
+
+.v2-cta-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-5);
+  align-items: center;
+  text-align: center;
+  padding: var(--v2-space-10) var(--v2-space-6);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-color-surface-warm);
+}
+.v2-cta-section--inline {
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: start;
+  padding: var(--v2-space-5) var(--v2-space-6);
+}
+@media (max-width: 767px) {
+  .v2-cta-section--inline { flex-direction: column; text-align: center; }
+}
+.v2-cta-section--sticky-mobile {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  border-radius: 0;
+  padding: var(--v2-space-3) var(--v2-space-4);
+  box-shadow: 0 -4px 16px rgba(15, 20, 25, 0.12);
+}

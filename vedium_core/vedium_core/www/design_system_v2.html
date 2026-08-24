@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+{%- import "templates/includes/v2/macros_base.html" as v2 -%}
+{%- import "templates/includes/v2/macros_editorial.html" as v2e -%}
+{#- Fase B.1 (item 13): a maior parte da galeria abaixo agora demonstra o
+    estado real "sem mídia" dos próprios componentes (macros com
+    image_src=none), não um placeholder fingindo ser foto -- ver
+    .v2-media-empty em components-editorial.css. As DUAS variáveis abaixo
+    existem só pra validar proporção/crop na seção "Teste de conteúdo
+    extremo" (imagem vertical vs. horizontal), onde uma imagem REAL
+    precisa existir pra medir aspect-ratio/object-fit -- são referências
+    técnicas de enquadramento, nunca apresentadas como professor/aluno/aula
+    Vedium (rótulo explícito em cada uso). Não são stock: são SVG abstrato
+    gerado nesta sessão, sem foto de banco de imagens nenhuma. -#}
+{%- set v2_ratio_ref_vertical = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5'%3E%3Crect width='4' height='5' fill='%2384A9D9'/%3E%3Ccircle cx='2' cy='1.8' r='0.9' fill='%23FFFFFF' fill-opacity='.55'/%3E%3Cpath d='M0 4.3L1.4 3 2.6 3.9 4 2.6V5H0z' fill='%232E6DA4' fill-opacity='.65'/%3E%3C/svg%3E" -%}
+{%- set v2_ratio_ref_horizontal = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='3'%3E%3Crect width='4' height='3' fill='%2384A9D9'/%3E%3Ccircle cx='3.2' cy='0.7' r='0.5' fill='%23FFFFFF' fill-opacity='.55'/%3E%3Cpath d='M0 2.6L1.2 1.6 2 2.2 4 0.8V3H0z' fill='%232E6DA4' fill-opacity='.65'/%3E%3C/svg%3E" -%}
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+
+  {#- Fase B.1: nenhuma fonte remota. Playfair Display 700 e auto-hospedada
+      via @font-face local em tokens.css (arquivos ja existentes no repo).
+      Poppins/Inter nao existem localmente ainda -- ate serem licenciadas e
+      auto-hospedadas, o navegador usa o fallback Arial da propria pilha de
+      tokens.css. Nao adicionamos @import remoto nem link pra Google Fonts
+      (requisito explicito desta fase). #}
+
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/tokens.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/foundations.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/components-base.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/components-editorial.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/header-footer.css" />
+
+  <style>
+    /* Chrome do PROPRIO dev-tool (nao é parte do design system -- por isso
+       fora de .v2-scope e sem prefixo v2-, propositalmente). */
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background:#fff; color:#0F1419; }
+    .dstool-banner {
+      background: #0F1419; color: #fff; padding: 10px 16px; font-size: 13px;
+      display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; position: sticky; top: 0; z-index: 500;
+    }
+    .dstool-banner strong { color: #FFD9CC; }
+    .dstool-toc {
+      position: sticky; top: 40px; z-index: 400; background: #F7F8FA; border-bottom: 1px solid #D9DEE3;
+      padding: 10px 16px; display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px;
+    }
+    .dstool-toc a { color: #26528C; text-decoration: none; }
+    .dstool-toc a:hover { text-decoration: underline; }
+    .dstool-section-title {
+      font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #66717C; margin: 0 0 4px;
+    }
+    .dstool-demo-box {
+      border: 1px dashed #D9DEE3; border-radius: 8px; padding: 16px; margin-block-start: 12px; background: #FCFCFD;
+    }
+    .dstool-swatch { display: flex; flex-direction: column; gap: 6px; }
+    .dstool-swatch-color { height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,.08); }
+    .dstool-placeholder-img {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: repeating-linear-gradient(45deg, #EEF1F4, #EEF1F4 10px, #E4E7EC 10px, #E4E7EC 20px);
+      color: #66717C; font-size: 12px; text-align: center; padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dstool-banner">
+    <h1 style="margin:0;font-size:13px;font-weight:700;color:#FFD9CC;">PREVIEW &mdash; VEDIUM DESIGN SYSTEM V2</h1>
+    <span>Ferramenta de desenvolvimento. noindex. Fora do sitemap. Fora da navegação real. Nenhum componente aqui está ativo em produção.</span>
+  </div>
+  <nav class="dstool-toc" aria-label="Sumário do preview">
+    <a href="#tokens">Tokens</a>
+    <a href="#typography">Typography</a>
+    <a href="#colors">Colors</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Forms</a>
+    <a href="#misc">Badge/Alert/Breadcrumb/Modal</a>
+    <a href="#heroes">Heroes</a>
+    <a href="#proofbar">ProofBar</a>
+    <a href="#languages">Languages</a>
+    <a href="#courses">Courses</a>
+    <a href="#levels">Levels</a>
+    <a href="#teachers">Teachers</a>
+    <a href="#steps">Steps</a>
+    <a href="#media">Media</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#blog">Blog</a>
+    <a href="#cta">CTA</a>
+    <a href="#extreme">Conteúdo extremo</a>
+    <a href="#header">Header</a>
+    <a href="#footer">Footer</a>
+  </nav>
+
+  <main class="v2-scope">
+
+    {# ================= TYPOGRAPHY ================= #}
+    <section id="typography" class="v2-section">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Fundamentos</p>
+        <h2 class="v2-heading v2-h1">Typography</h2>
+        <p class="v2-body v2-text-muted v2-measure" style="margin-block:var(--v2-space-4) var(--v2-space-6);">Decisão aprovada (Fase B.1): Poppins (títulos/interface) + Inter (corpo) + Arial (fallback) + Playfair Display (editorial seletivo, ex.: citações). Kumbh Sans deixou de ser a fonte principal.</p>
+
+        <div class="dstool-demo-box" style="margin-block-end:var(--v2-space-8);">
+          {% call v2.v2_alert(variant="warning", title="Poppins e Inter ainda não estão auto-hospedadas") %}
+          Nenhuma delas existe localmente neste projeto hoje (verificado nesta fase, sem baixar nada). Até serem licenciadas e adicionadas como <code>@font-face</code> local, todo texto abaixo renderiza no fallback <strong>Arial</strong> — é o comportamento esperado da pilha, não um bug. Playfair Display 700 já está auto-hospedada (arquivos já existiam no repo) e aparece de verdade no título grande abaixo.
+          {% endcall %}
+        </div>
+
+        <div class="v2-display" style="margin-block-end:var(--v2-space-4);">Aprenda com quem já viveu</div>
+        <h2 class="v2-heading v2-h1" style="margin-block-end:var(--v2-space-2);">H1 -- Português para Estrangeiros: viva o Brasil em português</h2>
+        <h2 class="v2-heading v2-h2" style="margin-block-end:var(--v2-space-2);">H2 -- Learn Brazilian Portuguese with real teachers</h2>
+        <h3 class="v2-heading v2-h3" style="margin-block-end:var(--v2-space-2);">H3 -- Aprende portugués brasileño con profesores reales</h3>
+        <h4 class="v2-heading v2-h4" style="margin-block-end:var(--v2-space-4);">H4 -- Cours de portugais brésilien en direct</h4>
+        <p class="v2-body v2-measure" style="margin-block-end:var(--v2-space-2);">Corpo (Inter) -- Live-Portugiesischkurs für Muttersprachler und Anfänger, mit echten Lehrern.</p>
+        <p class="v2-body v2-measure" style="margin-block-end:var(--v2-space-2);">Corpo (RU, cirílico) -- Живые уроки бразильского португальского с настоящими преподавателями.</p>
+        <p class="v2-body v2-measure" style="margin-block-end:var(--v2-space-2);">Corpo (Iorubá, Latim estendido) -- Ẹ jọ̀wọ́, ṣe àyẹ̀wò gbolohùn yìí: Ọjọ́ méje ni ọ̀sẹ̀ kan.</p>
+        <p lang="he" dir="rtl" class="v2-body v2-measure">גוף הטקסט (עברית) -- לומדים פורטוגזית ברזילאית עם מורים אמיתיים.</p>
+
+        <div class="dstool-demo-box">
+          <p class="dstool-section-title">Escala</p>
+          <p class="v2-body-sm">text-xs · text-sm · text-base · text-lg · text-xl · text-2xl · text-3xl (fluida) · text-display (fluida, clamp)</p>
+        </div>
+
+        <p class="dstool-section-title" style="margin-block-start:var(--v2-space-8);">Wrapping, line-height e peso -- coluna estreita (320px), pior caso</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards">
+          <div style="max-width:320px;">
+            <h3 class="v2-heading v2-h3" style="margin-block-end:var(--v2-space-2);">Português para Estrangeiros: viva o Brasil em português com professor real</h3>
+            <p class="v2-body-sm">Palavra longa sem espaço para testar quebra: pneumoultramicroscopicossilicovulcanoconiótico.</p>
+          </div>
+          <div style="max-width:320px;">
+            <h3 class="v2-heading v2-h3" style="margin-block-end:var(--v2-space-2);">Brasilianisches Portugiesisch für Muttersprachler, die im echten Leben ankommen wollen</h3>
+            <p class="v2-body-sm">Wortlänge testen: Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz.</p>
+          </div>
+          <div style="max-width:320px;" lang="he" dir="rtl">
+            <h3 class="v2-heading v2-h3" style="margin-block-end:var(--v2-space-2);">פורטוגזית ברזילאית לחיים אמיתיים בברזיל, עם מורה אמיתי</h3>
+            <p class="v2-body-sm">בדיקת יישור לוגי (start/end) ומעטפת טקסט בכיוון RTL, בתוך רכיב real.</p>
+          </div>
+        </div>
+
+        <p class="dstool-section-title" style="margin-block-start:var(--v2-space-8);">Componente real em RTL (FeatureCard) -- valida margin-inline/padding-inline, não left/right</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards" dir="rtl" lang="he">
+          {{ v2e.v2_feature_card("קבוצות קטנות", "מורים אמיתיים, לא הקלטות. תיקון בזמן אמת בכל שיעור.", icon="check") }}
+          {{ v2e.v2_feature_card("100% בשידור חי", "בלי שיעורים מוקלטים. תמיד עם אדם אמיתי בצד השני.", icon="check") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= COLORS ================= #}
+    <section id="colors" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Fundamentos</p>
+        <h2 class="v2-heading v2-h2">Colors</h2>
+        <p class="v2-body v2-text-muted v2-measure" style="margin-block:var(--v2-space-4) var(--v2-space-8);">Validados contra o logo oficial (Logo-color-quadrada.png) e contraste WCAG -- ratios documentados em docs/redesign/10-design-system-v2-implementation.md. Todos os pares texto/fundo abaixo passam AA (4.5:1 texto normal, 3:1 texto grande/UI), exceto color-border (decorativo, nunca usar como texto ou borda funcional -- use color-border-strong nesses casos).</p>
+        <div class="v2-grid v2-grid--cards">
+          {%- for name, var in [
+            ("brand-800", "--v2-color-brand-800"), ("brand-700", "--v2-color-brand-700"),
+            ("brand-600", "--v2-color-brand-600"), ("brand-300", "--v2-color-brand-300"),
+            ("accent-700", "--v2-color-accent-700"), ("accent-600", "--v2-color-accent-600"),
+            ("warm-400", "--v2-color-warm-400"), ("ink-900", "--v2-color-ink-900"),
+            ("ink-700", "--v2-color-ink-700"), ("ink-500", "--v2-color-ink-500"),
+            ("surface-50", "--v2-color-surface-50"), ("surface-warm", "--v2-color-surface-warm"),
+            ("border-strong", "--v2-color-border-strong"), ("success", "--v2-color-success"),
+            ("warning", "--v2-color-warning"), ("danger", "--v2-color-danger"), ("focus", "--v2-color-focus")
+          ] %}
+          <div class="dstool-swatch">
+            <div class="dstool-swatch-color" style="background:var({{ var }});"></div>
+            <span class="v2-body-sm">{{ name }}</span>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    {# ================= BUTTONS ================= #}
+    <section id="buttons" class="v2-section">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Componentes base</p>
+        <h2 class="v2-heading v2-h2">Buttons</h2>
+        <div class="dstool-demo-box v2-cluster">
+          {{ v2.v2_button("Primary", variant="primary") }}
+          {{ v2.v2_button("Secondary", variant="secondary") }}
+          {{ v2.v2_button("Tertiary", variant="tertiary") }}
+          {{ v2.v2_button("Danger", variant="danger") }}
+          {{ v2.v2_button("Compact", variant="primary", size="compact") }}
+          {{ v2.v2_button("Com ícone", variant="primary", icon="arrow-right") }}
+          {{ v2.v2_button("Disabled", variant="primary", attrs="disabled") }}
+          {{ v2.v2_button("Loading", variant="primary", attrs='class="v2-btn--loading"') }}
+          {{ v2.v2_button("LinkButton (é um <a>)", href="#buttons", variant="secondary") }}
+        </div>
+        <div class="dstool-demo-box" style="background:var(--v2-color-brand-800);">
+          <div class="v2-cluster">
+            {{ v2.v2_button("Secondary on dark", variant="secondary", on_dark=true) }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# ================= FORMS ================= #}
+    <section id="forms" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--reading">
+        <p class="v2-eyebrow">Componentes base</p>
+        <h2 class="v2-heading v2-h2">Forms</h2>
+        <div class="dstool-demo-box v2-stack">
+          {% call v2.v2_field("Nome completo", "ds-name", required=true) %}
+            {{ v2.v2_input("ds-name", "name", autocomplete="name") }}
+          {% endcall %}
+          {% call v2.v2_field("E-mail", "ds-email", hint="Usamos só para enviar seu plano de estudos.") %}
+            {{ v2.v2_input("ds-email", "email", type="email", autocomplete="email", described_by="ds-email-hint") }}
+          {% endcall %}
+          {% call v2.v2_field("Idioma de interesse", "ds-lang", required=true) %}
+            {{ v2.v2_select("ds-lang", "lang", [("en","Inglês"), ("yo","Iorubá"), ("pt","Português para Estrangeiros")]) }}
+          {% endcall %}
+          {% call v2.v2_field("Campo com erro (exemplo)", "ds-error", error="Este campo é obrigatório.") %}
+            {{ v2.v2_input("ds-error", "sample", described_by="ds-error-error") }}
+          {% endcall %}
+        </div>
+      </div>
+    </section>
+
+    {# ================= MISC BASE (Badge/Alert/Breadcrumb/Modal) ================= #}
+    <section id="misc" class="v2-section">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Componentes base</p>
+        <h2 class="v2-heading v2-h2">Badge, Alert, Breadcrumb, Modal</h2>
+
+        <div class="dstool-demo-box v2-cluster">
+          {{ v2.v2_badge("Novo") }}
+          {{ v2.v2_badge("A1", variant="brand") }}
+          {{ v2.v2_badge("Recomendado", variant="accent") }}
+          {{ v2.v2_badge("Confirmado", variant="success") }}
+        </div>
+
+        <div class="dstool-demo-box v2-stack">
+          {% call v2.v2_alert(variant="info", title="Informação") %}Aulas ao vivo, sem gravação obrigatória.{% endcall %}
+          {% call v2.v2_alert(variant="success", title="Sucesso") %}Seu teste de nível foi enviado.{% endcall %}
+          {% call v2.v2_alert(variant="warning", title="Atenção") %}Confirme seu e-mail para receber o resultado.{% endcall %}
+          {% call v2.v2_alert(variant="danger", title="Erro") %}Não foi possível enviar o formulário.{% endcall %}
+        </div>
+
+        <div class="dstool-demo-box">
+          {{ v2.v2_breadcrumb([{"label":"Início","url":"#"}, {"label":"Cursos","url":"#"}, {"label":"Inglês","url":none}]) }}
+        </div>
+
+        <div class="dstool-demo-box">
+          {{ v2.v2_modal_trigger("ds-modal-demo", "Abrir modal de exemplo") }}
+          {% call v2.v2_modal("ds-modal-demo", "Confirme seu teste de nível") %}
+            <p class="v2-body">Exemplo de conteúdo dentro do modal base -- foco preso, ESC fecha, clique fora fecha.</p>
+            <div class="v2-hero__actions" style="margin-block-start:var(--v2-space-4);">
+              {{ v2.v2_button("Confirmar", variant="primary") }}
+              {{ v2.v2_button("Cancelar", variant="tertiary", attrs="data-v2-modal-close") }}
+            </div>
+          {% endcall %}
+        </div>
+      </div>
+    </section>
+
+    {# ================= HEROES ================= #}
+    <section id="heroes" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2" style="margin-block-end:var(--v2-space-6);">Heroes</h2>
+
+        <p class="v2-body-sm v2-text-muted" style="margin-block-end:var(--v2-space-4);">Sem imagem propositalmente -- valida o estado real "sem mídia" dos 3 heroes (item 13 da Fase B.1). Testes com imagem real (vertical/horizontal) ficam na seção "Teste de conteúdo extremo".</p>
+
+        <p class="dstool-section-title">HeroSplit</p>
+        <div class="dstool-demo-box" style="background:#fff;">
+          {{ v2e.v2_hero_split(
+            eyebrow="Vedium",
+            title="Idiomas ao vivo para participar de novos contextos.",
+            lead="Professores nativos e especialistas, progressão por nível e aprendizado conectado à aplicação real.",
+            primary_cta={"text":"Fazer teste de nível","href":"#"},
+            secondary_cta={"text":"Falar no WhatsApp","href":"#"},
+            heading_level="h2"
+          ) }}
+        </div>
+
+        <p class="dstool-section-title" style="margin-block-start:var(--v2-space-8);">HeroCentered</p>
+        <div class="dstool-demo-box" style="background:#fff;">
+          {{ v2e.v2_hero_centered(
+            eyebrow="Vedium para empresas",
+            title="Desenvolva um time mais preparado para atuar em contextos globais.",
+            lead="Programas corporativos com professores reais e acompanhamento de progresso para RH.",
+            primary_cta={"text":"Falar com a equipe","href":"#"},
+            heading_level="h2"
+          ) }}
+        </div>
+
+        <p class="dstool-section-title" style="margin-block-start:var(--v2-space-8);">HeroFullBleed</p>
+        <div class="dstool-demo-box" style="background:#fff;">
+          {{ v2e.v2_hero_full_bleed(
+            eyebrow="Inglês ao vivo",
+            title="Curso de inglês online ao vivo do A1 ao C1",
+            lead="Turmas pequenas, correção em tempo real e progressão acompanhada.",
+            primary_cta={"text":"Fazer teste de nível","href":"#"},
+            heading_level="h2"
+          ) }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= PROOF BAR ================= #}
+    <section id="proofbar" class="v2-section">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">ProofBar</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">Até 4 fatos, sempre com fonte auditável (04-design-system-plan.md). Os valores abaixo são exemplo de FORMATO, não dado real -- nenhum número da Vedium deve ser publicado sem fonte confirmada (ver docs/redesign/baseline/content-contracts.md).</p>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_proof_bar([
+            {"value":"5", "label":"idiomas com professor real"},
+            {"value":"100%", "label":"aulas ao vivo"},
+            {"value":"A1–C1", "label":"progressão acompanhada em Inglês"},
+            {"value":"1:1 e turma", "label":"formatos disponíveis", "qualitative": true}
+          ]) }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= LANGUAGE CARDS ================= #}
+    <section id="languages" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">LanguageCard</h2>
+        <div class="dstool-demo-box v2-grid v2-grid--cards">
+          {{ v2e.v2_language_card("Inglês", "Curso de inglês online ao vivo do A1 ao C1", "#", level_count="6 níveis") }}
+          {{ v2e.v2_language_card("Iorubá", "Entenda o que você canta, fala e escuta com profundidade.", "#") }}
+          {{ v2e.v2_language_card("Português para Estrangeiros", "Portuguese for real life in Brazil.", "#", level_count="3 níveis") }}
+          {{ v2e.v2_language_card("Espanhol", "Entender espanhol é o começo. Comunicar com precisão é o diferencial.", "#") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= COURSE CARDS ================= #}
+    <section id="courses" class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">CourseCard</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">Preço só aparece quando vier acompanhado de periodicidade (regra do design system) -- por isso o 3º card, de propósito, não mostra preço. Sem imagem propositalmente (estado real "sem mídia", item 13).</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards">
+          {{ v2e.v2_course_card("Inglês A1 — Iniciante", "Conversação básica, apresentação pessoal e rotina.", "#", level_badge="A1", price="R$ 240", price_period="/mês") }}
+          {{ v2e.v2_course_card("Português para Estrangeiros — Básico", "Comunicação essencial para o dia a dia no Brasil.", "#", level_badge="Básico", price="US$ 90", price_period="/mês") }}
+          {{ v2e.v2_course_card("Hebraico Moderno A1", "Leitura, escrita e conversação inicial.", "#", level_badge="A1") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= LEVEL CARDS / TIMELINE ================= #}
+    <section id="levels" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">LevelCard &amp; LevelTimeline</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">Taxonomia CEFR pública a validar continua A1, A2, B1, B1+, B2, C1 (04-design-system-plan.md) -- o design system não renomeia IDs/slugs/registros do LMS.</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards" style="margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_level_card("A1", "Iniciante", objective="Apresentação pessoal e rotina básica.", href="#") }}
+          {{ v2e.v2_level_card("B1", "Intermediário", objective="Conversas do dia a dia com autonomia.", is_current=true, href="#") }}
+          {{ v2e.v2_level_card("C1", "Avançado", objective="Fluência em contextos profissionais.", href="#") }}
+        </div>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_level_timeline([
+            {"label":"A1","state":"done"}, {"label":"A2","state":"done"}, {"label":"B1","state":"current"},
+            {"label":"B1+","state":"upcoming"}, {"label":"B2","state":"upcoming"}, {"label":"C1","state":"upcoming"}
+          ]) }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= TEACHERS ================= #}
+    <section id="teachers" class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">TeacherCard &amp; TeacherProfileSummary</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">O 1º card usa a foto REAL e autorizada do Prof. Almir Soares da Silva (PLE) -- único exemplo "REAL VEDIUM" desta página. Os demais mostram o fallback de inicial (sem foto), nunca uma foto de banco de imagens como se fosse um professor.</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards" style="margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_teacher_card("Almir Soares da Silva", "Professor de Português para Estrangeiros", image_src="/assets/vedium_core/vedium_assets/images/instructors/almir-soares-da-silva.jpg", image_alt="Almir Soares da Silva, professor de Português para Estrangeiros na Vedium") }}
+          {{ v2e.v2_teacher_card("Nome do professor", "Especialidade (fallback sem foto)") }}
+        </div>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_teacher_profile_summary("Almir Soares da Silva", "Professor de PLE", image_src="/assets/vedium_core/vedium_assets/images/instructors/almir-soares-da-silva.jpg", image_alt="Almir Soares da Silva") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= PROCESS STEPS ================= #}
+    <section id="steps" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">ProcessSteps</h2>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_process_steps([
+            {"title":"Teste de nível", "text":"Você faz o teste gratuito e recebe uma estimativa de nível."},
+            {"title":"Plano de estudo", "text":"A Vedium recomenda trilha e frequência conforme seu objetivo."},
+            {"title":"Aulas ao vivo", "text":"Prática oral, correção e acompanhamento com professor real."}
+          ], columns=3) }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= MEDIA (FeatureMedia + VideoSection) ================= #}
+    <section id="media" class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">FeatureMedia &amp; VideoSection</h2>
+        <div class="dstool-demo-box" style="margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_feature_media(
+            "Progressão acompanhada, não um curso solto",
+            "Cada aula conecta com a anterior. Você sempre sabe onde está e o que vem a seguir.",
+            cta={"text":"Como funciona","href":"#"}
+          ) }}
+        </div>
+        <div class="dstool-demo-box" style="max-width:32rem;">
+          {{ v2e.v2_video_section(title="Como é uma aula ao vivo na Vedium") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= TESTIMONIALS ================= #}
+    <section id="testimonials" class="v2-section v2-section--warm">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">TestimonialCard</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">Depoimento de exemplo genérico (dado fictício de demonstração) -- nunca publicar sem nome, contexto e autorização reais (04-design-system-plan.md).</p>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_testimonial_card("Depoimento de exemplo para demonstrar o componente -- não é um depoimento real.", "Nome de exemplo", "Contexto de exemplo") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= PRICING ================= #}
+    <section id="pricing" class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">PricingCard</h2>
+        <div class="dstool-demo-box v2-grid v2-grid--cards">
+          {{ v2e.v2_pricing_card("Leve", "R$ 240", "/mês", ["1 aula ao vivo por semana", "Material incluso"], cta={"text":"Escolher","href":"#"}) }}
+          {{ v2e.v2_pricing_card("Recomendado", "R$ 420", "/mês", ["2 aulas ao vivo por semana", "Material incluso", "Acompanhamento de progresso"], recommended=true, cta={"text":"Escolher","href":"#"}) }}
+          {{ v2e.v2_pricing_card("Intensivo", "R$ 680", "/mês", ["3-4 aulas ao vivo por semana", "Material incluso", "Acompanhamento de progresso"], cta={"text":"Escolher","href":"#"}) }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= FAQ ================= #}
+    <section id="faq" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--reading">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">FAQAccordion</h2>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_faq_accordion("ds-faq", [
+            {"question":"As aulas são ao vivo?", "answer":"Sim, todas as aulas são 100% ao vivo com professor real."},
+            {"question":"Preciso ter experiência prévia?", "answer":"Não, há turmas para iniciantes absolutos em todos os idiomas com trilha definida."},
+            {"question":"Como funciona o teste de nível?", "answer":"É gratuito, leva poucos minutos e recomenda uma trilha inicial."}
+          ]) }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= BLOG ================= #}
+    <section id="blog" class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">BlogCard</h2>
+        <div class="dstool-demo-box v2-grid v2-grid--cards">
+          {{ v2e.v2_blog_card("Título de exemplo do artigo", "Resumo curto de exemplo para demonstrar o card.", "#", category="Inglês", date="Ago 2026") }}
+          {{ v2e.v2_blog_card("Outro título de exemplo", "Outro resumo de exemplo, sem categoria/data para mostrar o estado opcional.", "#") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= CTA ================= #}
+    <section id="cta" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--content">
+        <p class="v2-eyebrow">Editorial</p>
+        <h2 class="v2-heading v2-h2">CTASection</h2>
+        <p class="dstool-section-title" style="margin-block-start:var(--v2-space-6);">Section (padrão)</p>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_cta_section("Pronto para começar?", "Faça o teste de nível gratuito e receba uma recomendação de trilha.", {"text":"Fazer teste de nível","href":"#"}, secondary_cta={"text":"Falar no WhatsApp","href":"#"}) }}
+        </div>
+        <p class="dstool-section-title" style="margin-block-start:var(--v2-space-6);">Inline</p>
+        <div class="dstool-demo-box">
+          {{ v2e.v2_cta_section("Ainda com dúvidas?", "Fale com a equipe antes de escolher seu plano.", {"text":"Falar com a equipe","href":"#"}, variant="inline") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= EXTREME CONTENT QA (Fase B.1, item 5) ================= #}
+    <section id="extreme" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">QA</p>
+        <h2 class="v2-heading v2-h2">Teste de conteúdo extremo</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-8);">Nenhum componente deve depender de uma quantidade fixa de conteúdo pra não quebrar. Casos abaixo: título curto/longo, descrição longa, CTA longo, sem eyebrow, sem imagem, imagem vertical/horizontal, e grids de 1/2/3/5/6 cards.</p>
+
+        <p class="dstool-section-title">HeroSplit -- título muito curto, sem eyebrow, sem imagem</p>
+        <div class="dstool-demo-box" style="background:#fff;margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_hero_split(eyebrow=none, title="Fale.", lead="Frase de apoio também propositalmente curta.", primary_cta={"text":"Ir","href":"#"}, heading_level="h3") }}
+        </div>
+
+        <p class="dstool-section-title">HeroSplit -- título muito longo, descrição longa, CTA longo, com imagem vertical (referência técnica de proporção, não é foto real)</p>
+        <div class="dstool-demo-box" style="background:#fff;margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_hero_split(
+            eyebrow="Português para Estrangeiros — trilha completa para quem vai viver, trabalhar e estudar no Brasil",
+            title="Um título deliberadamente longo para testar quebra de linha, hierarquia visual e altura do bloco de conteúdo ao lado da imagem em telas estreitas e largas",
+            lead="Uma descrição de apoio também deliberadamente longa, para verificar se o parágrafo mantém a largura de leitura confortável (medida ~65–75 caracteres por linha) mesmo quando o texto de origem é bem mais extenso do que o normal, sem estourar o card nem empurrar o CTA pra fora da área visível.",
+            image_src=v2_ratio_ref_vertical, image_alt="Referência técnica de proporção (4:5) -- não é foto real, não representa professor/aluno/aula Vedium",
+            primary_cta={"text":"Este é um rótulo de botão deliberadamente longo para testar quebra e alvo de toque","href":"#"},
+            heading_level="h3"
+          ) }}
+        </div>
+
+        <p class="dstool-section-title">CourseCard -- imagem horizontal (referência técnica), 1 card</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards" style="margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_course_card("Curso único nesta grade", "Testa o grid com apenas 1 item -- não deve esticar nem quebrar.", "#", image_src=v2_ratio_ref_horizontal, image_alt="Referência técnica de proporção (4:3) -- não é foto real", level_badge="A1") }}
+        </div>
+
+        <p class="dstool-section-title">CourseCard -- grid com 2 cards</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards" style="margin-block-end:var(--v2-space-6);">
+          {{ v2e.v2_course_card("Curso 1 de 2", "Sem imagem, sem preço.", "#") }}
+          {{ v2e.v2_course_card("Curso 2 de 2", "Sem imagem, sem preço.", "#") }}
+        </div>
+
+        <p class="dstool-section-title">CourseCard -- grid com 5 cards (quebra de linha assimétrica: 3 + 2)</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards" style="margin-block-end:var(--v2-space-6);">
+          {%- for i in range(1, 6) %}
+          {{ v2e.v2_course_card("Curso " ~ i ~ " de 5", "Item " ~ i ~ " de uma grade ímpar.", "#") }}
+          {%- endfor %}
+        </div>
+
+        <p class="dstool-section-title">CourseCard -- grid com 6 cards (2 linhas completas de 3)</p>
+        <div class="dstool-demo-box v2-grid v2-grid--cards">
+          {%- for i in range(1, 7) %}
+          {{ v2e.v2_course_card("Curso " ~ i ~ " de 6", "Item " ~ i ~ " de uma grade par.", "#") }}
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    {# ================= HEADER (componente, não é o header real da página) ================= #}
+    <section id="header" class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <p class="v2-eyebrow">Header e Footer</p>
+        <h2 class="v2-heading v2-h2">Header v2</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">Renderizado aqui como COMPONENTE de demonstração (não é o header real desta página, que fica na barra preta do dev-tool no topo). Contrato de login/registro/CTA de teste de nível/WhatsApp/seletor de idioma herdado do header atual -- ver docs/redesign/baseline/ui-contracts.md.</p>
+        <div class="dstool-demo-box" style="padding:0;overflow:hidden;">
+          {% set v2_level_test_url_override = none %}
+          {% set v2_level_test_contact_override = false %}
+          {% set v2_hdr_lang = "pt-BR" %}
+          {% include "templates/includes/v2/header.html" %}
+        </div>
+      </div>
+    </section>
+
+    {# ================= FOOTER ================= #}
+    <section id="footer" class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <h2 class="v2-heading v2-h2">Footer v2</h2>
+        <p class="v2-body-sm v2-text-muted" style="margin-block:var(--v2-space-2) var(--v2-space-6);">Idem -- componente de demonstração, não o footer real desta página.</p>
+        <div class="dstool-demo-box" style="padding:0;overflow:hidden;">
+          {% set v2_level_test_url_override = none %}
+          {% include "templates/includes/v2/footer.html" %}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script defer src="/assets/vedium_core/js/v2/design-system-v2.js"></script>
+</body>
+</html>

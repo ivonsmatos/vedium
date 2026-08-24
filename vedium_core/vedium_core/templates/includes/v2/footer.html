@@ -1,0 +1,80 @@
+{#
+  VEDIUM DESIGN SYSTEM V2 -- Footer (componente isolado, Fase B 2026-08-24).
+  NAO substitui templates/includes/site_footer.html em producao.
+
+  Contrato herdado (baseline/ui-contracts.md): links legais hardcoded em
+  PT (decisao ja tomada, nao um bug -- ver project_termos_privacidade_pt_only_decision
+  na memoria do projeto), mesmo WhatsApp fixo, CTA de teste de nivel com o
+  mesmo mecanismo de override do header.
+#}
+
+{% import "templates/includes/v2/macros_base.html" as v2 %}
+
+{%- set v2_level_test_url = v2_level_test_url_override or "/teste-de-nivel" -%}
+{#- Mesmo href ja usado (pre-codificado) em site_navbar.html/site_footer.html hoje -- não depende de filtro urlencode não verificado neste ambiente Jinja. -#}
+{%- set v2_whatsapp_href = "https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" -%}
+
+<footer class="v2-footer">
+  <div class="v2-container v2-container--wide">
+    <div class="v2-footer__grid">
+      <div>
+        <a href="/" aria-label="Vedium">
+          <img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium" width="132" height="32" />
+        </a>
+        <p class="v2-footer__brand-signature">Aulas de idiomas ao vivo, com professores reais e progressão acompanhada.</p>
+        <div class="v2-footer__social">
+          <a href="https://www.instagram.com/vediumsglobal/" target="_blank" rel="noopener" aria-label="Instagram">{{ v2.v2_icon("instagram", decorative=false, label="Instagram") }}</a>
+          <a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn">{{ v2.v2_icon("linkedin", decorative=false, label="LinkedIn") }}</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="v2-footer__heading">Cursos</p>
+        <nav class="v2-footer__links" aria-label="Cursos">
+          <a href="/curso-de-ingles-online">Inglês</a>
+          <a href="/curso-de-ioruba-online">Iorubá</a>
+          <a href="/portugues-para-estrangeiros">Português para Estrangeiros</a>
+          <a href="/curso-de-espanhol-online">Espanhol</a>
+          <a href="/curso-de-hebraico-online">Hebraico</a>
+        </nav>
+      </div>
+
+      <div>
+        <p class="v2-footer__heading">Vedium</p>
+        <nav class="v2-footer__links" aria-label="Vedium">
+          <a href="/sobre">Sobre</a>
+          <a href="/professores">Professores</a>
+          <a href="/como-funciona">Como funciona</a>
+          <a href="/blog">Blog</a>
+          <a href="/empresas">Para empresas</a>
+        </nav>
+      </div>
+
+      <div>
+        <p class="v2-footer__heading">Ajuda</p>
+        <nav class="v2-footer__links" aria-label="Ajuda">
+          <a href="/faq">FAQ</a>
+          <a href="/contato">Contato</a>
+          <a href="{{ v2_level_test_url }}">Descubra seu nível</a>
+        </nav>
+        <a class="v2-footer__whatsapp" href="{{ v2_whatsapp_href }}" target="_blank" rel="noopener">
+          {{ v2.v2_icon("whatsapp", decorative=false, label="WhatsApp") }} +55 (11) 91129-3075
+        </a>
+      </div>
+
+      <div>
+        <p class="v2-footer__heading">Legal</p>
+        <nav class="v2-footer__links" aria-label="Legal">
+          <a href="/privacidade">Privacidade</a>
+          <a href="/termos">Termos</a>
+          <a href="/cancelamento-reembolso">Cancelamento/reembolso</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="v2-footer__bottom">
+      <span>VEDIUM GLOBAL EDUCAÇÃO E TECNOLOGIA LTDA · CNPJ 58.434.869/0001-24 · Brasil</span>
+      <span>© 2026 Vedium</span>
+    </div>
+  </div>
+</footer>

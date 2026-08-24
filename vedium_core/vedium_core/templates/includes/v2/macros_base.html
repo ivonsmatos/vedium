@@ -1,0 +1,169 @@
+{#
+  VEDIUM DESIGN SYSTEM V2 -- macros base (Fase B, 2026-08-24)
+  Isolado: so importado por www/design_system_v2.html enquanto o sistema nao
+  for aprovado. Nenhuma pagina de producao importa este arquivo.
+
+  Uso:
+    {% import "templates/includes/v2/macros_base.html" as v2 %}
+    {{ v2.v2_button("Matricular", href="/matricula", variant="primary") }}
+
+  Convencao: todo macro recebe dado por parametro -- nenhum tem professor,
+  preco, depoimento, data ou nivel fixo no template. Texto passa pelo
+  autoescape padrao do Jinja (seguro por padrao); use safe_html=True só
+  quando o chamador already sanitizou/gerou HTML de confianca (ex.: resposta
+  de FAQ vinda de conteudo editorial, igual ao padrao de curso.html).
+#}
+
+{# ---------- Icon: pequeno set proprio em SVG inline, sem biblioteca externa ---------- #}
+{% set v2_icon_paths = {
+  "chevron-right": "M9 6l6 6-6 6",
+  "chevron-down": "M6 9l6 6 6-6",
+  "check": "M20 6L9 17l-5-5",
+  "close": "M18 6L6 18M6 6l12 12",
+  "play": "M8 5v14l11-7z",
+  "arrow-right": "M5 12h14M13 6l6 6-6 6",
+  "whatsapp": "M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.06L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z",
+  "image": "M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z M8 10a1 1 0 102 0 1 1 0 00-2 0 M3 16l5-5 3 3 4-4 5 5",
+  "instagram": "M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm5.5-.75a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z",
+  "linkedin": "M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21H9z"
+} %}
+
+{% macro v2_icon(name, decorative=true, label=none, size="1.25em") %}
+<span class="v2-icon"{% if not decorative %} role="img" aria-label="{{ label }}"{% endif %} style="width:{{ size }};height:{{ size }};">
+  <svg viewBox="0 0 24 24"{% if decorative %} aria-hidden="true" focusable="false"{% endif %}>
+    <path d="{{ v2_icon_paths.get(name, '') }}" {% if name in ('chevron-right','chevron-down','arrow-right','image') %}fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"{% endif %}/>
+  </svg>
+</span>
+{%- endmacro %}
+
+{# ---------- Container / Section (usados via {% call %}) ---------- #}
+
+{% macro v2_container(size="content") %}
+<div class="v2-container v2-container--{{ size }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro v2_section(variant=none, tight=false, id=none, aria_label=none) %}
+<section class="v2-section{% if variant %} v2-section--{{ variant }}{% endif %}{% if tight %} v2-section--tight{% endif %}"{% if id %} id="{{ id }}"{% endif %}{% if aria_label %} aria-label="{{ aria_label }}"{% endif %}>{{ caller() }}</section>
+{%- endmacro %}
+
+{# ---------- Button / LinkButton (mesmo macro; renderiza <a> ou <button>) ---------- #}
+
+{% macro v2_button(text, href=none, variant="primary", size="regular", on_dark=false, type="button", icon=none, icon_position="end", new_tab=false, attrs="", aria_label=none) %}
+{%- set classes = "v2-btn v2-btn--" ~ variant ~ (" v2-btn--compact" if size == "compact" else "") ~ (" v2-btn--on-dark" if on_dark else "") -%}
+{%- if href -%}
+<a class="{{ classes }}" href="{{ href }}"{% if new_tab %} target="_blank" rel="noopener"{% endif %}{% if aria_label %} aria-label="{{ aria_label }}"{% endif %} {{ attrs | safe }}>
+  {%- if icon and icon_position == "start" %}{{ v2_icon(icon) }}{% endif -%}
+  <span>{{ text }}</span>
+  {%- if icon and icon_position == "end" %}{{ v2_icon(icon) }}{% endif -%}
+</a>
+{%- else -%}
+<button type="{{ type }}" class="{{ classes }}"{% if aria_label %} aria-label="{{ aria_label }}"{% endif %} {{ attrs | safe }}>
+  {%- if icon and icon_position == "start" %}{{ v2_icon(icon) }}{% endif -%}
+  <span>{{ text }}</span>
+  {%- if icon and icon_position == "end" %}{{ v2_icon(icon) }}{% endif -%}
+</button>
+{%- endif -%}
+{%- endmacro %}
+
+{# ---------- Badge ---------- #}
+
+{% macro v2_badge(text, variant="neutral") %}
+<span class="v2-badge{% if variant != 'neutral' %} v2-badge--{{ variant }}{% endif %}">{{ text }}</span>
+{%- endmacro %}
+
+{# ---------- Breadcrumb -- items: lista de {label, url} (url=None no ultimo) ---------- #}
+
+{% macro v2_breadcrumb(items) %}
+<nav class="v2-breadcrumb" aria-label="breadcrumb">
+  <ol style="display:flex;align-items:center;gap:inherit;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+    {%- for item in items %}
+    <li style="display:flex;align-items:center;gap:inherit;">
+      {%- if item.url and not loop.last %}
+      <a href="{{ item.url }}">{{ item.label }}</a>
+      <span class="v2-breadcrumb__sep" aria-hidden="true">{{ v2_icon("chevron-right", size="0.85em") }}</span>
+      {%- else %}
+      <span class="v2-breadcrumb__current" aria-current="page">{{ item.label }}</span>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+</nav>
+{%- endmacro %}
+
+{# ---------- Forms: Field / Input / Select ---------- #}
+
+{% macro v2_field(label, field_id, hint=none, error=none, required=false) %}
+<div class="v2-field{% if error %} v2-field--error{% endif %}">
+  <label class="v2-field__label" for="{{ field_id }}">
+    {{ label }}{% if required %} <span class="v2-field__required" aria-hidden="true">*</span>{% endif %}
+  </label>
+  {{ caller() }}
+  {%- if hint and not error %}
+  <p class="v2-field__hint" id="{{ field_id }}-hint">{{ hint }}</p>
+  {%- endif %}
+  {%- if error %}
+  <p class="v2-field__error" id="{{ field_id }}-error" role="alert">{{ v2_icon("close", size="1em") }} {{ error }}</p>
+  {%- endif %}
+</div>
+{%- endmacro %}
+
+{% macro v2_input(field_id, name, type="text", placeholder="", value="", required=false, autocomplete=none, described_by=none) %}
+<input
+  class="v2-input"
+  id="{{ field_id }}"
+  name="{{ name }}"
+  type="{{ type }}"
+  {%- if placeholder %} placeholder="{{ placeholder }}"{% endif %}
+  {%- if value %} value="{{ value }}"{% endif %}
+  {%- if required %} required aria-required="true"{% endif %}
+  {%- if autocomplete %} autocomplete="{{ autocomplete }}"{% endif %}
+  {%- if described_by %} aria-describedby="{{ described_by }}"{% endif %}
+/>
+{%- endmacro %}
+
+{% macro v2_select(field_id, name, options, selected=none, required=false, described_by=none) %}
+<div class="v2-select-wrap">
+  <select
+    class="v2-select"
+    id="{{ field_id }}"
+    name="{{ name }}"
+    {%- if required %} required aria-required="true"{% endif %}
+    {%- if described_by %} aria-describedby="{{ described_by }}"{% endif %}
+  >
+    {%- for value, label in options %}
+    <option value="{{ value }}"{% if value == selected %} selected{% endif %}>{{ label }}</option>
+    {%- endfor %}
+  </select>
+</div>
+{%- endmacro %}
+
+{# ---------- Alert (usado via {% call %} pro corpo) ---------- #}
+
+{% macro v2_alert(variant="info", title=none, icon=none) %}
+{%- set icon_name = icon or {"info": "check", "success": "check", "warning": "close", "danger": "close"}.get(variant, "check") -%}
+<div class="v2-alert v2-alert--{{ variant }}" role="{{ 'alert' if variant in ('warning','danger') else 'status' }}">
+  <span class="v2-alert__icon">{{ v2_icon(icon_name) }}</span>
+  <div class="v2-alert__body">
+    {%- if title %}<p class="v2-alert__title">{{ title }}</p>{% endif %}
+    {{ caller() }}
+  </div>
+</div>
+{%- endmacro %}
+
+{# ---------- Modal base ---------- #}
+
+{% macro v2_modal(modal_id, title, describedby_id=none) %}
+<div class="v2-modal-overlay" id="{{ modal_id }}" data-v2-modal-overlay hidden>
+  <div class="v2-modal" data-v2-modal role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title"{% if describedby_id %} aria-describedby="{{ describedby_id }}"{% endif %}>
+    <div class="v2-modal__header">
+      <h2 class="v2-heading v2-h3" id="{{ modal_id }}-title">{{ title }}</h2>
+      <button type="button" class="v2-modal__close" data-v2-modal-close aria-label="Fechar">{{ v2_icon("close") }}</button>
+    </div>
+    {{ caller() }}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro v2_modal_trigger(modal_id, text, variant="secondary") %}
+{{ v2_button(text, variant=variant, attrs='data-v2-modal-trigger="' ~ modal_id ~ '"') }}
+{%- endmacro %}
