@@ -51,7 +51,7 @@ jobs:
           ls -lh ./vedium-backup.tgz
 
       - name: Upload artifact (retido 90 dias)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vedium-backup-${{ github.run_id }}
           path: ./vedium-backup.tgz
