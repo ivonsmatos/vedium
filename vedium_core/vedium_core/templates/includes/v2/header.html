@@ -20,14 +20,49 @@
     {% set v2_level_test_url_override = None %}
     {% set v2_level_test_contact_override = False %}
     {% include "templates/includes/v2/header.html" %}
+
+  Fase B.3 (secao 23/24): altura/logo/espacamento refinados; mega menu
+  reorganizado em 2 colunas (idiomas + atalhos institucionais) com uma
+  pequena imagem editorial. O seletor de idioma trocou a bandeira remota
+  (flagcdn.com) por um botao textual -- ver nota em header-footer.css.
+
+  Fase B.5 (secao 26): a missao sugeriu testar "Conheça os cursos" como CTA
+  principal da navegacao especificamente na Home institucional -- sem mudar
+  o contrato de teste de nivel dinamico em si (que continua existindo e
+  sendo o padrao pra qualquer outra pagina que reusar este include).
+  v2_hdr_primary_cta_override (opcional): {"text":..., "href":...} troca
+  SO o rotulo/destino do botao primario por esta chamada -- se ausente
+  (padrao), comportamento identico ao de antes.
+
+  Fase B.6 (reset Bain-inspired, secao 3): header institucional em DOIS
+  niveis -- utility bar fina (Area do aluno / WhatsApp / idioma) acima do
+  header principal (Logo / Cursos / Como funciona / Para empresas /
+  Conteudo / Sobre / CTA). "Entrar" e "Professores" saem do nivel principal:
+  "Entrar" vira "Area do aluno" na utility bar (mesmo destino,
+  app.vediums.com/login); "Professores" migra pra coluna secundaria do mega
+  menu de Cursos (continua a 1 clique do header, nao um link orfao --
+  tambem seguido no footer). Locale sai do header principal e vai pra
+  utility bar. Nenhuma logica nova de locale/permissao -- so reorganizacao
+  visual dos mesmos contratos de dado ja existentes.
+
+  Fase B.6A (hero full-bleed inspirado no Bain.com): variante overlay,
+  opcional via {% set v2_header_overlay = true %} ANTES do include. Quando
+  ativa, utility+header ficam fixed/transparentes sobre o Hero (logo branco
+  oficial -- logo-branca-reta.png, mesmo asset ja usado no footer --, links
+  brancos, separador rgba(255,255,255,.15)); o JS (initHeaderOverlay em
+  design-system-v2.js) adiciona a classe "is-solid" assim que a base do
+  Hero cruza a base do header durante o scroll, trocando pra fundo solido
+  (a logo colorida normal cross-fade por cima da branca via CSS puro, sem
+  trocar o src). Sem overlay (padrao, v2_header_overlay indefinido/false):
+  comportamento identico ao de antes, header sempre solido em fluxo normal.
 #}
 
 {% import "templates/includes/v2/macros_base.html" as v2 %}
 
 {%- set v2_hdr_lang = v2_hdr_lang or "pt-BR" -%}
 {%- set v2_hdr_nav = {
-  "pt-BR": {"como_funciona": "Como funciona", "professores": "Professores", "empresas": "Para empresas", "blog": "Blog", "cursos": "Cursos", "login": "Entrar", "cta": "Descubra seu nível"},
-  "en": {"como_funciona": "How it works", "professores": "Teachers", "empresas": "For companies", "blog": "Blog", "cursos": "Courses", "login": "Log in", "cta": "Find your level"}
+  "pt-BR": {"como_funciona": "Como funciona", "professores": "Professores", "empresas": "Para empresas", "blog": "Conteúdo", "cursos": "Cursos", "sobre": "Sobre", "aluno": "Área do aluno", "cta": "Descubra seu nível", "cursos_heading": "Idiomas", "atalhos_heading": "Institucional", "teste_nivel": "Fazer teste de nível"},
+  "en": {"como_funciona": "How it works", "professores": "Teachers", "empresas": "For companies", "blog": "Content", "cursos": "Courses", "sobre": "About", "aluno": "Student area", "cta": "Find your level", "cursos_heading": "Languages", "atalhos_heading": "Institutional", "teste_nivel": "Take the level test"}
 } -%}
 {%- set v2_t = v2_hdr_nav.get(v2_hdr_lang, v2_hdr_nav["pt-BR"]) -%}
 {%- set v2_hdr_courses = [
@@ -35,17 +70,98 @@
   {"label": "Iorubá", "href": "/curso-de-ioruba-online"},
   {"label": "Português para Estrangeiros", "href": "/portugues-para-estrangeiros"},
   {"label": "Espanhol", "href": "/curso-de-espanhol-online"},
-  {"label": "Hebraico", "href": "/curso-de-hebraico-online"},
-  {"label": "Para empresas", "href": "/empresas"}
+  {"label": "Hebraico", "href": "/curso-de-hebraico-online"}
 ] -%}
 {%- set v2_level_test_url = v2_level_test_url_override or "/teste-de-nivel" -%}
 {%- set v2_level_test_label = ("Fale conosco" if v2_level_test_contact_override else v2_t.cta) -%}
+{%- set v2_hdr_primary_cta_override = v2_hdr_primary_cta_override if v2_hdr_primary_cta_override is defined else none -%}
+{%- set v2_hdr_cta_text = v2_hdr_primary_cta_override.text if v2_hdr_primary_cta_override else v2_level_test_label -%}
+{%- set v2_hdr_cta_href = v2_hdr_primary_cta_override.href if v2_hdr_primary_cta_override else v2_level_test_url -%}
+{#- Mesmo href pre-codificado ja usado em footer.html/site_navbar.html hoje. -#}
+{%- set v2_whatsapp_href = "https://wa.me/5511911293075?text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20Vedium" -%}
+{%- set v2_header_overlay = v2_header_overlay if v2_header_overlay is defined else false -%}
+{#- Fase B.6E (Parte D da missao): seletor de idioma passa a ser
+    funcional, reaproveitando o contrato REAL ja documentado em
+    docs/redesign/baseline/ui-contracts.md e implementado em
+    vedium-language.js (data-vd-nav-urls/data-vd-nav-current lidos por
+    updateLocaleLinks(), com fallback en->pt-br, nunca troca de prefixo
+    cega). Nao existe pagina V2 traduzida ainda -- esta pagina de preview
+    representa a Home, entao o destino real e honesto pra cada locale e a
+    Home JA PUBLICADA daquele idioma (confirmada em
+    docs/redesign/02-route-and-seo-map.md: "/", "/en/", "/es/", "/fr/",
+    "/de/", "/ru/"). So os 6 locales com conteudo real publicado aparecem
+    -- os 6 "irmaos regionais" da bandeira (en-us/en-au/es-ar/es-co/fr-ca)
+    do modal de producao NAO tem conteudo proprio (caem na mesma pagina
+    da familia), entao ficam de fora aqui (secao 28 da missao: "mostrar no
+    menu SOMENTE locales realmente suportados"). Chamador pode sobrescrever
+    v2_nav_urls (mesmo padrao ja usado por site_navbar.html) se uma pagina
+    V2 futura tiver traducao propria de verdade. -#}
+{%- set v2_nav_urls = v2_nav_urls if v2_nav_urls is defined and v2_nav_urls else {
+  "pt-br": "/", "en": "/en/", "es": "/es/", "fr": "/fr/", "de": "/de/", "ru": "/ru/"
+} -%}
+{%- set v2_locale_current = v2_hdr_lang | lower -%}
+{#- Bug real pego em teste (nao em revisao de codigo): vedium-language.js
+    le data-vd-nav-urls/data-vd-nav-current especificamente via
+    document.querySelector("header[data-vd-nav-urls]") -- so funciona na
+    tag <header> de verdade, nao num <div> qualquer dentro dela. Primeira
+    tentativa colocou os atributos num div da utility bar (fora da tag
+    <header>); o script nao achava nada, caia no fallback de troca de
+    prefixo cega e gerava /en/design_system_v2 (bug 2026-07-03 de novo,
+    reproduzido por engano). Corrigido colocando os atributos na tag
+    <header> abaixo -- confirmado por teste real (click no botao +
+    inspecao do href resolvido de cada locale). -#}
+{%- set v2_locales = [
+  {"code": "pt-br", "label": "Português"},
+  {"code": "en", "label": "English"},
+  {"code": "es", "label": "Español"},
+  {"code": "fr", "label": "Français"},
+  {"code": "de", "label": "Deutsch"},
+  {"code": "ru", "label": "Русский"}
+] -%}
 
-<header class="v2-header" data-v2-header data-menu-open="false">
+{% if v2_header_overlay %}<div class="v2-header-overlay-wrap" data-v2-header-overlay>{% endif %}
+<div class="v2-hdr-utility{% if v2_header_overlay %} v2-hdr-utility--overlay{% endif %}">
+  <div class="v2-container v2-container--wide v2-hdr-utility__bar">
+    <a class="v2-hdr-utility__link" href="https://app.vediums.com/login">{{ v2_t.aluno }}</a>
+    <div class="v2-hdr-utility__right">
+      <a class="v2-hdr-utility__link" href="{{ v2_whatsapp_href }}" target="_blank" rel="noopener">
+        {{ v2.v2_icon("whatsapp", decorative=false, label="WhatsApp", size="0.95em") }}
+        <span>WhatsApp</span>
+      </a>
+      <div class="v2-hdr-locale" data-v2-locale-root>
+        <button
+          type="button"
+          class="v2-hdr-utility__locale"
+          data-v2-locale-toggle
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="v2-hdr-locale-menu"
+        >
+          <span>{{ "PT" if v2_locale_current == "pt-br" else v2_locale_current | upper }}</span>
+          {{ v2.v2_icon("chevron-down", size="0.7em") }}
+        </button>
+        <ul class="v2-hdr-locale-menu" id="v2-hdr-locale-menu" data-v2-locale-menu role="menu" hidden>
+          {%- for loc in v2_locales %}
+          <li role="none">
+            <a role="menuitem" class="v2-hdr-locale-menu__link{% if loc.code == v2_locale_current %} is-active{% endif %}" data-vd-locale="{{ loc.code }}" href="{{ v2_nav_urls.get(loc.code, '/') }}"{% if loc.code == v2_locale_current %} aria-current="true"{% endif %}>{{ loc.label }}</a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="v2-header{% if v2_header_overlay %} v2-header--overlay{% endif %}" data-v2-header data-menu-open="false" data-vd-nav-current="{{ v2_locale_current }}" data-vd-nav-urls='{{ v2_nav_urls | tojson }}'>
   <div class="v2-container v2-container--wide">
     <div class="v2-header__bar">
-      <a class="v2-header__logo" href="/" aria-label="Vedium">
+      <a class="v2-header__logo{% if v2_header_overlay %} v2-header__logo--overlay{% endif %}" href="/" aria-label="Vedium">
+        {%- if v2_header_overlay %}
+        <img class="v2-header__logo-img v2-header__logo-img--white" src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium" width="132" height="32" />
+        <img class="v2-header__logo-img v2-header__logo-img--color" src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="" width="132" height="32" aria-hidden="true" />
+        {%- else %}
         <img src="/assets/vedium_core/vedium_assets/images/logos/logo-color-reta.png" alt="Vedium" width="132" height="32" />
+        {%- endif %}
       </a>
 
       <nav class="v2-header__nav" aria-label="Principal">
@@ -55,33 +171,36 @@
           </button>
           <div class="v2-header__mega" data-v2-mega>
             <div class="v2-header__mega-grid">
-              {%- for course in v2_hdr_courses %}
-              <a class="v2-header__mega-link" href="{{ course.href }}">{{ course.label }}</a>
-              {%- endfor %}
+              <div>
+                <p class="v2-header__mega-heading">{{ v2_t.cursos_heading }}</p>
+                <div class="v2-header__mega-links">
+                  {%- for course in v2_hdr_courses %}
+                  <a class="v2-header__mega-link" href="{{ course.href }}">{{ course.label }}</a>
+                  {%- endfor %}
+                </div>
+              </div>
+              <div>
+                <p class="v2-header__mega-heading">{{ v2_t.atalhos_heading }}</p>
+                <div class="v2-header__mega-links">
+                  <a class="v2-header__mega-secondary-link" href="/professores">{{ v2_t.professores }}</a>
+                  <a class="v2-header__mega-secondary-link" href="/empresas">{{ v2_t.empresas }}</a>
+                  <a class="v2-header__mega-secondary-link" href="{{ v2_level_test_url }}">{{ v2_t.teste_nivel }}</a>
+                </div>
+              </div>
+              <div class="v2-header__mega-media">
+                <img src="/assets/vedium_core/v2-preview-media/e02-study-laptop.jpg" alt="" width="240" height="300" loading="lazy" style="object-position:top center;" />
+              </div>
             </div>
           </div>
         </div>
         <a class="v2-header__nav-link" href="/como-funciona">{{ v2_t.como_funciona }}</a>
-        <a class="v2-header__nav-link" href="/professores">{{ v2_t.professores }}</a>
         <a class="v2-header__nav-link" href="/empresas">{{ v2_t.empresas }}</a>
         <a class="v2-header__nav-link" href="/blog">{{ v2_t.blog }}</a>
+        <a class="v2-header__nav-link" href="/sobre">{{ v2_t.sobre }}</a>
       </nav>
 
       <div class="v2-header__actions">
-        <button
-          type="button"
-          class="v2-header__locale-btn"
-          data-vd-language-open
-          data-vd-nav-current="{{ v2_hdr_lang }}"
-          {% if v2_nav_urls %}data-vd-nav-urls='{{ v2_nav_urls | tojson }}'{% endif %}
-          aria-haspopup="dialog"
-        >
-          <img class="v2-header__locale-flag" src="https://flagcdn.com/w20/{{ 'br' if v2_hdr_lang == 'pt-BR' else 'us' }}.png" alt="" aria-hidden="true" />
-          <span>{{ "PT" if v2_hdr_lang == "pt-BR" else v2_hdr_lang | upper }}</span>
-        </button>
-
-        {{ v2.v2_button(v2_t.login, href="https://app.vediums.com/login", variant="tertiary", size="compact") }}
-        {{ v2.v2_button(v2_level_test_label, href=v2_level_test_url, variant="primary", size="compact") }}
+        {{ v2.v2_button(v2_hdr_cta_text, href=v2_hdr_cta_href, variant="primary", size="compact", attrs='style="padding-inline:var(--v2-space-5);"') }}
 
         <button type="button" class="v2-header__burger" data-v2-burger aria-label="Abrir menu" aria-expanded="false" aria-controls="v2-header-mobile-panel">
           <span class="v2-header__burger-icon" aria-hidden="true"></span>
@@ -97,7 +216,9 @@
       <a class="v2-header__mobile-link" href="/professores">{{ v2_t.professores }}</a>
       <a class="v2-header__mobile-link" href="/empresas">{{ v2_t.empresas }}</a>
       <a class="v2-header__mobile-link" href="/blog">{{ v2_t.blog }}</a>
-      <a class="v2-header__mobile-link" href="https://app.vediums.com/login">{{ v2_t.login }}</a>
+      <a class="v2-header__mobile-link" href="/sobre">{{ v2_t.sobre }}</a>
+      <a class="v2-header__mobile-link" href="https://app.vediums.com/login">{{ v2_t.aluno }}</a>
     </div>
   </div>
 </header>
+{% if v2_header_overlay %}</div>{% endif %}

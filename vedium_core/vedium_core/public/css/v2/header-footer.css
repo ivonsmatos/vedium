@@ -8,6 +8,97 @@
  * dado real (nao troca prefixo cego).
  */
 
+/*
+ * Fase B.6 (reset Bain-inspired, secao 3): utility bar fina acima do
+ * header principal -- "Area do aluno" / WhatsApp / idioma. Discreta de
+ * proposito (texto pequeno, fundo neutro) pra nao competir com o header
+ * principal logo abaixo.
+ */
+.v2-hdr-utility {
+  background: var(--v2-color-surface-alt);
+  border-block-end: 1px solid var(--v2-color-border);
+}
+.v2-hdr-utility__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--v2-space-4);
+  min-height: 2.25rem;
+  font-size: var(--v2-text-xs);
+}
+.v2-hdr-utility__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v2-space-1);
+  color: var(--v2-color-text-muted);
+  font-weight: 600;
+}
+.v2-hdr-utility__link:hover { color: var(--v2-color-brand-700); }
+.v2-hdr-utility__right {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-5);
+}
+.v2-hdr-utility__locale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v2-space-1);
+  color: var(--v2-color-text-muted);
+  font-weight: 700;
+}
+.v2-hdr-utility__locale:hover { color: var(--v2-color-brand-700); }
+
+/* Fase B.6E (Parte D): menu de locale funcional -- disclosure ancorado no
+   botao, nao modal. Fundo sempre solido/opaco (independe do header estar
+   no estado overlay ou solido -- e um popup por cima de qualquer coisa),
+   com radius/sombra minimos (mesma disciplina "nunca card pesado" do
+   resto do V2). */
+.v2-hdr-locale { position: relative; }
+.v2-hdr-locale-menu {
+  position: absolute;
+  inset-block-start: calc(100% + var(--v2-space-2));
+  inset-inline-end: 0;
+  z-index: 50;
+  min-width: 10rem;
+  margin: 0;
+  padding: var(--v2-space-2);
+  list-style: none;
+  background: var(--v2-color-surface-0);
+  border: 1px solid var(--v2-color-border);
+  border-radius: var(--v2-radius-sm);
+  box-shadow: 0 8px 24px rgba(15, 20, 25, 0.12);
+}
+.v2-hdr-locale-menu[hidden] { display: none; }
+.v2-hdr-locale-menu__link {
+  display: block;
+  padding: var(--v2-space-2) var(--v2-space-3);
+  border-radius: var(--v2-radius-sm);
+  font-size: var(--v2-text-sm);
+  font-weight: 600;
+  color: var(--v2-color-text);
+}
+.v2-hdr-locale-menu__link:hover { background: var(--v2-color-surface-alt); }
+.v2-hdr-locale-menu__link.is-active { color: var(--v2-color-brand-700); background: var(--v2-color-surface-alt); }
+
+/*
+ * Fase B.3 (secao 23): altura maior, logo maior, mega menu sofisticado (2
+ * colunas + imagem editorial pequena), estados hover discretos. Continua
+ * fundo branco com borda minima (nunca ganhou sombra -- sombra quase
+ * nenhuma e regra geral desde a B.3).
+ *
+ * Fase B.4 (secao 4): refino adicional -- altura ~80px (nao 88px), logo
+ * ainda maior, navegacao 15-16px (era 14px, "aspecto de barra
+ * administrativa"), mais espaco horizontal entre links, container do
+ * header alinhado ao container do Hero (--v2-container-wide, ver
+ * tokens.css). Sem aumentar quantidade de links.
+ *
+ * Fase B.5 (secao 26): "header precisa parecer mais solido" -- logo maior
+ * de novo, mais respiro na navegacao. Sticky nao foi implementado nesta
+ * fase (a missao condicionava a "caso o componente ja suporte sem JS
+ * pesado" -- exigiria coordenar z-index/offset com a barra de debug do
+ * proprio dev-tool, fora do escopo desta passada; registrado como pendencia
+ * em 16-home-v2-authority-trust.md).
+ */
 .v2-header {
   position: relative;
   background: var(--v2-color-surface-0);
@@ -17,14 +108,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--v2-space-4);
-  min-height: 4.5rem;
+  gap: var(--v2-space-8);
+  min-height: 5rem;
 }
-.v2-header__logo img { height: 2rem; width: auto; }
+.v2-header__logo img { height: 2.5rem; width: auto; }
+@media (min-width: 992px) {
+  .v2-header__logo img { height: 3rem; }
+}
 .v2-header__nav {
   display: none;
   align-items: center;
-  gap: var(--v2-space-6);
+  gap: var(--v2-space-10);
 }
 @media (min-width: 992px) {
   .v2-header__nav { display: flex; }
@@ -32,16 +126,19 @@
 .v2-header__nav-link {
   font-family: var(--v2-font-heading);
   font-weight: 600;
-  font-size: var(--v2-text-sm);
+  font-size: 0.9375rem; /* 15px -- Fase B.4 secao 4 (era --v2-text-sm, 14px) */
   padding-block: var(--v2-space-2);
   border-block-end: 2px solid transparent;
 }
 .v2-header__nav-link:hover,
 .v2-header__nav-link[aria-current="page"] {
-  color: var(--v2-color-accent);
+  color: var(--v2-color-brand-700);
   border-block-end-color: var(--v2-color-accent);
 }
 
+/* Mega menu -- Fase B.3 (secao 24): "coluna principal (5 idiomas) + coluna
+   secundaria (Para empresas / Teste de nivel) + pequena imagem editorial".
+   Nunca listar niveis nem 30 links -- so os 5 idiomas + 2 atalhos. */
 .v2-header__mega {
   position: absolute;
   inset-inline: 0;
@@ -49,7 +146,7 @@
   background: var(--v2-color-surface-0);
   border-block-end: 1px solid var(--v2-color-border);
   box-shadow: var(--v2-shadow-2);
-  padding: var(--v2-space-6);
+  padding: var(--v2-space-8);
   display: none;
 }
 .v2-header__nav-item:hover .v2-header__mega,
@@ -58,36 +155,72 @@
 }
 .v2-header__mega-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: var(--v2-space-2);
+  gap: var(--v2-space-8);
+  grid-template-columns: 1fr;
   max-width: var(--v2-container-content);
   margin-inline: auto;
 }
+@media (min-width: 768px) {
+  .v2-header__mega-grid { grid-template-columns: 1.4fr 1fr auto; }
+}
+.v2-header__mega-heading {
+  font-family: var(--v2-font-body);
+  font-size: var(--v2-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--v2-color-text-subtle);
+  margin-block-end: var(--v2-space-3);
+}
+.v2-header__mega-links { display: flex; flex-direction: column; gap: var(--v2-space-1); }
 .v2-header__mega-link {
   display: block;
   padding: var(--v2-space-3) var(--v2-space-4);
+  margin-inline: calc(-1 * var(--v2-space-4));
   border-radius: var(--v2-radius-sm);
+  font-family: var(--v2-font-heading);
   font-weight: 600;
+  font-size: var(--v2-text-lg);
 }
-.v2-header__mega-link:hover { background: var(--v2-color-surface-alt); color: var(--v2-color-accent); }
+.v2-header__mega-link:hover { background: var(--v2-color-surface-alt); color: var(--v2-color-brand-700); }
+.v2-header__mega-secondary-link {
+  display: block;
+  padding: var(--v2-space-2) var(--v2-space-4);
+  margin-inline: calc(-1 * var(--v2-space-4));
+  border-radius: var(--v2-radius-sm);
+  font-size: var(--v2-text-sm);
+  font-weight: 600;
+  color: var(--v2-color-text-muted);
+}
+.v2-header__mega-secondary-link:hover { background: var(--v2-color-surface-alt); color: var(--v2-color-brand-700); }
+.v2-header__mega-media {
+  display: none;
+}
+@media (min-width: 992px) {
+  .v2-header__mega-media {
+    display: block;
+    width: 12rem;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--v2-radius-media);
+    overflow: hidden;
+  }
+  .v2-header__mega-media img { width: 100%; height: 100%; object-fit: cover; }
+}
 
 .v2-header__actions {
   display: flex;
   align-items: center;
   gap: var(--v2-space-3);
 }
-.v2-header__locale-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--v2-space-2);
-  padding-inline: var(--v2-space-3);
-  min-height: 40px;
-  border-radius: var(--v2-radius-sm);
-  border: 1px solid var(--v2-color-border-interactive);
-  font-size: var(--v2-text-sm);
-  font-weight: 600;
-}
-.v2-header__locale-flag { width: 20px; height: auto; border-radius: 2px; }
+/* Fase B.3: o seletor de idioma deixou de carregar uma bandeira remota
+   (flagcdn.com) -- alem de gerar dependencia externa (contra a regra de
+   "nenhuma fonte/asset remoto" ja aplicada as fontes), bandeira != idioma
+   (varios paises falam o mesmo idioma, o mesmo pais pode ter varios
+   idiomas). Vira um botao textual simples, mais institucional. O contrato
+   de dado (data-vd-nav-urls/data-vd-nav-current) continua identico -- so o
+   markup visual mudou. Fase B.6: o seletor migrou pra utility bar
+   (.v2-hdr-utility__locale, ver acima) -- "Entrar"/idioma saem do header
+   principal. */
 
 .v2-header__burger {
   display: inline-flex;
@@ -137,25 +270,114 @@
 }
 .v2-header__mobile-link:hover { background: var(--v2-color-surface-alt); }
 
-/* ---------- Footer ---------- */
+/* ---------- Header overlay -- Fase B.6A (hero full-bleed inspirado no
+   Bain.com). Opt-in via v2_header_overlay=true no include (ver nota no
+   topo de header.html). Fixed (nao absolute): "position:fixed" pra o
+   header continuar acessivel durante o scroll do resto da Home (nao so
+   sobre o Hero) -- resolve a pendencia de sticky header registrada em
+   16-home-v2-authority-trust.md. initHeaderOverlay (design-system-v2.js)
+   adiciona/remove "is-solid" comparando a base do Hero com a base do
+   header a cada scroll (rAF-throttled). ---------- */
+.v2-header-overlay-wrap {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 40;
+}
+.v2-hdr-utility--overlay {
+  background: transparent;
+  border-block-end: 0;
+}
+.v2-hdr-utility--overlay .v2-hdr-utility__link,
+.v2-hdr-utility--overlay .v2-hdr-utility__locale { color: rgba(255, 255, 255, 0.82); }
+.v2-hdr-utility--overlay .v2-hdr-utility__link:hover,
+.v2-hdr-utility--overlay .v2-hdr-utility__locale:hover { color: var(--v2-color-surface-0); }
+
+.v2-header--overlay {
+  background: transparent;
+  border-block-end: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color var(--v2-motion-base) var(--v2-motion-ease), border-color var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-header--overlay .v2-header__nav-link { color: rgba(255, 255, 255, 0.88); }
+.v2-header--overlay .v2-header__nav-link:hover,
+.v2-header--overlay .v2-header__nav-link[aria-current="page"] { color: var(--v2-color-surface-0); border-block-end-color: rgba(255, 255, 255, 0.7); }
+.v2-header--overlay .v2-header__burger-icon,
+.v2-header--overlay .v2-header__burger-icon::before,
+.v2-header--overlay .v2-header__burger-icon::after { background: var(--v2-color-surface-0); }
+/* Painel mobile precisa de fundo solido proprio mesmo com header
+   transparente -- a lista de links tem que ficar legivel sobre a foto do
+   Hero independente do estado "is-solid" (que so troca a BARRA, nao o
+   painel expandido). */
+.v2-header--overlay .v2-header__mobile-panel {
+  background: var(--v2-color-surface-0);
+  margin-inline: calc(-1 * var(--v2-space-4));
+  padding-inline: var(--v2-space-4);
+  border-radius: 0 0 var(--v2-radius-md) var(--v2-radius-md);
+}
+.v2-header--overlay .v2-header__mobile-link { color: var(--v2-color-text); }
+
+/* Logo -- 2 imagens empilhadas, crossfade so em CSS (sem trocar src via
+   JS): branca visivel por padrao (sobre a foto), colorida entra por cima
+   quando o header vira solido ("is-solid", ver JS). */
+.v2-header__logo--overlay { position: relative; display: inline-block; }
+.v2-header__logo-img { height: 2.5rem; width: auto; display: block; transition: opacity var(--v2-motion-base) var(--v2-motion-ease); }
+@media (min-width: 992px) {
+  .v2-header__logo-img { height: 3rem; }
+}
+.v2-header__logo-img--color { position: absolute; inset: 0; opacity: 0; }
+
+.v2-header-overlay-wrap.is-solid .v2-hdr-utility--overlay {
+  background: var(--v2-color-surface-alt);
+  border-block-end: 1px solid var(--v2-color-border);
+}
+.v2-header-overlay-wrap.is-solid .v2-hdr-utility--overlay .v2-hdr-utility__link,
+.v2-header-overlay-wrap.is-solid .v2-hdr-utility--overlay .v2-hdr-utility__locale { color: var(--v2-color-text-muted); }
+.v2-header-overlay-wrap.is-solid .v2-hdr-utility--overlay .v2-hdr-utility__link:hover,
+.v2-header-overlay-wrap.is-solid .v2-hdr-utility--overlay .v2-hdr-utility__locale:hover { color: var(--v2-color-brand-700); }
+.v2-header-overlay-wrap.is-solid .v2-header--overlay {
+  background: var(--v2-color-surface-0);
+  border-block-end: 1px solid var(--v2-color-border);
+  box-shadow: var(--v2-shadow-1);
+}
+.v2-header-overlay-wrap.is-solid .v2-header--overlay .v2-header__nav-link { color: var(--v2-color-text); }
+.v2-header-overlay-wrap.is-solid .v2-header--overlay .v2-header__nav-link:hover,
+.v2-header-overlay-wrap.is-solid .v2-header--overlay .v2-header__nav-link[aria-current="page"] { color: var(--v2-color-brand-700); border-block-end-color: var(--v2-color-accent); }
+.v2-header-overlay-wrap.is-solid .v2-header--overlay .v2-header__burger-icon,
+.v2-header-overlay-wrap.is-solid .v2-header--overlay .v2-header__burger-icon::before,
+.v2-header-overlay-wrap.is-solid .v2-header--overlay .v2-header__burger-icon::after { background: var(--v2-color-text); }
+.v2-header-overlay-wrap.is-solid .v2-header__logo-img--white { opacity: 0; }
+.v2-header-overlay-wrap.is-solid .v2-header__logo-img--color { opacity: 1; }
+
+/* ---------- Footer -- Fase B.3 (secao 25): "parte mais proxima da direcao
+   correta -- refinar, nao descartar". Mais espaco no topo, mensagem
+   institucional curta abaixo da assinatura da marca. ---------- */
 
 .v2-footer {
   background: var(--v2-color-brand-800);
   color: rgba(255, 255, 255, 0.86);
 }
+.v2-footer__logo { height: 2.25rem; width: auto; } /* Fase B.4 secao 20: "logo maior" (era 32px fixo via atributo HTML) */
 .v2-footer__grid {
   display: grid;
-  gap: var(--v2-space-8);
+  gap: var(--v2-space-10);
   grid-template-columns: 1fr;
+  /* Fase B.6B (secao 21 da missao): "reduzir a sensacao de que a headline e
+     o logo competem entre si" -- v2-footer__message (headline grande acima
+     de toda a grade) foi removido; o respiro do topo que ele dava
+     (padding-block-start ate --v2-space-24) migrou pra ca, num valor mais
+     contido (o logo agora e o primeiro elemento visual do footer, nao uma
+     headline). */
   padding-block: var(--v2-space-16);
 }
 @media (min-width: 768px) {
-  .v2-footer__grid { grid-template-columns: 1.3fr repeat(4, 1fr); }
+  /* Fase B.4 secao 20: "colunas com mais distancia" */
+  .v2-footer__grid { grid-template-columns: 1.3fr repeat(4, 1fr); column-gap: var(--v2-space-12); }
 }
 .v2-footer__brand-signature {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: var(--v2-text-sm);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9375rem; /* 15px -- Fase B.4 secao 20: "texto minimo 14-15px" (era --v2-text-sm, 14px) */
   max-width: 22rem;
+  margin-block-start: var(--v2-space-4);
 }
 .v2-footer__heading {
   font-family: var(--v2-font-heading);
@@ -163,13 +385,14 @@
   font-size: var(--v2-text-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.64);
   margin-block-end: var(--v2-space-4);
 }
 .v2-footer__links {
   display: flex;
   flex-direction: column;
   gap: var(--v2-space-3);
+  font-size: 0.9375rem; /* 15px */
 }
 .v2-footer__links a:hover { color: var(--v2-color-surface-0); text-decoration: underline; }
 .v2-footer__whatsapp {
@@ -180,6 +403,10 @@
   color: #25D366;
   font-weight: 600;
 }
+/* Bug real reportado pelo usuario (screenshot): sem isso, o navegador
+   quebra a linha exatamente no hifen de "91129-3075" (ponto de quebra
+   valido em texto normal), deixando "3075" sozinho numa segunda linha. */
+.v2-footer__whatsapp-number { white-space: nowrap; }
 .v2-footer__social {
   display: flex;
   gap: var(--v2-space-3);
@@ -194,6 +421,33 @@
   justify-content: center;
 }
 .v2-footer__social a:hover { background: rgba(255, 255, 255, 0.12); }
+/* Secoes de links SEO abaixo da grade principal (pedido do usuario,
+   espelhando o rodape rico de producao) -- heading maior/branco (nao a
+   micro-label uppercase de .v2-footer__heading, que aqui ficaria fraca
+   demais pra uma frase completa) + links num fluxo horizontal que
+   quebra linha, separados por uma borda superior fina. */
+.v2-footer__seo {
+  border-block-start: 1px solid rgba(255, 255, 255, 0.16);
+  padding-block: var(--v2-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-4);
+}
+.v2-footer__seo-heading {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-lg);
+  color: var(--v2-color-surface-0);
+}
+.v2-footer__seo-links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--v2-space-8);
+  row-gap: var(--v2-space-3);
+  font-size: 0.9375rem;
+}
+.v2-footer__seo-links a { color: rgba(255, 255, 255, 0.86); }
+.v2-footer__seo-links a:hover { color: var(--v2-color-surface-0); text-decoration: underline; }
 .v2-footer__bottom {
   border-block-start: 1px solid rgba(255, 255, 255, 0.16);
   padding-block: var(--v2-space-6);
@@ -202,7 +456,7 @@
   gap: var(--v2-space-4);
   justify-content: space-between;
   font-size: var(--v2-text-xs);
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.62);
 }
 .v2-footer__legal-links {
   display: flex;

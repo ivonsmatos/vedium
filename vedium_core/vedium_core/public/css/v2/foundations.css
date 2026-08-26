@@ -101,9 +101,11 @@
   letter-spacing: -0.01em;
 }
 
-.v2-h1 { font-size: var(--v2-text-3xl); }
-.v2-h2 { font-size: var(--v2-text-2xl); }
-.v2-h3 { font-size: var(--v2-text-xl); }
+/* Fase B.3: escala institucional (docs/redesign/14-art-direction-v2.md).
+   H1/H2/H3 usam os tokens fluidos --v2-text-h1/h2/h3 (maiores que a Fase B). */
+.v2-h1 { font-size: var(--v2-text-h1); }
+.v2-h2 { font-size: var(--v2-text-h2); }
+.v2-h3 { font-size: var(--v2-text-h3); }
 .v2-h4 { font-size: var(--v2-text-lg); }
 
 .v2-body { font-family: var(--v2-font-body); }
@@ -114,14 +116,25 @@
   font-size: var(--v2-text-sm);
   font-weight: 600;
 }
+/*
+ * Fase B.3 (secao 6 da missao -- paleta): "terracota NAO deve aparecer em
+ * todos os labels/badges/titulos pequenos... usar com moderacao". Na Fase B
+ * TODO eyebrow usava --v2-color-accent (terracota) por padrao, o que violava
+ * essa regra assim que o sistema crescesse (todo hero/card/secao com a mesma
+ * cor de destaque). Eyebrow passa a ser azul institucional por padrao;
+ * --v2-eyebrow--accent existe só para os poucos pontos que o chamador decidir
+ * que merecem destaque terracota de verdade (ex.: 1 CTA por secao).
+ */
 .v2-eyebrow {
   font-family: var(--v2-font-body);
   font-size: var(--v2-text-sm);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--v2-color-accent);
+  color: var(--v2-color-brand-700);
 }
+.v2-eyebrow--on-dark { color: rgba(255, 255, 255, 0.72); }
+.v2-eyebrow--accent { color: var(--v2-color-accent); }
 
 .v2-text-muted { color: var(--v2-color-text-muted); }
 .v2-text-subtle { color: var(--v2-color-text-subtle); }
@@ -161,7 +174,14 @@
   background: linear-gradient(160deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
   color: var(--v2-color-surface-0);
 }
-.v2-section--tight { padding-block: var(--v2-space-12); }
+/* .v2-heading fixa color:var(--v2-color-text) (tinta escura) por padrao --
+   sem isso, qualquer heading dentro de uma secao --brand fica ilegivel
+   sobre o fundo escuro (bug real, confirmado por screenshot na Fase B.3,
+   corrigido pontualmente no CTASection; aqui vira regra geral pra nao se
+   repetir em todo componente novo que entrar numa secao brand). */
+.v2-section--brand .v2-heading,
+.v2-section--brand .v2-eyebrow { color: inherit; }
+.v2-section--tight { padding-block: var(--v2-space-section-tight); }
 
 /* ---------- Grid utilitario (4/8/12, cards quebram por espaco) ---------- */
 

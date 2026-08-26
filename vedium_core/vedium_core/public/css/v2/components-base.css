@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--v2-space-2);
-  min-height: var(--v2-tap-min);
+  min-height: var(--v2-control-height);
   padding-inline: var(--v2-space-6);
   padding-block: var(--v2-space-3);
   border-radius: var(--v2-radius-sm);
@@ -20,13 +20,21 @@
   font-weight: 600;
   font-size: var(--v2-text-base);
   line-height: 1.2;
-  border: 1.5px solid transparent;
   transition: background-color var(--v2-motion-base) var(--v2-motion-ease),
               border-color var(--v2-motion-base) var(--v2-motion-ease),
               color var(--v2-motion-base) var(--v2-motion-ease),
               transform var(--v2-motion-fast) var(--v2-motion-ease);
   white-space: nowrap;
 }
+/* .v2-scope prefix (2a classe) nas regras de cor/borda abaixo: o reset
+   ".v2-scope button { background:none; border:0; color:inherit }" em
+   foundations.css tem especificidade 0,1,1 -- maior que uma unica classe
+   ".v2-btn--primary" (0,1,0), entao um <button class="v2-btn v2-btn--primary">
+   (ex.: submit nativo do VediumPathfinder) renderizava sem cor nenhuma. Achado
+   real via screenshot na Fase B.6 (reset Bain-inspired) -- <a class="v2-btn">
+   nao era afetado (o reset so mira o elemento button), por isso o bug so
+   apareceu agora que o design system ganhou seu primeiro <button> de verdade. */
+.v2-scope .v2-btn { border: 1.5px solid transparent; }
 .v2-btn:active { transform: translateY(1px); }
 
 .v2-btn--compact {
@@ -36,21 +44,21 @@
   font-size: var(--v2-text-sm);
 }
 
-.v2-btn--primary {
+.v2-scope .v2-btn--primary {
   background: var(--v2-color-accent);
   color: var(--v2-color-surface-0);
   border-color: var(--v2-color-accent);
 }
-.v2-btn--primary:hover { background: var(--v2-color-accent-hover); border-color: var(--v2-color-accent-hover); }
+.v2-scope .v2-btn--primary:hover { background: var(--v2-color-accent-hover); border-color: var(--v2-color-accent-hover); }
 
-.v2-btn--secondary {
+.v2-scope .v2-btn--secondary {
   background: transparent;
   color: var(--v2-color-brand-700);
   border-color: var(--v2-color-border-interactive);
 }
-.v2-btn--secondary:hover { background: var(--v2-color-surface-alt); border-color: var(--v2-color-brand-700); }
+.v2-scope .v2-btn--secondary:hover { background: var(--v2-color-surface-alt); border-color: var(--v2-color-brand-700); }
 
-.v2-btn--tertiary {
+.v2-scope .v2-btn--tertiary {
   background: transparent;
   color: var(--v2-color-brand-700);
   border-color: transparent;
@@ -58,9 +66,9 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.v2-btn--tertiary:hover { color: var(--v2-color-accent); }
+.v2-scope .v2-btn--tertiary:hover { color: var(--v2-color-accent); }
 
-.v2-btn--danger {
+.v2-scope .v2-btn--danger {
   background: var(--v2-color-danger);
   color: var(--v2-color-surface-0);
   border-color: var(--v2-color-danger);
@@ -183,7 +191,7 @@
 .v2-select {
   appearance: none;
   width: 100%;
-  min-height: var(--v2-tap-min);
+  min-height: var(--v2-control-height);
   padding-inline: var(--v2-space-4);
   padding-block: var(--v2-space-3);
   border: 1.5px solid var(--v2-color-border-interactive);

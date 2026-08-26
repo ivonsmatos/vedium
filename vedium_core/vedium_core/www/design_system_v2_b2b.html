@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+{%- import "templates/includes/v2/macros_base.html" as v2 -%}
+{%- import "templates/includes/v2/macros_editorial.html" as v2e -%}
+{#- VEDIUM DESIGN SYSTEM V2 -- Preview isolado da pagina B2B (Fase B.6E,
+    Parte C da missao), em /design_system_v2_b2b (rota plana com
+    underscore -- ver nota completa sobre a colisao de nomes com
+    www/design_system_v2.py em www/design_system_v2_b2b.py). NAO substitui
+    /empresas (rota publica real, ver docs/redesign/02-route-and-seo-map.md).
+    noindex, fora do sitemap, fora da navegacao real.
+
+    Header V2 SEM overlay (v2_header_overlay nao setado -- default false):
+    esta pagina nao tem o Hero-carousel full-bleed (.v2-editorial-hero) que
+    o JS initHeaderOverlay precisa pra calcular o cruzamento hero/header;
+    sem esse elemento a funcao simplesmente nao roda (ver nota no proprio
+    JS), entao usar overlay aqui deixaria o header transparente pra sempre.
+    Header solido padrao evita esse risco -- e da pagina B2B tambem nao
+    precisa do mesmo tratamento "hero full-bleed" da Home.
+
+    Gestao e acompanhamento (secao 7 abaixo): mission pede explicitamente
+    "se alguma funcao nao estiver comprovada, marcar como proposta/roadmap
+    e nao publicar como fato" -- os itens sem confirmacao de uma feature
+    de relatorio agregado pra RH ja existir de verdade no produto hoje
+    levam a tag visivel "(proposta)" .v2-b2b-list__flag. -#}
+{%- set v2_e07_src = "/assets/vedium_core/v2-preview-media/e07-hero-videoconference.jpg" -%}
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/tokens.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/foundations.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/components-base.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/components-editorial.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/header-footer.css" />
+
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background:#fff; color:#0F1419; }
+    .dstool-banner {
+      background: #0F1419; color: #fff; padding: 10px 16px; font-size: 13px;
+      display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 500;
+    }
+    .dstool-banner-left { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+    .dstool-banner strong { color: #FFD9CC; }
+    .dstool-banner a { color: #9FD1FF; }
+  </style>
+</head>
+<body>
+  <div class="dstool-banner">
+    <div class="dstool-banner-left">
+      <strong>PREVIEW</strong>
+      <span>Ferramenta de desenvolvimento. noindex. Fora do sitemap e da navegação real. Não substitui /empresas.</span>
+    </div>
+    <div class="dstool-banner-left">
+      <a href="/design_system_v2">Voltar pro Design System V2</a>
+    </div>
+  </div>
+
+  <main class="v2-scope">
+
+    {% set v2_level_test_url_override = none %}
+    {% set v2_level_test_contact_override = false %}
+    {% set v2_hdr_lang = "pt-BR" %}
+    {% set v2_hdr_primary_cta_override = {"text":"Solicite uma conversa diagnóstica","href":"/contato"} %}
+    {% include "templates/includes/v2/header.html" %}
+
+    {# ================= 1. HERO B2B ================= #}
+    <section class="v2-section">
+      <div class="v2-container v2-container--wide">
+        {{ v2e.v2_hero_split(
+          "Vedium para empresas",
+          "Desenvolva um time mais preparado para atuar globalmente.",
+          "Formação linguística ao vivo, organizada por nível e construída a partir das necessidades da equipe.",
+          {"text":"Solicite uma conversa diagnóstica","href":"/contato"},
+          image_src=v2_e07_src,
+          image_alt="Pessoa adulta participa de uma videochamada profissional em um notebook.",
+          secondary_cta={"text":"Conheça a abordagem","href":"#solucao"}
+        ) }}
+      </div>
+    </section>
+
+    {# ================= 2. DESAFIO ================= #}
+    <section class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <div style="max-width:44rem;">
+          <h2 class="v2-heading v2-h2">Comunicação internacional exige mais do que acesso a conteúdo.</h2>
+          <p class="v2-body v2-body-lg v2-text-muted" style="margin-block-start:var(--v2-space-4);">Equipes precisam desenvolver competências adequadas às situações em que realmente utilizam o idioma.</p>
+          <p class="v2-b2b-tags">
+            <span>Reuniões</span>
+            <span>Apresentações</span>
+            <span>Relacionamento com clientes</span>
+            <span>Comunicação entre equipes</span>
+            <span>Atuação internacional</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {# ================= 3. DIAGNÓSTICO ================= #}
+    <section class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <div style="max-width:44rem;">
+          <h2 class="v2-heading v2-h2">A solução começa pelo diagnóstico.</h2>
+          <p class="v2-body v2-body-lg v2-text-muted" style="margin-block-start:var(--v2-space-4);">Antes de desenhar qualquer programa, entendemos o ponto de partida e o objetivo real da equipe.</p>
+        </div>
+        <div class="v2-b2b-list">
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Nível atual</p><p class="v2-b2b-list__text">Onde a equipe está hoje no idioma.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Objetivo da empresa</p><p class="v2-b2b-list__text">O que a comunicação em outro idioma precisa viabilizar.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Situações de uso</p><p class="v2-b2b-list__text">Onde o idioma é realmente utilizado no dia a dia.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Perfil das equipes</p><p class="v2-b2b-list__text">Quem participa e em que função.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Disponibilidade</p><p class="v2-b2b-list__text">Frequência e horários possíveis para as aulas.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Necessidade de acompanhamento</p><p class="v2-b2b-list__text">Nível de envolvimento esperado de RH/liderança.</p></div>
+        </div>
+        <div style="margin-block-start:var(--v2-space-8);">
+          {{ v2e.v2_text_link("Solicite um diagnóstico", "/contato", size="lg") }}
+        </div>
+      </div>
+    </section>
+
+    {# ================= 4. SOLUÇÃO ================= #}
+    <section class="v2-section v2-section--warm" id="solucao">
+      <div class="v2-container v2-container--wide">
+        <div style="max-width:44rem;">
+          <h2 class="v2-heading v2-h2">Uma formação organizada para a realidade da equipe.</h2>
+        </div>
+        <div class="v2-b2b-list">
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Trilhas por nível</p><p class="v2-b2b-list__text">Conteúdo organizado por competência e objetivo.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Aulas ao vivo</p><p class="v2-b2b-list__text">Encontros reais, com participação e correção.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Professores nativos e especialistas</p><p class="v2-b2b-list__text">Condução qualificada de cada turma.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Turmas</p><p class="v2-b2b-list__text">Formadas conforme nível e disponibilidade da equipe.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Acompanhamento</p><p class="v2-b2b-list__text">Evolução monitorada ao longo do programa.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Relatórios</p><p class="v2-b2b-list__text">Visibilidade sobre participação e progresso.</p></div>
+        </div>
+      </div>
+    </section>
+
+    {# ================= 5. COMO FUNCIONA ================= #}
+    {#- Missao lista "COMO FUNCIONA" na arquitetura (secao 17) mas nao da
+        copy dedicada pra essa secao especifica (as secoes 18-25 pulam de
+        SOLUÇÃO pra GESTÃO). Pra nao inventar conteudo B2B novo que so
+        duplicaria o Processo de Implantacao mais abaixo, esta secao vira
+        uma ponte curta e honesta pra pagina institucional REAL que ja
+        existe (/como-funciona) -- nao fabrica um "como funciona"
+        B2B-especifico sem base. -#}
+    <section class="v2-section">
+      <div class="v2-container v2-container--wide">
+        <div style="max-width:38rem;">
+          <p class="v2-eyebrow" style="margin-block-end:var(--v2-space-3);">Como funciona</p>
+          <p class="v2-body v2-body-lg v2-text-muted">O formato de aula ao vivo, a estrutura por nível e o acompanhamento seguem o mesmo método que já usamos com todos os alunos Vedium -- adaptado ao contexto e ao objetivo da equipe.</p>
+          <div style="margin-block-start:var(--v2-space-6);">
+            {{ v2e.v2_text_link("Conheça o método Vedium", "/como-funciona", size="lg") }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# ================= 6. GESTÃO E ACOMPANHAMENTO ================= #}
+    <section class="v2-section v2-section--brand">
+      <div class="v2-container v2-container--wide">
+        <div style="max-width:44rem;">
+          <p class="v2-eyebrow v2-eyebrow--on-dark" style="margin-block-end:var(--v2-space-3);">Diferença em relação ao B2C</p>
+          <h2 class="v2-heading v2-h2" style="color:var(--v2-color-surface-0);">Acompanhamento para RH e liderança.</h2>
+        </div>
+        <div class="v2-b2b-list v2-b2b-list--on-dark">
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Participação</p><p class="v2-b2b-list__text">Presença registrada em cada aula.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Evolução por nível</p><p class="v2-b2b-list__text">Progresso individual acompanhado ao longo do programa.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Adesão da turma<span class="v2-b2b-list__flag">(proposta)</span></p><p class="v2-b2b-list__text">Consolidado de adesão agregado por equipe.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Relatório para RH<span class="v2-b2b-list__flag">(proposta)</span></p><p class="v2-b2b-list__text">Entrega periódica de visão consolidada para liderança.</p></div>
+        </div>
+        <p class="v2-body" style="color:rgba(255,255,255,0.9);margin-block-start:var(--v2-space-6);max-width:40rem;">Participação e evolução por nível já são acompanhadas individualmente em cada aula. Um relatório consolidado e recorrente para RH é uma proposta em avaliação, não uma funcionalidade publicada hoje.</p>
+      </div>
+    </section>
+
+    {# ================= 7. FORMATOS CORPORATIVOS ================= #}
+    <section class="v2-section v2-section--alt">
+      <div class="v2-container v2-container--wide">
+        <div style="max-width:44rem;">
+          <p class="v2-eyebrow" style="margin-block-end:var(--v2-space-3);">Formatos</p>
+          <h2 class="v2-heading v2-h2">O desenho final depende do diagnóstico.</h2>
+        </div>
+        <div class="v2-b2b-list">
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Programas por turma</p><p class="v2-b2b-list__text">Grupos formados conforme nível e disponibilidade.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Trilhas por nível</p><p class="v2-b2b-list__text">Progressão organizada do básico ao avançado.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Formações por objetivo</p><p class="v2-b2b-list__text">Conteúdo direcionado à situação real de uso.</p></div>
+          <div class="v2-b2b-list__item"><p class="v2-b2b-list__label">Soluções sob proposta</p><p class="v2-b2b-list__text">Desenho específico para necessidades particulares.</p></div>
+        </div>
+      </div>
+    </section>
+
+    {# ================= 8. PROCESSO DE IMPLANTAÇÃO ================= #}
+    <section class="v2-section v2-section--warm">
+      <div class="v2-container v2-container--wide">
+        {{ v2e.v2_progression_flow(
+          "Como começamos a trabalhar juntos.",
+          "Cinco etapas, do primeiro contato ao acompanhamento contínuo.",
+          [
+            {"label":"Diagnóstico", "note":"Entendimento do nível e do objetivo da equipe."},
+            {"label":"Desenho da solução", "note":"Trilhas e formato definidos conforme o diagnóstico."},
+            {"label":"Formação das turmas", "note":"Organização por nível e disponibilidade."},
+            {"label":"Aulas e acompanhamento", "note":"Aulas ao vivo com progresso monitorado."},
+            {"label":"Revisão com a empresa", "note":"Alinhamento de resultados e próximos passos."}
+          ]
+        ) }}
+      </div>
+    </section>
+
+    {# ================= 9. CONVERSA DIAGNÓSTICA (CTA FINAL) ================= #}
+    <section class="v2-section v2-section--brand">
+      <div class="v2-container v2-container--wide">
+        {{ v2e.v2_cta_section(
+          "Vamos entender o que sua equipe precisa desenvolver.",
+          "Converse com a Vedium sobre objetivos, níveis e formato da formação.",
+          {"text":"Solicite uma conversa diagnóstica","href":"/contato"},
+          variant="brand-full"
+        ) }}
+      </div>
+    </section>
+
+    {% set v2_level_test_url_override = none %}
+    {% set v2_hdr_primary_cta_override = none %}
+    {% include "templates/includes/v2/footer.html" %}
+
+  </main>
+
+  <script defer src="/assets/vedium_core/js/vedium-language.min.js"></script>
+  <script defer src="/assets/vedium_core/js/v2/design-system-v2.js"></script>
+</body>
+</html>

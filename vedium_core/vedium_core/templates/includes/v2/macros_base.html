@@ -22,6 +22,7 @@
   "close": "M18 6L6 18M6 6l12 12",
   "play": "M8 5v14l11-7z",
   "arrow-right": "M5 12h14M13 6l6 6-6 6",
+  "arrow-down": "M12 5v14M6 13l6 6 6-6",
   "whatsapp": "M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.06L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z",
   "image": "M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z M8 10a1 1 0 102 0 1 1 0 00-2 0 M3 16l5-5 3 3 4-4 5 5",
   "instagram": "M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm5.5-.75a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z",
@@ -31,7 +32,7 @@
 {% macro v2_icon(name, decorative=true, label=none, size="1.25em") %}
 <span class="v2-icon"{% if not decorative %} role="img" aria-label="{{ label }}"{% endif %} style="width:{{ size }};height:{{ size }};">
   <svg viewBox="0 0 24 24"{% if decorative %} aria-hidden="true" focusable="false"{% endif %}>
-    <path d="{{ v2_icon_paths.get(name, '') }}" {% if name in ('chevron-right','chevron-down','arrow-right','image') %}fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"{% endif %}/>
+    <path d="{{ v2_icon_paths.get(name, '') }}" {% if name in ('chevron-right','chevron-down','arrow-right','arrow-down','image') %}fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"{% endif %}/>
   </svg>
 </span>
 {%- endmacro %}

@@ -1,19 +1,41 @@
 {#
-  VEDIUM DESIGN SYSTEM V2 -- macros editoriais (Fase B, 2026-08-24)
-  Isolado -- ver macros_base.html para a mesma nota de escopo.
+  VEDIUM DESIGN SYSTEM V2 -- macros editoriais
+
+  Fase B (2026-08-24): arquitetura inicial. Fase B.3 (2026-08-24): redesign
+  visual e direcao de arte -- a revisao humana reprovou a Fase B por parecer
+  biblioteca tecnica/LMS/marketplace. Este arquivo foi reescrito para tratar
+  fotografia como parte da composicao (nunca "midia opcional"), com escala
+  institucional maior e novos componentes de secao inteira (LanguageMosaic,
+  LevelJourney, TeacherFeature, LiveClassExperience). Ver
+  docs/redesign/14-art-direction-v2.md para os principios completos.
 
   Uso:
     {% import "templates/includes/v2/macros_base.html" as v2 %}
     {% import "templates/includes/v2/macros_editorial.html" as v2e %}
     {{ v2e.v2_hero_split(eyebrow="PLE", title="...", ...) }}
 
-  Regra de conteudo (04-design-system-plan.md + missao Fase B): nenhum
+  Regra de conteudo (04-design-system-plan.md + missao Fase B/B.3): nenhum
   componente aqui tem professor, preco, depoimento, data ou nivel fixo --
-  tudo entra por parametro. Quando o dado é opcional e ausente, o macro
+  tudo entra por parametro. Quando o dado e opcional e ausente, o macro
   omite o bloco (nunca inventa placeholder tipo "em breve"/"consulte").
+  Preco: a Fase B.3 (secao 12/18) proibiu preco em CourseCard e proibiu
+  numero inventado em StudyRhythmCard -- nenhum dos dois macros aceita mais
+  parametro de preco.
 #}
 
 {% import "templates/includes/v2/macros_base.html" as v2 %}
+
+{# ================= TEXT LINK ================= #}
+{# CTA textual ("Conheca a trilha ->") -- Fase B.3 troca varios botoes-caixa
+   por link textual nos componentes editoriais (LanguageCard, CourseCard,
+   FeatureMedia, TeacherFeature, CTA secundario), conforme pedido repetido
+   da missao por "CTA textual" em vez de botao. #}
+{% macro v2_text_link(text, href, variant="brand", size="base", icon="arrow-right", on_dark=false) %}
+<a class="v2-text-link{% if variant == 'accent' %} v2-text-link--accent{% endif %}{% if on_dark %} v2-text-link--on-dark{% endif %}{% if size == 'lg' %} v2-text-link--lg{% endif %}" href="{{ href }}">
+  <span>{{ text }}</span>
+  {{ v2.v2_icon(icon, size="1em") }}
+</a>
+{%- endmacro %}
 
 {# ================= HERO ================= #}
 
@@ -24,16 +46,15 @@
   secundario abaixo de um H1 que já existe. Nunca deixe mais de um <h1> real
   na mesma página (regra de acessibilidade do 04-design-system-plan.md).
 #}
-{% macro v2_hero_split(eyebrow, title, lead, primary_cta, image_src=none, image_alt="", secondary_cta=none, media_first=false, heading_level="h1") %}
+{#
+  Fase B.4 (secao 5): "CONTEÚDO PRIMEIRO à esquerda. IMAGEM à direita. Não
+  inverter." -- o conteudo agora vem PRIMEIRO no markup (= coluna esquerda
+  por padrao num grid LTR). media_first=true inverte (midia na esquerda),
+  pro raro caso que precisar -- nunca o padrao.
+#}
+{% macro v2_hero_split(eyebrow, title, lead, primary_cta, image_src=none, image_alt="", secondary_cta=none, media_first=false, heading_level="h1", object_position="center", languages_line=none) %}
 <div class="v2-hero v2-hero--split">
-  <div class="v2-hero__media" {% if media_first %}style="order:-1"{% endif %}>
-    {%- if image_src %}
-    <img src="{{ image_src }}" alt="{{ image_alt }}" width="900" height="1125" loading="eager" fetchpriority="high" />
-    {%- else %}
-    <div class="v2-media-empty">{{ v2.v2_icon("image", size="2rem") }}</div>
-    {%- endif %}
-  </div>
-  <div class="v2-hero__content">
+  <div class="v2-hero__content" {% if media_first %}style="order:2"{% endif %}>
     {% if eyebrow %}<p class="v2-eyebrow v2-hero__eyebrow">{{ eyebrow }}</p>{% endif %}
     <{{ heading_level }} class="v2-heading v2-h1 v2-hero__title">{{ title }}</{{ heading_level }}>
     <p class="v2-body v2-body-lg v2-text-muted v2-hero__lead">{{ lead }}</p>
@@ -41,6 +62,14 @@
       {{ v2.v2_button(primary_cta.text, href=primary_cta.href, variant="primary") }}
       {% if secondary_cta %}{{ v2.v2_button(secondary_cta.text, href=secondary_cta.href, variant="secondary") }}{% endif %}
     </div>
+    {% if languages_line %}<p class="v2-hero__languages">{{ languages_line }}</p>{% endif %}
+  </div>
+  <div class="v2-hero__media" {% if media_first %}style="order:1"{% endif %}>
+    {%- if image_src %}
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="1000" loading="eager" fetchpriority="high" style="object-position:{{ object_position }};" />
+    {%- else %}
+    <div class="v2-media-empty">{{ v2.v2_icon("image", size="2rem") }}</div>
+    {%- endif %}
   </div>
 </div>
 {%- endmacro %}
@@ -63,11 +92,11 @@
     {%- if image_src %}
     <img src="{{ image_src }}" alt="{{ image_alt }}" width="1600" height="900" loading="eager" fetchpriority="high" />
     {%- else %}
-    <div class="v2-media-empty" style="background:var(--v2-color-brand-800);color:rgba(255,255,255,.5);">{{ v2.v2_icon("image", size="2rem") }}</div>
+    <div class="v2-media-empty v2-media-empty--on-dark">{{ v2.v2_icon("image", size="2rem") }}</div>
     {%- endif %}
   </div>
   <div class="v2-hero__content">
-    {% if eyebrow %}<p class="v2-eyebrow v2-hero__eyebrow" style="color:#FFD9CC;">{{ eyebrow }}</p>{% endif %}
+    {% if eyebrow %}<p class="v2-eyebrow v2-eyebrow--on-dark v2-hero__eyebrow">{{ eyebrow }}</p>{% endif %}
     <{{ heading_level }} class="v2-heading v2-h1 v2-hero__title v2-text-on-dark">{{ title }}</{{ heading_level }}>
     <p class="v2-body v2-body-lg v2-hero__lead">{{ lead }}</p>
     <div class="v2-hero__actions">
@@ -78,20 +107,293 @@
 </div>
 {%- endmacro %}
 
+{#
+  Fase B.6 (reset Bain-inspired, secao 4/6): "REMOVER a estrutura atual de
+  texto + grande foto do aluno... o principal impacto deve vir de headline
+  + interação + hierarquia" -- nao de fotografia. Hero editorial largo, sem
+  midia dominante e sem par de botoes CTA (a interacao principal passa a
+  ser o VediumPathfinder logo abaixo, que ja tem seu proprio CTA -- dois
+  CTAs concorrentes no mesmo momento violaria "poucos elementos por
+  secao"). Left-aligned (nao centralizado) pra manter a "assimetria
+  editorial controlada" pedida, em vez do centro simetrico do
+  HeroCentered.
+#}
+{% macro v2_hero_editorial(eyebrow, title, lead, heading_level="h1") %}
+<div class="v2-hero-editorial">
+  {% if eyebrow %}<p class="v2-eyebrow">{{ eyebrow }}</p>{% endif %}
+  <{{ heading_level }} class="v2-heading v2-h1 v2-hero-editorial__title">{{ title }}</{{ heading_level }}>
+  <p class="v2-body v2-body-lg v2-text-muted v2-hero-editorial__lead">{{ lead }}</p>
+</div>
+{%- endmacro %}
+
+{#
+  Fase B.6 (reset Bain-inspired, secao 5), NOVO -- VediumPathfinder.
+  "Protótipo funcional isolado": 2 perguntas em grupos de radio nativo
+  (funciona sem JS, teclado/leitor de tela ja cobertos pelo <fieldset>/
+  <input type=radio> padrao do HTML -- nao reimplementa selecao via JS).
+  Nao conecta a CRM nem altera o teste de nivel real; o CTA aponta pra uma
+  URL fixa (o proprio teste de nivel), igual a qualquer outro CTA estatico
+  do design system -- nenhuma regra de negocio nova.
+  languages/objectives: lista de strings.
+
+  Fase B.6B (secao 3-5 da missao): numeracao "01"/"02" prefixada em cada
+  legend -- ecoa o mesmo "01 IDIOMA / 02 OBJETIVO" do painel ao lado (ver
+  v2_pathfinder_section abaixo), sem esconder a 2a pergunta (a missao
+  permite mostrar as duas de uma vez nesta fase, so pede que fique visual
+  que sao 2 etapas). Estilo do card (fundo/borda/padding/max-width) SAIU
+  daqui -- o proprio lado direito da secao "E a interface" (secao 4 da
+  missao); quem posiciona/da fundo a este form agora e
+  v2_pathfinder_section.
+#}
+{% macro v2_pathfinder(language_question, languages, objective_question, objectives, cta) %}
+<form class="v2-pathfinder" action="{{ cta.href }}" method="get">
+  <fieldset class="v2-pathfinder__group">
+    <legend class="v2-pathfinder__question"><span class="v2-pathfinder__question-num">01</span><span>{{ language_question }}</span></legend>
+    <div class="v2-pathfinder__options">
+      {%- for option in languages %}
+      <label class="v2-pathfinder__option">
+        <input type="radio" name="pathfinder-idioma" value="{{ option }}" {% if loop.first %}checked{% endif %} />
+        <span>{{ option }}</span>
+      </label>
+      {%- endfor %}
+    </div>
+  </fieldset>
+  <fieldset class="v2-pathfinder__group">
+    <legend class="v2-pathfinder__question"><span class="v2-pathfinder__question-num">02</span><span>{{ objective_question }}</span></legend>
+    <div class="v2-pathfinder__options">
+      {%- for option in objectives %}
+      <label class="v2-pathfinder__option">
+        <input type="radio" name="pathfinder-objetivo" value="{{ option }}" {% if loop.first %}checked{% endif %} />
+        <span>{{ option }}</span>
+      </label>
+      {%- endfor %}
+    </div>
+  </fieldset>
+  {{ v2.v2_button(cta.text, type="submit", variant="primary") }}
+</form>
+{%- endmacro %}
+
+{#
+  Fase B.6B (secao 2-6 da missao), NOVO -- envelope full-width editorial do
+  Pathfinder. Antes (Fase B.6A): card branco estreito boiando num mar de
+  branco vazio. Agora: split 42/58 -- painel azul institucional (contexto +
+  "01 IDIOMA / 02 OBJETIVO" como elemento grafico) + o proprio v2_pathfinder
+  (sem card) do lado claro. Fundo de cada metade sangra ate a borda da
+  viewport (mesmo padrao ja usado por .v2-section--brand nas outras secoes
+  desta pagina); o CONTEUDO de cada metade fica alinhado ao container
+  padrao (1280px) via padding calculado -- nunca solto na tela inteira.
+  steps: lista de 2 strings curtas (ex.: ["Idioma","Objetivo"]).
+#}
+{% macro v2_pathfinder_section(eyebrow, title, lead, steps, language_question, languages, objective_question, objectives, cta) %}
+<section class="v2-pathfinder-section">
+  <div class="v2-pathfinder-section__panel">
+    <div class="v2-pathfinder-section__panel-inner">
+      <p class="v2-eyebrow v2-eyebrow--on-dark">{{ eyebrow }}</p>
+      <h2 class="v2-heading v2-h2 v2-pathfinder-section__panel-title">{{ title }}</h2>
+      <p class="v2-body v2-pathfinder-section__panel-lead">{{ lead }}</p>
+      <div class="v2-pathfinder-section__panel-rule" aria-hidden="true"></div>
+      <ol class="v2-pathfinder-section__panel-steps">
+        {%- for step in steps %}
+        <li>
+          <span class="v2-pathfinder-section__panel-step-num">{{ "%02d"|format(loop.index) }}</span>
+          <span class="v2-pathfinder-section__panel-step-label">{{ step }}</span>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="v2-pathfinder-section__form-wrap">
+    <div class="v2-pathfinder-section__form-inner">
+      {{ v2_pathfinder(language_question, languages, objective_question, objectives, cta) }}
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{#
+  Fase B.6A (hero full-bleed inspirado no Bain.com), NOVO -- HeroEditorialCarousel.
+  Substitui o HeroEditorial (sem foto) da Fase B.6-v2 como Hero real do
+  Presentation Mode. So a LOGICA visual/interacao foi observada no Bain.com
+  (full-bleed, overlay escuro, carousel editorial, navegacao no rodape) --
+  nenhum codigo/CSS/texto/imagem do Bain foi copiado (ver
+  docs/redesign/19-editorial-hero-carousel.md).
+
+  slides: lista de dicts {eyebrow, headline, support, cta_label, cta_href,
+  image_src, image_alt, image_width, image_height, nav_label}. O primeiro
+  slide da lista carrega o UNICO <h1> real da pagina -- os demais usam <p>
+  com a mesma classe visual (ver docs/redesign/19, secao "H1 unico"): um
+  carousel nao deveria ter varios headings reais competindo, e isso mantem
+  o teste existente de "um so <h1> renderizado" valido sem precisar mudar o
+  metodo do teste.
+
+  JS progressivo (data-v2-hero-carousel em design-system-v2.js) cuida de
+  autoplay, troca de slide, barra de progresso e pausa (hover/foco/aba
+  oculta/prefers-reduced-motion). Sem JS: o CSS ja deixa so o primeiro
+  slide com opacity:1 (os demais opacity:0, aria-hidden) -- o visitante ve
+  um hero estatico normal (headline + CTA reais e funcionais), nao um
+  carousel quebrado. Os tabs do rodape ficam inertes nesse cenario (sao
+  <button>, sem handler sem JS) -- aceitavel porque o conteudo do slide 1
+  (Vedium, institucional) ja e o mais importante e continua 100% acessivel.
+#}
+{% macro v2_hero_editorial_carousel(slides) %}
+<section class="v2-editorial-hero" data-v2-hero-carousel aria-roledescription="carrossel" aria-label="Destaques Vedium">
+  <div class="v2-editorial-hero__slides">
+    {%- for slide in slides %}
+    {%- set is_first = loop.first %}
+    <div
+      class="v2-editorial-hero__slide{% if is_first %} is-active{% endif %}"
+      id="v2-hero-slide-{{ loop.index0 }}"
+      role="group"
+      aria-roledescription="slide"
+      aria-label="{{ loop.index }} de {{ slides|length }}"
+      {% if not is_first %}aria-hidden="true"{% endif %}
+    >
+      <div class="v2-editorial-hero__media">
+        <img
+          src="{{ slide.image_src }}"
+          alt="{{ slide.image_alt }}"
+          width="{{ slide.image_width or 2000 }}"
+          height="{{ slide.image_height or 1300 }}"
+          {% if is_first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+        />
+      </div>
+      <div class="v2-editorial-hero__overlay" aria-hidden="true"></div>
+      <div class="v2-editorial-hero__content">
+        <div class="v2-container v2-container--wide">
+          <div class="v2-editorial-hero__copy">
+            {% if slide.eyebrow %}<p class="v2-eyebrow v2-eyebrow--on-dark v2-editorial-hero__eyebrow">{{ slide.eyebrow }}</p>{% endif %}
+            {%- if is_first %}
+            <h1 class="v2-heading v2-editorial-hero__title">{{ slide.headline }}</h1>
+            {%- else %}
+            <p class="v2-heading v2-editorial-hero__title">{{ slide.headline }}</p>
+            {%- endif %}
+            <p class="v2-body v2-editorial-hero__support">{{ slide.support }}</p>
+            {{ v2.v2_button(slide.cta_label, href=slide.cta_href, variant="secondary", on_dark=true, icon="arrow-right") }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+
+  <span class="v2-editorial-hero__scroll" aria-hidden="true">
+    <span>Scroll</span>
+    {{ v2.v2_icon("arrow-down", size="1em") }}
+  </span>
+
+  <div class="v2-editorial-hero__nav" role="tablist" aria-label="Slides do destaque">
+    {%- for slide in slides %}
+    <button
+      type="button"
+      class="v2-editorial-hero__tab{% if loop.first %} is-active{% endif %}"
+      role="tab"
+      id="v2-hero-tab-{{ loop.index0 }}"
+      aria-selected="{{ 'true' if loop.first else 'false' }}"
+      aria-controls="v2-hero-slide-{{ loop.index0 }}"
+      tabindex="{{ '0' if loop.first else '-1' }}"
+      data-v2-hero-tab
+      data-index="{{ loop.index0 }}"
+    >
+      <span class="v2-editorial-hero__tab-track" aria-hidden="true"><span class="v2-editorial-hero__tab-fill"></span></span>
+      <span class="v2-editorial-hero__tab-label">{{ slide.nav_label }}</span>
+    </button>
+    {%- endfor %}
+  </div>
+</section>
+{%- endmacro %}
+
 {# ================= PROOF BAR ================= #}
-{# items: lista de ate 4 {value, label, qualitative(bool), source} -- source
-   é obrigatorio no chamador (nao renderizado, serve de lembrete no dado);
-   sem fonte documentada, o 04 manda usar diferencial qualitativo em vez de
-   numero -- este macro so formata o que o chamador ja decidiu ser publicavel. #}
-{% macro v2_proof_bar(items) %}
-<div class="v2-proofbar">
+{# Fase B.3 (secao 9): redesenho completo -- nada de estatistica generica
+   tipo ThemeForest ("5", "100%", "A1-C1"). items: lista de ate 4
+   {title, text, icon(opcional)} com beneficio real, nao numero solto. #}
+{# size="lg" (Fase B.6, secao 4): usado na Trust Strip -- tipografia/padding
+   maiores e mais contraste entre titulo e apoio do que o padrao (usado em
+   "Como a Vedium ensina"). #}
+{% macro v2_proof_bar(items, on_dark=false, size="base") %}
+<div class="v2-proofbar{% if on_dark %} v2-proofbar--on-dark{% endif %}{% if size == 'lg' %} v2-proofbar--lg{% endif %}">
   {%- for item in items[:4] %}
-  <div class="v2-proofbar__item{% if item.qualitative %} v2-proofbar__item--qualitative{% endif %}">
-    <span class="v2-proofbar__value">{{ item.value }}</span>
-    <span class="v2-proofbar__label">{{ item.label }}</span>
+  <div class="v2-proofbar__item">
+    <p class="v2-proofbar__title">
+      {%- if item.icon %}{{ v2.v2_icon(item.icon, size="1.1em") }}{% endif -%}
+      <span>{{ item.title }}</span>
+    </p>
+    <p class="v2-proofbar__text">{{ item.text }}</p>
   </div>
   {%- endfor %}
 </div>
+{%- endmacro %}
+
+{#
+  Fase B.6B (secoes 7-9 da missao), NOVO -- VediumMethod ("O que você
+  encontra na Vedium"). Substitui o uso de v2_proof_bar nessa secao (4
+  colunas iguais, fraco/sem protagonismo segundo a missao) por um split
+  editorial 40/60: coluna azul institucional (eyebrow+H2+texto curto) +
+  coluna warm-neutral com os 4 diferenciais em lista editorial 2x2 (numero
+  grande + rotulo + texto, sem card/icone/radius/shadow). O painel azul
+  ecoa o mesmo motivo visual do VediumPathfinder logo acima -- "conecta
+  Hero -> Pathfinder -> diferenciais" (secao 9 da missao).
+  items: lista de ate 4 {title, text}.
+#}
+{% macro v2_vedium_method(eyebrow, title, intro, items) %}
+<section class="v2-vedium-method">
+  <div class="v2-vedium-method__intro">
+    <div class="v2-vedium-method__intro-inner">
+      <p class="v2-eyebrow v2-eyebrow--on-dark">{{ eyebrow }}</p>
+      <h2 class="v2-heading v2-h2 v2-vedium-method__title">{{ title }}</h2>
+      <p class="v2-body v2-vedium-method__lead">{{ intro }}</p>
+    </div>
+  </div>
+  <div class="v2-vedium-method__list-wrap">
+    <ol class="v2-vedium-method__list">
+      {%- for item in items[:4] %}
+      <li class="v2-vedium-method__item">
+        <span class="v2-vedium-method__item-num">{{ "%02d"|format(loop.index) }}</span>
+        <div>
+          <h3 class="v2-vedium-method__item-label">{{ item.title }}</h3>
+          <p class="v2-vedium-method__item-text">{{ item.text }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+{%- endmacro %}
+
+{#
+  Fase B.6D (secoes 7-11 da missao), NOVO -- CourseIndexIntro. Substitui a
+  abertura da secao Cursos (so eyebrow+H2 flutuando num mar de branco,
+  "grande vazio entre o titulo e o primeiro curso") por uma composicao
+  editorial 55/45: headline curta a esquerda + um INDICE dos 5 idiomas a
+  direita (numero + nome + link, sem card/icone decorativo/fundo por
+  linha) -- ocupa o vazio com informacao util, nao decoracao. Cada linha e
+  um link real (`c.href`), com seta que se move no hover (:hover, sem JS).
+  courses: lista de {name, href}.
+#}
+{% macro v2_course_index_intro(eyebrow, title, lead, courses) %}
+<section class="v2-section v2-course-intro">
+  <div class="v2-container v2-container--wide">
+    <div class="v2-course-intro__grid">
+      <div class="v2-course-intro__copy">
+        <p class="v2-eyebrow">{{ eyebrow }}</p>
+        <h2 class="v2-heading v2-course-intro__title">{{ title }}</h2>
+        {% if lead %}<p class="v2-body v2-body-lg v2-text-muted v2-course-intro__lead">{{ lead }}</p>{% endif %}
+      </div>
+      <nav class="v2-course-index" aria-label="Índice de cursos">
+        <ol class="v2-course-index__list">
+          {%- for c in courses %}
+          <li class="v2-course-index__item">
+            <a class="v2-course-index__link" href="{{ c.href }}">
+              <span class="v2-course-index__num">{{ "%02d"|format(loop.index) }}</span>
+              <span class="v2-course-index__name">{{ c.name }}</span>
+              <span class="v2-course-index__arrow" aria-hidden="true">{{ v2.v2_icon("arrow-right", size="1em") }}</span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
 {%- endmacro %}
 
 {# ================= FEATURE CARD ================= #}
@@ -104,66 +406,140 @@
 {%- endmacro %}
 
 {# ================= LANGUAGE CARD ================= #}
-{% macro v2_language_card(name, context, href, image_src=none, image_alt="", level_count=none) %}
-<a class="v2-language-card" href="{{ href }}">
-  {% if image_src %}
+{# Fase B.3 (secao 10): "idioma deve ser uma PORTA DE ENTRADA" -- nao um
+   card pequeno e burocratico.
+   Fase B.4 (secao 10): quando nao ha fotografia legitima pro idioma (gate
+   cultural/sem asset aprovado), o card NAO cai mais no estado "sem midia"
+   (icone neutro) -- vira um CARD TIPOGRAFICO premium (variant="typographic"),
+   com o proprio nome grande em Playfair carregando a composicao. "Um card
+   tipografico bem desenhado e melhor que um placeholder ou uma foto
+   culturalmente errada" (missao B.4). tone só importa quando
+   variant="typographic": "brand" (fundo azul) ou "warm" (fundo surface-warm). #}
+{% macro v2_language_card(name, context, href, image_src=none, image_alt="", level_count=none, cta_label="Conheça a trilha", object_position="center", variant="photo", tone="brand") %}
+<a class="v2-language-card{% if variant == 'typographic' %} v2-language-card--typographic v2-language-card--tone-{{ tone }}{% endif %}" href="{{ href }}">
+  {%- if variant != "typographic" %}
   <div class="v2-language-card__media">
-    <img src="{{ image_src }}" alt="{{ image_alt }}" width="600" height="400" loading="lazy" />
+    {%- if image_src %}
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="1000" loading="lazy" style="object-position:{{ object_position }};" />
+    {%- else %}
+    <div class="v2-media-empty">{{ v2.v2_icon("image", size="1.75rem") }}</div>
+    {%- endif %}
   </div>
-  {% endif %}
   <div class="v2-language-card__body">
-    <h3 class="v2-heading v2-h4">{{ name }}</h3>
-    <p class="v2-body-sm v2-text-muted">{{ context }}</p>
+  {%- else %}
+  <div class="v2-language-card__body">
+  {%- endif %}
+    <h3 class="v2-language-card__name">{{ name }}</h3>
+    <p class="v2-body v2-language-card__context">{{ context }}</p>
     {% if level_count %}<span class="v2-language-card__meta">{{ level_count }}</span>{% endif %}
-    <span class="v2-body-sm" style="color:var(--v2-color-accent);font-weight:600;">
+    <span class="v2-text-link{% if variant == 'typographic' and tone == 'brand' %} v2-text-link--on-dark{% endif %} v2-language-card__cta">
+      <span>{{ cta_label }}</span>
       {{ v2.v2_icon("arrow-right", size="1em") }}
     </span>
   </div>
 </a>
 {%- endmacro %}
 
-{# ================= COURSE CARD ================= #}
-{# price/price_period: so exibe se ambos vierem preenchidos (regra 04: preco
-   so quando atual E com periodicidade -- nunca so um numero solto). #}
+{# ================= LANGUAGE MOSAIC ================= #}
+{# Fase B.4 (secao 9): composicao editorial assimetrica ESPECIFICA pros 5
+   idiomas -- nao um sistema generico reaproveitavel de tamanhos. items:
+   lista de EXATAMENTE 5 dicts, na ordem visual (ver components-editorial.css,
+   .v2-mosaic > *:nth-child) {name, context, href, image_src, image_alt,
+   level_count, variant, tone}. B2B SAIU do mosaico (virou secao propria). #}
+{% macro v2_language_mosaic(items) %}
+<div class="v2-mosaic">
+  {%- for item in items %}
+  {{ v2_language_card(item.name, item.context, item.href, image_src=item.image_src, image_alt=item.image_alt or "", level_count=item.level_count, cta_label=item.cta_label or "Conheça a trilha", object_position=item.object_position or "center", variant=item.variant or "photo", tone=item.tone or "brand") }}
+  {%- endfor %}
+</div>
+{%- endmacro %}
+
 {#
-  Fase B.1 (item 7 -- humanização): o badge de nível NÃO fica sobreposto na
-  foto (padrão clássico de e-commerce/marketplace, ex. tag "mais vendido"
-  em cima do produto) -- fica junto do título, como informação de card
-  editorial, não como selo decorativo.
+  Fase B.6 (reset Bain-inspired, secao 8), NOVO -- CourseFeature. Substitui
+  o mosaico de cards pequenos por "grandes blocos alternados": um bloco por
+  curso, escala de secao inteira (nao um card numa grade). Com imagem,
+  reaproveita o mesmo layout 55/45 do FeatureMedia (image_src + reverse);
+  sem imagem, vira um bloco de texto largo com fundo solido tonal (mesmo
+  principio do card tipografico do LanguageCard, so em escala de secao --
+  "sem imagem generica", nunca .v2-media-empty aqui).
+
+  Fase B.6C (secao 1-12 da missao): "TODOS OS CINCO IDIOMAS DEVEM TER MÍDIA
+  VISUAL" -- a variante sem foto (tone-brand/tone-warm) sai de uso na Home
+  (Iorubá e Hebraico agora tem foto real, ver docs/redesign/21-course-
+  media-selection.md), mas o codigo continua aqui pra biblioteca de debug
+  (regra "nunca excluir componente"). NOVO: envelope "band" full-bleed
+  (mesmo padrao ja usado em VediumPathfinder/VediumMethod -- fundo sangra
+  ate a viewport, conteudo alinhado ao container de 1280px via
+  .v2-container real, nao calc() duplicado) + numero editorial pequeno e
+  discreto ANTES do eyebrow (nao mais um numero grande no canto competindo
+  com o curso -- secao 12 da missao: "não deixar o número competir").
+  band_tone: "white"|"warm"|"alt" -- controla o fundo do band (secao 10 da
+  missao: alternar de forma disciplinada entre as 3, nunca azul forte aqui).
 #}
-{% macro v2_course_card(title, outcome, href, image_src=none, image_alt="", level_badge=none, price=none, price_period=none) %}
+{% macro v2_course_feature(name, level_line, headline, text, cta_label, href, image_src=none, image_alt="", reverse=false, tone="brand", index=none, band_tone="white", object_position="center") %}
+<div class="v2-course-feature-band v2-course-feature-band--{{ band_tone }}">
+  <div class="v2-container v2-container--wide">
+    {%- if image_src %}
+    <div class="v2-course-feature{% if reverse %} v2-course-feature--reverse{% endif %}">
+      <div class="v2-course-feature__media">
+        <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="600" loading="lazy" style="object-position:{{ object_position }};" />
+      </div>
+      <div class="v2-course-feature__content">
+        <p class="v2-eyebrow">{% if index %}<span class="v2-course-feature__index">{{ "%02d"|format(index) }}</span>{% endif %}{{ name }}</p>
+        {% if level_line %}<p class="v2-course-feature__level">{{ level_line }}</p>{% endif %}
+        <h3 class="v2-heading v2-h3 v2-course-feature__headline">{{ headline }}</h3>
+        <p class="v2-body v2-text-muted v2-course-feature__text">{{ text }}</p>
+        {{ v2_text_link(cta_label, href, size="lg") }}
+      </div>
+    </div>
+    {%- else %}
+    <div class="v2-course-feature v2-course-feature--tone-{{ tone }}">
+      <div class="v2-course-feature__content">
+        <p class="v2-eyebrow{% if tone == 'brand' %} v2-eyebrow--on-dark{% endif %}">{% if index %}<span class="v2-course-feature__index">{{ "%02d"|format(index) }}</span>{% endif %}{{ name }}</p>
+        {% if level_line %}<p class="v2-course-feature__level">{{ level_line }}</p>{% endif %}
+        <h3 class="v2-heading v2-h3 v2-course-feature__headline">{{ headline }}</h3>
+        <p class="v2-body v2-course-feature__text">{{ text }}</p>
+        {{ v2_text_link(cta_label, href, size="lg", on_dark=(tone == "brand")) }}
+      </div>
+    </div>
+    {%- endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{# ================= COURSE CARD ================= #}
+{# Fase B.3 (secao 12): "PRECO != NIVEL -- preco pertence a secao comercial
+   adequada". Este macro NAO tem mais parametro de preco (removido -- na
+   Fase B ele so aparecia condicionalmente; agora nao existe). Nivel vira
+   texto discreto acima do titulo, nao badge/selo. CTA e link textual. #}
+{% macro v2_course_card(title, outcome, href, image_src=none, image_alt="", level_label=none) %}
 <div class="v2-course-card">
   <div class="v2-course-card__media">
     {%- if image_src %}
-    <img src="{{ image_src }}" alt="{{ image_alt }}" width="480" height="360" loading="lazy" />
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="600" loading="lazy" />
     {%- else %}
     <div class="v2-media-empty">{{ v2.v2_icon("image", size="1.6rem") }}</div>
     {%- endif %}
   </div>
   <div class="v2-course-card__body">
-    {% if level_badge %}{{ v2.v2_badge(level_badge, variant="neutral") }}{% endif %}
+    {% if level_label %}<p class="v2-course-card__level">{{ level_label }}</p>{% endif %}
     <h3 class="v2-course-card__title">{{ title }}</h3>
     <p class="v2-course-card__outcome">{{ outcome }}</p>
     <div class="v2-course-card__footer">
-      {% if price and price_period %}
-      <span class="v2-course-card__price">{{ price }} <span class="v2-course-card__price-period">{{ price_period }}</span></span>
-      {% else %}
-      <span></span>
-      {% endif %}
-      {{ v2.v2_button("Ver curso", href=href, variant="tertiary", size="compact") }}
+      {{ v2_text_link("Ver curso", href) }}
     </div>
   </div>
 </div>
 {%- endmacro %}
 
-{# ================= LEVEL CARD / TIMELINE ================= #}
+{# ================= LEVEL CARD / TIMELINE (atomicos) ================= #}
 {% macro v2_level_card(level_label, title, objective=none, duration=none, is_current=false, href=none) %}
 <div class="v2-level-card{% if is_current %} v2-level-card--current{% endif %}">
   {{ v2.v2_badge(level_label, variant="brand" if is_current else "neutral") }}
   <h3 class="v2-heading v2-h4">{{ title }}</h3>
   {% if objective %}<p class="v2-body-sm v2-text-muted">{{ objective }}</p>{% endif %}
   {% if duration %}<p class="v2-body-sm v2-text-subtle">{{ duration }}</p>{% endif %}
-  {% if href %}{{ v2.v2_button("Ver nível", href=href, variant="tertiary", size="compact") }}{% endif %}
+  {% if href %}{{ v2_text_link("Ver nível", href) }}{% endif %}
 </div>
 {%- endmacro %}
 
@@ -186,22 +562,134 @@
 </ol>
 {%- endmacro %}
 
-{# ================= TEACHER CARD / PROFILE SUMMARY ================= #}
-{# Sem image_src: cai no fallback com a inicial do nome -- nunca usa foto de
-   banco de imagens como se fosse o professor (regra explicita da missao). #}
+{# ================= LEVEL JOURNEY ================= #}
+{# Fase B.3 (secao 13), NOVO. Substitui a apresentacao "dashboard" da
+   LevelTimeline por uma secao inteira: timeline grande (padrao tablist,
+   acessivel por teclado -- setas esquerda/direita/Home/End via
+   design-system-v2.js) + painel grande do nivel selecionado.
+
+   Progressive enhancement: SEM JS, os atributos role/aria-selected/hidden
+   nao mudam nada visualmente -- os detalhes de <details> nunca escondem
+   informacao (repare que aqui nao ha <details>: cada painel e um <div
+   hidden> controlado só por JS; por isso, se o JS nao carregar, "hidden"
+   dos paineis 2..N permanece e some conteudo). Para nao violar "nenhum
+   conteudo depende de JS" (04-design-system-plan.md), o macro marca hidden
+   via atributo somente quando NAO e o nivel atual E adiciona
+   data-v2-journey-js -- o CSS correspondente only esconde quando o JS
+   confirma que rodou (adiciona a classe no <html>/<body> do preview). Sem
+   JS, todos os paineis ficam visiveis empilhados (fallback seguro). #}
+{% macro v2_level_journey(title, lead, levels, current_label="Nível atual") %}
+{%- set ns = namespace(current_idx=0) -%}
+{%- for level in levels %}{% if level.state == "current" %}{% set ns.current_idx = loop.index0 %}{% endif %}{% endfor -%}
+<div>
+  <h2 class="v2-heading v2-h2" style="margin-block-end:var(--v2-space-3);">{{ title }}</h2>
+  <p class="v2-body v2-body-lg v2-text-muted v2-measure" style="margin-block-end:var(--v2-space-8);">{{ lead }}</p>
+
+  <div class="v2-journey__timeline" role="tablist" aria-label="{{ title }}" data-v2-journey>
+    {%- for level in levels %}
+    <button
+      type="button"
+      class="v2-journey__tab"
+      id="v2-journey-tab-{{ loop.index0 }}"
+      role="tab"
+      aria-selected="{{ 'true' if level.state == 'current' else 'false' }}"
+      aria-controls="v2-journey-panel-{{ loop.index0 }}"
+      tabindex="{{ '0' if level.state == 'current' else '-1' }}"
+      data-v2-journey-tab
+      data-state="{{ level.state }}"
+    >
+      <span>{{ level.label }}</span>
+      <span class="v2-journey__tab-state">{% if level.state == "current" %}{{ current_label }}{% elif level.state == "done" %}{{ v2.v2_icon("check", size="0.9em") }}{% endif %}</span>
+    </button>
+    {%- endfor %}
+  </div>
+
+  {%- for level in levels %}
+  <div
+    class="v2-journey__panel"
+    id="v2-journey-panel-{{ loop.index0 }}"
+    role="tabpanel"
+    aria-labelledby="v2-journey-tab-{{ loop.index0 }}"
+    {% if level.state != "current" %}data-v2-journey-hidden{% endif %}
+    data-v2-journey-panel
+  >
+    <span class="v2-journey__panel-badge" aria-hidden="true">{{ level.label }}</span>
+    <div>
+      <h3 class="v2-journey__panel-title">{{ level.title }}</h3>
+      <p class="v2-body v2-journey__panel-description">{{ level.description }}</p>
+      {%- if level.competencies %}
+      <ul class="v2-journey__competencies">
+        {%- for competency in level.competencies %}
+        <li>{{ v2.v2_icon("check", size="1em") }} <span>{{ competency }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {% if level.cta %}{{ v2_text_link(level.cta.text, level.cta.href, size="lg") }}{% endif %}
+    </div>
+  </div>
+  {%- endfor %}
+</div>
+{%- endmacro %}
+
+{# ================= PROGRESSION FLOW ================= #}
+{# Fase B.4 (secao 14), NOVO. A Home nao mostra a taxonomia CEFR especifica
+   de Ingles (A1-C1) -- isso pertence as paginas de idioma/LevelJourney. Aqui
+   e so o CONCEITO institucional de progressao: uma linha editorial
+   horizontal com etapas curtas ligadas por seta, sem caixa, sem numero.
+   steps: lista de strings curtas (ex.: "Diagnóstico", "Trilha", ...). #}
+{#
+  Fase B.6 (secao 11): "melhorar a representacao visual: linha horizontal
+  ou progression rail discreto no desktop... nao parecer breadcrumb".
+  Trocado de texto+seta inline pra um rail de verdade: uma linha fina
+  atravessando marcadores (bolinhas) acima de cada rotulo -- padrao comum
+  de "stepper"/trilho de progresso, bem diferente da tipografia pequena e
+  do separador ">" tipico de breadcrumb.
+#}
+{#
+  Fase B.6B (secao 17 da missao): "aumentar presenca -- headline mais larga
+  e maior, linha mais espessa/visivel, dots mais sofisticados". steps pode
+  ser lista de strings (como antes) OU de {label, note} -- note e um texto
+  curto opcional sob a etapa, "se nao poluir" (texto da missao); nenhum
+  step precisa ter note.
+#}
+{% macro v2_progression_flow(title, text, steps) %}
+<div>
+  <h2 class="v2-heading v2-h2 v2-progression-flow__title">{{ title }}</h2>
+  <p class="v2-body v2-body-lg v2-text-muted v2-measure" style="margin-block-end:var(--v2-space-10);">{{ text }}</p>
+  <div class="v2-progression">
+    <div class="v2-progression__rail" aria-hidden="true"></div>
+    <ol class="v2-progression__steps">
+      {%- for step in steps %}
+      {%- set label = step.label if step is mapping else step %}
+      {%- set note = step.note if step is mapping else none %}
+      <li class="v2-progression__step">
+        <span class="v2-progression__dot" aria-hidden="true"></span>
+        <span class="v2-progression__label">{{ label }}</span>
+        {%- if note %}<span class="v2-progression__note">{{ note }}</span>{% endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</div>
+{%- endmacro %}
+
+{# ================= TEACHER CARD / PROFILE SUMMARY / FEATURE ================= #}
+{# Fase B.3 (secao 14): "sem avatar com letra como principal solucao".
+   Sem image_src, cai no MESMO estado elegante "sem midia" dos demais
+   componentes -- nunca inventa rosto. #}
 {% macro v2_teacher_card(name, role, image_src=none, image_alt="", bio=none, href=none) %}
 <div class="v2-teacher-card">
   <div class="v2-teacher-card__photo">
     {%- if image_src %}
-    <img src="{{ image_src }}" alt="{{ image_alt }}" width="400" height="500" loading="lazy" />
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="1000" loading="lazy" />
     {%- else %}
-    <div class="v2-teacher-card__photo--fallback" aria-hidden="true">{{ name[0] }}</div>
+    <div class="v2-media-empty">{{ v2.v2_icon("image", size="1.75rem") }}</div>
     {%- endif %}
   </div>
-  <p class="v2-teacher-card__name">{{ name }}</p>
+  <h3 class="v2-teacher-card__name">{{ name }}</h3>
   <p class="v2-teacher-card__role">{{ role }}</p>
   {% if bio %}<p class="v2-body-sm v2-text-muted">{{ bio }}</p>{% endif %}
-  {% if href %}{{ v2.v2_button("Ver perfil", href=href, variant="tertiary", size="compact") }}{% endif %}
+  {% if href %}{{ v2_text_link("Ver perfil", href) }}{% endif %}
 </div>
 {%- endmacro %}
 
@@ -211,7 +699,7 @@
     {%- if image_src %}
     <img src="{{ image_src }}" alt="{{ image_alt }}" width="80" height="80" loading="lazy" />
     {%- else %}
-    <div class="v2-teacher-summary__photo--fallback" aria-hidden="true">{{ name[0] }}</div>
+    <div class="v2-media-empty">{{ v2.v2_icon("image", size="1.1rem") }}</div>
     {%- endif %}
   </div>
   <div>
@@ -221,35 +709,168 @@
 </div>
 {%- endmacro %}
 
+{# Fase B.3 (secao 14), NOVO -- composicao grande 50/50, professor como
+   protagonista da secao (nao um card na grade). #}
+{% macro v2_teacher_feature(name, role, bio=none, image_src=none, image_alt="", eyebrow="Quem conduz suas aulas", cta=none) %}
+<div class="v2-teacher-feature">
+  <div class="v2-teacher-feature__media">
+    {%- if image_src %}
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="1000" loading="lazy" />
+    {%- else %}
+    <div class="v2-media-empty">{{ v2.v2_icon("image", size="2rem") }}</div>
+    {%- endif %}
+  </div>
+  <div>
+    {% if eyebrow %}<p class="v2-eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h2 class="v2-teacher-feature__name">{{ name }}</h2>
+    <p class="v2-teacher-feature__role">{{ role }}</p>
+    {% if bio %}<p class="v2-body v2-teacher-feature__bio">{{ bio }}</p>{% endif %}
+    {% if cta %}{{ v2_text_link(cta.text, cta.href, size="lg") }}{% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
 {# ================= PROCESS STEPS ================= #}
-{# steps: lista de {title, text}, 3 a 5 itens (regra 04) #}
-{% macro v2_process_steps(steps, columns=3) %}
+{# Fase B.3 (secao 15): numeros grandes com baixa opacidade (nao mais
+   circulo preenchido), poucos icones. steps: lista de {title, text}, 3 a 5
+   itens (regra 04). #}
+{% macro v2_process_steps(steps, columns=4) %}
 <div class="v2-process" style="--v2-process-cols:{{ columns }};">
   {%- for step in steps[:5] %}
   <div class="v2-process__step">
-    <span class="v2-process__number" aria-hidden="true">{{ loop.index }}</span>
-    <h3 class="v2-heading v2-h4">{{ step.title }}</h3>
-    <p class="v2-body-sm v2-text-muted">{{ step.text }}</p>
+    <span class="v2-process__number" aria-hidden="true">{{ "%02d"|format(loop.index) }}</span>
+    <h3 class="v2-process__title">{{ step.title }}</h3>
+    <p class="v2-process__text">{{ step.text }}</p>
   </div>
   {%- endfor %}
 </div>
 {%- endmacro %}
 
 {# ================= FEATURE MEDIA ================= #}
-{% macro v2_feature_media(title, text, image_src=none, image_alt="", reverse=false, cta=none) %}
+{# Fase B.3 (secao 17): 55/45, midia grande, respiro, CTA textual. #}
+{% macro v2_feature_media(title, text, image_src=none, image_alt="", reverse=false, cta=none, object_position="center") %}
 <div class="v2-feature-media{% if reverse %} v2-feature-media--reverse{% endif %}">
   <div class="v2-feature-media__media">
     {%- if image_src %}
-    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="533" loading="lazy" />
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="600" loading="lazy" style="object-position:{{ object_position }};" />
     {%- else %}
     <div class="v2-media-empty">{{ v2.v2_icon("image", size="2rem") }}</div>
     {%- endif %}
   </div>
-  <div class="v2-feature-media__content v2-stack">
-    <h2 class="v2-heading v2-h2">{{ title }}</h2>
-    <p class="v2-body v2-text-muted">{{ text }}</p>
-    {% if cta %}{{ v2.v2_button(cta.text, href=cta.href, variant="secondary") }}{% endif %}
+  <div class="v2-feature-media__content">
+    <h2 class="v2-heading v2-h2 v2-feature-media__title">{{ title }}</h2>
+    <p class="v2-body v2-text-muted v2-feature-media__text">{{ text }}</p>
+    {% if cta %}{{ v2_text_link(cta.text, cta.href, size="lg") }}{% endif %}
   </div>
+</div>
+{%- endmacro %}
+
+{# ================= B2B HOME FEATURE ================= #}
+{#- Fase B.6E (Parte B da missao): "PARA EMPRESAS" precisava parar de
+    parecer um curso B2C -- eyebrow duplo, headline executiva, prova
+    editorial (nao cards) e ate 2 CTAs (principal + consultivo). Fundo
+    navy (mesmo padrao ja aprovado de VediumMethod/Aula ao vivo) pra
+    diferenciar claramente da area B2C ao redor -- nunca cards de curso,
+    nunca preco. proof_items: lista de {label, text} (2-4 itens). -#}
+{% macro v2_b2b_home_feature(eyebrow, sub_eyebrow, title, text, text2, proof_items, primary_cta, secondary_cta=none, image_src=none, image_alt="", object_position="center") %}
+<div class="v2-b2b-feature">
+  <div class="v2-b2b-feature__media">
+    {%- if image_src %}
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="600" loading="lazy" style="object-position:{{ object_position }};" />
+    {%- else %}
+    <div class="v2-media-empty">{{ v2.v2_icon("image", size="2rem") }}</div>
+    {%- endif %}
+  </div>
+  <div class="v2-b2b-feature__content">
+    <p class="v2-eyebrow v2-eyebrow--on-dark v2-b2b-feature__eyebrow">{{ eyebrow }}</p>
+    <p class="v2-b2b-feature__sub-eyebrow">{{ sub_eyebrow }}</p>
+    <h2 class="v2-heading v2-b2b-feature__title">{{ title }}</h2>
+    <p class="v2-b2b-feature__text">{{ text }}</p>
+    {% if text2 %}<p class="v2-b2b-feature__text2">{{ text2 }}</p>{% endif %}
+    <div class="v2-b2b-feature__proof">
+      {%- for item in proof_items %}
+      <div class="v2-b2b-feature__proof-item">
+        <p class="v2-b2b-feature__proof-label">{{ item.label }}</p>
+        <p class="v2-b2b-feature__proof-text">{{ item.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="v2-b2b-feature__actions">
+      {{ v2.v2_button(primary_cta.text, href=primary_cta.href, variant="primary", on_dark=true) }}
+      {% if secondary_cta %}{{ v2_text_link(secondary_cta.text, secondary_cta.href, size="lg", on_dark=true) }}{% endif %}
+    </div>
+  </div>
+</div>
+{%- endmacro %}
+
+{# ================= LIVE CLASS EXPERIENCE ================= #}
+{# Fase B.3 (secao 16), NOVO -- uma das "assinaturas visuais" pedidas pela
+   missao. Lista editorial (nao 5 cards). Fotografia real de aula ao vivo
+   ainda depende de R01/R02/R05 (09-real-vedium-shoot-list.md, gate P0) --
+   por isso este macro so recebe image_src quando o chamador tiver um asset
+   aprovado como apoio contextual (nunca como "prova" de aula real -- ver
+   06-photography-system.md); sem imagem, usa o mesmo estado elegante "sem
+   midia". points: lista de {label, text}. #}
+{#
+  Fase B.4 (secao 12): "segunda maior secao visual depois do Hero".
+  image_src agora e opcional de verdade -- sem imagem (o caso da Home,
+  fundo navy, ver on_dark), a secao vira duas colunas de TEXTO (titulo/lead
+  a esquerda, lista editorial + CTA a direita) em vez de midia+lista. Nunca
+  usa .v2-media-empty aqui (a missao pede fundo solido, nao um icone). #}
+{#
+  Fase B.6C (secao 15-18 da missao): "Aulas ao vivo, na prática" ganhou
+  video_src/video_poster -- primeiro video real usado na Home (antes so
+  image_src). Video didatico (fala explicando gramatica, nao ambiente) --
+  por isso "controls" real, SEM autoplay/loop/mute (secao 16 da missao:
+  "se o vídeo tiver conteúdo didático que precise ser assistido: usar
+  controls e NÃO autoplay"). Como nunca autoplaya, prefers-reduced-motion
+  ja fica satisfeito estruturalmente (secao 17: "reduced motion -> não
+  autoplay, mostrar poster" -- e exatamente o estado inicial de um
+  <video controls> sem autoplay). preload="metadata" evita baixar o
+  arquivo inteiro so pra mostrar o poster.
+#}
+{% macro v2_live_class_experience(title, lead, points, image_src=none, image_alt="", video_src=none, video_poster=none, cta=none, on_dark=false) %}
+{%- set has_media = video_src or image_src -%}
+<div class="v2-live-class{% if not has_media %} v2-live-class--no-media{% endif %}{% if on_dark %} v2-live-class--on-dark{% endif %}">
+  {%- if video_src %}
+  <div class="v2-live-class__media">
+    <video controls preload="metadata" poster="{{ video_poster }}" playsinline>
+      <source src="{{ video_src }}" type="video/mp4" />
+    </video>
+  </div>
+  {%- elif image_src %}
+  <div class="v2-live-class__media">
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="600" loading="lazy" />
+  </div>
+  {%- endif %}
+  <div{% if not has_media %} class="v2-live-class__intro"{% endif %}>
+    <h2 class="v2-heading v2-h2 v2-live-class__title">{{ title }}</h2>
+    {% if lead %}<p class="v2-body v2-body-lg v2-live-class__lead">{{ lead }}</p>{% endif %}
+    {%- if has_media %}
+    <ul class="v2-live-class__list">
+      {%- for point in points %}
+      <li class="v2-live-class__list-item">
+        <span class="v2-live-class__list-label">{{ point.label }}</span>
+        <span class="v2-live-class__list-text">{{ point.text }}</span>
+      </li>
+      {%- endfor %}
+    </ul>
+    {% if cta %}<div style="margin-block-start:var(--v2-space-6);">{{ v2_text_link(cta.text, cta.href, size="lg", on_dark=on_dark) }}</div>{% endif %}
+    {%- endif %}
+  </div>
+  {%- if not has_media %}
+  <div>
+    <ul class="v2-live-class__list">
+      {%- for point in points %}
+      <li class="v2-live-class__list-item">
+        <span class="v2-live-class__list-label">{{ point.label }}</span>
+        <span class="v2-live-class__list-text">{{ point.text }}</span>
+      </li>
+      {%- endfor %}
+    </ul>
+    {% if cta %}<div style="margin-block-start:var(--v2-space-6);">{{ v2_text_link(cta.text, cta.href, size="lg", on_dark=on_dark) }}</div>{% endif %}
+  </div>
+  {%- endif %}
 </div>
 {%- endmacro %}
 
@@ -262,7 +883,7 @@
   {%- if poster_src %}
   <img class="v2-video__poster" src="{{ poster_src }}" alt="{{ poster_alt }}" width="1280" height="720" loading="lazy" />
   {%- else %}
-  <div class="v2-media-empty" style="position:absolute;inset:0;background:var(--v2-color-ink-900);color:rgba(255,255,255,.4);">{{ v2.v2_icon("image", size="2rem") }}</div>
+  <div class="v2-media-empty v2-media-empty--on-dark" style="position:absolute;inset:0;">{{ v2.v2_icon("image", size="2rem") }}</div>
   {%- endif %}
   <button type="button" class="v2-video__play" aria-label="{{ title or play_label }}">
     {{ v2.v2_icon("play", size="1.6em") }}
@@ -277,36 +898,32 @@
 {%- endmacro %}
 
 {# ================= TESTIMONIAL CARD ================= #}
-{# Nome/contexto autorizados -- nunca invente foto/cargo/nota/pais/resultado. #}
-{% macro v2_testimonial_card(quote, name, context, image_src=none, image_alt="") %}
+{# Fase B.3 (secao 19): editorial, sem avatar, sem estrelas, sem nota. Nome
+   e contexto autorizados -- nunca invente foto/cargo/nota/pais/resultado.
+   Quando o chamador usar dado de demonstracao (nao real), ele deve marcar
+   isso na propria pagina (o macro nao sabe distinguir). #}
+{% macro v2_testimonial_card(quote, name, context) %}
 <blockquote class="v2-testimonial">
-  <p class="v2-testimonial__quote">&ldquo;{{ quote }}&rdquo;</p>
+  <p class="v2-testimonial__quote">{{ quote }}</p>
   <footer class="v2-testimonial__author">
-    {% if image_src %}
-    <div class="v2-testimonial__avatar"><img src="{{ image_src }}" alt="{{ image_alt }}" width="48" height="48" loading="lazy" /></div>
-    {% endif %}
-    <div>
-      <p class="v2-label">{{ name }}</p>
-      <p class="v2-body-sm v2-text-subtle">{{ context }}</p>
-    </div>
+    <cite class="v2-testimonial__name">{{ name }}</cite>
+    <span class="v2-testimonial__context">{{ context }}</span>
   </footer>
 </blockquote>
 {%- endmacro %}
 
-{# ================= PRICING CARD ================= #}
-{# features: lista de strings; identificadores de checkout ficam no href do
-   cta -- este macro nunca decide preco/plano, so exibe o que o chamador
-   já resolveu contra o LMS/Stripe (mesma regra de curso.html). #}
-{% macro v2_pricing_card(plan_name, price, period, features, recommended=false, cta=none, recommended_label="Recomendado") %}
-<div class="v2-pricing-card{% if recommended %} v2-pricing-card--recommended{% endif %}">
-  {% if recommended %}{{ v2.v2_badge(recommended_label, variant="accent") }}{% endif %}
-  <h3 class="v2-heading v2-h3">{{ plan_name }}</h3>
-  <p><span class="v2-pricing-card__price">{{ price }}</span> <span class="v2-pricing-card__period">{{ period }}</span></p>
-  <ul class="v2-pricing-card__list">
-    {%- for feature in features %}
-    <li>{{ v2.v2_icon("check", size="1.1em") }} <span>{{ feature }}</span></li>
-    {%- endfor %}
-  </ul>
+{# ================= STUDY RHYTHM CARD ================= #}
+{# Fase B.3 (secao 18) substitui a PricingCard "cara de SaaS" -- NAO recebe
+   preco (nem como parametro): frequencia/formato/acompanhamento/condicoes
+   sao estrutura, nao valor. note: nota curta e neutra (ex.: "Preco
+   calculado no checkout conforme curso e frequencia" -- frase literalmente
+   verdadeira, ve frequency_pricing_rules.py) em vez de numero inventado. #}
+{% macro v2_study_rhythm_card(title, description, note=none, recommended=false, cta=none, recommended_label="Mais escolhido") %}
+<div class="v2-study-rhythm{% if recommended %} v2-study-rhythm--recommended{% endif %}">
+  {% if recommended %}{{ v2.v2_badge(recommended_label, variant="brand") }}{% endif %}
+  <h3 class="v2-study-rhythm__title">{{ title }}</h3>
+  <p class="v2-study-rhythm__description">{{ description }}</p>
+  {% if note %}<p class="v2-study-rhythm__note">{{ note }}</p>{% endif %}
   {% if cta %}{{ v2.v2_button(cta.text, href=cta.href, variant="primary" if recommended else "secondary") }}{% endif %}
 </div>
 {%- endmacro %}
@@ -340,33 +957,82 @@
 {%- endmacro %}
 
 {# ================= BLOG CARD ================= #}
-{% macro v2_blog_card(title, summary, href, category=none, language=none, date=none, image_src=none, image_alt="") %}
-<article class="v2-blog-card v2-blog-card__link-overlay">
-  {% if image_src %}
-  <div class="v2-blog-card__media"><img src="{{ image_src }}" alt="{{ image_alt }}" width="480" height="320" loading="lazy" /></div>
-  {% endif %}
-  {% if category or language or date %}
+{# Fase B.3 (secao 20): editorial. featured=true amplia imagem/titulo -- uso
+   tipico: 1 destaque grande + N menores na listagem do blog. #}
+{#
+  Fase B.4 (secao 24): "nenhum placeholder pode aparecer no Presentation
+  Mode... nunca uma caixa cinza com icone de imagem". Sem image_src, o
+  BlogCard NAO cai mais no estado ".v2-media-empty" (isso e para
+  componentes onde a foto e estruturalmente esperada, como Hero/LanguageCard)
+  -- aqui a secao simplesmente NAO renderiza midia nenhuma, card vira
+  texto puro. #}
+{% macro v2_blog_card(title, summary, href, category=none, date=none, author=none, image_src=none, image_alt="", featured=false) %}
+<article class="v2-blog-card v2-blog-card__link-overlay{% if featured %} v2-blog-card--featured{% endif %}">
+  {%- if image_src %}
+  <div class="v2-blog-card__media">
+    <img src="{{ image_src }}" alt="{{ image_alt }}" width="800" height="600" loading="lazy" />
+  </div>
+  {%- endif %}
+  {% if category or date or author %}
   <p class="v2-blog-card__meta">
     {%- if category %}<span>{{ category }}</span>{% endif -%}
-    {%- if language %}<span>{{ language }}</span>{% endif -%}
+    {%- if author %}<span>{{ author }}</span>{% endif -%}
     {%- if date %}<span>{{ date }}</span>{% endif -%}
   </p>
   {% endif %}
   <h3 class="v2-blog-card__title"><a href="{{ href }}">{{ title }}</a></h3>
-  <p class="v2-body-sm v2-text-muted">{{ summary }}</p>
+  <p class="v2-body-sm v2-blog-card__summary">{{ summary }}</p>
 </article>
 {%- endmacro %}
 
+{# ================= INSIGHTS EDITORIAL (Conhecimento Vedium) ================= #}
+{#- Fase B.6E (Parte A da missao): "1 grande insight + 2 insights
+    complementares" -- substitui o grid 1/4+1/4+1/4 antigo (v2_blog_grid)
+    por uma composicao editorial de verdade: artigo principal ~54% +
+    coluna de 2 secundarios empilhados ~46%, com linha divisoria (nunca
+    card/radius/shadow -- "deve parecer uma publicacao institucional").
+    featured/secondary_a/secondary_b: dict {title, summary, href, category,
+    date}. cta_label: texto do link do artigo principal (ex. "Leia o
+    artigo"). #}
+{% macro v2_insights_editorial(featured, secondary_a, secondary_b, cta_label="Leia o artigo") %}
+<div class="v2-insights">
+  <article class="v2-insights__featured">
+    <p class="v2-insights__meta">
+      {%- if featured.category %}<span>{{ featured.category }}</span>{% endif -%}
+      {%- if featured.date %}<span>{{ featured.date }}</span>{% endif -%}
+    </p>
+    <h3 class="v2-insights__featured-title"><a href="{{ featured.href }}">{{ featured.title }}</a></h3>
+    <p class="v2-insights__featured-summary">{{ featured.summary }}</p>
+    <a class="v2-insights__cta" href="{{ featured.href }}">{{ cta_label }} {{ v2.v2_icon("arrow-right", size="1em") }}</a>
+  </article>
+  <div class="v2-insights__secondary-col">
+    {%- for item in [secondary_a, secondary_b] %}
+    <article class="v2-insights__secondary">
+      <p class="v2-insights__meta">
+        {%- if item.category %}<span>{{ item.category }}</span>{% endif -%}
+        {%- if item.date %}<span>{{ item.date }}</span>{% endif -%}
+      </p>
+      <h4 class="v2-insights__secondary-title"><a href="{{ item.href }}">{{ item.title }}</a></h4>
+      <p class="v2-insights__secondary-summary">{{ item.summary }}</p>
+    </article>
+    {%- endfor %}
+  </div>
+</div>
+{%- endmacro %}
+
 {# ================= CTA SECTION ================= #}
+{# Fase B.3 (secao 22): presenca institucional. variant: "section" (padrao,
+   surface-warm) | "brand" (fundo azul institucional) | "inline" |
+   "sticky-mobile". Secundario vira link textual ("Fale com a Vedium ->"). #}
 {% macro v2_cta_section(title, text, primary_cta, secondary_cta=none, variant="section") %}
 <div class="v2-cta-section{% if variant != 'section' %} v2-cta-section--{{ variant }}{% endif %}">
   <div>
-    <h2 class="v2-heading v2-h2">{{ title }}</h2>
-    {% if text %}<p class="v2-body v2-text-muted">{{ text }}</p>{% endif %}
+    <h2 class="v2-heading v2-h2 v2-cta-section__title">{{ title }}</h2>
+    {% if text %}<p class="v2-body v2-body-lg v2-cta-section__text">{{ text }}</p>{% endif %}
   </div>
   <div class="v2-hero__actions">
     {{ v2.v2_button(primary_cta.text, href=primary_cta.href, variant="primary") }}
-    {% if secondary_cta %}{{ v2.v2_button(secondary_cta.text, href=secondary_cta.href, variant="secondary") }}{% endif %}
+    {% if secondary_cta %}{{ v2_text_link(secondary_cta.text, secondary_cta.href, on_dark=(variant in ("brand", "brand-full"))) }}{% endif %}
   </div>
 </div>
 {%- endmacro %}

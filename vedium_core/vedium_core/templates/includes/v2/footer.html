@@ -6,6 +6,28 @@
   PT (decisao ja tomada, nao um bug -- ver project_termos_privacidade_pt_only_decision
   na memoria do projeto), mesmo WhatsApp fixo, CTA de teste de nivel com o
   mesmo mecanismo de override do header.
+
+  Fase B.3 (secao 25): mais espaco no topo + mensagem institucional curta
+  abaixo do logo (refino, nao substituicao -- o footer atual ja era "a parte
+  mais proxima da direcao correta" segundo a missao).
+
+  Fase B.5 (secao 20/22): mensagem trocada -- sem travessao, sem "contexto",
+  sem "professor real" ("parece defensivo e pouco institucional" segundo a
+  missao). "professores reais" -> "professores nativos e especialistas".
+
+  Fase B.6 (reset Bain-inspired, secao 18): "nao repetir slogans -- abaixo
+  do logo usar apenas uma frase curta com os 5 idiomas". A antiga
+  brand-signature ("Aulas de idiomas ao vivo, com professores...") repetia
+  quase o mesmo conteudo da v2-footer__message logo acima; trocada por uma
+  lista curta de idiomas.
+
+  Fase B.6B (secao 21 da missao): "reduzir a sensacao de que a headline e o
+  logo competem entre si -- logo + frase curta a esquerda". O antigo
+  v2-footer__message (Poppins 700, escala de --v2-text-h3, acima de toda a
+  grade) foi removido -- competia visualmente com o logo bem abaixo dele.
+  Vira UMA frase curta e discreta direto abaixo do logo (a lista de 5
+  idiomas da B.6A saiu porque ja repete a coluna "Cursos" ao lado --
+  redundante, "menos marketing, mais institucional" pedido pela missao).
 #}
 
 {% import "templates/includes/v2/macros_base.html" as v2 %}
@@ -19,9 +41,9 @@
     <div class="v2-footer__grid">
       <div>
         <a href="/" aria-label="Vedium">
-          <img src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium" width="132" height="32" />
+          <img class="v2-footer__logo" src="/assets/vedium_core/vedium_assets/images/logos/logo-branca-reta.png" alt="Vedium" width="132" height="32" />
         </a>
-        <p class="v2-footer__brand-signature">Aulas de idiomas ao vivo, com professores reais e progressão acompanhada.</p>
+        <p class="v2-footer__brand-signature">Escola de idiomas online com aulas ao vivo e progressão por nível.</p>
         <div class="v2-footer__social">
           <a href="https://www.instagram.com/vediumsglobal/" target="_blank" rel="noopener" aria-label="Instagram">{{ v2.v2_icon("instagram", decorative=false, label="Instagram") }}</a>
           <a href="https://www.linkedin.com/company/vediums" target="_blank" rel="noopener" aria-label="LinkedIn">{{ v2.v2_icon("linkedin", decorative=false, label="LinkedIn") }}</a>
@@ -58,7 +80,7 @@
           <a href="{{ v2_level_test_url }}">Descubra seu nível</a>
         </nav>
         <a class="v2-footer__whatsapp" href="{{ v2_whatsapp_href }}" target="_blank" rel="noopener">
-          {{ v2.v2_icon("whatsapp", decorative=false, label="WhatsApp") }} +55 (11) 91129-3075
+          {{ v2.v2_icon("whatsapp", decorative=false, label="WhatsApp") }} <span class="v2-footer__whatsapp-number">+55 (11) 91129-3075</span>
         </a>
       </div>
 
@@ -72,9 +94,48 @@
       </div>
     </div>
 
+    {#- Secoes de links SEO (pedido direto do usuario, comparando com o
+        rodapé rico de producao em templates/includes/site_footer.html --
+        mesmos hrefs reais ja usados la, sem inventar pagina nova, so
+        adaptados pro layout/classes do v2. PT-only, mesmo racional ja
+        documentado no topo deste arquivo pros links legais. #}
+    <div class="v2-footer__seo">
+      <p class="v2-footer__seo-heading">Vedium online para você</p>
+      <nav class="v2-footer__seo-links" aria-label="Vedium online para você">
+        <a href="/curso-de-ingles-online">Curso de inglês online</a>
+        <a href="/ingles-para-entrevista">Inglês para entrevista</a>
+        <a href="/ingles-para-programadores">Inglês para tecnologia</a>
+        <a href="/ingles-executivo">Inglês executivo</a>
+        <a href="/ingles-para-viagens">Inglês para viagens</a>
+        <a href="/portugues-para-estrangeiros">Português para estrangeiros</a>
+        <a href="/curso-de-ioruba-online">Curso de iorubá online</a>
+        <a href="/preparatorio-celpe-bras">Preparatório Celpe-Bras</a>
+      </nav>
+    </div>
+    <div class="v2-footer__seo">
+      <p class="v2-footer__seo-heading">Conteúdos gratuitos</p>
+      <nav class="v2-footer__seo-links" aria-label="Conteúdos gratuitos">
+        <a href="/blog">Blog da Vedium</a>
+        <a href="/blog/aprender-ioruba-lingua-e-cultura">Aprender iorubá: língua e cultura</a>
+        <a href="/quanto-custa-curso-de-idiomas">Quanto custa e vale a pena</a>
+        <a href="/teste-de-nivel-ingles">Teste de inglês</a>
+      </nav>
+    </div>
+    <div class="v2-footer__seo">
+      <p class="v2-footer__seo-heading">Conteúdos e oportunidades</p>
+      <nav class="v2-footer__seo-links" aria-label="Conteúdos e oportunidades">
+        <a href="/programa-de-indicacao">Indique a Vedium</a>
+        <a href="/parcerias">Parcerias</a>
+        <a href="/carreiras">Trabalhe conosco</a>
+        <a href="/empresas">Treinamento para empresas</a>
+        <a href="/comunidade">Comunidade por idioma</a>
+        <a href="/matricula">Matrícula</a>
+      </nav>
+    </div>
+
     <div class="v2-footer__bottom">
-      <span>VEDIUM GLOBAL EDUCAÇÃO E TECNOLOGIA LTDA · CNPJ 58.434.869/0001-24 · Brasil</span>
-      <span>© 2026 Vedium</span>
+      <span>VEDIUM GLOBAL EDUCAÇÃO E TECNOLOGIA LTDA · CNPJ 58.434.869/0001-24 · Brasil · Atendimento 100% Online</span>
+      <span>© 2026 Vedium · Desenvolvido por <a href="https://scaledata.com.br" target="_blank" rel="noopener">Scaledata</a></span>
     </div>
   </div>
 </footer>

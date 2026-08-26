@@ -137,15 +137,31 @@
 
   --v2-text-xs: 0.75rem;
   --v2-text-sm: 0.875rem;
-  --v2-text-base: 1rem;
-  --v2-text-lg: 1.1875rem;
+  --v2-text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);      /* 16px -> 17px, ver nota de escala abaixo */
+  --v2-text-lg: clamp(1.0625rem, 0.98rem + 0.4vw, 1.1875rem);     /* 17px -> 19px -- corpo de destaque/lead */
   --v2-text-xl: 1.375rem;
   --v2-text-2xl: 1.75rem;
   --v2-text-3xl: clamp(2rem, 1.6rem + 1.6vw, 3rem);
   --v2-text-display: clamp(2.5rem, 1.7rem + 3.2vw, 4.5rem);
 
-  --v2-leading-tight: 1.15;
-  --v2-leading-heading: 1.25;
+  /*
+   * Escala institucional (Fase B.3, 2026-08-24): a Fase B.1 aprovou a
+   * DECISAO de tipografia (Poppins/Inter/Arial/Playfair); a Fase B.3 aprova
+   * a ESCALA (tamanho/ritmo). Direcao aproximada da missao B.3 (secao 4),
+   * adaptada com clamp() pra nao pular abruptamente entre breakpoints:
+   *   H1: ~38px (mobile) -> ~72px (desktop largo)
+   *   H2: ~30px -> ~48px
+   *   H3: ~24px -> ~32px
+   *   body: ja coberto por --v2-text-base/--v2-text-lg acima (16-19px)
+   * "Nao seguir numeros cegamente" (texto da missao) -- os clamp() abaixo
+   * priorizam proporcao/leitura sobre acerto pixel-perfeito em cada largura.
+   */
+  --v2-text-h1: clamp(2.375rem, 1.5rem + 4.2vw, 4.75rem);  /* Fase B.6 (reset Bain-inspired, secao 17): "headline muito grande -- desktop ate 72-80px quando adequado". O teto de 52px da Fase B.5 era calibrado pro H1 antigo (9 palavras, coluna de 47%); o Hero B.6 e editorial largo (sem coluna de 47%) com H1 curto ("Aprenda ao vivo. Avance com direção." -- 5 palavras), entao volta a caber confortavelmente num teto bem maior. A confirmar por screenshot em 1440px nesta mesma fase (ver docs/redesign/18-bain-inspired-direction.md). */
+  --v2-text-h2: clamp(1.875rem, 1.5rem + 1.9vw, 3.125rem); /* 42-50px desktop */
+  --v2-text-h3: clamp(1.5rem, 1.32rem + 0.9vw, 2rem);
+
+  --v2-leading-tight: 1.1;
+  --v2-leading-heading: 1.2;
   --v2-leading-body: 1.6;
 
   /* ---------- Espacamento (base 4px) ---------- */
@@ -162,24 +178,52 @@
   --v2-space-20: 5rem;
   --v2-space-24: 6rem;
 
-  --v2-space-section: clamp(3rem, 2.2rem + 3.5vw, 6rem);
+  /*
+   * Fase B.3: secoes precisam de mais espaco vertical e presenca (secao 4 da
+   * missao: "96-128px desktop, 56-72px mobile" -- aproximado via clamp, nao
+   * fixo, pra reagir ao viewport real em vez de saltar em breakpoints).
+   */
+  --v2-space-section: clamp(3.5rem, 1.6rem + 8vw, 9.25rem); /* Fase B.6: "110-150px de padding vertical no desktop" (era ate 128px) */
+  --v2-space-section-tight: clamp(2.5rem, 1.7rem + 3.2vw, 4.5rem);
 
-  /* ---------- Raio ---------- */
+  /* Altura minima de presenca do hero institucional (secao 4 e 7 da missao
+     B.3: "hero: minimo ~680-760px de presenca visual" em desktop). Nao se
+     aplica em mobile (o hero encolhe pro conteudo real). */
+  --v2-hero-min-height: 42rem; /* 672px, desktop -- ver media query no componente */
+
+  /* ---------- Raio -- Fase B.5 (secao 25): "radius atual esta
+     excessivamente amigavel em alguns blocos -- instituicao seria: radius
+     moderado" -- reduzido de 16/22px (Fase B.3) para 10/16px.
+     Fase B.6 (secao 19): a missao distinguiu faixas por tipo de bloco --
+     "Hero image: 12-16px", "CTA block: 12-16px", "Cards: 8-12px". Um so
+     token (--v2-radius-media, 10px) cobria os dois primeiros grupos E
+     cards ao mesmo tempo; separado agora: --v2-radius-media sobe pra 14px
+     (hero/feature media de secao inteira) e cards de grade (LanguageCard,
+     CourseCard, TeacherCard, BlogCard) passam a usar --v2-radius-md (12px,
+     ja dentro de "8-12px"). ---------- */
   --v2-radius-sm: 6px;
-  --v2-radius-md: 12px;
-  --v2-radius-lg: 22px;
+  --v2-radius-md: 12px;     /* cards de grade (8-12px) */
+  --v2-radius-media: 14px;  /* hero e midia de secao inteira (12-16px) -- era 10px */
+  --v2-radius-lg: 16px;     /* reservado a blocos especiais (CTA institucional, modal) -- nao usar em card comum (12-16px) */
   --v2-radius-pill: 999px;
 
-  /* ---------- Sombra (usar com moderacao -- no maximo 3 niveis) ---------- */
+  /* ---------- Sombra (Fase B.3, secao 27: "quase nenhuma -- preferir
+     border + surface + space"). Mantidas so pra elementos que futuram
+     genuinamente sobre o conteudo (modal, mega menu) -- nao mais usadas em
+     card/pricing/hero. ---------- */
   --v2-shadow-1: 0 1px 2px rgba(15, 20, 25, 0.06), 0 1px 1px rgba(15, 20, 25, 0.04);
   --v2-shadow-2: 0 4px 12px rgba(15, 20, 25, 0.08), 0 2px 4px rgba(15, 20, 25, 0.05);
   --v2-shadow-3: 0 12px 32px rgba(15, 20, 25, 0.12), 0 4px 8px rgba(15, 20, 25, 0.06);
 
   /* ---------- Container ---------- */
-  --v2-container-reading: 47.5rem;  /* 760px */
-  --v2-container-content: 70rem;    /* 1120px */
-  --v2-container-wide: 80rem;       /* 1280px */
+  --v2-container-reading: 47.5rem;  /* 760px -- FAQ, artigos, legal */
+  --v2-container-content: 73.75rem; /* 1180px -- Fase B.3 secao 4: "container visual principal: 1180-1280px" (era 1120px na Fase B) */
+  --v2-container-wide: 80rem;       /* 1280px -- Fase B.6: "container principal aprox. 1240-1320px" (era 1216px na B.4/B.5); Header e Hero continuam no mesmo container */
   --v2-gutter: 1rem;
+
+  /* ---------- Controle (input/botao -- Fase B.3 secao 26: "48-52px de
+     altura", maior que o alvo minimo de toque de 44px) ---------- */
+  --v2-control-height: 3rem; /* 48px */
 
   /* ---------- Movimento ---------- */
   --v2-motion-fast: 120ms;

@@ -1,6 +1,8 @@
 # 08 — Mapa de mídia por página
 
 > **Escopo da Fase 0.5:** recomendação documental. Nenhum asset foi copiado, transformado ou implementado. Todo candidato `E` é stock e, portanto, não pode servir como prova de professor, aula, aluno, plataforma ou experiência real da Vedium.
+>
+> **⚠️ Atualizado na Fase B.6C (implementação real, não mais só recomendação)**: a Home V2 (`/design_system_v2`) passou a usar mídia real em todos os 5 idiomas de Cursos + vídeo em "Aula ao vivo" — as linhas abaixo ainda descrevem o planejamento original da Fase 0.5 (mantidas como histórico), mas o **estado atual implementado** está em `docs/redesign/21-course-media-selection.md`, com tabela completa (asset selecionado, por que, o que comunica, o que NÃO deve ser inferido, crop, substituição futura). Resumo do que mudou: Home—idiomas ganhou mídia em Iorubá e Hebraico pela primeira vez (novos assets E12/E15 no inventário, seção 21); Home—aula ao vivo ganhou vídeo real da biblioteca (E08); Home—B2B trocou de E07 (meio duplicado com o Hero) para E01-alt (a foto de videochamada em grupo, não o vídeo de sala física); PLE trocou de asset pra evitar duplicar o Hero. Os gates **P0 — REAL VEDIUM REQUIRED** continuam todos válidos e não foram satisfeitos por nenhuma dessas mudanças — elas são todas "ponte com stock aprovado", nunca prova real.
 
 ## 1. Legenda e prioridades
 

@@ -3,10 +3,12 @@
  * nova). So roda dentro de .v2-scope. Isolado -- nao e incluido em
  * web_include_js, so carregado explicitamente pela pagina de preview.
  *
- * Cobre: menu mobile do Header v2, accordion do FAQ, modal base.
+ * Cobre: menu mobile do Header v2, accordion do FAQ, modal base, e o
+ * padrao tablist acessivel do LevelJourney (Fase B.3).
  * Tudo funciona sem JS (menu mobile fica sempre visivel sem JS -- ver
  * fallback <noscript> no macro do header; FAQ sem JS mostra todas as
- * respostas abertas via <details>/<summary> nativo).
+ * respostas abertas via <details>/<summary> nativo; LevelJourney sem JS
+ * mostra todos os paineis empilhados -- ver nota no macro v2_level_journey).
  */
 (function () {
   "use strict";
@@ -156,10 +158,300 @@
     });
   }
 
+  /*
+   * LevelJourney (Fase B.3) -- padrao tablist ARIA com "ativacao automatica"
+   * (setas movem foco E trocam o painel, igual ao padrao WAI-ARIA Authoring
+   * Practices para tabs). Sem JS, todo painel fica visivel (fallback
+   * seguro definido no macro); aqui o JS confirma que rodou escondendo os
+   * paineis que nao sao o selecionado.
+   */
+  function initLevelJourney(scope) {
+    scope.querySelectorAll("[data-v2-journey]").forEach(function (timeline) {
+      var tabs = Array.prototype.slice.call(timeline.querySelectorAll("[data-v2-journey-tab]"));
+      if (!tabs.length) return;
+      var container = timeline.parentElement;
+      if (!container) return;
+      var panels = Array.prototype.slice.call(container.querySelectorAll("[data-v2-journey-panel]"));
+
+      function selectTab(tab, moveFocus) {
+        tabs.forEach(function (t) {
+          var selected = t === tab;
+          t.setAttribute("aria-selected", selected ? "true" : "false");
+          t.setAttribute("tabindex", selected ? "0" : "-1");
+        });
+        panels.forEach(function (panel) {
+          var isTarget = panel.id === tab.getAttribute("aria-controls");
+          if (isTarget) panel.removeAttribute("hidden");
+          else panel.setAttribute("hidden", "");
+        });
+        if (moveFocus) tab.focus();
+      }
+
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener("click", function () {
+          selectTab(tab, false);
+        });
+        tab.addEventListener("keydown", function (event) {
+          var targetIndex = null;
+          if (event.key === "ArrowRight" || event.key === "ArrowDown") targetIndex = (index + 1) % tabs.length;
+          else if (event.key === "ArrowLeft" || event.key === "ArrowUp") targetIndex = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === "Home") targetIndex = 0;
+          else if (event.key === "End") targetIndex = tabs.length - 1;
+          if (targetIndex === null) return;
+          event.preventDefault();
+          selectTab(tabs[targetIndex], true);
+        });
+      });
+
+      // Confirma que o JS rodou: esconde os paineis marcados como nao-atuais
+      // pelo macro (data-v2-journey-hidden) -- ate aqui, todos ficavam
+      // visiveis (fallback sem JS).
+      panels.forEach(function (panel) {
+        if (panel.hasAttribute("data-v2-journey-hidden")) panel.setAttribute("hidden", "");
+      });
+    });
+  }
+
+  /*
+   * HeroEditorialCarousel (Fase B.6A, hero full-bleed inspirado no
+   * Bain.com) -- autoplay com pausa (hover/foco/aba oculta/prefers-reduced-
+   * motion), troca de slide, barra de progresso por tab, Ken Burns
+   * reiniciado a cada slide. Sem JS, o CSS ja deixa so o slide 1 visivel
+   * (ver nota no macro v2_hero_editorial_carousel) -- este script so
+   * adiciona a rotacao automatica e a navegacao manual por cima disso.
+   */
+  function initHeroCarousel(scope) {
+    scope.querySelectorAll("[data-v2-hero-carousel]").forEach(function (hero) {
+      var slides = Array.prototype.slice.call(hero.querySelectorAll(".v2-editorial-hero__slide"));
+      var tabs = Array.prototype.slice.call(hero.querySelectorAll("[data-v2-hero-tab]"));
+      if (!slides.length || !tabs.length) return;
+
+      var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var autoplayMs = parseFloat(getComputedStyle(hero).getPropertyValue("--v2-hero-autoplay")) * 1000 || 9000;
+      var current = 0;
+      var timer = null;
+      var paused = false;
+
+      function restartDrift(slide) {
+        var img = slide.querySelector(".v2-editorial-hero__media img");
+        if (!img) return;
+        img.style.animation = "none";
+        // eslint-disable-next-line no-unused-expressions
+        img.offsetWidth; // força reflow -- reinicia a animacao no proximo frame
+        img.style.animation = "";
+      }
+
+      function goTo(index) {
+        if (index === current) return;
+        var prevSlide = slides[current];
+        var prevTab = tabs[current];
+        current = (index + slides.length) % slides.length;
+        var nextSlide = slides[current];
+        var nextTab = tabs[current];
+
+        prevSlide.classList.remove("is-active");
+        prevSlide.setAttribute("aria-hidden", "true");
+        prevTab.classList.remove("is-active");
+        prevTab.setAttribute("aria-selected", "false");
+        prevTab.setAttribute("tabindex", "-1");
+
+        nextSlide.classList.add("is-active");
+        nextSlide.removeAttribute("aria-hidden");
+        nextTab.classList.add("is-active");
+        nextTab.setAttribute("aria-selected", "true");
+        nextTab.setAttribute("tabindex", "0");
+
+        if (!reducedMotion) restartDrift(nextSlide);
+      }
+
+      function scheduleNext() {
+        clearTimeout(timer);
+        if (reducedMotion || paused) return;
+        timer = setTimeout(function () {
+          goTo(current + 1);
+          scheduleNext();
+        }, autoplayMs);
+      }
+
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener("click", function () {
+          goTo(index);
+          scheduleNext();
+        });
+        tab.addEventListener("keydown", function (event) {
+          var targetIndex = null;
+          if (event.key === "ArrowRight") targetIndex = (index + 1) % tabs.length;
+          else if (event.key === "ArrowLeft") targetIndex = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === "Home") targetIndex = 0;
+          else if (event.key === "End") targetIndex = tabs.length - 1;
+          if (targetIndex === null) return;
+          event.preventDefault();
+          tabs[targetIndex].focus();
+          goTo(targetIndex);
+          scheduleNext();
+        });
+      });
+
+      function pause() {
+        paused = true;
+        clearTimeout(timer);
+      }
+      function resume() {
+        if (!paused) return;
+        paused = false;
+        scheduleNext();
+      }
+
+      hero.addEventListener("mouseenter", pause);
+      hero.addEventListener("mouseleave", resume);
+      hero.addEventListener("focusin", pause);
+      hero.addEventListener("focusout", function (event) {
+        if (!hero.contains(event.relatedTarget)) resume();
+      });
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) pause();
+        else resume();
+      });
+
+      if (!reducedMotion) scheduleNext();
+    });
+  }
+
+  /*
+   * Header overlay (Fase B.6A) -- fixed sobre o Hero, transparente ate a
+   * base do Hero cruzar a base do header durante o scroll; a partir dali
+   * ganha fundo solido ("is-solid") pra continuar legivel sobre o resto da
+   * Home. rAF-throttled, sem biblioteca de scroll.
+   */
+  function initHeaderOverlay(scope) {
+    var wrap = scope.querySelector("[data-v2-header-overlay]");
+    var hero = scope.querySelector(".v2-editorial-hero");
+    if (!wrap || !hero) return;
+
+    /*
+     * A ferramenta de preview tem sua propria barra fixa/sticky no topo
+     * (.dstool-banner sempre, .dstool-toc so em debug mode) -- FORA de
+     * .v2-scope, nunca existe na producao real. Sem esse ajuste, o header
+     * fixed (top:0) fica exatamente atras dessa barra (mesmo z-index de
+     * topo de pagina), escondendo a utility bar por baixo dela. Medido em
+     * runtime (nao hardcoded) pra continuar correto se o dev-tool mudar de
+     * altura entre Presentation e Debug mode.
+     */
+    var devToolOffset = 0;
+    document.querySelectorAll(".dstool-banner, .dstool-toc").forEach(function (el) {
+      devToolOffset += el.getBoundingClientRect().height;
+    });
+    if (devToolOffset > 0) {
+      wrap.style.top = devToolOffset + "px";
+      // Mesmo valor tambem encolhe o min-height:100svh do Hero (ver
+      // --v2-devtool-offset em components-editorial.css) -- sem isso o
+      // Hero + a barra do dev-tool juntos passavam de uma tela, empurrando
+      // a navegacao de slides do rodape pra fora da viewport inicial.
+      document.documentElement.style.setProperty("--v2-devtool-offset", devToolOffset + "px");
+    }
+
+    var ticking = false;
+    function update() {
+      var solid = hero.getBoundingClientRect().bottom <= wrap.getBoundingClientRect().bottom;
+      wrap.classList.toggle("is-solid", solid);
+      ticking = false;
+    }
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /*
+   * LiveClassExperience video (Fase B.6C, secao 17 da missao) -- o video e
+   * didatico (fala explicando gramatica), entao usa <video controls> real
+   * SEM autoplay (secao 16: "se o vídeo tiver conteúdo didático que
+   * precise ser assistido: usar controls e NÃO autoplay") -- isso ja
+   * satisfaz "prefers-reduced-motion -> não autoplay, mostrar poster"
+   * estruturalmente, sem precisar de logica extra. O unico comportamento
+   * de performance que ainda cabe aqui (a missao pede "pause quando sair
+   * significativamente da viewport"): se o visitante der play e depois
+   * rolar a secao pra fora da tela, pausa sozinho -- nao continua tocando
+   * (com audio) fora de vista.
+   */
+  function initLiveClassVideo(scope) {
+    var video = scope.querySelector(".v2-live-class__media video");
+    if (!video || !("IntersectionObserver" in window)) return;
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting && !video.paused) video.pause();
+        });
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(video);
+  }
+
+  /*
+   * Locale menu (Fase B.6E, Parte D) -- disclosure simples (botao + lista
+   * de links), nao um modal. A resolucao das URLs reais por locale (com
+   * fallback en->pt-br, nunca troca de prefixo cega) e feita por
+   * vedium-language.js (updateLocaleLinks(), lido via data-vd-locale /
+   * data-vd-nav-urls / data-vd-nav-current no elemento [data-v2-locale-root]
+   * -- mesmo contrato do header de producao, ver ui-contracts.md). Este
+   * bloco so cuida de abrir/fechar o painel -- nao reimplementa nem
+   * substitui a logica de resolucao de URL real.
+   */
+  function initLocaleMenu(scope) {
+    scope.querySelectorAll("[data-v2-locale-root]").forEach(function (root) {
+      var toggle = root.querySelector("[data-v2-locale-toggle]");
+      var menu = root.querySelector("[data-v2-locale-menu]");
+      if (!toggle || !menu) return;
+
+      function isOpen() {
+        return toggle.getAttribute("aria-expanded") === "true";
+      }
+
+      function open() {
+        menu.hidden = false;
+        toggle.setAttribute("aria-expanded", "true");
+      }
+
+      function close(focusToggle) {
+        menu.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+        if (focusToggle) toggle.focus();
+      }
+
+      toggle.addEventListener("click", function () {
+        if (isOpen()) close(false);
+        else open();
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!isOpen()) return;
+        if (root.contains(event.target)) return;
+        close(false);
+      });
+
+      root.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && isOpen()) close(true);
+      });
+    });
+  }
+
   onReady(function () {
     var scope = document;
     initHeaderMenu(scope);
     initFaqAccordion(scope);
     initModals(scope);
+    initLevelJourney(scope);
+    initHeroCarousel(scope);
+    initHeaderOverlay(scope);
+    initLiveClassVideo(scope);
+    initLocaleMenu(scope);
   });
 })();

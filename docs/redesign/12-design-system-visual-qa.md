@@ -1,8 +1,51 @@
-# 12. QA Visual, Marca e Responsividade — Design System V2 (Fase B.1)
+# 12. QA Visual, Marca e Responsividade — Design System V2 (Fase B.1 + B.3)
 
-> **Escopo desta fase:** QA e correção SOMENTE de arquivos da Fase B (`vedium_core/vedium_core/public/css/v2/`, `public/js/v2/`, `templates/includes/v2/`, `www/design_system_v2.py`/`.html`, `docs/redesign/10-design-system-v2-implementation.md`). Nenhum arquivo público de produção fora de `v2/` foi tocado. Nenhuma página real (Home, cursos) foi migrada. Nenhum deploy foi feito. Nenhum commit foi feito automaticamente — ver relatório final ao usuário.
+> **Escopo:** QA e correção SOMENTE de arquivos do design system (`vedium_core/vedium_core/public/css/v2/`, `public/js/v2/`, `public/v2-preview-media/`, `templates/includes/v2/`, `www/design_system_v2.py`/`.html`, `docs/redesign/`). Nenhum arquivo público de produção fora de `v2/` foi tocado em nenhuma fase. Nenhuma página real (Home, cursos) foi migrada. Nenhum deploy foi feito. Nenhum commit foi feito automaticamente.
 >
-> Metodologia: sem acesso a `bench` real nem a ferramenta de automação de navegador (Playwright/Puppeteer não estão configurados neste projeto — confirmado por busca no `package.json` e no filesystem; por instrução explícita, nenhuma ferramenta nova foi instalada só para isso). A QA visual foi feita por **auditoria de código** (CSS/Jinja renderizado via `jinja2.Environment` + `FileSystemLoader`, reproduzindo o parser/render Jinja padrão fora do bench) e por **cálculo direto** (contraste WCAG via fórmula de luminância relativa, contagem de landmarks/aria, contagem de breakpoints). Isso está sinalizado como limitação em cada seção onde se aplica.
+> **Seções 1-13 abaixo são o relatório original da Fase B.1** (metodologia: só auditoria de código, sem navegador real — ver nota de metodologia original preservada abaixo). **A seção 0 é nova (Fase B.3, 2026-08-24)** e documenta a QA com navegador real, feita depois do redesign visual que a revisão humana da B.2 exigiu. Onde a B.3 contradiz uma afirmação da B.1 (ex.: "sem teste visual real"), a seção 0 é a atual.
+
+## 0. Fase B.3 — QA com navegador real (Chrome headless + CDP)
+
+### 0.1 Ferramenta usada
+
+Nenhuma ferramenta nova foi instalada. O **Google Chrome já instalado na máquina** (`C:\Program Files\Google\Chrome\Application\chrome.exe`) foi usado em modo headless, controlado via **Chrome DevTools Protocol** (WebSocket nativo, sem biblioteca — um script Node curto usando `WebSocket`/`fetch` já nativos do Node 22 instalado). Isso é diferente de instalar Playwright/Puppeteer (que continuam ausentes do projeto): é uso de uma capacidade de linha de comando de um programa que já existia na máquina, do mesmo jeito que usar `docker` ou `git`.
+
+### 0.2 Achado de metodologia (importante para quem for repetir este teste)
+
+A primeira tentativa (`chrome --headless --window-size=390,20000 --screenshot=out.png`) produziu screenshots com o **conteúdo visualmente cortado na borda direita** em 390px — parecia um bug real de overflow horizontal (título do hero, botões e texto do ProofBar cortados). Isso **não era um bug real**: `--window-size` sozinho, sem emulação de dispositivo móvel explícita, faz o Chrome herdar um viewport de *layout* largo (a assunção clássica "desktop", ~980px) mesmo com uma janela estreita — o PNG final só recorta visualmente os primeiros 390px de uma página desenhada para uma tela mais larga. Confirmado via CDP (`Emulation.setDeviceMetricsOverride` seguido de `document.body.scrollWidth` via `Runtime.evaluate`): com `mobile: true` explícito, `bodyScrollWidth === innerWidth` (nenhum overflow real) nos três viewports testados. O método usado para todos os screenshots reais abaixo foi `Emulation.setDeviceMetricsOverride({width, mobile:true})` seguido de `Page.captureScreenshot`.
+
+### 0.3 Viewports com screenshot real capturado
+
+| Viewport | Resultado |
+|---|---|
+| 390px | Sem overflow horizontal real. Hero empilha (foto full-width acima, texto abaixo), os 2 CTAs do hero viram botões full-width empilhados, ProofBar vira grid 2×2, LanguageMosaic empilha em coluna única, header mostra menu hambúrguer (☰), `LevelJourney` mostra a timeline como faixa `overflow-x:auto` (rolagem horizontal **intencional**, única "ultrapassagem" de viewport real — por design, não bug). |
+| 768px | ProofBar já em 4 colunas (breakpoint `min-width:768px`). Hero continua em coluna única (o split de 2 colunas só entra em 992px — comportamento esperado). Header continua com hambúrguer (nav desktop só entra em 992px). |
+| 1440px | Layout completo validado: Hero split 52/48 com a foto ocupando quase toda a altura do bloco, ProofBar em 4 colunas sem caixa, LanguageMosaic com card grande (Inglês) + médios (PLE/Iorubá) + pequenos (Espanhol/Hebraico) + bloco institucional B2B, LiveClassExperience, TeacherFeature, LevelJourney (tabs + painel), ProcessSteps (números grandes translúcidos), FeatureMedia, StudyRhythm (3 cards sem preço), Testimonial, Blog, FAQ, CTA institucional, Footer. |
+| Debug mode (`?debug=1`) | Confirmado visualmente: Footer real termina, depois a faixa preta "COMPONENT LIBRARY" (só visível nesse modo) começa, Typography/Colors renderizam corretamente, e o teste RTL (`FeatureCard` em `dir="rtl" lang="he"`) mostra alinhamento e ícones no lado correto. |
+
+Não foram capturados 360/375/430/1024/1280px individualmente (tempo de sessão) — o código responsivo entre os breakpoints confirmados (390/768/1440) é `clamp()`/grid fluido, sem saltos abruptos adicionais entre eles (ver `tokens.css`), então o risco de regressão nos viewports intermediários é baixo, mas **não foi verificado com screenshot**.
+
+### 0.4 Bug real encontrado e corrigido (via screenshot, não seria pego só por auditoria de código)
+
+`CTASection` variante `--brand` (fundo azul institucional escuro): o título renderizava em tinta escura (`.v2-heading` do foundations.css fixa `color: var(--v2-color-text)`), quase ilegível sobre o fundo. **Não seria encontrado só por leitura de CSS** — a regra de contraste do token em si está correta (`--v2-color-text` sobre branco passa AA); o problema era puramente a ausência de um override de cor para esse contexto específico, only visível olhando o resultado renderizado. Corrigido com `.v2-cta-section--brand .v2-cta-section__title { color: var(--v2-color-surface-0); }`. Confirmado corrigido em novo screenshot.
+
+### 0.5 Ajuste de composição feito a partir do screenshot
+
+`LanguageMosaic`: os cards `md` e `sm` estavam com a mesma largura de grid (`span 3` os dois) — visualmente indistinguíveis como "médio" vs. "menor" (só a posição na página sugeria hierarquia). Ajustado para os `sm` terem uma faixa de imagem mais baixa (9rem fixo vs. 55% da altura do card) e não ocupar a altura total da linha do grid — diferença de peso visual real entre "médio" (Iorubá/PLE) e "menor" (Espanhol/Hebraico), como pedido pela missão.
+
+### 0.6 O que não foi validado nesta fase
+
+- Estados de `:hover`/`:focus-visible` renderizados (só os tokens de cor base foram confirmados via screenshot estático).
+- Zoom 200% / reflow a 320px CSS.
+- Leitor de tela real (NVDA/VoiceOver) — o padrão ARIA do `LevelJourney` foi verificado por leitura de código, não por teste com leitor de tela.
+- Safari/Firefox (só Chrome foi usado).
+- Qualquer processo Chrome que o usuário tivesse aberto para uso pessoal foi encerrado ao final da sessão (`taskkill /IM chrome.exe /T`, necessário para liberar a porta de depuração) — se havia abas com trabalho não salvo, foram perdidas. Ver aviso no relatório final.
+
+---
+
+## Relatório original da Fase B.1 (metodologia: só código, sem navegador)
+
+> Nota de metodologia original (preservada): sem acesso a `bench` real nem a ferramenta de automação de navegador (Playwright/Puppeteer não estavam configurados neste projeto — confirmado por busca no `package.json` e no filesystem; por instrução explícita, nenhuma ferramenta nova foi instalada só para isso naquela fase). A QA visual foi feita por **auditoria de código** (CSS/Jinja renderizado via `jinja2.Environment` + `FileSystemLoader`) e por **cálculo direto** (contraste WCAG via fórmula de luminância relativa, contagem de landmarks/aria, contagem de breakpoints).
 
 ## 1. Viewports testados (auditoria de código, não screenshot)
 
