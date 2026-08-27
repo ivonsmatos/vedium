@@ -69,8 +69,12 @@ def test_get_home_course_collection_sorted_by_order():
 
 
 def test_get_home_course_collection_resolves_media_src():
+    """Hotfix de producao: media_src resolve pro path definitivo
+    (public/v2/media/home/, versionado no Git) -- nao mais
+    v2-preview-media/ (era local/gitignorado, nunca chegava a producao,
+    causa raiz do 404 encontrado no smoke test pos-deploy)."""
     for course in get_home_course_collection():
-        assert course["media_src"] == "/assets/vedium_core/v2-preview-media/" + course["media_key"]
+        assert course["media_src"] == "/assets/vedium_core/v2/media/home/" + course["media_key"]
 
 
 def test_get_course_index_entries_matches_collection_order():
@@ -80,6 +84,25 @@ def test_get_course_index_entries_matches_collection_order():
     for entry, course in zip(entries, active):
         assert entry["name"] == course["display_name"]
         assert entry["href"] == course["url"]
+
+
+def test_home_media_directory_has_all_referenced_files_committed():
+    """Hotfix de producao: garante que os arquivos de media referenciados
+    em media_key REALMENTE existem em public/v2/media/home/ E que essa
+    pasta NAO esta no .git/info/exclude nem no .gitignore -- a causa raiz
+    do 404 em producao foi um path referenciado no codigo apontando pra
+    uma pasta que nunca era versionada. Este teste falha se isso se repetir."""
+    media_dir = ROOT / "vedium_core" / "vedium_core" / "public" / "v2" / "media" / "home"
+    assert media_dir.exists(), f"pasta de midia de producao ausente: {media_dir}"
+    for course in HOME_COURSE_COLLECTION:
+        asset_path = media_dir / course["media_key"]
+        assert asset_path.exists(), f"asset ausente em disco: {asset_path}"
+        assert asset_path.stat().st_size > 0, f"asset vazio: {asset_path}"
+
+    gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "public/v2/media/home" not in gitignore, (
+        "public/v2/media/home nao pode estar no .gitignore -- e a pasta de producao"
+    )
 
 
 def test_home_body_template_consumes_collection_not_hardcoded_blocks():

@@ -124,7 +124,7 @@ HOME_COURSE_COLLECTION = [
     },
 ]
 
-V2_PREVIEW_MEDIA_BASE = "/assets/vedium_core/v2-preview-media/"
+V2_HOME_MEDIA_BASE = "/assets/vedium_core/v2/media/home/"
 
 
 def get_home_course_collection():
@@ -132,12 +132,15 @@ def get_home_course_collection():
 
     Nao muta HOME_COURSE_COLLECTION -- devolve copias rasas com "media_src"
     adicionado (path completo pronto pro template, evitando repetir a base
-    de v2-preview-media em cada consumidor).
+    em cada consumidor). Hotfix de producao (media production hotfix):
+    os 11 derivados aprovados vivem em public/v2/media/home/ (versionado
+    no Git) -- deixaram de ser "preview" (pasta antiga v2-preview-media/
+    era so local/gitignorada, nunca chegava a producao).
     """
     active = [dict(course) for course in HOME_COURSE_COLLECTION if course["is_active"]]
     active.sort(key=lambda course: course["order"])
     for course in active:
-        course["media_src"] = V2_PREVIEW_MEDIA_BASE + course["media_key"]
+        course["media_src"] = V2_HOME_MEDIA_BASE + course["media_key"]
     return active
 
 
