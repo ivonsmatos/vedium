@@ -70,12 +70,23 @@
 }
 .v2-hdr-locale-menu[hidden] { display: none; }
 .v2-hdr-locale-menu__link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-2);
   padding: var(--v2-space-2) var(--v2-space-3);
   border-radius: var(--v2-radius-sm);
   font-size: var(--v2-text-sm);
   font-weight: 600;
   color: var(--v2-color-text);
+}
+/* Fase C.1 (secao 5 da missao): bandeira e so um glifo decorativo ao
+   lado do texto real -- nunca substitui o nome do idioma (aria-hidden no
+   proprio glifo, ver header.html). font-size levemente maior que o texto
+   pra ficar legivel sem dominar a linha. */
+.v2-hdr-utility__locale-flag,
+.v2-hdr-locale-menu__flag {
+  font-size: 1rem;
+  line-height: 1;
 }
 .v2-hdr-locale-menu__link:hover { background: var(--v2-color-surface-alt); }
 .v2-hdr-locale-menu__link.is-active { color: var(--v2-color-brand-700); background: var(--v2-color-surface-alt); }

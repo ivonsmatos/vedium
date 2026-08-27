@@ -1,0 +1,260 @@
+{#- VEDIUM V2 -- Corpo da Home (Fase C, secao 2 da missao: "nao duplicar o
+    HTML inteiro do preview"). Extraido de www/design_system_v2.html
+    (Presentation Mode) pra este include compartilhado, consumido tanto
+    pelo preview (design_system_v2.py/.html, biblioteca/QA) quanto pela
+    Home V2 integrada (www/_home_v2.py/.html) -- as MESMAS 9 secoes
+    aprovadas (Hero ate Conhecimento Vedium), a mesma fonte de dados reais
+    (v2_home_data.py) nos dois lugares. CTA final e Footer ficam FORA
+    deste include (cada pagina chama v2_cta_section/footer.html
+    separadamente -- sao secoes congeladas visualmente, ver docs 23-25 e
+    a missao da Fase C).
+
+    Requer no contexto do chamador: v2e/v2 importados, v2_e02_src..v2_e16_*
+    (mesmos sets ja usados no preview, ainda usados pelo Hero/Live
+    Class/B2B), insights_featured/insights_secondary (dicts no formato de
+    v2e.v2_insights_editorial -- ver v2_home_data.to_insight_macro_dict()),
+    e desde a Fase C.1.1: home_courses/course_index_entries (vindos de
+    home_course_collection.get_home_course_collection()/
+    get_course_index_entries() -- a secao Cursos NAO usa mais
+    v2_e02/e11/e12/e13/e14_src diretamente, o path de midia ja vem
+    resolvido em course.media_src). -#}
+
+{# ================= 1. HERO (EDITORIAL CAROUSEL, FULL-BLEED) ================= #}
+{#- Fase B.6A: substitui o HeroEditorial sem foto (Fase B.6-v2) por um
+    hero full-bleed com carousel editorial -- LOGICA observada no
+    Bain.com (full-bleed, overlay escuro, navegacao no rodape com barra
+    de progresso), NUNCA copia de codigo/CSS/texto/imagem/identidade do
+    Bain (ver docs/redesign/19-editorial-hero-carousel.md).
+
+    GATE DE MIDIA -- slide de Iorubá NAO ativado: a missao pediu
+    explicitamente "não usar fotografia cultural genérica... caso não
+    haja [asset aprovado], não ativar este slide" -- nenhum dos 4
+    assets Envato locais aprovados (E02/E06/E07/E10) representa Iorubá
+    (gate cultural em vigor desde a Fase B.3/B.4, ver
+    06-photography-system.md). Carousel fica com 4 slides (Vedium,
+    Inglês, Português, Empresas) em vez dos 5 pedidos -- registrado
+    aqui e em 19-editorial-hero-carousel.md, nao fabricado.
+
+    Fase C (secao 4 da missao): links dos slides auditados contra o route
+    map real -- /catalogo (301 -> /cursos-de-idiomas-online, mantido pois
+    ja e o redirect canonico usado pelo resto do site, nao criamos alias
+    novo), /curso-de-ingles-online, /portugues-para-estrangeiros, /empresas
+    -- todos confirmados HTTP 200 (ou 301 esperado) nesta fase. -#}
+{% set v2_hero_slides = [
+  {
+    "eyebrow": "Escola de idiomas online",
+    "headline": "Aprenda ao vivo. Avance com direção.",
+    "support": "Professores nativos e especialistas, aulas em tempo real e progressão organizada por nível.",
+    "cta_label": "Conheça os cursos", "cta_href": "/catalogo",
+    "image_src": v2_e06_src, "image_alt": "Pessoa adulta assiste a uma aula online em um monitor, ouvindo com atenção e fazendo anotações em um caderno.",
+    "image_width": 2000, "image_height": 1333,
+    "nav_label": "Vedium"
+  },
+  {
+    "eyebrow": "Inglês ao vivo",
+    "headline": "Inglês para avançar com segurança.",
+    "support": "Do A1 ao C1, com professor, prática e progressão por nível.",
+    "cta_label": "Conheça inglês", "cta_href": "/curso-de-ingles-online",
+    "image_src": v2_e02_src, "image_alt": "Pessoa adulta concentrada, usando fones de ouvido, estuda em um notebook e faz anotações em um caderno.",
+    "image_width": 2000, "image_height": 1263,
+    "nav_label": "Inglês"
+  },
+  {
+    "eyebrow": "Português para estrangeiros",
+    "headline": "Portuguese for real life in Brazil.",
+    "support": "Live Portuguese for work, daily life and integration.",
+    "cta_label": "Discover Portuguese", "cta_href": "/portugues-para-estrangeiros",
+    "image_src": v2_e10_src, "image_alt": "Pessoa adulta com fones de ouvido participa de uma aula online, escrevendo em um caderno.",
+    "image_width": 2000, "image_height": 1333,
+    "nav_label": "Português"
+  },
+  {
+    "eyebrow": "Vedium para empresas",
+    "headline": "Idiomas para equipes que precisam se comunicar melhor.",
+    "support": "Programas ao vivo com diagnóstico, organização por nível e acompanhamento.",
+    "cta_label": "Para empresas", "cta_href": "/empresas",
+    "image_src": v2_e07_src, "image_alt": "Profissional adulto participa de uma videochamada em equipe, em um escritório, com colegas visíveis na tela.",
+    "image_width": 2000, "image_height": 1333,
+    "nav_label": "Empresas"
+  }
+] %}
+{{ v2e.v2_hero_editorial_carousel(v2_hero_slides) }}
+
+{# ================= 1B. VEDIUM PATHFINDER ================= #}
+{#- Fase B.6A/B.6B: reposicionado do Hero pra secao propria, full-width
+    editorial (painel azul + form sem card, split 42/58) -- ver
+    v2_pathfinder_section em macros_editorial.html.
+
+    Fase C (secao 8 da missao): action continua "/teste-de-nivel" -- e o
+    fallback SEM JS (form GET nativo, funciona sem nenhum script). Com JS,
+    initPathfinderRouting() (design-system-v2.js) intercepta o submit e
+    encaminha pra URL real mais especifica pra aquela combinacao
+    idioma+objetivo (matriz espelhada de v2_home_data.PATHFINDER_MATRIX,
+    documentada em docs/redesign/26-home-v2-integration.md) -- nunca URL
+    fictícia, cai na pagina-pilar do idioma quando nao ha combinacao
+    especifica. -#}
+{{ v2e.v2_pathfinder_section(
+  "Encontre seu ponto de partida",
+  "Um curso para o seu idioma e o seu objetivo.",
+  "Responda a duas perguntas e veja qual percurso pode fazer mais sentido para você.",
+  ["Idioma", "Objetivo"],
+  "Qual idioma você quer aprender?",
+  ["Inglês", "Iorubá", "Português para Estrangeiros", "Espanhol", "Hebraico"],
+  "Qual é o seu principal objetivo?",
+  ["Trabalho e carreira", "Comunicação cotidiana", "Viagens", "Estudos e cultura", "Viver e trabalhar no Brasil"],
+  {"text":"Encontrar meu caminho","href":"/teste-de-nivel"}
+) }}
+
+{# ================= 2. O QUE VOCÊ ENCONTRA NA VEDIUM ================= #}
+{#- Fase B.6/B.6B: VediumMethod, split editorial 40/60 (painel azul + 4
+    diferenciais numerados), ver macros_editorial.html. -#}
+{{ v2e.v2_vedium_method(
+  "O que você encontra na Vedium",
+  "Ao vivo não é apenas o formato. É parte do método.",
+  "Cada aula reúne participação, correção e progressão organizada por nível, com professores nativos e especialistas conduzindo o encontro.",
+  [
+    {"title":"Ao vivo", "text":"Prática, participação e correção durante a aula."},
+    {"title":"Professores", "text":"Nativos e especialistas conduzem cada encontro."},
+    {"title":"Progressão", "text":"Cada nível estabelece competências e próximos passos."},
+    {"title":"Idioma e cultura", "text":"A língua é ensinada com uso, história e aplicação prática."}
+  ]
+) }}
+
+{# ================= 3. CURSOS ================= #}
+{#- Fase B.6/B.6D: 1 bloco de escala de secao por curso (v2_course_feature)
+    + indice numerado no topo (v2_course_index_intro). Ordem Inglês
+    primeiro (carro-chefe comercial, decisao ja documentada em
+    18-bain-inspired-direction.md). Midia aprovada em B.6C (ver
+    21-course-media-selection.md).
+
+    Fase C (secao 10-11 da missao): nomes/niveis/URLs confirmados contra
+    dados reais -- course_urls.py (ENGLISH_COURSE_LEVELS: A1/A2/A2+/B1/B2/C1,
+    NAO "B1+" como um rascunho anterior da identidade oficial mencionava;
+    corrigido na documentacao, ver docs/redesign/26). As 5 URLs de curso
+    validadas HTTP 200 nesta fase. Midia continua sendo DEV/PREVIEW MEDIA
+    (derivados locais de stock Envato ja aprovado) -- nao copiada pra
+    producao nesta fase, ver secao 11 da missao e docs/redesign/26.
+
+    Fase C.1.1 (Parte B da missao): copy/URLs/ordem IDENTICOS aos acima --
+    so a FONTE mudou, de 5 chamadas de macro inline pra um loop sobre
+    `home_courses` (context.home_courses, vindo de
+    vedium_core/home_course_collection.py -- HomeCourseCollection, fonte
+    unica editorial/curada e testada, ver
+    docs/redesign/38-home-course-collection-contract.md). Nenhuma mudanca
+    visual: mesmo HTML renderizado, so a origem do dado deixou de estar
+    duplicada inline no template. -#}
+<div class="v2-course-feature-stack">
+  {{ v2e.v2_course_index_intro(
+    "Nossos cursos",
+    "Cinco idiomas. Cursos organizados por nível e objetivo.",
+    "Escolha o idioma e conheça os níveis, formatos e possibilidades de aprendizagem.",
+    course_index_entries
+  ) }}
+  {%- for course in home_courses %}
+  {{ v2e.v2_course_feature(
+    course.display_name, course.level_summary,
+    course.headline, course.description,
+    course.cta_label, course.url,
+    image_src=course.media_src,
+    image_alt=course.media_alt,
+    reverse=course.reverse, index=course.order,
+    band_tone=course.band_tone, object_position=course.object_position
+  ) }}
+  {%- endfor %}
+</div>
+
+{# ================= 4. AULA AO VIVO ================= #}
+{#- HOME_MEDIA_GATE_02 / REAL_VEDIUM_LIVE_CLASS_MEDIA_REQUIRED -- video
+    Envato local (didatico -> controls, sem autoplay). Fase C (secao 12 da
+    missao): continua sendo DEV/PREVIEW MEDIA enquanto a rota for interna;
+    copy descreve o CONCEITO de aula ao vivo, nunca afirma ser aula real
+    Vedium (ver docs/redesign/21-course-media-selection.md e
+    docs/redesign/26). -#}
+<section class="v2-section v2-section--brand">
+  <div class="v2-container v2-container--wide">
+    {{ v2e.v2_live_class_experience(
+      "Aulas ao vivo, na prática.",
+      "Cada encontro acontece com professor e alunos presentes em tempo real.",
+      [
+        {"label":"Participação", "text":"Perguntas, respostas e interação durante o encontro."},
+        {"label":"Correção", "text":"O professor orienta ajustes enquanto o aluno pratica."},
+        {"label":"Prática", "text":"O idioma é usado durante a aula."},
+        {"label":"Acompanhamento", "text":"O professor acompanha o desenvolvimento ao longo do percurso."}
+      ],
+      video_src=v2_e16_video_src,
+      video_poster=v2_e16_poster_src,
+      cta={"text":"Conheça como funcionam as aulas","href":"/como-funciona"},
+      on_dark=true
+    ) }}
+  </div>
+</section>
+
+{# ================= 5. PROGRESSÃO ================= #}
+<section class="v2-section v2-section--warm">
+  <div class="v2-container v2-container--wide">
+    {{ v2e.v2_progression_flow(
+      "Você sabe onde está e o que vem depois.",
+      "Cada curso organiza competências e objetivos por nível. O acompanhamento ajuda a identificar avanços e próximos passos.",
+      [
+        {"label":"Nível atual", "note":"Diagnóstico inicial"},
+        {"label":"Competências", "note":"O que o nível exige"},
+        {"label":"Prática", "note":"Uso real nas aulas"},
+        {"label":"Avaliação", "note":"Acompanhamento do professor"},
+        {"label":"Próximo nível", "note":"Novo objetivo definido"}
+      ]
+    ) }}
+  </div>
+</section>
+
+{# ================= 6. B2B ================= #}
+{#- Fase B.6E (Parte B da missao): navy, eyebrow duplo, headline
+    executiva, prova editorial, CTA consultivo. Fase C (secao 14 da
+    missao): link confirmado pra /empresas (rota real, 200, ja indexada
+    -- nao aponta pro preview tecnico /design_system_v2_b2b). -#}
+<section class="v2-section v2-section--brand">
+  <div class="v2-container v2-container--wide">
+    {{ v2e.v2_b2b_home_feature(
+      "Vedium para empresas",
+      "Formação linguística corporativa",
+      "Desenvolva uma equipe mais preparada para se comunicar globalmente.",
+      "Programas ao vivo com diagnóstico inicial, trilhas por nível, gestão de turmas e acompanhamento de progresso para empresas.",
+      "A solução é estruturada conforme as necessidades da equipe.",
+      [
+        {"label":"Diagnóstico", "text":"Entendimento inicial da equipe."},
+        {"label":"Trilhas por nível", "text":"Organização conforme competência e objetivo."},
+        {"label":"Gestão", "text":"Turmas e acompanhamento de adesão."},
+        {"label":"Relatórios", "text":"Visibilidade sobre participação e progresso."}
+      ],
+      {"text":"Conheça as soluções corporativas","href":"/empresas"},
+      secondary_cta={"text":"Solicite uma conversa diagnóstica","href":"/contato"},
+      image_src=v2_e15_src,
+      image_alt="Pessoa adulta acompanha uma videochamada em grupo em um notebook, em um ambiente doméstico aconchegante.",
+      object_position="right center"
+    ) }}
+  </div>
+</section>
+
+{# ================= 7. CONHECIMENTO VEDIUM ================= #}
+{#- Fase C (secao 16-18 da missao): artigos REAIS, selecao dinamica
+    (v2_home_data.get_insights_selection(), regra deterministica: mais
+    recente + variedade de categoria nos 2 secundarios) -- nunca hardcoded,
+    nunca rascunho (so posts com date/url/title validos entram na
+    selecao). insights_featured/insights_secondary vem do contexto,
+    setados pelo controller (.py) de cada pagina que usa este include. -#}
+<section class="v2-section v2-section--alt">
+  <div class="v2-container v2-container--wide">
+    <p class="v2-eyebrow" style="margin-block-end:var(--v2-space-3);">Conhecimento Vedium</p>
+    <h2 class="v2-heading v2-insights-intro__title">Aprenda também fora da aula.</h2>
+    {%- if insights_featured and insights_secondary and insights_secondary|length >= 2 %}
+    {{ v2e.v2_insights_editorial(
+      insights_featured,
+      insights_secondary[0],
+      insights_secondary[1],
+      cta_label="Leia o artigo"
+    ) }}
+    {%- endif %}
+    <div style="margin-block-start:var(--v2-space-12);">
+      {{ v2e.v2_text_link("Ver todos os conteúdos", "/blog", size="lg") }}
+    </div>
+  </div>
+</section>

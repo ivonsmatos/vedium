@@ -443,6 +443,113 @@
     });
   }
 
+  /*
+   * Pathfinder routing (Fase C, secao 8-9 da missao) -- progressive
+   * enhancement. SEM JS, o <form> nativo (v2_pathfinder, method="get")
+   * ja funciona: submete pra "/teste-de-nivel" (fallback seguro e util
+   * pra qualquer combinacao). COM JS, intercepta o submit e troca o
+   * destino pela URL real mais especifica pra aquela combinacao
+   * idioma+objetivo -- nunca uma URL inventada, tudo confirmado HTTP 200
+   * nesta fase (ver docs/redesign/26-home-v2-integration.md). Matriz
+   * espelhada de vedium_core.v2_home_data.PATHFINDER_MATRIX (fonte unica
+   * de verdade documentada la -- Python nao roda no navegador, entao a
+   * mesma matriz precisa existir aqui tambem; qualquer mudanca na matriz
+   * real precisa ser replicada nos dois lugares).
+   *
+   * Eventos dataLayer NOVOS nesta fase (nao existiam antes -- auditados
+   * contra analytics-contracts.md antes de criar: nenhum evento
+   * "pathfinder_*" existia no dataLayer real, so um trigger morto
+   * "language_selected" sem relacao. Nomes seguem a convencao ja usada no
+   * resto do site -- snake_case, sufixo _select/_submit, mesmo padrao de
+   * plan_select_click/level_test_completed): pathfinder_language_select,
+   * pathfinder_goal_select, pathfinder_submit.
+   */
+  var PATHFINDER_MATRIX = {
+    "Inglês": {
+      _pillar: "/curso-de-ingles-online",
+      "Trabalho e carreira": "/ingles-executivo",
+      "Comunicação cotidiana": "/curso-de-ingles-online",
+      "Viagens": "/ingles-para-viagens",
+      "Estudos e cultura": "/curso-de-ingles-online",
+      "Viver e trabalhar no Brasil": "/curso-de-ingles-online"
+    },
+    "Iorubá": {
+      _pillar: "/curso-de-ioruba-online",
+      "Trabalho e carreira": "/curso-de-ioruba-online",
+      "Comunicação cotidiana": "/curso-de-ioruba-online",
+      "Viagens": "/curso-de-ioruba-online",
+      "Estudos e cultura": "/ioruba-cultura-e-ancestralidade",
+      "Viver e trabalhar no Brasil": "/curso-de-ioruba-online"
+    },
+    "Português para Estrangeiros": {
+      _pillar: "/portugues-para-estrangeiros",
+      "Trabalho e carreira": "/portugues-para-executivos",
+      "Comunicação cotidiana": "/portugues-para-estrangeiros",
+      "Viagens": "/portugues-para-estrangeiros",
+      "Estudos e cultura": "/preparatorio-celpe-bras",
+      "Viver e trabalhar no Brasil": "/portugues-para-estrangeiros"
+    },
+    "Espanhol": {
+      _pillar: "/curso-de-espanhol-online",
+      "Trabalho e carreira": "/curso-de-espanhol-online",
+      "Comunicação cotidiana": "/curso-de-espanhol-online",
+      "Viagens": "/curso-de-espanhol-online",
+      "Estudos e cultura": "/curso-de-espanhol-online",
+      "Viver e trabalhar no Brasil": "/curso-de-espanhol-online"
+    },
+    "Hebraico": {
+      _pillar: "/curso-de-hebraico-online",
+      "Trabalho e carreira": "/curso-de-hebraico-online",
+      "Comunicação cotidiana": "/curso-de-hebraico-online",
+      "Viagens": "/curso-de-hebraico-online",
+      "Estudos e cultura": "/curso-de-hebraico-online",
+      "Viver e trabalhar no Brasil": "/curso-de-hebraico-online"
+    }
+  };
+
+  function pushDataLayer(payload) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+  }
+
+  function initPathfinderRouting(scope) {
+    scope.querySelectorAll(".v2-pathfinder").forEach(function (form) {
+      var languageInputs = form.querySelectorAll('input[name="pathfinder-idioma"]');
+      var goalInputs = form.querySelectorAll('input[name="pathfinder-objetivo"]');
+
+      languageInputs.forEach(function (input) {
+        input.addEventListener("change", function () {
+          if (input.checked) pushDataLayer({ event: "pathfinder_language_select", language: input.value });
+        });
+      });
+      goalInputs.forEach(function (input) {
+        input.addEventListener("change", function () {
+          if (input.checked) pushDataLayer({ event: "pathfinder_goal_select", goal: input.value });
+        });
+      });
+
+      form.addEventListener("submit", function (event) {
+        var language = form.querySelector('input[name="pathfinder-idioma"]:checked');
+        var goal = form.querySelector('input[name="pathfinder-objetivo"]:checked');
+        language = language ? language.value : "";
+        goal = goal ? goal.value : "";
+
+        var destination = "";
+        var entry = PATHFINDER_MATRIX[language];
+        if (entry) destination = entry[goal] || entry._pillar;
+
+        pushDataLayer({ event: "pathfinder_submit", language: language, goal: goal, destination: destination || null });
+
+        // Sem correspondencia conhecida: deixa o <form> submeter normal
+        // (GET nativo pra "/teste-de-nivel", o fallback seguro do action).
+        if (!destination) return;
+
+        event.preventDefault();
+        window.location.href = destination;
+      });
+    });
+  }
+
   onReady(function () {
     var scope = document;
     initHeaderMenu(scope);
@@ -453,5 +560,6 @@
     initHeaderOverlay(scope);
     initLiveClassVideo(scope);
     initLocaleMenu(scope);
+    initPathfinderRouting(scope);
   });
 })();

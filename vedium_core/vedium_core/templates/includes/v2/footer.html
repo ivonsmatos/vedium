@@ -139,3 +139,23 @@
     </div>
   </div>
 </footer>
+{#- Fase C (secao 25 da missao): "A Home V2 real precisa preservar GTM...
+    nao refazer tracking, nao renomear eventos existentes". O footer V2
+    nao carregava GTM nenhum ate esta fase -- confirmado em
+    baseline/analytics-contracts.md (container GTM-P6Q2FXLK, unico em todo
+    o site) e no proprio site_footer.html de producao (mesmo local: fim do
+    <body>, com guard de dedupe). Mesmo snippet, mesmo ID, replicado aqui
+    (nao reescrito) -- roda em toda pagina que usa este footer.html
+    (design_system_v2, design_system_v2_b2b, _home_v2 -- consistente, nao
+    so na Home V2). -#}
+<script>
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];
+    if (d.querySelector('script[src*="' + i + '"]')) return;
+    w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6Q2FXLK');
+</script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6Q2FXLK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

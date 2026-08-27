@@ -133,6 +133,13 @@ idiomas/
 # Notas de trabalho locais (memoria de sessao) — nao versionar
 memory/
 
+# Masters de mídia de referência (Envato) e futuros certificados de licença
+# (docs/redesign/42-envato-license-evidence-checklist.md) — nunca precisam
+# ser servidos pelo site nem versionados; podem conter dado de conta/pessoal.
+# Já estava excluído localmente via .git/info/exclude (não viaja com o
+# repositório) — promovido pra cá pra proteger qualquer clone, não só esta máquina.
+vedium-references/
+
 # Cache/estado local do wrangler CLI (Cloudflare)
 .wrangler/
 

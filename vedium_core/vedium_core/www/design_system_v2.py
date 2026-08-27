@@ -23,6 +23,9 @@ docs/redesign/14-art-direction-v2.md.
 
 import frappe
 
+from vedium_core.v2_home_data import get_insights_selection, to_insight_macro_dict
+from vedium_core.home_course_collection import get_home_course_collection, get_course_index_entries
+
 PREVIEW_ROLE = "System Manager"
 
 
@@ -42,4 +45,18 @@ def get_context(context):
     context.title = "Vedium Design System V2 -- Preview (dev)"
     context.no_sitemap = 1
     context.debug_mode = frappe.form_dict.get("debug") in ("1", "true", "yes")
+
+    # Fase C (secao 16 da missao): "Conhecimento Vedium" usa artigos REAIS
+    # (mesma selecao dinamica que a Home V2 integrada, ver v2_home_data.py e
+    # docs/redesign/26-home-v2-integration.md) -- nao mais 3 titulos
+    # hardcoded no template.
+    featured, secondary = get_insights_selection()
+    context.insights_featured = to_insight_macro_dict(featured)
+    context.insights_secondary = [to_insight_macro_dict(c) for c in secondary]
+
+    # Fase C.1.1 (Parte B da missao): mesma HomeCourseCollection real usada
+    # pela Home V2 integrada (ver www/_home_v2.py e
+    # docs/redesign/38-home-course-collection-contract.md).
+    context.home_courses = get_home_course_collection()
+    context.course_index_entries = get_course_index_entries()
     return context

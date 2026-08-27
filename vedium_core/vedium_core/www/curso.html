@@ -14,6 +14,7 @@
 <html lang="{{ vd_lang }}"{% if vd_course_en %} translate="no"{% endif %}>
 
 <head>
+    {% include "templates/includes/consent_default.html" %}
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -410,7 +411,7 @@
     <script defer src="/assets/vedium_core/vedium_assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script defer src="/assets/vedium_core/vedium_assets/vendors/wow/wow.js"></script>
     <script defer src="/assets/vedium_core/vedium_assets/js/vedium.min.js"></script>
-    <script defer src="/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix"></script>
+    <script defer src="/assets/vedium_core/js/cookie-consent.min.js?v=c1-3-consent-banner"></script><script defer src="/assets/vedium_core/js/v2/consent-mode-v2.js?v=c1-3"></script>
     <!-- JS de Customização da Frequência no Carrinho Público/LMS -->
     <script defer src="/assets/vedium_core/js/course_checkout_override.js?v=frequency-public-20260806-4" data-vedium-course-checkout="true"></script>
 </body>

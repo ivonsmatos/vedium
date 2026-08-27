@@ -110,14 +110,35 @@
     reproduzido por engano). Corrigido colocando os atributos na tag
     <header> abaixo -- confirmado por teste real (click no botao +
     inspecao do href resolvido de cada locale). -#}
+{#- Fase C.1 (secao 5 da missao): bandeira + codigo/idioma no botao,
+    bandeira + nome completo no dropdown -- "a bandeira NUNCA substitui
+    texto" (o <span> com o texto real continua presente em todo item,
+    a bandeira e so um glifo aria-hidden ao lado).
+
+    Associacao bandeira<->locale: NAO inventada aqui -- e a MESMA politica
+    ja real e em producao, lida direto de public/js/vedium-language.js
+    (dict localeMeta, campo "flag"). Ponto critico: "en" (Ingles) NAO usa
+    bandeira de pais nenhum -- producao usa deliberadamente a bandeira da
+    ONU (flagcdn.com/w20/un.png, label "GLOBAL | ENGLISH"), exatamente pra
+    NAO inferir silenciosamente um pais pra um idioma falado em dezenas
+    deles (a mesma regra que esta fase pede explicitamente: "nao inferir
+    silenciosamente pais pra locale ambiguo"). Reproduzido aqui com o
+    emoji 🌐 (globo) em vez de bandeira de pais nenhum -- mesma politica,
+    sem depender de imagem remota (flagcdn.com), consistente com a regra
+    ja vigente desde a Fase B.1 de nao adicionar dependencia de terceiro
+    remota nesta pagina. Os outros 5 usam a MESMA bandeira de pais que
+    localeMeta ja usa pra cada familia (pt-br->Brazil/br, es->Spain/es,
+    fr->France/fr, de->Germany/de, ru->Russia/ru). #}
 {%- set v2_locales = [
-  {"code": "pt-br", "label": "Português"},
-  {"code": "en", "label": "English"},
-  {"code": "es", "label": "Español"},
-  {"code": "fr", "label": "Français"},
-  {"code": "de", "label": "Deutsch"},
-  {"code": "ru", "label": "Русский"}
+  {"code": "pt-br", "label": "Português", "flag": "🇧🇷"},
+  {"code": "en", "label": "English", "flag": "🌐"},
+  {"code": "es", "label": "Español", "flag": "🇪🇸"},
+  {"code": "fr", "label": "Français", "flag": "🇫🇷"},
+  {"code": "de", "label": "Deutsch", "flag": "🇩🇪"},
+  {"code": "ru", "label": "Русский", "flag": "🇷🇺"}
 ] -%}
+{%- set v2_locale_flags = {"pt-br": "🇧🇷", "en": "🌐", "es": "🇪🇸", "fr": "🇫🇷", "de": "🇩🇪", "ru": "🇷🇺"} -%}
+{%- set v2_locale_current_flag = v2_locale_flags.get(v2_locale_current, "🌐") -%}
 
 {% if v2_header_overlay %}<div class="v2-header-overlay-wrap" data-v2-header-overlay>{% endif %}
 <div class="v2-hdr-utility{% if v2_header_overlay %} v2-hdr-utility--overlay{% endif %}">
@@ -137,13 +158,14 @@
           aria-expanded="false"
           aria-controls="v2-hdr-locale-menu"
         >
+          <span class="v2-hdr-utility__locale-flag" aria-hidden="true">{{ v2_locale_current_flag }}</span>
           <span>{{ "PT" if v2_locale_current == "pt-br" else v2_locale_current | upper }}</span>
           {{ v2.v2_icon("chevron-down", size="0.7em") }}
         </button>
         <ul class="v2-hdr-locale-menu" id="v2-hdr-locale-menu" data-v2-locale-menu role="menu" hidden>
           {%- for loc in v2_locales %}
           <li role="none">
-            <a role="menuitem" class="v2-hdr-locale-menu__link{% if loc.code == v2_locale_current %} is-active{% endif %}" data-vd-locale="{{ loc.code }}" href="{{ v2_nav_urls.get(loc.code, '/') }}"{% if loc.code == v2_locale_current %} aria-current="true"{% endif %}>{{ loc.label }}</a>
+            <a role="menuitem" class="v2-hdr-locale-menu__link{% if loc.code == v2_locale_current %} is-active{% endif %}" data-vd-locale="{{ loc.code }}" href="{{ v2_nav_urls.get(loc.code, '/') }}"{% if loc.code == v2_locale_current %} aria-current="true"{% endif %}><span class="v2-hdr-locale-menu__flag" aria-hidden="true">{{ loc.flag }}</span><span>{{ loc.label }}</span></a>
           </li>
           {%- endfor %}
         </ul>

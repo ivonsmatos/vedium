@@ -365,9 +365,21 @@ web_include_css = [
 ]
 
 # Website JS
+#
+# Fase C.1.3, achado real: esta lista NAO e o mecanismo que carrega script
+# nas paginas de marketing reais -- www/index.html, www/curso.html e as
+# ~120 paginas que tem cookie-consent.min.js HARDCODED como <script> direto
+# no proprio arquivo .html (nao herdam de templates/base.html, que e o
+# unico lugar que de fato itera `web_include_js`). Confirmado navegando a
+# pagina renderizada: adicionar aqui nao mudou o HTML de `/`. A integracao
+# real de consent-mode-v2.js foi feita inserindo o <script> diretamente nos
+# mesmos 120 arquivos que ja tem cookie-consent.min.js (ver
+# docs/redesign/45-consent-remediation-result.md) -- esta lista continua
+# valendo pra qualquer pagina futura que realmente extenda base.html.
 web_include_js = [
     "/assets/vedium_core/js/pwa-register.min.js?v=static-v5",
-    "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix",
+    "/assets/vedium_core/js/cookie-consent.min.js?v=c1-3-consent-banner",
+    "/assets/vedium_core/js/v2/consent-mode-v2.js?v=c1-3",
     "/assets/vedium_core/js/meta-pixel.min.js?v=consent-lgpd",
     "/assets/vedium_core/js/push-notifications.min.js?v=1",
     "/assets/vedium_core/js/course_checkout_override.js",
