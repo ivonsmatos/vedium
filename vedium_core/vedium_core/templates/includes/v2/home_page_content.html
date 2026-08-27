@@ -1,0 +1,61 @@
+{#- Vedium -- corpo compartilhado da Home V2 (Fase C.1.4, cutover controlado).
+
+    Extraido de www/_home_v2.html pra ser incluido tanto por www/index.html
+    (Home real, `/`, indexavel, desde a Fase C.1.4) quanto por
+    www/_home_v2.html (rota tecnica, noindex, mantida temporariamente como
+    fallback ate a estabilizacao -- ver docs/redesign/47-home-v2-cutover-result.md).
+    "Template compartilhado + context compartilhado, minimo de duplicacao"
+    (secao 5 da missao C.1.4) -- as DUAS rotas renderizam o MESMO HTML de
+    corpo; a diferenca entre elas fica inteiramente no <head> de cada
+    arquivo chamador (robots/canonical_url/title/hreflang/JSON-LD) e na
+    presenca ou nao do aviso de previa interna.
+
+    Requer no template chamador: `{% import "templates/includes/v2/macros_base.html" as v2 %}`
+    e `{% import "templates/includes/v2/macros_editorial.html" as v2e %}` no
+    topo do arquivo (antes de <!DOCTYPE html>), e `context.insights_featured/
+    insights_secondary/home_courses/course_index_entries` setados via
+    `v2_home_data.build_home_v2_context()`. -#}
+{%- set v2_e07_src = "/assets/vedium_core/v2-preview-media/e07-hero-videoconference.jpg" -%}
+{%- set v2_e02_src = "/assets/vedium_core/v2-preview-media/e02-study-laptop.jpg" -%}
+{%- set v2_e06_src = "/assets/vedium_core/v2-preview-media/e06-listening-online-course.jpg" -%}
+{%- set v2_e10_src = "/assets/vedium_core/v2-preview-media/e10-notes-at-home.jpg" -%}
+{%- set v2_e11_src = "/assets/vedium_core/v2-preview-media/e11-ioruba-learning.jpg" -%}
+{%- set v2_e12_src = "/assets/vedium_core/v2-preview-media/e12-espanhol-professora.jpg" -%}
+{%- set v2_e13_src = "/assets/vedium_core/v2-preview-media/e13-hebraico-headphones.jpg" -%}
+{%- set v2_e14_src = "/assets/vedium_core/v2-preview-media/e14-ple-headphones-home.jpg" -%}
+{%- set v2_e15_src = "/assets/vedium_core/v2-preview-media/e15-b2b-videocall.jpg" -%}
+{%- set v2_e16_video_src = "/assets/vedium_core/v2-preview-media/e16-liveclass-teacher.mp4" -%}
+{%- set v2_e16_poster_src = "/assets/vedium_core/v2-preview-media/e16-liveclass-teacher-poster.jpg" -%}
+
+<main class="v2-scope">
+
+  {% set v2_level_test_url_override = none %}
+  {% set v2_level_test_contact_override = false %}
+  {% set v2_hdr_lang = "pt-BR" %}
+  {% set v2_hdr_primary_cta_override = {"text":"Conheça os cursos","href":"/catalogo"} %}
+  {% set v2_header_overlay = true %}
+  {% include "templates/includes/v2/header.html" %}
+
+  {% include "templates/includes/v2/home_body.html" %}
+
+  {# ================= 8. CTA INSTITUCIONAL ================= #}
+  <section class="v2-section v2-section--brand">
+    <div class="v2-container v2-container--wide">
+      {{ v2e.v2_cta_section(
+        "Como a Vedium pode ajudar você?",
+        "Conheça os cursos da Vedium ou faça o teste de nível para identificar por onde começar.",
+        {"text":"Conheça os cursos","href":"/catalogo"},
+        secondary_cta={"text":"Faça o teste de nível","href":"/teste-de-nivel"},
+        variant="brand-full"
+      ) }}
+    </div>
+  </section>
+
+  {% set v2_level_test_url_override = none %}
+  {% set v2_hdr_primary_cta_override = none %}
+  {% include "templates/includes/v2/footer.html" %}
+
+</main>
+
+<script defer src="/assets/vedium_core/js/vedium-language.min.js"></script>
+<script defer src="/assets/vedium_core/js/v2/design-system-v2.js"></script>

@@ -1,50 +1,37 @@
+"""Home real (`/`) -- Fase C.1.4: cutover controlado para o Design System V2.
+
+Substitui a implementacao V1 anterior (grade de cursos vinda de `LMS
+Course`, sem uso pela Home V2). Reusa a MESMA implementacao real ja
+validada em `/_home_v2` desde a Fase C (mesmo template compartilhado
+`templates/includes/v2/home_page_content.html`, mesma funcao de dados
+`v2_home_data.build_home_v2_context()`) -- "template compartilhado +
+context compartilhado, minimo de duplicacao" (secao 5 da missao C.1.4).
+
+Contrato de SEO PRESERVADO do V1 (title/description/keywords/robots/
+canonical/hreflang/OG/Twitter/JSON-LD/favicons) -- nenhum valor foi
+inventado nesta fase, todos migrados literalmente de www/index.html antes
+do cutover (backup em docs/redesign/47-home-v2-cutover-result.md).
+`context.canonical_url` (nao `context.canonical`, reservado pelo core do
+Frappe -- ver nota completa em www/_home_v2.py) segue o mesmo padrao
+estabelecido em 144 arquivos do projeto.
+
+`/_home_v2` continua existindo, noindex/nofollow/fora do sitemap, como
+rota tecnica de fallback ate o fim do periodo de estabilizacao (ver
+docs/redesign/35-home-v2-rollback-plan.md Cenario B).
+"""
+
 import frappe
 
-from vedium_core.course_urls import get_course_url
-from vedium_core.image_optimization import responsive_course_image
-
-# Ordem de exibição dos idiomas no site
-LANGUAGE_ORDER = ["Inglês", "Espanhol", "Hebraico", "Iorubá", "Português para Estrangeiros"]
-
-# Fallback images por idioma (Unsplash free)
-LANGUAGE_FALLBACK_IMAGES = {
-    "Inglês": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
-    "Espanhol": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg",
-    "Hebraico": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
-    "Iorubá": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img2.jpg",
-    "Português para Estrangeiros": "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img3.jpg",
-}
-
-DEFAULT_FALLBACK = (
-    "/assets/vedium_core/vedium_assets/images/resources/courses-v1-img1.jpg"
-)
+from vedium_core.v2_home_data import build_home_v2_context
 
 
 def get_context(context):
     _redirect_app_root_to_login()
 
-    # Todos os cursos publicados, agrupados por idioma
-    context.courses = get_courses()
-    context.courses_by_language = get_courses_by_language(context.courses)
-    context.featured_courses = context.courses[:4] if context.courses else []
+    context.title = "Vedium - Cursos Online ao Vivo em Cinco Idiomas"
+    context.canonical_url = frappe.utils.get_url("/")
 
-    # Idiomas disponíveis para filtro no template
-    context.language_programs = LANGUAGE_ORDER
-
-    # Preços do Inglês por frequência — AO VIVO do catálogo, para o grid da home
-    # nunca desalinhar do que o checkout cobra (mesma fonte da página /curso).
-    context.english_plans = get_english_frequency_plans()
-
-    # Shopping Cart Count
-    context.cart_count = get_cart_count()
-
-
-def get_english_frequency_plans(course_name="ingl-s-beginner"):
-    """Preços do Inglês por frequência em BRL — delega ao helper compartilhado
-    (checkout_options), fonte única usada também pela /curso e pelo checkout."""
-    from vedium_core.checkout_options import get_frequency_plans_for_display
-
-    return get_frequency_plans_for_display(course_name, "BRL")
+    return build_home_v2_context(context)
 
 
 def _redirect_app_root_to_login():
@@ -61,114 +48,3 @@ def _redirect_app_root_to_login():
     if "app.vediums.com" in host and path in ("", "/"):
         frappe.local.flags.redirect_location = "/login"
         raise frappe.Redirect
-
-
-def get_cart_count():
-    if frappe.session.user == "Guest":
-        return 0
-    if frappe.db.exists("DocType", "Quotation"):
-        quotation = frappe.get_all(
-            "Quotation",
-            filters={"party_name": frappe.session.user, "docstatus": 0},
-            fields=["name"],
-            limit=1,
-        )
-        if quotation:
-            return frappe.db.count("Quotation Item", {"parent": quotation[0].name})
-    return 0
-
-
-def get_courses():
-    """Todos os cursos publicados, enriquecidos, ordenados por idioma e nível."""
-    try:
-        courses = frappe.get_all(
-            "LMS Course",
-            fields=[
-                "name",
-                "title",
-                "short_introduction",
-                "image",
-                "category",
-                "paid_course",
-                "course_price",
-                "currency",
-            ],
-            filters={"published": 1},
-            limit=50,
-        )
-        return [_enrich(c) for c in courses]
-    except Exception as e:
-        frappe.log_error(f"Error fetching courses: {e}", "Vedium LMS")
-        return []
-
-
-def get_courses_by_language(all_courses=None):
-    """Retorna dict {idioma: [cursos]} para uso no template com agrupamento."""
-    if all_courses is None:
-        all_courses = get_courses()
-    result = {lang: [] for lang in LANGUAGE_ORDER}
-
-    for course in all_courses:
-        # Detecta idioma pela categoria (ex: "Inglês - Beginner" → "Inglês")
-        lang = _detect_language(course.get("category", ""))
-        if lang in result:
-            result[lang].append(course)
-        else:
-            # Idioma ainda não mapeado — cria entrada dinâmica
-            result[lang] = [course]
-
-    return result
-
-
-def _detect_language(category: str) -> str:
-    """Infere o idioma-pai a partir do nome da categoria do curso."""
-    if not category:
-        return "Outros"
-    for lang in LANGUAGE_ORDER:
-        if category.startswith(lang):
-            return lang
-    return "Outros"
-
-
-def _enrich(course) -> dict:
-    """Adiciona campos renderizáveis ao objeto de curso."""
-    course = dict(course)
-
-    # Imagem de fallback
-    if not course.get("image"):
-        lang = _detect_language(course.get("category", ""))
-        course["image"] = LANGUAGE_FALLBACK_IMAGES.get(lang, DEFAULT_FALLBACK)
-    course.update(responsive_course_image(course["image"]))
-
-    # Preço formatado
-    if course.get("paid_course") and course.get("course_price"):
-        price = float(course["course_price"])
-        course["formatted_price"] = (
-            f"R$ {price:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-        )
-    else:
-        course["formatted_price"] = "Gratuito"
-
-    # Nível CEFR a partir do título (ex: "Inglês - Beginner" → "A1")
-    course["level_badge"] = _level_badge(course.get("title", ""))
-    course["url"] = get_course_url(course["name"])
-
-    return course
-
-
-def _level_badge(title: str) -> str:
-    # Nomes de curso agora trazem o código CEFR explícito no título (ex:
-    # "Inglês Online ao Vivo B1+ – Intermediário") — checar "B1+" antes de
-    # "B1" evita que o "+" seja perdido por match de substring.
-    BADGES = {
-        "B1+": "B1+",
-        "A1": "A1",
-        "A2": "A2",
-        "B1": "B1",
-        "B2": "B2",
-        "C1": "C1",
-    }
-    for label, code in BADGES.items():
-        if label in title:
-            return code
-    return ""

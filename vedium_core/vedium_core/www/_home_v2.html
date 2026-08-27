@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{%- import "templates/includes/v2/macros_base.html" as v2 -%}
+{%- import "templates/includes/v2/macros_editorial.html" as v2e -%}
+{#- VEDIUM HOME V2 -- rota TECNICA de fallback (Fase C.1.4: `/` ja usa a
+    mesma implementacao real, ver www/index.html). Mantida temporariamente
+    ate o fim do periodo de estabilizacao do cutover (docs/redesign/
+    47-home-v2-cutover-result.md), noindex/nofollow/fora do sitemap.
+    Corpo compartilhado com `/` via templates/includes/v2/home_page_content.html
+    -- "nao duplicar o HTML inteiro" continua valendo apos o cutover. -#}
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  {#- Fase C (secao 22 da missao): rota tecnica -- nunca competir com "/"
+      por indexacao. noindex+nofollow via meta (mecanismo mais seguro
+      disponivel sem tocar robots.txt, arquivo de producao compartilhado);
+      canonical aponta pra "/" (protege mesmo se o noindex for removido
+      por engano no futuro); nenhum hreflang (secao 22: "nao criar
+      hreflang apontando para a rota tecnica"). -#}
+  <meta name="robots" content="noindex, nofollow" />
+  {#- Fase C.1 (secao 2, investigacao P0): context.canonical e sobrescrito
+      incondicionalmente pelo core do Frappe com a URL da propria pagina
+      (nao e um bug so daqui -- por isso o site inteiro ja usa esta MESMA
+      chave, canonical_url, em vez de context.canonical -- ver curso.html,
+      templates/base.html, e a nota completa em _home_v2.py). -#}
+  <link rel="canonical" href="{{ canonical_url }}" />
+  <link rel="icon" type="image/png" href="/assets/vedium_core/vedium_assets/images/logos/Icone-color.png" />
+
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/tokens.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/foundations.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/components-base.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/components-editorial.css" />
+  <link rel="stylesheet" href="/assets/vedium_core/css/v2/header-footer.css" />
+
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background:#fff; color:#0F1419; }
+    .dstool-banner {
+      background: #0F1419; color: #fff; padding: 8px 16px; font-size: 12px;
+      display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between;
+    }
+    .dstool-banner strong { color: #FFD9CC; }
+    .dstool-banner a { color: #9FD1FF; }
+  </style>
+</head>
+<body>
+  {#- Fase C (secao 1 da missao): "nao aparecer em navegacao publica" --
+      esta faixa e chrome do proprio dev-tool (fora de .v2-scope, mesmo
+      padrao ja usado em design_system_v2.html), nao parte do design
+      aprovado; existe so pra deixar claro, pra quem tem o link direto,
+      que esta e uma previa/fallback tecnico, nao a Home publicada. -#}
+  <div class="dstool-banner">
+    <span><strong>PRÉVIA INTERNA</strong> — rota não indexada, não substitui a Home pública (/).</span>
+    <a href="/design_system_v2">Ver Design System V2 (biblioteca/QA)</a>
+  </div>
+
+  {% include "templates/includes/v2/home_page_content.html" %}
+</body>
+</html>

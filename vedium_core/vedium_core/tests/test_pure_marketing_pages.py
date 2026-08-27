@@ -1528,19 +1528,19 @@ def test_app_domain_redirect_and_catalog_level_guards_are_in_place():
     for html in [index_html, static_index]:
         assert "app.vediums.com" in html
         assert "window.location.replace('/login')" in html
-    assert ".main-slider .swiper-slide { display: flex !important; align-items: center !important; pointer-events: none; }" in index_html
-    assert ".main-slider .swiper-slide-active { pointer-events: auto; }" in index_html
-    assert "testimonials-pagination" not in index_html
-    assert "pagination: { el: '.testimonials-pagination'" not in index_html
-    assert "blog-one__single-content-overlay-mata-info" not in index_html
-    assert "2 de junho de 2026" not in index_html
+    # Fase C.1.4 (cutover controlado): index.html deixou de ter markup V1
+    # (swiper/testimonials/blog-one) -- as checagens de CSS/markup V1 abaixo
+    # foram removidas por nao se aplicarem mais, nao por regressao. As
+    # checagens de redirect app.vediums.com/login acima continuam validas
+    # (preservadas literalmente na nova implementacao V2).
     for nginx in [nginx_primary, nginx_legacy]:
         assert "location = /" in nginx
         assert "return 302 /login;" in nginx
     # "B1+" precisa ser checado antes de "B1" simples (senão o "+" se perde
-    # por match de substring: "B1" bate dentro de "B1+" também).
+    # por match de substring: "B1" bate dentro de "B1+" também). courses.py
+    # continua tendo essa logica; index.py deixou de ter (Fase C.1.4 --
+    # a grade de cursos V1 nao existe mais em index.py/.html).
     assert courses_py.index('"B1+": "B1+"') < courses_py.index('"B1": "B1"')
-    assert index_py.index('"B1+": "B1+"') < index_py.index('"B1": "B1"')
     assert "_dedupe_chapters" in curso_py
     assert "_dedupe_lessons" in curso_py
     assert "chapter.lessons = _dedupe_lessons" in curso_py
@@ -1782,7 +1782,9 @@ def test_public_language_selector_and_gtm_import_are_available():
     assert "vedium-language.min.js?v=v11-n-languages" in footer
     assert "pwa-register.min.js?v=static-v5" in footer
     assert "/assets/vedium_core/js/pwa-register.min.js?v=static-v5" in hooks
-    assert "/assets/vedium_core/js/cookie-consent.min.js?v=mobile-pwa-fix" in hooks
+    # Fase C.1.3: cache-bust bumpado (Aceitar/Recusar/Gerenciar preferencias
+    # adicionados ao banner, ver docs/redesign/45-consent-remediation-result.md)
+    assert "/assets/vedium_core/js/cookie-consent.min.js?v=c1-3-consent-banner" in hooks
     assert "vediumGoToLevelTest" not in footer
     assert "document.addEventListener('touchend'" not in footer
     assert "window.location.href = link.href" not in footer
@@ -2351,19 +2353,14 @@ def test_support_ticket_doctype_is_not_world_writable():
     assert perms_by_role["System Manager"]["delete"] == 1
 
 
-def test_home_pricing_ctas_have_equal_size_and_single_line_text():
-    html = (WWW / "index.html").read_text(encoding="utf-8")
-    css = (
-        ROOT / "vedium_core" / "vedium_core" / "public"
-        / "vedium_assets" / "css" / "vedium.css"
-    ).read_text(encoding="utf-8")
-
-    assert html.count('class="thm-btn vd-pricing-cta"') == 3
-    assert html.count('class="vd-pricing-cta vd-pricing-cta--featured"') == 1
-    assert "vedium.min.css?v=perf-20260823" in html
-    assert "min-height: 56px" in css
-    assert "white-space: nowrap" in css
-    assert ".pricing-one .vd-pricing-cta--featured" in css
+# test_home_pricing_ctas_have_equal_size_and_single_line_text -- removido na
+# Fase C.1.4 (cutover controlado). Testava a grade de precos "Planos de
+# Inglês" da Home V1 (classes .vd-pricing-cta/.vd-pricing-cta--featured),
+# secao que nao existe mais em index.html: a Home V2 nao tem grade de
+# precos propria (precos ficam em /curso-de-ingles-online, pagina
+# intocada por esta fase). Nao e uma regressao de cobertura -- a
+# funcionalidade testada foi removida junto com o markup V1, nao movida
+# nem quebrada.
 
 
 def test_pricing_value_page_has_real_prices_and_no_stale_redirect():
@@ -4395,8 +4392,21 @@ def test_public_shell_css_and_fonts_are_externalized_from_page_html():
             assert "public-foundations.min.css?v=20260725" in html, path
 
 
+def test_pt_br_home_keeps_gtm_and_drops_v1_only_lighthouse_fixes():
+    """Fase C.1.4 (cutover controlado): `/` (pt-BR) deixou de ser V1 -- as
+    otimizacoes de Lighthouse abaixo eram todas amarradas ao markup V1
+    (grade de cursos, vendor CSS com media=print, imagens Unsplash) que nao
+    existe mais nesta pagina. GTM continua presente (unico requisito que
+    ainda se aplica a QUALQUER implementacao da Home); os demais 5 idiomas
+    (en/es/fr/de/ru) continuam V1 e sao cobertos, com a lista completa de
+    otimizacoes, pelo teste seguinte."""
+    html = (WWW / "index.html").read_text(encoding="utf-8")
+    assert "googletagmanager.com/gtag/js" not in html
+    assert "GTM-P6Q2FXLK" in html
+
+
 def test_home_pages_apply_lighthouse_performance_and_accessibility_fixes():
-    home_pages = [WWW / "index.html"] + [
+    home_pages = [
         WWW / locale / "index.html" for locale in ("en", "es", "fr", "de", "ru")
     ]
 
