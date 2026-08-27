@@ -111,10 +111,46 @@ constante que os gera.
 
 ## Produção (pós-push/deploy)
 
-_Preenchido após o deploy via GitHub Actions e o smoke test em
-`https://vediums.com/` — ver commit de acompanhamento (docs-only) que
-atualiza esta seção._
+- Commit do hotfix: `09d5d7b7ede5a305e8656cc755dbd226b3de9101` ("fix: ship Vedium v2 production media assets")
+- Push: `53c6834..09d5d7b main -> main`
+- Deploy (`deploy.yml`, run `33103251843`): **SUCCESS** (5m10s, todos os steps verdes incluindo Smoke test)
+- Rollback usado: **Não**
 
-- Commit do hotfix: `PENDENTE`
-- Deploy (`deploy.yml`): `PENDENTE`
-- Rollback usado: `PENDENTE`
+### Tabela HTTP dos 11 assets em produção (`https://vediums.com`)
+
+| Asset | HTTP | Content-Type | Bytes | Resultado |
+|---|---|---|---|---|
+| e02-study-laptop.jpg | 200 | image/jpeg | 305191 | PASS |
+| e06-listening-online-course.jpg | 200 | image/jpeg | 243459 | PASS |
+| e07-hero-videoconference.jpg | 200 | image/jpeg | 262728 | PASS |
+| e10-notes-at-home.jpg | 200 | image/jpeg | 227096 | PASS |
+| e11-ioruba-learning.jpg | 200 | image/jpeg | 131974 | PASS |
+| e12-espanhol-professora.jpg | 200 | image/jpeg | 253569 | PASS |
+| e13-hebraico-headphones.jpg | 200 | image/jpeg | 157940 | PASS |
+| e14-ple-headphones-home.jpg | 200 | image/jpeg | 213342 | PASS |
+| e15-b2b-videocall.jpg | 200 | image/jpeg | 182986 | PASS |
+| e16-liveclass-teacher.mp4 | 200 | video/mp4 | 2281136 | PASS |
+| e16-liveclass-teacher-poster.jpg | 200 | image/jpeg | 151364 | PASS |
+
+### Smoke test visual em produção (`https://vediums.com/`, via CDP/Chrome headless, DNS real)
+
+- Hero: 4 imagens de slide, todas `complete: true` / `naturalWidth > 0`
+- Cursos: 5 imagens (uma por idioma), todas carregadas
+- B2B: imagem carregada
+- Live Class: `<video src>`/`poster` corretos, `readyState: 4` (pronto pra tocar), requisição do MP4 retornou `206 Partial Content` (normal, range request de vídeo)
+- Sweep de rede completo (scroll até o fim da página real): 51 requisições, **0 erros >=400**, `brokenImgs: []`
+
+### Smoke SEO/Consent em produção (leve)
+
+- `title`: "Vedium - Cursos Online ao Vivo em Cinco Idiomas" (inalterado)
+- `canonical`: `https://vediums.com/` (correto, sem regressão)
+- `robots`: `index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1` (indexável, sem regressão)
+
+### Confirmação de escopo
+
+Nada além dos paths de mídia foi alterado: layout, copy, Hero, slider,
+Header, seletor de idioma, Pathfinder, seção Cursos, Consent Mode,
+analytics, CTA, Footer, seção B2B, SEO e WebMCP permanecem exatamente como
+estavam antes do hotfix.
+
+## HOME V2 PRODUCTION STATUS: HEALTHY
