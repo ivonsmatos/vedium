@@ -444,68 +444,43 @@
   }
 
   /*
-   * Pathfinder routing (Fase C, secao 8-9 da missao) -- progressive
-   * enhancement. SEM JS, o <form> nativo (v2_pathfinder, method="get")
-   * ja funciona: submete pra "/teste-de-nivel" (fallback seguro e util
-   * pra qualquer combinacao). COM JS, intercepta o submit e troca o
-   * destino pela URL real mais especifica pra aquela combinacao
-   * idioma+objetivo -- nunca uma URL inventada, tudo confirmado HTTP 200
-   * nesta fase (ver docs/redesign/26-home-v2-integration.md). Matriz
-   * espelhada de vedium_core.v2_home_data.PATHFINDER_MATRIX (fonte unica
-   * de verdade documentada la -- Python nao roda no navegador, entao a
-   * mesma matriz precisa existir aqui tambem; qualquer mudanca na matriz
-   * real precisa ser replicada nos dois lugares).
+   * Pathfinder routing (Fase C, secao 8-9; refeito na Fase C.2, secao 7 --
+   * "resolve_learning_path" compartilhado) -- progressive enhancement. SEM
+   * JS, o <form> nativo (v2_pathfinder, method="get") ja funciona: submete
+   * pra "/teste-de-nivel" (fallback seguro e util pra qualquer combinacao).
+   * COM JS, intercepta o submit e troca o destino pela URL real mais
+   * especifica pra aquela combinacao idioma+objetivo -- nunca uma URL
+   * inventada, tudo confirmado HTTP 200 (ver docs/redesign/26-home-v2-integration.md).
    *
-   * Eventos dataLayer NOVOS nesta fase (nao existiam antes -- auditados
-   * contra analytics-contracts.md antes de criar: nenhum evento
-   * "pathfinder_*" existia no dataLayer real, so um trigger morto
-   * "language_selected" sem relacao. Nomes seguem a convencao ja usada no
-   * resto do site -- snake_case, sufixo _select/_submit, mesmo padrao de
-   * plan_select_click/level_test_completed): pathfinder_language_select,
-   * pathfinder_goal_select, pathfinder_submit.
+   * Fase C.2: a matriz deixou de estar hardcoded aqui -- le do data island
+   * <script type="application/json" id="vedium-webmcp-course-data"> (ver
+   * webmcp_course_data.py), o MESMO bloco que webmcp.js usa pra
+   * recommend_learning_path. window.VediumPathfinder.resolve() e a UNICA
+   * funcao de resolucao -- a UI humana chama ela aqui, a tool WebMCP chama
+   * ela em webmcp.js. Ausencia do data island (pagina sem Pathfinder, ou
+   * falha de parse) preserva o fallback seguro: nenhuma correspondencia,
+   * form submete nativo pro action original.
    */
-  var PATHFINDER_MATRIX = {
-    "Inglês": {
-      _pillar: "/curso-de-ingles-online",
-      "Trabalho e carreira": "/ingles-executivo",
-      "Comunicação cotidiana": "/curso-de-ingles-online",
-      "Viagens": "/ingles-para-viagens",
-      "Estudos e cultura": "/curso-de-ingles-online",
-      "Viver e trabalhar no Brasil": "/curso-de-ingles-online"
-    },
-    "Iorubá": {
-      _pillar: "/curso-de-ioruba-online",
-      "Trabalho e carreira": "/curso-de-ioruba-online",
-      "Comunicação cotidiana": "/curso-de-ioruba-online",
-      "Viagens": "/curso-de-ioruba-online",
-      "Estudos e cultura": "/ioruba-cultura-e-ancestralidade",
-      "Viver e trabalhar no Brasil": "/curso-de-ioruba-online"
-    },
-    "Português para Estrangeiros": {
-      _pillar: "/portugues-para-estrangeiros",
-      "Trabalho e carreira": "/portugues-para-executivos",
-      "Comunicação cotidiana": "/portugues-para-estrangeiros",
-      "Viagens": "/portugues-para-estrangeiros",
-      "Estudos e cultura": "/preparatorio-celpe-bras",
-      "Viver e trabalhar no Brasil": "/portugues-para-estrangeiros"
-    },
-    "Espanhol": {
-      _pillar: "/curso-de-espanhol-online",
-      "Trabalho e carreira": "/curso-de-espanhol-online",
-      "Comunicação cotidiana": "/curso-de-espanhol-online",
-      "Viagens": "/curso-de-espanhol-online",
-      "Estudos e cultura": "/curso-de-espanhol-online",
-      "Viver e trabalhar no Brasil": "/curso-de-espanhol-online"
-    },
-    "Hebraico": {
-      _pillar: "/curso-de-hebraico-online",
-      "Trabalho e carreira": "/curso-de-hebraico-online",
-      "Comunicação cotidiana": "/curso-de-hebraico-online",
-      "Viagens": "/curso-de-hebraico-online",
-      "Estudos e cultura": "/curso-de-hebraico-online",
-      "Viver e trabalhar no Brasil": "/curso-de-hebraico-online"
+  function readWebMcpCourseData() {
+    var el = document.getElementById("vedium-webmcp-course-data");
+    if (!el) return null;
+    try {
+      return JSON.parse(el.textContent);
+    } catch (e) {
+      return null;
     }
-  };
+  }
+
+  function resolveLearningPath(languageDisplayName, goal) {
+    var data = readWebMcpCourseData();
+    if (!data) return null;
+    var matrix = data.pathfinder_matrix_by_display_name || {};
+    var entry = matrix[languageDisplayName];
+    if (!entry) return null;
+    return entry[goal] || entry._pillar || null;
+  }
+
+  window.VediumPathfinder = { resolve: resolveLearningPath };
 
   function pushDataLayer(payload) {
     window.dataLayer = window.dataLayer || [];
@@ -534,9 +509,7 @@
         language = language ? language.value : "";
         goal = goal ? goal.value : "";
 
-        var destination = "";
-        var entry = PATHFINDER_MATRIX[language];
-        if (entry) destination = entry[goal] || entry._pillar;
+        var destination = resolveLearningPath(language, goal) || "";
 
         pushDataLayer({ event: "pathfinder_submit", language: language, goal: goal, destination: destination || null });
 

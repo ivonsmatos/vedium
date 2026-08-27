@@ -137,24 +137,23 @@ def test_noindex_never_leaks_from_home_v2_route_into_real_home():
     assert "context.no_sitemap = 1" in home_v2_py, "/_home_v2 precisa continuar fora do sitemap"
 
 
-def test_pathfinder_matrix_languages_match_between_python_and_js():
-    """A matriz de encaminhamento do Pathfinder existe em DOIS lugares
-    (Python, fonte de verdade documentada, e JS, espelho client-side --
-    JS nao executa Python em tempo de navegacao). As duas precisam ter
-    exatamente as mesmas 5 chaves de idioma, ou a documentacao e o
-    comportamento real divergem silenciosamente."""
+def test_pathfinder_matrix_has_no_hardcoded_js_mirror_anymore():
+    """Fase C.2 (piloto WebMCP, secao 7 da missao): a matriz deixou de
+    existir duplicada em Python+JS -- design-system-v2.js agora LE o
+    mesmo data island (vedium-webmcp-course-data, ver webmcp_course_data.py)
+    que o Pathfinder humano e as WebMCP tools consomem, em vez de manter um
+    espelho hardcoded. Este teste substitui o antigo guard de paridade
+    Python/JS (que checava as 5 chaves de idioma duplicadas em ambos os
+    arquivos) por um guard equivalente: garante que a duplicacao NAO
+    voltou a existir, e que o JS de fato le o data island em vez disso."""
     py_src = V2_HOME_DATA.read_text(encoding="utf-8")
     js_src = V2_JS.read_text(encoding="utf-8")
 
-    expected_languages = [
-        "Inglês", "Iorubá", "Português para Estrangeiros", "Espanhol", "Hebraico",
-    ]
-    for lang in expected_languages:
-        assert f'"{lang}"' in py_src or f"'{lang}'" in py_src, f"{lang} ausente em PATHFINDER_MATRIX (Python)"
-        assert f'"{lang}"' in js_src, f"{lang} ausente em PATHFINDER_MATRIX (JS)"
-
     assert "PATHFINDER_MATRIX" in py_src
-    assert "PATHFINDER_MATRIX" in js_src
+    assert "PATHFINDER_MATRIX" not in js_src, "JS nao deve mais ter uma copia hardcoded da matriz"
+    assert "vedium-webmcp-course-data" in js_src, "JS precisa ler o data island compartilhado"
+    assert "pathfinder_matrix_by_display_name" in js_src
+    assert "window.VediumPathfinder" in js_src, "resolveLearningPath precisa ser exposta pra webmcp.js reusar"
     assert "initPathfinderRouting" in js_src
 
 

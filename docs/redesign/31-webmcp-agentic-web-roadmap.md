@@ -1,6 +1,28 @@
-# 31 — WebMCP / Agentic Web: roadmap (Fase C.2, NÃO implementada)
+# 31 — WebMCP / Agentic Web: roadmap (Fase C.2)
 
-> **Registro oficial, não implementação.** Esta fase (C.1) só documenta o escopo futuro, por instrução explícita da missão. Nenhum código WebMCP foi escrito. Nenhuma dependência nova foi adicionada ao projeto.
+> **Atualização (Fase C.2, piloto implementado):** as 4 primeiras
+> ferramentas da tabela abaixo (`find_course`, `recommend_learning_path`,
+> `get_course_information`, `get_levels`) foram implementadas como piloto
+> local — ver `50-webmcp-pilot-architecture.md` (arquitetura),
+> `51-webmcp-tool-contracts.md` (contrato de cada tool) e
+> `52-webmcp-test-matrix.md` (evidência de teste). Nenhum deploy foi
+> feito; nenhum origin trial foi ativado; produção não foi alterada. As
+> demais linhas da tabela (`search_content`, `get_b2b_information`,
+> `switch_locale`, `start_level_test`, `contact_vedium`) permanecem
+> roadmap não implementado, por instrução explícita da missão C.2 (seção
+> 30/31 — "não implementar agora").
+>
+> **Atualização (Fase C.2.2, verificação real):** teste manual com Chrome
+> + flag experimental confirmou runtime real: `document.modelContext`
+> disponível, 4 tools descobertas, `find_course` e
+> `recommend_learning_path` executadas com sucesso via
+> `document.modelContext.executeTool()`. Status alterado de MOCKED para
+> **WEBMCP MANUAL REAL-BROWSER RUNTIME: PASS**. Piloto commitado (sem
+> deploy, sem origin trial).
+>
+> Texto original abaixo, preservado como registro histórico do roadmap
+> antes do piloto.
+
 
 ## O que é
 

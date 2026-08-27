@@ -57,5 +57,13 @@
 
 </main>
 
+{#- Fase C.2 (piloto WebMCP, progressive enhancement): data island inerte
+    (type="application/json", nunca executado) com o MESMO course data
+    service que a Home usa -- ver vedium_core/webmcp_course_data.py e
+    docs/redesign/50-webmcp-pilot-architecture.md. design-system-v2.js (o
+    Pathfinder humano) e webmcp.js (as tools) leem este bloco; nenhum dos
+    dois duplica a matriz/URLs em JS hardcoded. -#}
+<script type="application/json" id="vedium-webmcp-course-data">{{ webmcp_course_data_json }}</script>
 <script defer src="/assets/vedium_core/js/vedium-language.min.js"></script>
 <script defer src="/assets/vedium_core/js/v2/design-system-v2.js"></script>
+<script defer src="/assets/vedium_core/js/v2/webmcp.js"></script>

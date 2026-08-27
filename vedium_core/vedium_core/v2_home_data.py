@@ -30,12 +30,17 @@ def build_home_v2_context(context):
     www/_home_v2.py. "Template compartilhado + context compartilhado, minimo
     de duplicacao" (Fase C.1.4, secao 5 da missao)."""
     from vedium_core.home_course_collection import get_home_course_collection, get_course_index_entries
+    from vedium_core.webmcp_course_data import get_webmcp_course_data
 
     featured, secondary = get_insights_selection()
     context.insights_featured = to_insight_macro_dict(featured)
     context.insights_secondary = [to_insight_macro_dict(c) for c in secondary]
     context.home_courses = get_home_course_collection()
     context.course_index_entries = get_course_index_entries()
+    # Fase C.2 (piloto WebMCP): mesmo context/rota que ja serve a Home
+    # tambem serve o data island que webmcp.js e o Pathfinder humano leem
+    # -- ver webmcp_course_data.py, "course data service" unico.
+    context.webmcp_course_data_json = frappe.as_json(get_webmcp_course_data())
     return context
 
 
