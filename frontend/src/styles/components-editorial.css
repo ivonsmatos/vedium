@@ -1,0 +1,2069 @@
+/*
+ * VEDIUM DESIGN SYSTEM V2 -- componentes editoriais
+ *
+ * Fase B.3 (2026-08-24) -- redesign visual e direcao de arte. A Fase B
+ * construiu a arquitetura (Jinja + CSS escopado, sem framework); a revisao
+ * visual humana REPROVOU a direcao de arte (parecia biblioteca de
+ * componentes/LMS/marketplace). Este arquivo foi reescrito para: fotografia
+ * como parte da composicao (nunca decoracao opcional), escala institucional
+ * maior, terracota como acento raro (nunca cor padrao de todo label/badge),
+ * quase nenhuma sombra, radius contido, poucos icones. Ver
+ * docs/redesign/14-art-direction-v2.md para os principios completos e o que
+ * foi descartado de Edumon/EduAll (referencias SOMENTE de composicao/escala
+ * -- nunca copiadas literalmente: nada de cards de estatistica flutuantes,
+ * doodles decorativos, avatar stacks ou pose publicitaria "apontando pro
+ * copy space").
+ *
+ * HeroSplit, HeroCentered, HeroFullBleed, ProofBar, FeatureCard, LanguageCard,
+ * LanguageMosaic, CourseCard, LevelCard, LevelJourney, TeacherCard,
+ * TeacherFeature, ProcessSteps, FeatureMedia, LiveClassExperience,
+ * VideoSection, TestimonialCard, StudyRhythmCard, FAQAccordion, BlogCard,
+ * CTASection. Todos recebem dado via macro (nunca hardcode professor, preco,
+ * depoimento, data ou nivel no CSS ou no HTML gerado).
+ */
+
+/* ---------- Media vazia (estado real do componente, nao um placeholder de
+   dev) -- usado por todo slot de imagem quando nao ha image_src, ou quando a
+   governanca de fotografia (docs/redesign/06-photography-system.md) ainda
+   nao autoriza um asset para aquele contexto (ex.: Iorubá, Espanhol e
+   Hebraico nesta fase -- nenhum stock disponivel esta autorizado como
+   hero/prova desses cursos). Fase B.3: tratamento elegante (gradiente sutil
+   com tons da marca), nao so um icone cinza -- ainda assim claramente NAO
+   uma foto, nunca inventa rosto. ---------- */
+.v2-media-empty {
+  width: 100%;
+  height: 100%;
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, var(--v2-color-surface-alt) 0%, var(--v2-color-surface-warm) 100%);
+  color: var(--v2-color-border-strong);
+}
+.v2-media-empty .v2-icon { width: 1.75rem; height: 1.75rem; opacity: 0.7; }
+.v2-media-empty--on-dark {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Text link (CTA textual -- "Conheca a trilha ->"). Fase B.3
+   substitui varios botoes-caixa por link textual em componentes editoriais
+   (LanguageCard, CourseCard, FeatureMedia, TeacherFeature, CTA secundario),
+   conforme a missao pedir "CTA textual" repetidamente em vez de botao. ---------- */
+.v2-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v2-space-2);
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-brand-700);
+  border-radius: var(--v2-radius-sm);
+}
+.v2-text-link .v2-icon { transition: transform var(--v2-motion-base) var(--v2-motion-ease); }
+.v2-text-link:hover { color: var(--v2-color-accent); }
+.v2-text-link:hover .v2-icon { transform: translateX(3px); }
+.v2-text-link--accent { color: var(--v2-color-accent); }
+.v2-text-link--on-dark { color: var(--v2-color-surface-0); }
+.v2-text-link--on-dark:hover { color: #FFD9CC; }
+.v2-text-link--lg { font-size: var(--v2-text-lg); }
+
+/* ---------- Hero (Split / Centered / FullBleed) ---------- */
+
+.v2-hero {
+  display: grid;
+  gap: var(--v2-space-10);
+  align-items: center;
+}
+.v2-hero__eyebrow { margin-block-end: var(--v2-space-4); }
+.v2-hero__title { margin-block-end: var(--v2-space-5); }
+.v2-hero__lead { margin-block-end: var(--v2-space-8); color: var(--v2-color-text-muted); max-width: 34rem; }
+.v2-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--v2-space-4);
+}
+/* Fase B.5 (secao 5): lista discreta dos 5 idiomas abaixo do CTA -- reforca
+   "CURSOS" e nomeia os idiomas sem depender so do mosaico mais abaixo. */
+.v2-hero__languages {
+  margin-block-start: var(--v2-space-6);
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-subtle);
+}
+
+.v2-hero--split {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .v2-hero--split {
+    /* Fase B.4 secao 5: "48% conteudo / 52% midia" -- conteudo (1a coluna,
+       ver macro) fica levemente menor que a midia, nao o contrario. */
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: var(--v2-space-12);
+    min-height: var(--v2-hero-min-height);
+  }
+}
+/* Fase B.3 (secao 7): a foto deve "ocupar a maior parte da altura... evitar
+   moldura pequena". Em mobile mantem 4:5 (proporcao aprovada em
+   06-photography-system.md); em desktop a moldura estica pra acompanhar a
+   altura real do bloco de texto ao lado, em vez de um aspect-ratio fixo
+   pequeno -- mais perto da presenca fotografica das referencias (Edumon),
+   sem os cartoes de estatistica flutuantes que aquela referencia usa. */
+.v2-hero--split .v2-hero__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--v2-radius-media);
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .v2-hero--split .v2-hero__media {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 30rem;
+  }
+}
+.v2-hero--split .v2-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+/* Fase B.6E (Parte C da missao, pagina B2B): --v2-text-h1 (token
+   compartilhado, ate 76px) foi calibrado pro Hero-carousel full-bleed
+   (coluna larga, headline curto de 5 palavras -- ver nota no proprio
+   token em tokens.css). Aqui a coluna e so ~48% do container e o H1 da
+   pagina B2B tem 9 palavras -- sem um teto proprio, quebrava em 5 linhas
+   (achado real por screenshot). Escopado so a --split (unico uso hoje,
+   nao mexe no token nem no Hero-carousel congelado). */
+.v2-hero--split .v2-hero__title { font-size: clamp(2rem, 1.7rem + 1.4vw, 3rem); line-height: 1.12; }
+
+.v2-hero--centered {
+  text-align: center;
+  justify-items: center;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-block: var(--v2-space-6);
+}
+.v2-hero--centered .v2-hero__lead { margin-inline: auto; }
+.v2-hero--centered .v2-hero__actions { justify-content: center; }
+
+.v2-hero--full-bleed {
+  position: relative;
+  border-radius: var(--v2-radius-media);
+  overflow: hidden;
+  padding: var(--v2-space-16) var(--v2-space-6);
+  color: var(--v2-color-surface-0);
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 992px) {
+  .v2-hero--full-bleed { min-height: var(--v2-hero-min-height); padding-inline: var(--v2-space-16); }
+}
+.v2-hero--full-bleed .v2-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.v2-hero--full-bleed .v2-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-hero--full-bleed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* area segura de contraste >=35% do quadro, conforme 06-photography-system.md */
+  background: linear-gradient(90deg, rgba(15, 20, 25, 0.74) 0%, rgba(15, 20, 25, 0.74) 42%, rgba(15, 20, 25, 0.18) 100%);
+}
+.v2-hero--full-bleed .v2-hero__content { max-width: 36rem; }
+.v2-hero--full-bleed .v2-hero__lead { color: rgba(255, 255, 255, 0.88); }
+
+/* ---------- HeroEditorial -- Fase B.6 (reset Bain-inspired, secao 4/6):
+   sem midia, headline dominante, largura editorial ampla (nao a coluna de
+   47% do HeroSplit). ---------- */
+.v2-hero-editorial { max-width: 44rem; }
+.v2-hero-editorial__title { margin-block: var(--v2-space-4) var(--v2-space-5); }
+.v2-hero-editorial__lead { max-width: 34rem; }
+
+/* ---------- VediumPathfinder -- Fase B.6, NOVO; redesenhado na Fase B.6B
+   (secao 4 da missao: "nao envolver tudo em um card com borda... o proprio
+   lado direito E a interface"). Sem card/borda/max-width proprios -- quem
+   posiciona e da fundo agora e .v2-pathfinder-section__form-wrap (envelope
+   novo desta fase). Opcoes maiores, sem "estetica de pill exagerada":
+   retangulo com radius pequeno + selecao por fundo suave + borda inferior
+   mais forte (nao mais pilula/borda fina ao redor do texto todo). ---------- */
+.v2-pathfinder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-10);
+}
+.v2-pathfinder__group { border: 0; padding: 0; margin: 0; }
+.v2-pathfinder__question {
+  display: flex;
+  align-items: baseline;
+  gap: var(--v2-space-3);
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1.625rem, 1.4rem + 1vw, 2rem); /* ~26-32px, secao 4 da missao */
+  padding: 0;
+  margin-block-end: var(--v2-space-5);
+}
+.v2-pathfinder__question-num {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-subtle);
+}
+.v2-pathfinder__options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-2);
+}
+@media (min-width: 560px) {
+  .v2-pathfinder__options { grid-template-columns: 1fr 1fr; gap: var(--v2-space-3); }
+}
+.v2-pathfinder__option {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-3);
+  min-height: 3.25rem; /* ~52px, secao 4 da missao (48-54px) */
+  padding-inline: var(--v2-space-4);
+  border-radius: var(--v2-radius-sm);
+  border-block-end: 2px solid var(--v2-color-border);
+  font-size: var(--v2-text-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--v2-motion-base) var(--v2-motion-ease), background-color var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-pathfinder__option:has(input:checked) {
+  border-block-end-color: var(--v2-color-brand-700);
+  background: color-mix(in srgb, var(--v2-color-brand-600) 8%, white);
+  color: var(--v2-color-brand-700);
+}
+.v2-pathfinder__option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  accent-color: var(--v2-color-brand-700);
+}
+/* CTA alinhado a esquerda, largura de conteudo -- "NAO full-width
+   gigantesco" (secao 4 da missao). O v2_button padrao ja e inline-flex
+   (largura de conteudo); so precisa ficar fora do grid de 2 colunas das
+   opcoes (o form e flex-column, CTA como ultimo item flui normal). */
+.v2-pathfinder > .v2-btn { align-self: flex-start; }
+
+/* ---------- VediumPathfinder -- envelope full-width editorial (Fase
+   B.6B, secoes 2-6 da missao). Split 42/58: painel azul institucional
+   (contexto + "01 IDIOMA / 02 OBJETIVO" como elemento grafico) + o
+   v2_pathfinder acima, sem card, do lado claro. Fundo de cada metade
+   sangra ate a viewport (mesmo padrao ja usado por .v2-section--brand
+   nesta pagina); o CONTEUDO de cada metade fica alinhado ao container
+   padrao (1280px) via padding calculado com clamp/max -- nunca solto na
+   tela inteira mesmo em monitores muito largos. ---------- */
+/*
+ * Fase B.6D (secao 1 da missao): bug real de transicao -- painel e area
+ * clara eram DUAS DIVS INDEPENDENTES, cada uma com seu proprio fundo. Um
+ * grid CSS estica os filhos pra mesma altura por padrao, mas qualquer
+ * diferenca futura de conteudo (ou um min-height mal calibrado) podia
+ * deixar um fundo "sobrando" alem do outro -- alem disso, o split desta
+ * secao era 42/58 enquanto o VediumMethod logo abaixo era 40/60, entao a
+ * linha divisoria azul/claro PULAVA de posicao horizontal ao rolar de uma
+ * secao pra outra (2% de largura = descontinuidade visivel). Corrigido
+ * estruturalmente, exatamente como a missao pediu: o split vira UM
+ * background so, pintado no CONTAINER (nao mais em duas divs), com hard
+ * stop exatamente em 42% -- garante que as duas metades terminem na MESMA
+ * linha horizontal sempre, e o VediumMethod foi alinhado pro mesmo 42%
+ * (era 40%) pra linha divisoria continuar reta entre as duas secoes.
+ */
+.v2-pathfinder-section {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .v2-pathfinder-section {
+    grid-template-columns: 42fr 58fr;
+    background: linear-gradient(90deg, var(--v2-color-brand-700) 0%, var(--v2-color-brand-700) 42%, var(--v2-color-surface-0) 42%, var(--v2-color-surface-0) 100%);
+  }
+}
+.v2-pathfinder-section__panel {
+  background: linear-gradient(160deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
+  color: var(--v2-color-surface-0);
+  display: flex;
+  align-items: center;
+  padding: var(--v2-space-12) var(--v2-space-6);
+}
+/* mesma causa raiz ja documentada em .v2-course-feature--tone-brand acima:
+   ".v2-heading" fixa cor escura, precisa de override explicito por painel
+   navy que nao seja uma .v2-section--brand inteira. */
+.v2-pathfinder-section__panel .v2-heading { color: inherit; }
+@media (min-width: 992px) {
+  .v2-pathfinder-section__panel {
+    /* Fase B.6D (secao 2): min-height fixo removido -- a altura agora vem
+       do conteudo real + padding (72-96px pedido pela missao); o fundo
+       (acima, no container) ja garante que as duas metades tenham
+       exatamente a mesma altura, entao nao precisa mais forcar isso aqui.
+       O fundo proprio deste painel tambem sai (o container ja pinta) --
+       mantido "background:none" implicito via a regra abaixo. */
+    background: none;
+    padding-block: var(--v2-space-20);
+    padding-inline-end: var(--v2-space-10);
+    padding-inline-start: max(var(--v2-space-10), calc((100vw - var(--v2-container-wide)) / 2 + var(--v2-space-6)));
+  }
+}
+.v2-pathfinder-section__panel-inner { max-width: 26rem; }
+.v2-pathfinder-section__panel-title { margin-block: var(--v2-space-4) var(--v2-space-3); }
+/* Contraste verificado matematicamente (mesma auditoria da secao "Cursos"
+   acima) -- 86% branco dava 4.53:1 no pior ponto do gradiente, margem
+   fina demais; 90% da 4.76:1 com folga real. */
+.v2-pathfinder-section__panel-lead { color: rgba(255, 255, 255, 0.9); }
+.v2-pathfinder-section__panel-rule {
+  width: 3rem;
+  height: 3px;
+  background: var(--v2-color-accent-600);
+  margin-block: var(--v2-space-8);
+}
+.v2-pathfinder-section__panel-steps { display: flex; flex-direction: column; gap: var(--v2-space-5); }
+.v2-pathfinder-section__panel-steps li { display: flex; align-items: baseline; gap: var(--v2-space-4); }
+.v2-pathfinder-section__panel-step-num {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1;
+}
+.v2-pathfinder-section__panel-step-label {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.v2-pathfinder-section__form-wrap {
+  background: var(--v2-color-surface-0);
+  display: flex;
+  align-items: center;
+  padding: var(--v2-space-12) var(--v2-space-6);
+}
+@media (min-width: 992px) {
+  .v2-pathfinder-section__form-wrap {
+    background: none; /* o container ja pinta -- ver nota em .v2-pathfinder-section */
+    padding-block: var(--v2-space-20);
+    padding-inline-start: var(--v2-space-10);
+    padding-inline-end: max(var(--v2-space-10), calc((100vw - var(--v2-container-wide)) / 2 + var(--v2-space-6)));
+  }
+}
+.v2-pathfinder-section__form-inner { width: 100%; max-width: 34rem; }
+
+/* ---------- VediumMethod ("O que você encontra na Vedium") -- Fase B.6B
+   (secoes 7-9 da missao). Split 40/60, mesmo padrao de sangria+alinhamento
+   ao container do VediumPathfinder acima (fundo de cada metade ate a
+   viewport, conteudo alinhado ao container de 1280px). Diferenciais em
+   lista editorial (numero + rotulo + texto, linha fina entre itens) --
+   nunca card/icone/radius/shadow (secao 8 da missao). ---------- */
+.v2-vedium-method {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  /* Fase B.6D (secao 1/5 da missao): 40/60 -> 42/58, alinhando com o
+     VediumPathfinder logo acima (era 42/58) -- a linha divisoria azul/claro
+     agora fica reta ao rolar de uma secao pra outra (antes pulava 2% de
+     largura). Mesmo padrao "fundo no container, nao nas duas divs" do
+     Pathfinder, pela mesma razao estrutural. */
+  .v2-vedium-method {
+    grid-template-columns: 42fr 58fr;
+    background: linear-gradient(90deg, var(--v2-color-brand-700) 0%, var(--v2-color-brand-700) 42%, var(--v2-color-surface-warm) 42%, var(--v2-color-surface-warm) 100%);
+  }
+}
+.v2-vedium-method__intro {
+  background: linear-gradient(160deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
+  color: var(--v2-color-surface-0);
+  display: flex;
+  align-items: center;
+  padding: var(--v2-space-12) var(--v2-space-6);
+}
+.v2-vedium-method__intro .v2-heading { color: inherit; }
+@media (min-width: 992px) {
+  .v2-vedium-method__intro {
+    background: none; /* o container ja pinta -- ver .v2-vedium-method acima */
+    /* Fase B.6D (secao 6): 88-112px pedido -- --v2-space-24 (96px). Era
+       --v2-space-16 (64px); a secao parecia vazia nao por causa do
+       padding, mas porque o texto pequeno da coluna direita nao ocupava
+       proporcao equivalente a coluna esquerda -- corrigido junto com o
+       aumento de escala dos itens abaixo. */
+    padding-block: var(--v2-space-24);
+    padding-inline-end: var(--v2-space-10);
+    padding-inline-start: max(var(--v2-space-10), calc((100vw - var(--v2-container-wide)) / 2 + var(--v2-space-6)));
+  }
+}
+.v2-vedium-method__intro-inner { max-width: 29rem; } /* Fase B.6D: era 26rem -- headline maior (52-60px) quebrava em 5 linhas; alargado pra caber em 3-4 (secao 5 da missao: "não quebrar em cinco linhas se houver largura disponível") */
+/* Fase B.6D (secao 5): "manter o texto, melhorar proporcao" -- 52-60px,
+   line-height 1.02-1.08 (era escala padrao v2-h2, 30-50px). */
+.v2-vedium-method__title {
+  margin-block: var(--v2-space-4) var(--v2-space-3);
+  font-size: clamp(2.25rem, 1.8rem + 2vw, 3.75rem);
+  line-height: 1.06;
+}
+.v2-vedium-method__lead { color: rgba(255, 255, 255, 0.9); } /* ver nota de contraste no VediumPathfinder acima */
+
+.v2-vedium-method__list-wrap {
+  background: var(--v2-color-surface-warm);
+  display: flex;
+  align-items: center;
+  padding: var(--v2-space-10) var(--v2-space-6);
+}
+@media (min-width: 992px) {
+  .v2-vedium-method__list-wrap {
+    background: none; /* o container ja pinta */
+    padding-block: var(--v2-space-24);
+    padding-inline-start: var(--v2-space-10);
+    padding-inline-end: max(var(--v2-space-10), calc((100vw - var(--v2-container-wide)) / 2 + var(--v2-space-6)));
+  }
+}
+.v2-vedium-method__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-10) var(--v2-space-10);
+  width: 100%;
+}
+@media (min-width: 700px) {
+  /* minmax(0, 1fr), nao só "1fr" -- Fase G.1 (secao 30), mesmo bug da
+     .v2-footer__grid: sem isso a faixa nao encolhe abaixo do
+     min-content do item mais longo, e um item com texto suficiente
+     (ex.: "A Experiência" em /sobre, 1024px) estoura a largura real da
+     coluna. Confirmado por getBoundingClientRect antes do fix: scrollWidth
+     1099 vs clientWidth 1024 em /sobre. */
+  .v2-vedium-method__list { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+.v2-vedium-method__item {
+  display: flex;
+  gap: var(--v2-space-4);
+  padding-block-start: var(--v2-space-6);
+  border-block-start: 1px solid var(--v2-color-border);
+}
+/* Fase G.1 (secao 30) -- .v2-vedium-method__item-num e flex:0 0 auto; o
+   <div> irmao (titulo+texto) sem min-width:0 nao encolhia abaixo do seu
+   min-content, entao o item inteiro estourava a celula do grid mesmo
+   depois do minmax(0,1fr) na lista (o problema nao era so a faixa do
+   grid, era o item flex por dentro dela). */
+.v2-vedium-method__item > div { min-width: 0; }
+/* Fase B.6D (secao 4 da missao): escala aumentada -- numero 34-42px (era
+   28-36px), titulo 20-23px peso 700 (era --v2-text-lg ~17-19px), descricao
+   17-19px com line-height 1.45-1.6 (era corpo padrao, sem line-height
+   proprio). "Não parecer micro-label." */
+.v2-vedium-method__item-num {
+  flex: 0 0 auto;
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(2.125rem, 1.8rem + 1.4vw, 2.625rem);
+  line-height: 1;
+  color: var(--v2-color-brand-300);
+}
+.v2-vedium-method__item-label {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.4375rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-block-end: var(--v2-space-2);
+  /* Fase G.1 (secao 30) -- rotulos de 1 palavra so (ex.: "PROFISSIONALISMO",
+     "TRANSPARÊNCIA") nao tem espaco pra quebrar; sem isso a palavra
+     inteira forcava a celula do grid a estourar em 1024px (medido em
+     /sobre: item-label com scrollWidth 243 vs clientWidth 170). */
+  overflow-wrap: anywhere;
+}
+.v2-vedium-method__item-text {
+  color: var(--v2-color-text-muted);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  line-height: 1.55;
+}
+
+/* ---------- HeroEditorialCarousel -- Fase B.6A (hero full-bleed inspirado
+   no Bain.com). So a LOGICA visual foi observada (full-bleed, overlay
+   escuro, carousel editorial, navegacao no rodape com barra de progresso) --
+   nenhum CSS/asset/texto do Bain foi copiado. Ver
+   docs/redesign/19-editorial-hero-carousel.md. Substitui o HeroEditorial
+   (sem foto, Fase B.6-v2) como Hero real da Home -- o macro antigo continua
+   em ?debug=1#lib-hero (regra "nunca excluir componente da biblioteca"). */
+
+.v2-editorial-hero {
+  --v2-hero-autoplay: 9s; /* fonte unica: lida por CSS (barra de progresso) e por JS (getComputedStyle, timer do autoplay) */
+  position: relative;
+  overflow: hidden;
+  min-height: 780px;
+  /* --v2-devtool-offset: setado em runtime por initHeaderOverlay (design-
+     system-v2.js) medindo a altura real da barra do dev-tool (.dstool-banner
+     +.dstool-toc, fora de .v2-scope). Existe SO nesta ferramenta de preview
+     -- fica 0px (var nao setada) em producao real, onde 100svh volta a ser
+     literal. Sem isso, o Hero (100svh) + a barra do dev-tool (que empurra o
+     Hero pra baixo no fluxo normal do documento) juntos passam de uma tela
+     -- a navegacao de slides no rodape do Hero ficava fora da viewport
+     inicial. Achado por screenshot em 390px (a barra do dev-tool quebra em
+     3 linhas nessa largura, ~96px, bem mais que os 35px em 1440px). */
+  min-height: calc(100svh - var(--v2-devtool-offset, 0px));
+  max-height: 62.5rem; /* 1000px -- nao esticar demais em telas muito altas/ultrawide */
+  color: var(--v2-color-surface-0);
+}
+@media (max-width: 767px) {
+  .v2-editorial-hero { max-height: none; }
+}
+
+.v2-editorial-hero__slides { position: absolute; inset: 0; }
+
+/*
+ * Bug real encontrado por screenshot (Fase B.6A): a 1a versao desta regra
+ * dava "position:relative" ao slide ativo -- como todo filho dele (media,
+ * overlay, content) e absolute/inset:0, a altura do slide ativo passava a
+ * vir so do CONTEUDO DE TEXTO em fluxo normal (bem mais baixo que o Hero
+ * inteiro), entao a foto/overlay cobriam so ate a base do texto, nao a
+ * secao toda. Fix: TODO slide fica sempre absolute/inset:0 (ativo ou nao)
+ * -- so a opacidade muda no crossfade, a altura vem sempre do
+ * .v2-editorial-hero (min-height) via .v2-editorial-hero__slides acima.
+ */
+.v2-editorial-hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 1100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.v2-editorial-hero__slide.is-active {
+  opacity: 1;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.v2-editorial-hero__media { position: absolute; inset: 0; overflow: hidden; }
+.v2-editorial-hero__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+}
+/* Ken Burns muito sutil -- so a favor de opt-in explicito, nunca sob
+   prefers-reduced-motion (ver bloco @media no fim deste componente). O JS
+   reinicia a animacao a cada troca de slide (remove/reflow/reaplica a
+   classe -- ver initHeroCarousel em design-system-v2.js). */
+.v2-editorial-hero__slide.is-active .v2-editorial-hero__media img {
+  animation: v2HeroDrift 12s ease-out forwards;
+}
+@keyframes v2HeroDrift {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.06) translate3d(-0.6%, -0.4%, 0); }
+}
+
+.v2-editorial-hero__overlay {
+  position: absolute;
+  inset: 0;
+  /* Camada 1: leitura horizontal (conteudo sempre a esquerda). Camada 2:
+     reforco inferior sutil para a navegacao dos slides no rodape nao
+     depender do brilho da foto embaixo. Navy institucional Vedium
+     (--v2-color-brand-800), nunca o vermelho do Bain. */
+  background:
+    linear-gradient(to top, rgba(29, 65, 111, 0.55) 0%, rgba(29, 65, 111, 0) 20%),
+    linear-gradient(90deg, rgba(29, 65, 111, 0.96) 0%, rgba(29, 65, 111, 0.82) 32%, rgba(29, 65, 111, 0.40) 60%, rgba(29, 65, 111, 0.10) 100%);
+}
+
+.v2-editorial-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  padding-block: var(--v2-space-16) var(--v2-space-20);
+}
+.v2-editorial-hero__copy {
+  max-width: 42.5rem; /* ~680px */
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1100ms cubic-bezier(0.4, 0, 0.2, 1), transform 1100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.v2-editorial-hero__slide.is-active .v2-editorial-hero__copy { opacity: 1; transform: translateY(0); }
+.v2-editorial-hero__eyebrow { font-size: 0.9375rem; margin-block-end: var(--v2-space-4); }
+.v2-editorial-hero__title {
+  font-size: var(--v2-text-h1);
+  line-height: 1.02;
+  margin-block-end: var(--v2-space-5);
+  color: var(--v2-color-surface-0);
+}
+.v2-editorial-hero__support {
+  font-size: var(--v2-text-lg);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 34rem;
+  margin-block-end: var(--v2-space-8);
+}
+
+.v2-editorial-hero__scroll {
+  position: absolute;
+  inset-inline-end: var(--v2-space-8);
+  inset-block-end: var(--v2-space-8);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  gap: var(--v2-space-2);
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  font-size: var(--v2-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.7);
+}
+@media (min-width: 992px) {
+  .v2-editorial-hero__scroll { display: inline-flex; }
+}
+
+.v2-editorial-hero__nav {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 2;
+  display: flex;
+  overflow-x: auto;
+  padding-inline: var(--v2-space-6);
+}
+@media (min-width: 992px) {
+  .v2-editorial-hero__nav { padding-inline: var(--v2-space-16); }
+}
+.v2-editorial-hero__tab {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+  padding: var(--v2-space-4) var(--v2-space-5) var(--v2-space-5);
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+.v2-editorial-hero__tab:hover { color: var(--v2-color-surface-0); }
+.v2-editorial-hero__tab.is-active { color: var(--v2-color-surface-0); }
+.v2-editorial-hero__tab-track {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.22);
+}
+.v2-editorial-hero__tab-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--v2-color-accent-600);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.v2-editorial-hero__tab.is-active .v2-editorial-hero__tab-fill {
+  animation: v2HeroProgress var(--v2-hero-autoplay, 9s) linear forwards;
+}
+@keyframes v2HeroProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.v2-editorial-hero__tab-label {
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  font-size: var(--v2-text-sm);
+}
+
+@media (max-width: 767px) {
+  .v2-editorial-hero__content { align-items: flex-end; padding-block-end: var(--v2-space-24); }
+  .v2-editorial-hero__title { font-size: clamp(2.625rem, 2rem + 3vw, 3.25rem); }
+  .v2-editorial-hero__nav { justify-content: flex-start; }
+  .v2-editorial-hero__tab { padding-inline: var(--v2-space-4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-editorial-hero__slide,
+  .v2-editorial-hero__copy { transition-duration: 1ms; }
+  .v2-editorial-hero__slide.is-active .v2-editorial-hero__media img { animation: none; }
+  .v2-editorial-hero__tab.is-active .v2-editorial-hero__tab-fill { animation: none; transform: scaleX(1); }
+  .v2-editorial-hero__copy { transform: none; }
+}
+
+/* ---------- Proof bar -- Fase B.3 (secao 9): redesenho completo. Nada de
+   numeros grandes genericos tipo ThemeForest ("5", "100%"). Beneficios com
+   titulo + texto curto, sem caixa, com divisor vertical discreto entre
+   itens, minimo de icone, muito espaco. ---------- */
+
+.v2-proofbar {
+  display: grid;
+  gap: var(--v2-space-8) var(--v2-space-6);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 768px) {
+  .v2-proofbar { grid-template-columns: repeat(4, 1fr); gap: 0; }
+}
+/* Divisor vertical discreto -- so faz sentido no item a DIREITA de cada
+   linha da grade, entao a regra que zera o divisor precisa mudar por
+   breakpoint (:nth-child(odd) = coluna esquerda no grid de 2 colunas do
+   mobile; :first-child = unica coluna esquerda no grid de 4 colunas do
+   desktop). Bug real encontrado por screenshot (Fase B.6, secao "O que
+   define a Vedium"): usar so :first-child em todos os breakpoints deixava
+   o 3o item (inicio da 2a linha no mobile) com um traço e um recuo a
+   esquerda que nao correspondiam a nenhum item vizinho de verdade. */
+.v2-proofbar__item {
+  padding-inline-start: var(--v2-space-5);
+  border-inline-start: 1px solid var(--v2-color-border);
+}
+.v2-proofbar__item:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; }
+@media (min-width: 768px) {
+  .v2-proofbar__item { padding-inline: var(--v2-space-6); border-inline-start: 1px solid var(--v2-color-border); }
+  .v2-proofbar__item:nth-child(odd) { border-inline-start: 1px solid var(--v2-color-border); padding-inline-start: var(--v2-space-6); }
+  .v2-proofbar__item:first-child { border-inline-start: 0; padding-inline-start: 0; }
+}
+.v2-proofbar__title {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-2);
+  font-family: var(--v2-font-heading);
+  font-weight: 700; /* Fase B.6 secao 8: mais peso tipografico (era 600) */
+  font-size: var(--v2-text-base);
+  color: var(--v2-color-text);
+  margin-block-end: var(--v2-space-2);
+}
+.v2-proofbar__title .v2-icon { color: var(--v2-color-brand-700); flex: 0 0 auto; }
+.v2-proofbar__text {
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-muted);
+  line-height: var(--v2-leading-body);
+}
+
+/*
+ * Fase B.4 (secao 7): "Institutional Proof Strip" -- faixa horizontal
+ * elegante em fundo azul profundo, texto branco (a missao permitia azul
+ * claro OU profundo; profundo da mais contraste de ritmo contra o Hero
+ * branco -- ver secao 21). Reaproveita o mesmo ProofBar, so troca cor.
+ */
+.v2-proofbar--on-dark .v2-proofbar__item { border-inline-start-color: rgba(255, 255, 255, 0.24); }
+.v2-proofbar--on-dark .v2-proofbar__title { color: var(--v2-color-surface-0); }
+.v2-proofbar--on-dark .v2-proofbar__title .v2-icon { color: rgba(255, 255, 255, 0.75); }
+.v2-proofbar--on-dark .v2-proofbar__text { color: rgba(255, 255, 255, 0.78); }
+
+/*
+ * Fase B.6 (secao 4): "faixa esta pequena demais -- aumentar altura,
+ * tipografia, padding, contraste titulo/apoio". --lg e usado na Trust
+ * Strip (a faixa institucional de maior destaque da Home); o ProofBar
+ * padrao (sem --lg) continua servindo "Como a Vedium ensina", que a missao
+ * pediu pra manter mais discreto.
+ */
+.v2-proofbar--lg { padding-block: var(--v2-space-4); }
+@media (min-width: 768px) {
+  .v2-proofbar--lg .v2-proofbar__item { padding-inline: var(--v2-space-8); }
+}
+.v2-proofbar--lg .v2-proofbar__title {
+  font-size: var(--v2-text-lg);
+  font-weight: 700;
+  margin-block-end: var(--v2-space-3);
+}
+.v2-proofbar--lg .v2-proofbar__text { font-size: var(--v2-text-base); }
+.v2-proofbar--on-dark.v2-proofbar--lg .v2-proofbar__text { color: rgba(255, 255, 255, 0.86); }
+
+/* ---------- FeatureCard ---------- */
+
+.v2-feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+  padding: var(--v2-space-6);
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  background: var(--v2-color-surface-0);
+  height: 100%;
+}
+
+/* ---------- LanguageCard -- Fase B.3 (secao 10): "idioma deve ser uma
+   PORTA DE ENTRADA", nao um card pequeno e burocratico. Fotografia grande,
+   nome grande, tese curta, CTA textual. ---------- */
+
+.v2-language-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--v2-radius-md); /* Fase B.6 secao 19: card (8-12px), nao media de secao (era --v2-radius-media) */
+  overflow: hidden;
+  background: var(--v2-color-surface-0);
+}
+.v2-language-card__media { aspect-ratio: 4 / 5; }
+.v2-language-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-language-card__body { padding: var(--v2-space-6); display: flex; flex-direction: column; gap: var(--v2-space-2); flex: 1; }
+.v2-language-card__name { font-family: var(--v2-font-heading); font-weight: 700; font-size: var(--v2-text-2xl); }
+.v2-language-card__context { color: var(--v2-color-text-muted); flex: 1; }
+.v2-language-card__meta { font-size: var(--v2-text-sm); color: var(--v2-color-text-subtle); }
+.v2-language-card__cta { margin-block-start: var(--v2-space-3); }
+
+/*
+ * Fase B.4 (secao 10): card tipografico -- usado quando nao ha fotografia
+ * legitima pro idioma (gate cultural de Iorubá; sem asset estatico
+ * aprovado pra Espanhol/Hebraico nesta fase). "Um card tipografico bem
+ * desenhado e MELHOR que um placeholder ou uma foto culturalmente errada"
+ * -- nunca .v2-media-empty (icone) aqui, o proprio nome grande em Playfair
+ * carrega a composicao. tone="brand" (fundo gradiente azul, texto branco)
+ * ou tone="warm" (fundo surface-warm, texto escuro) -- alternados pra dar
+ * ritmo, nao repetir o mesmo tom 3x seguidas.
+ */
+/* Fase B.6 (secao 5): o card tipografico tinha padding PROPRIO (space-8) em
+   cima do padding do .v2-language-card__body (space-6) que os dois
+   compartilham -- resultado, o tipografico ficava com padding maior/
+   diferente do card com foto (inconsistencia que a missao chamou de
+   "colecao de layouts diferentes"). Removido o padding duplicado: agora os
+   dois variantes usam a MESMA fonte unica de padding (__body, space-6). */
+.v2-language-card--typographic {
+  justify-content: center;
+}
+.v2-language-card--typographic .v2-language-card__body {
+  gap: var(--v2-space-3);
+}
+/* Fase B.6 (secao 7): "o card tipografico precisa parecer proposital e
+   premium... nao parecer 'faltou imagem'" -- uma linha grafica discreta
+   acima do nome reforca que a composicao e intencional, nao uma ausencia. */
+.v2-language-card--typographic::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  border-radius: var(--v2-radius-pill);
+  margin-block-end: var(--v2-space-2);
+  background: currentColor;
+  opacity: 0.55;
+}
+.v2-language-card--typographic .v2-language-card__name {
+  /* Fase B.5 (secao 4): Playfair saiu da Home -- Poppins (font-heading)
+     carrega a autoridade tipografica sozinho, sem serifada editorial. */
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  line-height: var(--v2-leading-tight);
+}
+.v2-language-card--typographic.v2-language-card--tone-brand {
+  background: linear-gradient(155deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
+  color: var(--v2-color-surface-0);
+}
+.v2-language-card--typographic.v2-language-card--tone-brand .v2-language-card__context { color: rgba(255, 255, 255, 0.82); }
+.v2-language-card--typographic.v2-language-card--tone-brand .v2-language-card__meta { color: rgba(255, 255, 255, 0.6); }
+.v2-language-card--typographic.v2-language-card--tone-warm {
+  background: var(--v2-color-surface-warm);
+  color: var(--v2-color-text);
+}
+
+/* ---------- LanguageMosaic -- Fase B.4 (secao 9): composicao editorial
+   assimetrica especifica pros 5 idiomas (nao um sistema generico de
+   tamanhos lg/md/sm) -- Ingles grande (2 linhas), Iorubá+Espanhol
+   empilhados numa coluna estreita ao lado, PLE+Hebraico dividindo a linha
+   de baixo. B2B SAIU do mosaico nesta fase -- virou secao propria (secao
+   16 da missao), ver v2_feature_media na pagina. Em mobile tudo empilha
+   uniforme (ordem do DOM = ordem visual, sem position custom).
+
+   Fase B.5 (secao 11): a composicao assimetrica da B.4 foi julgada
+   "artistica demais -- queremos uma escola, nao uma revista de lifestyle".
+   Virou uma grade uniforme (catalogo academico): todos os 5 cursos com a
+   MESMA altura/proporcao e o MESMO tratamento visual (foto ou tipografico
+   como partes do mesmo sistema, nao um mosaico editorial dramatico).
+
+   Fase B.6 (secao 6): "grade deixa excesso de espaco vazio" -- com 5 cards
+   em 3 colunas fixas, a ultima linha (2 cards) deixava 1/3 da largura
+   vazio. Trocado pra auto-fit + minmax: o navegador so cria tantas colunas
+   quanto cabem, e colunas SEM conteudo colapsam a 0 -- as 2 colunas com
+   conteudo da ultima linha entao esticam (1fr) pra preencher a largura
+   toda, sem coluna fantasma vazia. Cards tambem ficaram um pouco maiores
+   (minmax minimo 19rem, era 3 colunas fixas sem minimo). */
+.v2-mosaic {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-5);
+}
+@media (min-width: 576px) {
+  .v2-mosaic { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 992px) {
+  .v2-mosaic { grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+}
+.v2-mosaic .v2-language-card { aspect-ratio: 4 / 5; }
+.v2-mosaic .v2-language-card__media { aspect-ratio: auto; height: 58%; }
+
+/* ---------- CourseCard -- Fase B.3 (secao 12): imagem maior, menos borda,
+   titulo maior, nivel discreto (texto, nao badge pesado), SEM preco por
+   padrao ("PRECO != NIVEL" -- preco pertence a secao comercial). ---------- */
+
+.v2-course-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.v2-course-card__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--v2-radius-md); /* Fase B.6 secao 19: card, nao media de secao */
+  overflow: hidden;
+  margin-block-end: var(--v2-space-4);
+}
+.v2-course-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-course-card__body { display: flex; flex-direction: column; gap: var(--v2-space-2); flex: 1; }
+.v2-course-card__level {
+  font-family: var(--v2-font-body);
+  font-size: var(--v2-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--v2-color-text-subtle);
+}
+.v2-course-card__title { font-family: var(--v2-font-heading); font-weight: 600; font-size: var(--v2-text-xl); }
+.v2-course-card__outcome { color: var(--v2-color-text-muted); font-size: var(--v2-text-sm); flex: 1; }
+.v2-course-card__footer { padding-block-start: var(--v2-space-2); }
+
+/* ---------- LevelCard (atomico, ainda usado fora do LevelJourney) ---------- */
+
+.v2-level-card {
+  padding: var(--v2-space-5);
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  background: var(--v2-color-surface-0);
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-2);
+}
+.v2-level-card--current { border-color: var(--v2-color-brand-700); border-width: 1.5px; }
+
+/* ---------- LevelJourney -- Fase B.3 (secao 13), NOVO. Substitui a
+   apresentacao "dashboard" da LevelTimeline por uma secao inteira: timeline
+   grande + painel do nivel selecionado. Progressive enhancement: sem JS,
+   TODOS os paineis ficam visiveis empilhados (nunca esconde conteudo
+   essencial); com JS, vira um padrao tablist acessivel por teclado (setas
+   esquerda/direita, Home/End) que troca o painel visivel. ---------- */
+
+.v2-journey__timeline {
+  display: flex;
+  gap: var(--v2-space-2);
+  overflow-x: auto;
+  padding-block-end: var(--v2-space-2);
+  margin-block-end: var(--v2-space-8);
+  border-block-end: 1px solid var(--v2-color-border);
+  scrollbar-width: thin;
+}
+.v2-journey__tab {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v2-space-2);
+  padding: var(--v2-space-3) var(--v2-space-5);
+  border-radius: var(--v2-radius-sm) var(--v2-radius-sm) 0 0;
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-lg);
+  color: var(--v2-color-text-subtle);
+  border-block-end: 3px solid transparent;
+  min-width: 4.5rem;
+}
+.v2-journey__tab-state {
+  font-family: var(--v2-font-body);
+  font-size: var(--v2-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--v2-color-text-subtle);
+}
+.v2-journey__tab[aria-selected="true"] {
+  color: var(--v2-color-brand-700);
+  border-block-end-color: var(--v2-color-accent);
+}
+.v2-journey__tab[data-state="done"] { color: var(--v2-color-text-muted); }
+.v2-journey__tab:hover { color: var(--v2-color-brand-700); }
+
+.v2-journey__panel {
+  display: grid;
+  gap: var(--v2-space-6);
+}
+@media (min-width: 768px) {
+  .v2-journey__panel { grid-template-columns: minmax(10rem, max-content) 1fr; align-items: start; }
+}
+.v2-journey__panel[hidden] { display: none; }
+.v2-journey__panel-badge {
+  font-family: var(--v2-font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 2.5rem + 2vw, 4.5rem);
+  line-height: 1;
+  color: var(--v2-color-brand-300);
+}
+.v2-journey__panel-title { font-family: var(--v2-font-heading); font-weight: 700; font-size: var(--v2-text-h3); margin-block-end: var(--v2-space-3); }
+.v2-journey__panel-description { color: var(--v2-color-text-muted); max-width: 42rem; margin-block-end: var(--v2-space-4); }
+.v2-journey__competencies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-space-2) var(--v2-space-3);
+  margin-block-end: var(--v2-space-5);
+  padding: 0;
+}
+.v2-journey__competencies li {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-2);
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-muted);
+}
+.v2-journey__competencies .v2-icon { color: var(--v2-color-brand-700); flex: 0 0 auto; }
+
+/* ---------- ProgressionFlow -- Fase B.4 (secao 14): linha editorial
+   horizontal (Diagnostico -> Trilha -> Pratica -> Feedback -> Proximo
+   nivel), sem caixa, sem numero.
+
+   Fase B.6 (secao 11): virou um "rail" de verdade -- uma linha fina
+   (.v2-progression__rail) atravessa o fundo, com marcadores solidos
+   (bolinhas, empilhadas por z-index sobre a linha) acima de cada rotulo.
+   No mobile a linha desaparece e os passos empilham em coluna (rail so
+   faz sentido horizontal). Nunca parece breadcrumb (que usa texto pequeno
+   + separador ">" -- aqui os rotulos sao maiores e o marcador visual e um
+   circulo, nao um caractere de pontuacao). ---------- */
+/* Fase B.6B (secao 17 da missao): mais presenca -- titulo mais largo/maior,
+   rail mais espesso, dots "mais sofisticados" (anel + centro solido, nao
+   um circulo achatado). */
+.v2-progression-flow__title { margin-block-end: var(--v2-space-3); max-width: 40rem; font-size: clamp(1.875rem, 1.5rem + 2vw, 3.5rem); }
+.v2-progression { position: relative; }
+.v2-progression__rail {
+  display: none;
+}
+@media (min-width: 768px) {
+  .v2-progression__rail {
+    display: block;
+    position: absolute;
+    inset-inline: 0.9rem;
+    top: 0.55rem;
+    height: 3px;
+    background: var(--v2-color-border-strong);
+    z-index: 0;
+  }
+}
+.v2-progression__steps {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-4);
+}
+@media (min-width: 768px) {
+  .v2-progression__steps { flex-direction: row; justify-content: space-between; gap: var(--v2-space-4); }
+}
+.v2-progression__step {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-3);
+}
+@media (min-width: 768px) {
+  .v2-progression__step { flex-direction: column; align-items: flex-start; gap: var(--v2-space-4); max-width: 11rem; }
+}
+/* Dot "sofisticado": halo translucido + anel solido + centro vazado (o
+   ::after cobre o miolo de branco), em vez de um circulo unico achatado. */
+.v2-progression__dot {
+  flex: 0 0 auto;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--v2-color-brand-700);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--v2-color-brand-600) 18%, white);
+  position: relative;
+}
+.v2-progression__dot::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--v2-color-surface-0);
+}
+.v2-progression__label {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-lg);
+  color: var(--v2-color-text);
+}
+.v2-progression__note {
+  display: block;
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-muted);
+  margin-block-start: var(--v2-space-1);
+}
+
+/* ---------- TeacherCard / TeacherFeature -- Fase B.3 (secao 14):
+   "professores como protagonistas". Fallback sem foto deixa de ser
+   avatar-com-letra (isso era a "solucao principal" proibida pela missao) e
+   passa a usar o mesmo estado elegante "sem midia" dos demais componentes
+   -- nunca inventa rosto. ---------- */
+
+.v2-teacher-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+}
+.v2-teacher-card__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--v2-radius-md); /* Fase B.6 secao 19: card, nao media de secao */
+  overflow: hidden;
+}
+.v2-teacher-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+.v2-teacher-card__name { font-family: var(--v2-font-heading); font-weight: 600; font-size: var(--v2-text-lg); margin-block-start: var(--v2-space-1); }
+.v2-teacher-card__role { color: var(--v2-color-text-muted); font-size: var(--v2-text-sm); }
+
+.v2-teacher-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-4);
+  text-align: start;
+}
+.v2-teacher-summary__photo {
+  flex: 0 0 auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.v2-teacher-summary__photo img { width: 100%; height: 100%; object-fit: cover; }
+.v2-teacher-summary__photo .v2-media-empty { border-radius: 50%; }
+.v2-teacher-summary__photo .v2-icon { width: 1.1rem; height: 1.1rem; }
+
+.v2-teacher-feature {
+  display: grid;
+  gap: var(--v2-space-8);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .v2-teacher-feature { grid-template-columns: 1fr 1fr; gap: var(--v2-space-12); }
+}
+.v2-teacher-feature__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--v2-radius-media);
+  overflow: hidden;
+}
+.v2-teacher-feature__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-teacher-feature__name { font-family: var(--v2-font-heading); font-weight: 700; font-size: var(--v2-text-h2); margin-block-end: var(--v2-space-1); }
+.v2-teacher-feature__role { font-size: var(--v2-text-lg); color: var(--v2-color-brand-700); margin-block-end: var(--v2-space-4); }
+.v2-teacher-feature__bio { color: var(--v2-color-text-muted); max-width: 34rem; margin-block-end: var(--v2-space-5); }
+
+/* ---------- ProcessSteps -- Fase B.3 (secao 15): "numeros grandes com
+   baixa opacidade", poucos icones, ritmo em vez de grade tecnica. ---------- */
+
+.v2-process {
+  display: grid;
+  gap: var(--v2-space-8);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .v2-process { grid-template-columns: repeat(var(--v2-process-cols, 4), 1fr); gap: var(--v2-space-6); }
+}
+.v2-process__step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-1);
+  position: relative;
+  padding-inline-start: var(--v2-space-1);
+}
+.v2-process__number {
+  /* Fase B.5: Playfair saiu da Home -- Poppins.
+     Fase B.6 (secao 10): "aumentar levemente numero" (era ate 3.5rem). */
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 2.2rem + 2.2vw, 3.75rem);
+  line-height: 1;
+  color: var(--v2-color-brand-300);
+  margin-block-end: var(--v2-space-2);
+}
+.v2-process__title { font-family: var(--v2-font-heading); font-weight: 600; font-size: var(--v2-text-lg); }
+.v2-process__text { color: var(--v2-color-text-muted); font-size: var(--v2-text-base); } /* Fase B.6 secao 10: "aumentar levemente body" (era --v2-text-sm) */
+
+/* ---------- FeatureMedia -- Fase B.3 (secao 17): 55/45, midia grande,
+   conteudo com respiro, CTA textual. Inversao por 'order' (nunca
+   direction:rtl -- isso mudaria semantica de RTL de verdade). ---------- */
+
+.v2-feature-media {
+  display: grid;
+  gap: var(--v2-space-8);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  /* Fase B.6B (secao 18 da missao): "composicao approximately 50/50" (era
+     1.15fr/1fr) + imagem maior (min-height, nao so aspect-ratio -- mesmo
+     tratamento ja usado em .v2-live-class__media). */
+  .v2-feature-media { grid-template-columns: 1fr 1fr; gap: var(--v2-space-12); }
+  .v2-feature-media--reverse .v2-feature-media__media { order: 2; }
+  .v2-feature-media--reverse .v2-feature-media__content { order: 1; }
+}
+.v2-feature-media__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--v2-radius-media);
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .v2-feature-media__media { aspect-ratio: auto; height: 100%; min-height: 28rem; }
+}
+.v2-feature-media__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-feature-media__content { max-width: 32rem; }
+.v2-feature-media__title { margin-block-end: var(--v2-space-4); }
+.v2-feature-media__text { margin-block-end: var(--v2-space-5); }
+
+/* ---------- B2BHomeFeature -- Fase B.6E (Parte B da missao): "PARA
+   EMPRESAS" precisa parecer inequivocamente corporativo, nao B2C. Fundo
+   navy (secao ao redor e .v2-section--brand, mesmo padrao ja aprovado de
+   VediumMethod/Aula ao vivo/CTA final). Todo texto secundario em 90%
+   branco -- mesma margem de contraste ja auditada matematicamente em
+   20-bain-editorial-rhythm.md (secao 6): 4.76:1 no pior ponto do
+   gradiente navy, acima do minimo AA (4.5:1). Nunca cards -- prova em
+   grade editorial 2x2 com divisoria fina. ---------- */
+.v2-b2b-feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-10);
+}
+@media (min-width: 992px) {
+  .v2-b2b-feature { grid-template-columns: 1fr 1fr; gap: var(--v2-space-12); align-items: stretch; }
+}
+.v2-b2b-feature__media { aspect-ratio: 4 / 3; border-radius: var(--v2-radius-media); overflow: hidden; }
+@media (min-width: 992px) {
+  .v2-b2b-feature__media { aspect-ratio: auto; height: 100%; min-height: 30rem; }
+}
+.v2-b2b-feature__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-b2b-feature__content { max-width: 36rem; }
+.v2-b2b-feature__eyebrow { margin-block-end: var(--v2-space-1); }
+.v2-b2b-feature__sub-eyebrow {
+  font-family: var(--v2-font-heading);
+  font-size: var(--v2-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin-block-end: var(--v2-space-4);
+}
+.v2-b2b-feature__title {
+  color: var(--v2-color-surface-0);
+  font-size: clamp(2.25rem, 1.9rem + 1.6vw, 3.25rem);
+  line-height: 1.1;
+  margin-block-end: var(--v2-space-4);
+}
+.v2-b2b-feature__text {
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+.v2-b2b-feature__text2 {
+  margin-block-start: var(--v2-space-2);
+  font-size: var(--v2-text-base);
+  color: rgba(255, 255, 255, 0.9);
+}
+.v2-b2b-feature__proof {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-5);
+  margin-block: var(--v2-space-8);
+  padding-block-start: var(--v2-space-6);
+  border-block-start: 1px solid rgba(255, 255, 255, 0.22);
+}
+@media (min-width: 560px) {
+  .v2-b2b-feature__proof { grid-template-columns: 1fr 1fr; }
+}
+.v2-b2b-feature__proof-label {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--v2-color-surface-0);
+  margin-block-end: var(--v2-space-1);
+}
+.v2-b2b-feature__proof-text {
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.45;
+}
+.v2-b2b-feature__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-6);
+  flex-wrap: wrap;
+}
+
+/* ---------- CourseIndexIntro -- Fase B.6D (secoes 7-11 da missao), NOVO.
+   Substitui a abertura antiga da secao Cursos (so eyebrow+H2 soltos, com
+   "grande vazio" ate o primeiro curso e a direita da tela) por uma
+   composicao editorial 55/45: headline curta + indice numerado dos 5
+   idiomas (link real por linha, sem card/icone/fundo por linha -- so
+   numero + nome + seta que se move no hover). ---------- */
+/* Secao 11 da missao: "apos o indice, primeiro bloco comeca com 64-96px
+   de distancia -- nao deixar 200-300px vazio". padding-block--section
+   padrao (110-150px) + o padding proprio do primeiro course-feature-band
+   somados passavam desse alvo; --v2-space-section-tight aproxima o total
+   da faixa pedida sem quebrar a consistencia do gap entre os proprios
+   blocos de curso (ver .v2-course-feature-band). */
+.v2-course-intro { padding-block: var(--v2-space-section-tight); }
+
+.v2-course-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-10);
+  /* Secao 11 da missao: "intro total aprox 360-460px desktop" -- o padding
+     do .v2-section padrao (--v2-space-section) ja contribui bastante pra
+     essa altura; align-items:center evita que a coluna mais curta (o
+     indice) fique "grudada" no topo com vazio embaixo. */
+  align-items: center;
+}
+@media (min-width: 992px) {
+  .v2-course-intro__grid { grid-template-columns: 55fr 45fr; gap: var(--v2-space-16); }
+}
+/* Secao 8 da missao: "H2 entre 54-64px, max-width aprox 680-760px, meta 2
+   linhas em desktop amplo, no maximo 3 em 1280px." */
+.v2-course-intro__title {
+  margin-block: var(--v2-space-3) var(--v2-space-4);
+  max-width: 46rem; /* ~736px, dentro de 680-760px */
+  font-size: clamp(2.25rem, 1.7rem + 2.4vw, 4rem);
+  line-height: 1.08;
+}
+.v2-course-intro__lead { max-width: 32rem; }
+
+/* Secao 10 da missao: numero 14-16px, nome 20-24px, seta discreta, linha
+   horizontal suave, padding 16-20px por item, SEM fundo por linha, SEM
+   icone alem da seta. */
+.v2-course-index__list { border-block-start: 1px solid var(--v2-color-border); }
+.v2-course-index__item { border-block-end: 1px solid var(--v2-color-border); }
+.v2-course-index__link {
+  display: flex;
+  align-items: center;
+  gap: var(--v2-space-4);
+  padding-block: var(--v2-space-4);
+  color: var(--v2-color-text);
+}
+.v2-course-index__num {
+  flex: 0 0 auto;
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: var(--v2-text-sm); /* ~15px, dentro de 14-16px */
+  color: var(--v2-color-text-subtle);
+  min-width: 1.5rem;
+}
+.v2-course-index__name {
+  flex: 1 1 auto;
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); /* 20-24px */
+}
+.v2-course-index__arrow {
+  flex: 0 0 auto;
+  color: var(--v2-color-text-subtle);
+  transition: transform var(--v2-motion-base) var(--v2-motion-ease), color var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-course-index__link:hover .v2-course-index__name { color: var(--v2-color-brand-700); }
+.v2-course-index__link:hover .v2-course-index__arrow { transform: translateX(4px); color: var(--v2-color-brand-700); }
+
+/* ---------- CourseFeature -- Fase B.6 (reset Bain-inspired, secao 8),
+   NOVO. "Grandes blocos alternados" pra Cursos -- substitui o mosaico de
+   cards pequenos por 1 bloco de escala de secao por curso. Com foto: mesmo
+   principio 55/45 do FeatureMedia. Sem foto: bloco de texto largo com fundo
+   tonal solido (mesma logica do LanguageCard tipografico, em escala maior)
+   -- nunca ".v2-media-empty", nunca imagem generica so pra preencher. ---------- */
+/* Fase B.6C (secao 8-12 da missao): "eliminar blocos grandes somente de
+   cor -- TODOS os cinco idiomas devem ter mídia visual". O envelope
+   ".v2-course-feature-band" e novo -- mesmo padrao de sangria ate a
+   viewport + conteudo alinhado ao container real (.v2-container, nao
+   calc() duplicado) ja usado em VediumPathfinder/VediumMethod. Os bands
+   tocam um no outro sem gap (gap:0) -- separacao vem da MUDANCA DE FUNDO
+   entre eles, nao de espaço vazio (mesma logica "capitulo" das outras
+   secoes full-bleed desta pagina). ---------- */
+.v2-course-feature-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.v2-course-feature-band {
+  padding-block: var(--v2-space-12);
+}
+@media (min-width: 992px) {
+  /* Fase B.6D (secao 15 da missao): "remover excesso de espaço entre um
+     curso e outro -- gap aprox 72-112px, não 160-220px". Era
+     --v2-space-16 (64px) de cada lado = 128px combinado entre blocos
+     adjacentes; --v2-space-10 (40px) de cada lado = 80px combinado,
+     dentro da faixa pedida. */
+  .v2-course-feature-band { padding-block: var(--v2-space-10); }
+}
+/* Secao 10 da missao: "não usar cinco fundos totalmente diferentes --
+   alternar de forma disciplinada entre white / warm-neutral / light-blue
+   muito discreto. Azul institucional forte apenas em casos pontuais." */
+.v2-course-feature-band--white { background: var(--v2-color-surface-0); }
+.v2-course-feature-band--warm { background: var(--v2-color-surface-warm); }
+.v2-course-feature-band--alt { background: var(--v2-color-surface-alt); }
+
+.v2-course-feature {
+  display: grid;
+  gap: var(--v2-space-8);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  /* Secao 9 da missao: min-height 480-600px desktop. */
+  .v2-course-feature { grid-template-columns: 1.1fr 1fr; gap: var(--v2-space-12); min-height: 32rem; }
+  .v2-course-feature--reverse .v2-course-feature__media { order: 2; }
+  .v2-course-feature--reverse .v2-course-feature__content { order: 1; }
+}
+.v2-course-feature__media {
+  aspect-ratio: 4 / 3;
+  /* Secao 9 da missao: "radius moderado, 8-12px máximo -- evitar aparência
+     de aplicativo". Era --v2-radius-media (14px, escala de Hero/secao). */
+  border-radius: var(--v2-radius-md);
+  overflow: hidden;
+}
+.v2-course-feature__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-course-feature__content { max-width: 34rem; }
+/* Numero editorial -- secao 12 da missao: "pode manter 01-05 mas de forma
+   discreta -- não deixar o número competir com o curso". Trocado do numero
+   grande no canto (Fase B.6B) pra um prefixo pequeno e mudo antes do
+   eyebrow, mesmo peso visual dos rotulos "01 IDIOMA" do VediumPathfinder,
+   so que bem menor -- nunca mais um watermark de canto. */
+/* Fase B.6D (secao 12 da missao): tipografia aumentada uniformemente em
+   todos os 5 blocos -- "textos pequenos demais em relacao ao espaco
+   disponivel". */
+.v2-course-feature__index {
+  font-weight: 700;
+  font-size: 1.0625rem; /* ~17px, dentro de 16-17px */
+  color: var(--v2-color-text-subtle);
+  margin-inline-end: var(--v2-space-2);
+}
+.v2-eyebrow--on-dark .v2-course-feature__index { color: rgba(255, 255, 255, 0.55); }
+.v2-course-feature__level {
+  font-family: var(--v2-font-heading);
+  font-weight: 600; /* dentro de 550-650 */
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.375rem); /* 20-22px */
+  color: var(--v2-color-text-subtle);
+  margin-block: var(--v2-space-2) var(--v2-space-1);
+}
+.v2-course-feature__headline {
+  margin-block-end: var(--v2-space-4);
+  font-size: clamp(2.125rem, 1.7rem + 1.8vw, 2.625rem); /* 34-42px */
+  line-height: 1.14;
+}
+.v2-course-feature__text {
+  margin-block-end: var(--v2-space-5);
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem); /* 18-20px */
+  line-height: 1.55;
+}
+/* ---------- Variante sem foto -- MANTIDA no codigo (biblioteca de debug,
+   regra "nunca excluir componente"), mas fora de uso na Home desde a Fase
+   B.6C: todos os 5 idiomas agora tem foto real (ver docs/redesign/21-
+   course-media-selection.md). Bloco tonal de largura total, padding
+   generoso de secao. tone="brand" (azul, texto branco) ou "warm"
+   (surface-warm, texto escuro). ---------- */
+.v2-course-feature--tone-brand,
+.v2-course-feature--tone-warm {
+  display: block;
+  border-radius: var(--v2-radius-lg);
+  padding: var(--v2-space-12) var(--v2-space-8);
+  /* Bug real (Fase D, Language Pillar/TeacherFeature): "min-height: 32rem"
+     do `.v2-course-feature` de desktop (regra acima, pensada pro layout de
+     2 colunas COM midia) continuava valendo aqui mesmo com `display:block`
+     -- min-height nao e propriedade especifica de grid, entao nunca foi
+     resetada. Card ficava 512px de altura mesmo com so 2-3 linhas de
+     texto (achado real ao usar esta variante pela 1a vez fora da
+     biblioteca de debug, ver TeacherFeature.tsx). */
+  min-height: 0;
+}
+/* Contraste verificado matematicamente (Fase B.6B, secao 25 da missao:
+   "validar contraste Iorubá/Hebraico"), nao so por inspecao visual: no
+   ponto mais claro do gradiente diagonal (--v2-color-brand-600, #2E6DA4,
+   pior caso), branco a 65%/85% dava 3.31:1 / 4.45:1 -- os dois FICAM
+   ABAIXO do minimo AA de 4.5:1 pra texto normal. Corrigido pra 90% branco
+   em ambos (4.76:1 no pior caso, calculado via formula de luminancia
+   relativa WCAG 2.1). Ver docs/redesign/20-bain-editorial-rhythm.md. */
+@media (min-width: 768px) {
+  .v2-course-feature--tone-brand,
+  .v2-course-feature--tone-warm { padding: var(--v2-space-16) var(--v2-space-12); }
+}
+.v2-course-feature--tone-brand {
+  background: linear-gradient(155deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
+  color: var(--v2-color-surface-0);
+}
+/* Bug real de contraste (Fase B.6B, secoes 13/14 da missao): ".v2-heading"
+   fixa "color:var(--v2-color-text)" (tinta escura) -- essa declaracao
+   explicita SEMPRE vence heranca de cor do pai, entao "color:surface-0" no
+   container acima NUNCA chegava no <h3 class="v2-heading ...">, que
+   renderizava quase preto sobre o fundo navy (Iorubá/Hebraico, tone=brand).
+   Confirmado lendo o CSS antes mesmo do screenshot -- mesma causa raiz ja
+   documentada pra ".v2-section--brand" em foundations.css, so que esta
+   variante nao e uma secao inteira (e um bloco dentro de .v2-section
+   comum), entao aquela regra generica nao cobria este caso. */
+.v2-course-feature--tone-brand .v2-heading { color: inherit; }
+.v2-course-feature--tone-brand .v2-course-feature__level { color: rgba(255, 255, 255, 0.9); }
+.v2-course-feature--tone-brand .v2-course-feature__text { color: rgba(255, 255, 255, 0.9); }
+.v2-course-feature--tone-warm {
+  background: var(--v2-color-surface-warm);
+  color: var(--v2-color-text);
+}
+.v2-course-feature--tone-brand .v2-course-feature__content,
+.v2-course-feature--tone-warm .v2-course-feature__content { max-width: 38rem; }
+
+/* ---------- LiveClassExperience -- Fase B.3 (secao 16), NOVO. Uma das
+   "assinaturas visuais" pedidas pela missao. Lista editorial (nao 5 cards).
+   Fotografia real de aula ao vivo ainda depende de R01/R02/R05
+   (docs/redesign/09-real-vedium-shoot-list.md, gate P0) -- por isso este
+   componente aceita image_src opcional e tem um tratamento elegante quando
+   ausente, igual aos demais; nunca usa stock apresentado como prova de aula
+   real (ver 06-photography-system.md). ---------- */
+
+.v2-live-class {
+  display: grid;
+  gap: var(--v2-space-8);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  /* Fase B.6C (secao 16 da missao): "layout desktop: 55-60% vídeo / 40-45%
+     conteúdo" -- primeira vez que este componente renderiza com mídia real
+     na Home (o video da secao "Aulas ao vivo, na prática"), era 1.1fr/1fr
+     (~52/48) preparado mas nunca usado. */
+  .v2-live-class { grid-template-columns: 1.35fr 1fr; gap: var(--v2-space-12); }
+}
+.v2-live-class__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--v2-radius-media);
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .v2-live-class__media { aspect-ratio: auto; height: 100%; min-height: 26rem; }
+}
+.v2-live-class__media img,
+.v2-live-class__media video { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--v2-color-ink-900); }
+.v2-live-class__title { margin-block-end: var(--v2-space-5); max-width: 26rem; }
+.v2-live-class__lead { color: var(--v2-color-text-muted); max-width: 24rem; }
+/* Fase B.6B (secao 16 da missao): "hoje: headline de um lado, lista do
+   outro, muito azul vazio". Enquanto REAL_VEDIUM_LIVE_CLASS_MEDIA_REQUIRED
+   nao existir (ver comentario no template), a coluna esquerda usa "bloco
+   de texto maior" (opcao explicita da missao) em vez de mídia/grafismo
+   generico -- titulo bem maior que o padrao v2-h2, ocupando o espaco com
+   presenca de verdade. */
+.v2-live-class--no-media .v2-live-class__title {
+  font-size: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem);
+  max-width: 22rem;
+}
+.v2-live-class--no-media .v2-live-class__lead { max-width: 22rem; font-size: var(--v2-text-lg); }
+.v2-live-class__list { display: flex; flex-direction: column; gap: var(--v2-space-5); }
+.v2-live-class__list-item {
+  display: flex;
+  gap: var(--v2-space-3);
+  padding-block-start: var(--v2-space-5);
+  border-block-start: 1px solid var(--v2-color-border);
+}
+.v2-live-class__list-item:first-child { border-block-start: 0; padding-block-start: 0; }
+.v2-live-class__list-label { font-family: var(--v2-font-heading); font-weight: 600; flex: 0 0 auto; min-width: 8rem; }
+.v2-live-class__list-text { color: var(--v2-color-text-muted); font-size: var(--v2-text-base); } /* Fase B.6: era --v2-text-sm -- mais presenca na "principal prova da Home" */
+
+/*
+ * Fase B.4 (secao 12): variante sem midia -- fundo solido grande (a missao
+ * permite "azul institucional profundo OU off-white com grande imagem"; a
+ * Home usa a opcao sem imagem, evitando repetir os 4 assets de stock ja
+ * usados em Hero/Language Showcase/B2B). --on-dark troca todo o texto pra
+ * branco/translucido sobre o fundo navy.
+ */
+.v2-live-class--no-media { align-items: start; }
+.v2-live-class--on-dark { color: var(--v2-color-surface-0); }
+/* Contraste verificado matematicamente (Fase B.6B, secao 25 da missao):
+   82%/75% branco davam 4.27:1 / 3.84:1 no pior ponto do gradiente --
+   ambos abaixo do minimo AA de 4.5:1 pra texto normal. Corrigido pra 90%
+   (4.76:1). */
+.v2-live-class--on-dark .v2-live-class__lead { color: rgba(255, 255, 255, 0.9); }
+.v2-live-class--on-dark .v2-live-class__list-item { border-block-start-color: rgba(255, 255, 255, 0.22); }
+.v2-live-class--on-dark .v2-live-class__list-text { color: rgba(255, 255, 255, 0.9); }
+
+/* ---------- VideoSection ---------- */
+
+.v2-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--v2-radius-media);
+  overflow: hidden;
+  background: var(--v2-color-ink-900);
+}
+.v2-video__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.v2-video__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--v2-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.v2-video__play:hover { background: var(--v2-color-surface-0); }
+
+/* ---------- TestimonialCard -- Fase B.3 (secao 19): editorial, sem
+   estrelas, sem nota. Nome/contexto so quando reais; o chamador (pagina)
+   marca claramente quando for demonstracao -- o macro nao decide isso. ---------- */
+
+.v2-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-5);
+  max-width: 42rem;
+}
+.v2-testimonial__quote {
+  font-family: var(--v2-font-display);
+  font-weight: 700;
+  font-size: var(--v2-text-h3);
+  line-height: var(--v2-leading-heading);
+  color: var(--v2-color-text);
+}
+.v2-testimonial__quote::before { content: "\201C"; color: var(--v2-color-brand-300); }
+.v2-testimonial__quote::after { content: "\201D"; color: var(--v2-color-brand-300); }
+.v2-testimonial__author { display: flex; flex-direction: column; }
+.v2-testimonial__name { font-family: var(--v2-font-heading); font-weight: 600; }
+.v2-testimonial__context { font-size: var(--v2-text-sm); color: var(--v2-color-text-subtle); }
+
+/* ---------- StudyRhythmCard (LearningPlanCard) -- Fase B.3 (secao 18)
+   substitui a PricingCard "cara de SaaS". Sem numero de preco inventado --
+   frequencia em aulas/semana (1-5, confirmado em frequency_pricing_rules.py)
+   e formato/acompanhamento como estrutura, nao valor. Menos badge, sem
+   sombra, um destaque moderado (borda, nao caixa flutuante). ---------- */
+
+.v2-study-rhythm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-4);
+  padding: var(--v2-space-8) var(--v2-space-6);
+  border-radius: var(--v2-radius-md);
+  border: 1px solid var(--v2-color-border);
+  height: 100%;
+}
+.v2-study-rhythm--recommended {
+  border-color: var(--v2-color-brand-700);
+  border-width: 1.5px;
+}
+.v2-study-rhythm__badge { align-self: flex-start; }
+.v2-study-rhythm__title { font-family: var(--v2-font-heading); font-weight: 700; font-size: var(--v2-text-xl); }
+.v2-study-rhythm__description { color: var(--v2-color-text-muted); font-size: var(--v2-text-sm); flex: 1; }
+.v2-study-rhythm__note { font-size: var(--v2-text-xs); color: var(--v2-color-text-subtle); }
+
+/* ---------- FAQSection -- Fase D (Language Pillar): envelope editorial
+   pedido pela missao ("headline de um lado, accordion do outro"). Nao
+   existia layout de split pro FAQAccordion ate agora -- so a lista
+   empilhada (.v2-faq abaixo). Mesma proporcao/gap ja usados em
+   .v2-course-intro__grid (55/45), reaproveitados aqui pra nao inventar
+   uma nova escala. ---------- */
+.v2-faq-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-10);
+}
+@media (min-width: 992px) {
+  .v2-faq-section { grid-template-columns: 45fr 55fr; gap: var(--v2-space-16); align-items: start; }
+}
+.v2-faq-section__intro h2 { margin-block-start: var(--v2-space-3); max-width: 26rem; }
+
+/* ---------- FAQAccordion -- Fase B.3 (secao 21): largura maior, mais
+   espaco, texto 17-18px, area de toque confortavel, icone discreto, borda
+   inferior (ja era assim -- mantido, nao vira caixa fechada). ---------- */
+
+.v2-faq {
+  border-block-start: 1px solid var(--v2-color-border);
+}
+.v2-faq__item {
+  border-block-end: 1px solid var(--v2-color-border);
+}
+.v2-faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--v2-space-4);
+  padding-block: var(--v2-space-5);
+  text-align: start;
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  font-size: var(--v2-text-lg);
+}
+.v2-faq__icon {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--v2-color-text-subtle);
+  transition: transform var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-faq__trigger[aria-expanded="true"] .v2-faq__icon { transform: rotate(180deg); color: var(--v2-color-brand-700); }
+.v2-faq__panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--v2-motion-slow) var(--v2-motion-ease);
+}
+.v2-faq__panel[data-open="true"] { max-height: var(--v2-faq-panel-height, 40rem); }
+.v2-faq__panel-inner {
+  padding-block-end: var(--v2-space-5);
+  color: var(--v2-color-text-muted);
+  font-size: var(--v2-text-base);
+  max-width: 42rem;
+}
+
+/* ---------- BlogCard -- Fase B.3 (secao 20): editorial, imagem 4:3,
+   categoria pequena, titulo grande, resumo, autor/data, CTA discreto.
+   Variante --featured para o destaque grande da listagem do blog. ---------- */
+
+.v2-blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-3);
+  position: relative;
+}
+.v2-blog-card__media { aspect-ratio: 4 / 3; border-radius: var(--v2-radius-md); overflow: hidden; } /* Fase B.6 secao 19: card */
+.v2-blog-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-blog-card--featured .v2-blog-card__media { aspect-ratio: 16 / 10; }
+.v2-blog-card__meta { display: flex; gap: var(--v2-space-3); font-size: var(--v2-text-xs); color: var(--v2-color-text-subtle); text-transform: uppercase; letter-spacing: 0.04em; }
+/* Ajuste pontual (secao 2 da missao): headline de "Conhecimento Vedium"
+   cresceu (ver .v2-insights-intro__title abaixo) -- titulos dos artigos
+   precisavam crescer junto pra nao virar "microtexto" ao lado dela.
+   Secundarios: --v2-text-lg (17-19px) -> 22-26px desktop. */
+.v2-blog-card__title { font-family: var(--v2-font-heading); font-weight: 600; font-size: clamp(1.375rem, 1.1rem + 0.7vw, 1.625rem); }
+/* Fase B.6B (secao 19 da missao): "composicao tipografica forte" pro
+   artigo principal (nenhum dos 3 posts reais tem imagem local aprovada --
+   ver nota no template). Era --v2-text-h3 (24-32px); aumentado pra dar
+   peso de "autoridade editorial" de verdade ao card sem depender de foto.
+   Ajuste pontual: 28-40px -> 32-38px desktop, acompanhando a headline maior. */
+.v2-blog-card--featured .v2-blog-card__title { font-size: clamp(2rem, 1.75rem + 1.1vw, 2.375rem); font-weight: 700; line-height: 1.08; }
+.v2-blog-card--featured .v2-blog-card__summary { max-width: 34rem; }
+/* Ajuste pontual: era --v2-text-sm (14px fixo) / --v2-text-base (16-17px)
+   no featured -- unificado em 17-18px pros dois, corpo nao pode parecer
+   microtexto ao lado do headline/titulos maiores. */
+.v2-blog-card__summary { color: var(--v2-color-text-muted); font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem); }
+.v2-blog-card__link-overlay::after {
+  /* card inteiro clicavel SEM aninhar <a> -- link real cobre a area via ::after */
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* Fase B.6 (secao 14, "Conhecimento Vedium"): layout editorial dedicado --
+   1 artigo principal (50%) + 2 secundarios (25%+25%), nao o grid generico
+   1/2/3 colunas (.v2-grid--cards) compartilhado com outras secoes. */
+.v2-blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-8);
+}
+@media (min-width: 768px) {
+  /* 50% + 25% + 25%, lado a lado numa linha so (4 colunas: principal ocupa
+     2, cada secundario ocupa 1). */
+  .v2-blog-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--v2-space-6);
+    align-items: start;
+  }
+  .v2-blog-grid > *:nth-child(1) { grid-column: 1 / 3; }
+}
+
+/* Ajuste pontual (secao 1 da missao): headline "Aprenda tambem fora da
+   aula." estava pequena demais (32-52px, v2-h2 padrao) pra escala
+   editorial do resto da Home (VediumMethod/Cursos ja usam 34-64px+).
+   Curva ajustada pra ~38-44px mobile / ~48-56px tablet / ~58-68px
+   desktop (checado nos 3 breakpoints, nao so nos extremos do clamp). */
+.v2-insights-intro__title {
+  margin-block-end: var(--v2-space-8);
+  max-width: 47.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  font-size: clamp(2.375rem, 2.1rem + 2.1vw, 4.25rem);
+}
+
+/* Fase B.6E (Parte A da missao): "1 grande insight + 2 insights
+   complementares" -- artigo principal ~54%, coluna de 2 secundarios
+   empilhados ~46%. Nunca card/radius/shadow -- hierarquia so por
+   tipografia, espaco e uma linha divisoria fina (publicacao
+   institucional, nao blog generico). */
+.v2-insights {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-10);
+}
+@media (min-width: 992px) {
+  .v2-insights { grid-template-columns: 54fr 46fr; gap: var(--v2-space-12); }
+}
+.v2-insights__meta {
+  display: flex;
+  gap: var(--v2-space-3);
+  font-size: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  color: var(--v2-color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-block-end: var(--v2-space-3);
+}
+.v2-insights__featured-title {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  font-size: clamp(2.125rem, 1.85rem + 0.6vw, 2.5rem);
+  margin-block-end: var(--v2-space-4);
+}
+.v2-insights__featured-summary {
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--v2-color-text-muted);
+  max-width: 34rem;
+  margin-block-end: var(--v2-space-5);
+}
+.v2-insights__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v2-space-2);
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+  color: var(--v2-color-brand-700);
+}
+.v2-insights__cta:hover { color: var(--v2-color-accent); }
+.v2-insights__secondary-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 992px) {
+  .v2-insights__secondary-col { border-inline-start: 1px solid var(--v2-color-border); padding-inline-start: var(--v2-space-10); }
+}
+.v2-insights__secondary { padding-block: var(--v2-space-5); }
+.v2-insights__secondary + .v2-insights__secondary {
+  border-block-start: 1px solid var(--v2-color-border);
+  margin-block-start: var(--v2-space-2);
+  padding-block-start: var(--v2-space-6);
+}
+.v2-insights__secondary-title {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: clamp(1.5rem, 1.4rem + 0.35vw, 1.75rem);
+  margin-block-end: var(--v2-space-3);
+}
+.v2-insights__secondary-summary {
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--v2-color-text-muted);
+}
+
+/* ---------- CTASection -- Fase B.3 (secao 22): presenca institucional,
+   nao "caixinha". Fundo azul institucional ou surface-warm; CTA primario +
+   link textual secundario. ---------- */
+
+.v2-cta-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--v2-space-6);
+  align-items: flex-start;
+  padding: var(--v2-space-12) var(--v2-space-8);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-color-surface-warm);
+}
+@media (min-width: 768px) {
+  .v2-cta-section { padding: var(--v2-space-16) var(--v2-space-12); }
+}
+.v2-cta-section__title { max-width: 30rem; }
+.v2-cta-section__text { max-width: 30rem; color: var(--v2-color-text-muted); }
+.v2-cta-section--brand {
+  background: linear-gradient(160deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
+  color: var(--v2-color-surface-0);
+}
+/* .v2-heading fixa color:var(--v2-color-text) (tinta escura) -- precisa de
+   override explicito aqui, senao o titulo fica ilegivel sobre o fundo
+   escuro (confirmado por screenshot real nesta fase). */
+.v2-cta-section--brand .v2-cta-section__title { color: var(--v2-color-surface-0); }
+.v2-cta-section--brand .v2-cta-section__text { color: rgba(255, 255, 255, 0.9); } /* 85% dava 4.45:1 no pior ponto do gradiente, abaixo de AA -- ver nota de contraste no VediumPathfinder */
+/* Fase B.6B (secao 20 da missao): "remover aparencia de card dentro da
+   pagina -- criar secao full-width ou quase full-width". O CTA final
+   passou a viver dentro de uma <section class="v2-section--brand"> de
+   verdade (fundo navy sangra ate a viewport, mesmo padrao ja usado em
+   "Aula ao vivo"/VediumMethod/VediumPathfinder) -- este variant so remove
+   o "look de caixa" (fundo/radius/padding proprios) do componente,
+   deixando a secao ao redor prover isso. Cor de texto reaproveita o mesmo
+   tratamento de --brand acima. */
+.v2-cta-section--brand-full {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  color: var(--v2-color-surface-0);
+  /* Ajuste pontual (revisao pos-screenshot real do usuario): composicao
+     centralizada -- titulo, texto de apoio e botoes centralizados como
+     um bloco unico, em vez do layout a esquerda da versao anterior. */
+  align-items: center;
+  text-align: center;
+}
+.v2-cta-section--brand-full .v2-cta-section__title { color: var(--v2-color-surface-0); }
+.v2-cta-section--brand-full .v2-cta-section__text { color: rgba(255, 255, 255, 0.9); } /* 85% dava 4.45:1 no pior ponto do gradiente, abaixo de AA -- ver nota de contraste no VediumPathfinder */
+/* Ajuste pontual (secoes 3-7 da missao, revisado apos screenshot real do
+   usuario): headline "Como a Vedium pode ajudar voce?" ainda quebrava em
+   2 linhas com max-width:56.25rem (900px) mesmo com espaco disponivel --
+   usuario pediu 1 linha so. Causa real: nao era o font-size, era o
+   max-width apertando a caixa antes do texto ocupar a largura que cabia.
+   Testado empiricamente via CDP (nao so nos extremos): com max-width
+   72rem (1152px) e o MESMO font-size de antes (sem reduzir), a headline
+   fica em 1 linha do zoom 1024px ate 1920px de viewport, sempre com folga
+   (nunca encosta na borda do container de 1280px). */
+.v2-cta-section--brand-full .v2-cta-section__title {
+  max-width: 72rem;
+  font-size: clamp(2.5rem, 2.2rem + 1.9vw, 4.25rem);
+  line-height: 1.05;
+  /* Fase G.1 (secao 30) -- em 320px uma unica palavra longa (ex.:
+     "profissionais") num font-size de 40px+ nao cabe no container e
+     empurra a pagina inteira pra fora (medido: /contato, scrollWidth
+     331 vs clientWidth 320). "anywhere" (nao "break-word") porque
+     break-word so afeta o line-break durante o layout, sem reduzir o
+     min-content -- o elemento continuava travado na largura da palavra
+     inteira. "anywhere" deixa o min-content real encolher, que e o que
+     faltava. Nao muda a quebra normal em nenhuma largura onde as
+     palavras ja cabem inteiras. */
+  overflow-wrap: anywhere;
+}
+.v2-cta-section--brand-full .v2-cta-section__text {
+  max-width: 37.5rem;
+  margin-inline: auto;
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+}
+/* Botoes um pouco maiores (nao "gigante") -- font-size ja fica em 16-17px
+   por padrao (--v2-text-base), so altura/padding horizontal aumentam. */
+.v2-cta-section--brand-full .v2-btn {
+  padding-inline: var(--v2-space-8);
+  min-height: 3.25rem;
+}
+.v2-cta-section--brand-full .v2-hero__actions { justify-content: center; }
+.v2-cta-section--inline {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--v2-space-6) var(--v2-space-8);
+}
+@media (max-width: 767px) {
+  .v2-cta-section--inline { flex-direction: column; align-items: flex-start; }
+}
+.v2-cta-section--sticky-mobile {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  border-radius: 0;
+  padding: var(--v2-space-3) var(--v2-space-4);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 16px rgba(15, 20, 25, 0.12);
+}
+
+/* ---------- B2B page (Fase B.6E, Parte C da missao) -- preview isolado em
+   /design_system_v2/b2b. Dois padroes reutilizados em varias secoes:
+   .v2-b2b-tags (lista horizontal curta, ex. exemplos de situacao de uso)
+   e .v2-b2b-list (lista editorial 2 colunas com divisoria, ex. bullets de
+   diagnostico/solucao/gestao/formatos) -- nunca card/radius/shadow, mesma
+   disciplina do resto do V2. ---------- */
+.v2-b2b-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-space-2) 0;
+  margin-block-start: var(--v2-space-6);
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  font-size: var(--v2-text-sm);
+  color: var(--v2-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.v2-b2b-tags span:not(:last-child)::after { content: "\00b7"; margin-inline: var(--v2-space-3); color: var(--v2-color-border); }
+
+.v2-b2b-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-block-start: var(--v2-space-8);
+}
+@media (min-width: 700px) {
+  .v2-b2b-list { grid-template-columns: 1fr 1fr; column-gap: var(--v2-space-10); }
+}
+.v2-b2b-list__item {
+  padding-block: var(--v2-space-5);
+  border-block-start: 1px solid var(--v2-color-border);
+}
+@media (min-width: 700px) {
+  .v2-b2b-list__item:nth-child(-n+2) { border-block-start: 0; }
+}
+.v2-b2b-list__label {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
+  margin-block-end: var(--v2-space-1);
+}
+.v2-b2b-list__text {
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+  color: var(--v2-color-text-muted);
+  line-height: 1.5;
+}
+.v2-b2b-list__flag {
+  display: inline-block;
+  margin-inline-start: var(--v2-space-2);
+  font-size: var(--v2-text-xs);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--v2-color-text-subtle);
+}
+/* Variante on-dark (secao "Gestao e acompanhamento", fundo navy) -- mesma
+   margem de contraste de 90% branco ja auditada (ver nota na
+   B2BHomeFeature acima). */
+.v2-b2b-list--on-dark .v2-b2b-list__item { border-block-start-color: rgba(255, 255, 255, 0.22); }
+.v2-b2b-list--on-dark .v2-b2b-list__label { color: var(--v2-color-surface-0); }
+.v2-b2b-list--on-dark .v2-b2b-list__text { color: rgba(255, 255, 255, 0.9); }
+.v2-b2b-list--on-dark .v2-b2b-list__flag { color: rgba(255, 255, 255, 0.7); }
+
+/* ---------- Notes pair -- 2 EditorialNote lado a lado (Hebraico,
+   "Hebraico Particular" + "Professores e Abordagem"). Antes eram 2 secoes
+   full-width empilhadas, cada uma so com um bloco de texto estreito --
+   sobrava muita area vazia a direita e embaixo em telas largas (feedback
+   do usuario, 2026-08-29). Lado a lado, com divisoria vertical, ocupa a
+   largura do container como um par editorial, sem inventar conteudo novo. */
+.v2-notes-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-space-12);
+}
+@media (min-width: 992px) {
+  .v2-notes-pair { grid-template-columns: 1fr 1fr; column-gap: var(--v2-space-16); }
+  .v2-notes-pair > *:not(:first-child) {
+    border-inline-start: 1px solid var(--v2-color-border);
+    padding-inline-start: var(--v2-space-16);
+  }
+}
+
+/* ---------- Blog article body (Fase F.5) -- HTML controlado vindo do
+   modelo de conteudo (paragrafos, listas, tabelas, h3), mesma disciplina
+   de tipografia do resto do V2 (Poppins nos headings, Inter no corpo),
+   coluna de leitura confortavel via .v2-container--reading (760px, ja
+   documentado como "FAQ, artigos, legal"). Sem CSS novo de fonte. */
+.v2-article-body { font-size: var(--v2-text-lg, 1.125rem); line-height: 1.7; color: var(--v2-color-text); }
+.v2-article-body p { margin-block-end: var(--v2-space-5); }
+.v2-article-body h3 {
+  font-family: var(--v2-font-heading);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  line-height: 1.25;
+  margin-block: var(--v2-space-8) var(--v2-space-3);
+}
+.v2-article-body ul { margin-block-end: var(--v2-space-5); padding-inline-start: var(--v2-space-6); }
+.v2-article-body li { margin-block-end: var(--v2-space-2); }
+.v2-article-body strong { font-weight: 700; }
+.v2-article-body a { color: var(--v2-color-brand-700); text-decoration: underline; text-underline-offset: 0.15em; }
+.v2-article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--v2-space-6);
+  font-size: var(--v2-text-base);
+}
+.v2-article-body th, .v2-article-body td {
+  border: 1px solid var(--v2-color-border);
+  padding: var(--v2-space-3) var(--v2-space-4);
+  text-align: start;
+  vertical-align: top;
+}
+.v2-article-body th { font-family: var(--v2-font-heading); font-weight: 700; background: var(--v2-color-surface-alt); }
+.v2-article-body table { display: block; overflow-x: auto; }
+
+.v2-article-hero-image { border-radius: var(--v2-radius-media); overflow: hidden; margin-block-end: var(--v2-space-8); }
+.v2-article-hero-image img { width: 100%; height: auto; display: block; }
+.v2-article-meta { display: flex; flex-wrap: wrap; gap: var(--v2-space-2) var(--v2-space-4); color: var(--v2-color-text-subtle); font-size: var(--v2-text-sm); margin-block: var(--v2-space-3) var(--v2-space-6); }

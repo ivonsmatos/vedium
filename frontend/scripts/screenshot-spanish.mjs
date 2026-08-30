@@ -1,0 +1,93 @@
+// QA visual: screenshots full-page e por seção de /curso-de-espanhol-online
+// em 1440px e 390px, mais contagem de console errors.
+import { chromium } from "playwright";
+import { mkdirSync } from "node:fs";
+
+const URL = "http://localhost:3000/curso-de-espanhol-online";
+const OUT_DIR = "qa-screenshots";
+mkdirSync(OUT_DIR, { recursive: true });
+
+// main > * : 0 header, 1 hero, 2 breadcrumb, 3 studyPillars, 4 live class
+// section, 5 levels section, 6 applications (VediumMethod), 7 culture
+// section, 8 insights section, 9 faq section, 10 cta section, 11 footer.
+// Sem seção de Professor (ver spanish.ts).
+const GROUPS_1440 = [
+  { name: "01-header-hero", startIndex: 0, endIndex: 2, fromTop: true },
+  { name: "02-alem-do-portunhol", startIndex: 3, endIndex: 3 },
+  { name: "03-live", startIndex: 4, endIndex: 4 },
+  { name: "04-percurso", startIndex: 5, endIndex: 5 },
+  { name: "05-portugues-e-espanhol", startIndex: 6, endIndex: 6 },
+  { name: "06-idioma-cultura", startIndex: 7, endIndex: 7 },
+  { name: "07-conhecimento", startIndex: 8, endIndex: 8 },
+  { name: "08-faq", startIndex: 9, endIndex: 9 },
+  { name: "09-cta-footer", startIndex: 10, endIndex: 11 },
+];
+
+const GROUPS_390 = [
+  { name: "01-hero", startIndex: 0, endIndex: 1, fromTop: true },
+  { name: "02-percurso", startIndex: 5, endIndex: 5 },
+  { name: "03-cta-footer", startIndex: 10, endIndex: 11 },
+];
+
+const VIEWPORTS = [
+  { name: "1440", width: 1440, height: 900, groups: GROUPS_1440 },
+  { name: "390", width: 390, height: 844, groups: GROUPS_390 },
+];
+
+const browser = await chromium.launch();
+const report = {};
+
+for (const viewport of VIEWPORTS) {
+  const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+  const page = await context.newPage();
+
+  const consoleErrors = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(msg.text());
+  });
+  page.on("pageerror", (err) => consoleErrors.push(String(err)));
+
+  await page.goto(URL, { waitUntil: "networkidle" });
+  await page.waitForTimeout(300);
+
+  await page.evaluate(async () => {
+    const step = 400;
+    const delay = 50;
+    let scrolled = 0;
+    const height = document.body.scrollHeight;
+    while (scrolled < height) {
+      window.scrollBy(0, step);
+      scrolled += step;
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(300);
+
+  await page.screenshot({ path: `${OUT_DIR}/spanish-${viewport.name}-full.png`, fullPage: true });
+
+  const rects = await page.evaluate(() => {
+    const children = Array.from(document.querySelector("main").children);
+    return children.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { top: r.top + window.scrollY, bottom: r.bottom + window.scrollY };
+    });
+  });
+
+  for (const group of viewport.groups) {
+    const top = group.fromTop ? 0 : rects[group.startIndex].top;
+    const bottom = rects[group.endIndex].bottom;
+    await page.screenshot({
+      path: `${OUT_DIR}/spanish-${viewport.name}-${group.name}.png`,
+      fullPage: true,
+      clip: { x: 0, y: Math.max(0, top), width: viewport.width, height: Math.max(1, bottom - top) },
+    });
+  }
+
+  report[viewport.name] = { consoleErrors, sectionCount: rects.length };
+  await context.close();
+}
+
+await browser.close();
+console.log(JSON.stringify(report, null, 2));

@@ -1,0 +1,20 @@
+route,current_backend,target_backend,current_status,next_status,canonical,analytics,form_dependency,stripe_dependency,safe_to_cutover,notes
+/,Frappe (host-rewrite app.vediums.com),Next,200,200 (local),https://vediums.com/,GTM-P6Q2FXLK + public_cta_click + pathfinder_*,none,none,YES,Home; auditada HTTP em fase anterior; sem form proprio
+/curso-de-ingles-online,Frappe,Next,200,200 (local),https://vediums.com/curso-de-ingles-online,GTM + public_cta_click,none,none,YES,pilar de curso; SEM CTA de WhatsApp na pagina (achado da Parte A -- nao e bug)
+/curso-de-ioruba-online,Frappe,Next,200,200 (local),https://vediums.com/curso-de-ioruba-online,GTM + public_cta_click,none,none,YES,pilar de curso
+/portugues-para-estrangeiros,Frappe,Next,200,200 (local),https://vediums.com/portugues-para-estrangeiros,GTM + public_cta_click,none,none,YES,pilar de curso (PLE)
+/curso-de-espanhol-online,Frappe,Next,200,200 (local),https://vediums.com/curso-de-espanhol-online,GTM + public_cta_click,none,none,YES,pilar de curso
+/curso-de-hebraico-online,Frappe,Next,200,200 (local),https://vediums.com/curso-de-hebraico-online,GTM + public_cta_click,none,none,YES,pilar de curso
+/empresas,Frappe,Next,200,200 (local),https://vediums.com/empresas,GTM + public_cta_click,none,none,YES,B2B; CTA de WhatsApp verificado (Parte A)
+/como-funciona,Frappe,Next,200,200 (local),https://vediums.com/como-funciona,GTM + public_cta_click,none,none,YES,consolida tambem /metodologia (ver redirect pendente em 28-global-redirect-map.csv)
+/sobre,Frappe,Next,200,200 (local),https://vediums.com/sobre,GTM + public_cta_click,none,none,YES,tambem absorve o antigo /professores (301 ja existe em producao)
+/contato,Frappe,Next,200,200 (local),https://vediums.com/contato,GTM + public_cta_click,POST /api/contact -> Route Handler -> app.vediums.com/api/method/vedium_core.public_funnel.submit_public_intent,none,YES,form testado em preview antes do cutover real (item pendente -- ver 34)
+/privacidade,Frappe,Next,200,200 (local),https://vediums.com/privacidade,GTM,none,none,YES,legal
+/termos,Frappe,Next,200,200 (local),https://vediums.com/termos,GTM,none,none,YES,legal
+/cancelamento-reembolso,Frappe,Next,200,200 (local),https://vediums.com/cancelamento-reembolso,GTM,none,none,YES,legal
+/metodologia,Frappe,Frappe (301 pendente -> /como-funciona),200,N/A,https://vediums.com/como-funciona,GTM,none,none,NO (redirect ainda nao implementado),ver 28-global-redirect-map.csv linha 2 -- implementar o 301 JUNTO com o cutover
+/blog e /blog/*,Frappe,Frappe (mantido),200 (96/97 artigos),200 local so pro hub + 1 artigo,https://vediums.com/blog/...,GTM + public_cta_click,none,none,NO -- DELIBERADO,"missao G.2 secao 17: NAO trocar producao do Blog nesta etapa, mesmo o hub Next ja existindo -- so 1/97 artigos foi migrado"
+/curso/<slug> (~18 URLs de nivel),Frappe,Frappe (mantido),200,N/A (nao existe no Next),https://vediums.com/curso/...,GTM,matricula (fora do Next),Stripe via app.vediums.com,NO -- fora do escopo,pilares Next linkam pra ca normalmente (link cross-backend, ver 34)
+/teste-de-nivel*,Frappe,Frappe (mantido),200,N/A,https://vediums.com/teste-de-nivel*,GTM + level_test_*,save_placement_result (Frappe),none,NO -- fora do escopo,CTAs do Next (Header/Footer) apontam pra ca normalmente
+"/{en,es,fr,de,ru}/*",Frappe,Frappe (mantido),200,N/A,https://vediums.com/<locale>/...,GTM,varios (Frappe),none,NO -- fora do escopo,rollout i18n e projeto separado
+app.vediums.com/* (LMS/login/checkout),Frappe,Frappe (mantido -- NAO TOCAR),200,N/A,https://app.vediums.com/...,GTM,login/matricula,Stripe real,NO -- fora do escopo,missao secao 16: nao mover LMS

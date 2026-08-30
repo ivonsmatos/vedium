@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* 
+ * Vedium V2 Design System Imports
+ * As fundações, tokens e componentes são 100% migrados do Frappe
+ * garantindo zero regressão visual.
+ */
+@import "../styles/tokens.css";
+@import "../styles/foundations.css";
+@import "../styles/components-base.css";
+@import "../styles/components-editorial.css";
+@import "../styles/header-footer.css";
+
+/* Base Resets for Next.js */
+:root {
+  /* Prevent horizontal scroll issues from full-bleed components */
+  overflow-x: hidden;
+}
+
+body {
+  /* Apply the V2 background and default font setup */
+  background-color: var(--v2-color-neutral-0);
+  color: var(--v2-color-neutral-900);
+  font-family: var(--v2-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

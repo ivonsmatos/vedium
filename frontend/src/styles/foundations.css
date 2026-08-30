@@ -1,0 +1,246 @@
+/*
+ * VEDIUM DESIGN SYSTEM V2 -- foundations
+ *
+ * Reset e utilitarios minimos, TODOS escopados sob .v2-scope. Nunca usa
+ * seletores de elemento nao-escopados (h1{}, button{}, img{}, a{}) --
+ * regra explicita da missao pra nao vazar pro CSS legado da pagina.
+ * Propriedades logicas (margin-inline, padding-inline, text-align: start)
+ * em vez de left/right, pra funcionar em RTL sem CSS separado.
+ */
+
+.v2-scope {
+  box-sizing: border-box;
+  color: var(--v2-color-text);
+  font-family: var(--v2-font-body);
+  font-size: var(--v2-text-base);
+  line-height: var(--v2-leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.v2-scope *,
+.v2-scope *::before,
+.v2-scope *::after {
+  box-sizing: inherit;
+}
+
+.v2-scope img,
+.v2-scope svg,
+.v2-scope video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.v2-scope button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.v2-scope a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.v2-scope ul,
+.v2-scope ol {
+  margin: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.v2-scope h1,
+.v2-scope h2,
+.v2-scope h3,
+.v2-scope h4,
+.v2-scope p {
+  margin: 0;
+}
+
+/* Foco visivel -- nunca remover outline sem substituir por algo tao visivel */
+.v2-scope :focus-visible {
+  outline: 3px solid var(--v2-color-focus);
+  outline-offset: 2px;
+  border-radius: var(--v2-radius-sm);
+}
+
+.v2-scope :focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* prefers-reduced-motion: os tokens de duracao ja zeram em tokens.css;
+   isto cobre transform/scroll que alguns componentes usam. */
+@media (prefers-reduced-motion: reduce) {
+  .v2-scope *,
+  .v2-scope *::before,
+  .v2-scope *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Tipografia utilitaria ---------- */
+
+.v2-heading {
+  font-family: var(--v2-font-heading);
+  font-weight: 600;
+  line-height: var(--v2-leading-heading);
+  color: var(--v2-color-text);
+}
+
+.v2-display {
+  font-family: var(--v2-font-display);
+  font-weight: 600;
+  line-height: var(--v2-leading-tight);
+  font-size: var(--v2-text-display);
+  letter-spacing: -0.01em;
+}
+
+/* Fase B.3: escala institucional (docs/redesign/14-art-direction-v2.md).
+   H1/H2/H3 usam os tokens fluidos --v2-text-h1/h2/h3 (maiores que a Fase B). */
+.v2-h1 { font-size: var(--v2-text-h1); }
+.v2-h2 { font-size: var(--v2-text-h2); }
+.v2-h3 { font-size: var(--v2-text-h3); }
+.v2-h4 { font-size: var(--v2-text-lg); }
+
+.v2-body { font-family: var(--v2-font-body); }
+.v2-body-lg { font-size: var(--v2-text-lg); }
+.v2-body-sm { font-size: var(--v2-text-sm); }
+.v2-label {
+  font-family: var(--v2-font-body);
+  font-size: var(--v2-text-sm);
+  font-weight: 600;
+}
+/*
+ * Fase B.3 (secao 6 da missao -- paleta): "terracota NAO deve aparecer em
+ * todos os labels/badges/titulos pequenos... usar com moderacao". Na Fase B
+ * TODO eyebrow usava --v2-color-accent (terracota) por padrao, o que violava
+ * essa regra assim que o sistema crescesse (todo hero/card/secao com a mesma
+ * cor de destaque). Eyebrow passa a ser azul institucional por padrao;
+ * --v2-eyebrow--accent existe só para os poucos pontos que o chamador decidir
+ * que merecem destaque terracota de verdade (ex.: 1 CTA por secao).
+ */
+.v2-eyebrow {
+  font-family: var(--v2-font-body);
+  font-size: var(--v2-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-color-brand-700);
+}
+.v2-eyebrow--on-dark { color: rgba(255, 255, 255, 0.72); }
+.v2-eyebrow--accent { color: var(--v2-color-accent); }
+
+.v2-text-muted { color: var(--v2-color-text-muted); }
+.v2-text-subtle { color: var(--v2-color-text-subtle); }
+.v2-text-on-dark { color: var(--v2-color-surface-0); }
+
+.v2-measure {
+  max-width: 42rem; /* ~65-75 caracteres em text-base, conforme 04-design-system-plan.md */
+}
+
+/* ---------- Container ---------- */
+
+.v2-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--v2-gutter);
+}
+.v2-container--reading { max-width: var(--v2-container-reading); }
+.v2-container--content { max-width: var(--v2-container-content); }
+.v2-container--wide { max-width: var(--v2-container-wide); }
+.v2-container--full { max-width: none; }
+
+@media (min-width: 768px) {
+  .v2-container { --v2-gutter: 1.5rem; }
+}
+@media (min-width: 1200px) {
+  .v2-container { --v2-gutter: 2rem; }
+}
+
+/* ---------- Section ---------- */
+
+.v2-section {
+  padding-block: var(--v2-space-section);
+}
+.v2-section--alt { background: var(--v2-color-surface-alt); }
+.v2-section--warm { background: var(--v2-color-surface-warm); }
+.v2-section--brand {
+  background: linear-gradient(160deg, var(--v2-color-brand-800), var(--v2-color-brand-600));
+  color: var(--v2-color-surface-0);
+}
+/* .v2-heading fixa color:var(--v2-color-text) (tinta escura) por padrao --
+   sem isso, qualquer heading dentro de uma secao --brand fica ilegivel
+   sobre o fundo escuro (bug real, confirmado por screenshot na Fase B.3,
+   corrigido pontualmente no CTASection; aqui vira regra geral pra nao se
+   repetir em todo componente novo que entrar numa secao brand). */
+.v2-section--brand .v2-heading,
+.v2-section--brand .v2-eyebrow { color: inherit; }
+.v2-section--tight { padding-block: var(--v2-space-section-tight); }
+
+/* ---------- Grid utilitario (4/8/12, cards quebram por espaco) ---------- */
+
+.v2-grid {
+  display: grid;
+  gap: var(--v2-space-4);
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (min-width: 768px) {
+  .v2-grid { gap: var(--v2-space-6); grid-template-columns: repeat(8, 1fr); }
+}
+@media (min-width: 1200px) {
+  .v2-grid { gap: var(--v2-space-8); grid-template-columns: repeat(12, 1fr); }
+}
+.v2-grid--cards {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 576px) {
+  .v2-grid--cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 992px) {
+  .v2-grid--cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+.v2-stack { display: flex; flex-direction: column; }
+.v2-stack > * + * { margin-block-start: var(--v2-space-4); }
+
+.v2-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--v2-space-3);
+}
+
+/* ---------- Screen-reader only (aria pattern padrao) ---------- */
+
+.v2-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.v2-skip-link {
+  position: absolute;
+  inset-inline-start: var(--v2-space-4);
+  top: -3rem;
+  z-index: 100;
+  background: var(--v2-color-brand-800);
+  color: var(--v2-color-surface-0);
+  padding: var(--v2-space-3) var(--v2-space-4);
+  border-radius: var(--v2-radius-sm);
+  transition: top var(--v2-motion-base) var(--v2-motion-ease);
+}
+.v2-skip-link:focus {
+  top: var(--v2-space-4);
+}
