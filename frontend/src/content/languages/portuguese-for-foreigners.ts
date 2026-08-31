@@ -1,7 +1,7 @@
 import type { LanguagePillarContent } from "@/types/language";
 import { WHATSAPP_HREF } from "@/content/site/header";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Conteúdo real e validado para `/portugues-para-estrangeiros` (PLE).
@@ -72,7 +72,7 @@ export const portugueseForForeigners: LanguagePillarContent = {
     primaryCta: { text: "Conheça o curso", href: "#niveis" },
     secondaryCta: { text: "Fale com a Vedium", href: WHATSAPP_HREF },
     media: {
-      src: MEDIA_BASE + "e18-ple-estudo-fones.jpg",
+      src: MEDIA_BASE + "e14-ple-headphones-home.jpg",
       alt: "Pessoa adulta usando fones de ouvido estuda em um notebook, com uma estante de livros ao fundo.",
       width: 2000,
       height: 1263,
@@ -145,7 +145,7 @@ export const portugueseForForeigners: LanguagePillarContent = {
     description:
       "Trabalhamos formas de tratamento, situações cotidianas, registros mais formais e informais, expressões, comunicação profissional e leitura de situações sociais, sempre com rigor e profundidade, nunca como curiosidade turística.",
     media: {
-      src: MEDIA_BASE + "e22-ple-cotidiano-chamada.jpg",
+      src: MEDIA_BASE + "e07-hero-videoconference.jpg",
       alt: "Pessoa adulta sorri conversando ao telefone, com um notebook aberto, em um ambiente urbano ao ar livre.",
       width: 2000,
       height: 1333,

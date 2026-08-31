@@ -1,4 +1,4 @@
-export const PROGRESSION_TITLE = "Você sabe onde está e o que vem depois.";
+﻿export const PROGRESSION_TITLE = "Você sabe onde está e o que vem depois.";
 export const PROGRESSION_TEXT =
   "Cada curso organiza competências e objetivos por nível. O acompanhamento ajuda a identificar avanços e próximos passos.";
 

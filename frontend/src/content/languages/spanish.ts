@@ -1,7 +1,7 @@
 import type { LanguagePillarContent } from "@/types/language";
 import { WHATSAPP_HREF } from "@/content/site/header";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Conteúdo real e validado para `/curso-de-espanhol-online`.
@@ -67,7 +67,7 @@ export const spanish: LanguagePillarContent = {
     primaryCta: { text: "Conheça os níveis", href: "#niveis" },
     secondaryCta: { text: "Fale com a Vedium", href: WHATSAPP_HREF },
     media: {
-      src: MEDIA_BASE + "e19-espanhol-estudo-online.jpg",
+      src: MEDIA_BASE + "e12-espanhol-professora.jpg",
       alt: "Pessoa adulta assiste a uma aula online em um monitor, ouvindo com atenção e fazendo anotações em um caderno.",
       width: 2000,
       height: 1333,
@@ -153,7 +153,7 @@ export const spanish: LanguagePillarContent = {
     description:
       "O espanhol tem diversidade linguística e cultural real: pronúncia, vocabulário, formas de tratamento e registros variam entre países e regiões. Não existe um único \"espanhol latino\", e a Espanha não é um padrão superior; são variedades diferentes, cada uma válida no seu contexto.",
     media: {
-      src: MEDIA_BASE + "e23-espanhol-estudo-casa.jpg",
+      src: MEDIA_BASE + "e02-study-laptop.jpg",
       alt: "Pessoa adulta usando fones de ouvido estuda em um notebook, sentada em um sofá, em um ambiente doméstico aconchegante.",
       width: 2000,
       height: 1333,

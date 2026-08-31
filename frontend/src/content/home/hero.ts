@@ -1,4 +1,4 @@
-export interface HeroSlide {
+﻿export interface HeroSlide {
   eyebrow: string;
   headline: string;
   support: string;
@@ -11,7 +11,7 @@ export interface HeroSlide {
   navLabel: string;
 }
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 export const HERO_SLIDES: HeroSlide[] = [
   {

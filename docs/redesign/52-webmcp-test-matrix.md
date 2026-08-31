@@ -118,9 +118,17 @@ locais, **33/33 URLs confirmadas válidas.**
 
 ## 7. Regressão (seção 26 da missão)
 
-Suíte completa do projeto: **376 passed, 0 failed, 11 skipped** (era 376
-antes desta fase também, já que o único ajuste foi um teste reescrito, não
-removido). Checkpoint de produção mais recente (`docs/redesign/49-*`,
+Comando padrão (FULL LOCAL SUITE oficial):
+```bash
+python -m pytest -q \
+  --ignore=vedium_core/vedium_core/doctype/ \
+  --ignore=vedium_core/tests/test_full_catalog_registry.py
+```
+
+Suíte completa do projeto: **377 coletados / 372 passed, 0 failed, 6 skipped** (era 377
+coletados antes desta fase também, já que o único ajuste foi um teste reescrito, não
+removido. A diferença anterior de contagem derivava de diferenças entre Linux glob e PowerShell glob;
+o comando com `--ignore` unifica a coleta). Checkpoint de produção mais recente (`docs/redesign/49-*`,
 mantido intacto — nada desta fase tocou produção): Home/Hero/locale/
 Cursos/Pathfinder/Consent/SEO/mobile permanecem HEALTHY, não reverificados
 nesta fase porque nada em produção mudou.
@@ -199,7 +207,7 @@ LOCALE:                 PASS
 SECURITY:               PASS
 ORIGIN ISOLATION:       PASS (estático + runtime)
 
-TESTS (regressão final): 376 passed, 0 failed, 11 skipped
+TESTS (regressão final): 377 coletados, 372 passed, 0 failed, 6 skipped
 ORIGIN TRIAL:           NOT ENABLED
 DEPLOY:                 NOT PERFORMED
 ```

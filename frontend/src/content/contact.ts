@@ -1,4 +1,4 @@
-import type { BreadcrumbItem, CtaLink, FaqItem } from "@/types/language";
+﻿import type { BreadcrumbItem, CtaLink, FaqItem } from "@/types/language";
 import { HEADER_COURSES } from "@/content/site/header";
 
 const WHATSAPP_NUMBER = "5511911293075";

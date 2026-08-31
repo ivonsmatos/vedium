@@ -87,6 +87,35 @@ services:
       start_period: 60s
 
   # --------------------------------------------------
+  # FRONTEND NEXT.JS — novo site público
+  # --------------------------------------------------
+  vedium-next:
+    image: vedium-next:latest
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+    container_name: vedium-next
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=https://app.vediums.com
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - vedium-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # --------------------------------------------------
   # SOCKETIO — realtime (chat, progresso ao vivo)
   # --------------------------------------------------
   vedium-socketio:

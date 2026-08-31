@@ -1,7 +1,7 @@
 import type { BreadcrumbItem, CtaLink, EditorialRow, FaqItem, HeroMedia } from "@/types/language";
 import { WHATSAPP_HREF, HEADER_COURSES } from "@/content/site/header";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Conteúdo real e auditado para `/como-funciona` (Fase F.1).
@@ -88,7 +88,7 @@ export const HOW_IT_WORKS_HERO: {
   // padrão de CTA secundário já usado no Hero de toda página de idioma.
   secondaryCta: { text: "Fale com a Vedium", href: WHATSAPP_HREF },
   media: {
-    src: MEDIA_BASE + "e25-como-funciona-aula-vivo.jpg",
+    src: MEDIA_BASE + "e16-liveclass-teacher-poster.jpg",
     alt: "Pessoa adulta participa de uma videochamada em grupo, com colegas visíveis na tela, em um ambiente doméstico.",
     width: 1672,
     height: 941,
@@ -165,7 +165,7 @@ export const LIVE_CLASS = {
     { label: "DÚVIDAS", text: "Questões podem ser trabalhadas durante a própria aula." },
   ],
   media: {
-    src: MEDIA_BASE + "e25-como-funciona-aula-vivo.jpg",
+    src: MEDIA_BASE + "e16-liveclass-teacher-poster.jpg",
     alt: "Pessoa adulta participa de uma videochamada em grupo, com colegas visíveis na tela, em um ambiente doméstico.",
     width: 1672,
     height: 941,
@@ -190,7 +190,7 @@ export const LANGUAGE_CONTEXT = {
   title: "A língua é ensinada com o contexto necessário para compreendê-la e usá-la.",
   text: "Contexto significa situações reais de uso, formas de expressão, registros, produção cultural e diferenças regionais quando relevantes, conforme o idioma. Não é curiosidade, folclore ou decoração: é o que permite usar o idioma com propriedade.",
   media: {
-    src: MEDIA_BASE + "e27-como-funciona-contexto.jpg",
+    src: MEDIA_BASE + "e02-study-laptop.jpg",
     alt: "Pessoa adulta participa de uma videochamada, com um mapa-múndi ao fundo, em um escritório em casa.",
     width: 1672,
     height: 941,
@@ -202,7 +202,7 @@ export const EVOLUTION = {
   title: "Aprender também envolve perceber o que já avançou e o que ainda precisa ser desenvolvido.",
   text: "Matrícula, turma, nível, presença e progressão são acompanhados ao longo do percurso, com retorno do professor sobre o desenvolvimento do aluno.",
   media: {
-    src: MEDIA_BASE + "e26-como-funciona-acompanhamento.jpg",
+    src: MEDIA_BASE + "e06-listening-online-course.jpg",
     alt: "Grupo de profissionais adultos conversa em uma sala, um deles segurando um tablet.",
     width: 1672,
     height: 941,

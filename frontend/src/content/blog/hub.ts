@@ -1,4 +1,4 @@
-import { HEADER_COURSES } from "@/content/site/header";
+﻿import { HEADER_COURSES } from "@/content/site/header";
 
 /**
  * Conteúdo do hub /blog (missão F.5 seção 11). Só 1 artigo migrado nesta

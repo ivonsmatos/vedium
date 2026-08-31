@@ -1,4 +1,4 @@
-export interface InsightCard {
+﻿export interface InsightCard {
   title: string;
   summary: string;
   href: string;

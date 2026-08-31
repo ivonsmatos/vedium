@@ -1,4 +1,4 @@
-import type { BlogArticle } from "@/types/blog";
+﻿import type { BlogArticle } from "@/types/blog";
 
 /**
  * Artigo real migrado como prova de conceito da Fase F.5 (1 de 97 do

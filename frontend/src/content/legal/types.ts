@@ -1,4 +1,4 @@
-export interface LegalInline {
+﻿export interface LegalInline {
   text: string;
   strong?: boolean;
   underline?: boolean;

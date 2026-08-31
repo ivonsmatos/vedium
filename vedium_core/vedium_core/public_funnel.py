@@ -117,8 +117,11 @@ def _upsert_crm_lead_from_public_intent(intent, name, email, phone, company, tea
             lead.no_of_employees = team_size
         except Exception:
             pass
+
+    frappe.flags.ignore_permissions = True
     lead.insert(ignore_permissions=True)
     lead.add_comment("Comment", note)
+    frappe.flags.ignore_permissions = False
 
 
 def _create_ticket(intent, subject, details):
@@ -192,6 +195,7 @@ def submit_public_intent():
     goal = _clean(data.get("goal"), 180)
     company = _clean(data.get("company"), 180)
     team_size = _clean(data.get("team_size"), 40)
+
     referer = ""
     try:
         referer = frappe.request.headers.get("Referer", "")
@@ -222,6 +226,7 @@ def submit_public_intent():
             "goal": goal,
             "company": company,
             "team_size": team_size,
+
             "source": source,
             "message": message,
         },

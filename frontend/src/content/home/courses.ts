@@ -1,4 +1,4 @@
-export interface HomeCourse {
+﻿export interface HomeCourse {
   slug: string;
   displayName: string;
   levelSummary: string;
@@ -14,7 +14,7 @@ export interface HomeCourse {
   objectPosition: string;
 }
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Fonte editorial/curada -- espelha vedium_core/vedium_core/home_course_collection.py

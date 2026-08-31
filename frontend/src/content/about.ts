@@ -1,7 +1,7 @@
-import type { BreadcrumbItem, CtaLink, EditorialRow, HeroMedia } from "@/types/language";
+﻿import type { BreadcrumbItem, CtaLink, EditorialRow, HeroMedia } from "@/types/language";
 import { HEADER_COURSES } from "@/content/site/header";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Conteúdo real para `/sobre` (Fase F.2), baseado na fonte oficial
@@ -83,7 +83,7 @@ export const ABOUT_HERO: {
   primaryCta: { text: "Conheça os cursos", href: "/cursos-de-idiomas-online" },
   secondaryCta: { text: "Como funciona", href: "/como-funciona" },
   media: {
-    src: MEDIA_BASE + "e19-espanhol-estudo-online.jpg",
+    src: MEDIA_BASE + "e12-espanhol-professora.jpg",
     alt: "Pessoa adulta assiste a uma aula online em um monitor, ouvindo com atenção e fazendo anotações em um caderno.",
     width: 2000,
     height: 1333,
@@ -148,7 +148,7 @@ export const PEDAGOGICAL_GUIDANCE = {
   title: "A tecnologia organiza. A condução pedagógica continua humana.",
   text: "A tecnologia amplia o acesso, organiza a jornada e torna o progresso visível, mas não substitui o professor. O centro da experiência continua sendo o encontro entre pessoas: professores nativos e especialistas, de acordo com a natureza de cada percurso, que orientam, corrigem, acompanham o desenvolvimento e respondem pela responsabilidade pedagógica e cultural de cada aula.",
   media: {
-    src: MEDIA_BASE + "e28-sobre-conducao-pedagogica.jpg",
+    src: MEDIA_BASE + "e06-listening-online-course.jpg",
     alt: "Grupo de pessoas adultas reunidas em roda, conversando em um espaço profissional.",
     width: 1672,
     height: 941,
@@ -164,7 +164,7 @@ export const CULTURAL_RIGOR = {
   title: "Cada idioma exige contexto.",
   text: "Ensinar Inglês, Iorubá, Português, Espanhol ou Hebraico significa apresentar estruturas linguísticas e também os ambientes em que elas são usadas, interpretadas e transformadas. Iorubá é ensinado com estrutura, oralidade, literatura e história, sem reduzir a cultura a curiosidade. Hebraico cobre alfabetização, uso contemporâneo e leitura textual, sem reduzir o idioma à religião. Português para Estrangeiros trata da vida real no Brasil, não do Brasil como destino turístico. Espanhol reconhece a diversidade de países e variedades do idioma, sem tratar o mundo hispânico como um bloco único.",
   media: {
-    src: MEDIA_BASE + "e27-como-funciona-contexto.jpg",
+    src: MEDIA_BASE + "e02-study-laptop.jpg",
     alt: "Pessoa adulta participa de uma videochamada, com um mapa-múndi ao fundo, em um escritório em casa.",
     width: 1672,
     height: 941,

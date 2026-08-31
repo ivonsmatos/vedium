@@ -1,4 +1,4 @@
-export const LIVE_CLASS_TITLE = "Aulas ao vivo, na prática.";
+﻿export const LIVE_CLASS_TITLE = "Aulas ao vivo, na prática.";
 export const LIVE_CLASS_LEAD = "Cada encontro acontece com professor e alunos presentes em tempo real.";
 
 export const LIVE_CLASS_POINTS = [

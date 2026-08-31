@@ -1,4 +1,4 @@
-import type { LegalDocument } from "./types";
+﻿import type { LegalDocument } from "./types";
 
 export const TERMS_DOCUMENT: LegalDocument = {
   slug: "termos",

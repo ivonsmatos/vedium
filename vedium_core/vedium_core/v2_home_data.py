@@ -44,11 +44,13 @@ def build_home_v2_context(context):
     return context
 
 
-def get_insights_selection():
+def get_insights_selection(tag_filter=None):
     """Retorna (featured, secondary_list[2]) com os posts reais mais
     recentes em pt-BR, priorizando variedade de categoria nos 2
     secundários (regra determinística simples, sem algoritmo de
-    recomendação -- ver docs/redesign/26-home-v2-integration.md)."""
+    recomendação -- ver docs/redesign/26-home-v2-integration.md).
+    
+    Se tag_filter for fornecido, restringe os posts à tag específica."""
     from vedium_core.blog_content import BLOG_POSTS, _post_card
 
     try:
@@ -66,6 +68,10 @@ def get_insights_selection():
         c for c in cards
         if c.get("lang", "pt-BR") == "pt-BR" and c.get("date") and c.get("url") and c.get("title")
     ]
+    
+    if tag_filter:
+        pt_cards = [c for c in pt_cards if c.get("tag") == tag_filter or tag_filter.lower() in c.get("tag", "").lower()]
+
     pt_cards.sort(key=lambda c: c["date"], reverse=True)
 
     if not pt_cards:

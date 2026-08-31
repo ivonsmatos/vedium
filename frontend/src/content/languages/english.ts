@@ -1,7 +1,7 @@
-import type { LanguagePillarContent } from "@/types/language";
+﻿import type { LanguagePillarContent } from "@/types/language";
 import { PROGRESSION_STEPS } from "@/content/home/progression";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 const LEVEL_TEST_HREF = "/teste-de-nivel-ingles";
 
 /**

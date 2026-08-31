@@ -1,7 +1,7 @@
 import type { LanguagePillarContent } from "@/types/language";
 import { WHATSAPP_HREF } from "@/content/site/header";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Conteúdo real e validado para `/curso-de-ioruba-online`.
@@ -63,7 +63,7 @@ export const yoruba: LanguagePillarContent = {
       // (viewport inteiro de largura) ficava estourado/borrado (object-fit:cover
       // upscalando uma fatia estreita). e10 é paisagem nativa 2000x1333, mesma
       // resolução dos outros slides de hero da Home -- sem upscale perceptível.
-      src: MEDIA_BASE + "e10-notes-at-home.jpg",
+      src: MEDIA_BASE + "e11-ioruba-learning.jpg",
       alt: "Estudante usando fones de ouvido, sorrindo, escreve em um caderno durante uma aula online.",
       width: 2000,
       height: 1333,

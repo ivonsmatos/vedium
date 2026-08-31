@@ -1,4 +1,4 @@
-import type { LegalDocument } from "./types";
+﻿import type { LegalDocument } from "./types";
 
 export const CANCELLATION_REFUND_DOCUMENT: LegalDocument = {
   slug: "cancelamento-reembolso",

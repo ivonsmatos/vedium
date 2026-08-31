@@ -1,4 +1,4 @@
-export interface HeaderCourseLink {
+﻿export interface HeaderCourseLink {
   label: string;
   href: string;
 }

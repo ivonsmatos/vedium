@@ -1,4 +1,4 @@
-export const PATHFINDER_EYEBROW = "Encontre seu ponto de partida";
+﻿export const PATHFINDER_EYEBROW = "Encontre seu ponto de partida";
 export const PATHFINDER_TITLE = "Um curso para o seu idioma e o seu objetivo.";
 export const PATHFINDER_LEAD =
   "Responda a duas perguntas e veja qual percurso pode fazer mais sentido para você.";

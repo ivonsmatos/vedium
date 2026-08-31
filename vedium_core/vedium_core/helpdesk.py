@@ -75,32 +75,39 @@ def create_ticket(
     team=None,
 ):
     """Cria chamado no Helpdesk nativo, com fallback para Support Ticket legado."""
-    if not frappe.db.exists("DocType", "HD Ticket"):
-        return _fallback_support_ticket(subject, description, category, frappe.session.user)
+    frappe.flags.ignore_permissions = True
+    try:
+        if not frappe.db.exists("DocType", "HD Ticket"):
+            return _fallback_support_ticket(subject, description, category, frappe.session.user)
 
-    raised_by = _clean(raised_by or _user_email() or "contato@vediums.com", 180)
-    contact = _ensure_contact_for_email(raised_by, requester_name, phone)
-    category = category or "Geral"
-    description_html = (
-        f"<p><strong>Categoria:</strong> {_html(category)}</p>"
-        f"<p>{_html(description).replace(chr(10), '<br>')}</p>"
-    )
+        raised_by = _clean(raised_by or _user_email() or "contato@vediums.com", 180)
+        contact = _ensure_contact_for_email(raised_by, requester_name, phone)
+        category = category or "Geral"
+        description_html = (
+            f"<p><strong>Categoria:</strong> {_html(category)}</p>"
+            f"<p>{_html(description).replace(chr(10), '<br>')}</p>"
+        )
 
-    ticket = frappe.new_doc("HD Ticket")
-    ticket.subject = _clean(subject, 140) or category
-    ticket.raised_by = raised_by
-    ticket.description = description_html
-    ticket.summary = _clean(description, 500)
-    ticket.status = DEFAULT_STATUS
-    ticket.priority = priority or DEFAULT_PRIORITY
-    if contact:
-        ticket.contact = contact
-    selected_team = team or DEFAULT_TEAM
-    if frappe.db.exists("HD Team", selected_team):
-        ticket.agent_group = selected_team
-    ticket.via_customer_portal = 1
-    ticket.insert(ignore_permissions=True)
-    return ticket
+        ticket = frappe.get_doc({
+            "doctype": "HD Ticket",
+            "subject": _clean(subject, 140) or category,
+            "raised_by": raised_by
+        })
+        ticket.description = description_html
+        ticket.summary = _clean(description, 500)
+        ticket.status = DEFAULT_STATUS
+        ticket.priority = priority or DEFAULT_PRIORITY
+        if contact:
+            ticket.contact = contact
+        selected_team = team or DEFAULT_TEAM
+        if frappe.db.exists("HD Team", selected_team):
+            ticket.agent_group = selected_team
+        ticket.via_customer_portal = 1
+        
+        ticket.insert(ignore_permissions=True)
+        return ticket
+    finally:
+        frappe.flags.ignore_permissions = False
 
 
 def list_tickets_for_user(user=None):

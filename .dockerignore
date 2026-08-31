@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.agents
+.claude
+.gemini
+frontend_tmp
+frontend_push
+vedium-next.tar
+.env*
+!deploy/.env

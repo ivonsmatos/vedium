@@ -1,7 +1,7 @@
 import type { LanguagePillarContent } from "@/types/language";
 import { WHATSAPP_HREF } from "@/content/site/header";
 
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Único trecho em escrita hebraica real da página -- "alef-bet" (o nome
@@ -84,7 +84,7 @@ export const hebrew: LanguagePillarContent = {
       // e13 (hebraico-headphones) é retrato nativo (1080x1920) -- num hero
       // full-bleed ficaria estourado/borrado (mesmo achado já corrigido no
       // Hero de Iorubá). Paisagem nativa 2000x1336, sem upscale.
-      src: MEDIA_BASE + "e17-hebraico-leitura.jpg",
+      src: MEDIA_BASE + "e13-hebraico-headphones.jpg",
       alt: "Pessoa adulta concentrada faz a leitura de um livro aberto, em um ambiente doméstico iluminado e aconchegante.",
       width: 2000,
       height: 1336,
@@ -136,7 +136,7 @@ export const hebrew: LanguagePillarContent = {
       { label: "ACOMPANHAMENTO", text: "Correção e orientação ao longo do percurso." },
     ],
     media: {
-      src: MEDIA_BASE + "e10-notes-at-home.jpg",
+      src: MEDIA_BASE + "e13-hebraico-headphones.jpg",
       alt: "Pessoa adulta com fones de ouvido participa de uma aula online, escrevendo em um caderno.",
       width: 2000,
       height: 1333,
@@ -202,7 +202,7 @@ export const hebrew: LanguagePillarContent = {
     description:
       "O percurso Hebraico Bíblico – Leitura Guiada trabalha vocabulário, estrutura, leitura guiada e contexto linguístico de textos bíblicos, de forma responsável. É um percurso de estudo linguístico, separado do Hebraico Moderno. Nenhum dos dois é \"mais correto\" ou superior ao outro; cada um atende a objetivos diferentes.",
     media: {
-      src: MEDIA_BASE + "e24-hebraico-leitura-aula.jpg",
+      src: MEDIA_BASE + "e16-liveclass-teacher-poster.jpg",
       alt: "Pessoa adulta lê um livro à mesa, com uma aula online aberta no notebook ao lado, em um escritório com estante de livros.",
       width: 1672,
       height: 941,

@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   // Silencia o aviso de multiplos lockfiles: o repo tem um package-lock.json
   // na raiz (vedium_core/scripts Python) alem do de frontend/ -- este app
   // Next fica isolado no proprio diretorio.

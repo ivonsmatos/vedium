@@ -1,4 +1,4 @@
-import type { LegalDocument } from "./types";
+﻿import type { LegalDocument } from "./types";
 
 export const PRIVACY_DOCUMENT: LegalDocument = {
   slug: "privacidade",

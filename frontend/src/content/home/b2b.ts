@@ -1,4 +1,4 @@
-export const B2B_EYEBROW = "Vedium para empresas";
+﻿export const B2B_EYEBROW = "Vedium para empresas";
 export const B2B_SUB_EYEBROW = "Formação linguística corporativa";
 export const B2B_TITLE = "Desenvolva uma equipe mais preparada para se comunicar globalmente.";
 export const B2B_TEXT =

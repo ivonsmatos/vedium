@@ -1,4 +1,4 @@
-export const METHOD_EYEBROW = "O que você encontra na Vedium";
+﻿export const METHOD_EYEBROW = "O que você encontra na Vedium";
 export const METHOD_TITLE = "Ao vivo não é apenas o formato. É parte do método.";
 export const METHOD_INTRO =
   "Cada aula reúne participação, correção e progressão organizada por nível, com professores nativos e especialistas conduzindo o encontro.";

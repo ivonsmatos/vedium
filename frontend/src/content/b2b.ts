@@ -1,4 +1,4 @@
-const MEDIA_BASE = "/assets/vedium_core/v2/media/home/";
+const MEDIA_BASE = "/media/";
 
 /**
  * Conteúdo real e validado para `/empresas` (Vedium para Empresas / B2B).
@@ -122,7 +122,7 @@ export const b2b = {
     primaryCta: { text: "Fale com a Vedium", href: B2B_WHATSAPP_HREF },
     secondaryCta: { text: "Solicite uma conversa diagnóstica", href: "/contato" },
     media: {
-      src: MEDIA_BASE + "e20-b2b-aula-videochamada.jpg",
+      src: MEDIA_BASE + "e07-hero-videoconference.jpg",
       alt: "Profissional adulto de terno participa de uma videochamada com colegas de equipe visíveis na tela, em um escritório.",
       width: 2000,
       height: 1333,
@@ -148,7 +148,7 @@ export const b2b = {
     description:
       "Matrícula, turma, nível, presença e progressão são acompanhados ao longo do programa. A equipe Vedium mantém o RH e a liderança informados sobre a evolução dos participantes.",
     media: {
-      src: MEDIA_BASE + "e21-b2b-acompanhamento-notas.jpg",
+      src: MEDIA_BASE + "e15-b2b-videocall.jpg",
       alt: "Profissional adulto sentado em um sofá faz anotações em um caderno, com um notebook ao lado.",
       width: 2000,
       height: 1514,

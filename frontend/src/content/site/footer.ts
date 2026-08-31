@@ -1,4 +1,4 @@
-export interface FooterLink {
+﻿export interface FooterLink {
   label: string;
   href: string;
 }
